@@ -1,0 +1,126 @@
+{
+  "feature": [
+    {
+      "name": "Login",
+      "value": "login"
+    },
+    {
+      "name": "Error",
+      "value": "error"
+    },
+    {
+      "name": "Navigation",
+      "value": "navigation"
+    },
+    {
+      "name": "Landing",
+      "value": "landing"
+    },
+    {
+      "name": "Presentation flow",
+      "value": "presentation-flow"
+    }
+  ],
+  "controller": [
+    {
+      "name": "Login",
+      "value": "login"
+    },
+    {
+      "name": "Error",
+      "value": "error"
+    },
+    {
+      "name": "Navigation",
+      "value": "navigation"
+    },
+    {
+      "name": "Landing",
+      "value": "landing"
+    },
+    {
+      "name": "Presentation flow",
+      "value": "presentation-flow"
+    },
+    {
+      "name": "Add car",
+      "value": "add-car"
+    },
+    {
+      "name": "Dashboard",
+      "value": "dashboard"
+    },
+    {
+      "name": "Linked car",
+      "value": "linked-car"
+    },
+    {
+      "name": "Car profile",
+      "value": "car-profile"
+    }
+  ],
+  "filter": [],
+  "directive": [],
+  "service": [
+    {
+      "name": "Config",
+      "value": "config"
+    },
+    {
+      "name": "Redirect",
+      "value": "redirect"
+    },
+    {
+      "name": "Presentation flow service",
+      "value": "presentation-flow-service"
+    }
+  ],
+  "factory": [],
+  "provider": [],
+  "value": [],
+  "constant": [
+    {
+      "name": "Const",
+      "value": "const"
+    }
+  ],
+  "view": [
+    {
+      "name": "Login",
+      "value": "login"
+    },
+    {
+      "name": "Error",
+      "value": "error"
+    },
+    {
+      "name": "Navigation",
+      "value": "navigation"
+    },
+    {
+      "name": "Landing",
+      "value": "landing"
+    },
+    {
+      "name": "Presentation flow",
+      "value": "presentation-flow"
+    },
+    {
+      "name": "Add car",
+      "value": "add-car"
+    },
+    {
+      "name": "Dashboard",
+      "value": "dashboard"
+    },
+    {
+      "name": "Linked car",
+      "value": "linked-car"
+    },
+    {
+      "name": "Car profile",
+      "value": "car-profile"
+    }
+  ],
+  "sass": []
+}

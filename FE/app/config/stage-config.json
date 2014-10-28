@@ -1,0 +1,14 @@
+{
+    "config": {
+        "api":{
+            "methods":{
+                "SYW_LOGIN":{
+                    "use_host":"STAGE",
+                    "host_paths": {
+                        "STAGE": "/logint/stage"
+                    }
+                }
+            }
+        }
+    }
+}

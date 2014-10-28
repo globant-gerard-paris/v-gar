@@ -1,0 +1,73 @@
+<style>
+    .mixin-in {
+        text-align: center;
+    }
+    /* line 1, _main.scss */
+    body {
+        /* Location of the image */
+        background-image: url(../resources/images/background-photo.jpg);
+        /* Image is centered vertically and horizontally at all times */
+        background-position: center center;
+        /* Image doesn't repeat */
+        background-repeat: no-repeat;
+        /* Makes the image fixed in the viewport so that it doesn't move when
+           the content height is greater than the image height */
+        background-attachment: fixed;
+        /* This is what makes the background image rescale based on its container's size */
+        background-size: cover;
+        /* Pick a solid background color that will be displayed while the background image is loading */
+        background-color: #464646;
+        /* SHORTHAND CSS NOTATION
+         * background: url(background-photo.jpg) center center cover no-repeat fixed;
+         */
+    }
+    /* line 1, _theme.scss */
+    .page-title {
+        color: white;
+        text-align: center;
+    }
+
+    /* line 17, bundle.scss */
+    .user-type {
+        width: 300px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    /* line 21, bundle.scss */
+    .user-type .btn {
+        width: 100%;
+        height: 50px;
+        margin-bottom: 10px;
+        border-radius: 17px;
+        font-size: 1em;
+        background-color: white;
+        border-color: black;
+        padding: 8px;
+        text-align: center;
+    }
+
+    .btn-outline:hover,
+    .btn-outline:focus,
+    .btn-outline:active {
+        background-color: #F17F21;
+        color: #fff;
+    }
+</style>
+<h2 class="page-title">Please choose a User Type to start a flow:</h2>
+<div class="user-type">
+    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('GUEST')">
+            Hi!, I'm a Guest
+    </button>
+    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('ONLY_SYW_USER')">
+            Hi!, I'm a Only SYW User
+    </button>
+    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('SIGNED_USER')">
+            Hi!, I'm a Signed User
+    </button>
+    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('FULL_USER')">
+            Hi!, I'm a Full User
+    </button>
+    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('NON_PARTICIPATE')">
+            Hi!, I'm a Full User But Non Participate
+    </button>
+</div>

@@ -1,0 +1,83 @@
+<mockservice version="1.0" xml:lang="en-US">
+    <proxy_settings proxy_enabled="false" proxy_url=""/>
+    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="0" hang_time="0" name="Get Current User" request_inspector_name="null" service_response_type="1" tag="" url="users/current">
+        <request_inspector_json_rules enable_flag="false"/>
+        <response_schema enable_flag="false"/>
+        <scenario http_resp_status_code="200" id="1" name="Guy Ephraim" tag="">
+            <scenario_match scenario_match_evaluation_rules_flag="false"/>
+            <scenario_response>
+<![CDATA[
+{
+ "id": 440,
+ "name": "Guy Ephraim",
+ "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
+ "sywrMemberNumber": "7081329999588197",
+ "searsId": 27171640,
+ "profileUrl": "/people/guy-ephraim/440",
+ "registrationDate": "2010-02-08T17:07:47Z",
+ "privacy": "Public"
+ }
+]]>
+            </scenario_response>
+            <scenario_response_header/>
+        </scenario>
+    </service>
+    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="null" hang_time="0" name="Get Users" request_inspector_name="null" service_response_type="2" tag="" url="users/get/{ID}">
+        <request_inspector_json_rules enable_flag="false"/>
+        <response_schema enable_flag="false"/>
+        <scenario http_resp_status_code="200" id="1" name="User ID 440" tag="">
+            <scenario_match scenario_match_evaluation_rules_flag="false">
+<![CDATA[ 440 ]]>
+            </scenario_match>
+            <scenario_response>
+<![CDATA[
+{
+ "id": 440,
+ "name": "Guy Ephraim",
+ "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
+ "sywrMemberNumber": "7081329999588197",
+ "profileUrl": "/people/guy-ephraim/440",
+ "email": "guy@gmail.com"
+ "birthdate": {
+ "day": 1,
+ "month": 2,
+ "year": 1980
+ },
+ "gender": "Male",
+ "searsId": 27171640,
+ "registrationDate": "2010-02-08T17:07:47Z",
+ "privacy": "Public"
+ }
+]]>
+            </scenario_response>
+            <scenario_response_header/>
+        </scenario>
+        <scenario http_resp_status_code="200" id="2" name="User ID 441" tag="">
+            <scenario_match scenario_match_evaluation_rules_flag="false">
+<![CDATA[ 441 ]]>
+            </scenario_match>
+            <scenario_response>
+<![CDATA[
+{
+ "id": 441,
+ "name": "Matt Terry",
+ "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
+ "sywrMemberNumber": "7081329999588197",
+ "profileUrl": "/people/matt-terry/441",
+ "email": "guy@gmail.com"
+ "birthdate": {
+ "day": 15,
+ "month": 3,
+ "year": 1970
+ },
+ "gender": "Male",
+ "searsId": 27171641,
+ "registrationDate": "2010-04-01T17:07:47Z",
+ "privacy": "Public"
+ }
+]]>
+            </scenario_response>
+            <scenario_response_header/>
+        </scenario>
+    </service>
+</mockservice>
