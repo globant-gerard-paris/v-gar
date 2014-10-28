@@ -1,0 +1,36 @@
+###########
+# BACKEND #
+###########
+BK/.settings
+BK/.idea
+BK/*.launch
+BK/.target
+BK/.buildpath
+BK/target
+BK/*.iml
+BK/.classpath
+BK/.project
+BK/.tmp
+BK/.merge_file*
+BK/build
+
+#############
+# FRONT-END #
+#############
+
+FE/node_modules
+FE/dist
+FE/.tmp
+FE/.idea
+FE/.sass-cache
+FE/app/bower_components
+FE/.svn
+FE/.DS_Store
+FE/coverage
+FE/README.html
+FE/app/styles/*.css
+FE/*.appcache
+FE/*.cache
+FE/mockeyDebugFile.log
+FE/app/scripts/services/environment-config.js
+FE/nbproject
