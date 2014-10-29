@@ -12,7 +12,7 @@ BK/.classpath
 BK/.project
 BK/.tmp
 BK/.merge_file*
-BK/build
+BK/.springBeans
 
 #############
 # FRONT-END #
