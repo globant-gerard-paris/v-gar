@@ -1,41 +1,19 @@
 package com.searshc.mygarage.apis.ncdb.response;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name = "Data")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class DataResponse {
-
-    @XmlElement(name = "vehicle_Typs")
-    @XmlElementWrapper(name = "FamilyVehicle")
-    private List<VehicleResponse> vehicles = new ArrayList<VehicleResponse>();
+public abstract class DataResponse {
 
     @XmlAttribute(name = "AppResponse")
-    private String appResponseCode;
+    protected String appResponseCode;
 
     @XmlAttribute(name = "AppResponseDesc")
-    private String appResponseDescription;
-
-    /**
-     * @return the vehicles
-     */
-    public List<VehicleResponse> getVehicles() {
-        return vehicles;
-    }
-
-    /**
-     * @param vehicles the vehicles to set
-     */
-    public void setVehicles(List<VehicleResponse> vehicles) {
-        this.vehicles = vehicles;
-    }
+    protected String appResponseDescription;
 
     /**
      * @return the appResponseCode

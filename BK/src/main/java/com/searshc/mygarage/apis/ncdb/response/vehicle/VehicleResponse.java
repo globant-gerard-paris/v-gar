@@ -1,4 +1,4 @@
-package com.searshc.mygarage.apis.ncdb.response;
+package com.searshc.mygarage.apis.ncdb.response.vehicle;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

@@ -8,11 +8,13 @@ import org.springframework.stereotype.Component;
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.OrderItem;
 import com.searshc.mygarage.entities.Vehicle;
-import com.searshc.mygarage.apis.ncdb.response.EsbMsg;
+import com.searshc.mygarage.apis.ncdb.response.EsbMsgRequest;
 import com.searshc.mygarage.apis.ncdb.response.MdsHeader;
 import com.searshc.mygarage.apis.ncdb.response.Query;
-import com.searshc.mygarage.apis.ncdb.response.VehicleResponse;
-import com.searshc.mygarage.apis.ncdb.response.VehicleRetrievalResponse;
+import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
+import com.searshc.mygarage.apis.ncdb.response.order.OrderItemResponse;
+import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
+import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.dozer.DozerBeanMapper;
@@ -41,15 +43,32 @@ public class NCDBApiMock implements NCDBApi {
         Query query = new Query(familyIdNumber);
         query.setTangibleIdNumber(tangibleId);
 
-        EsbMsg request = new EsbMsg(header, query);
+        EsbMsgRequest request = new EsbMsgRequest(header, query);
 
-        VehicleRetrievalResponse response = null;
+        OrderHistoryResponse response = null;
 
         try {
             response = template.postForObject(this.serviceUrl,
-                    request, VehicleRetrievalResponse.class);
+                    request, OrderHistoryResponse.class);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+
+        List<Order> orders = new ArrayList<Order>();
+
+        if (response != null) {
+
+            Order order = new Order();
+
+            List<OrderItemResponse> list = response.getData().getOrders().getOrderItems();
+            for (OrderItemResponse item : list) {
+                OrderItem orderItem = new OrderItem();
+                orderItem.setItemDescription(item.getItemDescription());
+                orderItem.setItemId(item.getItemId());
+                order.addOrderItems(orderItem);
+            }
+
+            orders.add(order);
         }
 
 //        List<Order> response = new ArrayList<Order>();
@@ -110,7 +129,7 @@ public class NCDBApiMock implements NCDBApi {
 //        response.add(order);
 //
 //        return response;
-        return null;
+        return orders;
     }
 
     @Override
@@ -125,7 +144,7 @@ public class NCDBApiMock implements NCDBApi {
 
         Query query = new Query(familyIdNumber);
 
-        EsbMsg request = new EsbMsg(header, query);
+        EsbMsgRequest request = new EsbMsgRequest(header, query);
 
         VehicleRetrievalResponse response = null;
 
