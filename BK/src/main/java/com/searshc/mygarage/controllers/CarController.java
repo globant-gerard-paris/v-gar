@@ -19,26 +19,26 @@ import com.searshc.mygarage.services.CarService;
 
 @RestController
 public class CarController {
-	
-	private CarService carService;
-	
-	@Inject
-	public CarController(final CarService carService) {
-		Validate.notNull(carService, "The CarService cannot be null");
-		this.carService = carService;
-	}
-	
+
+    private CarService carService;
+
+    @Inject
+    public CarController(final CarService carService) {
+        Validate.notNull(carService, "The CarService cannot be null");
+        this.carService = carService;
+    }
+
     @RequestMapping("/")
     String home() {
         return "It works";
     }
-    
+
     @RequestMapping(value = "/family/{familyId}/vehicle/{vehicleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("familyId") String familyId,
-			@PathVariable("vehicleId") String vehicleId) {
-    	List<Order> orders = this.carService.getTransactions(familyId, vehicleId);
-    	return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
-	}
+    @ResponseBody
+    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("familyId") Integer familyId,
+            @PathVariable("vehicleId") Integer vehicleId) {
+        List<Order> orders = this.carService.getTransactions(familyId, vehicleId);
+        return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
+    }
 
 }

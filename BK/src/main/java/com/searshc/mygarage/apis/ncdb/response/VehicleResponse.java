@@ -1,35 +1,65 @@
-package com.searshc.mygarage.entities.response;
+package com.searshc.mygarage.apis.ncdb.response;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlType(name = "vehicle_Typs")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class VehicleResponse {
 
+    @XmlElement(name = "tng_id_no")
     private Integer tangibleIdNumber;
+
+    @XmlElement(name = "tng_typ_cd")
     private String tangibleTypeCode;
+
+    @XmlElement(name = "fam_id_no")
     private Integer familyIdNumber;
+
+    @XmlElement(name = "fam_typ_cd")
     private String familyTypeCode;
+
+    @XmlElement(name = "veh_yr_no")
     private Integer vehicleYearNumber;
+
+    @XmlElement(name = "veh_mak_ds")
     private String vehicleMake;
+
+    @XmlElement(name = "veh_mod_ds")
     private String vehicleModel;
+
+    @XmlElement(name = "veh_eng_ds")
     private String vehicleEngine;
+
+    @XmlElement(name = "veh_col_ds")
     private String vehicleColor;
+
+    @XmlElement(name = "vin_no")
     private String vinNumber;
+
+    @XmlElement(name = "vin_lst6_no")
     private String vinLast6Digits;
+
+    @XmlElement(name = "ctg_id")
     private Integer catalogId;
+
+    @XmlElement(name = "lic_plt_no")
     private String licensePlateNumber;
-    private String lastUpdateUserId;    
-    
+
+    @XmlElement(name = "lst_upd_ts")
+    private String lastUpdateUserId;
+
     /**
-     *  If the value is “N”, it means that the vehicle is no longer owned
+     * If the value is 'N', it means that the vehicle is no longer owned
      */
+    @XmlElement(name = "veh_sts")
     private String vehicleSts;
 
     /**
      * @return the tangibleIdNumber
      */
-    @XmlElement(name = "tng_id_no")
     public Integer getTangibleIdNumber() {
         return tangibleIdNumber;
     }
@@ -44,7 +74,6 @@ public class VehicleResponse {
     /**
      * @return the tangibleTypeCode
      */
-    @XmlElement(name = "tng_typ_cd")
     public String getTangibleTypeCode() {
         return tangibleTypeCode;
     }
@@ -59,7 +88,6 @@ public class VehicleResponse {
     /**
      * @return the familyIdNumber
      */
-    @XmlElement(name = "fam_id_no")
     public Integer getFamilyIdNumber() {
         return familyIdNumber;
     }
@@ -74,7 +102,6 @@ public class VehicleResponse {
     /**
      * @return the familyTypeCode
      */
-    @XmlElement(name = "fam_typ_cd")
     public String getFamilyTypeCode() {
         return familyTypeCode;
     }
@@ -89,7 +116,6 @@ public class VehicleResponse {
     /**
      * @return the vehicleYearNumber
      */
-    @XmlElement(name = "veh_yr_no")
     public Integer getVehicleYearNumber() {
         return vehicleYearNumber;
     }
@@ -104,7 +130,6 @@ public class VehicleResponse {
     /**
      * @return the vehicleMake
      */
-    @XmlElement(name = "veh_mak_ds")
     public String getVehicleMake() {
         return vehicleMake;
     }
@@ -119,7 +144,6 @@ public class VehicleResponse {
     /**
      * @return the vehicleModel
      */
-    @XmlElement(name = "veh_mod_ds")
     public String getVehicleModel() {
         return vehicleModel;
     }
@@ -134,7 +158,6 @@ public class VehicleResponse {
     /**
      * @return the vehicleEngine
      */
-    @XmlElement(name = "veh_eng_ds")
     public String getVehicleEngine() {
         return vehicleEngine;
     }
@@ -149,7 +172,6 @@ public class VehicleResponse {
     /**
      * @return the vehicleColor
      */
-    @XmlElement(name = "veh_col_ds")
     public String getVehicleColor() {
         return vehicleColor;
     }
@@ -164,7 +186,6 @@ public class VehicleResponse {
     /**
      * @return the vinNumber
      */
-    @XmlElement(name = "vin_no")
     public String getVinNumber() {
         return vinNumber;
     }
@@ -179,7 +200,6 @@ public class VehicleResponse {
     /**
      * @return the vinLast6Digits
      */
-    @XmlElement(name = "vin_lst6_no")
     public String getVinLast6Digits() {
         return vinLast6Digits;
     }
@@ -194,7 +214,6 @@ public class VehicleResponse {
     /**
      * @return the catalogId
      */
-    @XmlElement(name = "ctg_id")
     public Integer getCatalogId() {
         return catalogId;
     }
@@ -209,7 +228,6 @@ public class VehicleResponse {
     /**
      * @return the licensePlateNumber
      */
-    @XmlElement(name = "lic_plt_no")
     public String getLicensePlateNumber() {
         return licensePlateNumber;
     }
@@ -224,7 +242,6 @@ public class VehicleResponse {
     /**
      * @return the lastUpdateUserId
      */
-    @XmlElement(name = "lst_upd_ts")
     public String getLastUpdateUserId() {
         return lastUpdateUserId;
     }

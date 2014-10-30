@@ -13,20 +13,19 @@ import com.searshc.mygarage.entities.Order;
 @Service
 public class CarService {
 
-	
-	private NCDBApi ncdbApi;
-	
-	@Inject
-	public CarService(final NCDBApi ncdbApi) {
-		Validate.notNull(ncdbApi, "The NCDBApi cannot be null");
-		this.ncdbApi = ncdbApi;
-	}
-	
-	public List<Order> getTransactions(final String familyIdNumber, final String tangibleId) {
-		//TODO: query the ncdb service
-		//TODO: query the local database
-		//TODO: merge both results
-		return this.ncdbApi.getCarTransactionHistory(familyIdNumber, tangibleId);
-	}
-	
+    private NCDBApi ncdbApi;
+
+    @Inject
+    public CarService(final NCDBApi ncdbApi) {
+        Validate.notNull(ncdbApi, "The NCDBApi cannot be null");
+        this.ncdbApi = ncdbApi;
+    }
+
+    public List<Order> getTransactions(final Integer familyIdNumber, final Integer tangibleId) {
+        //TODO: query the ncdb service
+        //TODO: query the local database
+        //TODO: merge both results
+        return this.ncdbApi.getCarTransactionHistory(familyIdNumber, tangibleId);
+    }
+
 }

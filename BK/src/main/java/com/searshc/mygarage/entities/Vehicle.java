@@ -17,6 +17,8 @@ public class Vehicle {
     private String licensePlateNumber;
     private String lastUpdateUserId;
 
+    private String vehicleSts;
+
     /**
      * @return the tangibleIdNumber
      */
@@ -211,6 +213,20 @@ public class Vehicle {
      */
     public void setLastUpdateUserId(String lastUpdateUserId) {
         this.lastUpdateUserId = lastUpdateUserId;
+    }
+
+    /**
+     * @return the vehicleSts
+     */
+    public String getVehicleSts() {
+        return vehicleSts;
+    }
+
+    /**
+     * @param vehicleSts the vehicleSts to set
+     */
+    public void setVehicleSts(String vehicleSts) {
+        this.vehicleSts = vehicleSts;
     }
 
 }
