@@ -1,6 +1,9 @@
+
+
 ###########
 # BACKEND #
 ###########
+
 BK/.settings
 BK/.idea
 BK/*.launch
@@ -34,3 +37,12 @@ FE/*.cache
 FE/mockeyDebugFile.log
 FE/app/scripts/services/environment-config.js
 FE/nbproject
+
+# BOTH
+
+.project
+.classpath
+build
+.idea
+.settings
+nbproject
