@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.searshc.mygarage.entities.store.Store;
-import com.searshc.mygarage.entities.store.StoreRepository;
+import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.services.store.StoreService;
 import com.searshc.mygarage.util.VGUtils;
 

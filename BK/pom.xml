@@ -11,6 +11,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<start-class>com.searshc.mygarage.Application</start-class>
+		<commons-lang-version>2.4</commons-lang-version>
+		<hibernate-version>4.3.5.Final</hibernate-version>
+		<javax.persistence-version>1.0.2</javax.persistence-version>
+		<json-path-assert-version>0.8.1</json-path-assert-version>
+		<net.sf.dozer-version>5.4.0</net.sf.dozer-version>
 	</properties>
 
 	<parent>
@@ -90,7 +95,7 @@
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
-			<version>2.4</version>
+			<version>${commons-lang-version}</version>
 		</dependency>
 		<!-- Persistence -->
 		<dependency>
@@ -102,7 +107,7 @@
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
-			<version>4.3.5.Final</version>
+			<version>${hibernate-version}</version>
 		</dependency>
 
 		<dependency>
@@ -118,7 +123,7 @@
 		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
-			<version>1.0.2</version>
+			<version>${javax.persistence-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
@@ -137,14 +142,14 @@
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path-assert</artifactId>
-			<version>0.8.1</version>
+			<version>${json-path-assert-version}</version>
 			<scope>test</scope>
 		</dependency>
 		
 		<dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
-            <version>5.4.0</version>             
+            <version>${net.sf.dozer-version}</version>             
             <exclusions>
                 <exclusion> 
                     <groupId>org.slf4j</groupId>

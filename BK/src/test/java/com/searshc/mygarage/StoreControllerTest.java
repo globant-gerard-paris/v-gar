@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.searshc.mygarage.controllers.store.StoreController;
 import com.searshc.mygarage.entities.store.Store;
-import com.searshc.mygarage.entities.store.StoreRepository;
+import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.services.store.StoreService;
 
 /**
@@ -50,15 +50,14 @@ public class StoreControllerTest extends AbstractIntegrationTest {
 	private MockMvc mockMvc;
 
 	@Before
-	public void setup() {
+	public void beforeEach() {
 		MockitoAnnotations.initMocks(this);
 		this.mockMvc = MockMvcBuilders.standaloneSetup(controllerUnderTest).build();
 
 		Store store = new Store();
 		store.setCity("BuenosAires");
 		Store stores[] = { store };
-		Iterable<Store> iterable = Arrays.asList(stores);
-		Mockito.when(storeRepository.findAll()).thenReturn(iterable);
+		Mockito.when(storeRepository.findAll()).thenReturn(Arrays.asList(stores));
 		Mockito.when(storeRepository.findOne(storeId)).thenReturn(store);
 		Mockito.when(storeService.getStoresNear(lat, lng, milas)).thenReturn(
 				new ArrayList<Object>());
