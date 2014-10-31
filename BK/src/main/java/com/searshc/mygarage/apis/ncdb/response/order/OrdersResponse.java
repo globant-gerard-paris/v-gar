@@ -14,6 +14,9 @@ public class OrdersResponse {
     @XmlElement(name = "order_Items")
     private List<OrderItemResponse> orderItems = new ArrayList<OrderItemResponse>();
 
+    @XmlElement(name = "order_Header")
+    private List<OrderHeaderResponse> ordersHeader = new ArrayList<OrderHeaderResponse>();
+
     /**
      * @return the orderItems
      */
@@ -26,6 +29,20 @@ public class OrdersResponse {
      */
     public void setOrderItems(List<OrderItemResponse> orderItems) {
         this.orderItems = orderItems;
+    }
+
+    /**
+     * @return the ordersHeader
+     */
+    public List<OrderHeaderResponse> getOrdersHeader() {
+        return ordersHeader;
+    }
+
+    /**
+     * @param ordersHeader the ordersHeader to set
+     */
+    public void setOrdersHeader(List<OrderHeaderResponse> ordersHeader) {
+        this.ordersHeader = ordersHeader;
     }
 
 }

@@ -9,11 +9,28 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class OrderItemResponse {
 
+    @XmlElement(name = "ord_no")
+    private String orderNumber;
+
     @XmlElement(name = "itm_id")
     private String itemId;
 
     @XmlElement(name = "itm_ds")
     private String itemDescription;
+
+    /**
+     * @return the orderNumber
+     */
+    public String getOrderNumber() {
+        return orderNumber;
+    }
+
+    /**
+     * @param orderNumber the orderNumber to set
+     */
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
     /**
      * @return the itemId
