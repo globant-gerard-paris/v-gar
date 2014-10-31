@@ -35,7 +35,7 @@ public abstract class GenericService<E, T extends Serializable,  K extends Gener
 		if(pageSize == 0) {
 			pageSize = this.defaultPageSize;
 		}
-		if(pageSort == null || pageSort.equals(null)) {
+		if(pageSort == null) {
 			pageSort = this.defaultPageSort;
 		}
 		Pageable pageSpecification = new PageRequest(pageIndex, pageSize, pageSort);

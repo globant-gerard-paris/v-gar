@@ -34,7 +34,7 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 	public GenericRepositoryImpl(JpaEntityInformation<T, ?> entityInformation,
 			EntityManager entityManager, Class<?> springDataRepositoryInterface) {
 		super(entityInformation, entityManager);
-		this.entityInformation = this.entityInformation;
+		this.entityInformation = entityInformation;
 		this.em = entityManager;
 		this.springDataRepositoryInterface = springDataRepositoryInterface;
 	}
@@ -43,6 +43,7 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 		this(JpaEntityInformationSupport.getMetadata(domainClass, entityManager), entityManager, null);
 	}
 	
+	@Override
 	public <S extends T> S save(S entity) {
 		if (this.entityInformation.isNew(entity)) {
 			this.em.persist(entity);
