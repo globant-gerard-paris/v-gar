@@ -1,4 +1,4 @@
-CREATE TABLE `store` (
+CREATE TABLE `mygarage`.`store` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `address` varchar(255) DEFAULT NULL,
   `car_rental` bit(1) DEFAULT NULL,

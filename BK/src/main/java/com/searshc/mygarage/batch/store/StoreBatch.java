@@ -128,6 +128,7 @@ public class StoreBatch {
 				+ ":fridayOpen, " + ":fridayClose, " + ":saturdayOpen, " + ":saturdayClose, "
 				+ ":sundayOpen, " + ":sundayClose " + ")");
 		writer.setDataSource(dataSource);
+		
 		return writer;
 	}
 
@@ -135,8 +136,8 @@ public class StoreBatch {
 
 	// tag::jobstep[]
 	@Bean
-	public Job importUserJob(JobBuilderFactory jobs, Step s1) {
-		return jobs.get("importUserJob").incrementer(new RunIdIncrementer()).flow(s1).end().build();
+	public Job importerStores(JobBuilderFactory jobs, Step s1) {
+		return jobs.get("importerStores").incrementer(new RunIdIncrementer()).flow(s1).end().build();
 	}
 
 	@Bean
