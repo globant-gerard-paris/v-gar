@@ -1,1 +1,1 @@
-CREATE SCHEMA `mygarage` 
+CREATE SCHEMA `mygarage` ;
