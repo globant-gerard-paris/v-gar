@@ -29,7 +29,7 @@ import com.searshc.mygarage.entities.store.Store;
 
 /**
  * The {@link StoreBatch} is the process batch that fill all the stores of the customer in the
- * system by file csv.
+ * system from file csv.
  * 
  * @author Jero
  *
