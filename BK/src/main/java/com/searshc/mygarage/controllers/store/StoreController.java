@@ -2,7 +2,8 @@ package com.searshc.mygarage.controllers.store;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,10 +30,10 @@ import com.searshc.mygarage.util.VGUtils;
 @RestController
 public class StoreController {
 
-	@Autowired
+	@Inject
 	private StoreRepository storeRepository;
 
-	@Autowired
+	@Inject
 	private StoreService storeService;
 
 	@RequestMapping(value = "/stores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -53,7 +53,7 @@ public class StoreService {
 	 *            The distance in miles that limit the search of stores.
 	 * @return
 	 */
-	public List<Object> getStoresNear(String latitude, String longitude, Long limiteStores, String distance) {
+	public List<Object> getStoresNear(final String latitude, final String longitude,final Long limiteStores,final String distance) {
 
 		float latFlot = VGUtils.parseSafeFloat(latitude);
 		float longFlot = VGUtils.parseSafeFloat(longitude);

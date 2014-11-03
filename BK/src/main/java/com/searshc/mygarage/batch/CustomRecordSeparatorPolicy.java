@@ -7,7 +7,7 @@ import com.searshc.mygarage.util.VGUtils;
 /**
  * 
  * The {@link CustomRecordSeparatorPolicy} is just a separator policy that help to cut the text line
- * in one defined ({@code maxLineToken}) length.  
+ * in one defined ({@code maxLineToken}) length.
  * 
  * @author Jero
  *
@@ -24,7 +24,7 @@ public class CustomRecordSeparatorPolicy extends SimpleRecordSeparatorPolicy {
 	 */
 	private int maxLineToken = 31;
 
-	public CustomRecordSeparatorPolicy(int maxLineToken, char delimiterLineToken) {
+	public CustomRecordSeparatorPolicy(final int maxLineToken, final char delimiterLineToken) {
 		this.maxLineToken = maxLineToken;
 		this.delimiterLineToken = delimiterLineToken;
 	}
@@ -36,7 +36,7 @@ public class CustomRecordSeparatorPolicy extends SimpleRecordSeparatorPolicy {
 	}
 
 	@Override
-	public String postProcess(String record) {
+	public String postProcess(final String record) {
 		return VGUtils.substringByRepeatDelimiter(record, delimiterLineToken, maxLineToken);
 	}
 }

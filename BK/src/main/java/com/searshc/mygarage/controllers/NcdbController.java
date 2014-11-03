@@ -1,10 +1,9 @@
 package com.searshc.mygarage.controllers;
 
-import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.Vehicle;
-import com.searshc.mygarage.services.NcdbService;
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.inject.Inject;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,12 +13,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.searshc.mygarage.entities.Order;
+import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.services.NcdbService;
+
 @RestController
 public class NcdbController {
 
     private NcdbService ncdbService;
 
-    @Autowired
+    @Inject
     public NcdbController(NcdbService ncdbService) {
         this.ncdbService = ncdbService;
     }

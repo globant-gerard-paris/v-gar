@@ -51,7 +51,7 @@ public class VGUtils {
 	}
 
 	
-	public static float parseSafeFloat(String stringNumber){
+	public static float parseSafeFloat(final String stringNumber){
 		Assert.notNull(stringNumber, "The stringNumber can't be null");
 		Assert.hasLength(stringNumber, "The The stringNumber can't be empty");
 		
@@ -60,7 +60,7 @@ public class VGUtils {
 		return Float.parseFloat(safeParseFloat);
 	}
 	
-	public static <E> List<E> toList(Iterable<E> iter) {
+	public static <E> List<E> toList(final Iterable<E> iter) {
 	    List<E> list = new ArrayList<E>();
 	    for (E item : iter) {
 	        list.add(item);
