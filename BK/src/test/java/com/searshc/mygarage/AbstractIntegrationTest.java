@@ -1,19 +1,19 @@
 package com.searshc.mygarage;
 
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Base class of SpringJUnitTest in avoid DRY configurations about JUnit text environment.
+ * Base class of SpringJUnitTest to avoid DRY about JUnit configurations environment.
  * 
  * @author Jero
  * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@Transactional
 @SpringApplicationConfiguration(classes = Application.class)
+@IntegrationTest
 public abstract class AbstractIntegrationTest {
 
 }

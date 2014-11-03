@@ -1,4 +1,4 @@
-package com.searshc.mygarage;
+package com.searshc.mygarage.batch;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
+import com.searshc.mygarage.AbstractIntegrationTest;
 import com.searshc.mygarage.batch.CustomRecordSeparatorPolicy;
 
 public class DatabaseCustomRecordSeparatorPolicyTest extends AbstractIntegrationTest {

@@ -7,7 +7,8 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
 
     $scope.model = {
         stores: [],
-        address : null
+        address : null,
+        isCollapsed : true
     };
 
     /**

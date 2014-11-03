@@ -1,4 +1,4 @@
-package com.searshc.mygarage;
+package com.searshc.mygarage.controllers.store;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.searshc.mygarage.AbstractIntegrationTest;
 import com.searshc.mygarage.controllers.store.StoreController;
 import com.searshc.mygarage.entities.store.Store;
 import com.searshc.mygarage.repositories.StoreRepository;
@@ -30,14 +31,14 @@ import com.searshc.mygarage.services.store.StoreService;
  */
 public class StoreControllerTest extends AbstractIntegrationTest {
 
-	private static String URI_STORES_LAT_LANG = "/stores/lt/{myLat}/lg/{myLong}";
+	private static String URI_STORES_LAT_LANG = "/stores/lt/{myLat}/lg/{myLong}?limit=10&distance=2000";
 	private static String URI_STORES = "/stores";
 	private static String URI_STORE = "/store/{storeId}";
 	private long storeId = 786L;
 	private String lat = "35.17380";
 	private String lng = "-77.60742";
-	private String milas = "2000";
-	private long limiteStores = 8;
+	private String miles = "2000";
+	private Long limiteStores = 8L;
 
 	@Mock
 	StoreService storeService;
@@ -60,7 +61,7 @@ public class StoreControllerTest extends AbstractIntegrationTest {
 		Store stores[] = { store };
 		Mockito.when(storeRepository.findAll()).thenReturn(Arrays.asList(stores));
 		Mockito.when(storeRepository.findOne(storeId)).thenReturn(store);
-		Mockito.when(storeService.getStoresNear(lat, lng,limiteStores ,milas)).thenReturn(
+		Mockito.when(storeService.getStoresNear(lat, lng, limiteStores, miles)).thenReturn(
 				new ArrayList<Object>());
 	}
 
@@ -79,8 +80,8 @@ public class StoreControllerTest extends AbstractIntegrationTest {
 	@Test
 	public void testGivenLatLangSuccess() throws Exception {
 		mockMvc.perform(
-				get(URI_STORES_LAT_LANG, lat, lng, milas).accept(MediaType.APPLICATION_JSON))
-				.andDo(print()).andExpect(status().isOk());
+				get(URI_STORES_LAT_LANG, lat, lng, limiteStores, miles).accept(
+						MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
 	}
 
 }

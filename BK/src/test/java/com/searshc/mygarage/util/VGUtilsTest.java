@@ -1,4 +1,4 @@
-package com.searshc.mygarage;
+package com.searshc.mygarage.util;
 
 import static org.junit.Assert.assertEquals;
 

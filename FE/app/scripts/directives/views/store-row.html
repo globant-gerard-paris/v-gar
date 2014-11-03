@@ -1,5 +1,9 @@
 <style>
 
+    #store-row .store-row-expand-header {
+        width: 100%;
+    }
+
     #store-row .div-button {
         max-width: 165px;
         height: 100px;
@@ -17,8 +21,18 @@
         margin-top: 20px;
     }
 
-    #store-row address {
+    #store-row h5 {
         margin-left: 10px;
+    }
+
+    #store-row li {
+        line-height: 20px;
+        font-size: 14px;
+    }
+
+    #store-row h4 {
+        font-weight: bold;
+        font-size: 14px;
     }
 
     .vg-google-maps {
@@ -38,24 +52,87 @@
             <div class="row">
                 <div class="col-xs-9 col-sm-8 text-muted">
                     <h5 class="media-heading text-muted">
-                        <address>
-                            <strong>
-                                {{address}}<br>
-                                {{districtName}} - {{districtNumber}}<br>
-                                {{city}}<br>
-                            </strong>
-                            <br>
-                            {{formatMilesAway(distance)}} miles away
-                        </address>
+                        <strong>
+                            {{address}}<br>
+                            {{districtName}} - {{districtNumber}}<br>
+                            {{city}}<br>
+                        </strong>
+                        <br>
+                        {{formatMilesAway(distance)}} miles away
                     </h5>
                 </div>
                 <div class="col-xs-3 col-sm-4">
                     <div class="div-button center-block">
                         <button type="button" class="center-block pull-right btn btn-md btn-default">MY STORE</button>
                         <h4 class="text-center">
-                            <!--<small>{{currentDayName}} {{curentDayNumber}}-{{currentMonth}} {{currentHourOpen}}-{{currentHourClose}}</small>-->
+                            <!--<small>{{currentDate}} {{hoursStore}}</small>-->
                             <small>SAT 10/18 8am-6pm</small>
                         </h4>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center store-row-expand-header" ng-click="model.isCollapsed = !model.isCollapsed">
+                <span class="caret"></span>
+
+                <div collapse="!model.isCollapsed">
+
+                    <div class="row well well-lg text-left">
+                        <div class="col-xs-6">
+                            <h4>Store Detail</h4>
+
+                            <p>
+                                A car is a wheeled, self-powered motor vehicle used
+                                for transporting passengers. Most definitions of the term
+                                specify that cars are designed to run primarily on roads,
+                                to have seating for one to eight people, to typically have four wheels,
+                                and to be constructed principally for the transport of people rather than
+                                goods.[3][4] The year 1886 is regarded as the birth year of the modern car.
+                                In that year, German inventor Karl Benz built the Benz Patent-Motorwagen.
+                                Cars did not become widely available until the early 20th century.
+                                One of the first cars that was accessible to the masses was the 1908 Model T,
+                                an American car manufactured by the Ford Motor Company. Cars were rapidly adopted in
+                                the United States of America, where they replaced animal-drawn carriages and carts,
+                                but took much longer to be accepted in Western Europe and other less-developed parts of
+                                the world.</p>
+                        </div>
+                        <div class="col-xs-4">
+                            <h4>Hours Operation</h4>
+
+                            <!--{{currentDate}} {{hoursStore}}</li>-->
+                            <div class="days-row">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        MON 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        TUE 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        WED 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        THU 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        FRI 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        SAT 10/18 8am-6pm<br>
+                                    </li>
+                                    <li>
+                                        SUN 10/18 10am-6pm<br>
+                                    </li>
+                                </ul>
+                            </div>
+                            <br>
+                            <h4>After Horus?</h4>
+
+                            <p>
+                                A car is a wheeled, self-powered motor vehicle used
+                                for transporting passengers. Most definitions of the term
+                                specify that cars are designed to run primarily on roads.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

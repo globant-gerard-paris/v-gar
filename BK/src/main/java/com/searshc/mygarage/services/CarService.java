@@ -2,7 +2,7 @@ package com.searshc.mygarage.services;
 
 import java.util.List;
 
-import javax.inject.Inject;
+import javax.inject.Inject;	
 
 import org.apache.commons.lang.Validate;
 import org.springframework.stereotype.Service;

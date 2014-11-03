@@ -70,7 +70,7 @@ public class StoreBatch {
 	private FlatFileItemReader<Store> setURLResource(FlatFileItemReader<Store> reader) {
 		try {
 			reader.setResource(new UrlResource(
-					"http://virtual-garage-file-system.paperplane.io/StoreListforLC101714.csv"));
+					"http://virtual-garage-file-system.paperplane.io/store-list.csv"));
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
