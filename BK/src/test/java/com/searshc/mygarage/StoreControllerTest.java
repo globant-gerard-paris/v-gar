@@ -37,6 +37,7 @@ public class StoreControllerTest extends AbstractIntegrationTest {
 	private String lat = "35.17380";
 	private String lng = "-77.60742";
 	private String milas = "2000";
+	private long limiteStores = 8;
 
 	@Mock
 	StoreService storeService;
@@ -59,7 +60,7 @@ public class StoreControllerTest extends AbstractIntegrationTest {
 		Store stores[] = { store };
 		Mockito.when(storeRepository.findAll()).thenReturn(Arrays.asList(stores));
 		Mockito.when(storeRepository.findOne(storeId)).thenReturn(store);
-		Mockito.when(storeService.getStoresNear(lat, lng, milas)).thenReturn(
+		Mockito.when(storeService.getStoresNear(lat, lng,limiteStores ,milas)).thenReturn(
 				new ArrayList<Object>());
 	}
 

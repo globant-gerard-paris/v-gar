@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     grunt.config('open', {
         server: {
-            //  url: 'http://localhost:<%= connect.options.port %>'
+//            url: 'http://localhost:<%= connect.options.port %>'
             url: 'http://sandbox.shopyourway.com/app/17510/l'
         },
         dist: {

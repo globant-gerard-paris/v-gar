@@ -27,6 +27,8 @@ import com.searshc.mygarage.util.VGUtils;
 public class StoreService {
 
 	private SimpleJdbcCall simpleJdbcCall;
+	private static final long DEFAULT_STORES_TO_RETRIEVE = 8;
+	private static final String DEFAULT_SCOPE_SEARCH = "1000";
 
 	public StoreService() {
 		super();
@@ -51,19 +53,19 @@ public class StoreService {
 	 *            The distance in miles that limit the search of stores.
 	 * @return
 	 */
-	public List<Object> getStoresNear(String latitude, String longitude, String distance) {
+	public List<Object> getStoresNear(String latitude, String longitude, Long limiteStores, String distance) {
 
 		float latFlot = VGUtils.parseSafeFloat(latitude);
 		float longFlot = VGUtils.parseSafeFloat(longitude);
-
+		
 		Map<String, Object> inParamMap = new HashMap<String, Object>();
 		inParamMap.put("mylat", latFlot);
 		inParamMap.put("mylong", longFlot);
-		inParamMap.put("dist", distance);
+		inParamMap.put("dist", (DEFAULT_SCOPE_SEARCH == null ? DEFAULT_SCOPE_SEARCH : distance));
+		inParamMap.put("limitStore", (limiteStores == null ? DEFAULT_STORES_TO_RETRIEVE : limiteStores));
 		SqlParameterSource in = new MapSqlParameterSource(inParamMap);
 
 		Map<String, Object> simpleJdbcCallResult = simpleJdbcCall.execute(in);
-		System.out.println(simpleJdbcCallResult);
 
 		return (simpleJdbcCallResult != null) ? new ArrayList<Object>(simpleJdbcCallResult.values())
 				: null;

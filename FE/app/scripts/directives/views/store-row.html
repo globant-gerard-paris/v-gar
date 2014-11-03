@@ -1,0 +1,64 @@
+<style>
+
+    #store-row .div-button {
+        max-width: 165px;
+        height: 100px;
+    }
+
+    #store-row .panel {
+        padding: 10px;
+        border-radius: 10px 10px 10px 10px;
+        border-color: #808080;
+    }
+
+    #store-row button {
+        width: 100%;
+        min-width: 100px;
+        margin-top: 20px;
+    }
+
+    #store-row address {
+        margin-left: 10px;
+    }
+
+    .vg-google-maps {
+        border-radius: 10px 10px 10px 10px;
+        height: 120px;
+        float: left;
+        width: 120px;
+    }
+</style>
+<div id="store-row" class="store-row store-row-directive">
+    <div class="media panel">
+
+        <div id="map_canvas_{{idStore}}" class="vg-google-maps">
+        </div>
+
+        <div class="media-body ">
+            <div class="row">
+                <div class="col-xs-9 col-sm-8 text-muted">
+                    <h5 class="media-heading text-muted">
+                        <address>
+                            <strong>
+                                {{address}}<br>
+                                {{districtName}} - {{districtNumber}}<br>
+                                {{city}}<br>
+                            </strong>
+                            <br>
+                            {{formatMilesAway(distance)}} miles away
+                        </address>
+                    </h5>
+                </div>
+                <div class="col-xs-3 col-sm-4">
+                    <div class="div-button center-block">
+                        <button type="button" class="center-block pull-right btn btn-md btn-default">MY STORE</button>
+                        <h4 class="text-center">
+                            <!--<small>{{currentDayName}} {{curentDayNumber}}-{{currentMonth}} {{currentHourOpen}}-{{currentHourClose}}</small>-->
+                            <small>SAT 10/18 8am-6pm</small>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

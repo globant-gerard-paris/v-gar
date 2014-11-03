@@ -26,6 +26,7 @@ module.exports = function(config) {
             'app/bower_components/lodash/dist/lodash.compat.js',
             'app/bower_components/bootstrap/dist/js/bootstrap.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
+            'app/bower_components/ngstorage/ngStorage.js',
             // endbower files
             'app/bower_components/jasmine-matchers/dist/jasmine-matchers.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',

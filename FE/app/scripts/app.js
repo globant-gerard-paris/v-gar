@@ -6,6 +6,7 @@ var _mainModules = [
             , 'Directives'
             , 'ngRoute'
             , 'ngResource'
+            , 'ngStorage'
             , 'ngSanitize'
             , 'ngCookies'
             , 'ngAnimate'
@@ -82,7 +83,7 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'LinkedCarCtrl'
                 }
             });
-            
+
             routes.push({
                 name: '/car-profile',
                 params: {
@@ -91,7 +92,15 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
-// yo:ngRoutes
+            routes.push({
+                name: '/store-locator',
+                params: {
+                    templateUrl: 'scripts/presentation-flow/views/store-locator.html',
+                    controller: 'StoreLocatorCtrl'
+                }
+            });
+
+            // yo:ngRoutes
 
             routes.forEach(function (route) {
                 $routeProvider.when(route.name, route.params);

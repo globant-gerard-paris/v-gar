@@ -20,6 +20,13 @@ describe('Redirect services', function () {
         expect($location.path()).toEqual('/home');
     });
 
+    it('should redirect to home page with 123 path params.', function () {
+        RedirectSrv.redirectTo('/home/123');
+        var history = RedirectSrv.getHistory();
+        expect(history[0]).toEqual('/home/123');
+        expect($location.path()).toEqual('/home/123');
+    });
+
     it('should redirect to previous the history.', function () {
         RedirectSrv.redirectTo('/home');
         RedirectSrv.redirectTo('/landing');

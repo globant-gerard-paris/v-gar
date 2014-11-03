@@ -57,10 +57,19 @@
     {
       "name": "Car profile",
       "value": "car-profile"
+    },
+    {
+      "name": "Store locator",
+      "value": "store-locator"
     }
   ],
   "filter": [],
-  "directive": [],
+  "directive": [
+    {
+      "name": "Store row",
+      "value": "store-row"
+    }
+  ],
   "service": [
     {
       "name": "Config",
@@ -73,6 +82,14 @@
     {
       "name": "Presentation flow service",
       "value": "presentation-flow-service"
+    },
+    {
+      "name": "Store finder",
+      "value": "store-finder"
+    },
+    {
+      "name": "Http service",
+      "value": "http-service"
     }
   ],
   "factory": [],
@@ -120,6 +137,10 @@
     {
       "name": "Car profile",
       "value": "car-profile"
+    },
+    {
+      "name": "Store locator",
+      "value": "store-locator"
     }
   ],
   "sass": []
