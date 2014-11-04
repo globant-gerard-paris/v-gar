@@ -26,7 +26,7 @@ describe('Config services', function () {
     });
 
     it('given a valid key to the getApi URL method, should return the correct value.', function () {
-        expect(ConfigSrv.getApiUrl('SYW_LOGIN')).toEqual('http://prod.sears/logint/prod');
+        expect(ConfigSrv.getApiUrl('SYW_LOGIN')).toEqual('http://127.0.0.1:9000/logint/dev');
     });
 
     it('given a invalid key to the getApi URL method, should return throw exception.', function () {

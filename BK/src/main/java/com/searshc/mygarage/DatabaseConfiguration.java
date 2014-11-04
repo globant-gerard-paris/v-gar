@@ -55,6 +55,7 @@ public class DatabaseConfiguration {
 			ds.setCacheCallableStatements(false);
 			ds.setUseLocalSessionState(false);
 			ds.setCacheServerConfiguration(false);
+			
 			DatabaseConfiguration.dataSource = ds;
 			log.info("Database Connection: " + username + "@" + url);
 		}
@@ -91,6 +92,5 @@ public class DatabaseConfiguration {
 		
 		return em;
 	}
-	
 
 }

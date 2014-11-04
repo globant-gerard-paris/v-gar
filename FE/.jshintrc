@@ -31,6 +31,9 @@
         "module": false,
         "_": false,
         "beforeEach": false,
-        "browser": false
+        "browser": false,
+        "alert":false,
+        "google":false,
+        "$":false
     }
 }

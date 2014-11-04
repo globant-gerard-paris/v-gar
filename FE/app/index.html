@@ -22,6 +22,8 @@
 
         <!-- build:js scripts/modules.js -->
 
+        <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -36,6 +38,7 @@
         <script src="bower_components/lodash/dist/lodash.compat.js"></script>
         <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="bower_components/ngstorage/ngStorage.js"></script>
         <!-- endbower -->
 
         <!-- endbuild -->
@@ -58,17 +61,22 @@
         <script src="scripts/presentation-flow/controllers/linked-car.js"></script>
 
         <script src="scripts/presentation-flow/controllers/car-profile.js"></script>
-  <!-- yo:controllers -->
+        <script src="scripts/presentation-flow/controllers/store-locator.js"></script>
+        <!-- yo:controllers -->
         <script src="scripts/services/config.js"></script>
         <script src="scripts/services/redirect.js"></script>
+        <script src="scripts/services/geo-coder.js"></script>
 
-  <!-- yo:services -->
+        <script src="scripts/presentation-flow/services/store-locator.js"></script>
+        <script src="scripts/services/http-service.js"></script>
+        <!-- yo:services -->
         <script src="scripts/filters/filters.js"></script>
         <script src="scripts/presentation-flow/services/presentation-flow.js"></script>
 
         <!-- yo:filters -->
         <script src="scripts/directives/directives.js"></script>
 
+        <script src="scripts/directives/store-row.js"></script>
         <!-- yo:directives -->
 
         <!-- endbuild -->
