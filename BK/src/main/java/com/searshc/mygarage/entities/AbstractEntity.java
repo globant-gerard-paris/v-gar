@@ -5,17 +5,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  * Base class to derive entity classes from.
  * 
  * @author Jero
  */
 @MappedSuperclass
-public class AbstractEntity {
+public abstract class AbstractEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
+	
+	public AbstractEntity() {
+		this.id = 0L;
+	}
+	/**
+	 * @param id
+	 */
+	public AbstractEntity(Long id) {
+		Validate.isTrue(id >= 0, "The Id cannot be lower than 0");
+		this.id = id;
+	}
 
 	/**
 	 * Returns the identifier of the entity.
@@ -24,6 +38,15 @@ public class AbstractEntity {
 	 */
 	public Long getId() {
 		return id;
+	}
+	
+	
+	/**
+	 * @param id the id to set
+	 */
+	public void setId(Long id) {
+		Validate.isTrue(id >= 0, "The id cannot be lower than 0");
+		this.id = id;
 	}
 
 	/*
