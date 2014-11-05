@@ -8,22 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
+
 
 @Entity
 @Table(name = "additional_vehicle")
-public class AdditionalVehicle implements Serializable{
+public class AdditionalVehicle extends AbstractEntity implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -650535603949006577L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", columnDefinition = "INT UNSIGNED")
-	private Integer id;
-	
 	//TODO: change the String to another data type
 	@Column(name = "make")
 	private String make;
@@ -42,7 +38,7 @@ public class AdditionalVehicle implements Serializable{
 	private int mileage;
 	
 	public AdditionalVehicle() {
-		this.id = 0;
+		super(0L);
 		this.make = "";
 		this.model = "";
 		this.year = 0;
@@ -60,18 +56,14 @@ public class AdditionalVehicle implements Serializable{
 	 * @param color
 	 * @param mileage
 	 */
-	public AdditionalVehicle(Integer id, String make, String model, int year, String color,
+	public AdditionalVehicle(Long id, String make, String model, int year, String color,
 			int mileage) {
-		Validate.isTrue(id!= null && id >= 0, "The id cannot be lower than 0");
-		Validate.notNull(make, "The Make cannot be null");
-		Validate.notNull(model, "The Model cannot be null");
+		super(id);
+		this.make = Validate.notNull(make, "The Make cannot be null");
+		this.model = Validate.notNull(model, "The Model cannot be null");
 		Validate.isTrue(year > 0, "The Year cannot be lower than 0");
-		Validate.notNull(color, "The Color cannot be null");
-		this.id = id;
-		this.make = make;
-		this.model = model;
 		this.year = year;
-		this.color = color;
+		this.color = Validate.notNull(color, "The Color cannot be null");
 		this.mileage = mileage;
 	}
 
@@ -80,15 +72,15 @@ public class AdditionalVehicle implements Serializable{
 	/**
 	 * @return the id
 	 */
-	public Integer getId() {
-		return id;
+	public Long getId() {
+		return super.getId();
 	}
 
 	/**
 	 * @param id the id to set
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Long id) {
+		super.setId(id);
 	}
 
 	/**
@@ -102,7 +94,7 @@ public class AdditionalVehicle implements Serializable{
 	 * @param make the make to set
 	 */
 	public void setMake(String make) {
-		this.make = make;
+		this.make = Validate.notNull(make, "The Make cannot be null");
 	}
 
 	/**
@@ -116,7 +108,7 @@ public class AdditionalVehicle implements Serializable{
 	 * @param model the model to set
 	 */
 	public void setModel(String model) {
-		this.model = model;
+		this.model = Validate.notNull(model, "The Model cannot be null");
 	}
 
 	/**
@@ -130,6 +122,7 @@ public class AdditionalVehicle implements Serializable{
 	 * @param year the year to set
 	 */
 	public void setYear(int year) {
+		Validate.isTrue(year > 0, "The Year cannot be lower than 0");
 		this.year = year;
 	}
 
@@ -144,7 +137,7 @@ public class AdditionalVehicle implements Serializable{
 	 * @param color the color to set
 	 */
 	public void setColor(String color) {
-		this.color = color;
+		this.color = Validate.notNull(color, "The Color cannot be null");
 	}
 
 	/**

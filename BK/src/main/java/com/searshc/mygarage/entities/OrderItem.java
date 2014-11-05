@@ -1,21 +1,21 @@
 package com.searshc.mygarage.entities;
 
-public class OrderItem {
+import java.io.Serializable;
 
-    private String orderNumber;
-//    private String orderLineNumber;
-//    private String lineItemType;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
+public class OrderItem implements Serializable{
+
+    /**
+	 * The Serial Version UID.
+	 */
+	private static final long serialVersionUID = 4555155216527619816L;
+	
+	private String orderNumber;
     private String itemId;
-//    private String itemQuantity;
-//    private String sellingPriceAmount;
-//    private String regularPrice;
-//    private String pluPriceAmount;
     private String itemDescription;
-//    private String sellingAssociateId;
-//    private String itemTaxAmount;
-//    private String restockingFeeEligible;
-//    private String productFlag;
-//    private String miscAcctNumber;
+
 
     /**
      * @return the orderNumber
@@ -57,6 +57,29 @@ public class OrderItem {
      */
     public void setItemDescription(String itemDescription) {
         this.itemDescription = itemDescription;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+    	if (this == obj) {
+    		return true;
+    	}
+    	if (obj == null || !(this.getClass().equals(obj.getClass()))) {
+    		return false;
+    	}
+    	OrderItem rhs = (OrderItem) obj;
+    	return new EqualsBuilder()
+    		.append(this.orderNumber, rhs.orderNumber)
+    		.append(this.itemId, rhs.itemId)
+    		.append(this.itemDescription, rhs.itemDescription).isEquals();
+    }
+    
+    @Override
+    public int hashCode() {
+    	return new HashCodeBuilder()
+    		.append(this.orderNumber)
+    		.append(this.itemId)
+    		.append(this.itemDescription).toHashCode();
     }
 
 }
