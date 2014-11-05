@@ -25,13 +25,15 @@ import org.dozer.Mapper;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class NCDBApiMock implements NCDBApi {
+public class NCDBApiImpl implements NCDBApi {
 
     private final String VEHICLE_RETRIEVAL_SERVICE_NAME = "RTVEH";
 
     private final String ORDER_HISTORY_INQUIRY_SERVICE_NAME = "ROFID";
 
     private String serviceUrl = "http://10.129.217.205:1181/ncdb/HttpListener";
+
+    RestTemplate restTemplate = new RestTemplate();
 
     private Map<String, Order> createOrdersMap(List<OrderHeaderResponse> ordersHeader) {
         Map<String, Order> ordersMap = new HashMap<String, Order>();
@@ -49,8 +51,6 @@ public class NCDBApiMock implements NCDBApi {
     @Override
     public List<Order> getCarTransactionHistory(Integer familyIdNumber, Integer tangibleId) {
 
-        RestTemplate template = new RestTemplate();
-
         MdsHeader header = new MdsHeader(ORDER_HISTORY_INQUIRY_SERVICE_NAME);
         header.setRequestorUserId("06091");
         header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
@@ -64,7 +64,7 @@ public class NCDBApiMock implements NCDBApi {
         OrderHistoryResponse response = null;
 
         try {
-            response = template.postForObject(this.serviceUrl,
+            response = this.restTemplate.postForObject(this.serviceUrl,
                     request, OrderHistoryResponse.class);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -95,8 +95,6 @@ public class NCDBApiMock implements NCDBApi {
     @Override
     public List<Vehicle> getVehicles(Integer familyIdNumber) {
 
-        RestTemplate template = new RestTemplate();
-
         MdsHeader header = new MdsHeader(VEHICLE_RETRIEVAL_SERVICE_NAME);
         header.setRequestorUserId("06091");
         header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
@@ -109,7 +107,7 @@ public class NCDBApiMock implements NCDBApi {
         VehicleRetrievalResponse response = null;
 
         try {
-            response = template.postForObject(this.serviceUrl,
+            response = this.restTemplate.postForObject(this.serviceUrl,
                     request, VehicleRetrievalResponse.class);
         } catch (Exception ex) {
             ex.printStackTrace();

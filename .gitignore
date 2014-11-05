@@ -16,6 +16,7 @@ BK/.project
 BK/.tmp
 BK/.merge_file*
 BK/.springBeans
+BK/nbactions*
 
 #############
 # FRONT-END #
