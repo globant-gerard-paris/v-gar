@@ -89,7 +89,7 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
 
                 scope.map = map;
                 marker.setMap(map);
-            });
+            }, 500);
 
             /**
              * Format miles number with 1 decimal.
