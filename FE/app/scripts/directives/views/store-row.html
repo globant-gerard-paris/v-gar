@@ -63,10 +63,9 @@
                 </div>
                 <div class="col-xs-3 col-sm-4">
                     <div class="div-button center-block">
-                        <button type="button" class="center-block pull-right btn btn-md btn-default">MY STORE</button>
+                        <button type="button" ng-click="setFavoriteStore()" class="center-block pull-right btn btn-md btn-default">MY STORE</button>
                         <h4 class="text-center">
-                            <!--<small>{{currentDate}} {{hoursStore}}</small>-->
-                            <small>SAT 10/18 8am-6pm</small>
+                            <small>{{currentDate}} {{hoursStore}}</small>
                         </h4>
                     </div>
                 </div>
@@ -79,7 +78,6 @@
                     <div class="row well well-lg text-left">
                         <div class="col-xs-6">
                             <h4>Store Detail</h4>
-
                             <p>
                                 A car is a wheeled, self-powered motor vehicle used
                                 for transporting passengers. Most definitions of the term
@@ -93,40 +91,21 @@
                                 an American car manufactured by the Ford Motor Company. Cars were rapidly adopted in
                                 the United States of America, where they replaced animal-drawn carriages and carts,
                                 but took much longer to be accepted in Western Europe and other less-developed parts of
-                                the world.</p>
+                                the world.
+                            </p>
                         </div>
                         <div class="col-xs-4">
                             <h4>Hours Operation</h4>
 
-                            <!--{{currentDate}} {{hoursStore}}</li>-->
                             <div class="days-row">
                                 <ul class="list-unstyled">
-                                    <li>
-                                        MON 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        TUE 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        WED 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        THU 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        FRI 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        SAT 10/18 8am-6pm<br>
-                                    </li>
-                                    <li>
-                                        SUN 10/18 10am-6pm<br>
+                                    <li ng-repeat="day in days">
+                                        {{day}}<br>
                                     </li>
                                 </ul>
                             </div>
                             <br>
                             <h4>After Horus?</h4>
-
                             <p>
                                 A car is a wheeled, self-powered motor vehicle used
                                 for transporting passengers. Most definitions of the term

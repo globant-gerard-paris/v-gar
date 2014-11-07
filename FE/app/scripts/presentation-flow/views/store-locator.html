@@ -2,6 +2,20 @@
     .input-store-locator {
         margin-top: 25px;
     }
+
+    .store-row-separator {
+        border-color: rgb(178, 178, 178);;
+        border-style: solid;
+        border-width: 1px;
+    }
+
+    .store-row-separator-text {
+        font-size: 15px;
+        position: relative;
+        top: -16px;
+        text-align: center;
+        font-weight: bolder;
+    }
 </style>
 <div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
 <div class="row">
@@ -27,17 +41,66 @@
             </div>
         </div>
 
-        <store-row address="store.address"
-                   district-name="store.district_name"
-                   district-number="store.district_number"
-                   city="store.city"
-                   distance="store.distance"
-                   zip-code="store.zip_code"
-                   id-store="store.id"
-                   latitude="store.latitude"
-                   longitude="store.longitude"
-                   ng-repeat="store in model.stores"></store-row>
+        <div ng-if="model.myStore !== null && model.myStore !== undefined">
+            <store-row
+                    address="model.myStore.address"
+                    district-name="model.myStore.districtName"
+                    district-number="model.myStore.districtNumber"
+                    city="model.myStore.city"
+                    distance="model.myStore.distance"
+                    zip-code="model.myStore.zipCode"
+                    id-store="model.myStore.id"
+                    latitude="model.myStore.latitude"
+                    longitude="model.myStore.longitude"
+                    monday-open="model.myStore.mondayOpen"
+                    monday-close="model.myStore.mondayClose"
+                    tuesday-open="model.myStore.tuesdayOpen"
+                    tuesday-close="model.myStore.tuesdayClose"
+                    wednesday-open="model.myStore.wednesdayOpen"
+                    wednesday-close="model.myStore.wednesdayClose"
+                    thursday-open="model.myStore.thursdayOpen"
+                    thursday-close="model.myStore.thursdayClose"
+                    friday-open="model.myStore.fridayOpen"
+                    friday-close="model.myStore.fridayClose"
+                    saturday-open="model.myStore.saturdayOpen"
+                    saturday-close="model.myStore.saturdayClose"
+                    sunday-open="model.myStore.sundayOpen"
+                    sunday-close="model.myStore.sundayClose">
+            </store-row>
 
-    </div>
 
-</div>
+            <div ng-if="model.stores !== null && model.stores.length > 0">
+
+                <div class="row"><span class="store-row-separator col-xs-4"></span><h6
+                        class="col-xs-4 list-inline store-row-separator-text">Other Stores</h6><span
+                        class="store-row-separator col-xs-4"></span></div>
+                <store-row
+                        address="store.address"
+                        district-name="store.district_name"
+                        district-number="store.district_number"
+                        city="store.city"
+                        distance="store.distance"
+                        zip-code="store.zip_code"
+                        id-store="store.id"
+                        latitude="store.latitude"
+                        longitude="store.longitude"
+                        monday-open="store.monday_open"
+                        monday-close="store.monday_close"
+                        tuesday-open="store.tuesday_open"
+                        tuesday-close="store.tuesday_close"
+                        wednesday-open="store.wednesday_open"
+                        wednesday-close="store.wednesday_close"
+                        thursday-open="store.thursday_open"
+                        thursday-close="store.thursday_close"
+                        friday-open="store.friday_open"
+                        friday-close="store.friday_close"
+                        saturday-open="store.saturday_open"
+                        saturday-close="store.saturday_close"
+                        sunday-open="store.sunday_open"
+                        sunday-close="store.sunday_close"
+                        ng-repeat="store in model.stores">
+                </store-row>
+
+            </div>
+
+        </div>

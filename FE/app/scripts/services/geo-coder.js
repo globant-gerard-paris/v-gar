@@ -7,7 +7,7 @@ angular.module('Services').factory('Geocoder', function ($localStorage, $q, $tim
 
     // Amount of time (in milliseconds) to pause between each trip to the
     // Geocoding API, which places limits on frequency.
-    var QUERY_PAUSE= 250;
+    var QUERY_PAUSE = 250;
 
     /**
      * executeNext() - execute the next function in the queue.
@@ -19,7 +19,7 @@ angular.module('Services').factory('Geocoder', function ($localStorage, $q, $tim
         var task = queue[0],
             geocoder = new google.maps.Geocoder();
 
-        geocoder.geocode({ address : task.address }, function (result, status) {
+        geocoder.geocode({ address: task.address }, function (result, status) {
 
             if (status === google.maps.GeocoderStatus.OK) {
 
@@ -73,28 +73,51 @@ angular.module('Services').factory('Geocoder', function ($localStorage, $q, $tim
                 }
             }
 
-            if (!$rootScope.$$phase) { $rootScope.$apply(); }
+            if (!$rootScope.$$phase) {
+                $rootScope.$apply();
+            }
         });
     };
 
-    return {
-        geocodeAddress : function (address) {
-            var d = $q.defer();
 
-            if (_.has(locations, address)) {
-                d.resolve(locations[address]);
-            } else {
-                queue.push({
-                    address: address,
-                    d: d
-                });
+    /**
+     *    lat1, lon1 = Latitude and Longitude of point 1 (in decimal degrees)
+     *    lat2, lon2 = Latitude and Longitude of point 2 (in decimal degrees)
+     *
+     * @param lat1
+     * @param lon1
+     * @param lat2
+     * @param lon2
+     * @returns {number}
+     */
+    var calculateDistance = function (lat1, lon1, lat2, lon2) {
+        var result = geolib.getDistance(
+            {latitude: lat1, longitude: lon1},
+            {latitude: lat2, longitude: lon2}
+        );
+        return geolib.convertUnit('mi',result, 1);
+    };
 
-                if (queue.length === 1) {
-                    executeNext();
-                }
+    var geocoderAddress = function (address) {
+        var d = $q.defer();
+
+        if (_.has(locations, address)) {
+            d.resolve(locations[address]);
+        } else {
+            queue.push({
+                address: address,
+                d: d
+            });
+
+            if (queue.length === 1) {
+                executeNext();
             }
-
-            return d.promise;
         }
+        return d.promise;
+    };
+
+    return {
+        calculateDistance: calculateDistance,
+        geocodeAddress: geocoderAddress
     };
 });

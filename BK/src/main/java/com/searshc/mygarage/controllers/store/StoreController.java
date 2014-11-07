@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.searshc.mygarage.entities.store.Store;
+import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.services.store.StoreService;
 import com.searshc.mygarage.util.VGUtils;
@@ -39,7 +39,6 @@ public class StoreController {
 	@RequestMapping(value = "/stores", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<Store>> getStores() {
-		
 		List<Store> stores = VGUtils.toList(storeRepository.findAll());
 		return new ResponseEntity<List<Store>>(stores, HttpStatus.OK);
 	}

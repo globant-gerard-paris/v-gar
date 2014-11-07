@@ -27,8 +27,11 @@ module.exports = function(config) {
             'app/bower_components/bootstrap/dist/js/bootstrap.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
             'app/bower_components/ngstorage/ngStorage.js',
+            'app/bower_components/moment/moment.js',
+            'app/bower_components/datejs/build/production/date.min.js',
+            'app/bower_components/geolib/dist/geolib.js',
             // endbower files
-            'app/bower_components/jasmine-matchers/dist/jasmine-matchers.js',
+            'app/bower_components/jasmine-expect/dist/jasmine-matchers.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap.js',
             'app/bower_components/angular-mocks/angular-mocks.js',
@@ -37,6 +40,7 @@ module.exports = function(config) {
             'app/scripts/{,*/}services/{,*/}*.js',
             'app/scripts/{,*/}directives/{,*/}/*.js',
             'app/scripts/{,*/}filters/{,*/}*.js',
+            'app/scripts/{,*/}util/{,*/}*.js',
             // test files
             'app/tests/helpers.js',
             'app/tests/unit/{,**/}*.js',
@@ -54,7 +58,7 @@ module.exports = function(config) {
         reporters: ['coverage','progress'],
 
         preprocessors : {
-            'app/scripts/{**/controllers/,**/services/}*.js': ['coverage'],
+            'app/scripts/{**/controllers/,**/services/,**/util/}*.js': ['coverage'],
             'app/scripts/directives/*.js': ['coverage'],
             'app/tests/unit/example.js': ['coverage'],
             '!app/scripts/*.js': ['coverage']

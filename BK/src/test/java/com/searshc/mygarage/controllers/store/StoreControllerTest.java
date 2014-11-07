@@ -20,7 +20,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.searshc.mygarage.AbstractIntegrationTest;
 import com.searshc.mygarage.controllers.store.StoreController;
-import com.searshc.mygarage.entities.store.Store;
+import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.services.store.StoreService;
 
