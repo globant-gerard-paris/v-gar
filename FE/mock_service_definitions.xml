@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <mockservice version="1.0" xml:lang="en-US">
     <proxy_settings proxy_enabled="false" proxy_url=""/>
     <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="0" hang_time="0" name="Get Current User" request_inspector_name="null" service_response_type="1" tag="" url="users/current">
@@ -5,9 +6,7 @@
         <response_schema enable_flag="false"/>
         <scenario http_resp_status_code="200" id="1" name="Guy Ephraim" tag="">
             <scenario_match scenario_match_evaluation_rules_flag="false"/>
-            <scenario_response>
-<![CDATA[
-{
+            <scenario_response><![CDATA[{
  "id": 440,
  "name": "Guy Ephraim",
  "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
@@ -16,22 +15,16 @@
  "profileUrl": "/people/guy-ephraim/440",
  "registrationDate": "2010-02-08T17:07:47Z",
  "privacy": "Public"
- }
-]]>
-            </scenario_response>
+ }]]></scenario_response>
             <scenario_response_header/>
         </scenario>
     </service>
-    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="null" hang_time="0" name="Get Users" request_inspector_name="null" service_response_type="2" tag="" url="users/get/{ID}">
+    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="0" hang_time="0" name="Get Users" request_inspector_name="null" service_response_type="2" tag="" url="users/get/{ID}">
         <request_inspector_json_rules enable_flag="false"/>
         <response_schema enable_flag="false"/>
         <scenario http_resp_status_code="200" id="1" name="User ID 440" tag="">
-            <scenario_match scenario_match_evaluation_rules_flag="false">
-<![CDATA[ 440 ]]>
-            </scenario_match>
-            <scenario_response>
-<![CDATA[
-{
+            <scenario_match scenario_match_evaluation_rules_flag="false"><![CDATA[440]]></scenario_match>
+            <scenario_response><![CDATA[{
  "id": 440,
  "name": "Guy Ephraim",
  "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
@@ -47,18 +40,12 @@
  "searsId": 27171640,
  "registrationDate": "2010-02-08T17:07:47Z",
  "privacy": "Public"
- }
-]]>
-            </scenario_response>
+ }]]></scenario_response>
             <scenario_response_header/>
         </scenario>
         <scenario http_resp_status_code="200" id="2" name="User ID 441" tag="">
-            <scenario_match scenario_match_evaluation_rules_flag="false">
-<![CDATA[ 441 ]]>
-            </scenario_match>
-            <scenario_response>
-<![CDATA[
-{
+            <scenario_match scenario_match_evaluation_rules_flag="false"><![CDATA[441]]></scenario_match>
+            <scenario_response><![CDATA[{
  "id": 441,
  "name": "Matt Terry",
  "imageUrl": "http://t3.gstatic.com/images?q=tbn:ANd9GcSjdrjbjIvYBQdB360xZ-hkMT1F5B9DHg2Ympi9tM97zi9cZEHO7w",
@@ -74,10 +61,113 @@
  "searsId": 27171641,
  "registrationDate": "2010-04-01T17:07:47Z",
  "privacy": "Public"
- }
-]]>
-            </scenario_response>
+ }]]></scenario_response>
             <scenario_response_header/>
+        </scenario>
+    </service>
+    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="0" hang_time="0" name="Get recalls" request_inspector_name="null" service_response_type="1" tag="" url="recalls/modelyear/2000/make/ITASCA/model/HORIZON">
+        <request_inspector_json_rules enable_flag="true"/>
+        <response_schema enable_flag="false"/>
+        <scenario http_resp_status_code="200" id="1" name="2000-ITASCA-HORIZON" tag="">
+            <scenario_match scenario_match_evaluation_rules_flag="false"/>
+            <scenario_response><![CDATA[[{
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "00V052000",
+    "reportReceivedDate": "/Date(951368400000-0500)/",
+    "component": "EQUIPMENT:ELECTRICAL",
+    "summary": "VEHICLE DESCRIPTION:  MOTOR HOMES.   THESE MOTOR HOMES MAY CONTAIN A GENERATOR WITH AN IMPROPERLY SIZED BREAKER FOR ITS INTENDED APPLICATION. A 30-AMP CIRCUIT BREAKER IS INSTALLED WHERE A 20-AMP CIRCUIT BREAKER SHOULD BE.  THIS BREAKER PROTECTS THE CIRCUIT THAT GOES TO A CENTRAL AIR CONDITIONING UNIT.",
+    "consequence": "IF AN OVERLOAD WERE TO OCCUR TO THE CIRCUIT, IT COULD IGNITE THE INSULATION AND RESULT IN BODILY INJURY AND/OR PROPERTY DAMAGE.",
+    "remedy": "DEALERS WILL INSPECT THE CIRCUIT BREAKERS IN THE GENERATOR AND, IF NECESSARY, REPLACE THE BREAKER.",
+    "notes": "OWNER NOTIFICATION BEGAN MARCH 29, 2000.   OWNERS WHO TAKE THEIR VEHICLES TO AN AUTHORIZED DEALER ON AN AGREED UPON SERVICE DATE AND DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT WINNEBAGO AT 1-641-585-6939.   ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "00V273004",
+    "reportReceivedDate": "/Date(971409600000-0400)/",
+    "component": "SEAT BELTS:FRONT:BUCKLE ASSEMBLY",
+    "summary": "VEHICLE DESCRIPTION:  CLASS A MOTOR HOMES EQUIPPED WITH SAFETY BELT ASSEMBLIES BUILT BY AM-SAFE.  ON SOME SEAT BELTS, THE BUCKLE AND CONNECTOR MAY UNLATCH DURING A COLLISION.",
+    "consequence": "SERIOUS INJURY OR DEATH COULD OCCUR IF THE VEHICLE OCCUPANT IS NOT PROPERLY RESTRAINED.\n",
+    "remedy": "DEALERS WILL INSPECT AND REPLACE THE DEFECTIVE BUCKLE ASSEMBLIES.",
+    "notes": "OWNER NOTIFICATION BEGAN OCTOBER 20, 2000.  OWNERS WHO TAKE THEIR VEHICLES TO AN AUTHORIZED DEALER ON AN AGREED UPON SERVICE DATE AND DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT WINNEBAGO AT 1-641-585-6939 OR AM-SAFE COMMERCIAL PRODUCTS AT 219-266-8330.   ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "01V128004",
+    "reportReceivedDate": "/Date(988603200000-0400)/",
+    "component": "SEAT BELTS:FRONT:BUCKLE ASSEMBLY",
+    "summary": "VEHICLE DESCRIPTION:   CLASS A MOTOR HOMES EQUIPPED WITH SAFETY BELT ASSEMBLIES BUILT BY AM-SAFE.   ON SOME SEAT BELTS, THE BUCKLE AND CONNECTOR MAY UNLATCH DURING A COLLISION.",
+    "consequence": "SERIOUS INJURY OR DEATH COULD OCCUR IF THE VEHICLE OCCUPANT IS NOT PROPERLY RESTRAINED.\n",
+    "remedy": "DEALERS WILL INSPECT THE LAP BELTS AND, IF NECESSARY, REPLACE IT WITH A NEW BELT ASSEMBLY.  OWNER NOTIFICATION BEGAN MAY 25, 2001.  OWNERS WHO TAKE THEIR VEHICLES TO AN AUTHORIZED DEALER ON AN AGREED UPON SERVICE DATE AND DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT AM-SAFE AT 1-219-266-8330 OR WINNEBAGO AT 1-641-585-6939.  \n",
+    "notes": "ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "01V260000",
+    "reportReceivedDate": "/Date(997848000000-0400)/",
+    "component": "FUEL SYSTEM, OTHER:STORAGE:TANK ASSEMBLY:MOUNTING",
+    "summary": "VEHICLE DESCRIPTION:    MOTOR HOMES (MODELS WKP36L, WKP36LD, AND IKP36LD).   FOUR NUTS MAY HAVE LOOSENED FROM THE FOUR BOLTS THAT CONNECT THE LIQUID PROPANE (LP) TANK TO THE MOTOR HOME.   IF THE ATTACHMENT HARDWARE IS LOOSENED, THE ROAD VIBRATION COULD PRODUCE UNDUE STRESS ON THE WELD JOINTS OF THE BRACKETS AND THEY COULD BREAK.",
+    "consequence": "IF THIS HAPPENS, THE TANK COULD FALL OFF, RESULTING IN A ROAD HAZARD OR A FIRE.",
+    "remedy": "DEALERS WILL INSPECT THE LP TANK ATTACHMENT AND RE-TIGHTENED THE FASTENERS IN ADDITION TO ADDING LOCK NUTS.  OWNER NOTIFICATION BEGAN AUGUST 24, 2001.   OWNERS WHO TAKE THEIR VEHICLES TO AN AUTHORIZED DEALER ON AN AGREED UPON SERVICE DATE AND DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT WINNEBAGO AT 1-641-585-6939.",
+    "notes": "ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES INC.",
+    "NHTSACampaignNumber": "02V276006",
+    "reportReceivedDate": "/Date(1038891600000-0500)/",
+    "component": "EQUIPMENT:RECREATIONAL VEHICLE",
+    "summary": "CERTAIN MOTOR HOMES EQUIPPED WITH NORCOLD REFRIGERATOR COOLING UNITS MODEL NUMBERS 442, 443, 452, EV452, 453, 462, EV462, 463, EV463, 482, EV482, 483, EV483, 874, AND 875.  THESE REFRIGERATORS CAN EXPERIENCE A BREAK DOWN IN A RUBBER SEAL WITHIN THE GAS VALVE.  AS THE RUBBER SEAL AGES, A LEAK MAY OCCUR, ALLOWING PROPANE GAS TO ACCUMULATE IN THE BURNER AREA.",
+    "consequence": "THE CONSEQUENCE CAN RESULT IN A FIRE, POSSIBLY CAUSING SERIOUS INJURY OR DEATH.",
+    "remedy": "NORCOLD WILL NOTIFY ITS CUSTOMERS AND PROVIDE A REPLACEMENT GAS VALVE FREE OF CHARGE.  OWNERS WHO TAKE THEIR VEHICLES TO AN AUTHORIZED DEALER ON AN AGREED UPON SERVICE DATE AND DO NOT RECEIVE THE FREE REMEDY WITHIN A REASONABLE TIME SHOULD CONTACT NORCOLD SERVICE CENTER AT 1-800-667-3005 OR WINNEBAGO AT 641-585-3535.",
+    "notes": "ALSO, CUSTOMERS CAN CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).\r\n",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "04V114000",
+    "reportReceivedDate": "/Date(1078376400000-0500)/",
+    "component": "EQUIPMENT:RECREATIONAL VEHICLE:LPG TANK ASSEMBLY",
+    "summary": "ON CERTAIN MOTORHOMES, THE LP TANK HAS STRESS ON WELD JOINTS AT THE POINT WHERE MOUNTING BRACKETS ARE WELDED TO THE TANK.\r\n",
+    "consequence": "THIS COULD CAUSE STRESS CRACKS AT THE WELD JOINTS AND LEAD TO AN LP LEAK AND CAUSE PERSONAL INJURY AND/OR VEHICLE DAMAGE.\r\n",
+    "remedy": "DEALERS WILL REINSTALL A CRADLE-STYLE CARRIER, AND, IF NECESSARY REPLACE THE LP TANK.  THE RECALL BEGAN ON MARCH 25, 2004.  OWNERS SHOULD CONTACT WINNEBAGO AT  641-585-6939.\r\n\r\n",
+    "notes": "WINNEBAGO RECALL NO. 90.  CUSTOMERS CAN ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S AUTO SAFETY HOTLINE AT 1-888-DASH-2-DOT (1-888-327-4236).",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "08V265000",
+    "reportReceivedDate": "/Date(1213329600000-0400)/",
+    "component": "EQUIPMENT:RECREATIONAL VEHICLE",
+    "summary": "WINNEBAGO IS RECALLING MY 1999-2002 ULTIMATE ADVANTAGE, ULTIMATE FREEDOM, MY 1999-2001 CHIEFTAIN, MY 2000-2001 BRAVE, MY 2001 JOURNEY MY 2000 MINNIE WINNIE, MY 2000-2002 ITASCA HORIZON, MY 1999 SUNCRUISER, MY 2001 SUNFLYER, AND MY 2000 SUNRISE MOTOR HOMES EQUIPPED WITH NORCOLD REFRIGERATORS.  A FATIGUE FAILURE IN THE SECTION OF THE COOLING UNIT WHICH CONTAINS THE REFRIGERANT COULD ALLOW THE LIQUID SOLUTION TO SLOWLY LEAK.",
+    "consequence": "EXTENDED OPERATION OF A LEAKING COOLING UNIT COULD LEAD TO A FIRE FROM GAS WHICH MIGHT ESCAPE.",
+    "remedy": "WINNEBAGO IS WORKING WITH NORCOLD TO REPAIR THESE REFRIGERATORS.  NORCOLD WILL PROVIDE THERMAL SWITCH KITS TO OWNERS ALONG WITH THE NECESSARY FORMS AND INSTRUCTIONS.  THE MANUFACTURER HAS NOT YET PROVIDED AN OWNER NOTIFICATION SCHEDULE FOR THIS CAMPAIGN.  OWNERS MAY CONTACT NORCOLD AT 1-800-767-9101 OR WINNEBAGO AT 1-641-585-3535. ",
+    "notes": "CUSTOMERS MAY ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY 1-800-424-9153), OR GO TO HTTP://WWW.SAFERCAR.GOV. ",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}, {
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "10V525000",
+    "reportReceivedDate": "/Date(1288065600000-0400)/",
+    "component": "EQUIPMENT",
+    "summary": "WINNEBAGO IS RECALLING CERTAIN RECREATIONAL VEHICLES EQUIPPED WITH 1200-SERIES NORCOLD REFRIGERATORS.  THE POPULATION OF REFRIGERATORS BEING ADDRESSED CONTAINS EITHER A SENSING ALGORITHM OR THERMAL SWITCH TO SHUT OFF POWER TO THE REFRIGERATOR WHEN HIGH TEMPERATURES ARE DETECTED IN ORDER TO PREVENT A POTENTIAL FIRE.  THE RESPONSE TIMES OF THE SENSOR ALGORITHM AND THERMAL SWITCH DEVICES TO STOP POWER ARE NOT SUFFICIENT.  ",
+    "consequence": "THE SENSING ALGORITHM OR THERMAL SWITCH INSTALLED TO SHUT OFF POWER TO THE REFRIGERATOR WHEN HIGH TEMPERATURES ARE DETECTED DUE TO A POSSIBLE HYDROGEN GAS LEAK MAY NOT SHUT OFF IN SUFFICIENT TIME TO PREVENT A FIRE.  ",
+    "remedy": "WINNEBAGO IS WORKING WITH NORCOLD TO IDENTIFY AND NOTIFY ANY AFFECTED OWNERS.  OWNERS WILL BE INSTRUCTED TO CONTACT NORCOLD DEALERS TO RECEIVE THE REMEDY FREE OF CHARGE.  PLEASE SEE NORCOLD'S DEFECT REPORT 10E-049 FOR ADDITIONAL INFORMATION.  THE RECALL BEGAN DURING DECEMBER 2010.  OWNERS MAY CONTACT NORCOLD AT 1-800-767-9101 OR WINNEBAGO AT 1-641-585-3535.",
+    "notes": "OWNERS MAY ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY 1-800-424-9153), OR GO TO <A HREF=HTTP://WWW.SAFERCAR.GOV>HTTP://WWW.SAFERCAR.GOV</A> .",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}]]]></scenario_response>
+            <scenario_response_header><![CDATA[Content-Type:application/json; charset=utf-8 | Access-Control-Allow-Origin:* | Access-Control-Allow-Methods:GET,PUT,POST,DELETE | Access-Control-Allow-Headers:Content-Type]]></scenario_response_header>
         </scenario>
     </service>
 </mockservice>

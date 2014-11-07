@@ -61,6 +61,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "filter": [],
@@ -68,6 +72,10 @@
     {
       "name": "Store row",
       "value": "store-row"
+    },
+    {
+      "name": "Recall information",
+      "value": "recall-information"
     }
   ],
   "service": [
@@ -90,6 +98,10 @@
     {
       "name": "Http service",
       "value": "http-service"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "factory": [],
@@ -141,6 +153,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "sass": []

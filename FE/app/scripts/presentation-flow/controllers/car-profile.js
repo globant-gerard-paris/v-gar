@@ -5,5 +5,9 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     $scope.searchStore = function(storeZipCode){
         RedirectSrv.redirectTo('/store-locator?zipcode='+storeZipCode);
     };
+    
+    $scope.viewRecalls = function(){
+        RedirectSrv.redirectTo('/recalls');
+    };
 
 });
