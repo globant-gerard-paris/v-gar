@@ -68,40 +68,40 @@
                     sunday-close="model.myStore.sundayClose">
             </store-row>
 
+            <div class="row"><span class="store-row-separator col-xs-4"></span><h6
+                    class="col-xs-4 list-inline store-row-separator-text">Other Stores</h6><span
+                    class="store-row-separator col-xs-4"></span></div>
+        </div>
 
-            <div ng-if="model.stores !== null && model.stores.length > 0">
+        <div ng-if="model.stores !== null && model.stores.length > 0">
 
-                <div class="row"><span class="store-row-separator col-xs-4"></span><h6
-                        class="col-xs-4 list-inline store-row-separator-text">Other Stores</h6><span
-                        class="store-row-separator col-xs-4"></span></div>
-                <store-row
-                        address="store.address"
-                        district-name="store.district_name"
-                        district-number="store.district_number"
-                        city="store.city"
-                        distance="store.distance"
-                        zip-code="store.zip_code"
-                        id-store="store.id"
-                        latitude="store.latitude"
-                        longitude="store.longitude"
-                        monday-open="store.monday_open"
-                        monday-close="store.monday_close"
-                        tuesday-open="store.tuesday_open"
-                        tuesday-close="store.tuesday_close"
-                        wednesday-open="store.wednesday_open"
-                        wednesday-close="store.wednesday_close"
-                        thursday-open="store.thursday_open"
-                        thursday-close="store.thursday_close"
-                        friday-open="store.friday_open"
-                        friday-close="store.friday_close"
-                        saturday-open="store.saturday_open"
-                        saturday-close="store.saturday_close"
-                        sunday-open="store.sunday_open"
-                        sunday-close="store.sunday_close"
-                        ng-repeat="store in model.stores">
-                </store-row>
+            <store-row
+                    address="store.address"
+                    district-name="store.district_name"
+                    district-number="store.district_number"
+                    city="store.city"
+                    distance="store.distance"
+                    zip-code="store.zip_code"
+                    id-store="store.id"
+                    latitude="store.latitude"
+                    longitude="store.longitude"
+                    monday-open="store.monday_open"
+                    monday-close="store.monday_close"
+                    tuesday-open="store.tuesday_open"
+                    tuesday-close="store.tuesday_close"
+                    wednesday-open="store.wednesday_open"
+                    wednesday-close="store.wednesday_close"
+                    thursday-open="store.thursday_open"
+                    thursday-close="store.thursday_close"
+                    friday-open="store.friday_open"
+                    friday-close="store.friday_close"
+                    saturday-open="store.saturday_open"
+                    saturday-close="store.saturday_close"
+                    sunday-open="store.sunday_open"
+                    sunday-close="store.sunday_close"
+                    ng-repeat="store in model.stores">
+            </store-row>
 
-            </div>
         </div>
     </div>
 </div>
