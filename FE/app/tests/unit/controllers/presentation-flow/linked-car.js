@@ -6,7 +6,7 @@ describe('LinkedCar controller', function () {
             scope;
 
     T.bootstrapTest(
-            ['Services', 'PresentationFlow'], // modules
+            ['Services','PresentationFlow'], // modules
             ['PresentationFlowSrv', 'RedirectSrv'], // services
             true  //expose service for direct access
             );

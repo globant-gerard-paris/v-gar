@@ -25,7 +25,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.searshc.mygarage.batch.CustomRecordSeparatorPolicy;
-import com.searshc.mygarage.entities.store.Store;
+import com.searshc.mygarage.entities.Store;
 
 /**
  * The {@link StoreBatch} is the process batch that fill all the stores of the customer in the

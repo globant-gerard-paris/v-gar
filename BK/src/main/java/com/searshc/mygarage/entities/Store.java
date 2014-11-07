@@ -1,9 +1,7 @@
-package com.searshc.mygarage.entities.store;
+package com.searshc.mygarage.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
-import com.searshc.mygarage.entities.AbstractEntity;
 
 /**
  * 
@@ -18,7 +16,7 @@ public class Store extends AbstractEntity {
 	private String standing, address, city, state, phone, latitude, longitude;
 
 	private boolean wifi;
-
+	
 	@Column(name = "district_number")
 	private String districtNumber;
 

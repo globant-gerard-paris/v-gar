@@ -90,6 +90,14 @@
     {
       "name": "Http service",
       "value": "http-service"
+    },
+    {
+      "name": "Session data",
+      "value": "session-data"
+    },
+    {
+      "name": "String util",
+      "value": "string-util"
     }
   ],
   "factory": [],

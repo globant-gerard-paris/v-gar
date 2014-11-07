@@ -1,43 +1,106 @@
 <style>
-    .input-store-locator {
-        margin-top: 25px;
-    }
+
 </style>
 <div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
 <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 col-xs-offset-1 col-xs-10 col-xs-offset-1">
+    <div class="col-lg-offset-3 col-sm-offset-2 col-lg-6 col-sm-8 col-xs-12">
 
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-md-7 col-xs-12">
                 <h3>Enter the ZIP code or address to find a Sears Auto Center near you.<br>
-                    <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                    <span class="clearfix visible-md-block visible-lg-block">
+                        <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                         <br>
+                    </span>
                 </h3>
             </div>
-            <div class="col-xs-4">
+            <div class="col-md-5">
                 <form ng-submit="getStoreNearby()">
-                    <div class="input-group input-store-locator">
+                    <div class="input-group vg-store-locator-input">
                         <input type="text" class="form-control" ng-model="model.address" value="{{model.address}}">
                           <span class="input-group-btn">
                                   <button class="btn btn-default" ng-click="getStoreNearby()" type="submit">
                                       Search
                                   </button>
+                              <br>
                           </span>
                     </div>
                 </form>
+                <div class="clearfix  visible-sm-block visible-xs-block">
+                    <h3>
+                        <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                        <br>
+                    </h3>
+                </div>
             </div>
         </div>
 
-        <store-row address="store.address"
-                   district-name="store.district_name"
-                   district-number="store.district_number"
-                   city="store.city"
-                   distance="store.distance"
-                   zip-code="store.zip_code"
-                   id-store="store.id"
-                   latitude="store.latitude"
-                   longitude="store.longitude"
-                   ng-repeat="store in model.stores"></store-row>
+        <div ng-if="model.myStore !== null && model.myStore !== undefined">
+            <store-row
+                    address="model.myStore.address"
+                    district-name="model.myStore.districtName"
+                    district-number="model.myStore.districtNumber"
+                    city="model.myStore.city"
+                    distance="model.myStore.distance"
+                    zip-code="model.myStore.zipCode"
+                    id-store="model.myStore.id"
+                    latitude="model.myStore.latitude"
+                    longitude="model.myStore.longitude"
+                    monday-open="model.myStore.mondayOpen"
+                    monday-close="model.myStore.mondayClose"
+                    tuesday-open="model.myStore.tuesdayOpen"
+                    tuesday-close="model.myStore.tuesdayClose"
+                    wednesday-open="model.myStore.wednesdayOpen"
+                    wednesday-close="model.myStore.wednesdayClose"
+                    thursday-open="model.myStore.thursdayOpen"
+                    thursday-close="model.myStore.thursdayClose"
+                    friday-open="model.myStore.fridayOpen"
+                    friday-close="model.myStore.fridayClose"
+                    saturday-open="model.myStore.saturdayOpen"
+                    saturday-close="model.myStore.saturdayClose"
+                    sunday-open="model.myStore.sundayOpen"
+                    sunday-close="model.myStore.sundayClose"
+                    is-favorite-store="true">
+            </store-row>
+        </div>
 
+        <div ng-if="model.stores !== null && model.stores.length > 0 && model.myStore != null">
+            <div class="row"><span class="vg-store-locator-row-separator col-xs-4"></span>
+                <h6 class="col-xs-4 list-inline vg-store-locator-row-separator-text">Other Stores</h6>
+                <span class="vg-store-locator-row-separator col-xs-4"></span>
+            </div>
+        </div>
+
+        <div ng-if="model.stores !== null && model.stores.length > 0">
+
+            <store-row
+                    address="store.address"
+                    district-name="store.district_name"
+                    district-number="store.district_number"
+                    city="store.city"
+                    distance="store.distance"
+                    zip-code="store.zip_code"
+                    id-store="store.id"
+                    latitude="store.latitude"
+                    longitude="store.longitude"
+                    monday-open="store.monday_open"
+                    monday-close="store.monday_close"
+                    tuesday-open="store.tuesday_open"
+                    tuesday-close="store.tuesday_close"
+                    wednesday-open="store.wednesday_open"
+                    wednesday-close="store.wednesday_close"
+                    thursday-open="store.thursday_open"
+                    thursday-close="store.thursday_close"
+                    friday-open="store.friday_open"
+                    friday-close="store.friday_close"
+                    saturday-open="store.saturday_open"
+                    saturday-close="store.saturday_close"
+                    sunday-open="store.sunday_open"
+                    sunday-close="store.sunday_close"
+                    is-favorite-store="false"
+                    ng-repeat="store in model.stores">
+            </store-row>
+
+        </div>
     </div>
-
 </div>
