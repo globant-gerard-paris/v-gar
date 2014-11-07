@@ -95,7 +95,7 @@ angular.module('Services').factory('Geocoder', function ($localStorage, $q, $tim
             {latitude: lat1, longitude: lon1},
             {latitude: lat2, longitude: lon2}
         );
-        return geolib.convertUnit('mi',result, 1);
+        return geolib.convertUnit('mi', result, 1);
     };
 
     var geocoderAddress = function (address) {

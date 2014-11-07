@@ -30,7 +30,8 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
             saturdayOpen: '=',
             saturdayClose: '=',
             sundayOpen: '=',
-            sundayClose: '='
+            sundayClose: '=',
+            isFavoriteStore: '='
         },
 
         templateUrl: 'scripts/directives/views/store-row.html',
@@ -54,7 +55,6 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
                 scope.days[5] += ' ' + scope.saturdayOpen + 'am ' + scope.saturdayClose + 'pm';
                 scope.days[6] += ' ' + scope.sundayOpen + 'am ' + scope.sundayClose + 'pm';
                 scope.currentDate = (toDay.getDay() === SUNDAY_NUMBER) ? scope.days[6] : scope.days[(toDay.getDay() - 1)];
-                console.log('SETTING DATE - STORE_ID: ' + scope + ' CURRENT DATE: ' + scope.currentDate);
             };
 
             /**
@@ -77,7 +77,6 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
              * Is function is executed after digest process in order to draw the maps & marker in the page.
              */
             $timeout(function () {
-                console.log('DRAW MAP >>> ' + 'map_canvas_' + scope.idStore);
                 var storeElementId = document.getElementById('map_canvas_' + scope.idStore);
                 var map = new google.maps.Map(storeElementId, map_options);
 
@@ -122,6 +121,14 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
              */
             var faildSetFavoriteStore = function (response) {
                 console.log('ERROR: ' + response);
+            };
+
+
+            /**
+             * Redirect to Store Page.
+             */
+            scope.redirectToStorePage = function(){
+              //TODO: already don't exist the Store page.
             };
 
             /**

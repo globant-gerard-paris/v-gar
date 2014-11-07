@@ -1,43 +1,37 @@
 <style>
-    .input-store-locator {
-        margin-top: 25px;
-    }
 
-    .store-row-separator {
-        border-color: rgb(178, 178, 178);;
-        border-style: solid;
-        border-width: 1px;
-    }
-
-    .store-row-separator-text {
-        font-size: 15px;
-        position: relative;
-        top: -16px;
-        text-align: center;
-        font-weight: bolder;
-    }
 </style>
 <div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
 <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
+    <div class="col-lg-offset-3 col-sm-offset-2 col-lg-6 col-sm-8 col-xs-12">
 
         <div class="row">
-            <div class="col-md-7 col-xs-6">
+            <div class="col-md-7 col-xs-12">
                 <h3>Enter the ZIP code or address to find a Sears Auto Center near you.<br>
-                    <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                    <span class="clearfix visible-md-block visible-lg-block">
+                        <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                         <br>
+                    </span>
                 </h3>
             </div>
-            <div class="col-md-5 col-xs-6">
+            <div class="col-md-5">
                 <form ng-submit="getStoreNearby()">
-                    <div class="input-group input-store-locator">
+                    <div class="input-group vg-store-locator-input">
                         <input type="text" class="form-control" ng-model="model.address" value="{{model.address}}">
                           <span class="input-group-btn">
                                   <button class="btn btn-default" ng-click="getStoreNearby()" type="submit">
                                       Search
                                   </button>
+                              <br>
                           </span>
                     </div>
                 </form>
+                <div class="clearfix  visible-sm-block visible-xs-block">
+                    <h3>
+                        <small>{{model.stores.length}} stores found near {{model.address}}.</small>
+                        <br>
+                    </h3>
+                </div>
             </div>
         </div>
 
@@ -65,12 +59,16 @@
                     saturday-open="model.myStore.saturdayOpen"
                     saturday-close="model.myStore.saturdayClose"
                     sunday-open="model.myStore.sundayOpen"
-                    sunday-close="model.myStore.sundayClose">
+                    sunday-close="model.myStore.sundayClose"
+                    is-favorite-store="true">
             </store-row>
+        </div>
 
-            <div class="row"><span class="store-row-separator col-xs-4"></span><h6
-                    class="col-xs-4 list-inline store-row-separator-text">Other Stores</h6><span
-                    class="store-row-separator col-xs-4"></span></div>
+        <div ng-if="model.stores !== null && model.stores.length > 0 && model.myStore != null">
+            <div class="row"><span class="vg-store-locator-row-separator col-xs-4"></span>
+                <h6 class="col-xs-4 list-inline vg-store-locator-row-separator-text">Other Stores</h6>
+                <span class="vg-store-locator-row-separator col-xs-4"></span>
+            </div>
         </div>
 
         <div ng-if="model.stores !== null && model.stores.length > 0">
@@ -99,6 +97,7 @@
                     saturday-close="store.saturday_close"
                     sunday-open="store.sunday_open"
                     sunday-close="store.sunday_close"
+                    is-favorite-store="false"
                     ng-repeat="store in model.stores">
             </store-row>
 
