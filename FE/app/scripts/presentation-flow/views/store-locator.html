@@ -19,15 +19,15 @@
 </style>
 <div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
 <div class="row">
-    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 col-xs-offset-1 col-xs-10 col-xs-offset-1">
+    <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2 col-xs-12">
 
         <div class="row">
-            <div class="col-xs-8">
+            <div class="col-md-7 col-xs-6">
                 <h3>Enter the ZIP code or address to find a Sears Auto Center near you.<br>
                     <small>{{model.stores.length}} stores found near {{model.address}}.</small>
                 </h3>
             </div>
-            <div class="col-xs-4">
+            <div class="col-md-5 col-xs-6">
                 <form ng-submit="getStoreNearby()">
                     <div class="input-group input-store-locator">
                         <input type="text" class="form-control" ng-model="model.address" value="{{model.address}}">
