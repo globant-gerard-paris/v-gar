@@ -10,4 +10,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         RedirectSrv.redirectTo('/add-car');
     };
 
+    $scope.getToCarProfile = function (option) {
+        RedirectSrv.redirectTo('/car-profile?option=' + option);
+    };
+
 });
