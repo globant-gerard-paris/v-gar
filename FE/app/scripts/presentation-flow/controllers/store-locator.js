@@ -105,7 +105,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         }
         for (var i = 0; i < $scope.model.stores.length; i++) {
             var store = $scope.model.stores[i];
-            if (store.latitude === lat.toString() && store.longitude == long.toString()) {
+            if (store.latitude === lat.toString() && store.longitude === long.toString()) {
                 return store;
             }
         }
