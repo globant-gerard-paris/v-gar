@@ -65,6 +65,10 @@
     {
       "name": "Record",
       "value": "record"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "filter": [],
@@ -74,8 +78,13 @@
       "value": "store-row"
     },
     {
+
       "name": "Record row",
       "value": "record-row"
+    },
+    {
+      "name": "Recall information",
+      "value": "recall-information"
     }
   ],
   "service": [
@@ -110,6 +119,10 @@
     {
       "name": "Record",
       "value": "record"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "factory": [],
@@ -161,6 +174,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "sass": []
