@@ -30,7 +30,15 @@ public class NHTSAApiImpl implements NHTSAApi {
 			response = this.restTemplate.getForEntity(url, NHTSARecalls.class);
 		}
 		catch (RestClientException e) {
-			throw new NHTSARecallsException("Could not get Recalls for: " + make + " " + model + " " + modelYear);
+			String message = new StringBuilder()
+				.append("Could not get Recalls for: ")
+				.append(make)
+				.append(" ")
+				.append(model)
+				.append(" ")
+				.append(modelYear).toString();
+			log.error(message, e);
+			throw new NHTSARecallsException(message);
 		}
 
 		log.debug("Recalls found: " + response.getBody().getCount());
