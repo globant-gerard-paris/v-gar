@@ -38,7 +38,6 @@ public class AdditionalVehicle extends AbstractEntity implements Serializable{
 	private int mileage;
 	
 	public AdditionalVehicle() {
-		super(0L);
 		this.make = "";
 		this.model = "";
 		this.year = 0;
@@ -56,31 +55,14 @@ public class AdditionalVehicle extends AbstractEntity implements Serializable{
 	 * @param color
 	 * @param mileage
 	 */
-	public AdditionalVehicle(Long id, String make, String model, int year, String color,
+	public AdditionalVehicle(String make, String model, int year, String color,
 			int mileage) {
-		super(id);
 		this.make = Validate.notNull(make, "The Make cannot be null");
 		this.model = Validate.notNull(model, "The Model cannot be null");
 		Validate.isTrue(year > 0, "The Year cannot be lower than 0");
 		this.year = year;
 		this.color = Validate.notNull(color, "The Color cannot be null");
 		this.mileage = mileage;
-	}
-
-
-
-	/**
-	 * @return the id
-	 */
-	public Long getId() {
-		return super.getId();
-	}
-
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		super.setId(id);
 	}
 
 	/**

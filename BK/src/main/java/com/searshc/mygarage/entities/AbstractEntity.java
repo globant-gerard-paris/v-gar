@@ -39,15 +39,6 @@ public abstract class AbstractEntity {
 	public Long getId() {
 		return id;
 	}
-	
-	
-	/**
-	 * @param id the id to set
-	 */
-	public void setId(Long id) {
-		Validate.isTrue(id >= 0, "The id cannot be lower than 0");
-		this.id = id;
-	}
 
 	/*
 	 * (non-Javadoc)
@@ -67,7 +58,7 @@ public abstract class AbstractEntity {
 
 		AbstractEntity that = (AbstractEntity) obj;
 
-		return this.id.equals(that.getId());
+		return this.id.equals(that.id);
 	}
 
 	/*

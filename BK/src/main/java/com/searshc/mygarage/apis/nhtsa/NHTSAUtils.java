@@ -53,8 +53,7 @@ public class NHTSAUtils {
 				response.add(convert(nhtsaRecall));
 			}
 			catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				log.error("Could not convert to VehicleRecalls object.\nNHTSARecallDetails: " + nhtsaRecall, e);
 			}
 		}
 		return response;

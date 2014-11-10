@@ -2,6 +2,7 @@ package com.searshc.mygarage.apis.nhtsa.response;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.neo4j.cypher.internal.compiler.v2_1.planner.logical.steps.applyOptional;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -322,5 +323,20 @@ public class NHTSARecallDetails {
 			.append(this.model, rhs.model).isEquals();	
 	}
 	
+	public String toString() {
+		return new StringBuilder()
+			.append("Manufacturer: ").append(this.manufacturer).append(" - ")
+			.append("NHTSACampaignNumber: ").append(this.NHTSACampaignNumber).append(" - ")
+			.append("ReportReceivedDate: ").append(this.reportReceivedDate).append(" - ")
+			.append("Component: ").append(this.component).append(" - ")
+			.append("Summary: ").append(this.summary).append(" - ")
+			.append("Consequence: ").append(this.consequence).append(" - ")
+			.append("Remedy: ").append(this.remedy).append(" - ")
+			.append("Notes: ").append(this.notes).append(" - ")
+			.append("ModelYear: ").append(this.modelYear).append(" - ")
+			.append("Make: ").append(this.make).append(" - ")
+			.append("Model: ").append(this.model).toString();
+			
+	}
 	
 }
