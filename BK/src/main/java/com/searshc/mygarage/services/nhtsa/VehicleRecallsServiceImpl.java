@@ -50,7 +50,7 @@ public class VehicleRecallsServiceImpl implements VehicleRecallsService {
 	public VehicleRecalls getLastRecall(final int year, final String make,
 			final String model) throws NHTSARecallsException {
 		List<VehicleRecalls> recalls = this.getRecallsOrderedByDate(year, make, model, false);
-		return recalls != null ?  recalls.get(0) : null;
+		return recalls != null && recalls.size() > 0 ?  recalls.get(0) : null;
 	}
 	
 }
