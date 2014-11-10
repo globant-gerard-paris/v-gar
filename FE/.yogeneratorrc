@@ -61,6 +61,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Record",
+      "value": "record"
     }
   ],
   "filter": [],
@@ -68,6 +72,10 @@
     {
       "name": "Store row",
       "value": "store-row"
+    },
+    {
+      "name": "Record row",
+      "value": "record-row"
     }
   ],
   "service": [
@@ -98,6 +106,10 @@
     {
       "name": "String util",
       "value": "string-util"
+    },
+    {
+      "name": "Record",
+      "value": "record"
     }
   ],
   "factory": [],
