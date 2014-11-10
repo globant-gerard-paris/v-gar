@@ -34,6 +34,8 @@
         "browser": false,
         "alert":false,
         "google":false,
-        "$":false
+        "$":false,
+        "moment":false,
+        "geolib":false
     }
 }

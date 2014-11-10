@@ -15,11 +15,15 @@
     "lodash": "~2.4.1",
     "bootstrap": "~3.2.0",
     "angular-bootstrap": "~0.11.2",
-    "ngstorage": "~0.3.0"
+    "ngstorage": "~0.3.0",
+    "moment": "~2.8.3",
+    "datejs": "~1.0.0-rc1",
+    "geolib": "~2.0.9"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.26",
-    "jasmine-matchers": "~0.2.2"
+    "jasmine-matchers": "~0.2.2",
+    "jasmine-expect": "~1.22.2"
   },
   "resolutions": {
     "angular": "1.2.0-rc.3"

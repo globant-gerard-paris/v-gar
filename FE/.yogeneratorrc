@@ -102,6 +102,14 @@
     {
       "name": "Recalls",
       "value": "recalls"
+    },
+    {
+      "name": "Session data",
+      "value": "session-data"
+    },
+    {
+      "name": "String util",
+      "value": "string-util"
     }
   ],
   "factory": [],
