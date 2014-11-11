@@ -3,6 +3,7 @@ package com.searshc.mygarage.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
 public class Order {
 
     private String orderNumber;
@@ -42,6 +43,7 @@ public class Order {
      * @param orderItem the orderItem to add.
      */
     public void addOrderItems(final OrderItem orderItem) {
+        Validate.notNull(orderItem, "The OrderItem cannot be null");
         if (this.orderItems == null) {
             this.orderItems = new ArrayList<OrderItem>();
         }
