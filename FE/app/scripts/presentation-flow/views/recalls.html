@@ -73,14 +73,15 @@
         <div class="row">
             <div class="col-md-9 col-sm-8">
                 <ol class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    <li class="active">2008 Ford Edge Limited</li>
+                    <li><a href="#" ng-click="redirectToDashboard()">Dashboard</a></li>
+                    <li><a href="#" ng-click="redirectToCarProfile(model.option)">{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</a></li>
+                    <li class="active">Recalls</li>
                 </ol>
             </div>
             <div class="col-md-3 col-sm-4">
                 <label class="control-label">Change car</label>
                 <select class="form-control">
-                    <option>2008 Ford Edge</option>
+                    <option>{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</option>
                     <option>Other 1</option>
                     <option>Other 2</option>
                 </select>
@@ -92,7 +93,7 @@
             </a>
             <div class="media-body">
                 <div class="car-info">
-                    <p>2008 Ford Edge Limited</p>
+                    <p>{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</p>
                     <p>133,045 Miles</p>
                     <span>Your Sears Auto service center: Sears Auto Center Schaumburg</span>
                 </div>
@@ -102,8 +103,6 @@
     <h1 class="page-title"><strong>Your recalls</strong></h1>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            
-            <div ng-show="!model.recalls.length">No recalls</div>
             
             <recall-information recall-date="recall.reportReceivedDate"
                                 model-year="recall.modelYear"

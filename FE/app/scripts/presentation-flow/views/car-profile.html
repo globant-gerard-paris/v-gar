@@ -55,14 +55,14 @@
         <div class="row">
             <div class="col-md-9 col-sm-8">
                 <ol class="breadcrumb">
-                    <li><a href="#">Dashboard</a></li>
-                    <li class="active">2008 Ford Edge Limited</li>
+                    <li><a href="#" ng-click="redirectToDashboard()">Dashboard</a></li>
+                    <li class="active">{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</li>
                 </ol>
             </div>
             <div class="col-md-3 col-sm-4">
                 <label class="control-label">Change car</label>
                 <select class="form-control">
-                    <option>2008 Ford Edge</option>
+                    <option>{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</option>
                     <option>Other 1</option>
                     <option>Other 2</option>
                 </select>
@@ -74,7 +74,7 @@
             </a>
             <div class="media-body">
                 <div class="car-info">
-                    <p>2008 Ford Edge Limited</p>
+                    <p>{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</p>
                     <p>133,045 Miles</p>
                     <span>Your Sears Auto service center: Sears Auto Center Schaumburg</span>
                 </div>
@@ -108,7 +108,7 @@
                     </div>
                     <p><b>Manufacture Recall Issued</b></p>
                     <p class="text-muted">{{model.lastRecall.summary | limitTo : 150}}...</p>
-                    <p><a href="#" class="link-page" ng-click="viewRecalls()">See more details</a></p>
+                    <p><a href="#" class="link-page" ng-click="viewRecalls(model.option)">See more details</a></p>
                     <div class="text-center">
                         <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
                     </div>
