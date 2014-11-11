@@ -13,7 +13,7 @@ public class AdditionalVehicleService extends GenericService<AdditionalVehicle, 
 
 	public AdditionalVehicle createAndSaveNewAdditionalVehicle(final String make, final String model,
 			final int year, final String color, final int mileage) {
-		AdditionalVehicle vehicle = new AdditionalVehicle(0, make, model, year, color, mileage);
+		AdditionalVehicle vehicle = new AdditionalVehicle(make, model, year, color, mileage);
 		return super.save(vehicle);
 		
 	}
