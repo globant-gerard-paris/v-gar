@@ -1,6 +1,9 @@
 {
     "config": {
         "api": {
+            "hosts":{
+                "BACKEND" : "http://127.0.0.1:8080/service"
+            },
             "methods": {
                 "SYW_LOGIN": {
                     "use_host": "DEV",

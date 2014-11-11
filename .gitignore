@@ -38,6 +38,7 @@ FE/*.cache
 FE/mockeyDebugFile.log
 FE/app/scripts/services/environment-config.js
 FE/nbproject
+dev-config.json
 
 # BOTH
 

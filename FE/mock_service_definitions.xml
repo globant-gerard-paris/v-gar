@@ -121,7 +121,7 @@
 }, {
     "manufacturer": "WINNEBAGO INDUSTRIES INC.",
     "NHTSACampaignNumber": "02V276006",
-    "reportReceivedDate": "1038891600000-0500",
+    "reportReceivedDate": "1038891600000",
     "component": "EQUIPMENT:RECREATIONAL VEHICLE",
     "summary": "CERTAIN MOTOR HOMES EQUIPPED WITH NORCOLD REFRIGERATOR COOLING UNITS MODEL NUMBERS 442, 443, 452, EV452, 453, 462, EV462, 463, EV463, 482, EV482, 483, EV483, 874, AND 875.  THESE REFRIGERATORS CAN EXPERIENCE A BREAK DOWN IN A RUBBER SEAL WITHIN THE GAS VALVE.  AS THE RUBBER SEAL AGES, A LEAK MAY OCCUR, ALLOWING PROPANE GAS TO ACCUMULATE IN THE BURNER AREA.",
     "consequence": "THE CONSEQUENCE CAN RESULT IN A FIRE, POSSIBLY CAUSING SERIOUS INJURY OR DEATH.",
@@ -174,5 +174,26 @@
         <request_inspector_json_rules enable_flag="false"/>
         <response_schema enable_flag="false"/>
         <real_url url="http://vehicle/recalls/year/2000/make/ITASCA/model/HORIZON/order/desc"/>
+    </service>
+    <service default_real_url_index="0" default_scenario_id="1" description="" error_scenario_id="null" hang_time="0" name="Get last recall" request_inspector_name="null" service_response_type="1" tag="" url="vehicle/recalls/year/2000/make/ITASCA/model/HORIZON/last">
+        <request_inspector_json_rules enable_flag="false"/>
+        <response_schema enable_flag="false"/>
+        <scenario http_resp_status_code="200" id="1" name="2010" tag="">
+            <scenario_match scenario_match_evaluation_rules_flag="false"/>
+            <scenario_response><![CDATA[{
+    "manufacturer": "WINNEBAGO INDUSTRIES, INC.",
+    "NHTSACampaignNumber": "10V525000",
+    "reportReceivedDate": "1288065600000",
+    "component": "EQUIPMENT",
+    "summary": "WINNEBAGO IS RECALLING CERTAIN RECREATIONAL VEHICLES EQUIPPED WITH 1200-SERIES NORCOLD REFRIGERATORS.  THE POPULATION OF REFRIGERATORS BEING ADDRESSED CONTAINS EITHER A SENSING ALGORITHM OR THERMAL SWITCH TO SHUT OFF POWER TO THE REFRIGERATOR WHEN HIGH TEMPERATURES ARE DETECTED IN ORDER TO PREVENT A POTENTIAL FIRE.  THE RESPONSE TIMES OF THE SENSOR ALGORITHM AND THERMAL SWITCH DEVICES TO STOP POWER ARE NOT SUFFICIENT.  ",
+    "consequence": "THE SENSING ALGORITHM OR THERMAL SWITCH INSTALLED TO SHUT OFF POWER TO THE REFRIGERATOR WHEN HIGH TEMPERATURES ARE DETECTED DUE TO A POSSIBLE HYDROGEN GAS LEAK MAY NOT SHUT OFF IN SUFFICIENT TIME TO PREVENT A FIRE.  ",
+    "remedy": "WINNEBAGO IS WORKING WITH NORCOLD TO IDENTIFY AND NOTIFY ANY AFFECTED OWNERS.  OWNERS WILL BE INSTRUCTED TO CONTACT NORCOLD DEALERS TO RECEIVE THE REMEDY FREE OF CHARGE.  PLEASE SEE NORCOLD'S DEFECT REPORT 10E-049 FOR ADDITIONAL INFORMATION.  THE RECALL BEGAN DURING DECEMBER 2010.  OWNERS MAY CONTACT NORCOLD AT 1-800-767-9101 OR WINNEBAGO AT 1-641-585-3535.",
+    "notes": "OWNERS MAY ALSO CONTACT THE NATIONAL HIGHWAY TRAFFIC SAFETY ADMINISTRATION'S VEHICLE SAFETY HOTLINE AT 1-888-327-4236 (TTY 1-800-424-9153), OR GO TO <A HREF=HTTP://WWW.SAFERCAR.GOV>HTTP://WWW.SAFERCAR.GOV</A> .",
+    "modelYear": "2000",
+    "make": "ITASCA",
+    "model": "HORIZON"
+}]]></scenario_response>
+            <scenario_response_header><![CDATA[Content-Type:application/json; charset=utf-8 | Access-Control-Allow-Origin:* | Access-Control-Allow-Methods:GET,PUT,POST,DELETE | Access-Control-Allow-Headers:Content-Type]]></scenario_response_header>
+        </scenario>
     </service>
 </mockservice>

@@ -94,20 +94,20 @@
                         <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
                     </div>
                 </div>
-            </div>
-            <div class="thumbnail">
+            </div>            
+            <div ng-show="model.lastRecall" class="thumbnail">
                 <div class="caption">
                     <div class="media">
                         <a class="pull-right" href="#">
                             <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFPklEQVRYR+2WDUzUZRzHv/fCnaCQcMKBLyCKx8uJ4HEnQnAOtaSCkCzKzJIb5aq5WnMjEWMkYrRyLlZKMVg1y9qcWrSoNBeQiMABIi+eCEEpCAFTBOLtrt9zL0bnHXewFWvr2d12////+T+/z/P9fX+/eziY5cGZ5fj4zwJwz+yRJzsLOPlMwYFRXcrGg1WF9FM7XUVnpEBytKf7S7F+3XKVSh+vqqAAHxS3eBSWdvX8GwAOP6WFnV0RHRXt5fG7Pl5n9wJcLS0rXZddvYEux6YDMV0FOIUpQVGr/L1KZM88Afy8H3oXrdkN9fEiXLrSqUzObyyjOzp7IaYLIDy/T3FLmhgndBmqAG6oDXEWynDbKRwNJ4tGIvdX3kd3Rv4JAO7Xr4WmLpf4ZAfGrqbE5wFcgSGOdhSQ70RTcQ2uadrT4g/V5thryOko4HQ+XTG4duc2cJo/BYZ6CYBnBJgAnETQBWzHhbxjiMyqnEsPhuxRwV4A3o+vh50IUIYleC13ADTfAnw+4GBM9TgtMz4OrHgIndfG0FxSfXr9W9VbCIDIph72AHAKX1wVFeIrKln99Cbg8idkMQos0OH+d5Xg0gr5SXXwF98iQ3IB6bOo+ew71LX1KpOPXLJpSHsAhGV75W1BsZFers5dQNdlgEfSz5nAw4ejwaOYuY9dwlKPAVKB+pB4JfoHPNFYfL4z6kCVry1D2gLgfrM7LNXXT5wdGEfGazpNeSfp2baF40h4T0kAOhxKrMNS90GD4FpKRWACmopq0NZyM+2Rd6qnNKQtAKfy9DWDsm0bILhdBQyS8ZjM9GEAj+eu0wO8TQA+C+4QAC2nIxXmijDqIof62FlEZF2c0pBTAfB+SJV/KFH4qbxlIuDXCxScds86DwWFcAxb348hMXQ4uLkW3noARkbPdKTCkrXoUPdCU9lS8EBO1QvWDGkNgJPz5IqAmJUejYrnoqjXUtMZpVpnu2fDCLD9SAx4BLA/oRZLRCYAxkAqCKhHeIWj8uMynLvcHZT6xdVmSx3SGoCgdK9CLX0wWOoqpqbW124MbpxuBNhxdL0+BZnxNVg8GUCvAkG4+aD/phAN39c3RB+olBEA7eLvwxIA99SroSqJRPxR4GYpcL3WUHaTjw5GgJSjG8Gl32/EVWPx3RSYAtA7HFp+USiaTjVAo7n5/ObDtQXmHdISgGN5eviQbKsMAlDZDd9mmpthsz4wDlXeJr0H9sVXkQmpD2jN5rHjgaMLbdsT6s/VZMgKJ1poePJi5gB64y0L9lQtUy4EetuMwc2msUveBDq65xs2OX+QujLVoNZ8OaYcQYh80VpyA631XfcYcvIbk4wXTMec64bGYu3Uxmcq0HO2whhrxbR7i+chmsenZ86LyJD19xhyMoCgNF2h9o/ylrpLHOmvhElvxaPstlAL5ctifQryXumH/1IqPdYHLA6CcHJBj2YYV8o6GqKz/jKk6Q3O8V0hiUHLXE8EJ/kBd/qmPt2xVNPukzKCDH1gRzt8F1FqrQIYMznPDfVftqCxtX/LU7l1J1lZmgDmlGdEDIQ86s13FFGfH7PjVEUp6LjhbPCA2zB1aPKArXOQgwOGeydQ91XHeERmuTMB/GECcKvIiOhds0tClUqJ1JqVnSVZaed3i8PoNasp07/P5lM4ARcXczUIzyyn9oo+E4D7mT2Kc/MEfKmOBbe1EyuZtnmbonEIYkSn/W3dmxWsMfWYAFzowoe+jMp4zLG53EwnsFohk+EX+t4yAbB/GdYkhNatP9N497zH9GUtmR3ZWAHP7vgf4E9IKc8wWGu85AAAAABJRU5ErkJggg==" alt="new">
                         </a>
                         <div class="media-body">
-                            <h3 class="text-muted" style="margin-bottom: 0px;">1 New recall </h3>
-                            <h5 class="text-muted" style="margin-top: 0px;">June 1st, 2014</h5>
+                            <h3 class="text-muted" style="margin-bottom: 0px;">1 New recall</h3>
+                            <h5 class="text-muted" style="margin-top: 0px;">{{model.lastRecall.reportReceivedDate  | date:'MMMM d, yyyy'}}</h5>
                         </div>
                     </div>
-                    <p>Manufacture Recall Because</p>
-                    <p class="text-muted">Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+                    <p><b>Manufacture Recall Issued</b></p>
+                    <p class="text-muted">{{model.lastRecall.summary | limitTo : 150}}...</p>
                     <p><a href="#" class="link-page" ng-click="viewRecalls()">See more details</a></p>
                     <div class="text-center">
                         <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
