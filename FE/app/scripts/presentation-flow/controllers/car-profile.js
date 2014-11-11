@@ -27,7 +27,7 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
             model = 'Edge';
 
     var params = $location.search();
-    
+
     if (params.option === '2') {
         modelYear = '2010';
         make = 'Audi';

@@ -94,7 +94,7 @@
                         <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
                     </div>
                 </div>
-            </div>            
+            </div>
             <div ng-show="model.lastRecall" class="thumbnail">
                 <div class="caption">
                     <div class="media">
@@ -103,11 +103,11 @@
                         </a>
                         <div class="media-body">
                             <h3 class="text-muted" style="margin-bottom: 0px;">1 New recall</h3>
-                            <h5 class="text-muted" style="margin-top: 0px;">{{model.lastRecall.reportReceivedDate  | date:'MMMM d, yyyy'}}</h5>
+                            <h5 class="text-muted" style="margin-top: 0px;">{{model.lastRecall.reportReceivedDate| date:'MMMM d, yyyy'}}</h5>
                         </div>
                     </div>
                     <p><b>Manufacture Recall Issued</b></p>
-                    <p class="text-muted">{{model.lastRecall.summary | limitTo : 150}}...</p>
+                    <p class="text-muted">{{model.lastRecall.summary| limitTo : 150}}...</p>
                     <p><a href="#" class="link-page" ng-click="viewRecalls(model.option)">See more details</a></p>
                     <div class="text-center">
                         <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
