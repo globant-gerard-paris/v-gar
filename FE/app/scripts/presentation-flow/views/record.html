@@ -8,7 +8,7 @@
             <div class="form-group" ng-class="{ 'has-error' : recordForm.mileage.$invalid && !recordForm.mileage.$pristine, 'has-success': !recordForm.mileage.$invalid && !recordForm.mileage.$pristine}">
                 <label class="control-label col-sm-3" for="record-mileage">Mileage</label>
                 <div class="col-sm-9">
-                    <input id="record-mileage" name="mileage" ng-model="model.recordForm.mileage" type="number" class="form-control" placeholder="Mileage" required/>
+                    <input id="record-mileage" name="mileage" ng-model="model.recordForm.mileage" type="number"  min="0" class="form-control" placeholder="Mileage" required/>
                     <div ng-show="recordForm.mileage.$invalid && !recordForm.mileage.$pristine" class="help-block">Millage are required.</div>
                     <div ng-show="recordForm.mileage.$error.required && !recordForm.source.$pristine" class="help-block">Millage should be a number.</div>
                 </div>
