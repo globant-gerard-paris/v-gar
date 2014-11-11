@@ -68,25 +68,6 @@ public class VehicleInformationControllerTest extends AbstractIntegrationTest {
 	}
 
 	@Test
-	@Ignore // FIXME: need more time to fix it.
-	public void addRecord() throws Exception {
-		RecordDto recordDto = new RecordDto();
-		recordDto.setComment("comment_test");
-		recordDto.setDate("date_test");
-		recordDto.setService("service_test");
-		recordDto.setSource("source_test");
-		
-		mockMvc.perform(post(URI_CREATE_RECORD, familyId, tangibleId)
-                .contentType(MediaType.APPLICATION_JSON)
-//                .param("description", description)
-//                .param("title", title)
-//                .sessionAttr("recordDto", recordDto)
-        )
-         .andDo(print())
-         .andExpect(status().isOk());
-		
-	}
-	@Test
 	public void getRecords() throws Exception {
 		mockMvc.perform(
 				get(URI_GET_RECORDS, familyId, tangibleId).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());

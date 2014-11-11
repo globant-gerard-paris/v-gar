@@ -35,7 +35,8 @@ public class VehicleInformationController {
 
 	@RequestMapping(value = "/family/{familyId}/tangible/{tangibleId}/records", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Object> getRecords(@PathVariable("familyId") Long familyId,
+	public ResponseEntity<Object> getRecords(
+			@PathVariable("familyId") Long familyId,
 			@PathVariable("tangibleId") Long tangibleId) throws Exception {
 		List<Record> records = vehicleInformationService.findAllRecordsByFamilyIdAndTangibleId(
 				familyId, tangibleId);

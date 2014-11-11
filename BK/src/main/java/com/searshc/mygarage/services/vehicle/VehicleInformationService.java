@@ -14,7 +14,6 @@ import com.searshc.mygarage.controllers.vehicle.RecordAssembly;
 import com.searshc.mygarage.controllers.vehicle.RecordDto;
 import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.entities.VehicleInformation;
-import com.searshc.mygarage.repositories.VehicleInformationRepository;
 
 /**
  * The {@link VehicleInformationService} have the responsibility to update, delete and retrieve the
@@ -78,5 +77,6 @@ public class VehicleInformationService {
 		Validate.notNull(dto.getComment(), "The record comment can't be null");
 		Validate.notNull(dto.getService(), "The record service can't be null");
 		Validate.notNull(dto.getSource(), "The record source can't be null");
+		Validate.notNull(dto.getMileage(), "The record mileage can't be null");
 	}
 }

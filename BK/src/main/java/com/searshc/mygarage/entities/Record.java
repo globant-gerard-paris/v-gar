@@ -17,22 +17,26 @@ import javax.persistence.Entity;
 @Entity
 public class Record extends AbstractEntity {
 
-	/**
-	 * The {@code date} of the record.
-	 */
-	private Date date;
-
+	
+	private String mileage;
+	
+	private String source;
+	
 	/**
 	 * The description of the {@code service} of the record.
 	 */
 	private String service;
 
 	/**
+	 * The {@code date} of the record.
+	 */
+	private Date date;
+
+	/**
 	 * A technical detail of what was done to the car.
 	 */
 	private String comment;
 
-	private String source;
 
 	public Date getDate() {
 		return date;
@@ -66,4 +70,13 @@ public class Record extends AbstractEntity {
 		this.source = source;
 	}
 
+	public String getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
+	
+	
 }

@@ -1,6 +1,6 @@
 package com.searshc.mygarage.controllers.vehicle;
 
-import org.hibernate.validator.constraints.NotEmpty;
+import java.util.Date;
 
 /**
  * @author Jero
@@ -8,24 +8,25 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class RecordDto {
 
-	private String date;
-	private String service;
+	private Date date;
+	private ServiceRecordDto service;
 	private String comment;
 	private String source;
+	private String mileage;
 
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
-	public String getService() {
+	public ServiceRecordDto getService() {
 		return service;
 	}
 
-	public void setService(String service) {
+	public void setService(ServiceRecordDto service) {
 		this.service = service;
 	}
 
@@ -45,10 +46,18 @@ public class RecordDto {
 		this.source = source;
 	}
 
+	public String getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(String mileage) {
+		this.mileage = mileage;
+	}
+
 	@Override
 	public String toString() {
 		return "RecordDto [date=" + date + ", service=" + service + ", comment=" + comment
-				+ ", source=" + source + "]";
+				+ ", source=" + source + ", mileage=" + mileage + "]";
 	}
 
 }
