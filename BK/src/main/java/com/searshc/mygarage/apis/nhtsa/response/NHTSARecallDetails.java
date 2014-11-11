@@ -2,11 +2,11 @@ package com.searshc.mygarage.apis.nhtsa.response;
 
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.neo4j.cypher.internal.compiler.v2_1.planner.logical.steps.applyOptional;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class NHTSARecallDetails {
 	
 	@JsonProperty(value = "Manufacturer")
