@@ -1,0 +1,67 @@
+<!-- ModalNewRecordCtrl -->
+<script type="text/ng-template" id="modalNewRecord.html">
+    <div class="modal-header">
+        <h1 class="text-center">Please add a New record</h1>
+    </div>
+    <form name="recordForm" novalidate ng-submit="addRecord()">
+        <div class="modal-body form-horizontal">
+            <div class="form-group" ng-class="{ 'has-error' : recordForm.mileage.$invalid && !recordForm.mileage.$pristine, 'has-success': !recordForm.mileage.$invalid && !recordForm.mileage.$pristine}">
+                <label class="control-label col-sm-3" for="record-mileage">Mileage</label>
+                <div class="col-sm-9">
+                    <input id="record-mileage" name="mileage" ng-model="model.recordForm.mileage" type="number"  min="0" class="form-control" placeholder="Mileage" required/>
+                    <div ng-show="recordForm.mileage.$invalid && !recordForm.mileage.$pristine" class="help-block">Millage are required.</div>
+                    <div ng-show="recordForm.mileage.$error.required && !recordForm.source.$pristine" class="help-block">Millage should be a number.</div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : recordForm.source.$invalid && !recordForm.source.$pristine, 'has-success': !recordForm.source.$invalid && !recordForm.source.$pristine}">
+                <label class="control-label col-sm-3" for="record-source">Source</label>
+                <div class="col-sm-9">
+                    <input id="record-source" name="source" ng-model="model.recordForm.source"  type="text" class="form-control" placeholder="Source" required/>
+                    <div ng-show="recordForm.source.$invalid && !recordForm.source.$pristine" class="help-block">Source are required.</div>
+                    <div ng-show="recordForm.source.$error.required && !recordForm.source.$pristine" class="help-block">Source should be a text.</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="record-source">Source</label>
+                <div class="col-sm-9">
+                    <select class="form-control"
+                            ng-model="model.recordForm.service"
+                            ng-options="service.desc for service in model.services">
+                        <option value=""> - Others - </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : recordForm.comment.$invalid && !recordForm.comment.$pristine, 'has-success': !recordForm.comment.$invalid && !recordForm.comment.$pristine}">
+                <label class="control-label col-sm-3" for="record-comment">Comment</label>
+                <div class="col-sm-9">
+                    <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control" placeholder="Comment" required/>
+                    <div ng-show="recordForm.comment.$invalid && !recordForm.comment.$pristine" class="help-block">Comment are required.</div>
+                    <div ng-show="recordForm.comment.$error.required && !recordForm.comment.$pristine" class="help-block">Comment should be a text.</div>
+                </div>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : recordForm.comment.$invalid && !recordForm.comment.$pristine, 'has-success': !recordForm.comment.$invalid && !recordForm.comment.$pristine}">
+                <label class="control-label col-sm-3" for="record-date">Date</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                         <input id="record-date" type="text" class="form-control"
+                                datepicker-popup="{{model.dateRecordFormat}}"
+                                ng-model="model.recordForm.date"
+                                is-open="opened"
+                                min-date="minDate"
+                                datepicker-options="dateOptions"
+                                date-disabled="disabled(date, mode)"
+                                ng-required="true"
+                                close-text="Close"/>
+                         <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="addRecord()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </form>
+</script>

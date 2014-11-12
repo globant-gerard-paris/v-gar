@@ -12,7 +12,10 @@
                             {{address}}<br>
                             {{districtName}} - {{districtNumber}}<br>
                             {{city}}<br>
+                            ZipCode: {{zipCode}}<br>
+                            Phone: {{phone}}<br>
                         </strong>
+                        <br>
                         <br>
                         {{formatMilesAway(distance)}} miles away
                     </h5>
@@ -64,10 +67,13 @@
                         </p>
                     </div>
                     <div class="col-xs-4">
-                        <h4 class="vg-store-locator-h4">Hours Operation</h4>
-
+                        <h4 class="vg-store-locator-h4">Hours Operation<br></h4>
+                        ZipCode: {{zipCode}}<br>
+                        Phone: {{phone}}<br>
+                        <br>
                         <div class="days-row">
                             <ul class="list-unstyled">
+
                                 <li class="vg-store-locator-li" ng-repeat="day in days">
                                     <span style="width: 150px">{{day}}</span><br>
                                 </li>

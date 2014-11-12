@@ -444,7 +444,10 @@ module.exports = function (grunt) {
                 'XHTML element “ui-gmap-google-map” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “address” not allowed as child of XHTML element “h5” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “ui-gmap-google-map” not allowed as child of XHTML element “a” in this context. (Suppressing further errors from this subtree.)',
-                'Attribute “collapse” not allowed on XHTML element “div” at this point.'
+                'Attribute “collapse” not allowed on XHTML element “div” at this point.',
+                'Attribute “ng-click” not allowed on XHTML element “img” at this point.',
+                'XHTML element “record-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “ng-minlength” not allowed on XHTML element “input” at this point.'
             ]
         }
     });

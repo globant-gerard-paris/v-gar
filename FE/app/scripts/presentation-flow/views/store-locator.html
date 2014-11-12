@@ -15,11 +15,11 @@
                 </h3>
             </div>
             <div class="col-md-5">
-                <form ng-submit="getStoreNearby()">
+                <form name="storeLocatorSearch" novalidate ng-submit="getStoreNearby()">
                     <div class="input-group vg-store-locator-input">
-                        <input type="text" class="form-control" ng-model="model.address" value="{{model.address}}">
+                        <input type="text" class="form-control"  ng-model="model.address" value="{{model.address}}" ng-minlength="1" required>
                           <span class="input-group-btn">
-                                  <button class="btn btn-default" ng-click="getStoreNearby()" type="submit">
+                                  <button class="btn btn-default" ng-disabled="storeLocatorSearch.$invalid" type="submit">
                                       Search
                                   </button>
                               <br>
@@ -60,7 +60,8 @@
                     saturday-close="model.myStore.saturdayClose"
                     sunday-open="model.myStore.sundayOpen"
                     sunday-close="model.myStore.sundayClose"
-                    is-favorite-store="true">
+                    is-favorite-store="true"
+                    phone="model.myStore.phone">
             </store-row>
         </div>
 
@@ -98,6 +99,7 @@
                     sunday-open="store.sunday_open"
                     sunday-close="store.sunday_close"
                     is-favorite-store="false"
+                    phone="store.phone"
                     ng-repeat="store in model.stores">
             </store-row>
 
