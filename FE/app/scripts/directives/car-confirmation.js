@@ -10,7 +10,7 @@ angular.module('Directives').directive('carConfirmation', function () {
         templateUrl: 'scripts/directives/views/car-confirmation.html',
         link: function (scope) {
             scope.selectVehicule = function (vehicule) {
-                vehicule.isConfirmed = !vehicule.isConfirmed;                       
+                vehicule.isConfirmed = !vehicule.isConfirmed;
             };
         },
         controller: function () {
