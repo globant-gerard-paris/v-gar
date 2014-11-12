@@ -25,6 +25,10 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         }
     };
 
+    /**
+     * Search the store given with params and redirect to Store Locator Page.
+     * @param storeZipCode
+     */
     $scope.searchStore = function (storeZipCode) {
         RedirectSrv.redirectTo('/store-locator?zipcode=' + (storeZipCode || ''));
     };
@@ -48,10 +52,6 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         RecordSrv.getRecords().then(getRecordSuccess, getRecordFail);
 
     };
-    
-    $scope.viewRecalls = function(){
-        RedirectSrv.redirectTo('/recalls');
-    };
 
     var getRecordSuccess = function (response) {
         $scope.model.records = response.data && response.data.length > 0 ? response.data : [];
@@ -60,20 +60,11 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     var getRecordFail = function (response) {
         console.log('ERROR: ' + response);
         $scope.model.records = [];
-    }
+    };
 
     $scope.redirectToDashboard = function () {
         RedirectSrv.redirectTo('/dashboard');
     };
-
-    /**
-     * Search the store given with params and redirect to Store Locator Page.
-     * @param storeZipCode
-     */
-    $scope.searchStore = function (storeZipCode) {
-        RedirectSrv.redirectTo('/store-locator?zipcode=' + (storeZipCode || ''));
-    };
-
 
     var lastRecallResultSuccess = function (response) {
         $scope.model.lastRecall = response.data || false;
@@ -87,5 +78,6 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
      * initialize the car profile
      */
     init();
+
 
 });
