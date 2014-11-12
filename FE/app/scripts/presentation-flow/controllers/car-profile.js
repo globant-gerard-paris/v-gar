@@ -58,6 +58,15 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         $scope.model.records = [];
     }
 
+    $scope.searchStore = function (storeZipCode) {
+        RedirectSrv.redirectTo('/store-locator?zipcode=' + (storeZipCode || ''));
+    };
+
+    $scope.viewRecalls = function (option) {
+        RedirectSrv.redirectTo('/recalls?option=' + option);
+    };
+
+
     $scope.redirectToDashboard = function () {
         RedirectSrv.redirectTo('/dashboard');
     };
@@ -69,7 +78,6 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     $scope.searchStore = function (storeZipCode) {
         RedirectSrv.redirectTo('/store-locator?zipcode=' + (storeZipCode || ''));
     };
-
 
     var lastRecallResultSuccess = function (response) {
         $scope.model.lastRecall = response.data || false;
@@ -83,5 +91,6 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
      * initialize the car profile
      */
     init();
+
 
 });

@@ -78,7 +78,6 @@
       "value": "store-row"
     },
     {
-
       "name": "Record row",
       "value": "record-row"
     },
@@ -107,6 +106,10 @@
     {
       "name": "Http service",
       "value": "http-service"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     },
     {
       "name": "Session data",
