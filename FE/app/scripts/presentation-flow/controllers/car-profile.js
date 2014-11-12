@@ -21,7 +21,7 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         $scope.model.records = response.data && response.data.length > 0 ? response.data : [];
     };
     var getRecordFail = function (response) {
-        console.log('ERROR: '+response);
+        console.log('ERROR: ' + response);
         $scope.model.records = [];
     };
 
@@ -37,4 +37,5 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
      * initialize the car profile
      */
     init();
+
 });

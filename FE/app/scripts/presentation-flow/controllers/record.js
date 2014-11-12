@@ -37,7 +37,6 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
             console.log('ERROR: ' + response);
         };
     };
-
 }).controller('ModalNewRecordCtrl', function ($scope, $modalInstance, context) {
 
     $scope.model = context;
