@@ -7,7 +7,6 @@ module.exports = function (grunt) {
         ],
         options: {
             ignore: [
-
                 // Relax following general errors not necessary to valid
                 'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                 'XHTML element “head” is missing a required instance of child element “title”.',
@@ -16,7 +15,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-view” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-app” not allowed on XHTML element “html” at this point.',
                 'Bad value “X-UA-Compatible” for attribute “http-equiv” on XHTML element “meta”.',
-
                 // Relaxing Angular directives - DIV element.
                 'Attribute “ng-bind” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-bindhtml” not allowed on XHTML element “div” at this point.',
@@ -69,7 +67,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “div” at this point.',
-
                 // Relaxing  Angular directives - SPAN element.
                 'Attribute “ng-bind” not allowed on XHTML element “span” at this point.',
                 'Attribute “ng-bindhtml” not allowed on XHTML element “span” at this point.',
@@ -122,7 +119,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “span” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “span” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “span” at this point.',
-
                 // Relaxing  Angular directives - A element.'Attribute “ng-Bind” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-Bindhtml” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-bindtemplate” not allowed on XHTML element “a” at this point.',
@@ -174,7 +170,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “a” at this point.',
-
                 // Relaxing  Angular directives - button element.
                 'Attribute “ng-bind” not allowed on XHTML element “button” at this point.',
                 'Attribute “ng-bindhtml” not allowed on XHTML element “button” at this point.',
@@ -227,7 +222,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “button” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “button” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “button” at this point.',
-
                 // Relaxing  Angular directives - input element.
                 'Attribute “ng-bind” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-bindhtml” not allowed on XHTML element “input” at this point.',
@@ -280,7 +274,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “input” at this point.',
-
                 // Relaxing  Angular directives - form element.
                 'Attribute “ng-bind” not allowed on XHTML element “form” at this point.',
                 'Attribute “ng-bindhtml” not allowed on XHTML element “form” at this point.',
@@ -333,7 +326,6 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “form” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “form” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “form” at this point.',
-
                 'XHTML element “store-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “ui-gmap-google-map” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “address” not allowed as child of XHTML element “h5” in this context. (Suppressing further errors from this subtree.)',
@@ -342,7 +334,8 @@ module.exports = function (grunt) {
                 'XHTML element “recall-information” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “ng-click” not allowed on XHTML element “img” at this point.',
                 'XHTML element “record-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'Attribute “ng-minlength” not allowed on XHTML element “input” at this point.'
+                'Attribute “ng-minlength” not allowed on XHTML element “input” at this point.',
+                'Attribute “ng-repeat” not allowed on XHTML element “li” at this point.'
             ]
         }
     });
