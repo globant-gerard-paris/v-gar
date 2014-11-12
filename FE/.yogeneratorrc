@@ -65,6 +65,10 @@
     {
       "name": "Record",
       "value": "record"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "filter": [],
@@ -76,6 +80,10 @@
     {
       "name": "Record row",
       "value": "record-row"
+    },
+    {
+      "name": "Recall information",
+      "value": "recall-information"
     }
   ],
   "service": [
@@ -100,6 +108,10 @@
       "value": "http-service"
     },
     {
+      "name": "Recalls",
+      "value": "recalls"
+    },
+    {
       "name": "Session data",
       "value": "session-data"
     },
@@ -110,6 +122,10 @@
     {
       "name": "Record",
       "value": "record"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "factory": [],
@@ -161,6 +177,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Recalls",
+      "value": "recalls"
     }
   ],
   "sass": []

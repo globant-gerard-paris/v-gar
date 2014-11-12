@@ -30,6 +30,11 @@
         color: #333;
     }
 
+    .text-added {
+        color: #fc9349;
+        font-weight: bold;
+    }
+
     .car-info p {
         margin: 0px;
     }
@@ -42,14 +47,21 @@
         padding: 15px 30px 30px;
     }
 
-    .vg-carprofile-button-add-record {
-        cursor: pointer;
-        position: relative;
-        bottom: 20px;
+    .page-title {
+        text-align: center;
     }
 
-    .vg-carprofile-store-search {
-        margin-bottom: 30px;
+    .col-info {
+        border-left: 1px solid #ddd;
+    }
+
+    .col-info:first-child {
+        border: none;
+    }
+
+    .recalls-info {
+        padding-bottom: 20px;
+        text-align: center;
     }
 
 </style>
@@ -62,7 +74,8 @@
             <div class="col-md-9 col-sm-8">
                 <ol class="breadcrumb">
                     <li><a href="#" ng-click="redirectToDashboard()">Dashboard</a></li>
-                    <li class="active">{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</li>
+                    <li><a href="#" ng-click="redirectToCarProfile(model.option)">{{model.vehicle.modelYear}} {{model.vehicle.make}} {{model.vehicle.model}}</a></li>
+                    <li class="active">Recalls</li>
                 </ol>
             </div>
             <div class="col-md-3 col-sm-4">
@@ -87,65 +100,22 @@
             </div>
         </div>
     </div>
+    <h1 class="page-title"><strong>Your recalls</strong></h1>
     <div class="row">
-        <div class="col-sm-5 col-md-3">
-            <div class="thumbnail">
-                <div class="caption">
-                    <h3 class="text-muted">Recommended next service:</h3>
-                    <h3>Alignment, Tire Replacement</h3>
-                    <p class="text-muted">Based on your XXX known mileage service history</p>
-                    <hr>
-                    <p><span class="text-muted">Previous service:</span> <strong>Off Change New Motor</strong></p>
-                    <div class="text-center">
-                        <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
-                    </div>
-                </div>
-            </div>
-            <div ng-show="model.lastRecall" class="thumbnail">
-                <div class="caption">
-                    <div class="media">
-                        <a class="pull-right" href="#">
-                            <img class="media-object" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAFPklEQVRYR+2WDUzUZRzHv/fCnaCQcMKBLyCKx8uJ4HEnQnAOtaSCkCzKzJIb5aq5WnMjEWMkYrRyLlZKMVg1y9qcWrSoNBeQiMABIi+eCEEpCAFTBOLtrt9zL0bnHXewFWvr2d12////+T+/z/P9fX+/eziY5cGZ5fj4zwJwz+yRJzsLOPlMwYFRXcrGg1WF9FM7XUVnpEBytKf7S7F+3XKVSh+vqqAAHxS3eBSWdvX8GwAOP6WFnV0RHRXt5fG7Pl5n9wJcLS0rXZddvYEux6YDMV0FOIUpQVGr/L1KZM88Afy8H3oXrdkN9fEiXLrSqUzObyyjOzp7IaYLIDy/T3FLmhgndBmqAG6oDXEWynDbKRwNJ4tGIvdX3kd3Rv4JAO7Xr4WmLpf4ZAfGrqbE5wFcgSGOdhSQ70RTcQ2uadrT4g/V5thryOko4HQ+XTG4duc2cJo/BYZ6CYBnBJgAnETQBWzHhbxjiMyqnEsPhuxRwV4A3o+vh50IUIYleC13ADTfAnw+4GBM9TgtMz4OrHgIndfG0FxSfXr9W9VbCIDIph72AHAKX1wVFeIrKln99Cbg8idkMQos0OH+d5Xg0gr5SXXwF98iQ3IB6bOo+ew71LX1KpOPXLJpSHsAhGV75W1BsZFers5dQNdlgEfSz5nAw4ejwaOYuY9dwlKPAVKB+pB4JfoHPNFYfL4z6kCVry1D2gLgfrM7LNXXT5wdGEfGazpNeSfp2baF40h4T0kAOhxKrMNS90GD4FpKRWACmopq0NZyM+2Rd6qnNKQtAKfy9DWDsm0bILhdBQyS8ZjM9GEAj+eu0wO8TQA+C+4QAC2nIxXmijDqIof62FlEZF2c0pBTAfB+SJV/KFH4qbxlIuDXCxScds86DwWFcAxb348hMXQ4uLkW3noARkbPdKTCkrXoUPdCU9lS8EBO1QvWDGkNgJPz5IqAmJUejYrnoqjXUtMZpVpnu2fDCLD9SAx4BLA/oRZLRCYAxkAqCKhHeIWj8uMynLvcHZT6xdVmSx3SGoCgdK9CLX0wWOoqpqbW124MbpxuBNhxdL0+BZnxNVg8GUCvAkG4+aD/phAN39c3RB+olBEA7eLvwxIA99SroSqJRPxR4GYpcL3WUHaTjw5GgJSjG8Gl32/EVWPx3RSYAtA7HFp+USiaTjVAo7n5/ObDtQXmHdISgGN5eviQbKsMAlDZDd9mmpthsz4wDlXeJr0H9sVXkQmpD2jN5rHjgaMLbdsT6s/VZMgKJ1poePJi5gB64y0L9lQtUy4EetuMwc2msUveBDq65xs2OX+QujLVoNZ8OaYcQYh80VpyA631XfcYcvIbk4wXTMec64bGYu3Uxmcq0HO2whhrxbR7i+chmsenZ86LyJD19xhyMoCgNF2h9o/ylrpLHOmvhElvxaPstlAL5ctifQryXumH/1IqPdYHLA6CcHJBj2YYV8o6GqKz/jKk6Q3O8V0hiUHLXE8EJ/kBd/qmPt2xVNPukzKCDH1gRzt8F1FqrQIYMznPDfVftqCxtX/LU7l1J1lZmgDmlGdEDIQ86s13FFGfH7PjVEUp6LjhbPCA2zB1aPKArXOQgwOGeydQ91XHeERmuTMB/GECcKvIiOhds0tClUqJ1JqVnSVZaed3i8PoNasp07/P5lM4ARcXczUIzyyn9oo+E4D7mT2Kc/MEfKmOBbe1EyuZtnmbonEIYkSn/W3dmxWsMfWYAFzowoe+jMp4zLG53EwnsFohk+EX+t4yAbB/GdYkhNatP9N497zH9GUtmR3ZWAHP7vgf4E9IKc8wWGu85AAAAABJRU5ErkJggg==" alt="new">
-                        </a>
-                        <div class="media-body">
-                            <h3 class="text-muted" style="margin-bottom: 0px;">1 New recall</h3>
-                            <h5 class="text-muted" style="margin-top: 0px;">{{model.lastRecall.reportReceivedDate| date:'MMMM d, yyyy'}}</h5>
-                        </div>
-                    </div>
-                    <p><b>Manufacture Recall Issued</b></p>
-                    <p class="text-muted">{{model.lastRecall.summary| limitTo : 150}}...</p>
-                    <p><a href="#" class="link-page" ng-click="viewRecalls(model.option)">See more details</a></p>
-                    <div class="text-center">
-                        <a href="about:blank" target="_blank" class="btn btn-default">SCHEDULE AN APPOINTMENT</a>
-                    </div>
-                </div>
-            </div>
-            <div class="vg-carprofile-store-search row">
-                <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
-                    <h3 class="text-muted text-center">Find service center</h3>
-                    <form name="searchStoreLocator" ng-submit="searchStore(storeZipCode)" novalidate>
-                        <div class="input-group">
-                            <input type="text" class="form-control" ng-model="storeZipCode" ng-minlength="1" required>
-                            <span class="input-group-btn">
-                                <button class="btn btn-default"  ng-disabled="searchStoreLocator.$invalid" type="submit">FIND</button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-7 col-md-9">
-            <div class="clearfix">
-                <div class="pull-right">
-                    <div class="pull-right vg-carprofile-button-add-record navbar-brand" ng-controller="RecordCtrl">
-                        <div ng-include="'scripts/presentation-flow/views/record.html'"></div>
-                        <img ng-click="openNewRecordForm()"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADO0lEQVRYR8WXW4hNURjHZ0S5h0kkkXuKhNyVKJfkhTJjHigx5IUol+bBNUKEwgNC5JpmXlBuD8olt0R4MiMiQi6JkPD7nfaZ9pzOZe89Lqt+7bPP/tb6/vtb39rrW8VF0VsrTKfAOBgA3aF10P0j1ydwDy7BGfgUZejiCEa9sVkBM6AZvICbUAPvg/5tufaEodAJvsAx2AiP8/nIJ0Bn62ARfIY9cAgewq8cgzpef5gJ8wLB27muhK/Z+uQS0AvjaugD22A9GOY4rU3geGEgehpXo1avZRMwEItzgeLpXG/E8ZrFdhT/nYTGMAHMk7qWKcA3vwpvYTw433+idWGQC2BURoYjERbQnAcml5k9IqLzcux+wokIKhVxPXi5YVxTOREWsIV7E240RA37RWx/wKQIAjRx7Mugr+VhAS41s9uEWxZxMM3iCrDPDlgAfaEmHYH93JilXSFOticR0A4fT+E4VCjAOX8FO2O+fdII2M9IV0BHBZhIR8EPyIMY4W+IgEF0vgNlCtgLJpFZmusLl0tXkilwLP0a9Wp/uPSegzkQtyUVoJ/TUKIAPzoHYGlc79g3RIB7RLkCvsNq2JAhwNyYU0CUc+m03S1g50bm5zjcVnFTmU9AGQazCww8JBBwu4DdPp6fyiXgDQ8O/s8pMAnddKb+4xyoS0KX4WToHIQzjo6kSdgIJy7DKnPAUsvyyTrvfhzv2CYVMJi+5k2pAiw2VbM7QR4kFeCG5ArrkN6MzFKrHzejDzGikERACeO7GR2B+WkBVrSPwA1pyV8WsIvx54LbcW24INkcOB/D1bIsSosbgbEM6rnBcr1SB2EBluFWQobIkuxZBAWl2FiSZX5ksnXtxp+WZC9hOHzLFOB9D7gG5oFFaRQREXQW6fw8tASLUk9RqZatLHc5amyt5+f4ShQPeWwMu8vcPWMi1FvquQ4mRqIK+oGJuQbexRTiVK4F6z/PAm73dW+eLwLpZ00Dx4u5Ol8u1cPgzpercPEL58FmFrjOm8DWYJzUnGe2XBEI2xkND6duzy3gNdwCD53ZDqft+d+zpOt8E9RmcxwlApn9TCD3jPDx3JOOzaTVUfp4fjYQkc936tlvAw/AZXwmM6IAAAAASUVORK5CYII="
-                             alt="add"> Add recent Record
-                    </div>
-                </div>
-            </div>
-            <record-row record="record" ng-repeat="record in model.records"></record-row>
+        <div class="col-md-8 col-md-offset-2">
+
+            <recall-information recall-date="recall.reportReceivedDate"
+                                model-year="recall.modelYear"
+                                make="recall.make"
+                                model="recall.model"
+                                component="recall.component"
+                                summary="recall.summary"
+                                consequence="recall.consequence"
+                                remedy="recall.remedy"
+                                notes="recall.notes"
+                                ng-repeat="recall in model.recalls"></recall-information>
         </div>
     </div>
+
+
 </div>

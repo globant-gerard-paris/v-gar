@@ -99,6 +99,14 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'StoreLocatorCtrl'
                 }
             });
+            
+            routes.push({
+                name: '/recalls',
+                params: {
+                    templateUrl: 'scripts/presentation-flow/views/recalls.html',
+                    controller: 'RecallsCtrl'
+                }
+            });
 
             // yo:ngRoutes
 
