@@ -31,7 +31,8 @@ angular.module('Directives').directive('storeRow', function ($timeout, StoreLoca
             saturdayClose: '=',
             sundayOpen: '=',
             sundayClose: '=',
-            isFavoriteStore: '='
+            isFavoriteStore: '=',
+            phone : '='
         },
 
         templateUrl: 'scripts/directives/views/store-row.html',

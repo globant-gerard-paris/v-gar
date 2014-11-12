@@ -48,6 +48,9 @@
         bottom: 20px;
     }
 
+    .vg-carprofile-store-search {
+        margin-bottom: 30px;
+    }
 
 </style>
 
@@ -131,15 +134,14 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="vg-carprofile-store-search row">
                 <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
                     <h3 class="text-muted text-center">Find service center</h3>
-
-                    <form ng-submit="getStoreNearby()">
+                    <form name="searchStoreLocator" ng-submit="searchStore(storeZipCode)" novalidate>
                         <div class="input-group">
-                            <input type="text" class="form-control" ng-model="storeZipCode">
-                            <span class="input-group-btn" ng-click="searchStore(storeZipCode)">
-                                <button class="btn btn-default" type="submit">FIND</button>
+                            <input type="text" class="form-control" ng-model="storeZipCode" ng-minlength="1" required>
+                            <span class="input-group-btn">
+                                <button class="btn btn-default"  ng-disabled="searchStoreLocator.$invalid" type="submit">FIND</button>
                             </span>
                         </div>
                     </form>
