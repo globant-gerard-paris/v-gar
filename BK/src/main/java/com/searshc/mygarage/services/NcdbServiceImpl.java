@@ -1,11 +1,14 @@
 package com.searshc.mygarage.services;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.Vehicle;
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.searshc.mygarage.exceptions.NCDBApiException;
 
 @Service
 public class NcdbServiceImpl implements NcdbService {
@@ -18,7 +21,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<Vehicle> listVehicles(Integer ncdbId) {
+    public List<Vehicle> listVehicles(Integer ncdbId) throws NCDBApiException {
         return this.ncdbApi.getVehicles(ncdbId);
     }
 

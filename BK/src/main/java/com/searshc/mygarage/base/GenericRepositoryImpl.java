@@ -22,6 +22,11 @@ import org.springframework.data.repository.core.EntityInformation;
 public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>
 	implements GenericRepository<T, ID>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5576542944531548419L;
+
 	private static final Log log = LogFactory.getLog(GenericRepositoryImpl.class);
 	
 	private EntityInformation<T, ?> entityInformation;
