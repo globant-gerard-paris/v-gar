@@ -84,6 +84,10 @@
     {
       "name": "Recall information",
       "value": "recall-information"
+    },
+    {
+      "name": "Car confirmation",
+      "value": "car-confirmation"
     }
   ],
   "service": [
@@ -126,6 +130,10 @@
     {
       "name": "Recalls",
       "value": "recalls"
+    },
+    {
+      "name": "Linked car",
+      "value": "linked-car"
     }
   ],
   "factory": [],
