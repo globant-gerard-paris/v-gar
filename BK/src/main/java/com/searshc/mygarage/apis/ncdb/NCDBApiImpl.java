@@ -139,7 +139,7 @@ public class NCDBApiImpl implements NCDBApi {
          EsbMsgRequest request = new EsbMsgRequest(header, query);
 
          VehicleRetrievalResponse response = null;
-
+         log.info("Looking NCDB vehicles for familyId " + familyIdNumber + " at " + serviceUrl);
          try {
              response = this.restTemplate.postForObject(this.serviceUrl,
                      request, VehicleRetrievalResponse.class);
@@ -150,6 +150,7 @@ public class NCDBApiImpl implements NCDBApi {
         	 log.error(message, e);
              throw new NCDBApiException(message);
          }
+         log.info(response.getVehicles().size() + " vehicles were found");
          return response;
     }
 }
