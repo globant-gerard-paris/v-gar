@@ -131,7 +131,6 @@ public abstract class GenericService<E, T extends Serializable,  K extends Gener
 	public void flush() {
 		
 		repository.flush();
-		
 	}
 	
 }
