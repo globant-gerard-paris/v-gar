@@ -1,6 +1,5 @@
 package com.searshc.mygarage.controllers.vehicle;
 
-import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  * @author Jero
