@@ -2,6 +2,20 @@
 
 angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
 
+
+    $scope.slides = [
+        {
+            active:true,
+            image: 'resources/images/garage.jpg'
+        },
+        {
+            image: 'resources/images/car.jpg'
+        },
+        {
+            image: 'resources/images/car2.jpg'
+        }
+    ];
+
     $scope.typeModal = '';
     $scope.startNow = function () {
         var action = PresentationFlowSrv.getUserTypeAction();
