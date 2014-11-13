@@ -11,15 +11,22 @@
 
     .well {
         border-radius: 20px;
-        cursor: pointer;        
-    }
+        cursor: pointer;
+    }   
 
+    .car-confirmation {
+        width: 245px;
+        float:left;
+        margin-left: 20px;
+    }
+    
     .thumbnail{
         background: none;
         border: none;
         border-radius: 0;
         margin: 0;
         background-position: top right;
+        min-height: 238px;        
     }
 
     .thumbnail .caption{
@@ -38,7 +45,7 @@
 
     .well-success{
         color: #fff;
-        background-color: #5cb85c;        
+        background-color: #5cb85c;
     }
 
     .well-success .thumbnail{
@@ -63,13 +70,13 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="clearfix">
-        <car-confirmation vehicule="vehicule" total-confirmed="totalConfirmed"                          
-                          ng-repeat="vehicule in model.vehicules"></car-confirmation>
+<div class="container-fluid">
+    <div class="car-galery">
+        <car-confirmation vehicule="vehicule" total-confirmed="totalConfirmed"
+                          ng-repeat="vehicule in model.vehicules | orderBy:['year','make','model']"></car-confirmation>
     </div>
 </div>
-<div class="linked-car-box">    
+<div class="linked-car-box">
     <div class="clearfix">
         <button type="button" class="btn btn-lg btn-success" ng-class="{
                     'disabled': totalConfirmed == 0}" ng-click="areMineAction()">

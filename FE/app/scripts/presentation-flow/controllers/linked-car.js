@@ -3,7 +3,12 @@
 angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
 
     $scope.areMineAction = function () {
-        RedirectSrv.redirectTo('/dashboard');
+        LinkedCarSrv.confirmCars($scope.model.vehicules, function () {
+            RedirectSrv.redirectTo('/dashboard');
+        }, function (response) {
+            console.log('ERROR: ' + response);
+            alert('Error, please try again.');
+        });
     };
 
     $scope.addCarAction = function () {
@@ -16,10 +21,10 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
 
     $scope.totalConfirmed = 0;
 
-    LinkedCarSrv.getLinkedCars(function (vehicules) {
-        $scope.model.vehicules = vehicules;
-    }, function (error) {
-        console.log(error);
+    LinkedCarSrv.getLinkedCars(function (response) {
+        $scope.model.vehicules = response.data || [];
+    }, function (response) {
+        console.log('ERROR: ' + response);
     });
 
     $scope.$watch('model.vehicules', function (data) {
