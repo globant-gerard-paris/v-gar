@@ -2,9 +2,10 @@ package com.searshc.mygarage.services.user;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 
+import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.UserInformation;
 import com.searshc.mygarage.repositories.StoreRepository;
@@ -19,13 +20,19 @@ import com.searshc.mygarage.repositories.UserInformationRepository;
  *
  */
 @Service
-public class UserInformationService {
+public class UserInformationService extends GenericService<UserInformation, Long, UserInformationRepository>{
 
-	@Inject
-	private UserInformationRepository repository;
-
-	@Inject
 	private StoreRepository storeRepository;
+	
+	
+
+	/**
+	 * @param storeRepository
+	 */
+	@Inject
+	public UserInformationService(StoreRepository storeRepository) {
+		this.storeRepository = Validate.notNull(storeRepository, "The Store Repository cannot be null");
+	}
 
 	/**
 	 * Add new favorite {@link store} to the {@link UserInformation}.
@@ -48,16 +55,6 @@ public class UserInformationService {
 		}
 	};
 
-	/**
-	 * Retrieve the {@link UserInformation} by given {@code userId} defined.
-	 * 
-	 * @param userId
-	 * @return
-	 */
-	public UserInformation findByUserId(final Long userId) {
-		Validate.notNull(userId, "The userId can't be null");
-		return repository.findByUserId(userId);
-	}
 
 	/**
 	 * First search if already exist one {@link UserInformation}, and then update or create them.
@@ -66,7 +63,7 @@ public class UserInformationService {
 	 * @param userId
 	 */
 	private void processFavoriteStore(final Store store, final Long userId) {
-		UserInformation information = repository.findByUserId(userId);
+		UserInformation information = super.getItem(userId);
 		if (information == null) {
 			information = new UserInformation();
 		}

@@ -22,6 +22,18 @@ public class NHTSAApiImpl implements NHTSAApi {
 	@Value("${nhtsa.api.recall.query.tamplate.year.make.model}")
 	private String endpoint;
 	
+	
+	public NHTSAApiImpl() {
+		//USE THIS CONFIG IF YOU ARE IN SEARS VPN
+		/*SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+
+	    Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
+	    requestFactory.setProxy(proxy);
+
+	    this.restTemplate = new RestTemplate(requestFactory);*/
+		this.restTemplate = new RestTemplate();
+	}
+	
 	public NHTSARecalls getRecalls(final int modelYear, final String make, final String model) throws NHTSARecallsException {
 		ResponseEntity<NHTSARecalls> response;
 		String url = String.format(this.endpoint, modelYear, make, model);
