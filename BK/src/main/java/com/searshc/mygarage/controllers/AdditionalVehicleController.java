@@ -37,7 +37,7 @@ public class AdditionalVehicleController {
 			@RequestParam("mileage") int mileage) {
 		
 		AdditionalVehicle additionalVehicle = this.additionalVehicleService.createAndSaveNewAdditionalVehicle(make, model, year, color, mileage);
-		return new ResponseEntity<AdditionalVehicle>(additionalVehicle, null, HttpStatus.OK);
+		return new ResponseEntity<AdditionalVehicle>(additionalVehicle, null, HttpStatus.CREATED);
 	}
 	
 	@RequestMapping(value = "{vehicleId}", method = RequestMethod.GET,  produces = MediaType.APPLICATION_JSON_VALUE)
