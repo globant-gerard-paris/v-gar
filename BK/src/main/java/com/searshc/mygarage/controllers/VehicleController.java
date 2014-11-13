@@ -1,8 +1,6 @@
 package com.searshc.mygarage.controllers;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -10,7 +8,8 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
-import org.crsh.console.jline.internal.Log;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -36,13 +35,14 @@ import com.searshc.mygarage.services.NcdbService;
 import com.searshc.mygarage.services.UserVehicleService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.user.UserInformationService;
-import com.searshc.mygarage.services.vehicle.VehicleService;
 import com.searshc.mygarage.services.vehicle.VehicleServiceImpl;
 
 @RestController
 @RequestMapping("/vehicle")
 public class VehicleController {
 
+	private static final Log log = LogFactory.getLog(VehicleController.class);
+	
     private NcdbService ncdbService;
     private VehicleRecallsService nhtsaService;
     private VehicleServiceImpl vehicleService;
@@ -163,7 +163,7 @@ public class VehicleController {
 		}
 
 		int recordsDeleted = this.userVehicleService.deleteUserVehiclesByUserId(userId);
-		Log.debug(recordsDeleted + " UserVehicle records deleted for userId " + userId);
+		log.info(recordsDeleted + " UserVehicle records deleted for userId " + userId);
 		List<VehicleConfirmationDTO> vehicleDtoList = this.userVehicleService.discardUnconfirmed(vehicleConfirmationDTOs);
 
 		Set<UserVehicle> userVehicles = this.userVehicleService.convert(vehicleDtoList, userInformation);
@@ -172,7 +172,7 @@ public class VehicleController {
 			this.vehicleService.saveAndFlush(newVehicles);
 		}
 		userVehicles = this.userVehicleService.saveAndFlush(userVehicles);
-
+		log.info(userVehicles.size() + " vehicles were confirmed");
 		return new ResponseEntity<Object>(null, null, HttpStatus.OK);
 	}
     
