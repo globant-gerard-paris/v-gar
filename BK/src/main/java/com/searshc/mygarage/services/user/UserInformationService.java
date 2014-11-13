@@ -23,6 +23,7 @@ import com.searshc.mygarage.repositories.UserInformationRepository;
 public class UserInformationService extends GenericService<UserInformation, Long, UserInformationRepository>{
 
 	private StoreRepository storeRepository;
+	private  UserInformationRepository userInformationRepository;
 	
 	
 
@@ -30,8 +31,9 @@ public class UserInformationService extends GenericService<UserInformation, Long
 	 * @param storeRepository
 	 */
 	@Inject
-	public UserInformationService(StoreRepository storeRepository) {
+	public UserInformationService(StoreRepository storeRepository, UserInformationRepository userInformationRepository) {
 		this.storeRepository = Validate.notNull(storeRepository, "The Store Repository cannot be null");
+		this.userInformationRepository = Validate.notNull(userInformationRepository, "The User Information Repository cannot be null");
 	}
 
 	/**
@@ -67,9 +69,20 @@ public class UserInformationService extends GenericService<UserInformation, Long
 		if (information == null) {
 			information = new UserInformation();
 		}
+		information.setSywId(1L);//FIXME: this are fixed in order to work but need to resolve this.  
 		information.setStore(store);
 		information.setUserId(userId);
 		repository.saveAndFlush(information);
+	}
+
+	/**
+	 * Find the {@link UserInformation} by {@code userId}.
+	 * @param userId
+	 * @return
+	 */
+	public UserInformation findByUserId(Long userId) {
+		Validate.notNull(userId, "The userId can't be null");
+		return userInformationRepository.findByUserId(userId);
 	}
 
 }

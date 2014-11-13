@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.searshc.mygarage.entities.UserInformation;
+import com.searshc.mygarage.repositories.UserInformationRepository;
 import com.searshc.mygarage.services.user.UserInformationService;
 
 /**
@@ -56,7 +57,7 @@ public class UserInformationController {
 	@RequestMapping(value = "/{userId}/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> getStores(@PathVariable("userId") Long userId) throws Exception {
-		UserInformation userInformation = userInformationService.getItem(userId);
+		UserInformation userInformation = userInformationService.findByUserId(userId);
 		if (userInformation != null) {
 			return new ResponseEntity<Object>(userInformation, HttpStatus.OK);
 		} else {
