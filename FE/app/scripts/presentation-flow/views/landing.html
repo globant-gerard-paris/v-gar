@@ -1,9 +1,4 @@
 <style>
-    body {
-        /* Location of the image */
-        background: url(../resources/images/garage.jpg) no-repeat fixed center;
-    }
-
     .page-title {
         text-align: center;
         margin-top: 16%;
@@ -26,14 +21,44 @@
     .modal-content {
         width: 460px;
     }
+
+    .landing-top{
+        height: 400px;
+    }
+
+    .carousel{
+        height:400px;
+    }
+    .carousel img{
+        height:400px !important;
+        width: 100%;
+    }
+
+    .landing-top .carousel .carousel-control{
+        visibility: hidden; 
+    }
 </style>
-<h2 class="page-title">My Virtual Garage</h2>
 <div class="user-type">
-    <div class="row">
-        <div class="col-sm-12">
+    <div class="row landing-top">
+        <carousel>
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <img ng-src="{{slide.image}}" style="margin:auto;">
+          </slide>
+        </carousel>
+        <!--<h2 class="page-title">My Virtual Garage</h2>
+        <div>
             <button type="button" class="btn btn-lg start-now-box center-block" ng-click="startNow()">
                     START NOW
             </button>
+        </div>
+        -->
+    </div>
+    <div class="row landing-bottom">    
+        <div class="col-sm-4" style="background-color:#e99; height:300px;">
+        </div>
+        <div class="col-sm-4" style="background-color:#99e; height:300px;">
+        </div>
+        <div class="col-sm-4" style="background-color:#9e9; height:300px;">
         </div>
     </div>
 </div>
