@@ -65,7 +65,7 @@ public class UserInformationService extends GenericService<UserInformation, Long
 	 * @param userId
 	 */
 	private void processFavoriteStore(final Store store, final Long userId) {
-		UserInformation information = super.getItem(userId);
+		UserInformation information = userInformationRepository.findByUserId(userId);
 		if (information == null) {
 			information = new UserInformation();
 		}
