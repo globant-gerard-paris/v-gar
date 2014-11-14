@@ -61,7 +61,7 @@ public class UserInformationController {
 		if (userInformation != null) {
 			return new ResponseEntity<Object>(userInformation, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<Object>(HttpStatus.OK);
 		}
 	}
 }

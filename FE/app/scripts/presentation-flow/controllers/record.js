@@ -51,6 +51,8 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
     $scope.addRecord = function () {
         if ($scope.recordForm.$valid) {
             $modalInstance.close($scope.model);
+        }else{
+            $scope.recordForm.submitted = true;
         }
     };
 

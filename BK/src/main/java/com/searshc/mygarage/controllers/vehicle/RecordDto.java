@@ -14,6 +14,19 @@ public class RecordDto {
 	private String source;
 	private String mileage;
 
+	public RecordDto(Date date, ServiceRecordDto service, String comment, String source,
+			String mileage) {
+		this.date = date;
+		this.service = service;
+		this.comment = comment;
+		this.source = source;
+		this.mileage = mileage;
+	}
+	
+	public RecordDto() {
+		super();
+	}
+
 	public Date getDate() {
 		return date;
 	}
@@ -56,8 +69,19 @@ public class RecordDto {
 
 	@Override
 	public String toString() {
-		return "RecordDto [date=" + date + ", service=" + service + ", comment=" + comment
-				+ ", source=" + source + ", mileage=" + mileage + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append("RecordDto [date=");
+		sb.append(date);
+		sb.append(", service=");
+		sb.append(service);
+		sb.append(", comment=");
+		sb.append(comment);
+		sb.append(", source=");
+		sb.append(source);
+		sb.append(", mileage=");
+		sb.append(mileage);
+		sb.append("]");
+		return sb.toString();
 	}
 
 }

@@ -42,10 +42,11 @@
     </div>
     <form name="recordForm" novalidate ng-submit="addRecord()">
         <div class="modal-body form-horizontal">
-            <h4 class="text-center">Are you sure you want to delete the record?</h4>
+            Are you sure you want to delete the record? Once you remove it the record will disappear from the car profile.
+            <h4 class="text-center"></h4>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="ok()">OK</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="ok()">Accept</button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </form>
