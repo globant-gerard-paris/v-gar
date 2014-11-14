@@ -1,13 +1,24 @@
 package com.searshc.mygarage.apis.ncdb;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.dozer.MappingException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.OrderItem;
-import com.searshc.mygarage.entities.Vehicle;
+import scala.collection.mutable.StringBuilder;
+
 import com.searshc.mygarage.apis.ncdb.response.EsbMsgRequest;
 import com.searshc.mygarage.apis.ncdb.response.MdsHeader;
 import com.searshc.mygarage.apis.ncdb.response.Query;
@@ -16,24 +27,26 @@ import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderItemResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.springframework.web.client.RestTemplate;
+import com.searshc.mygarage.entities.Order;
+import com.searshc.mygarage.entities.OrderItem;
+import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.exceptions.NCDBApiException;
 
 @Component
 public class NCDBApiImpl implements NCDBApi {
 
-    private final String VEHICLE_RETRIEVAL_SERVICE_NAME = "RTVEH";
+	private static final Log log = LogFactory.getLog(NCDBApiImpl.class);
+	
+    @Value("${ncdb.api.vehicle.retrieval.service.name}")
+	private String vehicleRetrievalServiceName;
 
-    private final String ORDER_HISTORY_INQUIRY_SERVICE_NAME = "ROFID";
+    @Value("${ncdb.api.order.history.inquiry.service.name}")
+    private String orderHistoryInquiryServiceName;
 
-    private String serviceUrl = "http://10.129.217.205:1181/ncdb/HttpListener";
+    @Value("${ncdb.api.endpoint}")
+    private String serviceUrl;
 
-    RestTemplate restTemplate = new RestTemplate();
+    private RestTemplate restTemplate = new RestTemplate();
 
     private Map<String, Order> createOrdersMap(List<OrderHeaderResponse> ordersHeader) {
         Map<String, Order> ordersMap = new HashMap<String, Order>();
@@ -51,7 +64,7 @@ public class NCDBApiImpl implements NCDBApi {
     @Override
     public List<Order> getCarTransactionHistory(Integer familyIdNumber, Integer tangibleId) {
 
-        MdsHeader header = new MdsHeader(ORDER_HISTORY_INQUIRY_SERVICE_NAME);
+        MdsHeader header = new MdsHeader(orderHistoryInquiryServiceName);
         header.setRequestorUserId("06091");
         header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
         header.setSequenceNumber("001");
@@ -93,39 +106,51 @@ public class NCDBApiImpl implements NCDBApi {
     }
 
     @Override
-    public List<Vehicle> getVehicles(Integer familyIdNumber) {
+    public List<Vehicle> getVehicles(Integer familyIdNumber) throws NCDBApiException {
+    	VehicleRetrievalResponse vehicleRetrievalResponse = this.getNCDBVehicles(familyIdNumber);
+    	return vehicleRetrievalResponse != null ?
+    			this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<Vehicle>();
 
-        MdsHeader header = new MdsHeader(VEHICLE_RETRIEVAL_SERVICE_NAME);
-        header.setRequestorUserId("06091");
-        header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
-        header.setSequenceNumber("001");
+    }
+    
+    public List<Vehicle> convert(final List<VehicleResponse> vehicleResponseList) {
+    	Validate.noNullElements(vehicleResponseList, "The VehicleResponse list cannot be null");
+    	List<Vehicle> result = new ArrayList<Vehicle>();
+    	Mapper mapper = new DozerBeanMapper();
+    	for (VehicleResponse vehicle : vehicleResponseList) {
+    		try {
+				result.add(mapper.map(vehicle, Vehicle.class));
+			}
+			catch (MappingException e) {
+				log.error("Could convert VehicleResponse to Vehicle object. TangibleId: " + vehicle.getTangibleIdNumber(), e);
+			}
+    	}
+    	return result;
+    }
+    
+    public VehicleRetrievalResponse getNCDBVehicles(final Integer familyIdNumber) throws NCDBApiException {
+    	 MdsHeader header = new MdsHeader(vehicleRetrievalServiceName);
+         header.setRequestorUserId("06091");
+         header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
+         header.setSequenceNumber("001");
 
-        Query query = new Query(familyIdNumber);
+         Query query = new Query(familyIdNumber);
 
-        EsbMsgRequest request = new EsbMsgRequest(header, query);
+         EsbMsgRequest request = new EsbMsgRequest(header, query);
 
-        VehicleRetrievalResponse response = null;
-
-        try {
-            response = this.restTemplate.postForObject(this.serviceUrl,
-                    request, VehicleRetrievalResponse.class);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-        List<Vehicle> vehicles = new ArrayList<Vehicle>();
-
-        if (response != null) {
-
-            Mapper mapper = new DozerBeanMapper();
-
-            for (VehicleResponse vehicle : response.getVehicles()) {
-                vehicles.add(mapper.map(vehicle, Vehicle.class));
-            }
-
-        }
-
-        return vehicles;
-
+         VehicleRetrievalResponse response = null;
+         log.info("Looking NCDB vehicles for familyId " + familyIdNumber + " at " + serviceUrl);
+         try {
+             response = this.restTemplate.postForObject(this.serviceUrl,
+                     request, VehicleRetrievalResponse.class);
+         } catch (Exception e) {
+             String message = new StringBuilder()
+             	.append("Could not get Vehicles from NCDB for familyIdNumber: ")
+             	.append(familyIdNumber).toString();
+        	 log.error(message, e);
+             throw new NCDBApiException(message);
+         }
+         log.info(response.getVehicles().size() + " vehicles were found");
+         return response;
     }
 }

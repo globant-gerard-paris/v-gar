@@ -39,6 +39,10 @@ public abstract class AbstractEntity {
 	public Long getId() {
 		return id;
 	}
+	
+	public void setId(final Long id) {
+		this.id = Validate.notNull(id, "The Id cannot be null");
+	}
 
 	/*
 	 * (non-Javadoc)

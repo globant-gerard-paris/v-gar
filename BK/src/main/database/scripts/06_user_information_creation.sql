@@ -6,4 +6,4 @@ CREATE TABLE `mygarage`.`user_information` (
   PRIMARY KEY (`id`),
   KEY `FK_9bql56vlb1l63h6xtkw6nfwal` (`store`),
   CONSTRAINT `FK_9bql56vlb1l63h6xtkw6nfwal` FOREIGN KEY (`store`) REFERENCES `store` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;

@@ -3,22 +3,22 @@
     <div class="modal-header">
         <h1 class="text-center">Please add a New record</h1>
     </div>
-    <form name="recordForm" novalidate ng-submit="addRecord()">
+    <form name="recordForm" novalidate ng-submit="addRecord()" role="recordForm">
         <div class="modal-body form-horizontal">
-            <div class="form-group" ng-class="{ 'has-error' : recordForm.mileage.$invalid && !recordForm.mileage.$pristine, 'has-success': !recordForm.mileage.$invalid && !recordForm.mileage.$pristine}">
+            <div class="form-group" ng-class="{ 'has-error' : (recordForm.mileage.$invalid && recordForm.submitted) || ( recordForm.mileage.$invalid && recordForm.mileage.$dirty), 'has-success': recordForm.mileage.$valid}">
                 <label class="control-label col-sm-3" for="record-mileage">Mileage</label>
                 <div class="col-sm-9">
                     <input id="record-mileage" name="mileage" ng-model="model.recordForm.mileage" type="number"  min="0" class="form-control" placeholder="Mileage" required/>
-                    <div ng-show="recordForm.mileage.$invalid && !recordForm.mileage.$pristine" class="help-block">Millage are required.</div>
-                    <div ng-show="recordForm.mileage.$error.required && !recordForm.source.$pristine" class="help-block">Millage should be a number.</div>
+                    <div ng-show="recordForm.mileage.$invalid && recordForm.submitted" class="help-block">Millage are required.</div>
+                    <div ng-show="recordForm.mileage.$error.required && recordForm.submitted" class="help-block">Millage should be a number.</div>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : recordForm.source.$invalid && !recordForm.source.$pristine, 'has-success': !recordForm.source.$invalid && !recordForm.source.$pristine}">
+            <div class="form-group" ng-class="{ 'has-error' : (recordForm.source.$invalid && recordForm.submitted) || ( recordForm.source.$invalid && recordForm.source.$dirty), 'has-success': recordForm.source.$valid}">
                 <label class="control-label col-sm-3" for="record-source">Source</label>
                 <div class="col-sm-9">
                     <input id="record-source" name="source" ng-model="model.recordForm.source"  type="text" class="form-control" placeholder="Source" required/>
-                    <div ng-show="recordForm.source.$invalid && !recordForm.source.$pristine" class="help-block">Source are required.</div>
-                    <div ng-show="recordForm.source.$error.required && !recordForm.source.$pristine" class="help-block">Source should be a text.</div>
+                    <div ng-show="recordForm.source.$invalid  && recordForm.submitted" class="help-block">Source are required.</div>
+                    <div ng-show="recordForm.source.$error.required  && recordForm.submitted" class="help-block">Source should be a text.</div>
                 </div>
             </div>
             <div class="form-group">
@@ -31,19 +31,19 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : recordForm.comment.$invalid && !recordForm.comment.$pristine, 'has-success': !recordForm.comment.$invalid && !recordForm.comment.$pristine}">
-                <label class="control-label col-sm-3" for="record-comment">Comment</label>
+            <div class="form-group" ng-class="{ 'has-error' : (recordForm.comment.$invalid && recordForm.submitted) || ( recordForm.comment.$invalid && recordForm.comment.$dirty), 'has-success': recordForm.comment.$valid}">
+                <label class="control-label col-sm-3" for="record-comment">Description</label>
                 <div class="col-sm-9">
-                    <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control" placeholder="Comment" required/>
-                    <div ng-show="recordForm.comment.$invalid && !recordForm.comment.$pristine" class="help-block">Comment are required.</div>
-                    <div ng-show="recordForm.comment.$error.required && !recordForm.comment.$pristine" class="help-block">Comment should be a text.</div>
+                    <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control" placeholder="Description" required/>
+                    <div ng-show="recordForm.comment.$invalid && recordForm.submitted" class="help-block">Description are required.</div>
+                    <div ng-show="recordForm.comment.$error.required  && recordForm.submitted" class="help-block">Description should be a text.</div>
                 </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : recordForm.comment.$invalid && !recordForm.comment.$pristine, 'has-success': !recordForm.comment.$invalid && !recordForm.comment.$pristine}">
+            <div class="form-group" ng-class="{ 'has-error' : (recordForm.date.$invalid && recordForm.submitted) || ( recordForm.date.$invalid && recordForm.date.$dirty), 'has-success': recordForm.date.$valid}">
                 <label class="control-label col-sm-3" for="record-date">Date</label>
                 <div class="col-sm-9">
                     <div class="input-group">
-                         <input id="record-date" type="text" class="form-control"
+                         <input name="date" id="record-date" type="text" class="form-control"
                                 datepicker-popup="{{model.dateRecordFormat}}"
                                 ng-model="model.recordForm.date"
                                 is-open="opened"
@@ -56,12 +56,13 @@
                                 <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </div>
+                    <div ng-show="recordForm.date.$error.required  && recordForm.submitted" class="help-block">Date are required.</div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="addRecord()">OK</button>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <button class="btn btn-warning"  ng-click="cancel()">Cancel</button>
         </div>
     </form>
 </script>

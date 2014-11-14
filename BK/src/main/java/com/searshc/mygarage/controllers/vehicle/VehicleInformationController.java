@@ -1,5 +1,6 @@
 package com.searshc.mygarage.controllers.vehicle;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,15 +36,15 @@ public class VehicleInformationController {
 
 	@RequestMapping(value = "/family/{familyId}/tangible/{tangibleId}/records", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<Object> getRecords(
+	public ResponseEntity<List<Record>> getRecords(
 			@PathVariable("familyId") Long familyId,
 			@PathVariable("tangibleId") Long tangibleId) throws Exception {
-		List<Record> records = vehicleInformationService.findAllRecordsByFamilyIdAndTangibleId(
-				familyId, tangibleId);
+		
+		List<Record> records = vehicleInformationService.findAllRecordsByFamilyIdAndTangibleId(familyId, tangibleId);
 		if (CollectionUtils.isNotEmpty(records)) {
-			return new ResponseEntity<Object>(records, HttpStatus.OK);
+			return new ResponseEntity<List<Record>>(records, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<Object>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<List<Record>>(Collections.EMPTY_LIST, HttpStatus.OK);
 		}
 	}
 
@@ -55,7 +56,7 @@ public class VehicleInformationController {
 			@PathVariable("recordId") Long recordId) throws Exception {
 		
 			vehicleInformationService.removeRecord(familyId, tangibleId, recordId);
-			return new ResponseEntity<Object>(HttpStatus.OK);
+			return new ResponseEntity<Object>(HttpStatus.NO_CONTENT);
 	}
 
 	@RequestMapping(value = "/family/{familyId}/tangible/{tangibleId}/record", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -65,7 +66,6 @@ public class VehicleInformationController {
 			throws Exception {
 
 		vehicleInformationService.addRecord(familyId, tangibleId, recordDto);
-
-		return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<Object>(HttpStatus.CREATED);
 	}
 }

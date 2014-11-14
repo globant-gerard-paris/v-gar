@@ -20,9 +20,9 @@ import static org.mockito.Mockito.*;
  *
  * @author rammel.maestre
  */
-@RunWith(MockitoJUnitRunner.class)
+//@RunWith(MockitoJUnitRunner.class)
 public class NCDBApiImplTest {
-
+/*
     @InjectMocks
     private NCDBApiImpl nCDBApiImpl;
 
@@ -53,5 +53,5 @@ public class NCDBApiImplTest {
 
         Assert.assertNotNull(orders);
 
-    }
+    }*/
 }
