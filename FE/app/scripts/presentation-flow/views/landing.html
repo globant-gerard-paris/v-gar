@@ -29,9 +29,19 @@
     .carousel{
         height:400px;
     }
-    .carousel img{
+
+    .carousel_img{
         height:400px !important;
         width: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .carousel_data{
+        position: absolute;
+        top:0;
+        left:0;
+        right:0;
     }
 
     .landing-top .carousel .carousel-control{
@@ -42,16 +52,17 @@
     <div class="row landing-top">
         <carousel>
           <slide ng-repeat="slide in slides" active="slide.active">
-            <img ng-src="{{slide.image}}" style="margin:auto;">
+            <div class="carousel_img" style="background-image:url('{{slide.image}}'); margin:auto;"></div>
           </slide>
         </carousel>
-        <!--<h2 class="page-title">My Virtual Garage</h2>
-        <div>
-            <button type="button" class="btn btn-lg start-now-box center-block" ng-click="startNow()">
-                    START NOW
-            </button>
+        <div class="carousel_data">
+            <h2 class="page-title">My Virtual Garage</h2>
+            <div>
+                <button type="button" class="btn btn-lg start-now-box center-block" ng-click="startNow()">
+                        START NOW
+                </button>
+            </div>
         </div>
-        -->
     </div>
     <div class="row landing-bottom">    
         <div class="col-sm-4" style="background-color:#e99; height:300px;">
