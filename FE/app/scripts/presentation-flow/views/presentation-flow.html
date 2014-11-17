@@ -1,3 +1,4 @@
+<!--TODO remove this block.-->
 <!--<style>
     .mixin-in {
         text-align: center;
@@ -75,19 +76,19 @@
 
 <div class=" ">
     <div class="volatil">
-        <a  class="logoLanding col-md-12 pull-left">
-            <img src="resources/images/Logo_Large.png" alt=""/>
+        <a  class="col-md-12 pull-left">
+            <img class="logoLanding" src="../resources/images/Logo_Large.png" alt=""/>
         </a>
         <h2 class="col-md-12 ">One place for all of your cars</h2>
-        <h3 class="col-md-12">Monitor your cars online from one single garage</h3>
-        <button class="btn-primary">START HERE</button>
+        <h3 class="col-md-12 titleH3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</h3>
+        <button class="btnStart"></button>
     </div>
-    <div id="carousel-example-generic" class="carousel slide col-md-12 noPadding" data-ride="carousel">
+    <div id="carouselLanging" class="carousel slide col-md-12 noPadding" data-interval="1000" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carouselLanging" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselLanging" data-slide-to="1"></li>
+            <li data-target="#carouselLanging" data-slide-to="2"></li>
         </ol>
 
         <!-- Wrapper for slides -->
@@ -104,14 +105,35 @@
         </div>
 
         <!-- Controls -->
-        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <a class="left carousel-control" href="#carouselLanging" role="button" data-slide="prev">
         </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <a class="right carousel-control" href="#carouselLanging" role="button" data-slide="next">
         </a>
     </div>
     <div class="row">
-        <div class="col-md-4 box1"></div>
-        <div class="col-md-4 box2"></div>
-        <div class="col-md-4 box3"></div>
+        <div class="col-md-4 box1">
+            <label class="boxText">Get notification when your car needs service</label>
+        </div>
+        <div class="col-md-4 box2">
+            <label class="boxText">Get service recommendation based on your mileage</label>
+        </div>
+        <div class="col-md-4 box3">
+            <label class="boxText">Enjoy great discounts on Automotive parts</label>
+        </div>
     </div>
 </div>
+
+<!--Set carousel-->
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        var carouselSetTO = setTimeout(function(){
+            $('#carouselLanging').carousel({
+                interval: 3000,
+                cycle: true
+            }).trigger('slide');
+        }, 2000);
+        var q = carouselSetTO;
+    });
+
+</script>
