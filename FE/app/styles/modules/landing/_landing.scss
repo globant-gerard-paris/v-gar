@@ -1,18 +1,49 @@
+$xs: ( max:  767px );
+//$sm: ( min:  768px );
+$md: ( min:  992px );
+$lg: ( min: 1200px );
+//$sm-only: ( min: map-get($sm, min), max: map-get($md, min) - 1 );
+$md-only: ( min: map-get($md, min), max: map-get($lg, min) - 1 );
+
+@mixin breakpoint($map) {
+  $query: "";
+  @if map-has-key($map, min) { $query: append($query, "(min-width: #{map-get($map, min)})") }
+  @if map-has-key($map, min) and map-has-key($map, max) { $query: append($query, "and") }
+  @if map-has-key($map, max) { $query: append($query, "(max-width: #{map-get($map, max)})") }
+  @media screen and #{$query} { @content; }
+}
+
+@mixin fontLanding {
+  font-family: 'Roboto', san-serif;
+  font-size: 18px;
+  color: #ffffff;
+  text-align: center;
+}
+
 .volatil {
   position: absolute;
   text-align: center;
   z-index: 1;
   margin-top: 200px;
-  margin-left: 100px;
+  margin-left: 250px;
+  width: 800px;
 }
 .logoLanding {
-  background-image: url(../resources/images/Logo_Large.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: inherit;
+  width: 360px;
+  height: 100px;
+  margin-left: -110%;
+  margin-top: -40%;
 }
 .noPadding {
   padding-left: 0;
   padding-right: 0;
 }
 .box {
+  @include fontLanding;
   background-position: center center;
   /* Image doesn't repeat */
   background-repeat: no-repeat;
@@ -34,4 +65,22 @@
 .box3 {
   @extend .box;
   background-image: url(../resources/images/box3.jpg);
+}
+.titleH3 {
+  @include fontLanding;
+  margin-bottom: 35px;
+}
+.btnStart {
+  background-image: url("../resources/images/Button_Big.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: inherit;
+  width: 250px;
+  height: 60px;
+}
+.boxText {
+  @include fontLanding;
+  margin-top: 20%;
+  width: 50%;
 }
