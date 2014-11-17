@@ -1,0 +1,37 @@
+.volatil {
+  position: absolute;
+  text-align: center;
+  z-index: 1;
+  margin-top: 200px;
+  margin-left: 100px;
+}
+.logoLanding {
+  background-image: url(../resources/images/Logo_Large.png);
+}
+.noPadding {
+  padding-left: 0;
+  padding-right: 0;
+}
+.box {
+  background-position: center center;
+  /* Image doesn't repeat */
+  background-repeat: no-repeat;
+  /* This is what makes the background image rescale based on its container's size */
+  background-size: cover;
+  /* Pick a solid background color that will be displayed while the background image is loading */
+  background-color: #464646;
+
+  height: 200px;
+}
+.box1 {
+  @extend .box;
+  background-image: url(../resources/images/box1.jpg);
+}
+.box2 {
+  @extend .box;
+  background-image: url(../resources/images/box2.jpg);
+}
+.box3 {
+  @extend .box;
+  background-image: url(../resources/images/box3.jpg);
+}
