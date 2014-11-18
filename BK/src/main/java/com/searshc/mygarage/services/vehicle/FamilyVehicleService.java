@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import scala.collection.mutable.StringBuilder;
 
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
+import com.searshc.mygarage.apis.syw.SYWApi;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO.Status;
@@ -44,6 +45,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 	private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
 	
 	@Inject
+	private SYWApi sywApi;
+
+	@Inject
 	private NCDBApi ncdbApi;
 
 	@Inject
@@ -51,6 +55,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
 	@Inject
 	private UserService userService;
+	
+	@Inject
+	private VehicleService vehicleService;
 	
 	private RecordService recordService;
 	private NcdbService ncdbService;
@@ -72,7 +79,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return repository.getFamilyVehiclesByFamilyId(familyId);
     }
 
-    public List<FamilyVehicle> getFamilyVehiclesByUserId(final Long userId) {
+    public List<FamilyVehicle> getConfirmedFamilyVehiclesByUserId(final Long userId) {
         return repository.getFamilyVehiclesByUserId(userId);
     }
 
@@ -151,7 +158,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
 		List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
 		//If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
-		List<FamilyVehicle> localVehicles = getFamilyVehiclesByUserId(userId);
+		List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
 
 		if (!CollectionUtils.isEmpty(ncdbVehicles)) {
 			List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
@@ -162,7 +169,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 			result.addAll(this.convert(linkedVehicles, true));
 		}
 
-		List<FamilyVehicle> manualCars = getManualVehicle(localVehicles);
+		List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles);
 		result.addAll(this.convert(manualCars, true));
 		return result;
 	}
@@ -173,19 +180,16 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 	 * @param ncdbVehicles
 	 * @return return {@link UserVehicleStatus}.
 	 */
-	private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles){
-		List<FamilyVehicle> manual = new ArrayList<FamilyVehicle>();
-		
+	private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles,final List<FamilyVehicle> ncdbVehicles){
 		if(CollectionUtils.isEmpty(localVehicles)){
 			return new ArrayList<FamilyVehicle>();
 		}
 		
-		for (FamilyVehicle localVehicle : localVehicles) {
-			if(localVehicle.getTangibleId() == null){
-				manual.add(localVehicle);
-			}
+		if(CollectionUtils.isEmpty(ncdbVehicles)){
+			return localVehicles;
 		}
-		return manual;
+		localVehicles.removeAll(ncdbVehicles);
+		return localVehicles;
 	}
 	
 	/**
@@ -235,7 +239,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 	 */
 	private Set<VehicleConfirmationDTO> createReportWithoutNCDB(final Long userId) {
 		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> vehiclesUser = getFamilyVehiclesByUserId(userId);
+		List<FamilyVehicle> vehiclesUser = getConfirmedFamilyVehiclesByUserId(userId);
 		if (!CollectionUtils.isEmpty(vehiclesUser)) {
 			result.addAll(this.convert(vehiclesUser, true));
 		}
@@ -251,17 +255,22 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         Mapper mapper = new DozerBeanMapper();
 
         for (VehicleConfirmationDTO dto : vehicleConfirmationDTOs) {
-            if (dto.isConfirmed() == false) {
+            familyVehicle = null;
+        	if (dto.isConfirmed() == false) {
                 continue;
             }
             if (dto.getVehicleId() != 0) {
                 familyVehicle = this.getItem(dto.getVehicleId());
-            } else if (dto.getTangibleId() == null) {
-                familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
-            } else {
-                familyVehicle = mapper.map(dto, FamilyVehicle.class);
+            } else if (dto.getTangibleId() != null) {
+            	familyVehicle = mapper.map(dto, FamilyVehicle.class);
+            	Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
+           		familyVehicle.setVehicle(vehicle);
             }
 
+            if(familyVehicle == null || familyVehicle.getVehicle() == null) {
+        		//no vehicle found
+        		continue;
+        	}
             confirmedVehicle = new ConfirmedVehicle();
             confirmedVehicle.setUser(user);
             confirmedVehicle.setFamilyVehicle(familyVehicle);

@@ -3,6 +3,8 @@ package com.searshc.mygarage.services.user;
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -12,6 +14,7 @@ import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.User;
+import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.UserRepository;
@@ -28,6 +31,8 @@ import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 @Service
 public class UserService extends GenericService<User, Long, UserRepository> {
 
+	private static final Log log = LogFactory.getLog(UserService.class);
+	
     private StoreRepository storeRepository;
     private UserRepository userRepository;
     private SYWApi sywApi;
@@ -114,6 +119,18 @@ public class UserService extends GenericService<User, Long, UserRepository> {
         repository.saveAndFlush(information);
     }
 
+	@Override
+	public User getItem(Long id) {
+		Validate.notNull(id, "The userId can't be null");
+        User user = userRepository.findOne(id);
+        if (user == null) {
+        	String msg = new StringBuilder().append("No user found with id: ").append(id).toString();
+        	log.error(msg);
+        	throw new UserNotFoundException(msg);
+        }
+        return user;
+	}
+	
     /**
      * Find the {@link User} by {@code userId}.
      *

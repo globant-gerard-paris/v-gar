@@ -7,12 +7,13 @@ import org.apache.commons.lang3.Validate;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceRecord;
-
 import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.services.ncdb.NcdbService;
+
 import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 @Service
