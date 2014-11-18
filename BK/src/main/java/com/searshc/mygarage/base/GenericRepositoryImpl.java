@@ -6,11 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.support.JpaEntityInformation;
 import org.springframework.data.jpa.repository.support.JpaEntityInformationSupport;
@@ -26,8 +21,6 @@ public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpa
 	 * 
 	 */
 	private static final long serialVersionUID = 5576542944531548419L;
-
-	private static final Log log = LogFactory.getLog(GenericRepositoryImpl.class);
 	
 	private EntityInformation<T, ?> entityInformation;
 	

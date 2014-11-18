@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
-import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.entities.UserVehicle;
 
 
 public class NCDBApiImplTest {
@@ -62,10 +62,10 @@ public class NCDBApiImplTest {
 	
 	@Test
 	public void convertToVehicleTest() {
-		List<Vehicle> result = new ArrayList<Vehicle>();
+		List<UserVehicle> result = new ArrayList<UserVehicle>();
 		Mapper mapper = new DozerBeanMapper();
 		for(VehicleResponse vehicleResponse : vehicleResponseList) {
-			result.add(mapper.map(vehicleResponse, Vehicle.class));
+			result.add(mapper.map(vehicleResponse, UserVehicle.class));
 		}
 		Assert.assertTrue(result.size() == 2);
 	}

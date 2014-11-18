@@ -17,8 +17,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.searshc.mygarage.AbstractIntegrationTest;
 import com.searshc.mygarage.entities.Store;
-import com.searshc.mygarage.entities.UserInformation;
-import com.searshc.mygarage.services.user.UserInformationService;
+import com.searshc.mygarage.entities.User;
+import com.searshc.mygarage.services.user.UserService;
 
 /**
  * 

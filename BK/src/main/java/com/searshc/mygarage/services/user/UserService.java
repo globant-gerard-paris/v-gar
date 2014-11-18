@@ -7,23 +7,23 @@ import org.springframework.stereotype.Service;
 
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
-import com.searshc.mygarage.entities.UserInformation;
+import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.repositories.StoreRepository;
-import com.searshc.mygarage.repositories.UserInformationRepository;
+import com.searshc.mygarage.repositories.UserRepository;
 
 /**
  * 
- * The {@link UserInformationService} have the responsibility to update, delete and retrieve stores
+ * The {@link UserService} have the responsibility to update, delete and retrieve stores
  * of the system.
  * 
  * @author Jero
  *
  */
 @Service
-public class UserInformationService extends GenericService<UserInformation, Long, UserInformationRepository>{
+public class UserService extends GenericService<User, Long, UserRepository>{
 
 	private StoreRepository storeRepository;
-	private  UserInformationRepository userInformationRepository;
+	private UserRepository userRepository;
 	
 	
 
@@ -31,13 +31,13 @@ public class UserInformationService extends GenericService<UserInformation, Long
 	 * @param storeRepository
 	 */
 	@Inject
-	public UserInformationService(StoreRepository storeRepository, UserInformationRepository userInformationRepository) {
+	public UserService(final StoreRepository storeRepository, final UserRepository userRepository) {
 		this.storeRepository = Validate.notNull(storeRepository, "The Store Repository cannot be null");
-		this.userInformationRepository = Validate.notNull(userInformationRepository, "The User Information Repository cannot be null");
+		this.userRepository = Validate.notNull(userRepository, "The User Information Repository cannot be null");
 	}
 
 	/**
-	 * Add new favorite {@link store} to the {@link UserInformation}.
+	 * Add new favorite {@link store} to the {@link User}.
 	 * 
 	 * @param storeId
 	 * @param userId
@@ -59,15 +59,15 @@ public class UserInformationService extends GenericService<UserInformation, Long
 
 
 	/**
-	 * First search if already exist one {@link UserInformation}, and then update or create them.
+	 * First search if already exist one {@link User}, and then update or create them.
 	 * 
 	 * @param store
 	 * @param userId
 	 */
 	private void processFavoriteStore(final Store store, final Long userId) {
-		UserInformation information = userInformationRepository.findByUserId(userId);
+		User information = userRepository.findByUserId(userId);
 		if (information == null) {
-			information = new UserInformation();
+			information = new User();
 		}
 		information.setSywId(1L);//FIXME: this are fixed in order to work but need to resolve this.  
 		information.setStore(store);
@@ -76,13 +76,13 @@ public class UserInformationService extends GenericService<UserInformation, Long
 	}
 
 	/**
-	 * Find the {@link UserInformation} by {@code userId}.
+	 * Find the {@link User} by {@code userId}.
 	 * @param userId
 	 * @return
 	 */
-	public UserInformation findByUserId(Long userId) {
+	public User findByUserId(Long userId) {
 		Validate.notNull(userId, "The userId can't be null");
-		return userInformationRepository.findByUserId(userId);
+		return userRepository.findByUserId(userId);
 	}
 
 }

@@ -29,7 +29,7 @@ import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.OrderItem;
-import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 
 @Component
@@ -62,15 +62,15 @@ public class NCDBApiImpl implements NCDBApi {
     }
 
     @Override
-    public List<Order> getCarTransactionHistory(Integer familyIdNumber, Integer tangibleId) {
+    public List<Order> getCarTransactionHistory(Long familyIdNumber, Long tangibleId) {
 
         MdsHeader header = new MdsHeader(orderHistoryInquiryServiceName);
         header.setRequestorUserId("06091");
         header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
         header.setSequenceNumber("001");
 
-        Query query = new Query(familyIdNumber);
-        query.setTangibleIdNumber(tangibleId);
+        Query query = new Query(familyIdNumber.intValue());
+        query.setTangibleIdNumber(tangibleId.intValue());
 
         EsbMsgRequest request = new EsbMsgRequest(header, query);
 
@@ -106,20 +106,20 @@ public class NCDBApiImpl implements NCDBApi {
     }
 
     @Override
-    public List<Vehicle> getVehicles(Integer familyIdNumber) throws NCDBApiException {
+    public List<UserVehicle> getVehicles(Long familyIdNumber) throws NCDBApiException {
     	VehicleRetrievalResponse vehicleRetrievalResponse = this.getNCDBVehicles(familyIdNumber);
     	return vehicleRetrievalResponse != null ?
-    			this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<Vehicle>();
+    			this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<UserVehicle>();
 
     }
     
-    public List<Vehicle> convert(final List<VehicleResponse> vehicleResponseList) {
+    public List<UserVehicle> convert(final List<VehicleResponse> vehicleResponseList) {
     	Validate.noNullElements(vehicleResponseList, "The VehicleResponse list cannot be null");
-    	List<Vehicle> result = new ArrayList<Vehicle>();
+    	List<UserVehicle> result = new ArrayList<UserVehicle>();
     	Mapper mapper = new DozerBeanMapper();
     	for (VehicleResponse vehicle : vehicleResponseList) {
     		try {
-				result.add(mapper.map(vehicle, Vehicle.class));
+				result.add(mapper.map(vehicle, UserVehicle.class));
 			}
 			catch (MappingException e) {
 				log.error("Could convert VehicleResponse to Vehicle object. TangibleId: " + vehicle.getTangibleIdNumber(), e);
@@ -128,13 +128,13 @@ public class NCDBApiImpl implements NCDBApi {
     	return result;
     }
     
-    public VehicleRetrievalResponse getNCDBVehicles(final Integer familyIdNumber) throws NCDBApiException {
+    public VehicleRetrievalResponse getNCDBVehicles(final Long familyIdNumber) throws NCDBApiException {
     	 MdsHeader header = new MdsHeader(vehicleRetrievalServiceName);
          header.setRequestorUserId("06091");
          header.setMessageOriginationTime(new SimpleDateFormat("yyyyyMMddHHmmssSSS").format(new Date()));
          header.setSequenceNumber("001");
 
-         Query query = new Query(familyIdNumber);
+         Query query = new Query(familyIdNumber.intValue());
 
          EsbMsgRequest request = new EsbMsgRequest(header, query);
 
