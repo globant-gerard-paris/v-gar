@@ -6,7 +6,7 @@ import com.searshc.mygarage.base.GenericRepository;
 import com.searshc.mygarage.entities.Vehicle;
 
 /**
- * 
+ *
  * @author Jero
  *
  */

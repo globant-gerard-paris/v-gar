@@ -9,36 +9,35 @@ import com.searshc.mygarage.base.GenericRepository;
 import com.searshc.mygarage.entities.User;
 
 /**
- * 
+ *
  * @author Jero
  *
  */
 @Repository
 public interface UserRepository extends GenericRepository<User, Long> {
-	
-	/**
-	 * Find the {@link User} by {@code userId}.
-	 * 
-	 * @param userId
-	 * @return return a {@link User}.
-	 */
-	public User findByUserId(@Param("user_id") Long userId);
-	
-	/**
-	 * Find the {@link User} by {@code sywId}.
-	 * 
-	 * @param sywId
-	 * @return return a {@link User}.
-	 */
-	public User findBySywId(@Param("syw_id") Long sywId);
-	
-	/**
-	 * Find a list of {@link User} by {@code familyId}.
-	 * 
-	 * @param familyId
-	 * @return return a List of {@link User}.
-	 */
-	public List<User> findByFamilyId(@Param("family_id") Long familyId);
-	
-	
+
+    /**
+     * Find the {@link User} by {@code userId}.
+     *
+     * @param userId
+     * @return return a {@link User}.
+     */
+    public User findByUserId(@Param("user_id") Long userId);
+
+    /**
+     * Find the {@link User} by {@code sywId}.
+     *
+     * @param sywId
+     * @return return a {@link User}.
+     */
+    public User findBySywId(@Param("syw_id") Long sywId);
+
+    /**
+     * Find a list of {@link User} by {@code familyId}.
+     *
+     * @param familyId
+     * @return return a List of {@link User}.
+     */
+    public List<User> findByFamilyId(@Param("family_id") Long familyId);
+
 }

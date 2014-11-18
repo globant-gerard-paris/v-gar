@@ -10,32 +10,37 @@ import javax.xml.bind.annotation.XmlType;
 public class Query {
 
     @XmlElement(name = "fam_id_no")
-    private Integer familyIdNumber;
+    private Long familyIdNumber;
 
     @XmlElement(name = "fam_typ_cd")
     private String familyTypeCode = "R";
 
     @XmlElement(name = "tng_id_no1")
-    private Integer tangibleIdNumber;
+    private Long tangibleIdNumber;
 
     public Query() {
     }
 
-    public Query(Integer familyIdNumber) {
+    public Query(Long familyIdNumber) {
         this.familyIdNumber = familyIdNumber;
+    }
+
+    public Query(Long familyIdNumber, Long tangibleIdNumber) {
+        this.familyIdNumber = familyIdNumber;
+        this.tangibleIdNumber = tangibleIdNumber;
     }
 
     /**
      * @return the familyIdNumber
      */
-    public Integer getFamilyIdNumber() {
+    public Long getFamilyIdNumber() {
         return familyIdNumber;
     }
 
     /**
      * @param familyIdNumber the familyIdNumber to set
      */
-    public void setFamilyIdNumber(Integer familyIdNumber) {
+    public void setFamilyIdNumber(Long familyIdNumber) {
         this.familyIdNumber = familyIdNumber;
     }
 
@@ -56,14 +61,14 @@ public class Query {
     /**
      * @return the tangibleIdNumber
      */
-    public Integer getTangibleIdNumber() {
+    public Long getTangibleIdNumber() {
         return tangibleIdNumber;
     }
 
     /**
      * @param tangibleIdNumber the tangibleIdNumber to set
      */
-    public void setTangibleIdNumber(Integer tangibleIdNumber) {
+    public void setTangibleIdNumber(Long tangibleIdNumber) {
         this.tangibleIdNumber = tangibleIdNumber;
     }
 

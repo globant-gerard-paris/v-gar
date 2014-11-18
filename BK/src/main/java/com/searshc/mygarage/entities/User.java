@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.searshc.mygarage.entities;
 
@@ -18,122 +18,121 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
- * 
- * The {@link User} is the information of one {@code userId} that are enrolled in the
- * application.
- * 
+ *
+ * The {@link User} is the information of one {@code userId} that are enrolled
+ * in the application.
+ *
  * @author Jero
  *
  */
 @Entity
-public class User extends AbstractEntity implements Serializable{
+public class User extends AbstractEntity implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -2745176863528011598L;
+    /**
+     *
+     */
+    private static final long serialVersionUID = -2745176863528011598L;
 
-	@Column(name = "syw_id", nullable = false)
-	private Long sywId;
-	
-	@Column(name = "family_id", nullable = true)
-	private Long familyId;
-	
-	/**
-	 * The {@code userId} represent the identifier of user in the application. TODO: It does't yet
-	 * the entity relationship, because is still TBD the way that will persist the user in the
-	 * application.
-	 */
-	private Long userId;
+    @Column(name = "syw_id", nullable = false)
+    private Long sywId;
 
-	/**
-	 * Is the favorite {@code store} of the {@code userId}.
-	 */
-	@OneToOne(cascade = CascadeType.ALL)
-	private Store store;
+    @Column(name = "family_id", nullable = true)
+    private Long familyId;
 
-	/**
-	 * Is just a simple time stamp of last update.
-	 */
-	@Column(name = "last_update")
-	private Date lastUpdate;
-	
-	
-	/**
-	 * @return the sywId
-	 */
-	public Long getSywId() {
-		return sywId;
-	}
+    /**
+     * The {@code userId} represent the identifier of user in the application.
+     * TODO: It does't yet the entity relationship, because is still TBD the way
+     * that will persist the user in the application.
+     */
+    private Long userId;
 
-	
-	/**
-	 * @param sywId the sywId to set
-	 */
-	public void setSywId(final Long sywId) {
-		this.sywId = Validate.notNull(sywId, "The ShopYouWay id cannot be null");
-	}
+    /**
+     * Is the favorite {@code store} of the {@code userId}.
+     */
+    @OneToOne(cascade = CascadeType.ALL)
+    private Store store;
 
-	
-	/**
-	 * @return the familyId
-	 */
-	public Long getFamilyId() {
-		return familyId;
-	}
+    /**
+     * Is just a simple time stamp of last update.
+     */
+    @Column(name = "last_update")
+    private Date lastUpdate;
 
-	
-	/**
-	 * @param familyId the familyId to set
-	 */
-	public void setFamilyId(final Long familyId) {
-		this.familyId = familyId;
-	}
+    /**
+     * @return the sywId
+     */
+    public Long getSywId() {
+        return sywId;
+    }
 
-	@PreUpdate
-	@PrePersist
-	public void updateTimeStamps() {
-		lastUpdate = new Date();
-	}
+    /**
+     * @param sywId the sywId to set
+     */
+    public void setSywId(final Long sywId) {
+        this.sywId = Validate.notNull(sywId, "The ShopYouWay id cannot be null");
+    }
 
-	public Store getStore() {
-		return store;
-	}
+    /**
+     * @return the familyId
+     */
+    public Long getFamilyId() {
+        return familyId;
+    }
 
-	public void setStore(Store store) {
-		this.store = store;
-	}
+    /**
+     * @param familyId the familyId to set
+     */
+    public void setFamilyId(final Long familyId) {
+        this.familyId = familyId;
+    }
 
-	public Date getLastUpdate() {
-		return lastUpdate;
-	}
+    @PreUpdate
+    @PrePersist
+    public void updateTimeStamps() {
+        lastUpdate = new Date();
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public Store getStore() {
+        return store;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public void setStore(Store store) {
+        this.store = store;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		User rhs = (User) obj;
-		return new EqualsBuilder()
-			.append(this.sywId, rhs.sywId)
-			.append(this.familyId, rhs.familyId).isEquals();
-	}
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(this.sywId)
-			.append(this.familyId).hashCode();
-	}
+    public Date getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        User rhs = (User) obj;
+        return new EqualsBuilder()
+                .append(this.sywId, rhs.sywId)
+                .append(this.familyId, rhs.familyId).isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+                .append(this.sywId)
+                .append(this.familyId).hashCode();
+    }
 }
