@@ -1,8 +1,8 @@
 package com.searshc.mygarage.entities.recalls;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 

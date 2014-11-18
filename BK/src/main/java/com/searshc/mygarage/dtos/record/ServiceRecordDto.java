@@ -1,4 +1,4 @@
-package com.searshc.mygarage.controllers.vehicle;
+package com.searshc.mygarage.dtos.record;
 
 
 /**

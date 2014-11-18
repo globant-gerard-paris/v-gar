@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.searshc.mygarage.services;
+package com.searshc.mygarage.base;
 
 import java.io.IOException;
 import javax.servlet.Filter;

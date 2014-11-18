@@ -1,6 +1,6 @@
-package com.searshc.mygarage.controllers.vehicle;
+package com.searshc.mygarage.dtos.record;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 
 import com.searshc.mygarage.entities.Record;
 

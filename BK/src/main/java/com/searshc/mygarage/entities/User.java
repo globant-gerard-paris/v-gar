@@ -3,30 +3,35 @@
  */
 package com.searshc.mygarage.entities;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * 
- * The {@link UserInformation} is the information of one {@code userId} that are enrolled in the
+ * The {@link User} is the information of one {@code userId} that are enrolled in the
  * application.
  * 
  * @author Jero
  *
  */
 @Entity
-public class UserInformation extends AbstractEntity {
+public class User extends AbstractEntity implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2745176863528011598L;
 
 	@Column(name = "syw_id", nullable = false)
 	private Long sywId;
@@ -111,4 +116,24 @@ public class UserInformation extends AbstractEntity {
 		this.userId = userId;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User rhs = (User) obj;
+		return new EqualsBuilder()
+			.append(this.sywId, rhs.sywId)
+			.append(this.familyId, rhs.familyId).isEquals();
+	}
+	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+			.append(this.sywId)
+			.append(this.familyId).hashCode();
+	}
 }

@@ -1,4 +1,6 @@
-package com.searshc.mygarage.controllers;
+package com.searshc.mygarage.controllers.vehicle;
+
+import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -7,7 +9,6 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
@@ -23,19 +24,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
+import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.UserInformation;
+import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.UserVehicle;
-import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
-import com.searshc.mygarage.services.NcdbService;
-import com.searshc.mygarage.services.UserVehicleService;
+import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
-import com.searshc.mygarage.services.user.UserInformationService;
-import com.searshc.mygarage.services.vehicle.VehicleServiceImpl;
+import com.searshc.mygarage.services.user.UserService;
+import com.searshc.mygarage.services.vehicle.ConfirmedVehicleService;
+import com.searshc.mygarage.services.vehicle.UserVehicleService;
 
 @RestController
 @RequestMapping("/vehicle")
@@ -45,38 +46,39 @@ public class VehicleController {
 	
     private NcdbService ncdbService;
     private VehicleRecallsService nhtsaService;
-    private VehicleServiceImpl vehicleService;
-    private UserVehicleService userVehicleService;
-    private UserInformationService userInformationService;
+    private UserVehicleService vehicleService;
+    private ConfirmedVehicleService confirmedVehicleService;
+    private UserService userService;
     private ObjectMapper objectMapper;
 
     @Inject
     public VehicleController(final NcdbService ncdbService, final VehicleRecallsService nhtsaService,
-    		final VehicleServiceImpl vehicleService, final UserVehicleService userVehicleService, final UserInformationService userInformationService,
+    		final UserVehicleService vehicleService, 
+    		final ConfirmedVehicleService confirmedVehicleService, final UserService userService,
     		final ObjectMapper objectMapper) {
-        this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
-        this.nhtsaService = Validate.notNull(nhtsaService, "The NHTSA Service cannot be null");
-        this.vehicleService = Validate.notNull(vehicleService, "The Vehicle Service cannot be null");
-        this.userVehicleService = Validate.notNull(userVehicleService, "The UserVehicle Service cannot be null");
-        this.userInformationService = Validate.notNull(userInformationService, "The UserInformation Service cannot be null");
-        this.objectMapper = Validate.notNull(objectMapper, "The ObjectMapper cannot be null");
+        this.ncdbService = notNull(ncdbService, "The NCDB Service cannot be null");
+        this.nhtsaService = notNull(nhtsaService, "The NHTSA Service cannot be null");
+        this.vehicleService = notNull(vehicleService, "The Vehicle Service cannot be null");
+        this.confirmedVehicleService = notNull(confirmedVehicleService, "The ConfirmedVehicle Service cannot be null");
+        this.userService = notNull(userService, "The UserInformation Service cannot be null");
+        this.objectMapper = notNull(objectMapper, "The ObjectMapper cannot be null");
     }
 
     @RequestMapping(value = "/family/{ncdbId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Vehicle>> getVehicles(@PathVariable("ncdbId") Integer ncdbId) throws NCDBApiException {
-        List<Vehicle> vehicles = this.ncdbService.listVehicles(ncdbId);
-        return new ResponseEntity<List<Vehicle>>(vehicles, null, HttpStatus.OK);
+    public ResponseEntity<List<UserVehicle>> getVehicles(@PathVariable("ncdbId") Long ncdbId) throws NCDBApiException {
+        List<UserVehicle> userVehicles = this.ncdbService.listVehicles(ncdbId);
+        return new ResponseEntity<List<UserVehicle>>(userVehicles, null, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/vehicles/{ncdbId}/transactions/{vehicleId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("ncdbId") Integer ncdbId,
-            @PathVariable("vehicleId") Integer vehicleId) {
+    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("ncdbId") Long ncdbId,
+            @PathVariable("vehicleId") Long vehicleId) {
         List<Order> orders = this.ncdbService.getTransactions(ncdbId, vehicleId);
         return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
     }
@@ -112,14 +114,14 @@ public class VehicleController {
     }
     
     
-    @RequestMapping(value = "/vehicles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Vehicle>> listAdditionalVehicles() {
-		List<Vehicle> response = this.vehicleService.getList();
-		return new ResponseEntity<List<Vehicle>>(response, null, HttpStatus.OK);
+    @RequestMapping(value = "/uservehicles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<UserVehicle>> listAdditionalVehicles() {
+		List<UserVehicle> response = this.vehicleService.getList();
+		return new ResponseEntity<List<UserVehicle>>(response, null, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vehicle> createAndSaveNewVehicle(
+	public ResponseEntity<UserVehicle> createAndSaveNewVehicle(
 			@RequestParam("familyId") Long familyId,
 			@RequestParam("tangibleId") Long tangibleId,
 			@RequestParam("make") String make,
@@ -128,27 +130,27 @@ public class VehicleController {
 			@RequestParam("color") String color,
 			@RequestParam("mileage") int mileage) {
 		
-		Vehicle vehicle = this.vehicleService.createAndSaveNewVehicle(familyId, tangibleId, make, model, year, color, mileage);
-		return new ResponseEntity<Vehicle>(vehicle, null, HttpStatus.OK);
+		UserVehicle userVehicle = this.vehicleService.createAndSaveNewVehicle(familyId, tangibleId, make, model, year, color, mileage);
+		return new ResponseEntity<UserVehicle>(userVehicle, null, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/{vehicleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Vehicle> getAdditionalVehicleDetails(@PathVariable("vehicleId") Integer vehicleId) {
-		Vehicle vehicle = this.vehicleService.getItem(vehicleId);
-		return new ResponseEntity<Vehicle>(vehicle, null, HttpStatus.OK);
+	public ResponseEntity<UserVehicle> getAdditionalVehicleDetails(@PathVariable("vehicleId") Long vehicleId) {
+		UserVehicle userVehicle = this.vehicleService.getItem(vehicleId);
+		return new ResponseEntity<UserVehicle>(userVehicle, null, HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/vehicles/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Set<VehicleConfirmationDTO>> getVehiclesToConfirm(@PathVariable("userId") long userId) throws NCDBApiException {
-		UserInformation user = this.userInformationService.getItem(userId);
+		User user = this.userService.getItem(userId);
 		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<Vehicle> localVehicles = this.vehicleService.getVehiclesByUserId(user.getId());
-		result.addAll(this.userVehicleService.convert(localVehicles, true));
+		List<UserVehicle> localVehicles = this.vehicleService.getVehiclesByUserId(user.getId());
+		result.addAll(this.confirmedVehicleService.convert(localVehicles, true));
 		if(user.getFamilyId() != null) {
-			List<Vehicle> ncdbVehicles = this.ncdbService.listVehicles(user.getFamilyId().intValue());
+			List<UserVehicle> ncdbVehicles = this.ncdbService.listVehicles(user.getFamilyId());
 			ncdbVehicles.removeAll(localVehicles);
-			result.addAll(this.userVehicleService.convert(ncdbVehicles, false));
+			result.addAll(this.confirmedVehicleService.convert(ncdbVehicles, false));
 		} 
 		return new ResponseEntity<Set<VehicleConfirmationDTO>>(result, null, HttpStatus.OK);
 	}
@@ -157,22 +159,22 @@ public class VehicleController {
 	@ResponseBody
 	public ResponseEntity<Object> updateVehicleConfirmation(@PathVariable("userId") Long userId, @RequestBody String jsonBody) throws IOException, UserNotFoundException {
 		VehicleConfirmationDTO[] vehicleConfirmationDTOs = objectMapper.readValue(jsonBody, VehicleConfirmationDTO[].class);
-		UserInformation userInformation = this.userInformationService.getItem(userId);
-		if(userInformation == null) {
+		User user = this.userService.getItem(userId);
+		if(user == null) {
 			throw new UserNotFoundException("User not found with id: " + userId);
 		}
 
-		int recordsDeleted = this.userVehicleService.deleteUserVehiclesByUserId(userId);
+		int recordsDeleted = this.confirmedVehicleService.deleteUserVehiclesByUserId(userId);
 		log.info(recordsDeleted + " UserVehicle records deleted for userId " + userId);
-		List<VehicleConfirmationDTO> vehicleDtoList = this.userVehicleService.discardUnconfirmed(vehicleConfirmationDTOs);
+		List<VehicleConfirmationDTO> vehicleDtoList = this.confirmedVehicleService.discardUnconfirmed(vehicleConfirmationDTOs);
 
-		Set<UserVehicle> userVehicles = this.userVehicleService.convert(vehicleDtoList, userInformation);
-		Set<Vehicle> newVehicles = this.userVehicleService.extractNoPersistedVehicles(userVehicles);
+		Set<ConfirmedVehicle> confirmedVehicles = this.confirmedVehicleService.convert(vehicleDtoList, user);
+		Set<UserVehicle> newVehicles = this.confirmedVehicleService.extractNoPersistedVehicles(confirmedVehicles);
 		if(newVehicles.size() > 0) {
 			this.vehicleService.saveAndFlush(newVehicles);
 		}
-		userVehicles = this.userVehicleService.saveAndFlush(userVehicles);
-		log.info(userVehicles.size() + " vehicles were confirmed");
+		confirmedVehicles = this.confirmedVehicleService.saveAndFlush(confirmedVehicles);
+		log.info(confirmedVehicles.size() + " vehicles were confirmed");
 		return new ResponseEntity<Object>(null, null, HttpStatus.OK);
 	}
     

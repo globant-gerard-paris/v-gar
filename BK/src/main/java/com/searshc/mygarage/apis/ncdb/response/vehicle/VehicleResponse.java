@@ -26,22 +26,23 @@ public class VehicleResponse {
     private String familyTypeCode;
 
     @XmlElement(name = "veh_yr_no")
-    @Mapping("year")
+    @Mapping("vehicle.year")
     private Integer vehicleYearNumber;
 
     @XmlElement(name = "veh_mak_ds")
-    @Mapping("make")
+    @Mapping("vehicle.make")
     private String vehicleMake;
 
     @XmlElement(name = "veh_mod_ds")
-    @Mapping("model")
+    @Mapping("vehicle.model")
     private String vehicleModel;
 
     @XmlElement(name = "veh_eng_ds")
+    @Mapping("vehicle.engine")
     private String vehicleEngine;
 
-    @Mapping("color")
     @XmlElement(name = "veh_col_ds")
+    @Mapping("color")
     private String vehicleColor;
 
     @XmlElement(name = "vin_no")

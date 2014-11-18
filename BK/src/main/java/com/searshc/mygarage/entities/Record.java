@@ -5,7 +5,12 @@ package com.searshc.mygarage.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 /**
  * 
@@ -17,6 +22,8 @@ import javax.persistence.Entity;
 @Entity
 public class Record extends AbstractEntity {
 
+	@OneToOne(cascade = CascadeType.ALL)
+	private UserVehicle userVehicle;
 	
 	private String mileage;
 	
@@ -37,6 +44,43 @@ public class Record extends AbstractEntity {
 	 */
 	private String comment;
 
+
+	public Record() {
+		this.userVehicle = null;
+	}
+	
+	/**
+	 * @param userVehicle
+	 * @param mileage
+	 * @param source
+	 * @param service
+	 * @param date
+	 * @param comment
+	 */
+	public Record(UserVehicle userVehicle, String mileage, String source,
+			String service, Date date, String comment) {
+		super();
+		this.userVehicle = userVehicle;
+		this.mileage = mileage;
+		this.source = source;
+		this.service = service;
+		this.date = date;
+		this.comment = comment;
+	}
+
+	/**
+	 * @return the userVehicle
+	 */
+	public UserVehicle getUserVehicle() {
+		return userVehicle;
+	}
+
+	/**
+	 * @param userVehicle the userVehicle to set
+	 */
+	public void setUserVehicle(UserVehicle userVehicle) {
+		this.userVehicle = userVehicle;
+	}
 
 	public Date getDate() {
 		return date;
@@ -78,5 +122,32 @@ public class Record extends AbstractEntity {
 		this.mileage = mileage;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Record rhs = (Record) obj;
+		return new EqualsBuilder()
+			.append(this.userVehicle, rhs.userVehicle)
+			.append(this.mileage, rhs.mileage)
+			.append(this.source, rhs.source)
+			.append(this.service, rhs.service)
+			.append(this.date, rhs.date)
+			.append(this.comment, rhs.comment).isEquals();
+	}
 	
+	@Override
+	public int hashCode() {
+		return new HashCodeBuilder()
+			.append(this.userVehicle)
+			.append(this.mileage)
+			.append(this.source)
+			.append(this.service)
+			.append(this.date)
+			.append(this.comment).hashCode();
+	}
 }
