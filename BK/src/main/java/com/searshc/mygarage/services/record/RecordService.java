@@ -2,14 +2,17 @@ package com.searshc.mygarage.services.record;
 
 import java.util.List;
 
-import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import org.apache.commons.lang3.Validate;
 
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.dtos.ServiceRecord;
+=======
+import com.searshc.mygarage.base.GenericService;
+>>>>>>> 7172e11... MYG000-108 - Change Entity name and added a status property
 import com.searshc.mygarage.entities.Record;
-import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import org.springframework.stereotype.Service;
@@ -42,4 +45,15 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         //TODO: sort results
         return null;
     }
+    
+    public int getHighestMileageByFamilyVehicleId(final Long familyVehicleId) {
+		int mileage = -1;
+		try {
+			mileage = repository.getHighestMileageByFamilyVehicleId(familyVehicleId);
+		} catch (NullPointerException e) {
+			mileage = -1;
+		}
+		return mileage;
+	}
+
 }

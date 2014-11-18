@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.dozer.Mapping;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class VehicleConfirmationDTO implements Serializable {
@@ -16,11 +17,15 @@ public class VehicleConfirmationDTO implements Serializable {
     private Long vehicleId;
     private Long familyId;
     private Long tangibleId;
+    @Mapping("vehicle.make")
     private String make;
+    @Mapping("vehicle.model")
     private String model;
+    @Mapping("vehicle.year")
     private int year;
     @JsonProperty("isConfirmed")
     private boolean isConfirmed;
+    private Status status;
 
     public VehicleConfirmationDTO() {
     }
@@ -35,7 +40,7 @@ public class VehicleConfirmationDTO implements Serializable {
      * @param isConfirmed
      */
     public VehicleConfirmationDTO(Long vehicleId, Long familyId, Long tangibleId, String make, String model, int year,
-            boolean isConfirmed) {
+            boolean isConfirmed, Status status) {
         super();
         this.vehicleId = vehicleId;
         this.familyId = familyId;
@@ -44,6 +49,7 @@ public class VehicleConfirmationDTO implements Serializable {
         this.model = model;
         this.year = year;
         this.isConfirmed = isConfirmed;
+        this.status = status;
     }
 
     /**
@@ -145,6 +151,7 @@ public class VehicleConfirmationDTO implements Serializable {
     /**
      * @return the isConfirmed
      */
+    @JsonIgnore
     public boolean isConfirmed() {
 
         return isConfirmed;
@@ -157,5 +164,22 @@ public class VehicleConfirmationDTO implements Serializable {
 
         this.isConfirmed = isConfirmed;
     }
+
+    /**
+	 * @return the status
+	 */
+	public Status getStatus() {
+		return status;
+	}
+
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+
+	public enum Status {NCDB, LINKED, MANUAL};
 
 }

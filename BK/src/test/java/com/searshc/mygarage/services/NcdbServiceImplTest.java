@@ -2,7 +2,7 @@ package com.searshc.mygarage.services;
 
 import com.searshc.mygarage.apis.ncdb.NCDBApiImpl;
 import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.UserVehicle;
+import com.searshc.mygarage.entities.FamilyVehicle;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.Test;
