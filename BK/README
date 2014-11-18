@@ -1,9 +1,0 @@
-Setting up Instructions
-
-1 - Navigate to src/main/database/scripts and run in the given order the scripts
-2 - Navigate to src/main/config/ 
-3 - In there you will find at least 3 folders (dev, qa and prod). Each of one represents the environment configuration. 
-4 - Select the correct environment folder and copy the files inside to a destination folder, for example: c:\appl\mygarage
-5 - Using a Console/terminal navigate to the project root (where the pom.xml is located)
-6 - Run: "mvn spring-boot:run -Dspring.config.location=c:\appl\mygarage\ -Dspring.profiles.active=dev" Use the folder choose in Step 4 and the correct environment (dev, qa or prod)
- 
