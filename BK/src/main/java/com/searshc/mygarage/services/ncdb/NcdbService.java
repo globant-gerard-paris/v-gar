@@ -8,9 +8,8 @@ import com.searshc.mygarage.exceptions.NCDBApiException;
 
 public interface NcdbService {
 
-    List<UserVehicle> listVehicles(final Long ncdbId) throws NCDBApiException;
+    List<UserVehicle> listVehicles(final Long familyId) throws NCDBApiException;
 
-    List<Order> getTransactions(final Long ncdbId, Long tangibleId);
-
+    List<Order> getTransactions(Long familyId, Long tangibleId) throws NCDBApiException;
 
 }

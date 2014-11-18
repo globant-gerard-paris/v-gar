@@ -6,10 +6,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
- * Base class of SpringJUnitTest to avoid DRY about JUnit configurations environment.
- * 
+ * Base class of SpringJUnitTest to avoid DRY about JUnit configurations
+ * environment.
+ *
  * @author Jero
- * 
+ *
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

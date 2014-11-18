@@ -13,163 +13,153 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 
 @Entity
 @Table(name = "vehicle")
-public class Vehicle extends AbstractEntity implements Serializable{
-	
-	/**
-	 * The Serial Version UID.
-	 */
-	private static final long serialVersionUID = -4412113151100181178L;
-	/**
-	 * The Vehicle year. Required.
-	 */
-	@Column(name = "year")
-	private int year;
-	/**
-	 * The Vehicle Make. Required.
-	 */
-	@Column(name = "make")
-	private String make;
-	/**
-	 * The Vehicle Model. Required.
-	 */
-	@Column(name = "model")
-	private String model;
-	/**
-	 * The Vehicle Engine.
-	 */
-	@Column(name = "engine")
-	private String engine;
-	/**
-	 * The Vehicle Type.
-	 * TODO: use a enum insted of String.
-	 * <br>Possible values:
-	 * <ul><strong>P</strong> for passenger Vehicles</ul>
-	 * <ul><strong>LT</strong> for Light Duty Vehicles</ul>
-	 * <ul><strong>MD</strong> for Medium Duty Vehicles</ul>
-	 */
-	@Column(name = "type")
-	private String type;
-	
-	
-	public Vehicle() {
-		super();
-		this.year = 0;
-		this.make = "";
-		this.model = "";
-	}
+public class Vehicle extends AbstractEntity implements Serializable {
 
+    /**
+     * The Serial Version UID.
+     */
+    private static final long serialVersionUID = -4412113151100181178L;
+    /**
+     * The Vehicle year. Required.
+     */
+    @Column(name = "year")
+    private int year;
+    /**
+     * The Vehicle Make. Required.
+     */
+    @Column(name = "make")
+    private String make;
+    /**
+     * The Vehicle Model. Required.
+     */
+    @Column(name = "model")
+    private String model;
+    /**
+     * The Vehicle Engine.
+     */
+    @Column(name = "engine")
+    private String engine;
+    /**
+     * The Vehicle Type. TODO: use a enum insted of String.
+     * <br>Possible values:
+     * <ul><strong>P</strong> for passenger Vehicles</ul>
+     * <ul><strong>LT</strong> for Light Duty Vehicles</ul>
+     * <ul><strong>MD</strong> for Medium Duty Vehicles</ul>
+     */
+    @Column(name = "type")
+    private String type;
 
-	/**
-	 * @param year required.
-	 * @param make required.
-	 * @param model required.
-	 * @param engine
-	 * @param type
-	 */
-	public Vehicle(final int year, final String make, final String model, final String engine, final String type) {
-		super();
-		isTrue(year >= 0, "The year cannot be lower than 0");
-		this.year = year;
-		this.make = notNull(make, "The Make cannot be null");
-		this.model = notNull(model, "The Model cannot be null");
-		this.engine = engine;
-		this.type = type;
-	}
+    public Vehicle() {
+        super();
+        this.year = 0;
+        this.make = "";
+        this.model = "";
+    }
 
+    /**
+     * @param year required.
+     * @param make required.
+     * @param model required.
+     * @param engine
+     * @param type
+     */
+    public Vehicle(final int year, final String make, final String model, final String engine, final String type) {
+        super();
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
+        this.make = notNull(make, "The Make cannot be null");
+        this.model = notNull(model, "The Model cannot be null");
+        this.engine = engine;
+        this.type = type;
+    }
 
-	/**
-	 * @return the year
-	 */
-	public int getYear() {
-		return year;
-	}
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
 
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
+    }
 
-	/**
-	 * @param year the year to set
-	 */
-	public void setYear(int year) {
-		isTrue(year >= 0, "The year cannot be lower than 0");
-		this.year = year;
-	}
+    /**
+     * @return the make
+     */
+    public String getMake() {
+        return make;
+    }
 
+    /**
+     * @param make the make to set
+     */
+    public void setMake(String make) {
+        this.make = notNull(make, "The Make cannot be null");
+    }
 
-	/**
-	 * @return the make
-	 */
-	public String getMake() {
-		return make;
-	}
+    /**
+     * @return the model
+     */
+    public String getModel() {
+        return model;
+    }
 
+    /**
+     * @param model the model to set
+     */
+    public void setModel(String model) {
+        this.model = notNull(model, "The Model cannot be null");
+    }
 
-	/**
-	 * @param make the make to set
-	 */
-	public void setMake(String make) {
-		this.make = notNull(make, "The Make cannot be null");
-	}
+    /**
+     * @return the engine
+     */
+    public String getEngine() {
+        return engine;
+    }
 
+    /**
+     * @param engine the engine to set
+     */
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
 
-	/**
-	 * @return the model
-	 */
-	public String getModel() {
-		return model;
-	}
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
 
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	/**
-	 * @param model the model to set
-	 */
-	public void setModel(String model) {
-		this.model = notNull(model, "The Model cannot be null");
-	}
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Vehicle rhs = (Vehicle) obj;
+        return new EqualsBuilder()
+                .append(this.year, rhs.year)
+                .append(this.make, rhs.make)
+                .append(this.model, rhs.model).isEquals();
+    }
 
-
-	/**
-	 * @return the engine
-	 */
-	public String getEngine() {
-		return engine;
-	}
-
-
-	/**
-	 * @param engine the engine to set
-	 */
-	public void setEngine(String engine) {
-		this.engine = engine;
-	}
-
-
-	/**
-	 * @return the type
-	 */
-	public String getType() {
-		return type;
-	}
-
-
-	/**
-	 * @param type the type to set
-	 */
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vehicle rhs = (Vehicle) obj;
-		return new EqualsBuilder()
-			.append(this.year, rhs.year)
-			.append(this.make, rhs.make)
-			.append(this.model, rhs.model).isEquals();
-	}
-	
 }

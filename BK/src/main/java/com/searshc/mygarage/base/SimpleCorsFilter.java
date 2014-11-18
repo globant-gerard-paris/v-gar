@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.searshc.mygarage.base;
 
@@ -14,30 +14,30 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
 /**
- * The {@link SimpleCorsFilter} is allow to work right in development environment. Once, the
- * application will deploy in production environment, this class must be replace with propel
- * production security configuration.
- * 
+ * The {@link SimpleCorsFilter} is allow to work right in development
+ * environment. Once, the application will deploy in production environment,
+ * this class must be replace with propel production security configuration.
+ *
  * @author Jero
  *
  */
 @Component
 public class SimpleCorsFilter implements Filter {
 
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletResponse response = (HttpServletResponse) res;
-		response.setHeader("Access-Control-Allow-Origin", "*");
-		response.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
-		response.setHeader("Access-Control-Max-Age", "3600");
-		response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
-		chain.doFilter(req, res);
-	}
+    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+            throws IOException, ServletException {
+        HttpServletResponse response = (HttpServletResponse) res;
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "PUT, POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
+        chain.doFilter(req, res);
+    }
 
-	public void init(FilterConfig filterConfig) {
-	}
+    public void init(FilterConfig filterConfig) {
+    }
 
-	public void destroy() {
-	}
+    public void destroy() {
+    }
 
 }

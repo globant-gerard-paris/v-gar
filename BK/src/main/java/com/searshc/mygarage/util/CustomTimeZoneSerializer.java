@@ -9,15 +9,14 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
+public class CustomTimeZoneSerializer extends JsonSerializer<DateTimeZone> {
 
-public class CustomTimeZoneSerializer extends JsonSerializer<DateTimeZone>{
+    @Override
+    public void serialize(DateTimeZone value, JsonGenerator gen, SerializerProvider arg2) throws IOException,
+            JsonProcessingException {
 
-	@Override
-	public void serialize(DateTimeZone value, JsonGenerator gen, SerializerProvider arg2) throws IOException,
-			JsonProcessingException {
-	
-		gen.writeString(value.getID());
-		
-	}
-	
+        gen.writeString(value.getID());
+
+    }
+
 }

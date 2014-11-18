@@ -15,66 +15,63 @@ import org.springframework.data.repository.core.EntityInformation;
 
 @NoRepositoryBean
 public class GenericRepositoryImpl<T, ID extends Serializable> extends SimpleJpaRepository<T, ID>
-	implements GenericRepository<T, ID>, Serializable {
+        implements GenericRepository<T, ID>, Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5576542944531548419L;
-	
-	private EntityInformation<T, ?> entityInformation;
-	
-	@Inject
-	private EntityManager em;
-	
-	private Class<?> springDataRepositoryInterface;
-	
-	public GenericRepositoryImpl(JpaEntityInformation<T, ?> entityInformation,
-			EntityManager entityManager, Class<?> springDataRepositoryInterface) {
-		super(entityInformation, entityManager);
-		this.entityInformation = entityInformation;
-		this.em = entityManager;
-		this.springDataRepositoryInterface = springDataRepositoryInterface;
-	}
-	
-	public GenericRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
-		this(JpaEntityInformationSupport.getMetadata(domainClass, entityManager), entityManager, null);
-	}
-	
-	@Override
-	public <S extends T> S save(S entity) {
-		if (this.entityInformation.isNew(entity)) {
-			this.em.persist(entity);
-			flush();
-			return entity;
-		}
-		entity = this.em.merge(entity);
-		flush();
-		return entity;
-	}
-	
-	@Override
-	public List<T> findAll(Specification<T> spec) {
-		return super.findAll(spec);
-	}
+    /**
+     *
+     */
+    private static final long serialVersionUID = 5576542944531548419L;
 
-	/**
-	 * @return the springDataRepositoryInterface
-	 */
-	public Class<?> getSpringDataRepositoryInterface() {
-		return springDataRepositoryInterface;
-	}
-	
-	/**
-	 * @param springDataRepositoryInterface the springDataRepositoryInterface to set
-	 */
-	public void setSpringDataRepositoryInterface(
-			Class<?> springDataRepositoryInterface) {
-		this.springDataRepositoryInterface = springDataRepositoryInterface;
-	}
+    private EntityInformation<T, ?> entityInformation;
 
-	
-	
-	
+    @Inject
+    private EntityManager em;
+
+    private Class<?> springDataRepositoryInterface;
+
+    public GenericRepositoryImpl(JpaEntityInformation<T, ?> entityInformation,
+            EntityManager entityManager, Class<?> springDataRepositoryInterface) {
+        super(entityInformation, entityManager);
+        this.entityInformation = entityInformation;
+        this.em = entityManager;
+        this.springDataRepositoryInterface = springDataRepositoryInterface;
+    }
+
+    public GenericRepositoryImpl(Class<T> domainClass, EntityManager entityManager) {
+        this(JpaEntityInformationSupport.getMetadata(domainClass, entityManager), entityManager, null);
+    }
+
+    @Override
+    public <S extends T> S save(S entity) {
+        if (this.entityInformation.isNew(entity)) {
+            this.em.persist(entity);
+            flush();
+            return entity;
+        }
+        entity = this.em.merge(entity);
+        flush();
+        return entity;
+    }
+
+    @Override
+    public List<T> findAll(Specification<T> spec) {
+        return super.findAll(spec);
+    }
+
+    /**
+     * @return the springDataRepositoryInterface
+     */
+    public Class<?> getSpringDataRepositoryInterface() {
+        return springDataRepositoryInterface;
+    }
+
+    /**
+     * @param springDataRepositoryInterface the springDataRepositoryInterface to
+     * set
+     */
+    public void setSpringDataRepositoryInterface(
+            Class<?> springDataRepositoryInterface) {
+        this.springDataRepositoryInterface = springDataRepositoryInterface;
+    }
 
 }

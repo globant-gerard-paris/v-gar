@@ -21,13 +21,13 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<UserVehicle> listVehicles(Long ncdbId) throws NCDBApiException {
-        return this.ncdbApi.getVehicles(ncdbId);
+    public List<UserVehicle> listVehicles(Long familyId) throws NCDBApiException {
+        return this.ncdbApi.getVehicles(familyId);
     }
 
     @Override
-    public List<Order> getTransactions(Long ncdbId, Long tangibleId) {
-        return this.ncdbApi.getCarTransactionHistory(ncdbId, tangibleId);
+    public List<Order> getTransactions(Long familyId, Long tangibleId) throws NCDBApiException {
+        return this.ncdbApi.getCarTransactionHistory(familyId, tangibleId);
     }
 
 }

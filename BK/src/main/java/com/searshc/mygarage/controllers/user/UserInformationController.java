@@ -16,10 +16,10 @@ import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.services.user.UserService;
 
 /**
- * 
- * The {@link UserInformationController} have the responsibility to manager the request about the
- * {@link User}s in the system.
- * 
+ *
+ * The {@link UserInformationController} have the responsibility to manager the
+ * request about the {@link User}s in the system.
+ *
  * @author Jero
  *
  */
@@ -27,40 +27,40 @@ import com.searshc.mygarage.services.user.UserService;
 @RequestMapping("/user")
 public class UserInformationController {
 
-	private UserService userService;
-	
-	/**
-	 * @param userService
-	 */
-	@Inject
-	public UserInformationController(UserService userService) {
-		this.userService = Validate.notNull(userService, "The User Information Service cannot be null");
-	}
+    private UserService userService;
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<User> getUser(@PathVariable("userId") long userId) {
-		User user = this.userService.getItem(userId);
-		return new ResponseEntity<User>(user, null, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> setFavoriteStore(@PathVariable("userId") Long userId,
-			@PathVariable("storeId") Long storeId) throws Exception {
+    /**
+     * @param userService
+     */
+    @Inject
+    public UserInformationController(UserService userService) {
+        this.userService = Validate.notNull(userService, "The User Information Service cannot be null");
+    }
 
-		userService.setFavoriteStore(storeId, userId);
-		return new ResponseEntity<String>(HttpStatus.OK);
-	}
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<User> getUser(@PathVariable("userId") long userId) {
+        User user = this.userService.getItem(userId);
+        return new ResponseEntity<User>(user, null, HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/{userId}/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Object> getStores(@PathVariable("userId") Long userId) throws Exception {
-		User user = userService.findByUserId(userId);
-		if (user != null) {
-			return new ResponseEntity<Object>(user, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(HttpStatus.OK);
-		}
-	}
+    @RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<String> setFavoriteStore(@PathVariable("userId") Long userId,
+            @PathVariable("storeId") Long storeId) throws Exception {
+
+        userService.setFavoriteStore(storeId, userId);
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{userId}/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Object> getStores(@PathVariable("userId") Long userId) throws Exception {
+        User user = userService.findByUserId(userId);
+        if (user != null) {
+            return new ResponseEntity<Object>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>(HttpStatus.OK);
+        }
+    }
 }
