@@ -47,6 +47,45 @@
     .landing-top .carousel .carousel-control{
         visibility: hidden; 
     }
+
+    .landing_box{
+        height:330px;
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .landing_box_1{
+        background-image:url('resources/images/landing/box1.jpg');
+    }
+
+    .landing_box_2{
+        background-image:url('resources/images/landing/box2.jpg');
+    }
+
+    .landing_box_3{
+        background-image:url('resources/images/landing/box3.jpg');
+    }
+
+    @media (max-width: 768px) { 
+        .landing_box{
+            height:200px;
+            background-size: auto;
+            background-repeat: no-repeat;
+            border-bottom: 1px solid #eee;
+        }
+        .landing_box_1{
+            background-image:url('resources/images/landing/box1_mobile.jpg');
+        }
+
+        .landing_box_2{
+            background-image:url('resources/images/landing/box2_mobile.jpg');
+        }
+
+        .landing_box_3{
+            background-image:url('resources/images/landing/box3_mobile.jpg');
+        }
+    }
+
 </style>
 <div class="user-type">
     <div class="row landing-top">
@@ -65,11 +104,11 @@
         </div>
     </div>
     <div class="row landing-bottom">    
-        <div class="col-sm-4" style="background-color:#e99; height:300px;">
+        <div class="col-sm-4 landing_box landing_box_1">
         </div>
-        <div class="col-sm-4" style="background-color:#99e; height:300px;">
+        <div class="col-sm-4 landing_box landing_box_2">
         </div>
-        <div class="col-sm-4" style="background-color:#9e9; height:300px;">
+        <div class="col-sm-4 landing_box landing_box_3">
         </div>
     </div>
 </div>
