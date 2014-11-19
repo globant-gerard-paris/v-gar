@@ -1,5 +1,7 @@
 @mixin fontLanding {
   font-family: 'Roboto', sans-serif;
+  color: #ffffff;
+  font-size: 18px;  ;
 }
 .divMain {
   position: absolute;
@@ -61,8 +63,8 @@
 }
 .boxText {
   @include fontLanding;
-  position: absolute;
-  font-weight: inherit;
+  font-weight: 300;
+  text-align: center;
 }
 .textTitle {
   background-position: center center;
@@ -71,14 +73,14 @@
 }
 
 
-/* Portrait phones and down */
+/* Portrait PHONES and down */
 @media (max-width: 480px) {
   .row {
     background-color: #ffffff;
   }
   .box {
-    width: 140px;
-    height: 140px;
+    width: 139px;
+    height: 138px;
     margin-top: 10%;
     margin-left: 30%;
   }
@@ -133,37 +135,126 @@
     font-size: 11px;
     margin-bottom: 20px;
   }
-  .carousel-inner > .firstImg > img {
-    background-image: url("../resources/images/LP_1_mobile.jpg");
-  }
-  .carousel-inner > .middleImg > img {
-    background-image: url("../resources/images/LP_2_mobile.jpg");
-  }
-  .carousel-inner > .lastImg > img {
-    background-image: url("../resources/images/LP_3_mobile.jpg");
+  .carousel-inner > .item > img {
+    height: 340px;
   }
 }
 
-/* Portrait phone to portrait tablet */
+/* Portrait phone to portrait TABLET */
 @media (min-width: 481px) and (max-width: 767px) {
-
+  .noPaddingRight {
+    padding-right: 15px;
+  }
+  .noPaddingLeft {
+    padding-left: 15px;
+  }
+  .noPadding {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .boxText {
+    margin-top: -120px;
+    margin-left: 100px;
+  }
+  .noPaddingLeft label {
+    color: #808080;
+  }
+  .logoLanding {
+    background-image: url("../resources/images/Logo_Small.png");
+    width: 140px;
+    height: 39px;
+    margin-left: 120px;
+    margin-top: 5px;
+  }
+  .divMain {
+    margin-top: 65px;
+    padding-left: 0;
+    width: auto;
+  }
+  .textTitle {
+    background-image: url("../resources/images/Text_Small.png");
+    width: auto;
+    height: 92px;
+  }
+  .btnStart {
+    background-image: url("../resources/images/Button_Small.png");
+    width: 200px;
+    height: 53px;
+  }
+  .titleH3 {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+  .carousel-inner > .item > img {
+    height: auto;
+  }
 }
 
 /* Tablets and phones */
-@media (max-width: 768px) {
+@media (min-width: 768px) {
+  .noPaddingRight {
+    padding-right: 15px;
+  }
+  .noPaddingLeft {
+    padding-left: 15px;
+  }
+  .noPadding {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .boxText {
+    margin-top: -120px;
+    margin-left: 0;
+    width: 250px;
+  }
+  .noPaddingLeft label {
+    color: #808080;
+  }
+  .logoLanding {
+    background-image: url("../resources/images/Logo_Small.png");
+    width: 140px;
+    height: 39px;
+    margin-left: 40px;
+    margin-top: 20px;
+  }
+  .divMain {
+    margin-top: 65px;
+    padding-left: 0;
+    width: auto;
+  }
+  .textTitle {
+    background-image: url("../resources/images/Text_Small.png");
+    width: auto;
+    height: 92px;
+  }
+  .btnStart {
+    background-image: url("../resources/images/Button_Small.png");
+    width: 200px;
+    height: 53px;
+  }
+  .titleH3 {
+    font-size: 11px;
+    margin-bottom: 20px;
+  }
+  .carousel-inner > .item > img {
+    height: auto;
+  }
+  .col-md-4 {
+    text-align: center;
+  }
 }
 
 /* Medium devices */
-@media (max-width: 992px) {
+@media (min-width: 992px) {
 
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
   .boxText {
-    margin-top: -30%;
-    margin-left: 20%;
-    width: 50%;
+    margin-top: -120px;
+    margin-left: 100px;
+    width: 250px;
   }
   .noPaddingLeft label {
     color: #808080;
@@ -174,11 +265,12 @@
     height: 52px;
     z-index: 12;
     margin-left: 40px;
-    margin-top: 10px;
+    margin-top: 30px;
   }
   .divMain {
     margin-left: 260px;
     margin-top: 190px;
+    width: 800px;
   }
   .textTitle {
     background-image: url("../resources/images/Text_Large.png");
@@ -192,14 +284,22 @@
   }
   .titleH3 {
     margin-bottom: 35px;
+    font-size: 18px;
   }
-  .carousel-inner > .firstImg > img {
-    background-image: url("../resources/images/LP_1.jpg");
+  .carousel-inner > .item > img {
+    height: auto;
   }
-  .carousel-inner > .middleImg > img {
-    background-image: url("../resources/images/LP_2.jpg");
+  .noPadding {
+    padding-left: 0;
+    padding-right: 0;
   }
-  .carousel-inner > .lastImg > img {
-    background-image: url("../resources/images/LP_3.jpg");
+  .noPaddingLeft {
+    padding-right: 15px;
+  }
+  .noPaddingRight {
+    padding-left: 15px;
+  }
+  .col-md-4 {
+    text-align: left;
   }
 }
