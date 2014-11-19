@@ -5,9 +5,9 @@ module.exports = function(grunt) {
         //run back-end server
         'runBKserver':{
             command: 'mvn spring-boot:run',
-                options: {
+            options: {
                 async: false,
-                    execOptions: {
+                execOptions: {
                     cwd: '../BK'
                 }
             }
@@ -20,7 +20,8 @@ module.exports = function(grunt) {
                 async: true,
                 execOptions: {
                     cwd: './'
-                }            }
+                }
+            }
         },
         //sync
         'mockey':{
