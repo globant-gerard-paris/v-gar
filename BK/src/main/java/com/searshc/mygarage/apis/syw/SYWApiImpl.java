@@ -4,7 +4,7 @@ import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Proxy.Type;
 
-import org.apache.commons.lang.Validate;
+import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -35,11 +35,11 @@ public class SYWApiImpl implements SYWApi {
 
 	
 	public SYWApiImpl() {
-//		SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-//	    Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
-//	    requestFactory.setProxy(proxy);
-//	    this.restTemplate = new RestTemplate(requestFactory);
-	    this.restTemplate = new RestTemplate();
+		SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+	    Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
+	    requestFactory.setProxy(proxy);
+	    this.restTemplate = new RestTemplate(requestFactory);
+//	    this.restTemplate = new RestTemplate();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class SYWApiImpl implements SYWApi {
 	 * @param token
 	 * @return
 	 */
-	public SYWUserResponse getUserInfoByToken(String token) throws SYWServiceException {
+	public SYWUserResponse getUserInfoByToken(String token) {
 		Validate.notNull(token, "Could not be null the token.");
 
 		String hash = getHash(token);
@@ -77,7 +77,7 @@ public class SYWApiImpl implements SYWApi {
 	 */
 	private String getHash(final String token) throws SYWServiceException {
 		try {
-			return SYWHash.getHash(appSecret, token);
+			return SYWUtils.getHash(appSecret, token);
 		} catch (Exception e) {
 			throw new SYWServiceException("Could not generate HashCode from token: " + token);
 		}

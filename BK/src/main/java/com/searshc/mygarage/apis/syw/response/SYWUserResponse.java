@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class SYWUserResponse {
 
 	@JsonProperty(value = "id")
-	private int id;
+	private Long id;
 
 	@JsonProperty(value = "name")
 	private String name;
@@ -21,7 +21,7 @@ public class SYWUserResponse {
 	private String sywrMemberNumber;
 
 	@JsonProperty(value = "searsId")
-	private int searsId;
+	private Long searsId;
 
 	@JsonProperty(value = "profileUrl")
 	private String profileUrl;
@@ -35,7 +35,7 @@ public class SYWUserResponse {
 	public SYWUserResponse() {
 	}
 
-	public SYWUserResponse(int id, String name, String sywrMemberNumber, int searsId,
+	public SYWUserResponse(Long id, String name, String sywrMemberNumber, Long searsId,
 			String profileUrl, String registrationDate, String privacy) {
 		this.id = id;
 		this.name = name;
@@ -46,11 +46,11 @@ public class SYWUserResponse {
 		this.privacy = privacy;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -70,11 +70,11 @@ public class SYWUserResponse {
 		this.sywrMemberNumber = sywrMemberNumber;
 	}
 
-	public int getSearsId() {
+	public Long getSearsId() {
 		return searsId;
 	}
 
-	public void setSearsId(int searsId) {
+	public void setSearsId(Long searsId) {
 		this.searsId = searsId;
 	}
 

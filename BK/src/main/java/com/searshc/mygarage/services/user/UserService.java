@@ -5,9 +5,11 @@ import javax.inject.Inject;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 
+import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.User;
+import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 
@@ -65,13 +67,12 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 	 * @param userId
 	 */
 	private void processFavoriteStore(final Store store, final Long userId) {
-        User information = userRepository.findByUserId(userId);
+        User information = userRepository.findOne(userId);
         if (information == null) {
             information = new User();
         }
         information.setSywId(1L);//FIXME: this are fixed in order to work but need to resolve this.  
         information.setStore(store);
-        information.setUserId(userId);
         repository.saveAndFlush(information);
     }
 
@@ -83,7 +84,39 @@ public class UserService extends GenericService<User, Long, UserRepository> {
      */
     public User findByUserId(Long userId) {
         Validate.notNull(userId, "The userId can't be null");
-        return userRepository.findByUserId(userId);
+        return userRepository.findOne(userId);
+    }
+    /**
+     * Find the {@link User} by {@code sywId}.
+     *
+     * @param userId
+     * @return
+     */
+    public User findBySywId(Long sywId) {
+    	Validate.notNull(sywId, "The sywId can't be null");
+    	return userRepository.findBySywId(sywId);
     }
 
+    
+    public User createUser(User user) {
+    	Validate.notNull(user, "The user can't be null.");
+    	try {
+    		return userRepository.saveAndFlush(user);
+		} catch (Exception e) {
+			log.error(e);
+            throw new VirtualGarageServiceException(e);
+        }
+    }
+    
+    /**
+	 * Create the user given {@code userInfoByToken} SYW information.
+	 * @param userInfoByToken.
+	 * @return return the user created.
+	 */
+	public User createUserFromSYWRespone(final SYWUserResponse userInfoByToken){
+		User user = new User();
+		user.setSywId(userInfoByToken.getId());
+		user.setSywrMemberNumber(userInfoByToken.getSywrMemberNumber());
+		return createUser(user);
+	}
 }

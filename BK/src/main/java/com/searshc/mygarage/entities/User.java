@@ -28,23 +28,16 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 @Entity
 public class User extends AbstractEntity implements Serializable {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = -2745176863528011598L;
 
     @Column(name = "syw_id", nullable = false)
     private Long sywId;
 
+    @Column(name = "sywr_member_number", nullable = false)
+    private String sywrMemberNumber;
+
     @Column(name = "family_id", nullable = true)
     private Long familyId;
-
-    /**
-     * The {@code userId} represent the identifier of user in the application.
-     * TODO: It does't yet the entity relationship, because is still TBD the way
-     * that will persist the user in the application.
-     */
-    private Long userId;
 
     /**
      * Is the favorite {@code store} of the {@code userId}.
@@ -59,6 +52,21 @@ public class User extends AbstractEntity implements Serializable {
     private Date lastUpdate;
 
     /**
+     * @return Return the SywMemberNumber.
+     */
+    public String getSywrMemberNumber() {
+		return sywrMemberNumber;
+	}
+
+    /**
+     * Set the syw member number.
+     * @param sywrMemberNumber
+     */
+	public void setSywrMemberNumber(String sywrMemberNumber) {
+		this.sywrMemberNumber = sywrMemberNumber;
+	}
+
+	/**
      * @return the sywId
      */
     public Long getSywId() {
@@ -102,14 +110,6 @@ public class User extends AbstractEntity implements Serializable {
 
     public Date getLastUpdate() {
         return lastUpdate;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     @Override

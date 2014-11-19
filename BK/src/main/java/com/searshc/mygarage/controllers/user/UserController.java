@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.services.user.UserService;
+import com.searshc.mygarage.services.vehicle.UserVehicleService;
+import com.searshc.mygarage.services.vehicle.UserVehicleStatus;
 
 /**
  *
- * The {@link UserInformationController} have the responsibility to manager the
+ * The {@link UserController} have the responsibility to manager the
  * request about the {@link User}s in the system.
  *
  * @author Jero
@@ -25,16 +27,19 @@ import com.searshc.mygarage.services.user.UserService;
  */
 @RestController
 @RequestMapping("/user")
-public class UserInformationController {
+public class UserController {
 
     private UserService userService;
+
+    private UserVehicleService userVehicleService;
 
     /**
      * @param userService
      */
     @Inject
-    public UserInformationController(UserService userService) {
-        this.userService = Validate.notNull(userService, "The User Information Service cannot be null");
+    public UserController(UserService userService, UserVehicleService userVehicleService) {
+        this.userService = Validate.notNull(userService, "The User Service cannot be null");
+        this.userVehicleService = Validate.notNull(userVehicleService, "The User Vehicle Service cannot be null");
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -42,6 +47,13 @@ public class UserInformationController {
     public ResponseEntity<User> getUser(@PathVariable("userId") long userId) {
         User user = this.userService.getItem(userId);
         return new ResponseEntity<User>(user, null, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/token/{token}/vehicles-information", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<UserVehicleStatus> getUser(@PathVariable("token") String token) {
+    	UserVehicleStatus userVehicleStatus = this.userVehicleService.getUserVehicleStatus(token);
+    	return new ResponseEntity<UserVehicleStatus>(userVehicleStatus, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
