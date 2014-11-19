@@ -4,7 +4,10 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import com.searshc.mygarage.apis.syw.SYWApi;
+import com.searshc.mygarage.apis.syw.SYWUtils;
 import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
@@ -12,6 +15,7 @@ import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.UserRepository;
+import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 
 /**
  *
@@ -26,14 +30,17 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 
     private StoreRepository storeRepository;
     private UserRepository userRepository;
-
+    private SYWApi sywApi;
+	private NCDBLocalService ncdbLocal;
     /**
      * @param storeRepository
      */
     @Inject
-    public UserService(final StoreRepository storeRepository, final UserRepository userRepository) {
+    public UserService(final StoreRepository storeRepository, final UserRepository userRepository, final SYWApi sywApi, final NCDBLocalService ncdbLocal) {
         this.storeRepository = Validate.notNull(storeRepository, "The Store Repository cannot be null");
         this.userRepository = Validate.notNull(userRepository, "The User Information Repository cannot be null");
+        this.sywApi = Validate.notNull(sywApi, "The sywApi cannot be null");
+        this.ncdbLocal = Validate.notNull(ncdbLocal, "The NCDB local service cannot be null.");
     }
 
     /**
@@ -57,9 +64,36 @@ public class UserService extends GenericService<User, Long, UserRepository> {
         }
     }
 
-    ;
 
+    public User processUserByToken(final String token){
+    	Validate.notNull(token, "The token can't be null.");
 
+		Long sywId = SYWUtils.getSywId(token);
+		Validate.notNull(sywId, "The token " + token + " is not valid.");
+
+		User user = findBySywId(sywId);
+		if (user == null) {
+			SYWUserResponse userInfoByToken = sywApi.getUserInfoByToken(token);
+			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
+			user = createUserFromSYWRespone(userInfoByToken);
+		}
+		
+		if (user.getFamilyId() == null) {
+			String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
+			user = assignFamilyId(user, familyId);
+		}
+		
+		return user;
+    }
+    
+
+	private User assignFamilyId(final User user, final String ncdbId) {
+		if (!StringUtils.isEmpty(ncdbId)) {
+			user.setFamilyId(Long.valueOf(ncdbId));
+		}
+		return user;
+	}
+    
 	/**
 	 * First search if already exist one {@link User}, and then update or create them.
 	 * 

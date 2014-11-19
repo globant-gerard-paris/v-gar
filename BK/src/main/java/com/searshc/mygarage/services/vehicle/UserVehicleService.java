@@ -10,22 +10,16 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
-import com.searshc.mygarage.apis.syw.SYWApi;
-import com.searshc.mygarage.apis.syw.SYWUtils;
-import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.repositories.UserVehicleRepository;
-import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 import com.searshc.mygarage.services.user.UserService;
 
 @Service
@@ -33,13 +27,7 @@ import com.searshc.mygarage.services.user.UserService;
 public class UserVehicleService extends GenericService<UserVehicle, Long, UserVehicleRepository> {
 
 	@Inject
-	private SYWApi sywApi;
-
-	@Inject
 	private NCDBApi ncdbApi;
-
-	@Inject
-	private NCDBLocalService ncdbLocal;
 
 	@Inject
 	private UserService userService;
@@ -100,23 +88,7 @@ public class UserVehicleService extends GenericService<UserVehicle, Long, UserVe
 	 * @return
 	 */
 	public UserVehicleStatus getUserVehicleStatus(String token) {
-		Validate.notNull(token, "The token can't be null.");
-
-		Long sywId = SYWUtils.getSywId(token);
-		Validate.notNull(sywId, "The token " + token + " is not valid.");
-
-		User user = userService.findBySywId(sywId);
-		if (user == null) {
-			SYWUserResponse userInfoByToken = sywApi.getUserInfoByToken(token);
-			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
-			user = userService.createUserFromSYWRespone(userInfoByToken);
-		}
-
-		if (user.getFamilyId() == null) {
-			String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
-			user = assignFamilyId(user, familyId);
-		}
-		
+		User user = userService.processUserByToken(token);
 		UserVehicleStatus vehicleStatus;
 		
 		// If still familyId null, means that User not have register on NCDB.
@@ -129,13 +101,6 @@ public class UserVehicleService extends GenericService<UserVehicle, Long, UserVe
 		vehicleStatus.setUserId(user.getId());
 
 		return vehicleStatus;
-	}
-
-	private User assignFamilyId(final User user, final String ncdbId) {
-		if (!StringUtils.isEmpty(ncdbId)) {
-			user.setFamilyId(Long.valueOf(ncdbId));
-		}
-		return user;
 	}
 
 	/**
