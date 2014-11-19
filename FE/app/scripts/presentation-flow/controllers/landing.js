@@ -6,14 +6,21 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, R
     $scope.slides = [
         {
             active:true,
-            image: 'resources/images/garage.jpg'
+            image: 'resources/images/landing/LP_1.jpg'
         },
         {
-            image: 'resources/images/car.jpg'
+            image: 'resources/images/landing/LP_2.jpg'
         },
         {
-            image: 'resources/images/car2.jpg'
+            image: 'resources/images/landing/LP_3.jpg'
+        },
+        {
+            image: 'resources/images/landing/LP_4.jpg'
+        },
+        {
+            image: 'resources/images/landing/LP_5.jpg'
         }
+
     ];
 
     $scope.typeModal = '';
