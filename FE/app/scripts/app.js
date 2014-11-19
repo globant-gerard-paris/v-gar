@@ -108,6 +108,14 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
+            routes.push({
+                name: '/services',
+                params: {
+                    templateUrl: 'scripts/presentation-flow/views/services.html',
+                    controller: 'ServicesCtrl'
+                }
+            });
+
             // yo:ngRoutes
 
             routes.forEach(function (route) {

@@ -8,6 +8,7 @@ module.exports = function (grunt) {
         options: {
             ignore: [
                 // Relax following general errors not necessary to valid
+                'End of file seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                 'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                 'XHTML element “head” is missing a required instance of child element “title”.',
                 'Attribute “ng-include” not allowed on XHTML element “div” at this point.',
