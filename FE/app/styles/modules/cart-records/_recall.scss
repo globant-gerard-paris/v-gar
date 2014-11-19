@@ -1,6 +1,8 @@
 .recall-box{
 	.recalls-info{
 		position: relative;
+		border-bottom: 1px solid #ddd;
+		padding: 24px 10px;
 		.row{
 			padding:10px;
 			.recall-info-title{
@@ -22,8 +24,6 @@
 			height: 51px;
 			background-image: url("../resources/images/recalls_separator.png");
 		}
-		border-bottom: 1px solid #ddd;
-		padding: 16px 0;
 	}
 }
 
