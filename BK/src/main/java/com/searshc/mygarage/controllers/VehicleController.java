@@ -28,13 +28,16 @@ import com.searshc.mygarage.entities.UserInformation;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
+import com.searshc.mygarage.entities.trends.VehicleTrend;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
+import com.searshc.mygarage.exceptions.VehicleTrendException;
 import com.searshc.mygarage.services.NcdbService;
 import com.searshc.mygarage.services.UserVehicleService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.user.UserInformationService;
+import com.searshc.mygarage.services.trends.VehicleTrendService;
 import com.searshc.mygarage.services.vehicle.VehicleServiceImpl;
 
 @RestController
@@ -49,17 +52,19 @@ public class VehicleController {
     private UserVehicleService userVehicleService;
     private UserInformationService userInformationService;
     private ObjectMapper objectMapper;
+    private VehicleTrendService vehicleTrendService;
 
     @Inject
     public VehicleController(final NcdbService ncdbService, final VehicleRecallsService nhtsaService,
     		final VehicleServiceImpl vehicleService, final UserVehicleService userVehicleService, final UserInformationService userInformationService,
-    		final ObjectMapper objectMapper) {
+    		final ObjectMapper objectMapper, final VehicleTrendService vehicleTrendService) {
         this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
         this.nhtsaService = Validate.notNull(nhtsaService, "The NHTSA Service cannot be null");
         this.vehicleService = Validate.notNull(vehicleService, "The Vehicle Service cannot be null");
         this.userVehicleService = Validate.notNull(userVehicleService, "The UserVehicle Service cannot be null");
         this.userInformationService = Validate.notNull(userInformationService, "The UserInformation Service cannot be null");
         this.objectMapper = Validate.notNull(objectMapper, "The ObjectMapper cannot be null");
+        this.vehicleTrendService = Validate.notNull(vehicleTrendService, "The Trend Reader Service cannot be null");
     }
 
     @RequestMapping(value = "/family/{ncdbId}",
@@ -110,6 +115,14 @@ public class VehicleController {
     	VehicleRecalls response = this.nhtsaService.getLastRecall(year, make, model);
     	return new ResponseEntity<VehicleRecalls>(response, null, HttpStatus.OK);
     }
+
+    @RequestMapping("/trends/make/{make}/last")
+    @ResponseBody
+    public ResponseEntity<VehicleTrend> getTrend(@PathVariable("make") String make) throws VehicleTrendException {
+    	
+    	VehicleTrend response = this.vehicleTrendService.getTrend(make);
+    	return new ResponseEntity<VehicleTrend>(response, null, HttpStatus.OK);
+    }    
     
     
     @RequestMapping(value = "/vehicles", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
