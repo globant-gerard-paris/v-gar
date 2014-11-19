@@ -1,85 +1,10 @@
 <!--TODO remove this block.-->
-<!--<style>
-    .mixin-in {
-        text-align: center;
-    }
-    /* line 1, _main.scss */
-    body {
-        /* Location of the image */
-        background-image: url(../resources/images/background-photo.jpg);
-        /* Image is centered vertically and horizontally at all times */
-        background-position: center center;
-        /* Image doesn't repeat */
-        background-repeat: no-repeat;
-        /* Makes the image fixed in the viewport so that it doesn't move when
-           the content height is greater than the image height */
-        background-attachment: fixed;
-        /* This is what makes the background image rescale based on its container's size */
-        background-size: cover;
-        /* Pick a solid background color that will be displayed while the background image is loading */
-        background-color: #464646;
-        /* SHORTHAND CSS NOTATION
-         * background: url(background-photo.jpg) center center cover no-repeat fixed;
-         */
-    }
-    /* line 1, _theme.scss */
-    .page-title {
-        color: white;
-        text-align: center;
-    }
-
-    /* line 17, bundle.scss */
-    .user-type {
-        width: 300px;
-        margin: 0 auto;
-        text-align: center;
-    }
-    /* line 21, bundle.scss */
-    .user-type .btn {
-        width: 100%;
-        height: 50px;
-        margin-bottom: 10px;
-        border-radius: 17px;
-        font-size: 1em;
-        background-color: white;
-        border-color: black;
-        padding: 8px;
-        text-align: center;
-    }
-
-    .btn-outline:hover,
-    .btn-outline:focus,
-    .btn-outline:active {
-        background-color: #F17F21;
-        color: #fff;
-    }
-</style>-->
-<!--
-<h2 class="page-title">Please choose a User Type to start a flow:</h2>
-<div class="user-type">
-    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('GUEST')">
-            Hi!, I'm a Guest
-    </button>
-    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('ONLY_SYW_USER')">
-            Hi!, I'm a Only SYW User
-    </button>
-    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('SIGNED_USER')">
-            Hi!, I'm a Signed User
-    </button>
-    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('FULL_USER')">
-            Hi!, I'm a Full User
-    </button>
-    <button type="button" class="btn btn-lg  btn-outline" ng-click="userTypeAction('NON_PARTICIPATE')">
-            Hi!, I'm a Full User But Non Participate
-    </button>
-</div>-->
 
 <div class=" ">
-    <div class="volatil">
-        <a  class="col-md-12 pull-left">
-            <img class="logoLanding" src="../resources/images/Logo_Large.png" alt=""/>
-        </a>
-        <h2 class="col-md-12 ">One place for all of your cars</h2>
+    <div class="logoLanding col-md-12">
+    </div>
+    <div class="divMain">
+        <div class="textTitle"></div>
         <h3 class="col-md-12 titleH3">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type</h3>
         <button class="btnStart"></button>
     </div>
@@ -93,14 +18,14 @@
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="../resources/images/LP_1.jpg" alt="..." data-holder-rendered="true">
+            <div class="item active firstImg">
+                <img src=".." alt=".." data-holder-rendered="true">
             </div>
-            <div class="item">
-                <img src="../resources/images/LP_2.jpg" alt="..." data-holder-rendered="true">
+            <div class="item middleImg">
+                <img src=".." alt=".." data-holder-rendered="true">
             </div>
-            <div class="item">
-                <img src="../resources/images/LP_3.jpg" alt="..." data-holder-rendered="true">
+            <div class="item lastImg">
+                <img src=".." alt=".." data-holder-rendered="true">
             </div>
         </div>
 
@@ -111,13 +36,16 @@
         </a>
     </div>
     <div class="row">
-        <div class="col-md-4 box1">
-            <label class="boxText">Get notification when your car needs service</label>
+        <div class="col-md-4 noPaddingRight">
+            <div class="boxFirst"></div>
+            <h4 class="boxText">Get notification when your car needs service</h4>
         </div>
-        <div class="col-md-4 box2">
+        <div class="col-md-4 noPadding">
+            <div class="boxMiddle"></div>
             <label class="boxText">Get service recommendation based on your mileage</label>
         </div>
-        <div class="col-md-4 box3">
+        <div class="col-md-4 noPaddingLeft">
+            <div class="boxLast"></div>
             <label class="boxText">Enjoy great discounts on Automotive parts</label>
         </div>
     </div>
