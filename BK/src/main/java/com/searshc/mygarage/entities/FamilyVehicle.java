@@ -13,8 +13,8 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
-@Table(name = "user_vehicle")
-public class UserVehicle extends AbstractEntity implements Serializable {
+@Table(name = "family_vehicle")
+public class FamilyVehicle extends AbstractEntity implements Serializable {
 
     /**
      * The Serial Version UID.
@@ -50,12 +50,12 @@ public class UserVehicle extends AbstractEntity implements Serializable {
     private int mileage;
 
     /**
-     * The UserVehicle name
+     * The FamilyVehicle name
      */
     @Column(name = "name")
     private String name;
 
-    public UserVehicle() {
+    public FamilyVehicle() {
         this.vehicle = null;
         this.familyId = null;
         this.tangibleId = null;
@@ -72,7 +72,7 @@ public class UserVehicle extends AbstractEntity implements Serializable {
      * @param mileage: Optional
      * @param name: Optional
      */
-    public UserVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final String color, final int mileage, final String name) {
+    public FamilyVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final String color, final int mileage, final String name) {
         this.vehicle = Validate.notNull(vehicle, "The Vehicle cannot be null");
         Validate.isTrue(familyId >= 0, "The FamilyId cannot be lower than 0");
         this.familyId = familyId;
@@ -170,6 +170,7 @@ public class UserVehicle extends AbstractEntity implements Serializable {
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
+        		.append(this.vehicle)
                 .append(this.familyId)
                 .append(this.tangibleId)
                 .append(this.color).hashCode();
@@ -186,10 +187,11 @@ public class UserVehicle extends AbstractEntity implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        UserVehicle rhs = (UserVehicle) obj;
+        FamilyVehicle rhs = (FamilyVehicle) obj;
         return new EqualsBuilder()
                 .append(this.vehicle, rhs.vehicle)
                 .append(this.familyId, rhs.familyId)
-                .append(this.tangibleId, rhs.tangibleId).isEquals();
+                .append(this.tangibleId, rhs.tangibleId)
+                .append(this.color, rhs.color).isEquals();
     }
 }

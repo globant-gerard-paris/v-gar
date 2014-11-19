@@ -1,5 +1,7 @@
 package com.searshc.mygarage.controllers.user;
 
+import java.util.Set;
+
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
@@ -12,9 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.services.user.UserService;
-import com.searshc.mygarage.services.vehicle.UserVehicleService;
+import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
 import com.searshc.mygarage.services.vehicle.UserVehicleStatus;
 
 /**
@@ -31,15 +34,15 @@ public class UserController {
 
     private UserService userService;
 
-    private UserVehicleService userVehicleService;
+    private FamilyVehicleService familyVehicleService;
 
     /**
      * @param userService
      */
     @Inject
-    public UserController(UserService userService, UserVehicleService userVehicleService) {
+    public UserController(UserService userService, FamilyVehicleService familyVehicleService) {
         this.userService = Validate.notNull(userService, "The User Service cannot be null");
-        this.userVehicleService = Validate.notNull(userVehicleService, "The User Vehicle Service cannot be null");
+        this.familyVehicleService = Validate.notNull(familyVehicleService, "The User Vehicle Service cannot be null");
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,9 +54,9 @@ public class UserController {
 
     @RequestMapping(value = "/token/{token}/vehicles-information", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<UserVehicleStatus> getUser(@PathVariable("token") String token) {
-    	UserVehicleStatus userVehicleStatus = this.userVehicleService.getUserVehicleStatus(token);
-    	return new ResponseEntity<UserVehicleStatus>(userVehicleStatus, HttpStatus.OK);
+    public ResponseEntity<Set<VehicleConfirmationDTO>> getUser(@PathVariable("token") String token) {
+    	Set<VehicleConfirmationDTO> result = this.familyVehicleService.getUserVehicleStatus(token);
+    	return new ResponseEntity<Set<VehicleConfirmationDTO>>(result, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)

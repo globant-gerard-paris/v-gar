@@ -2,38 +2,31 @@ package com.searshc.mygarage.services.record;
 
 import java.util.List;
 
-import javax.inject.Inject;
+import org.springframework.stereotype.Service;
 
-import org.apache.commons.lang3.Validate;
-
-import com.searshc.mygarage.apis.ncdb.NCDBApi;
 import com.searshc.mygarage.base.GenericService;
-import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.Record;
-import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
 
-public class RecordService extends GenericService<Record, Long, RecordRepository> {
+@Service
+public class RecordService extends GenericService<Record, Long, RecordRepository>{
 
-    private NCDBApi ncdbApi;
+	public List<Record> getRecordsByFamilyVehicleId(final Long familyVehicleId) {
+		return  repository.getRecordsByFamilyVehicleId(familyVehicleId);
+	}
+	
+	public void deleteRecord(final Long recordId) {
+		repository.delete(recordId);
+	}
+	
+	public int getHighestMileageByFamilyVehicleId(final Long familyVehicleId) {
+		int mileage = -1;
+		try {
+			mileage = repository.getHighestMileageByFamilyVehicleId(familyVehicleId);
+		} catch (NullPointerException e) {
+			mileage = -1;
+		}
+		return mileage;
+	}
 
-    @Inject
-    public RecordService(final NCDBApi ncdbApi) {
-        this.ncdbApi = Validate.notNull(ncdbApi, "The NCDB Api cannot be null");
-    }
-
-    public List<Record> getRecordsByUserVehicleId(final Long userVehicleId) {
-        return repository.getRecordsByUserVehicleId(userVehicleId);
-    }
-
-    public void deleteRecord(final Long recordId) {
-        repository.delete(recordId);
-    }
-
-    public List<Order> getTransactions(final Long familyIdNumber, final Long tangibleId) throws NCDBApiException {
-        //TODO: query the ncdb service
-        //TODO: query the local database
-        //TODO: merge both results
-        return this.ncdbApi.getCarTransactionHistory(familyIdNumber, tangibleId);
-    }
 }

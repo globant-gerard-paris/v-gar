@@ -29,7 +29,7 @@ import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.OrderItem;
-import com.searshc.mygarage.entities.UserVehicle;
+import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import java.util.Calendar;
 import java.util.Collections;
@@ -139,19 +139,19 @@ public class NCDBApiImpl implements NCDBApi {
     }
 
     @Override
-    public List<UserVehicle> getVehicles(Long familyIdNumber) throws NCDBApiException {
+    public List<FamilyVehicle> getVehicles(Long familyIdNumber) throws NCDBApiException {
         VehicleRetrievalResponse vehicleRetrievalResponse = this.getNCDBVehicles(familyIdNumber);
         return vehicleRetrievalResponse != null
-                ? this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<UserVehicle>();
+                ? this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<FamilyVehicle>();
 
     }
 
-    public List<UserVehicle> convert(final List<VehicleResponse> vehicleResponseList) {
+    public List<FamilyVehicle> convert(final List<VehicleResponse> vehicleResponseList) {
         Validate.noNullElements(vehicleResponseList, "The VehicleResponse list cannot be null");
-        List<UserVehicle> result = new ArrayList<UserVehicle>();
+        List<FamilyVehicle> result = new ArrayList<FamilyVehicle>();
         for (VehicleResponse vehicle : vehicleResponseList) {
             try {
-                result.add(this.mapper.map(vehicle, UserVehicle.class));
+                result.add(this.mapper.map(vehicle, FamilyVehicle.class));
             } catch (MappingException e) {
                 log.error("Could convert VehicleResponse to Vehicle object. TangibleId: " + vehicle.getTangibleIdNumber(), e);
             }
