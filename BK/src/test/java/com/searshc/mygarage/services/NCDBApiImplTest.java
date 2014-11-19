@@ -5,7 +5,7 @@ import com.searshc.mygarage.apis.ncdb.response.EsbMsgRequest;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.entities.UserVehicle;
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,36 +22,36 @@ import static org.mockito.Mockito.*;
  */
 //@RunWith(MockitoJUnitRunner.class)
 public class NCDBApiImplTest {
-/*
-    @InjectMocks
-    private NCDBApiImpl nCDBApiImpl;
+    /*
+     @InjectMocks
+     private NCDBApiImpl nCDBApiImpl;
 
-    @Mock
-    private RestTemplate restTemplate;
+     @Mock
+     private RestTemplate restTemplate;
 
-    @Test
-    public void getVehiclesSuccess() {
+     @Test
+     public void getVehiclesSuccess() {
 
-        when(this.restTemplate.postForObject(anyString(),
-                any(EsbMsgRequest.class), eq(VehicleRetrievalResponse.class)))
-                .thenReturn(new VehicleRetrievalResponse());
+     when(this.restTemplate.postForObject(anyString(),
+     any(EsbMsgRequest.class), eq(VehicleRetrievalResponse.class)))
+     .thenReturn(new VehicleRetrievalResponse());
 
-        List<Vehicle> vehicles = this.nCDBApiImpl.getVehicles(anyInt());
+     List<Vehicle> vehicles = this.nCDBApiImpl.getVehicles(anyInt());
 
-        Assert.assertNotNull(vehicles);
+     Assert.assertNotNull(vehicles);
 
-    }
+     }
 
-    @Test
-    public void getCarTransactionHistorySuccess() {
+     @Test
+     public void getCarTransactionHistorySuccess() {
 
-        when(this.restTemplate.postForObject(anyString(),
-                any(EsbMsgRequest.class), eq(OrderHistoryResponse.class)))
-                .thenReturn(new OrderHistoryResponse());
+     when(this.restTemplate.postForObject(anyString(),
+     any(EsbMsgRequest.class), eq(OrderHistoryResponse.class)))
+     .thenReturn(new OrderHistoryResponse());
 
-        List<Order> orders = this.nCDBApiImpl.getCarTransactionHistory(anyInt(), anyInt());
+     List<Order> orders = this.nCDBApiImpl.getCarTransactionHistory(anyInt(), anyInt());
 
-        Assert.assertNotNull(orders);
+     Assert.assertNotNull(orders);
 
-    }*/
+     }*/
 }

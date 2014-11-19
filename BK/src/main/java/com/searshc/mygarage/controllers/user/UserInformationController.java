@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.searshc.mygarage.entities.UserInformation;
-import com.searshc.mygarage.repositories.UserInformationRepository;
-import com.searshc.mygarage.services.user.UserInformationService;
+import com.searshc.mygarage.entities.User;
+import com.searshc.mygarage.services.user.UserService;
 
 /**
- * 
- * The {@link UserInformationController} have the responsibility to manager the request about the
- * {@link UserInformation}s in the system.
- * 
+ *
+ * The {@link UserInformationController} have the responsibility to manager the
+ * request about the {@link User}s in the system.
+ *
  * @author Jero
  *
  */
@@ -28,40 +27,40 @@ import com.searshc.mygarage.services.user.UserInformationService;
 @RequestMapping("/user")
 public class UserInformationController {
 
-	private UserInformationService userInformationService;
-	
-	/**
-	 * @param userInformationService
-	 */
-	@Inject
-	public UserInformationController(UserInformationService userInformationService) {
-		this.userInformationService = Validate.notNull(userInformationService, "The User Information Service cannot be null");
-	}
+    private UserService userService;
 
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<UserInformation> getUser(@PathVariable("userId") long userId) {
-		UserInformation userInformation = this.userInformationService.getItem(userId);
-		return new ResponseEntity<UserInformation>(userInformation, null, HttpStatus.OK);
-	}
-	
-	@RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> setFavoriteStore(@PathVariable("userId") Long userId,
-			@PathVariable("storeId") Long storeId) throws Exception {
+    /**
+     * @param userService
+     */
+    @Inject
+    public UserInformationController(UserService userService) {
+        this.userService = Validate.notNull(userService, "The User Information Service cannot be null");
+    }
 
-		userInformationService.setFavoriteStore(storeId, userId);
-		return new ResponseEntity<String>(HttpStatus.OK);
-	}
+    @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<User> getUser(@PathVariable("userId") long userId) {
+        User user = this.userService.getItem(userId);
+        return new ResponseEntity<User>(user, null, HttpStatus.OK);
+    }
 
-	@RequestMapping(value = "/{userId}/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<Object> getStores(@PathVariable("userId") Long userId) throws Exception {
-		UserInformation userInformation = userInformationService.findByUserId(userId);
-		if (userInformation != null) {
-			return new ResponseEntity<Object>(userInformation, HttpStatus.OK);
-		} else {
-			return new ResponseEntity<Object>(HttpStatus.OK);
-		}
-	}
+    @RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<String> setFavoriteStore(@PathVariable("userId") Long userId,
+            @PathVariable("storeId") Long storeId) throws Exception {
+
+        userService.setFavoriteStore(storeId, userId);
+        return new ResponseEntity<String>(HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/{userId}/store", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Object> getStores(@PathVariable("userId") Long userId) throws Exception {
+        User user = userService.findByUserId(userId);
+        if (user != null) {
+            return new ResponseEntity<Object>(user, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<Object>(HttpStatus.OK);
+        }
+    }
 }

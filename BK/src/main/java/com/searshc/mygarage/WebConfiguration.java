@@ -15,5 +15,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Import({ApplicationConfiguration.class, DatabaseConfiguration.class})
 public class WebConfiguration {
 
-	private static final Log log = LogFactory.getLog(WebConfiguration.class);
+    private static final Log log = LogFactory.getLog(WebConfiguration.class);
 }

@@ -1,214 +1,165 @@
 package com.searshc.mygarage.entities;
+
+import static org.apache.commons.lang3.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.notNull;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
 
 @Entity
 @Table(name = "vehicle")
-public class Vehicle extends AbstractEntity implements Serializable{
+public class Vehicle extends AbstractEntity implements Serializable {
 
-	/**
-	 * The Serial Version UID.
-	 */
-	private static final long serialVersionUID = -650535603949006577L;
+    /**
+     * The Serial Version UID.
+     */
+    private static final long serialVersionUID = -4412113151100181178L;
+    /**
+     * The Vehicle year. Required.
+     */
+    @Column(name = "year")
+    private int year;
+    /**
+     * The Vehicle Make. Required.
+     */
+    @Column(name = "make")
+    private String make;
+    /**
+     * The Vehicle Model. Required.
+     */
+    @Column(name = "model")
+    private String model;
+    /**
+     * The Vehicle Engine.
+     */
+    @Column(name = "engine")
+    private String engine;
+    /**
+     * The Vehicle Type. TODO: use a enum insted of String.
+     * <br>Possible values:
+     * <ul><strong>P</strong> for passenger Vehicles</ul>
+     * <ul><strong>LT</strong> for Light Duty Vehicles</ul>
+     * <ul><strong>MD</strong> for Medium Duty Vehicles</ul>
+     */
+    @Column(name = "type")
+    private String type;
 
-	/**
-	 * The NCDB Family Id. Optional.
-	 * A value indicates that the vehicle belongs to a family instead an individual user.
-	 */
-	@Column(name = "familyid", nullable = true, unique = true)
-	private Long familyId;
-	
-	/**
-	 * The Tangible Id. Optional. It is the id used in NCDB to identify uniquely a vehicle.
-	 * A value indicates that the vehicle is registered in NCDB, otherwise is a local vehicle.
-	 */
-	@Column(name = "tangibleid", nullable = true)
-	private Long tangibleId;
-	
-	//TODO: change the String to another data type
-	@Column(name = "make")
-	private String make;
-	
-	@Column(name = "model")
-	private String model;
-	
-	@Column(name = "year")
-	private int year;
-	
-	//TODO: change the String to another data type
-	@Column(name = "color")
-	private String color;
-	
-	@Column(name = "mileage")
-	private int mileage;
-	
-	
-	public Vehicle() {
-		this.familyId = null;
-		this.tangibleId = null;
-		this.make = "";
-		this.model = "";
-		this.year = 0;
-		this.color = "";
-		this.mileage = 0;
-	}
-	
-	
-	/**
-	 * @param familyId: Optional
-	 * @param tangibleId: Optional
-	 * @param make: Required
-	 * @param model: Required
-	 * @param year: Required
-	 * @param color: Required
-	 * @param mileage: Optional
-	 */
-	public Vehicle(final Long familyId, final Long tangibleId, final String make,
-			final String model, final int year, final String color, final int mileage) {
-		this.familyId = familyId; //No validation required
-		this.tangibleId = tangibleId; //No validation required
-		this.make = Validate.notNull(make, "The Make cannot be null");
-		this.model = Validate.notNull(model, "The Model cannot be null");
-		Validate.isTrue(year > 0, "The Year cannot be lower than 0");
-		this.year = year;
-		this.color = color;
-		this.mileage = mileage;
-	}
+    public Vehicle() {
+        super();
+        this.year = 0;
+        this.make = "";
+        this.model = "";
+    }
 
-	/**
-	 * @return the familyId
-	 */
-	public Long getFamilyId() {
-		return familyId;
-	}
+    /**
+     * @param year required.
+     * @param make required.
+     * @param model required.
+     * @param engine
+     * @param type
+     */
+    public Vehicle(final int year, final String make, final String model, final String engine, final String type) {
+        super();
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
+        this.make = notNull(make, "The Make cannot be null");
+        this.model = notNull(model, "The Model cannot be null");
+        this.engine = engine;
+        this.type = type;
+    }
 
-	/**
-	 * @param familyId the familyId to set
-	 */
-	public void setFamilyId(Long familyId) {
-		this.familyId = familyId;
-	}
+    /**
+     * @return the year
+     */
+    public int getYear() {
+        return year;
+    }
 
-	/**
-	 * @return the tangibleId
-	 */
-	public Long getTangibleId() {
-		return tangibleId;
-	}
+    /**
+     * @param year the year to set
+     */
+    public void setYear(int year) {
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
+    }
 
-	/**
-	 * @param tangibleId the tangibleId to set
-	 */
-	public void setTangibleId(Long tangibleId) {
-		this.tangibleId = tangibleId;
-	}
+    /**
+     * @return the make
+     */
+    public String getMake() {
+        return make;
+    }
 
-	/**
-	 * @return the make
-	 */
-	public String getMake() {
-		return make;
-	}
+    /**
+     * @param make the make to set
+     */
+    public void setMake(String make) {
+        this.make = notNull(make, "The Make cannot be null");
+    }
 
-	/**
-	 * @param make the make to set
-	 */
-	public void setMake(String make) {
-		this.make = Validate.notNull(make, "The Make cannot be null");
-	}
+    /**
+     * @return the model
+     */
+    public String getModel() {
+        return model;
+    }
 
-	/**
-	 * @return the model
-	 */
-	public String getModel() {
-		return model;
-	}
+    /**
+     * @param model the model to set
+     */
+    public void setModel(String model) {
+        this.model = notNull(model, "The Model cannot be null");
+    }
 
-	/**
-	 * @param model the model to set
-	 */
-	public void setModel(String model) {
-		this.model = Validate.notNull(model, "The Model cannot be null");
-	}
+    /**
+     * @return the engine
+     */
+    public String getEngine() {
+        return engine;
+    }
 
-	/**
-	 * @return the year
-	 */
-	public int getYear() {
-		return year;
-	}
+    /**
+     * @param engine the engine to set
+     */
+    public void setEngine(String engine) {
+        this.engine = engine;
+    }
 
-	/**
-	 * @param year the year to set
-	 */
-	public void setYear(int year) {
-		Validate.isTrue(year > 0, "The Year cannot be lower than 0");
-		this.year = year;
-	}
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
 
-	/**
-	 * @return the color
-	 */
-	public String getColor() {
-		return color;
-	}
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
 
-	/**
-	 * @param color the color to set
-	 */
-	public void setColor(String color) {
-		this.color = color;
-	}
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Vehicle rhs = (Vehicle) obj;
+        return new EqualsBuilder()
+                .append(this.year, rhs.year)
+                .append(this.make, rhs.make)
+                .append(this.model, rhs.model).isEquals();
+    }
 
-	/**
-	 * @return the mileage
-	 */
-	public int getMileage() {
-		return mileage;
-	}
-
-	/**
-	 * @param mileage the mileage to set
-	 */
-	public void setMileage(int mileage) {
-		this.mileage = mileage;
-	}
-	
-	@Override
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(this.familyId)
-			.append(this.tangibleId)
-			.append(this.make)
-			.append(this.model)
-			.append(this.year)
-			.append(this.color).hashCode();
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Vehicle rhs = (Vehicle) obj;
-		return new EqualsBuilder()
-			.append(this.familyId, rhs.familyId)
-			.append(this.tangibleId, rhs.tangibleId)
-			.append(this.make, rhs.make)
-			.append(this.model, rhs.model)
-			.append(this.year, rhs.year)
-			//.append(this.color, rhs.color).isEquals();
-			.isEquals();
-	}
 }

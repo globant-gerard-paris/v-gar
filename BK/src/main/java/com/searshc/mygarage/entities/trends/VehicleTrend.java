@@ -1,11 +1,8 @@
 package com.searshc.mygarage.entities.trends;
 
-import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.searshc.mygarage.util.CustomDateSerializer;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 
 public class VehicleTrend {

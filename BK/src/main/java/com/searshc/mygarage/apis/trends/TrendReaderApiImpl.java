@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.apis.trends.response.TrendReader;
 import com.searshc.mygarage.exceptions.VehicleTrendException;
 
@@ -21,30 +22,27 @@ public class TrendReaderApiImpl implements TrendReaderApi {
 	private static final Log log = LogFactory.getLog(TrendReaderApiImpl.class);
 	
 	private RestTemplate restTemplate = new RestTemplate();
+	private ObjectMapper mapper = new ObjectMapper();
 
 	@Value("${trend.reader.api.query.template.year.make.model}")
 	private String endpoint;
 	
 	
 	public TrendReaderApiImpl() {
-		//USE THIS CONFIG IF YOU ARE IN SEARS VPN
-		/*SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-
-	    Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
-	    requestFactory.setProxy(proxy);
-
-	    this.restTemplate = new RestTemplate(requestFactory);*/
 		this.restTemplate = new RestTemplate();
+		this.mapper = new ObjectMapper();
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<TrendReader> getTrends(final String make) throws VehicleTrendException {
-		ResponseEntity<TrendReader[]> responseEntity = null;
+		TrendReader[] trends = {};
+		String responseEntity = "";
 		String url = String.format(this.endpoint, make);
 		log.info("Querying trends at: " + url);
 		try {
-			responseEntity = restTemplate.getForEntity(url, TrendReader[].class);
-		} catch (RestClientException e) {
+			responseEntity = this.restTemplate.getForObject(url, String.class);
+			trends = this.mapper.readValue(responseEntity, TrendReader[].class);
+		} catch (Exception e) {
 			String message = new StringBuilder()
 				.append("Could not get Trends for: ")
 				.append(make).toString();
@@ -52,8 +50,8 @@ public class TrendReaderApiImpl implements TrendReaderApi {
 			throw new VehicleTrendException(message);
 		}
 
-		log.info("Trends found: " + responseEntity.getBody().length);
-		return Arrays.asList(responseEntity.getBody());
-	}
-	
+		log.info("Trends found: " + trends.length);
+		return Arrays.asList(trends);
+	}	
+
 }
