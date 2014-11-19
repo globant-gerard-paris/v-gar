@@ -4,6 +4,14 @@
 </div>
 
 <div class="row page-buttons">
-    <div class="col-xs-6 col-md-5 col-md-offset-1">Services</div>
-    <div class="selected col-xs-6 col-md-5">Recalls</div>
+	<a href="/services">
+	    <div
+	    	ng-class="selectedTab === 'services' ? 'selected' : ''"
+	    	class="col-xs-6 col-md-5 col-md-offset-1">Services</div>
+    </a>
+    <a href="/recalls">
+    	<div 
+    		ng-class="selectedTab === 'recalls' ? 'selected' : ''"
+    		class="col-xs-6 col-md-5">Recalls</div>
+    </a>
 </div>
