@@ -161,7 +161,6 @@ public class NCDBApiImpl implements NCDBApi {
 
     public VehicleRetrievalResponse getNCDBVehicles(final Long familyIdNumber) throws NCDBApiException {
         MdsHeader header = new MdsHeader(this.vehicleRetrievalServiceName);
-
         header.setRequestorUserId(this.requestorUserId);
         header.setMessageOriginationTime(this.simpleDateFormat.format(new Date()));
         header.setSequenceNumber("001");

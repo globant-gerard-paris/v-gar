@@ -1,7 +1,5 @@
 package com.searshc.mygarage.controllers.user;
 
-import java.util.Set;
-
 import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
@@ -14,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.services.user.UserService;
 import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
-import com.searshc.mygarage.services.vehicle.UserVehicleStatus;
 
 /**
  *
@@ -50,13 +46,6 @@ public class UserController {
     public ResponseEntity<User> getUser(@PathVariable("userId") long userId) {
         User user = this.userService.getItem(userId);
         return new ResponseEntity<User>(user, null, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/token/{token}/vehicles-information", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<Set<VehicleConfirmationDTO>> getUser(@PathVariable("token") String token) {
-    	Set<VehicleConfirmationDTO> result = this.familyVehicleService.getUserVehicleStatus(token);
-    	return new ResponseEntity<Set<VehicleConfirmationDTO>>(result, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{userId}/store/{storeId}", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)

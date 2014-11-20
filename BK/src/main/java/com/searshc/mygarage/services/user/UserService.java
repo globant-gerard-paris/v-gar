@@ -75,6 +75,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 		if (user == null) {
 			SYWUserResponse userInfoByToken = sywApi.getUserInfoByToken(token);
 			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
+			Validate.notNull(userInfoByToken.getSywrMemberNumber(), "The user not have shopyourway member number: " + token);
 			user = createUserFromSYWRespone(userInfoByToken);
 		}
 		

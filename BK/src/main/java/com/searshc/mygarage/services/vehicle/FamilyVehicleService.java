@@ -21,10 +21,10 @@ import org.springframework.transaction.annotation.Transactional;
 import scala.collection.mutable.StringBuilder;
 
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
-import com.searshc.mygarage.apis.syw.SYWApi;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO.Status;
+import com.searshc.mygarage.dtos.home.HomeDto;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -43,9 +43,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
 	private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
 	
-	@Inject
-	private SYWApi sywApi;
-
 	@Inject
 	private NCDBApi ncdbApi;
 
@@ -125,12 +122,12 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return result;
     }
 
-    /** Given a {@code token} prepare a Status of vehicles for the user.
+    /** Given a {@code token} prepare a all the home information.
 	 * 
 	 * @param token
-	 * @return
+	 * @return return the {@link HomeDto}.
 	 */
-	public Set<VehicleConfirmationDTO> getUserVehicleStatus(String token) {
+	public HomeDto getHomeInformation(String token) {
 		User user = userService.processUserByToken(token);
 		Set<VehicleConfirmationDTO> result = null;
 		
@@ -141,7 +138,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 			result = createReportWithoutNCDB(user.getId());
 		}
 		
-		return result;
+		return new HomeDto(result, user.getId());
 	}
 
 	/**
@@ -162,7 +159,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 			result.addAll(this.convert(linkedVehicles, true));
 		}
 
-		List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles);
+		List<FamilyVehicle> manualCars = getManualVehicle(localVehicles);
 		result.addAll(this.convert(manualCars, true));
 		return result;
 	}
@@ -173,16 +170,19 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 	 * @param ncdbVehicles
 	 * @return return {@link UserVehicleStatus}.
 	 */
-	private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles,final List<FamilyVehicle> ncdbVehicles){
+	private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles){
+		List<FamilyVehicle> manual = new ArrayList<FamilyVehicle>();
+		
 		if(CollectionUtils.isEmpty(localVehicles)){
 			return new ArrayList<FamilyVehicle>();
 		}
 		
-		if(CollectionUtils.isEmpty(ncdbVehicles)){
-			return localVehicles;
+		for (FamilyVehicle localVehicle : localVehicles) {
+			if(localVehicle.getTangibleId() == null){
+				manual.add(localVehicle);
+			}
 		}
-		localVehicles.removeAll(ncdbVehicles);
-		return localVehicles;
+		return manual;
 	}
 	
 	/**
@@ -196,7 +196,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 		if (!CollectionUtils.isEmpty(localVehicles) && !CollectionUtils.isEmpty(ncdbVehicles)) {
 			for (FamilyVehicle ncdbVehicle : ncdbVehicles) {
 				for (FamilyVehicle localVehicle : localVehicles) {
-					if(localVehicle.getTangibleId() == ncdbVehicle.getTangibleId()){
+					if(localVehicle.getTangibleId().equals(ncdbVehicle.getTangibleId())){
 						linkedVehicles.add(localVehicle);
 					}
 				}
@@ -235,7 +235,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             }
             if (dto.getVehicleId() != 0) {
                 familyVehicle = this.getItem(dto.getVehicleId());
-            } else if (dto.getTangibleId() != null) {
+            } else if (dto.getTangibleId() == null) {
                 familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
             } else {
                 familyVehicle = mapper.map(dto, FamilyVehicle.class);
@@ -243,7 +243,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
             confirmedVehicle = new ConfirmedVehicle();
             confirmedVehicle.setUser(user);
-            confirmedVehicle.setVehicle(familyVehicle);
+            confirmedVehicle.setFamilyVehicle(familyVehicle);
 
             result.add(confirmedVehicle);
         }

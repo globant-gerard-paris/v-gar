@@ -54,9 +54,9 @@ public class ConfirmedVehicleService extends GenericService<ConfirmedVehicle, Lo
     public Set<FamilyVehicle> extractNoPersistedVehicles(Set<ConfirmedVehicle> confirmedVehicles) {
         Set<FamilyVehicle> result = new HashSet<FamilyVehicle>();
         for (ConfirmedVehicle confirmedVehicle : confirmedVehicles) {
-            Long id = confirmedVehicle.getVehicle().getId();
+            Long id = confirmedVehicle.getFamilyVehicle().getId();
             if (id == null || id == 0) {
-                result.add(confirmedVehicle.getVehicle());
+                result.add(confirmedVehicle.getFamilyVehicle());
             }
         }
         return result;

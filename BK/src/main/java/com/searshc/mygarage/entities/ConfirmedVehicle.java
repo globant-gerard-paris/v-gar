@@ -61,14 +61,14 @@ public class ConfirmedVehicle extends AbstractEntity implements Serializable {
     /**
      * @return the vehicle
      */
-    public FamilyVehicle getVehicle() {
+    public FamilyVehicle getFamilyVehicle() {
         return familyVehicle;
     }
 
     /**
      * @param familyVehicle the vehicle to set
      */
-    public void setVehicle(FamilyVehicle familyVehicle) {
+    public void setFamilyVehicle(FamilyVehicle familyVehicle) {
         this.familyVehicle = familyVehicle;
     }
 
