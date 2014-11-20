@@ -8,7 +8,7 @@ angular.module('PresentationFlow').directive('disableAnimation', function($anima
                 $animate.enabled(!value, $element);
             });
         }
-    }
+    };
 });
 
 angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
