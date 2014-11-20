@@ -6,19 +6,19 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, R
     $scope.slides = [
         {
             active:true,
-            image: 'resources/images/landing/LP_1.jpg'
+            class: 'carousel_img_LP_1'
         },
         {
-            image: 'resources/images/landing/LP_2.jpg'
+            class: 'carousel_img_LP_2'
         },
         {
-            image: 'resources/images/landing/LP_3.jpg'
+            class: 'carousel_img_LP_3'
         },
         {
-            image: 'resources/images/landing/LP_4.jpg'
+            class: 'carousel_img_LP_4'
         },
         {
-            image: 'resources/images/landing/LP_5.jpg'
+            class: 'carousel_img_LP_5'
         }
 
     ];
