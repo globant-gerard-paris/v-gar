@@ -23,6 +23,8 @@ public class VehicleConfirmationDTO implements Serializable {
     private String model;
     @Mapping("vehicle.year")
     private int year;
+    @Mapping("vehicle.engine")
+    private String engine;
     @JsonProperty("isConfirmed")
     private boolean isConfirmed;
     private Status status;
@@ -40,7 +42,7 @@ public class VehicleConfirmationDTO implements Serializable {
      * @param isConfirmed
      */
     public VehicleConfirmationDTO(Long vehicleId, Long familyId, Long tangibleId, String make, String model, int year,
-            boolean isConfirmed, Status status) {
+            String engine, boolean isConfirmed, Status status) {
         super();
         this.vehicleId = vehicleId;
         this.familyId = familyId;
@@ -48,6 +50,7 @@ public class VehicleConfirmationDTO implements Serializable {
         this.make = make;
         this.model = model;
         this.year = year;
+        this.engine = engine;
         this.isConfirmed = isConfirmed;
         this.status = status;
     }
@@ -149,6 +152,20 @@ public class VehicleConfirmationDTO implements Serializable {
     }
 
     /**
+	 * @return the engine
+	 */
+	public String getEngine() {
+		return engine;
+	}
+
+	/**
+	 * @param engine the engine to set
+	 */
+	public void setEngine(String engine) {
+		this.engine = engine;
+	}
+
+	/**
      * @return the isConfirmed
      */
     @JsonIgnore
