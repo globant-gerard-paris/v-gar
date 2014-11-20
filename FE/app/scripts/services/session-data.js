@@ -3,6 +3,14 @@
 angular.module('Services').service('SessionDataSrv', function () {
 
     /**
+     * Return the Current token from i-frame session.
+     * @returns {string}
+     */
+    var getCurrentToken = function () {
+        return window.vg.config.token;
+    };
+
+    /**
      * Return the Current userId session.
      * @returns {string}
      */
@@ -27,7 +35,8 @@ angular.module('Services').service('SessionDataSrv', function () {
     return {
         getCurrentUser: getCurrentUser,
         getCurrentFamilyId: getCurrentFamilyId,
-        getCurrentTangibleId: getCurrentTangibleId
+        getCurrentTangibleId: getCurrentTangibleId,
+        getCurrentToken: getCurrentToken
     };
 
 });

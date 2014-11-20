@@ -87,6 +87,7 @@
         <script src="scripts/presentation-flow/services/recalls.js"></script>
 
         <script src="scripts/presentation-flow/services/linked-car.js"></script>
+  <script src="scripts/services/home-service.js"></script>
   <!-- yo:services -->
 
         <script src="scripts/filters/filters.js"></script>        
@@ -99,6 +100,17 @@
         <script src="scripts/directives/record-row.js"></script>
         <script src="scripts/directives/car-confirmation.js"></script>
 
+        <!-- GET CURRENT SESSION TOKEN -->
+        <script>
+            var indexStart = location.toString().indexOf("token") + 6;
+            var indexEnd = location.toString().length;
+            var currentHash = location.toString().substring(indexStart, indexEnd);
+            window.vg = {
+                config : {
+                    token : currentHash
+                }
+            };
+        </script>
         <!-- yo:directives -->
 
         <!-- endbuild -->

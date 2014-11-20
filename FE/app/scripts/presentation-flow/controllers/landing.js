@@ -11,7 +11,7 @@ angular.module('PresentationFlow').directive('disableAnimation', function($anima
     };
 });
 
-angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
+angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv,$modal, HomeServiceSrv) {
 
 
     $scope.slides = [
@@ -38,28 +38,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, R
 
     $scope.typeModal = '';
     $scope.startNow = function () {
-        var action = PresentationFlowSrv.getUserTypeAction();
-        switch (action) {
-        case 'GUEST':
-            $scope.typeModal = 'SIGN-UP';
-            $scope.open('/add-car');
-            break;
-        case 'ONLY_SYW_USER':
-            $scope.typeModal = 'SIGN-IN';
-            $scope.open('/dashboard');
-            break;
-        case 'SIGNED_USER':
-            RedirectSrv.redirectTo('/add-car');
-            break;
-        case 'FULL_USER':
-            RedirectSrv.redirectTo('/dashboard');
-            break;
-        case 'NON_PARTICIPATE':
-            RedirectSrv.redirectTo('/linked-car');
-            break;
-        default:
-            RedirectSrv.redirectTo('/presentation-flow');
-        }
+        HomeServiceSrv.getUserSessionInfo().then(successGetUserInfo, failGetUserInfo);
     };
 
     $scope.open = function (destinationUrl) {
@@ -80,6 +59,38 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, R
         }, function () {
            // 'Modal dismissed at: ' + new Date()
         });
+    };
+
+
+    var successGetUserInfo = function(response){
+
+        var action = 'algo!';
+
+        switch (action) {
+            case 'GUEST':
+                $scope.typeModal = 'SIGN-UP';
+                $scope.open('/add-car');
+                break;
+            case 'ONLY_SYW_USER':
+                $scope.typeModal = 'SIGN-IN';
+                $scope.open('/dashboard');
+                break;
+            case 'SIGNED_USER':
+                RedirectSrv.redirectTo('/add-car');
+                break;
+            case 'FULL_USER':
+                RedirectSrv.redirectTo('/dashboard');
+                break;
+            case 'NON_PARTICIPATE':
+                RedirectSrv.redirectTo('/linked-car');
+                break;
+            default:
+                RedirectSrv.redirectTo('/presentation-flow');
+        }
+
+    };
+    var failGetUserInfo = function(response){
+
     };
 
 }).controller('ModalInstanceCtrl', function ($scope, $modalInstance, destinationPage) {
