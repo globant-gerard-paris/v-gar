@@ -149,6 +149,8 @@ public class NcdbServiceImpl implements NcdbService {
                             }
                         }
                     }
+                    //Restore original description
+                    item.setItemDescription(orderItem.getItemDescription());
                     order.addOrderItems(item);
                 }
             }
