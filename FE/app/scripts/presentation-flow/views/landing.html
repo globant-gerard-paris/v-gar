@@ -23,15 +23,12 @@
     }
 
     .landing-top{
-        height: 410px;
+        height: 70%;
+        min-height: 410px;
     }
 
-    .carousel{
-        height:410px;
-    }
 
     .carousel_img{
-        height:410px !important;
         width: 100%;
         background-size: cover;
         background-position: center center;
@@ -50,10 +47,14 @@
 
     .landing_box{
         position: relative;
-        height:330px;
+        height:100%;
         background-position: center center;
         background-size: cover;
         color:white;
+    }
+
+    .landing-bottom{
+        height:30%
     }
 
     .landing_box p{
@@ -61,8 +62,12 @@
         text-align: center;
         font-weight: 200;
         position: absolute;
-        top:30%;
         margin:0 10% 0 10%;
+
+        
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
     }
 
     .landing_box_3 p{
@@ -138,6 +143,15 @@
         background-image:url('resources/images/landing/LP_5.jpg');   
     }
 
+    .user-type, .container-fluid, body, html{
+        height:100%;
+    }
+
+    .carousel, .carousel_data, .carousel_img, .carousel-inner, .carousel-inner > .item{
+            height:100%;
+    }
+
+
     @media (max-width: 768px) { 
         .landing-bottom{
             display: none;
@@ -173,33 +187,33 @@
         }
 
         .landing-top, .carousel, .carousel_data, .carousel_img, .carousel-inner, .carousel-inner > .item{
-            height:800px;
+            height:100%;
         }
 
         .carousel_img_LP_1{
             background-image:url('resources/images/landing/LP_1_mobile.jpg'); 
-            height:800px !important;  
+            height:100% !important;  
         }
 
        .carousel_img_LP_2{
             background-image:url('resources/images/landing/LP_2_mobile.jpg'); 
-            height:800px !important;  
+            height:100% !important;  
         }
 
        .carousel_img_LP_3{
             background-image:url('resources/images/landing/LP_3_mobile.jpg'); 
-            height:800px !important;  
+            height:100% !important;  
         }
 
 
        .carousel_img_LP_4{
             background-image:url('resources/images/landing/LP_4_mobile.jpg'); 
-            height:800px !important;  
+            height:100% !important;  
         }
 
        .carousel_img_LP_5{
             background-image:url('resources/images/landing/LP_5_mobile.jpg'); 
-            height:800px !important;  
+            height:100% !important;  
         }
     }
 
