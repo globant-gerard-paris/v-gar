@@ -31,7 +31,7 @@
     }
 
     .carousel_img{
-        height:400px !important;
+        height:410px !important;
         width: 100%;
         background-size: cover;
         background-position: center center;
@@ -49,9 +49,24 @@
     }
 
     .landing_box{
+        position: relative;
         height:330px;
         background-position: center center;
         background-size: cover;
+        color:white;
+    }
+
+    .landing_box p{
+        font-size:15px;
+        text-align: center;
+        font-weight: 200;
+        position: absolute;
+        top:30%;
+        margin:0 10% 0 10%;
+    }
+
+    .landing_box_3 p{
+        color:gray;
     }
 
     .landing_box_1{
@@ -64,6 +79,33 @@
 
     .landing_box_3{
         background-image:url('resources/images/landing/box3.jpg');
+    }
+
+    .btn-start-now-box{
+        background-image: url('resources/images/landing/Button_Small.png');
+        height: 45px;
+        width: 172px;
+        cursor: pointer;
+        background-size: contain;
+        margin-top: 25px;
+    }
+
+    .landing-page-logo{
+        background-image:url('resources/images/landing/Text_Medium.png');   
+        height: 68px;
+        width: 570px;
+        margin-top: 120px;
+        background-size: 80%;
+        background-repeat: no-repeat;
+        background-position: center center;
+    }
+
+    .landing-page-text{
+        color:white;
+        font-size:15px;
+        width: 55%;
+        text-align: center;
+        font-weight: 200;
     }
 
     @media (max-width: 768px) { 
@@ -95,23 +137,27 @@
           </slide>
         </carousel>
         <div class="carousel_data">
-            <h2 class="page-title">My Virtual Garage</h2>
-            <div>
-                <button type="button" class="btn btn-lg start-now-box center-block" ng-click="startNow()">
-                        START NOW
-                </button>
-            </div>
+            <div class="landing-page-logo center-block"></div>
+            <p class="landing-page-text center-block"> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="btn-start-now-box center-block" ng-click="startNow()"></div>
         </div>
     </div>
     <div class="row landing-bottom">    
         <div class="col-sm-4 landing_box landing_box_1">
+            <p>Get notifications when your cart needs services</p>
         </div>
         <div class="col-sm-4 landing_box landing_box_2">
+            <p>Get service recommendation based on your milleage</p>
         </div>
         <div class="col-sm-4 landing_box landing_box_3">
+            <p>Enjoy great discount on your Automotive parts</p>
         </div>
     </div>
 </div>
+
+<!-- TODO: templates, move to ng-include? -->
 
 <script type="text/ng-template" id="myModalContent.html">
 
