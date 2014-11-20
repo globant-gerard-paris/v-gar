@@ -1,42 +1,34 @@
-<style>
-    body {
-        /* Location of the image */
-        background: url(../resources/images/garage.jpg) no-repeat fixed center;
-    }
 
-    .page-title {
-        text-align: center;
-        margin-top: 16%;
-        color: white;
-        font-weight: bold;
-        font-size: 60px;
-        text-shadow: black 1px 4px 8px;
-    }
-
-    .start-now-box {
-        width: 280px;
-        font-size: 20px;
-        background-color: rgb(234, 231, 231);
-        font-weight: bold;
-        height: 60px;
-        font-family: arial;
-        margin-top: 15px;
-    }
-
-    .modal-content {
-        width: 460px;
-    }
-</style>
-<h2 class="page-title">My Virtual Garage</h2>
-<div class="user-type">
-    <div class="row">
-        <div class="col-sm-12">
-            <button type="button" class="btn btn-lg start-now-box center-block" ng-click="startNow()">
-                    START NOW
-            </button>
+<div class="landing-page-container">
+    <div class="row landing-top">
+        <carousel interval="myInterval" disable-animation="true">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <div class="carousel_img {{slide.class}}"></div>
+          </slide>
+        </carousel>
+        <div class="carousel_data">
+            <div class="top_logo"></div>
+            <div class="landing-page-logo center-block"></div>
+            <p class="landing-page-text center-block"> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="btn-start-now-box center-block" ng-click="startNow()"></div>
+        </div>
+    </div>
+    <div class="row landing-bottom">    
+        <div class="col-sm-4 landing_box landing_box_1">
+            <p>Get notifications when your cart needs services</p>
+        </div>
+        <div class="col-sm-4 landing_box landing_box_2">
+            <p>Get service recommendation based on your milleage</p>
+        </div>
+        <div class="col-sm-4 landing_box landing_box_3">
+            <p>Enjoy great discount on your Automotive parts</p>
         </div>
     </div>
 </div>
+
+<!-- TODO: templates, move to ng-include? -->
 
 <script type="text/ng-template" id="myModalContent.html">
 

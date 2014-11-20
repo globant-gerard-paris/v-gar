@@ -1,6 +1,40 @@
 'use strict';
 
+angular.module('PresentationFlow').directive('disableAnimation', function($animate){
+    return {
+        restrict: 'A',
+        link: function($scope, $element, $attrs){
+            $attrs.$observe('disableAnimation', function(value){
+                $animate.enabled(!value, $element);
+            });
+        }
+    };
+});
+
 angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
+
+
+    $scope.slides = [
+        {
+            active:true,
+            class: 'carousel_img_LP_1'
+        },
+        {
+            class: 'carousel_img_LP_2'
+        },
+        {
+            class: 'carousel_img_LP_3'
+        },
+        {
+            class: 'carousel_img_LP_4'
+        },
+        {
+            class: 'carousel_img_LP_5'
+        }
+
+    ];
+
+    $scope.myInterval=5000;
 
     $scope.typeModal = '';
     $scope.startNow = function () {
