@@ -6,12 +6,15 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import scala.collection.mutable.StringBuilder;
+
 import com.searshc.mygarage.apis.syw.SYWApi;
 import com.searshc.mygarage.apis.syw.SYWUtils;
 import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.User;
+import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.UserRepository;
@@ -110,6 +113,18 @@ public class UserService extends GenericService<User, Long, UserRepository> {
         repository.saveAndFlush(information);
     }
 
+	@Override
+	public User getItem(Long id) {
+		Validate.notNull(id, "The userId can't be null");
+        User user = userRepository.findOne(id);
+        if (user == null) {
+        	String msg = new StringBuilder().append("No user found with id: ").append(id).toString();
+        	log.error(msg);
+        	throw new UserNotFoundException(msg);
+        }
+        return user;
+	}
+	
     /**
      * Find the {@link User} by {@code userId}.
      *
@@ -117,8 +132,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
      * @return
      */
     public User findByUserId(Long userId) {
-        Validate.notNull(userId, "The userId can't be null");
-        return userRepository.findOne(userId);
+        return this.getItem(userId);
     }
     /**
      * Find the {@link User} by {@code sywId}.

@@ -17,8 +17,11 @@ public class VehicleConfirmationDTO implements Serializable {
     private Long vehicleId;
     private Long familyId;
     private Long tangibleId;
+    @Mapping("vehicle.make")
     private String make;
+    @Mapping("vehicle.model")
     private String model;
+    @Mapping("vehicle.year")
     private int year;
     @JsonProperty("isConfirmed")
     private boolean isConfirmed;

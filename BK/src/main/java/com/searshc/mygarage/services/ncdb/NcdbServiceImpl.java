@@ -71,7 +71,7 @@ public class NcdbServiceImpl implements NcdbService {
     			lastOrder = order;
     		}
     	}
-    	return lastOrder.getStoreNumber();
+    	return lastOrder!= null ? lastOrder.getStoreNumber() : -1;
     }
 
 }

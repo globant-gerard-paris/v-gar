@@ -1,5 +1,6 @@
 package com.searshc.mygarage.controllers.vehicle;
 
+import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
@@ -23,15 +24,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
-import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.FamilyVehicle;
+import com.searshc.mygarage.entities.Order;
+import com.searshc.mygarage.entities.Store;
+import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
+import com.searshc.mygarage.orchestrators.DashboardOrchestrator;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.user.UserService;
@@ -51,18 +55,20 @@ public class VehicleController {
     private ConfirmedVehicleService confirmedVehicleService;
     private UserService userService;
     private ObjectMapper objectMapper;
+    private DashboardOrchestrator dashboardOrchestrator;
 
     @Inject
     public VehicleController(final NcdbService ncdbService, final VehicleRecallsService nhtsaService,
             final FamilyVehicleService vehicleService,
             final ConfirmedVehicleService confirmedVehicleService, final UserService userService,
-            final ObjectMapper objectMapper) {
+            final ObjectMapper objectMapper, final DashboardOrchestrator dashboardOrchestrator) {
         this.ncdbService = notNull(ncdbService, "The NCDB Service cannot be null");
         this.nhtsaService = notNull(nhtsaService, "The NHTSA Service cannot be null");
         this.familyVehicleService = notNull(vehicleService, "The Vehicle Service cannot be null");
         this.confirmedVehicleService = notNull(confirmedVehicleService, "The ConfirmedVehicle Service cannot be null");
         this.userService = notNull(userService, "The UserInformation Service cannot be null");
         this.objectMapper = notNull(objectMapper, "The ObjectMapper cannot be null");
+        this.dashboardOrchestrator = notNull(dashboardOrchestrator);
     }
 
     @RequestMapping(value = "/family/{familyId}",
@@ -145,7 +151,7 @@ public class VehicleController {
     public ResponseEntity<Set<VehicleConfirmationDTO>> getVehiclesToConfirm(@PathVariable("userId") long userId) throws NCDBApiException {
         User user = this.userService.getItem(userId);
         Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-        List<FamilyVehicle> localVehicles = this.familyVehicleService.getFamilyVehiclesByUserId(user.getId());
+        List<FamilyVehicle> localVehicles = this.familyVehicleService.getConfirmedFamilyVehiclesByUserId(user.getId());
         result.addAll(this.familyVehicleService.convert(localVehicles, true));
         if (user.getFamilyId() != null) {
             List<FamilyVehicle> ncdbVehicles = this.ncdbService.listVehicles(user.getFamilyId());
@@ -177,5 +183,15 @@ public class VehicleController {
         log.info(confirmedVehicles.size() + " vehicles were confirmed");
         return new ResponseEntity<Object>(null, null, HttpStatus.OK);
     }
+    
+    @RequestMapping(value = "/vehicles/confirmed/user/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<StoreInfoAndFamilyVehiclesDTO> getFamilyVehiclesByUserId(@PathVariable("userId") final long userId) {
+    	isTrue(userId > 0, "The userId cannot be lower than 0");
+    	StoreInfoAndFamilyVehiclesDTO result = this.dashboardOrchestrator.getStoreAndConfirmedFamilyVehicleDetails(userId);
+    	return new ResponseEntity<StoreInfoAndFamilyVehiclesDTO>(result, null, HttpStatus.OK);
+    	
+    }
+    
 
 }

@@ -31,6 +31,7 @@ import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.exceptions.FamilyVehicleNotFoundException;
 import com.searshc.mygarage.exceptions.NCDBApiException;
+import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
 import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 import com.searshc.mygarage.services.ncdb.NcdbService;
@@ -75,7 +76,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return repository.getFamilyVehiclesByFamilyId(familyId);
     }
 
-    public List<FamilyVehicle> getFamilyVehiclesByUserId(final Long userId) {
+    public List<FamilyVehicle> getConfirmedFamilyVehiclesByUserId(final Long userId) {
         return repository.getFamilyVehiclesByUserId(userId);
     }
 
@@ -154,7 +155,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
 		List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
 		//If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
-		List<FamilyVehicle> localVehicles = getFamilyVehiclesByUserId(userId);
+		List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
 
 		if (!CollectionUtils.isEmpty(ncdbVehicles)) {
 			List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
@@ -214,7 +215,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 	 */
 	private Set<VehicleConfirmationDTO> createReportWithoutNCDB(final Long userId) {
 		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> vehiclesUser = getFamilyVehiclesByUserId(userId);
+		List<FamilyVehicle> vehiclesUser = getConfirmedFamilyVehiclesByUserId(userId);
 		if (!CollectionUtils.isEmpty(vehiclesUser)) {
 			result.addAll(this.convert(vehiclesUser, true));
 		}
@@ -235,7 +236,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             }
             if (dto.getVehicleId() != 0) {
                 familyVehicle = this.getItem(dto.getVehicleId());
-            } else if (dto.getTangibleId() != null) {
+            } else if (dto.getTangibleId() == null) {
                 familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
             } else {
                 familyVehicle = mapper.map(dto, FamilyVehicle.class);
