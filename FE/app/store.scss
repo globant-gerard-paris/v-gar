@@ -1,0 +1,155 @@
+$headerColor: #1fafc8;
+$bodyColor: #555e6c;
+$linkColor: #32b5ca;
+$linkColorAlt: #91c7ca;
+$highlighterTitleColor: #000000;
+$storeItemBkg: #fcfbf9;
+$storeItemBorderColor: #cdd2d6;
+$buttonBorderColor: #32b5ca;
+$buttonBorderBkg: #ffffff;
+$buttonColor: #32b5ca;
+
+body{
+    color:$bodyColor;
+}
+
+a{
+    color:$linkColor;
+    &:hover{
+        color:$linkColorAlt;
+        text-decoration: none;
+    }
+}
+
+.header-title{
+    color:$headerColor;
+    font-weight: normal;
+    text-align: center;
+    h1 {
+        font-size:2.4rem;
+    }
+}
+
+.store-box{
+    font-size: 2.4rem;
+
+    .store-icon-big{
+        background-image: url(locationBIG.png);
+        width: 47px;
+        height: 57px;
+    }
+    small{
+        font-size: 1.7rem;
+    }
+}
+.store-map-box{
+    width: 100%;
+    height: 180px;
+    background-color: #31708f;
+}
+
+.store-hours-box{
+    div {
+        text-align: center;
+        font-size: 1.7rem;
+    }
+    ul{
+//        list-style: none;
+//        display: block;
+    }
+    ul>li{
+        font-size: 2rem;
+    }
+
+}
+
+.store-find-box{
+    text-align: center;
+    p{
+        font-size: 1.7rem;
+    }
+}
+
+.store-subtitle{
+    font-weight: bold;
+    color: $highlighterTitleColor;
+}
+
+
+.stores-list-box{
+    text-align: center;
+    font-size: 1.5rem;
+
+    .stores-list-content{
+        width: 100%;
+
+        .store-list-item{
+            border: solid $storeItemBorderColor 1px;
+            width: 252px;
+            height: 192px;
+            background-color: $storeItemBkg;
+            font-size: 1.7rem;
+
+            .store-list-info{
+                text-align: left;
+            }
+
+            .store-list-icon{
+                background-image: url(locationSMALL.png);
+                width: 21px;
+                height: 29px;
+            }
+
+            .store-list-miles{
+                color: #afb0b5;
+                font-size: 1.9rem;
+            }
+
+            .store-link{
+                font-size: 1.2rem;
+            }
+
+            button {
+                border: 3px solid $buttonBorderColor;
+                background-color: $buttonBorderBkg;
+                color: $buttonColor;
+                font-size: 1rem;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.stores-social-box{
+    width: 100%;
+//    div{
+//        width: 60px;
+//    }
+    .stores-social-internal{
+        background-image: url("share_internal.jpg");
+        width: 24px;
+        height: 25px;
+    }
+    .stores-social-facebook{
+        background-image: url("share_fb.jpg");
+        width: 24px;
+        height: 25px;
+    }
+    .stores-social-twitter{
+        background-image: url("share_tw.jpg");
+        width: 24px;
+        height: 25px;
+    }
+}
+
+
+.feedback-box{
+    text-align: center;
+    button{
+        border: 0;
+        background-color: #555e6d;
+        color: #ffffff;
+        font-size: 1.6rem;
+
+    }
+}
