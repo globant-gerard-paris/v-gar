@@ -155,6 +155,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
 		if (!CollectionUtils.isEmpty(ncdbVehicles)) {
 			List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
+			//FIXME: the difference between list should be using hashCode and equals methods
+			//ncdbVehicles.removeAll(linkedVehicles);
+			ncdbVehicles = this.getNcdbVehicles(ncdbVehicles, linkedVehicles);
 			result.addAll(this.convert(ncdbVehicles, false));
 			result.addAll(this.convert(linkedVehicles, true));
 		}
@@ -196,13 +199,31 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 		if (!CollectionUtils.isEmpty(localVehicles) && !CollectionUtils.isEmpty(ncdbVehicles)) {
 			for (FamilyVehicle ncdbVehicle : ncdbVehicles) {
 				for (FamilyVehicle localVehicle : localVehicles) {
-					if(localVehicle.getTangibleId().equals(ncdbVehicle.getTangibleId())){
+					if(ncdbVehicle.getTangibleId().equals(localVehicle.getTangibleId())) {
 						linkedVehicles.add(localVehicle);
 					}
 				}
 			}
 		}
 		return linkedVehicles;
+	}
+	
+	@Deprecated
+	private List<FamilyVehicle> getNcdbVehicles(final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> linkedVehicles) {
+		List<FamilyVehicle> result = new ArrayList<FamilyVehicle>();
+		boolean isLinked = false;
+		for(FamilyVehicle currentVehicle : ncdbVehicles) {
+			isLinked = false;
+			for(FamilyVehicle linkedVehicle : linkedVehicles) {
+				if(currentVehicle.getTangibleId().equals(linkedVehicle.getTangibleId())){
+					isLinked = true;
+				}
+			}
+			if(!isLinked) {
+				result.add(currentVehicle);
+			}
+		}
+		return result;
 	}
 
 	/**
@@ -261,6 +282,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             dto.setMake(familyVehicle.getVehicle().getMake());
             dto.setModel(familyVehicle.getVehicle().getModel());
             dto.setYear(familyVehicle.getVehicle().getYear());
+            dto.setEngine(familyVehicle.getVehicle().getEngine());
             dto.setConfirmed(isConfirmed);
             dto.setStatus(this.determineFamlyVehicleStatus(familyVehicle));
             result.add(dto);
