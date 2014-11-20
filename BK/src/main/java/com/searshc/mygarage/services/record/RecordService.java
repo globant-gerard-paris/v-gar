@@ -6,23 +6,25 @@ import javax.inject.Inject;
 
 import org.apache.commons.lang3.Validate;
 
-import com.searshc.mygarage.apis.ncdb.NCDBApi;
 import com.searshc.mygarage.base.GenericService;
-import com.searshc.mygarage.entities.Order;
+import com.searshc.mygarage.dtos.ServiceRecord;
 import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
+import com.searshc.mygarage.services.ncdb.NcdbService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RecordService extends GenericService<Record, Long, RecordRepository> {
 
-    private NCDBApi ncdbApi;
+    private NcdbService ncdbService;
 
     @Inject
-    public RecordService(final NCDBApi ncdbApi) {
-        this.ncdbApi = Validate.notNull(ncdbApi, "The NCDB Api cannot be null");
+    public RecordService(final NcdbService ncdbService) {
+        this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
     }
 
-    public List<Record> getRecordsByUserVehicleId(final Long userVehicleId) {
+    public List<Record> getLocalRecordsByUserVehicleId(final Long userVehicleId) {
         return repository.getRecordsByUserVehicleId(userVehicleId);
     }
 
@@ -30,10 +32,10 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         repository.delete(recordId);
     }
 
-    public List<Order> getTransactions(final Long familyIdNumber, final Long tangibleId) throws NCDBApiException {
-        //TODO: query the ncdb service
+    public List<ServiceRecord> getServiceRecords(final Long familyIdNumber, final Long tangibleId) throws NCDBApiException {        
         //TODO: query the local database
         //TODO: merge both results
-        return this.ncdbApi.getCarTransactionHistory(familyIdNumber, tangibleId);
+        //TODO: sort results
+        return this.ncdbService.getServiceRecords(familyIdNumber, tangibleId);        
     }
 }

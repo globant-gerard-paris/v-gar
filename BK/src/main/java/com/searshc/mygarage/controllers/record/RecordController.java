@@ -1,5 +1,6 @@
 package com.searshc.mygarage.controllers.record;
 
+import com.searshc.mygarage.dtos.ServiceRecord;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.util.Collections;
@@ -43,7 +44,7 @@ public class RecordController {
     @ResponseBody
     public ResponseEntity<List<Record>> getRecords(
             @PathVariable("userVehicleId") Long userVehicleId) throws Exception {
-        List<Record> records = this.recordService.getRecordsByUserVehicleId(userVehicleId);
+        List<Record> records = this.recordService.getLocalRecordsByUserVehicleId(userVehicleId);
         if (CollectionUtils.isNotEmpty(records)) {
             return new ResponseEntity<List<Record>>(records, HttpStatus.OK);
         } else {
@@ -71,12 +72,12 @@ public class RecordController {
 
     @RequestMapping(value = "/uservehicle/{vehicleId}/ncdb/transactions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("vehicleId") Long vehicleId) throws NCDBApiException {
-        List<Order> orders = null;
+    public ResponseEntity<List<ServiceRecord>> getCarTransactionsHistory(@PathVariable("vehicleId") Long vehicleId) throws NCDBApiException {
+        List<ServiceRecord> serviceRecords = null;
         UserVehicle userVehicle = this.userVehicleService.getItem(vehicleId);
         if (userVehicle.getTangibleId() != null && userVehicle.getFamilyId() != null) {
-            orders = this.recordService.getTransactions(userVehicle.getFamilyId(), userVehicle.getTangibleId());
+            serviceRecords = this.recordService.getServiceRecords(userVehicle.getFamilyId(), userVehicle.getTangibleId());
         }
-        return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
+        return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
 }

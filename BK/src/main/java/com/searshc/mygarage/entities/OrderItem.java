@@ -1,16 +1,8 @@
 package com.searshc.mygarage.entities;
 
-import java.io.Serializable;
+import com.searshc.mygarage.util.ServiceRecordType;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
-
-public class OrderItem implements Serializable {
-
-    /**
-     * The Serial Version UID.
-     */
-    private static final long serialVersionUID = 4555155216527619816L;
+public class OrderItem {
 
     private String orderNumber;
     private String itemId;
@@ -18,34 +10,17 @@ public class OrderItem implements Serializable {
     private Double sellingPriceAmount;
     private String itemDescription;
 
-    private String productFlag;
+    private Integer productFlag;
 
     private Double regularPrice;
     private Double pluPriceAmount;
     private Double itemCost;
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || !(this.getClass().equals(obj.getClass()))) {
-            return false;
-        }
-        OrderItem rhs = (OrderItem) obj;
-        return new EqualsBuilder()
-                .append(this.getOrderNumber(), rhs.getOrderNumber())
-                .append(this.getItemId(), rhs.getItemId())
-                .append(this.getItemDescription(), rhs.getItemDescription()).isEquals();
-
-    }
+    private ServiceRecordType type;
 
     @Override
-    public int hashCode() {
-        return new HashCodeBuilder()
-                .append(this.getOrderNumber())
-                .append(this.getItemId())
-                .append(this.getItemDescription()).toHashCode();
+    public String toString() {
+        return itemDescription;
     }
 
     /**
@@ -121,14 +96,14 @@ public class OrderItem implements Serializable {
     /**
      * @return the productFlag
      */
-    public String getProductFlag() {
+    public Integer getProductFlag() {
         return productFlag;
     }
 
     /**
      * @param productFlag the productFlag to set
      */
-    public void setProductFlag(String productFlag) {
+    public void setProductFlag(Integer productFlag) {
         this.productFlag = productFlag;
     }
 
@@ -172,6 +147,20 @@ public class OrderItem implements Serializable {
      */
     public void setItemCost(Double itemCost) {
         this.itemCost = itemCost;
+    }
+
+    /**
+     * @return the type
+     */
+    public ServiceRecordType getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(ServiceRecordType type) {
+        this.type = type;
     }
 
 }
