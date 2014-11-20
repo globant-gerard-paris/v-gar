@@ -64,7 +64,7 @@
         position: absolute;
         margin:0 10% 0 10%;
 
-        
+
         position: relative;
         top: 50%;
         transform: translateY(-50%);
@@ -220,7 +220,7 @@
 </style>
 <div class="user-type">
     <div class="row landing-top">
-        <carousel>
+        <carousel interval="myInterval" disable-animation="true">
           <slide ng-repeat="slide in slides" active="slide.active">
             <div class="carousel_img {{slide.class}}"></div>
           </slide>
