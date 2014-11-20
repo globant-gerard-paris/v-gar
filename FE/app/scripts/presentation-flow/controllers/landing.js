@@ -1,5 +1,16 @@
 'use strict';
 
+angular.module('PresentationFlow').directive('disableAnimation', function($animate){
+    return {
+        restrict: 'A',
+        link: function($scope, $element, $attrs){
+            $attrs.$observe('disableAnimation', function(value){
+                $animate.enabled(!value, $element);
+            });
+        }
+    }
+});
+
 angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
 
 
@@ -22,6 +33,8 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, R
         }
 
     ];
+
+    $scope.myInterval=5000;
 
     $scope.typeModal = '';
     $scope.startNow = function () {
