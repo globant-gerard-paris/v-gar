@@ -90,6 +90,10 @@
         margin-top: 25px;
     }
 
+    .top_logo{
+        background-image:url('resources/images/landing/Logo_Small.jpg');
+    }
+
     .landing-page-logo{
         background-image:url('resources/images/landing/Text_Medium.png');   
         height: 68px;
@@ -108,23 +112,51 @@
         font-weight: 200;
     }
 
+    .carousel_img_LP_1{
+        background-image:url('resources/images/landing/LP_1.jpg');   
+    }
+
+   .carousel_img_LP_2{
+        background-image:url('resources/images/landing/LP_2.jpg');   
+    }
+
+   .carousel_img_LP_3{
+        background-image:url('resources/images/landing/LP_3.jpg');   
+    }
+
+
+   .carousel_img_LP_4{
+        background-image:url('resources/images/landing/LP_4.jpg');   
+    }
+
+   .carousel_img_LP_5{
+        background-image:url('resources/images/landing/LP_5.jpg');   
+    }
+
     @media (max-width: 768px) { 
         .landing_box{
-            height:200px;
-            background-size: auto;
-            background-repeat: no-repeat;
-            border-bottom: 1px solid #eee;
-        }
-        .landing_box_1{
-            background-image:url('resources/images/landing/box1_mobile.jpg');
+            visibility: hidden;
         }
 
-        .landing_box_2{
-            background-image:url('resources/images/landing/box2_mobile.jpg');
+        .carousel_img_LP_1{
+            background-image:url('resources/images/landing/LP_1_mobile.jpg');   
         }
 
-        .landing_box_3{
-            background-image:url('resources/images/landing/box3_mobile.jpg');
+       .carousel_img_LP_2{
+            background-image:url('resources/images/landing/LP_2_mobile.jpg');   
+        }
+
+       .carousel_img_LP_3{
+            background-image:url('resources/images/landing/LP_3_mobile.jpg');   
+        }
+
+
+       .carousel_img_LP_4{
+            background-image:url('resources/images/landing/LP_4_mobile.jpg');   
+        }
+
+       .carousel_img_LP_5{
+            background-image:url('resources/images/landing/LP_5_mobile.jpg');   
         }
     }
 
@@ -133,7 +165,7 @@
     <div class="row landing-top">
         <carousel>
           <slide ng-repeat="slide in slides" active="slide.active">
-            <div class="carousel_img" style="background-image:url('{{slide.image}}'); margin:auto;"></div>
+            <div class="carousel_img {{slide.class}}"></div>
           </slide>
         </carousel>
         <div class="carousel_data">
