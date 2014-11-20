@@ -49,7 +49,7 @@ public class OrderItemResponse {
     private String restockingFeeEligible;
 
     @XmlElement(name = "prd_fl")
-    private String productFlag;
+    private Integer productFlag;
 
     /**
      * @return the orderNumber
@@ -236,14 +236,14 @@ public class OrderItemResponse {
     /**
      * @return the productFlag
      */
-    public String getProductFlag() {
+    public Integer getProductFlag() {
         return productFlag;
     }
 
     /**
      * @param productFlag the productFlag to set
      */
-    public void setProductFlag(String productFlag) {
+    public void setProductFlag(Integer productFlag) {
         this.productFlag = productFlag;
     }
 

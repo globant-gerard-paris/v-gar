@@ -3,9 +3,7 @@ package com.searshc.mygarage.apis.ncdb;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
@@ -22,18 +20,11 @@ import scala.collection.mutable.StringBuilder;
 import com.searshc.mygarage.apis.ncdb.response.EsbMsgRequest;
 import com.searshc.mygarage.apis.ncdb.response.MdsHeader;
 import com.searshc.mygarage.apis.ncdb.response.Query;
-import com.searshc.mygarage.apis.ncdb.response.order.OrderHeaderResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
-import com.searshc.mygarage.apis.ncdb.response.order.OrderItemResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
-import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.OrderItem;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.exceptions.NCDBApiException;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 
 @Component
 public class NCDBApiImpl implements NCDBApi {
@@ -57,32 +48,8 @@ public class NCDBApiImpl implements NCDBApi {
 
     private final Mapper mapper = new DozerBeanMapper();
 
-    private Date createDateTime(Date date, Date time) {
-        Calendar dateTime = Calendar.getInstance();
-        dateTime.setTime(date);
-        Calendar timeCalendar = Calendar.getInstance();
-        timeCalendar.setTime(time);
-        dateTime.add(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
-        dateTime.add(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
-        dateTime.add(Calendar.SECOND, timeCalendar.get(Calendar.SECOND));
-        return dateTime.getTime();
-    }
-
-    private Map<String, Order> createOrdersMap(List<OrderHeaderResponse> ordersHeader) {
-
-        Map<String, Order> ordersMap = new HashMap<String, Order>();
-
-        for (OrderHeaderResponse orderHeader : ordersHeader) {
-            Order order = this.mapper.map(orderHeader, Order.class);
-            order.setTransactionDateTime(this.createDateTime(orderHeader.getTransactionDate(), orderHeader.getTransactionLocalTime()));
-            ordersMap.put(order.getOrderNumber(), order);
-        }
-
-        return ordersMap;
-    }
-
     @Override
-    public List<Order> getCarTransactionHistory(Long familyId, Long tangibleId) throws NCDBApiException {
+    public OrderHistoryResponse getVehiculeHistory(Long familyId, Long tangibleId) throws NCDBApiException {
 
         MdsHeader header = new MdsHeader(this.orderHistoryInquiryServiceName);
         header.setRequestorUserId(this.requestorUserId);
@@ -111,31 +78,8 @@ public class NCDBApiImpl implements NCDBApi {
             throw new NCDBApiException(message);
         }
 
-        List<Order> orders = new ArrayList<Order>();
+        return response;
 
-        if (response != null) {
-
-            Map<String, Order> ordersMap = createOrdersMap(response.getOrdersHeader());
-
-            for (OrderItemResponse orderItem : response.getOrderItems()) {
-                if (ordersMap.containsKey(orderItem.getOrderNumber())) {
-                    Order order = ordersMap.get(orderItem.getOrderNumber());
-                    order.addOrderItems(this.mapper.map(orderItem, OrderItem.class));
-                }
-            }
-
-            orders = new ArrayList<Order>(ordersMap.values());
-
-            Collections.sort(orders, new Comparator<Order>() {
-                @Override
-                public int compare(Order o1, Order o2) {
-                    return o2.getTransactionDateTime().compareTo(o1.getTransactionDateTime());
-                }
-            });
-
-        }
-
-        return orders;
     }
 
     @Override
