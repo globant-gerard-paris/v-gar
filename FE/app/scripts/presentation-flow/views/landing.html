@@ -23,11 +23,11 @@
     }
 
     .landing-top{
-        height: 400px;
+        height: 410px;
     }
 
     .carousel{
-        height:400px;
+        height:410px;
     }
 
     .carousel_img{
@@ -91,14 +91,19 @@
     }
 
     .top_logo{
-        background-image:url('resources/images/landing/Logo_Small.jpg');
+        background-image:url('resources/images/landing/Logo_Small.png');
+        margin:24px;
+        width: 100%;
+        height: 40px;
+        background-position: left center;
+        background-repeat: no-repeat;
     }
 
     .landing-page-logo{
         background-image:url('resources/images/landing/Text_Medium.png');   
         height: 68px;
         width: 570px;
-        margin-top: 120px;
+        margin-top: 65px;
         background-size: 80%;
         background-repeat: no-repeat;
         background-position: center center;
@@ -134,29 +139,67 @@
     }
 
     @media (max-width: 768px) { 
-        .landing_box{
-            visibility: hidden;
+        .landing-bottom{
+            display: none;
+        }
+
+        .top_logo{
+            background-image:url('resources/images/landing/Logo_Medium.png');
+            margin:0;
+            width: 100%;
+            height: 52px;
+            background-position: center center;
+            background-repeat: no-repeat;
+            margin-top: 94px;
+        }
+
+        .landing-page-logo{
+            background-image: url('resources/images/landing/Text_Small.png');
+            height: 136px;
+            width: 400px;
+            margin-top: 20px;
+        }
+
+        .btn-start-now-box{
+            background-image: url('resources/images/landing/Button_Big.png');
+            height: 66px;
+            width: 250px;
+            margin-top: 25px;
+        }
+
+        .landing-page-text{
+            width: 80%;
+            text-align: justify;
+        }
+
+        .landing-top, .carousel, .carousel_data, .carousel_img, .carousel-inner, .carousel-inner > .item{
+            height:800px;
         }
 
         .carousel_img_LP_1{
-            background-image:url('resources/images/landing/LP_1_mobile.jpg');   
+            background-image:url('resources/images/landing/LP_1_mobile.jpg'); 
+            height:800px !important;  
         }
 
        .carousel_img_LP_2{
-            background-image:url('resources/images/landing/LP_2_mobile.jpg');   
+            background-image:url('resources/images/landing/LP_2_mobile.jpg'); 
+            height:800px !important;  
         }
 
        .carousel_img_LP_3{
-            background-image:url('resources/images/landing/LP_3_mobile.jpg');   
+            background-image:url('resources/images/landing/LP_3_mobile.jpg'); 
+            height:800px !important;  
         }
 
 
        .carousel_img_LP_4{
-            background-image:url('resources/images/landing/LP_4_mobile.jpg');   
+            background-image:url('resources/images/landing/LP_4_mobile.jpg'); 
+            height:800px !important;  
         }
 
        .carousel_img_LP_5{
-            background-image:url('resources/images/landing/LP_5_mobile.jpg');   
+            background-image:url('resources/images/landing/LP_5_mobile.jpg'); 
+            height:800px !important;  
         }
     }
 
@@ -169,6 +212,7 @@
           </slide>
         </carousel>
         <div class="carousel_data">
+            <div class="top_logo"></div>
             <div class="landing-page-logo center-block"></div>
             <p class="landing-page-text center-block"> 
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
