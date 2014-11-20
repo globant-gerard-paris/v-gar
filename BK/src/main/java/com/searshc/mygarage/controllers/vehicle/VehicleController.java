@@ -25,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
-import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
@@ -34,6 +33,7 @@ import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
+import com.searshc.mygarage.services.record.RecordService;
 import com.searshc.mygarage.services.user.UserService;
 import com.searshc.mygarage.services.vehicle.ConfirmedVehicleService;
 import com.searshc.mygarage.services.vehicle.UserVehicleService;
@@ -45,6 +45,7 @@ public class VehicleController {
     private static final Log log = LogFactory.getLog(VehicleController.class);
 
     private NcdbService ncdbService;
+    private RecordService recordService;
     private VehicleRecallsService nhtsaService;
     private UserVehicleService vehicleService;
     private ConfirmedVehicleService confirmedVehicleService;
@@ -52,11 +53,13 @@ public class VehicleController {
     private ObjectMapper objectMapper;
 
     @Inject
-    public VehicleController(final NcdbService ncdbService, final VehicleRecallsService nhtsaService,
+    public VehicleController(final NcdbService ncdbService, final RecordService recordService,
+            final VehicleRecallsService nhtsaService,
             final UserVehicleService vehicleService,
             final ConfirmedVehicleService confirmedVehicleService, final UserService userService,
             final ObjectMapper objectMapper) {
         this.ncdbService = notNull(ncdbService, "The NCDB Service cannot be null");
+        this.recordService = notNull(recordService, "The Record Service cannot be null");
         this.nhtsaService = notNull(nhtsaService, "The NHTSA Service cannot be null");
         this.vehicleService = notNull(vehicleService, "The Vehicle Service cannot be null");
         this.confirmedVehicleService = notNull(confirmedVehicleService, "The ConfirmedVehicle Service cannot be null");
@@ -71,16 +74,6 @@ public class VehicleController {
     public ResponseEntity<List<UserVehicle>> getVehicles(@PathVariable("familyId") Long familyId) throws NCDBApiException {
         List<UserVehicle> userVehicles = this.ncdbService.listVehicles(familyId);
         return new ResponseEntity<List<UserVehicle>>(userVehicles, null, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/vehicles/{familyId}/transactions/{vehicleId}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("familyId") Long familyId,
-            @PathVariable("vehicleId") Long vehicleId) throws NCDBApiException {
-        List<Order> orders = this.ncdbService.getTransactions(familyId, vehicleId);
-        return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
     }
 
     @RequestMapping("/recalls/year/{year}/make/{make}/model/{model}/order/{order}")

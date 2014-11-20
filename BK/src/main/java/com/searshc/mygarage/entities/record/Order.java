@@ -1,4 +1,4 @@
-package com.searshc.mygarage.entities;
+package com.searshc.mygarage.entities.record;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,6 +18,8 @@ public class Order {
     private Double orderTotalAmount;
 
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
+
+    private ServiceCenter serviceCenter;
 
     /**
      * @return the orderItems
@@ -169,5 +171,13 @@ public class Order {
      */
     public void setTransactionDateTime(Date transactionDateTime) {
         this.transactionDateTime = transactionDateTime;
+    }
+
+    public ServiceCenter getServiceCenter() {
+        return serviceCenter;
+    }
+
+    public void setServiceCenter(ServiceCenter serviceCenter) {
+        this.serviceCenter = serviceCenter;
     }
 }
