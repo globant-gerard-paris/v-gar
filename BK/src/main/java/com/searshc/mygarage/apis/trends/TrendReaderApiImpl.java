@@ -6,9 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -33,7 +31,6 @@ public class TrendReaderApiImpl implements TrendReaderApi {
 		this.mapper = new ObjectMapper();
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<TrendReader> getTrends(final String make) throws VehicleTrendException {
 		TrendReader[] trends = {};
 		String responseEntity = "";
