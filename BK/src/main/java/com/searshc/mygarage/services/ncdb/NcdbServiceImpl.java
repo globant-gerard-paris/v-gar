@@ -130,7 +130,7 @@ public class NcdbServiceImpl implements NcdbService {
     private List<ServiceRecord> processTransactions(Long familyId, Long tangibleId, ServiceRecordType filter)
             throws NCDBApiException {
 
-        OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehiculeHistory(familyId, tangibleId);
+        OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehicleHistory(familyId, tangibleId);
 
         List<ServiceRecord> serviceRecords = new ArrayList<ServiceRecord>();
 

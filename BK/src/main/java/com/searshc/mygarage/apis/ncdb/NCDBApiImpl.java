@@ -49,7 +49,7 @@ public class NCDBApiImpl implements NCDBApi {
     private final Mapper mapper = new DozerBeanMapper();
 
     @Override
-    public OrderHistoryResponse getVehiculeHistory(Long familyId, Long tangibleId) throws NCDBApiException {
+    public OrderHistoryResponse getVehicleHistory(Long familyId, Long tangibleId) throws NCDBApiException {
 
         MdsHeader header = new MdsHeader(this.orderHistoryInquiryServiceName);
         header.setRequestorUserId(this.requestorUserId);

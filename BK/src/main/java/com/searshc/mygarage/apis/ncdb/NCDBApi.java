@@ -10,6 +10,6 @@ public interface NCDBApi {
 
     List<UserVehicle> getVehicles(Long familyId) throws NCDBApiException;
 
-    OrderHistoryResponse getVehiculeHistory(Long familyId, Long tangibleId) throws NCDBApiException;
+    OrderHistoryResponse getVehicleHistory(Long familyId, Long tangibleId) throws NCDBApiException;
 
 }
