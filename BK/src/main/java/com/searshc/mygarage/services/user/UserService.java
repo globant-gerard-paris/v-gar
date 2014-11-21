@@ -76,14 +76,17 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 			SYWUserResponse userInfoByToken = sywApi.getUserInfoByToken(token);
 			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
 			Validate.notNull(userInfoByToken.getSywrMemberNumber(), "The user not have shopyourway member number: " + token);
-			user = createUserFromSYWRespone(userInfoByToken);
-		}
-		
-		if (user.getFamilyId() == null) {
+			user = toUser(userInfoByToken);
+			if (user.getFamilyId() == null) {
+				String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
+				user = assignFamilyId(user, familyId);
+			}
+			saveUser(user);
+		} else if (user.getFamilyId() == null) {
 			String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
 			user = assignFamilyId(user, familyId);
+			saveUser(user);
 		}
-		
 		return user;
     }
     
@@ -133,7 +136,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
     }
 
     
-    public User createUser(User user) {
+    public User saveUser(User user) {
     	Validate.notNull(user, "The user can't be null.");
     	try {
     		return userRepository.saveAndFlush(user);
@@ -148,10 +151,10 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 	 * @param userInfoByToken.
 	 * @return return the user created.
 	 */
-	public User createUserFromSYWRespone(final SYWUserResponse userInfoByToken){
+	public User toUser(final SYWUserResponse userInfoByToken){
 		User user = new User();
 		user.setSywId(userInfoByToken.getId());
 		user.setSywrMemberNumber(userInfoByToken.getSywrMemberNumber());
-		return createUser(user);
+		return user;
 	}
 }
