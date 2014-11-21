@@ -1,3 +1,37 @@
+@include bp(md) {
+  .recall-info-title {
+    color: #555e6c;
+    font-weight: bold !important;
+  }
+  .recall-info-data {
+    color: #555e6c;
+    font-size: 0.8em;
+  }
+  .data-summary, .data-remedy, .data-notes {
+    word-break: normal;
+  }
+}
+@include bp(xs) {
+  .recall-info-title {
+    color: #a7abb0;
+    font-weight: normal;
+  }
+  .recall-info-data {
+    color: #555e6c;
+    font-weight: bold !important;
+  }
+  .data-summary, .data-remedy, .data-notes {
+    word-break: break-all;
+    margin-top: 10px;
+  }
+  .recall-content {
+    background-color: rgb(244, 244, 244);
+  }
+  .recall-row {
+    border-bottom: 1px solid #ffffff;
+  }
+}
+
 .recall-box{
 	.recalls-info{
 		position: relative;
@@ -5,16 +39,7 @@
 		padding: 24px 10px;
 		.row{
 			padding:10px;
-			.recall-info-title{
-				color:#555e6c;
-				font-weight: bold !important;
 			}
-			.recall-info-data{
-				color:#555e6c;
-				font-size:0.8em;
-                word-break: break-word;
-			}
-		}
 		.separator{
 			position: absolute;
 			bottom: -27px;
