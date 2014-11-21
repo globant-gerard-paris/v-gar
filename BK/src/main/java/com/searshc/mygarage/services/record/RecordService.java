@@ -32,10 +32,14 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         repository.delete(recordId);
     }
 
-    public List<ServiceRecord> getServiceRecords(final Long familyIdNumber, final Long tangibleId) throws NCDBApiException {        
+    public List<ServiceRecord> getNcdbServiceRecords(final Long familyIdNumber, final Long tangibleId) throws NCDBApiException {                
+        return this.ncdbService.getServiceRecords(familyIdNumber, tangibleId);        
+    }
+    
+    public List<ServiceRecord> getServiceRecords(final Long vehicleId) throws NCDBApiException {        
         //TODO: query the local database
         //TODO: merge both results
         //TODO: sort results
-        return this.ncdbService.getServiceRecords(familyIdNumber, tangibleId);        
+        return null;
     }
 }

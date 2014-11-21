@@ -23,10 +23,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.searshc.mygarage.dtos.ServiceRecord;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
-import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
@@ -76,17 +74,7 @@ public class VehicleController {
     public ResponseEntity<List<UserVehicle>> getVehicles(@PathVariable("familyId") Long familyId) throws NCDBApiException {
         List<UserVehicle> userVehicles = this.ncdbService.listVehicles(familyId);
         return new ResponseEntity<List<UserVehicle>>(userVehicles, null, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/vehicles/{familyId}/transactions/{vehicleId}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<ServiceRecord>> getCarTransactionsHistory(@PathVariable("familyId") Long familyId,
-            @PathVariable("vehicleId") Long vehicleId) throws NCDBApiException {
-        List<ServiceRecord> records = this.recordService.getServiceRecords(familyId, vehicleId);
-        return new ResponseEntity<List<ServiceRecord>>(records, null, HttpStatus.OK);
-    }
+    }    
 
     @RequestMapping("/recalls/year/{year}/make/{make}/model/{model}/order/{order}")
     @ResponseBody

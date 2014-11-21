@@ -35,9 +35,6 @@ public class OrderItemTest {
         orderItem2.setItemId(ITEM_ID);
         orderItem2.setItemDescription(ITEM_DESCRIPTION);
 
-        assertEquals(orderItem1.hashCode(), orderItem2.hashCode());
-        Assert.assertTrue(orderItem1.equals(orderItem2));
-
     }
 
     @Test

@@ -20,13 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.searshc.mygarage.dtos.record.RecordAssembly;
 import com.searshc.mygarage.dtos.record.RecordDto;
-import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.entities.UserVehicle;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.services.record.RecordService;
 import com.searshc.mygarage.services.vehicle.UserVehicleService;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 @RequestMapping("/record")
 public class RecordController {
 
@@ -76,8 +77,33 @@ public class RecordController {
         List<ServiceRecord> serviceRecords = null;
         UserVehicle userVehicle = this.userVehicleService.getItem(vehicleId);
         if (userVehicle.getTangibleId() != null && userVehicle.getFamilyId() != null) {
-            serviceRecords = this.recordService.getServiceRecords(userVehicle.getFamilyId(), userVehicle.getTangibleId());
+            serviceRecords = this.recordService.getNcdbServiceRecords(userVehicle.getFamilyId(), userVehicle.getTangibleId());
         }
+        return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/family/{familyId}/vehicle/{tangibleId}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<ServiceRecord>> getCarRecords(@PathVariable("familyId") Long familyId,
+            @PathVariable("tangibleId") Long tangibleId) throws NCDBApiException {
+
+        List<ServiceRecord> records = this.recordService.getNcdbServiceRecords(familyId, tangibleId);
+
+        return new ResponseEntity<List<ServiceRecord>>(records, null, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/vehicle/{vehicleId}",
+            method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<ServiceRecord>> getCarRecords(@PathVariable("vehicleId") Long vehicleId)
+            throws NCDBApiException {
+
+        List<ServiceRecord> serviceRecords
+                = this.recordService.getServiceRecords(vehicleId);
+
         return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
 }
