@@ -85,10 +85,9 @@
         <script src="scripts/presentation-flow/services/store-locator.js"></script>
         <script src="scripts/presentation-flow/services/record.js"></script>
         <script src="scripts/presentation-flow/services/recalls.js"></script>
-
         <script src="scripts/presentation-flow/services/linked-car.js"></script>
-  <script src="scripts/services/home-service.js"></script>
-  <!-- yo:services -->
+        <script src="scripts/presentation-flow/services/landing.js"></script>
+        <!-- yo:services -->
 
         <script src="scripts/filters/filters.js"></script>        
 
@@ -99,15 +98,29 @@
         <script src="scripts/directives/recall-information.js"></script>        
         <script src="scripts/directives/record-row.js"></script>
         <script src="scripts/directives/car-confirmation.js"></script>
+        <!--<script type="text/javascript" src="//www.shopyourway.com/platform/loader" ></script>-->
+        <script type="text/javascript" src="https://www.shopyourway.com/secured/platform/loader" ></script>
 
-        <!-- GET CURRENT SESSION TOKEN -->
+        <!-- GET CURRENT SESSION TOKEN FROM I-FRAME -->
         <script>
-            var indexStart = location.toString().indexOf("token") + 6;
-            var indexEnd = location.toString().length;
-            var currentHash = location.toString().substring(indexStart, indexEnd);
+            var currentToken = null;
+            var indexOf = location.toString().indexOf("token");
+            if(indexOf !== -1){
+                var indexStart = location.toString().indexOf("token") + 6;
+                var indexEnd = location.toString().length;
+                var token = location.toString().substring(indexStart, indexEnd);
+                //It is because SYW when you are not login put prefix token with 0_XXXXXX
+                if(token){
+                    var userId = token.substring(0, token.indexOf("_"));
+                    console.log('DESDE EL INDEX, USER ID: '+userId);
+                    if(userId && userId.length > 2){
+                        currentToken = token;
+                    }
+                }
+            }
             window.vg = {
                 config : {
-                    token : currentHash
+                    token : currentToken
                 }
             };
         </script>
