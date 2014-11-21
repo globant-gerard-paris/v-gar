@@ -51,9 +51,10 @@ $landingBottomSize : 100% - $landingTopSize;
         color:white;
         p{
             font-size:15px;
+            font-weight: 200;
             text-align: center;
             position: absolute;
-            margin:0 10% 0 10%;
+            margin:0 25% 0 25%;
             font-family: $fontSansSerif;
             @extend %centerVertically;
         }
