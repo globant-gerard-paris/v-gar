@@ -31,10 +31,10 @@ public class TrendReaderApiImpl implements TrendReaderApi {
 		this.mapper = new ObjectMapper();
 	}
 	
-	public List<TrendReader> getTrends(final String make) throws VehicleTrendException {
+	public List<TrendReader> getTrends(final String make, final Integer limit) throws VehicleTrendException {
 		TrendReader[] trends = {};
 		String responseEntity = "";
-		String url = String.format(this.endpoint, make);
+		String url = String.format(this.endpoint, make, limit);
 		log.info("Querying trends at: " + url);
 		try {
 			responseEntity = this.restTemplate.getForObject(url, String.class);

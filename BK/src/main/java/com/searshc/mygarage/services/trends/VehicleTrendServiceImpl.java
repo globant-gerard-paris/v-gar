@@ -1,7 +1,5 @@
 package com.searshc.mygarage.services.trends;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -27,15 +25,15 @@ public class VehicleTrendServiceImpl implements VehicleTrendService {
 	}
 	
 	@Override
-	public List<VehicleTrend> getTrends(String make) throws VehicleTrendException {
-		List<TrendReader> trendReaders = this.trendReaderApi.getTrends(make);
+	public List<VehicleTrend> getTrends(String make, Integer limit) throws VehicleTrendException {
+		List<TrendReader> trendReaders = this.trendReaderApi.getTrends(make, limit);
 		return TrendReaderUtils.convert(trendReaders);
 	}
 	
 	
 	@Override
 	public VehicleTrend getTrend(final String make) throws VehicleTrendException {
-		List<VehicleTrend> trends = this.getTrends(make);
+		List<VehicleTrend> trends = this.getTrends(make, 1);
 		return trends != null && trends.size() > 0 ?  trends.get(0) : null;
 	}
 	

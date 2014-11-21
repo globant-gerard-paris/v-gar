@@ -13,7 +13,7 @@ public interface VehicleTrendService {
 	
 	VehicleTrend getTrend(final String make) throws VehicleTrendException;
 	
-	List<VehicleTrend> getTrends(final String make) throws VehicleTrendException;
+	List<VehicleTrend> getTrends(final String make, final Integer limit) throws VehicleTrendException;
 
 	
 }

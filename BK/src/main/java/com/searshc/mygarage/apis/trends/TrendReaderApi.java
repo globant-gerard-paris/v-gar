@@ -8,5 +8,5 @@ import com.searshc.mygarage.exceptions.VehicleTrendException;
 
 public interface TrendReaderApi {
 	
-	List<TrendReader> getTrends(final String make) throws VehicleTrendException;
+	List<TrendReader> getTrends(final String make, final Integer limit) throws VehicleTrendException;
 }
