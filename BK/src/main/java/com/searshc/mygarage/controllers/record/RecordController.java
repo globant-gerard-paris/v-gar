@@ -88,7 +88,7 @@ public class RecordController {
         List<ServiceRecord> serviceRecords = null;
         FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
         if (familyVehicle.getTangibleId() != null && familyVehicle.getFamilyId() != null) {
-            serviceRecords = this.recordService.getNcdbServiceRecords(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
+            serviceRecords = this.ncdbService.getServiceRecords(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
         }
         return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
