@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.searshc.mygarage.dtos.ServiceRecord;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
@@ -88,10 +89,10 @@ public class VehicleController {
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("familyId") Long familyId,
+    public ResponseEntity<List<ServiceRecord>> getCarTransactionsHistory(@PathVariable("familyId") Long familyId,
             @PathVariable("vehicleId") Long vehicleId) throws NCDBApiException {
-        List<Order> orders = this.ncdbService.getTransactions(familyId, vehicleId);
-        return new ResponseEntity<List<Order>>(orders, null, HttpStatus.OK);
+        List<ServiceRecord> serviceRecords = this.ncdbService.getServiceRecords(familyId, vehicleId);
+        return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
 
     @RequestMapping("/recalls/year/{year}/make/{make}/model/{model}/order/{order}")

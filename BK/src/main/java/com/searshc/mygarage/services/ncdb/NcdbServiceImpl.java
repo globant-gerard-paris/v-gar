@@ -1,10 +1,18 @@
 package com.searshc.mygarage.services.ncdb;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 
 import scala.collection.mutable.StringBuilder;
@@ -18,25 +26,18 @@ import com.searshc.mygarage.dtos.RecommendedService;
 import com.searshc.mygarage.dtos.ServiceCenter;
 import com.searshc.mygarage.dtos.ServiceRecord;
 import com.searshc.mygarage.dtos.ServiceRecordItem;
+import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.OrderItem;
 import com.searshc.mygarage.entities.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.SuggestedTranslation;
-import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.ServiceTranslationRepository;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.SuggestedTranslationRepository;
 import com.searshc.mygarage.util.ServiceRecordType;
 import com.searshc.mygarage.util.VGUtils;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 
 @Service
 public class NcdbServiceImpl implements NcdbService {
@@ -53,7 +54,7 @@ public class NcdbServiceImpl implements NcdbService {
 
     private final Mapper mapper = new DozerBeanMapper();
 
-    @Autowired
+    @Inject
     public NcdbServiceImpl(NCDBApi ncdbApi, StoreRepository storeRepository,
             ServiceTranslationRepository serviceTranslationRepository,
             SuggestedTranslationRepository suggestedTranslationRepository) {
@@ -199,25 +200,20 @@ public class NcdbServiceImpl implements NcdbService {
     
     @Override
     public int getHighestMileage(final Long familyId, final Long tangibleId) throws NCDBApiException {
-    	List<Order> orders;
+    	List<ServiceRecord> serviceRecords;
 
-    	orders = this.getTransactions(familyId, tangibleId);
+    	serviceRecords = this.getServiceRecords(familyId, tangibleId);
 
-    	int highestMileage = -1;
-    	if(orders != null && orders.size() > 0) {
-    		for(Order order : orders) {
-        		if(order.getOdometerAmount().intValue() > highestMileage) {
-        			highestMileage = order.getOdometerAmount().intValue();
-        		}
-        	}
+    	if(serviceRecords != null && serviceRecords.size() > 0) {
+    		return serviceRecords.get(0).getMileage().intValue();
     	}
     	
-    	return highestMileage;
+    	return 0;
     }
     
     public int getLastUsedStoreId(final Long familyId, final Long tangibleId) throws NCDBApiException {
-    	List<Order> orders = this.getTransactions(familyId, tangibleId);
-    	if(orders == null || orders.size() == 0) {
+    	List<ServiceRecord> serviceRecords = this.getServiceRecords(familyId, tangibleId);
+    	if(serviceRecords == null || serviceRecords.size() == 0) {
     		String msg = new StringBuilder()
     			.append("Could not determine the last store. There are no transactions available for family: ")
     			.append(familyId)
@@ -226,13 +222,7 @@ public class NcdbServiceImpl implements NcdbService {
     		log.warn(msg);
     		return -1;
     	}
-    	Order lastOrder = null;
-    	for(Order order : orders) {
-    		if(lastOrder == null || order.getTransactionDateTime().after(lastOrder.getTransactionDateTime())) {
-    			lastOrder = order;
-    		}
-    	}
-    	return lastOrder!= null ? lastOrder.getStoreNumber() : -1;
+    	return Integer.valueOf(serviceRecords.get(0).getServiceCenter().getSacStore());
     }
 
 }

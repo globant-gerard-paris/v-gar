@@ -149,7 +149,7 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      * @param mileage the mileage to set
      */
     public void setMileage(int mileage) {
-    	Validate.isTrue(mileage > 0, "The Mileage cannot be lower than 0");
+    	Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
     	this.mileage = mileage;
     }
 

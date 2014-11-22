@@ -2,20 +2,17 @@ package com.searshc.mygarage.services.record;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import javax.inject.Inject;
 
-<<<<<<< HEAD
 import org.apache.commons.lang3.Validate;
+import org.springframework.stereotype.Service;
 
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.dtos.ServiceRecord;
-=======
-import com.searshc.mygarage.base.GenericService;
->>>>>>> 7172e11... MYG000-108 - Change Entity name and added a status property
 import com.searshc.mygarage.entities.Record;
+import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.services.ncdb.NcdbService;
-import org.springframework.stereotype.Service;
 
 @Service
 public class RecordService extends GenericService<Record, Long, RecordRepository> {
@@ -28,7 +25,7 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
     }
 
     public List<Record> getLocalRecordsByUserVehicleId(final Long userVehicleId) {
-        return repository.getRecordsByUserVehicleId(userVehicleId);
+        return repository.getRecordsByFamilyVehicleId(userVehicleId);
     }
 
     public void deleteRecord(final Long recordId) {

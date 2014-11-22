@@ -84,7 +84,7 @@ public class RecordController {
 
     @RequestMapping(value = "/familyvehicle/{familyVehicleId}/ncdb/transactions", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Order>> getCarTransactionsHistory(@PathVariable("familyVehicleId") Long familyVehicleId) throws NCDBApiException {
+    public ResponseEntity<List<ServiceRecord>> getCarTransactionsHistory(@PathVariable("familyVehicleId") Long familyVehicleId) throws NCDBApiException {
         List<ServiceRecord> serviceRecords = null;
         FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
         if (familyVehicle.getTangibleId() != null && familyVehicle.getFamilyId() != null) {
