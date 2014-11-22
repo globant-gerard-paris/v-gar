@@ -1,10 +1,18 @@
 package com.searshc.mygarage.services.ncdb;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.inject.Inject;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 
 import scala.collection.mutable.StringBuilder;
@@ -33,13 +41,6 @@ import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.SuggestedTranslationRepository;
 import com.searshc.mygarage.util.ServiceRecordType;
 import com.searshc.mygarage.util.VGUtils;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 
 @Service
 public class NcdbServiceImpl implements NcdbService {
@@ -56,7 +57,7 @@ public class NcdbServiceImpl implements NcdbService {
 
     private final Mapper mapper = new DozerBeanMapper();
 
-    @Autowired
+    @Inject
     public NcdbServiceImpl(NCDBApi ncdbApi, StoreRepository storeRepository,
             ServiceTranslationRepository serviceTranslationRepository,
             SuggestedTranslationRepository suggestedTranslationRepository) {

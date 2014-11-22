@@ -3,6 +3,7 @@ package com.searshc.mygarage.services.record;
 import java.util.List;
 
 import org.apache.commons.lang3.Validate;
+import org.springframework.stereotype.Service;
 
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.record.RecommendedService;
