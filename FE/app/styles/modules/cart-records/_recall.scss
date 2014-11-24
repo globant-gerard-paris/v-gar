@@ -88,7 +88,7 @@
     margin-top: 10px;
   }
   .data-model, .data-component, .data-date {
-    text-align: center;
+
   }
   .recall-content {
     background-color: #f8f8f8;
@@ -107,11 +107,12 @@
         margin-right: -15px;
         width: auto;
         position: relative;
-        background-position-x: 15px;
+        background-position: 15px 5px;
+        background-size: 90px;
         bottom: 0;
         .separator-number {
           font-size: 1.5em;
-          margin-left: 50%;
+          margin-left: 80%;
           padding-top: 10px;
           color: #A8ACAF;
           display: block;
