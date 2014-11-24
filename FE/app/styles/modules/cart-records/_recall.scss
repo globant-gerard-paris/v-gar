@@ -2,6 +2,11 @@
   font-family: "Roboto";
 }
 
+.page-title{
+  color:#18abc5;
+  font-size:24px;
+  font-weight: normal;
+}
 .recall-box{
   .recalls-info{
     position: relative;
@@ -58,9 +63,7 @@
   }
 }
 
-@include bp(md) {
 
-}
 @include bp(xs) {
   .recall-box {
     .recalls-info {
@@ -78,29 +81,10 @@
         .recall-info-data {
           color: #515b67;
           font-weight: bold !important;
-          word-break: break-word;
+          word-wrap: break-word;
           font-size: 1em;
         }
       }
-    }
-  }
-  .data-summary, .data-remedy, .data-notes {
-    margin-top: 10px;
-  }
-  .data-model, .data-component, .data-date {
-
-  }
-  .recall-content {
-    background-color: #f8f8f8;
-  }
-  .recall-row {
-    border-bottom: 1px solid #ffffff;
-  }
-  .recalls-info {
-    border-bottom: none;
-  }
-  .recall-box {
-    .recalls-info {
       .separator {
         background-color: #ffffff;
         margin-left: -15px;
@@ -120,6 +104,18 @@
       }
     }
   }
+  .data-summary, .data-remedy, .data-notes {
+    margin-top: 10px;
+  }
+  .recall-content {
+    background-color: #f8f8f8;
+  }
+  .recall-row {
+    border-bottom: 1px solid #ffffff;
+  }
+  .recalls-info {
+    border-bottom: none;
+  }
   .title-car-records {
     text-align: center;
   }
@@ -131,10 +127,4 @@
       background-color:#f4f4f4;
     }
   }
-}
-
-.page-title{
-	color:#18abc5;
-	font-size:24px;
-	font-weight: normal;
 }
