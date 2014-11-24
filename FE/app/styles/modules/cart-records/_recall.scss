@@ -1,3 +1,7 @@
+.font-Roboto {
+  font-family: "Roboto";
+}
+
 .recall-box{
   .recalls-info{
     position: relative;
@@ -6,10 +10,12 @@
     .row{
       padding:10px;
       .recall-info-title {
+        @extend .font-Roboto;
         color: #555e6c;
         font-weight: bold !important;
       }
       .recall-info-data {
+        @extend .font-Roboto;
         color: #555e6c;
         font-size: 0.8em;
       }
@@ -37,7 +43,7 @@
     .recalls-info {
       .row {
         .recall-info-title {
-          color: #a7abb0;
+          color: #a7a8aa;
           font-weight: normal;
         }
       }
@@ -45,7 +51,7 @@
   }
 
   .recall-info-data {
-    color: #555e6c;
+    color: #515b67;
     font-weight: bold !important;
     word-break: break-all;
   }
@@ -56,7 +62,7 @@
     text-align: center;
   }
   .recall-content {
-    background-color: rgb(244, 244, 244);
+    background-color: #f8f8f8;
   }
   .recall-row {
     border-bottom: 1px solid #ffffff;
