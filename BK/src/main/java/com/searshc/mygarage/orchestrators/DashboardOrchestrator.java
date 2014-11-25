@@ -78,7 +78,7 @@ public class DashboardOrchestrator extends BaseOrchestrator{
 		if(storeId <= 0 ) {
 			return null;
 		}
-		return this.storeService.getItem(Long.valueOf(storeId));
+		return this.storeService.findBySacStore(String.valueOf(storeId));
 	}
 	
 

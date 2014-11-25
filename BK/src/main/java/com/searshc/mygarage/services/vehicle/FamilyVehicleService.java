@@ -32,6 +32,7 @@ import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.exceptions.FamilyVehicleNotFoundException;
 import com.searshc.mygarage.exceptions.NCDBApiException;
+import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
 import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 import com.searshc.mygarage.services.ncdb.NcdbService;

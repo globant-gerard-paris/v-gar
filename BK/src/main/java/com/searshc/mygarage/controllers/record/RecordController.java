@@ -53,9 +53,9 @@ public class RecordController {
     @RequestMapping(value = "/familyvehicle/{familyVehicleId}/records",
             method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<Record>> getRecords(@PathVariable("userVehicleId") Long userVehicleId)
+    public ResponseEntity<List<Record>> getRecords(@PathVariable("familyVehicleId") Long familyVehicleId)
             throws Exception {
-        List<Record> records = this.recordService.getRecordsByFamilyVehicleId(userVehicleId);
+        List<Record> records = this.recordService.getRecordsByFamilyVehicleId(familyVehicleId);
         if (CollectionUtils.isNotEmpty(records)) {
             return new ResponseEntity<List<Record>>(records, HttpStatus.OK);
         } else {

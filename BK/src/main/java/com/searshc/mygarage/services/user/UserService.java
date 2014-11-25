@@ -8,6 +8,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import scala.collection.mutable.StringBuilder;
+
 import com.searshc.mygarage.apis.syw.SYWApi;
 import com.searshc.mygarage.apis.syw.SYWUtils;
 import com.searshc.mygarage.apis.syw.response.SYWUserResponse;
@@ -138,8 +140,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
      * @return
      */
     public User findByUserId(Long userId) {
-        Validate.notNull(userId, "The userId can't be null");
-        return userRepository.findOne(userId);
+        return this.getItem(userId);
     }
     /**
      * Find the {@link User} by {@code sywId}.

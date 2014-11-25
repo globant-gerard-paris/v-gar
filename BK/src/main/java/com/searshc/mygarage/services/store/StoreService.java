@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -73,5 +74,9 @@ public class StoreService extends GenericService<Store, Long, StoreRepository>{
         return (simpleJdbcCallResult != null) ? new ArrayList<Object>(simpleJdbcCallResult.values())
                 : null;
     }
-;
+
+    public Store findBySacStore(String sacStore) {
+    	Validate.notNull(sacStore, "The SacStore cannot be null");
+    	return repository.findBySacStore(sacStore);
+    }
 }

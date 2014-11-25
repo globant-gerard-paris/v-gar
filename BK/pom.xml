@@ -196,7 +196,11 @@
 			<artifactId>commons-codec</artifactId>
 			<version>${commons-code-version}</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-social-facebook</artifactId>
+		</dependency>
     </dependencies>
 
     <build>
