@@ -1,18 +1,13 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, RedirectSrv, ServicesSrv) {
+angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, RedirectSrv, ServicesSrv, $http) {
 
     $scope.model = {
         services: []
     };
 
-    $scope.redirectToCarProfile = function (option) {
-        RedirectSrv.redirectTo('/car-profile?option=' + option);
-    };
+    var mock = true;
 
-    $scope.redirectToDashboard = function () {
-        RedirectSrv.redirectTo('/dashboard');
-    };
 
     var servicesResultSuccess = function (response) {
         $scope.model.services = response.data || [];
@@ -33,6 +28,13 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         }
     };
 
-    ServicesSrv.getServices(familyId, tangibleId, servicesResultSuccess, sercicesResultFaild);
+
+
+    if(mock){
+        $http.get('resources/mocks/services.json').then(servicesResultSuccess, sercicesResultFaild);
+    }
+    else{
+        ServicesSrv.getServices(familyId, tangibleId, servicesResultSuccess, sercicesResultFaild);
+    }
 
 });
