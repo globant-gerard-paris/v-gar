@@ -1,6 +1,8 @@
 package com.searshc.mygarage.util;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.util.Assert;
@@ -68,6 +70,17 @@ public class VGUtils {
             list.add(item);
         }
         return list;
+    }
+    
+    public static Date createDateTime(final Date date, final Date time) {
+        Calendar dateTime = Calendar.getInstance();
+        dateTime.setTime(date);
+        Calendar timeCalendar = Calendar.getInstance();
+        timeCalendar.setTime(time);
+        dateTime.add(Calendar.HOUR_OF_DAY, timeCalendar.get(Calendar.HOUR_OF_DAY));
+        dateTime.add(Calendar.MINUTE, timeCalendar.get(Calendar.MINUTE));
+        dateTime.add(Calendar.SECOND, timeCalendar.get(Calendar.SECOND));
+        return dateTime.getTime();
     }
 
 }

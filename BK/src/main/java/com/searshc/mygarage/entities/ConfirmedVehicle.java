@@ -25,23 +25,23 @@ public class ConfirmedVehicle extends AbstractEntity implements Serializable {
     private User user;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "vehicle_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_vehicle_id"))
-    private UserVehicle userVehicle;
+    @JoinColumn(name = "family_vehicle_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_family_vehicle_id"))
+    private FamilyVehicle familyVehicle;
 
     public ConfirmedVehicle() {
         this.user = null;
-        this.userVehicle = null;
+        this.familyVehicle = null;
     }
 
     /**
      * @param user
-     * @param userVehicle
+     * @param familyVehicle
      * @param isConfirmed
      */
-    public ConfirmedVehicle(final User user, final UserVehicle userVehicle) {
+    public ConfirmedVehicle(final User user, final FamilyVehicle familyVehicle) {
         super();
         this.user = Validate.notNull(user, "The User cannot be null");
-        this.userVehicle = Validate.notNull(userVehicle, "The Vehicle cannot be null");
+        this.familyVehicle = Validate.notNull(familyVehicle, "The Vehicle cannot be null");
     }
 
     /**
@@ -61,22 +61,22 @@ public class ConfirmedVehicle extends AbstractEntity implements Serializable {
     /**
      * @return the vehicle
      */
-    public UserVehicle getVehicle() {
-        return userVehicle;
+    public FamilyVehicle getFamilyVehicle() {
+        return familyVehicle;
     }
 
     /**
-     * @param userVehicle the vehicle to set
+     * @param familyVehicle the vehicle to set
      */
-    public void setVehicle(UserVehicle userVehicle) {
-        this.userVehicle = userVehicle;
+    public void setFamilyVehicle(FamilyVehicle familyVehicle) {
+        this.familyVehicle = familyVehicle;
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(this.user)
-                .append(this.userVehicle).hashCode();
+                .append(this.familyVehicle).hashCode();
     }
 
     @Override
@@ -93,7 +93,7 @@ public class ConfirmedVehicle extends AbstractEntity implements Serializable {
         ConfirmedVehicle rhs = (ConfirmedVehicle) obj;
         return new EqualsBuilder()
                 .append(this.user, rhs.user)
-                .append(this.userVehicle, rhs.userVehicle).isEquals();
+                .append(this.familyVehicle, rhs.familyVehicle).isEquals();
     }
 
 }
