@@ -1,6 +1,28 @@
-<div class="services-info row">
-        <div class="col-sm-2 service-data"><div class="service-type-manual"></div>{{serviceDate}}</div>
-        <div class="col-sm-1 service-data">{{serviceMileage | number}}</div>
-        <div class="col-sm-4 service-data service-highlight">{{serviceCenter}}</div>
-        <div class="col-sm-5 service-data">{{serviceDesc}}</div>
+<div class="services-info row hidden-xs">
+        <div class="col-sm-2"><div class="service-type-manual"></div>{{serviceDate}}</div>
+        <div class="col-sm-1">{{serviceMileage | number}}</div>
+        <div class="col-sm-4 service-highlight">{{serviceCenter}}</div>
+        <div class="col-sm-5">{{serviceDesc}}</div>
+</div>
+
+<div class="services-info-small hidden-sm">
+		<div class="row">
+        	<div>{{serviceDate}}</div>
+        </div>
+        <div class="row">
+        <div class="col-xs-4">MILLEAGE</div>
+        	<div>{{serviceMileage | number}}</div>
+        </div>
+        <div class="row">
+       		<div class="col-xs-4">SOURCE</div>
+        	<div>{{serviceCenter}}</div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-4">SERVICE</div>
+        	<div>{{serviceDesc}}</div>
+        </div>
+        <div class="row">
+        	<div class="col-xs-4">DETAILS</div>
+        	<div>{{serviceDesc}}</div>
+        </div>
 </div>
