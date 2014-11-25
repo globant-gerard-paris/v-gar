@@ -1,8 +1,12 @@
 body {
-    background: #fafafa;
+    background: #fff;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #444;
 }
+ 
+ body, html, .container-fluid{
+    height:100%;
+ }
 
 .page-header{
   margin: 10px 0 20px;

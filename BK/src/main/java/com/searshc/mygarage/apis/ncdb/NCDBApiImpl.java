@@ -23,7 +23,8 @@ import com.searshc.mygarage.apis.ncdb.response.Query;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
-import com.searshc.mygarage.entities.UserVehicle;
+import com.searshc.mygarage.entities.FamilyVehicle;
+
 import com.searshc.mygarage.exceptions.NCDBApiException;
 
 @Component
@@ -83,19 +84,20 @@ public class NCDBApiImpl implements NCDBApi {
     }
 
     @Override
-    public List<UserVehicle> getVehicles(Long familyIdNumber) throws NCDBApiException {
+    public List<FamilyVehicle> getVehicles(Long familyIdNumber) throws NCDBApiException {
         VehicleRetrievalResponse vehicleRetrievalResponse = this.getNCDBVehicles(familyIdNumber);
         return vehicleRetrievalResponse != null
-                ? this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<UserVehicle>();
+                ? this.convert(vehicleRetrievalResponse.getVehicles()) : new ArrayList<FamilyVehicle>();
 
     }
 
-    public List<UserVehicle> convert(final List<VehicleResponse> vehicleResponseList) {
+    public List<FamilyVehicle> convert(final List<VehicleResponse> vehicleResponseList) {
         Validate.noNullElements(vehicleResponseList, "The VehicleResponse list cannot be null");
-        List<UserVehicle> result = new ArrayList<UserVehicle>();
-        for (VehicleResponse vehicle : vehicleResponseList) {
+        List<FamilyVehicle> result = new ArrayList<FamilyVehicle>();
+        for (VehicleResponse vehicle
+                : vehicleResponseList) {
             try {
-                result.add(this.mapper.map(vehicle, UserVehicle.class));
+                result.add(this.mapper.map(vehicle, FamilyVehicle.class));
             } catch (MappingException e) {
                 log.error("Could convert VehicleResponse to Vehicle object. TangibleId: " + vehicle.getTangibleIdNumber(), e);
             }
@@ -105,7 +107,6 @@ public class NCDBApiImpl implements NCDBApi {
 
     public VehicleRetrievalResponse getNCDBVehicles(final Long familyIdNumber) throws NCDBApiException {
         MdsHeader header = new MdsHeader(this.vehicleRetrievalServiceName);
-
         header.setRequestorUserId(this.requestorUserId);
         header.setMessageOriginationTime(this.simpleDateFormat.format(new Date()));
         header.setSequenceNumber("001");

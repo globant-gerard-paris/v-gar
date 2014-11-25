@@ -134,6 +134,10 @@
     {
       "name": "Linked car",
       "value": "linked-car"
+    },
+    {
+      "name": "Home service",
+      "value": "home-service"
     }
   ],
   "factory": [],

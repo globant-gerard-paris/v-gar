@@ -17,14 +17,6 @@ import com.searshc.mygarage.entities.User;
 public interface UserRepository extends GenericRepository<User, Long> {
 
     /**
-     * Find the {@link User} by {@code userId}.
-     *
-     * @param userId
-     * @return return a {@link User}.
-     */
-    public User findByUserId(@Param("user_id") Long userId);
-
-    /**
      * Find the {@link User} by {@code sywId}.
      *
      * @param sywId

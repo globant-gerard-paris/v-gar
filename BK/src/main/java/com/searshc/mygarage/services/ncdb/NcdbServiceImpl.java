@@ -2,10 +2,15 @@ package com.searshc.mygarage.services.ncdb;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import scala.collection.mutable.StringBuilder;
+
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
+
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHeaderResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderItemResponse;
@@ -19,7 +24,9 @@ import com.searshc.mygarage.entities.record.OrderItem;
 import com.searshc.mygarage.entities.record.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.record.SuggestedTranslation;
-import com.searshc.mygarage.entities.UserVehicle;
+
+import com.searshc.mygarage.entities.FamilyVehicle;
+
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.ServiceTranslationRepository;
 import com.searshc.mygarage.repositories.StoreRepository;
@@ -36,6 +43,8 @@ import org.dozer.Mapper;
 
 @Service
 public class NcdbServiceImpl implements NcdbService {
+
+    private static final Log log = LogFactory.getLog(NcdbServiceImpl.class);
 
     private NCDBApi ncdbApi;
 
@@ -58,7 +67,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<UserVehicle> listVehicles(Long familyId) throws NCDBApiException {
+    public List<FamilyVehicle> listVehicles(Long familyId) throws NCDBApiException {
         return this.ncdbApi.getVehicles(familyId);
     }
 
@@ -84,6 +93,17 @@ public class NcdbServiceImpl implements NcdbService {
             ordersMap.put(order.getOrderNumber(), order);
         }
         return ordersMap;
+    }
+
+    private List<Order> processTransactions(Long familyId, Long tangibleId)
+            throws NCDBApiException {
+        return this.processTransactions(familyId, tangibleId, null);
+    }
+
+    private Order getLastOrder(Long familyId, Long tangibleId)
+            throws NCDBApiException {
+        List<Order> orders = this.processTransactions(familyId, tangibleId);
+        return orders.isEmpty() ? null : orders.get(0);
     }
 
     private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter)
@@ -133,12 +153,11 @@ public class NcdbServiceImpl implements NcdbService {
     @Override
     public RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
             throws NCDBApiException {
-        List<Order> orders = this.processTransactions(familyId, tangibleId, null);
         RecommendedService recommendedService = null;
-        if (orders.size() > 0) {
-            Order order = orders.get(0);
-            recommendedService = new RecommendedService(true, order, order.getServiceCenter());
-            for (OrderItem item : order.getOrderItems()) {
+        Order lastOrder = this.getLastOrder(familyId, tangibleId);
+        if (lastOrder != null) {
+            recommendedService = new RecommendedService(true, lastOrder, lastOrder.getServiceCenter());
+            for (OrderItem item : lastOrder.getOrderItems()) {
                 ServiceRecordItem sri = this.createServiceRecordItem(item);
                 if (sri != null) {
                     recommendedService.addServiceRecordItem(sri);
@@ -146,7 +165,7 @@ public class NcdbServiceImpl implements NcdbService {
             }
         }
         return recommendedService != null
-                && recommendedService.getServiceRecordItems().size() > 0
+                && !recommendedService.getServiceRecordItems().isEmpty()
                         ? recommendedService : null;
     }
 
@@ -194,6 +213,28 @@ public class NcdbServiceImpl implements NcdbService {
             return sri;
         }
 
+    }
+
+    @Override
+    public int getHighestMileage(final Long familyId, final Long tangibleId)
+            throws NCDBApiException {
+        Order lastOrder = this.getLastOrder(familyId, tangibleId);
+        return lastOrder == null ? -1 : lastOrder.getOdometerAmount().intValue();
+    }
+
+    @Override
+    public int getLastUsedStoreId(final Long familyId, final Long tangibleId) throws NCDBApiException {
+        Order lastOrder = this.getLastOrder(familyId, tangibleId);
+        if (lastOrder == null) {
+            String msg = new StringBuilder()
+                    .append("Could not determine the last store. There are no transactions available for family: ")
+                    .append(familyId)
+                    .append(" Tangible: ")
+                    .append(tangibleId).toString();
+            log.warn(msg);
+            return -1;
+        }
+        return lastOrder.getStoreNumber();
     }
 
 }
