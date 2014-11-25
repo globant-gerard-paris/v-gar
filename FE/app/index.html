@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="bower_components/swiper/dist/idangerous.swiper.css">
         <link rel="stylesheet" href="styles/bundle.css">
         <!-- endbuild -->
+
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,300,300italic' rel='stylesheet' type='text/css'>
     </head>
     <body ng-controller="MainCtrl">
 
@@ -85,9 +87,9 @@
         <script src="scripts/presentation-flow/services/store-locator.js"></script>
         <script src="scripts/presentation-flow/services/record.js"></script>
         <script src="scripts/presentation-flow/services/recalls.js"></script>
-
         <script src="scripts/presentation-flow/services/linked-car.js"></script>
-  <!-- yo:services -->
+        <script src="scripts/presentation-flow/services/landing.js"></script>
+        <!-- yo:services -->
 
         <script src="scripts/filters/filters.js"></script>
 
@@ -100,7 +102,31 @@
         <script src="scripts/directives/recall-information.js"></script>
         <script src="scripts/directives/record-row.js"></script>
         <script src="scripts/directives/car-confirmation.js"></script>
+        <!--<script type="text/javascript" src="//www.shopyourway.com/platform/loader" ></script>-->
+        <script type="text/javascript" src="https://www.shopyourway.com/secured/platform/loader" ></script>
 
+        <!-- GET CURRENT SESSION TOKEN FROM I-FRAME -->
+        <script>
+            var currentToken = null;
+            var indexOf = location.toString().indexOf("token");
+            if(indexOf !== -1){
+                var indexStart = location.toString().indexOf("token") + 6;
+                var indexEnd = location.toString().length;
+                var token = location.toString().substring(indexStart, indexEnd);
+                //It is because SYW when you are not login put prefix token with 0_XXXXXX
+                if(token){
+                    var userId = token.substring(0, token.indexOf("_"));
+                    if(userId && userId.length > 2){
+                        currentToken = token;
+                    }
+                }
+            }
+            window.vg = {
+                config : {
+                    token : currentToken
+                }
+            };
+        </script>
         <!-- yo:directives -->
 
         <!-- endbuild -->

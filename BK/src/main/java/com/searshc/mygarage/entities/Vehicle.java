@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 @Entity
 @Table(name = "vehicle")
@@ -157,9 +158,20 @@ public class Vehicle extends AbstractEntity implements Serializable {
         }
         Vehicle rhs = (Vehicle) obj;
         return new EqualsBuilder()
+                .append(this.engine, rhs.engine)
                 .append(this.year, rhs.year)
                 .append(this.make, rhs.make)
                 .append(this.model, rhs.model).isEquals();
+    }
+    
+    
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder()
+        .append(this.engine)
+        .append(this.year)
+        .append(this.make)
+        .append(this.model).hashCode();
     }
 
 }

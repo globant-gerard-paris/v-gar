@@ -8,12 +8,16 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.Validate;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Service;
 
+import com.searshc.mygarage.base.GenericService;
+import com.searshc.mygarage.entities.Store;
+import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.util.VGUtils;
 
 /**
@@ -25,7 +29,7 @@ import com.searshc.mygarage.util.VGUtils;
  *
  */
 @Service
-public class StoreService {
+public class StoreService extends GenericService<Store, Long, StoreRepository>{
 
     private SimpleJdbcCall simpleJdbcCall;
     private static final long DEFAULT_STORES_TO_RETRIEVE = 8;
@@ -70,5 +74,9 @@ public class StoreService {
         return (simpleJdbcCallResult != null) ? new ArrayList<Object>(simpleJdbcCallResult.values())
                 : null;
     }
-;
+
+    public Store findBySacStore(String sacStore) {
+    	Validate.notNull(sacStore, "The SacStore cannot be null");
+    	return repository.findBySacStore(sacStore);
+    }
 }
