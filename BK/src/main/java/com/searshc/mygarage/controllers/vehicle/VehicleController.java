@@ -55,7 +55,7 @@ public class VehicleController {
     @Inject
 
     public VehicleController(final NcdbService ncdbService, final VehicleRecallsService nhtsaService,
-            final FamilyVehicleService vehicleService,
+            final FamilyVehicleService vehicleService, final RecordService recordService,
             final ConfirmedVehicleService confirmedVehicleService, final UserService userService,
             final ObjectMapper objectMapper) {
         this.ncdbService = notNull(ncdbService, "The NCDB Service cannot be null");
