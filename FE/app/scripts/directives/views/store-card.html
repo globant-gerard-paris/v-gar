@@ -1,0 +1,14 @@
+<div class="store-list-item">
+    <div class="col-xs-2">
+        <div class="store-list-icon"></div>
+    </div>
+    <div class="store-list-info col-xs-10">
+        <div>{{model.address}}</div>
+        <div>{{model.district_name}}, {{model.zip_code}}</div>
+        <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}">{{model.phone}}</a></div>
+    </div>
+    <div><button ng-click="setFavoriteStore()">SET AS MY STORE</button></div>
+    <div class="store-list-miles">{{model.distance}} Miles</div>
+    <div class="store-link"><a href="#">See more details</a></div>
+    <div class="clearfix"></div>
+</div>

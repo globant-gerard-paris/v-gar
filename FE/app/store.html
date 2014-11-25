@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
 	<meta charset="UTF-8">
-	<title></title>
+	<title>s</title>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
@@ -73,28 +73,41 @@
             <input type="text" class="input-sm" placeholder="Enter zip code"/><button class="btn btn-primary">FIND MY STORE</button>
         </div>
     </div>
+
     <section class="stores-list-box row">
-        <div class="store-subtitle">3 stores found</div>
+        <div class="store-found-subtitle">3 stores found</div>
         <div class="stores-list-content">
             <div class="store-list-item">
-                <div class="store-list-icon"></div>
-                <div class="store-list-info">
+                <div class="col-xs-2">
+                    <div class="store-list-icon"></div>
+                </div>
+                <div class="store-list-info col-xs-10">
                     <div>#5 Stratford Sq,</div>
                     <div>Bloomingdale, IL 60108</div>
-                    <div>Call: 630-92-2794</div>
+                    <div>Call: <a href="tel:630-92-2794">630-92-2794</a></div>
                 </div>
                 <div><button>SET AS MY STORE</button></div>
                 <div class="store-list-miles">6 Miles</div>
                 <div class="store-link"><a href="#">See more details</a></div>
+                <div class="clearfix"></div>
             </div>
         </div>
     </section>
-    <div class="stores-social-box row">
-        <div class="stores-social-internal"></div>
-        <div class="stores-social-facebook"></div>
-        <div class="stores-social-twitter"></div>
+
+
+    <div class="stores-social-box row visible-xs">
+        <div class="stores-social">
+            <div class="stores-social-internal"></div>
+        </div>
+        <div class="stores-social">
+            <div class="stores-social-facebook"></div>
+        </div>
+        <div class="stores-social">
+            <div class="stores-social-twitter"></div>
+        </div>
     </div>
-    <section class="feedback-box row">
+
+    <section class="feedback-box row visible-xs">
         <button>FEEDBACK</button>
     </section>
 
