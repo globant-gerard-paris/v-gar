@@ -50,11 +50,11 @@ $landingBottomSize : 100% - $landingTopSize;
         background-size: cover;
         color:white;
         p{
-            font-size:15px;
+            font-size:16px;
             font-weight: 200;
             text-align: center;
             position: absolute;
-            margin:0 25% 0 25%;
+            margin:0 24%;
             font-family: $fontSansSerif;
             @extend %centerVertically;
         }
