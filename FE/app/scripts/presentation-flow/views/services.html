@@ -7,12 +7,12 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1 service-content">
            <div class="service-header row hidden-xs">
-                    <div class="col-sm-2">Date</div>
+                    <div class="col-sm-2 sis-date">Date</div>
                     <div class="col-sm-1">Mileage</div>
                     <div class="col-sm-4">Service Center</div>
                     <div class="col-sm-5">Service</div>
             </div>
-            <service-information service-date="service.serviceDate" service-mileage="service.serviceMileage" service-center="service.serviceCenter" service-desc="service.serviceDesc"
+            <service-information service-date="service.date" service-mileage="service.mileage" service-center="service.serviceCenter" service-records="service.serviceRecordItems"
                                 ng-repeat="service in model.services"></service-information>
         </div>
     </div>

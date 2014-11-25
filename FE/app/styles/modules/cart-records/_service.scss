@@ -5,19 +5,17 @@
 		@extend %font-Roboto;
 		font-weight: bold;
 		font-size: 1.1em;
+		margin-top: 30px;
+		padding-bottom:24px;
 	}
 	.services-info{
 		font-size: 0.9em;
 		@extend %font-Roboto;
 		color: #888;
-		.service-highlight{
-			color: #555;
-			text-decoration: underline;
-		}
 		.service-data{
 			padding-top:10px;
 		}
-		padding-bottom:10px;
+		padding-bottom:24px;
 	}
 
 	.service-type-manual{
@@ -29,6 +27,13 @@
       	background-size: contain;
       	float:left;
       	margin-top:-10px;
+	}
+	.sis-date{
+		text-align: center;
+	}
+	.service-highlight{
+		color: #555;
+		text-decoration: underline;
 	}
 }
 
