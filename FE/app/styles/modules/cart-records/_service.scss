@@ -31,3 +31,35 @@
       	margin-top:-10px;
 	}
 }
+
+.services-info-small{
+	@extend %font-Roboto;
+	.row.sis-header{
+		text-align: center;
+		background-color: #fff;
+		font-size: 1.6em;
+		color: #a0a1a3;
+	}
+	.row{
+		padding:20px;
+		background-color: #f8f8f8;
+		.sis-data{
+			font-size: 1.2em;
+			font-weight: bold;
+			color: #585d6b;
+		}
+		.sis-title{
+			color: #b0b1b2;
+		}
+	}
+	.service-type-manual{
+		background-image: url("../resources/images/wrench.png");
+      	background-repeat: no-repeat;
+      	background-position: center center;
+      	height: 40px;
+      	width: 40px;
+      	background-size: contain;
+      	float:left;
+      	margin-top:-10px;
+	}
+}
