@@ -3,23 +3,17 @@
 
 <div ng-init="selectedTab = 'services'" ng-include="'scripts/presentation-flow/views/cart-records-header.html'"></div>
 
-<div class="recall-box">
+<div class="service-box">
     <div class="row">
-        <div class="col-md-10 col-md-offset-1 recall-content">
-
-            <recall-information recall-date="recall.reportReceivedDate"
-                                model-year="recall.modelYear"
-                                make="recall.make"
-                                model="recall.model"
-                                component="recall.component"
-                                summary="recall.summary"
-                                consequence="recall.consequence"
-                                remedy="recall.remedy"
-                                notes="recall.notes"
-                                position="$index + 1"
-                                ng-repeat="recall in model.recalls"></recall-information>
+        <div class="col-md-10 col-md-offset-1 service-content">
+           <div class="service-header row">
+                    <div class="col-sm-2">Date</div>
+                    <div class="col-sm-1">Mileage</div>
+                    <div class="col-sm-4">Service Center</div>
+                    <div class="col-sm-5">Service</div>
+            </div>
+            <service-information service-date="service.serviceDate" service-mileage="service.serviceMileage" service-center="service.serviceCenter" service-desc="service.serviceDesc"
+                                ng-repeat="service in model.services"></service-information>
         </div>
     </div>
-
-SRV
 </div>

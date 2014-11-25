@@ -1,0 +1,33 @@
+.service-box{
+	.service-header{
+		color: #555;
+		padding: 10px 10px 10px 10px;
+		@extend %font-Roboto;
+		font-weight: bold;
+		font-size: 1.1em;
+	}
+	.services-info{
+		font-size: 0.9em;
+		@extend %font-Roboto;
+		color: #888;
+		.service-highlight{
+			color: #555;
+			text-decoration: underline;
+		}
+		.service-data{
+			padding-top:10px;
+		}
+		padding-bottom:10px;
+	}
+
+	.service-type-manual{
+		background-image: url("../resources/images/wrench.png");
+      	background-repeat: no-repeat;
+      	background-position: center center;
+      	height: 40px;
+      	width: 40px;
+      	background-size: contain;
+      	float:left;
+      	margin-top:-10px;
+	}
+}

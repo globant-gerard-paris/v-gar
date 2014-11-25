@@ -6,9 +6,9 @@ angular.module('Directives').directive('serviceInformation', function () {
         templateUrl: 'scripts/directives/views/service-information.html',
         scope: {
             serviceDate: '=',
-            milleage: '=',
+            serviceMileage: '=',
             serviceCenter: '=',
-            service: '=',
+            serviceDesc: '=',
         },
         link: function () {
 
