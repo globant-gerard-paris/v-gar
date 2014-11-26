@@ -1,5 +1,6 @@
 'use strict';
 
+
 angular.module('PresentationFlow').directive('disableAnimation', function ($animate) {
     return {
         restrict: 'A',
