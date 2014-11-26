@@ -63,25 +63,25 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                      *  The options of the map.
                      * @type {{center: google.maps.LatLng, coords: google.maps.LatLng, zoom: number}}
                      */
-                    var map_options = {
-                        center: storePosition,
-                        coords: storePosition,
-                        zoom: 15,
-                        streetViewControl: false,
-                        scrollwheel: false,
-                        mapTypeControl: false
-                    };
+                var map_options = {
+                    center: storePosition,
+                    coords: storePosition,
+                    zoom: 15,
+                    streetViewControl: false,
+                    scrollwheel: false,
+                    mapTypeControl: false
+                };
 
-                    var _map = new google.maps.Map(map, map_options);
+                var _map = new google.maps.Map(map, map_options);
 
-                    var marker = new google.maps.Marker({
-                        position: storePosition,
-                        map: _map,
-                        title: scope.model.address
-                    });
+                var marker = new google.maps.Marker({
+                    position: storePosition,
+                    map: _map,
+                    title: scope.model.address
+                });
 
-                    scope.map = _map;
-                    marker.setMap(_map);
+                scope.map = _map;
+                marker.setMap(_map);
 
                 //}, 1000);
             };

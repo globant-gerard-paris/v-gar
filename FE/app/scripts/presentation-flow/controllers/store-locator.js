@@ -20,7 +20,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         initialize();
     });
 
-    $scope.$on('NG_REPEAT_FINISHED', function(ngRepeatFinishedEvent) {
+    $scope.$on('NG_REPEAT_FINISHED', function(/*ngRepeatFinishedEvent*/) {
         mySwiper = new Swiper('.swiper-container',{
 //                pagination: '.pagination',
             paginationClickable: true,

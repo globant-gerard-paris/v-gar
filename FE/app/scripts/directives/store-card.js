@@ -1,7 +1,7 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv, StringUtilSrv) {
+angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv) {
     'use strict';
 
     return {

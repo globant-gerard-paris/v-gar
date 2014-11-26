@@ -1,6 +1,4 @@
-<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-
-<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
+<div ng-include="'scripts/presentation-flow/views/nav-top.html'" class="visible-lg visible-sm visible-md"></div>
 
 <div class="container-fluid store-container">
 
@@ -17,21 +15,25 @@
 
     <div class="store-find-box row margin-top-10">
         <form name="storeLocatorSearch" novalidate>
-            <div class="header-title">
+            <div class="header-title row">
                 <div class="col-xs-12">
                     <h1>Find a store</h1>
                 </div>
             </div>
-            <p class="col-xs-12 col-sm-5">Enter your ZIP code or address to find a Sears Auto center near you.</p>
-            <div class="col-xs-12 col-sm-7 input-group vg-store-locator-input">
-                <input type="text" class="form-control"  ng-model="model.address" value="{{model.address}}" ng-minlength="1" required
-                       placeholder="Enter zip code" ng-disabled="model.searching">
-                <span class="input-group-btn">
-                    <button class="btn btn-primary" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
-                        ng-click="getStoreNearby()">FIND MY STORE</button>
-                </span>
-                <!--TODO improve it!-->
-                <span ng-show="model.searching">(loading...)</span>
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">Enter your ZIP code or address to find a Sears Auto center near you.</div>
+                <div class="col-xs-12 col-sm-7">
+                    <div class="input-group vg-store-locator-input">
+                        <input type="text" class="form-control"  ng-model="model.address" value="{{model.address}}" ng-minlength="1" required
+                               placeholder="Enter zip code" ng-disabled="model.searching">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
+                                ng-click="getStoreNearby()">FIND MY STORE</button>
+                        </span>
+                        <!--TODO improve it!-->
+                        <span ng-show="model.searching">(loading...)</span>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
@@ -59,7 +61,7 @@
     </div>
 
     <section class="feedback-box row visible-xs">
-        <button>FEEDBACK</button>
+        <button type="button">FEEDBACK</button>
     </section>
 
 
