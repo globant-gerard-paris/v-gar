@@ -38,6 +38,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
             $scope.model.address = params.zipcode;
             $scope.model.oldAddress = params.zipcode;
 
+            //TODO implement promises
             StoreLocatorSrv.getStoreNearby($scope.model.address, getStoreNearbySuccess, getStoreNearbyFail);
         }
     };
