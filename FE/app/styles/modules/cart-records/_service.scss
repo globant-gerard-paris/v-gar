@@ -1,11 +1,24 @@
 .service-box{
+	margin-top: 34px;
+	.service-date{
+		text-align: center;
+		margin: 16px 0 0 0;
+		border-top: 1px solid #ddd;
+		@extend %font-Roboto;
+		span{
+			color: #aaa;
+			background-color: white;
+			position: relative;
+			top: -0.7em;
+			padding: 0 20px;
+			font-size: 1.4em;
+		}
+	}
 	.service-header{
 		color: #555;
-		padding: 10px 0 10px 0;
 		@extend %font-Roboto;
 		font-weight: bold;
 		font-size: 1.1em;
-		margin-top: 30px;
 		padding-bottom:24px;
 	}
 	.services-info{
