@@ -2,41 +2,9 @@
 
 angular.module('Services').service('SessionDataSrv', function () {
 
-    var dest = 'local';
-
     var model = {
         currentUser: null,
         cachedVehicleUsers: null
-    };
-
-    var isDataSaved = function () {
-        return !!(getData('currentUser'));
-    };
-
-    var saveData = function (key, value) {
-        window[dest+'Storage'].setItem(key,JSON.stringify(value));
-        return value;
-    };
-
-    var getData = function (key) {
-        return JSON.parse(window[dest+'Storage'].getItem(key));
-    };
-
-    var reload = function () {
-        for(var propertie in model){
-            if(model.hasOwnProperty(propertie)){
-                model[propertie] = getData(propertie);
-            }
-        }
-    };
-
-    var clear = function () {
-        for(var propertie in model){
-            if(model.hasOwnProperty(propertie)){
-                window[dest+'Storage'].removeItem(propertie);
-                model[propertie] = null;
-            }
-        }
     };
 
     /**
@@ -52,7 +20,7 @@ angular.module('Services').service('SessionDataSrv', function () {
      * @returns {string}
      */
     var getCurrentUser = function () {
-        return parseInt(model.currentUser,10);
+        return model.currentUser;
     };
 
     /**
@@ -60,12 +28,13 @@ angular.module('Services').service('SessionDataSrv', function () {
      * @param user
      */
     var setCurrentUser = function (user) {
-        model.currentUser = saveData('currentUser',user);
+        model.currentUser = user;
     };
 
     var setCachedVehicleUsers = function (vehicles) {
-        model.cachedVehicleUsers = saveData('cachedVehicleUsers',vehicles);
+        model.cachedVehicleUsers = vehicles;
     };
+
     var getCachedVehicleUsers = function () {
         return model.cachedVehicleUsers;
     };
@@ -87,11 +56,6 @@ angular.module('Services').service('SessionDataSrv', function () {
     };
 
     return {
-        isDataSave: isDataSaved,
-        saveData: saveData,
-        getData: getData,
-        reload: reload,
-        clear: clear,
         getCurrentUser: getCurrentUser,
         setCurrentUser: setCurrentUser,
         getCurrentFamilyId: getCurrentFamilyId,

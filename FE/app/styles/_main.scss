@@ -3,18 +3,10 @@ body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #444;
 }
-
+ 
  body, html, .container-fluid{
     height:100%;
  }
-
-a{
-    color:$linkColor;
-    &:hover{
-        color:$linkColorAlt;
-        text-decoration: none;
-    }
-}
 
 .page-header{
   margin: 10px 0 20px;

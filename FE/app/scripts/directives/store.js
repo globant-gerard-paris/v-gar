@@ -28,11 +28,12 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
             /**
              * Load days of the current week with the hours open and close of the store.
              */
-            var load = function () {
+            var init = function () {
                 //TODO improve with promises
                 var toDay = new Date();
                 scope.days = toDay.getDaysOfTheCurrentWeek();
                 if(!scope.model){return;}
+                debugger
                 scope.hours[0] = scope.model.mondayOpen + 'am ' + scope.model.mondayClose + 'pm';
                 scope.hours[1] = scope.model.tuesdayOpen + 'am ' + scope.model.tuesdayClose + 'pm';
                 scope.hours[2] = scope.model.wednesdayOpen + 'am ' + scope.model.wednesdayClose + 'pm';
@@ -87,7 +88,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
             };
 
             $timeout(function () {
-                load();
+                init();
             },1500);
         }
     };
