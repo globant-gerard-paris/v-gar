@@ -22,6 +22,13 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
 	            model: 'Colorado',
 	            mileage: '44000',
 	            nameTag: 'My Little Luxury'
+    		},
+    		{
+	            year: '2001',
+	            brand: 'Kia',
+	            model: 'Sportage',
+	            mileage: '134000',
+	            nameTag: 'The Monster'
     		}
     	]
 	};
