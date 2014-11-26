@@ -8,11 +8,9 @@ import org.springframework.stereotype.Service;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceRecord;
-import com.searshc.mygarage.entities.record.Record;
-import com.searshc.mygarage.entities.record.SuggestedService;
+import com.searshc.mygarage.entities.Record;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecordRepository;
-import com.searshc.mygarage.repositories.SuggestedServiceRepository;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 
 import javax.inject.Inject;
@@ -24,12 +22,9 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
 
     private NcdbService ncdbService;
 
-    private SuggestedServiceRepository suggestedServiceRepository;
-
     @Inject
-    public RecordService(final NcdbService ncdbService, SuggestedServiceRepository suggestedServiceRepository) {
+    public RecordService(final NcdbService ncdbService) {
         this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
-        this.suggestedServiceRepository = Validate.notNull(suggestedServiceRepository, "The SuggestedService Repository cannot be null");
     }
 
     public List<Record> getRecordsByFamilyVehicleId(final Long familyVehicleId) {
@@ -67,9 +62,5 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
             mileage = -1;
         }
         return mileage;
-    }
-
-    public List<SuggestedService> getSuggestedServices() {
-        return this.suggestedServiceRepository.findAll();
     }
 }

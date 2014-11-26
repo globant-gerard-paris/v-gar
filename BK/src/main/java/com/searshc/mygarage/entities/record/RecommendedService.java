@@ -1,5 +1,7 @@
 package com.searshc.mygarage.entities.record;
 
+import com.searshc.mygarage.entities.record.Order;
+
 public class RecommendedService extends NcdbServiceRecord {
 
     private boolean valid;

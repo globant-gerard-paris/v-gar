@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class SuggestedService extends AbstractEntity {
+public class SuggestedTranslation extends AbstractEntity {
 
     @Column(nullable = false, unique = true)
     private String sku;

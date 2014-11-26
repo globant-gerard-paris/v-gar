@@ -31,19 +31,16 @@ import com.searshc.mygarage.entities.record.Order;
 import com.searshc.mygarage.entities.record.OrderItem;
 import com.searshc.mygarage.entities.record.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
-import com.searshc.mygarage.entities.record.SuggestedService;
+import com.searshc.mygarage.entities.record.SuggestedTranslation;
 
 import com.searshc.mygarage.entities.FamilyVehicle;
 
 import com.searshc.mygarage.exceptions.NCDBApiException;
-import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
-import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.repositories.ServiceTranslationRepository;
 import com.searshc.mygarage.repositories.StoreRepository;
-import com.searshc.mygarage.repositories.SuggestedServiceRepository;
+import com.searshc.mygarage.repositories.SuggestedTranslationRepository;
 import com.searshc.mygarage.util.ServiceRecordType;
 import com.searshc.mygarage.util.VGUtils;
-import java.util.Date;
 
 @Service
 public class NcdbServiceImpl implements NcdbService {
@@ -56,26 +53,18 @@ public class NcdbServiceImpl implements NcdbService {
 
     private ServiceTranslationRepository serviceTranslationRepository;
 
-    private SuggestedServiceRepository suggestedServiceRepository;
-
-    private RecordRepository recordRepository;
-
-    private RecommendedServiceBlockedRepository recommendedServiceBlockedRepository;
+    private SuggestedTranslationRepository suggestedTranslationRepository;
 
     private final Mapper mapper = new DozerBeanMapper();
 
     @Inject
     public NcdbServiceImpl(NCDBApi ncdbApi, StoreRepository storeRepository,
             ServiceTranslationRepository serviceTranslationRepository,
-            SuggestedServiceRepository suggestedServiceRepository,
-            RecordRepository recordRepository,
-            RecommendedServiceBlockedRepository recommendedServiceBlockedRepository) {
+            SuggestedTranslationRepository suggestedTranslationRepository) {
         this.ncdbApi = ncdbApi;
         this.storeRepository = storeRepository;
         this.serviceTranslationRepository = serviceTranslationRepository;
-        this.suggestedServiceRepository = suggestedServiceRepository;
-        this.recordRepository = recordRepository;
-        this.recommendedServiceBlockedRepository = recommendedServiceBlockedRepository;
+        this.suggestedTranslationRepository = suggestedTranslationRepository;
     }
 
     @Override
@@ -171,9 +160,7 @@ public class NcdbServiceImpl implements NcdbService {
             recommendedService = new RecommendedService(true, lastOrder, lastOrder.getServiceCenter());
             for (OrderItem item : lastOrder.getOrderItems()) {
                 ServiceRecordItem sri = this.createServiceRecordItem(item);
-                if (sri != null
-                        && this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
-                        && this.checkIsNotRecommendedServiceBlocked(lastOrder, sri.getCode())) {
+                if (sri != null) {
                     recommendedService.addServiceRecordItem(sri);
                 }
             }
@@ -183,19 +170,9 @@ public class NcdbServiceImpl implements NcdbService {
                         ? recommendedService : null;
     }
 
-    private boolean checkIsNotLocalServiceRecord(Date date, String sku) {
-        return this.recordRepository.countByDateAndSku(date, sku) == 0;
-    }
-
-    private boolean checkIsNotRecommendedServiceBlocked(Order order, String sku) {
-        return this.recommendedServiceBlockedRepository
-                .countByOrderNumberAndFamilyIdNumberAndTangibleIdNumberAndSku(order.getOrderNumber(),
-                        order.getFamilyIdNumber(), order.getTangibleIdNumber(), sku) == 0;
-    }
-
     private ServiceRecordItem createServiceRecordItem(OrderItem item) {
-        SuggestedService sgt
-                = this.suggestedServiceRepository.findBySku(item.getItemId());
+        SuggestedTranslation sgt
+                = this.suggestedTranslationRepository.findBySku(item.getItemId());
         ServiceRecordItem sri = null;
         if (sgt != null) {
             item.setType(ServiceRecordType.RECOMMENDED_SERVICE);
