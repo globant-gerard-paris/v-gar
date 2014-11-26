@@ -32,6 +32,8 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 //TODO improve with promises
                 var toDay = new Date();
                 scope.days = toDay.getDaysOfTheCurrentWeek();
+                if(!scope.model){return;}
+                debugger
                 scope.hours[0] = scope.model.mondayOpen + 'am ' + scope.model.mondayClose + 'pm';
                 scope.hours[1] = scope.model.tuesdayOpen + 'am ' + scope.model.tuesdayClose + 'pm';
                 scope.hours[2] = scope.model.wednesdayOpen + 'am ' + scope.model.wednesdayClose + 'pm';
@@ -87,7 +89,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
 
             $timeout(function () {
                 init();
-            },500);
+            },1500);
         }
     };
 });

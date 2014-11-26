@@ -4,7 +4,7 @@ module.exports = function(grunt) {
     grunt.config('shell', {
         //run back-end server
         'runBKserver':{
-            command: 'mvn spring-boot:run',
+            command: 'mvn spring-boot:run -Dhttp.proxyHost=166.76.3.199 -Dhttp.proxyPort=8080',
             options: {
                 async: false,
                 execOptions: {
