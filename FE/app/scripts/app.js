@@ -47,14 +47,6 @@ angular.module('virtualGarage', _mainModules)
             routes.push({
                 name: '/landing',
                 params: {
-                    templateUrl: 'scripts/presentation-flow/views/presentation-flow.html',
-                    controller: 'PresentationFlowCtrl'
-                }
-            });
-
-            routes.push({
-                name: '/presentation-flow-landing',
-                params: {
                     templateUrl: 'scripts/presentation-flow/views/landing.html',
                     controller: 'LandingCtrl'
                 }

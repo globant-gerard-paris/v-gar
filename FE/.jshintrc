@@ -32,10 +32,11 @@
         "_": false,
         "beforeEach": false,
         "browser": false,
-        "alert":false,
-        "google":false,
-        "$":false,
-        "moment":false,
-        "geolib":false
+        "alert": false,
+        "google": false,
+        "$": false,
+        "moment": false,
+        "geolib": false,
+        "Platform": false
     }
 }

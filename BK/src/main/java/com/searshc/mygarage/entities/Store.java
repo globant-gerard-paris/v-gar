@@ -33,7 +33,7 @@ public class Store extends AbstractEntity {
     @Column(name = "store_type")
     private String storeType;
 
-    @Column(name = "sac_store")
+    @Column(name = "sac_store", nullable = false, unique = true)
     private String sacStore;
 
     @Column(name = "zip_code")

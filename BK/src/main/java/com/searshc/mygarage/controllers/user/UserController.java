@@ -14,10 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.services.user.UserService;
+import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
 
 /**
  *
- * The {@link UserInformationController} have the responsibility to manager the
+ * The {@link UserController} have the responsibility to manager the
  * request about the {@link User}s in the system.
  *
  * @author Jero
@@ -25,16 +26,19 @@ import com.searshc.mygarage.services.user.UserService;
  */
 @RestController
 @RequestMapping("/user")
-public class UserInformationController {
+public class UserController {
 
     private UserService userService;
+
+    private FamilyVehicleService familyVehicleService;
 
     /**
      * @param userService
      */
     @Inject
-    public UserInformationController(UserService userService) {
-        this.userService = Validate.notNull(userService, "The User Information Service cannot be null");
+    public UserController(UserService userService, FamilyVehicleService familyVehicleService) {
+        this.userService = Validate.notNull(userService, "The User Service cannot be null");
+        this.familyVehicleService = Validate.notNull(familyVehicleService, "The User Vehicle Service cannot be null");
     }
 
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
