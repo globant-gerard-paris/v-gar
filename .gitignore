@@ -41,6 +41,7 @@ FE/nbproject
 
 # BOTH
 
+ENV
 .project
 .classpath
 build
