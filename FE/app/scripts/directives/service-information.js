@@ -1,6 +1,3 @@
-/**
- * Created by diego.caro on 25/11/2014.
- */
 'use strict';
 
 angular.module('Directives').directive('serviceInformation', function () {
@@ -9,11 +6,24 @@ angular.module('Directives').directive('serviceInformation', function () {
         templateUrl: 'scripts/directives/views/service-information.html',
         scope: {
             serviceDate: '=',
-            mileage: '=',
-            serviceCenter: '='
+            serviceMileage: '=',
+            serviceCenter: '=',
+            serviceRecords: '=',
         },
-        link: function () {
+        link: function (scope) {
+            scope.serviceCenterStr = scope.serviceCenter.address +
+                                    ' @ ' + scope.serviceCenter.city +
+                                    ', ' + scope.serviceCenter.zipCode;
 
+            var serviceDescArr = [];
+
+
+            _.each(scope.serviceRecords, function(record){
+                serviceDescArr.push(record.description);
+            });
+
+            scope.serviceDesc = serviceDescArr.join(', ');
+            
         }
     };
 });
