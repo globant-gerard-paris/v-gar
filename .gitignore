@@ -41,9 +41,11 @@ FE/nbproject
 
 # BOTH
 
+ENV
 .project
 .classpath
 build
 .idea
 .settings
 nbproject
+ENV
