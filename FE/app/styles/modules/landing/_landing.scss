@@ -182,4 +182,33 @@ $landingBottomSize : 100% - $landingTopSize;
         }
     }
 
+    @media (min-height: 481px) and (max-height: 604px) {
+        .landing-page-logo {
+            margin-top: 70px;
+        }
+
+        .landing_box {
+            p {
+                margin: 0 16%;
+            }
+        }
+
+        .carousel-indicators {
+            top: 370px;
+        }
+    }
+
+    @media (max-height: 480px) {
+        .top_logo {
+            margin-top: 55px;
+        }
+
+        .landing-page-logo {
+            height: 100px;
+            margin-top: 15px;
+        }
+    }
+
+
+
 }
