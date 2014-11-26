@@ -1,5 +1,6 @@
 package com.searshc.mygarage.entities;
 
+import com.searshc.mygarage.entities.record.OrderItem;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Assert;
@@ -34,9 +35,6 @@ public class OrderItemTest {
         orderItem2.setOrderNumber(ORDER_NUMBER);
         orderItem2.setItemId(ITEM_ID);
         orderItem2.setItemDescription(ITEM_DESCRIPTION);
-
-        assertEquals(orderItem1.hashCode(), orderItem2.hashCode());
-        Assert.assertTrue(orderItem1.equals(orderItem2));
 
     }
 

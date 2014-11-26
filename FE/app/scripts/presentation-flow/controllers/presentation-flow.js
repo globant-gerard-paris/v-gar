@@ -4,6 +4,7 @@ angular.module('PresentationFlow').controller('PresentationFlowCtrl', function (
 
     $scope.userTypeAction = function (action) {
         PresentationFlowSrv.setUserTypeAction(action);
+
         if ('FULL_USER' === action) {
             RedirectSrv.redirectTo('/dashboard');
         } else {
