@@ -1,5 +1,7 @@
 .service-box{
-	margin-top: 34px;
+	.separator{
+		height: 34px;
+	}
 	.service-date{
 		text-align: center;
 		margin: 16px 0 0 0;
@@ -59,28 +61,32 @@
 		color: #a0a1a3;
 	}
 	.row{
-		padding:20px;
+		border-bottom: 1px solid white;
+		padding:14px 5px 14px 5px;
 		background-color: #f8f8f8;
 		.sis-data{
-			font-size: 1.2em;
 			font-weight: bold;
 			color: #585d6b;
 			margin-left: 100px;
 		}
 		.sis-title{
 			color: #b0b1b2;
-			min-width: 7em;
-			padding-top: 0.15em;
+			min-width: 6em;
+			font-size: 0.9em;
 		}
 	}
 	.service-type-manual{
 		background-image: url("../resources/images/wrench.png");
-      	background-repeat: no-repeat;
-      	background-position: center center;
-      	height: 40px;
-      	width: 40px;
-      	background-size: contain;
-      	float:left;
-      	margin-top:-10px;
+		background-repeat: no-repeat;
+		background-position: center center;
+		height: 40px;
+		width: 40px;
+		background-size: contain;
+		position: relative;
+		left: 20px;
+		top: 5px;
+	}
+	.sis-date-small{
+		width: 90%;
 	}
 }
