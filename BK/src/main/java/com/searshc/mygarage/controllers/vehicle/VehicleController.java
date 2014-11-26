@@ -30,13 +30,16 @@ import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
+import com.searshc.mygarage.entities.trends.VehicleTrend;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
+import com.searshc.mygarage.exceptions.VehicleTrendException;
 import com.searshc.mygarage.orchestrators.DashboardOrchestrator;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
+import com.searshc.mygarage.services.trends.VehicleTrendService;
 import com.searshc.mygarage.services.user.UserService;
 import com.searshc.mygarage.services.vehicle.ConfirmedVehicleService;
 import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
@@ -55,6 +58,7 @@ public class VehicleController {
 	private UserService userService;
 	private ObjectMapper objectMapper;
 	private DashboardOrchestrator dashboardOrchestrator;
+    private VehicleTrendService vehicleTrendService;
 
 	@Inject
 	public VehicleController(final NcdbService ncdbService,
@@ -63,7 +67,8 @@ public class VehicleController {
 			final RecordService recordService,
 			final ConfirmedVehicleService confirmedVehicleService,
 			final UserService userService, final ObjectMapper objectMapper,
-			final DashboardOrchestrator dashboardOrchestrator) {
+			final DashboardOrchestrator dashboardOrchestrator,
+			final VehicleTrendService vehicleTrendService) {
 		this.ncdbService = notNull(ncdbService,
 				"The NCDB Service cannot be null");
 		this.recordService = notNull(recordService,
@@ -79,6 +84,8 @@ public class VehicleController {
 		this.objectMapper = notNull(objectMapper,
 				"The ObjectMapper cannot be null");
 		this.dashboardOrchestrator = notNull(dashboardOrchestrator);
+		this.vehicleTrendService = notNull(vehicleTrendService,
+				"The Vehicle Trend Service cannot be null");		
 	}
 
 	@RequestMapping(value = "/family/{familyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -223,5 +230,13 @@ public class VehicleController {
 				HttpStatus.OK);
 
 	}
+
+    @RequestMapping("/trends/make/{make}/last")
+    @ResponseBody
+    public ResponseEntity<VehicleTrend> getTrend(@PathVariable("make") String make) throws VehicleTrendException {
+    
+    	VehicleTrend response = this.vehicleTrendService.getTrend(make);
+    	return new ResponseEntity<VehicleTrend>(response, null, HttpStatus.OK);
+    }       
 
 }
