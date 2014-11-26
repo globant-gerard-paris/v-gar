@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Could not retrieve Recalls from NHSTSA")
-public class NHTSARecallsException extends Exception implements Serializable {
+public class NHTSARecallsException extends RuntimeException implements Serializable {
 
     /**
      *

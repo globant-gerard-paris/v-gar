@@ -441,8 +441,8 @@ module.exports = function (grunt) {
                 'XHTML element “record-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “ng-minlength” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-repeat” not allowed on XHTML element “li” at this point.',
-                'XHTML element “carousel” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'XHTML element “car-confirmation” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “car-confirmation” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “carousel” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });

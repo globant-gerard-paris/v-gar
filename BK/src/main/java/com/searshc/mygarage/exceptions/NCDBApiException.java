@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Could not retrieve vehicles from NCDB")
-public class NCDBApiException extends Exception implements Serializable {
+public class NCDBApiException extends RuntimeException implements Serializable {
 
     /**
      *

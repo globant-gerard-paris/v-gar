@@ -1,5 +1,7 @@
 package com.searshc.mygarage.entities;
 
+import com.searshc.mygarage.entities.record.Order;
+import com.searshc.mygarage.entities.record.OrderItem;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
