@@ -8,13 +8,14 @@ angular.module('Directives').directive('serviceInformation', function () {
             serviceDate: '=',
             serviceMileage: '=',
             serviceCenter: '=',
-            serviceRecords: '=',
+            serviceRecords: '='
         },
         link: function (scope) {
-            scope.serviceCenterStr = scope.serviceCenter.address +
-                                    ' @ ' + scope.serviceCenter.city +
-                                    ', ' + scope.serviceCenter.zipCode;
-
+            if (scope.serviceCenter !== null) {
+                scope.serviceCenterStr = scope.serviceCenter.address +
+                    ' @ ' + scope.serviceCenter.city +
+                    ', ' + scope.serviceCenter.zipCode;
+            }
             var serviceDescArr = [];
 
 

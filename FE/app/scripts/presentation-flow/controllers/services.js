@@ -49,8 +49,8 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         console.log('ERROR: ' + response);
     };
 
-    var familyId = '8105575',
-        tangibleId = '75224002';
+    var familyId = '69925967',
+        tangibleId = '24503902';
 
     $scope.model = {
         services: [],
