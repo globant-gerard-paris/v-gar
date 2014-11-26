@@ -6,7 +6,7 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         services: []
     };
 
-    var mock = true;
+    var mock = false;
 
 
     /*

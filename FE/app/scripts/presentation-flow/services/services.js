@@ -7,7 +7,7 @@ angular.module('PresentationFlow').service('ServicesSrv', function (ApiHttpSrv, 
 
     var getServices = function (familyId, tangibleId, successCallback, faildCallback) {
         ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/record/family/' +
-            familyId + '/vehicle/' + tangibleId + '/order/desc')
+            familyId + '/vehicle/' + tangibleId)
             .then(successCallback, faildCallback);
     };
 

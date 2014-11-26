@@ -13,14 +13,14 @@ angular.module('Directives').directive('serviceInformation', function () {
         link: function (scope) {
             scope.serviceCenterStr = scope.serviceCenter.address +
                                     ' @ ' + scope.serviceCenter.city +
-                                    ', '+ scope.serviceCenter.zipCode; 
+                                    ', ' + scope.serviceCenter.zipCode;
 
             var serviceDescArr = [];
 
 
             _.each(scope.serviceRecords, function(record){
                 serviceDescArr.push(record.description);
-            })
+            });
 
             scope.serviceDesc = serviceDescArr.join(', ');
             
