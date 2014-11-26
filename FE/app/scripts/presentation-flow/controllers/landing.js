@@ -1,62 +1,82 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, RedirectSrv, PresentationFlowSrv,$modal) {
 
-    $scope.typeModal = '';
-    $scope.startNow = function () {
-        var action = PresentationFlowSrv.getUserTypeAction();
-        switch (action) {
-        case 'GUEST':
-            $scope.typeModal = 'SIGN-UP';
-            $scope.open('/add-car');
-            break;
-        case 'ONLY_SYW_USER':
-            $scope.typeModal = 'SIGN-IN';
-            $scope.open('/dashboard');
-            break;
-        case 'SIGNED_USER':
-            RedirectSrv.redirectTo('/add-car');
-            break;
-        case 'FULL_USER':
-            RedirectSrv.redirectTo('/dashboard');
-            break;
-        case 'NON_PARTICIPATE':
-            RedirectSrv.redirectTo('/linked-car');
-            break;
-        default:
-            RedirectSrv.redirectTo('/presentation-flow');
+angular.module('PresentationFlow').directive('disableAnimation', function ($animate) {
+    return {
+        restrict: 'A',
+        link: function ($scope, $element, $attrs) {
+            $attrs.$observe('disableAnimation', function (value) {
+                $animate.enabled(!value, $element);
+            });
+        }
+    };
+});
+
+angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv) {
+
+    $scope.nextURL = '/landing'; //default
+
+    $scope.slides = [
+        {
+            active: true,
+            class: 'carousel_img_LP_1'
+        },
+        {
+            class: 'carousel_img_LP_2'
+        },
+        {
+            class: 'carousel_img_LP_3'
+        },
+        {
+            class: 'carousel_img_LP_4'
+        },
+        {
+            class: 'carousel_img_LP_5'
+        }
+
+    ];
+
+    var init = function (){
+        var token = SessionDataSrv.getCurrentToken();
+        if(token){
+            $scope.needSYWLogin = false;
+            LandingSrv.getHomeSessionInfo(token).then(successGetUserInfo, failGetUserInfo);
+        }else {
+            $scope.needSYWLogin = true;
         }
     };
 
-    $scope.open = function (destinationUrl) {
+    $scope.myInterval = 5000;
+    $scope.needSYWLogin = true;
+    $scope.typeModal = '';
 
-        var modalInstance = $modal.open({
-            templateUrl: 'myModalContent.html',
-            controller: 'ModalInstanceCtrl',
-            size: 'md',
-            resolve: {
-                destinationPage : function () {
-                    return destinationUrl;
-                }
+    $scope.startNow = function () {
+        if($scope.needSYWLogin){
+            Platform.Authentication.openSignupDialog(null,null,'signIn');
+            $scope.needSYWLogin = true;
+        }else{
+            RedirectSrv.redirectTo($scope.nextURL);
+        }
+    };
+
+    var successGetUserInfo = function (response) {
+        if(response){
+            if(response.haveManualCars || response.haveLinkedCars ){
+                $scope.nextURL = '/dashboard';
+            } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
+                $scope.nextURL = '/linked-car';
+            } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
+                $scope.nextURL = '/add-car';
             }
-        });
-
-        modalInstance.result.then(function (selectedItem) {
-            RedirectSrv.redirectTo(selectedItem);
-        }, function () {
-           // 'Modal dismissed at: ' + new Date()
-        });
+        }
+    };
+    var failGetUserInfo = function (response) {
+        console.log('ERROR: '+response);
     };
 
-}).controller('ModalInstanceCtrl', function ($scope, $modalInstance, destinationPage) {
+    /**
+     * Calculate the when click next, the next URL path of the LandingPage.
+     */
+    init();
 
-    $scope.destinationPage = destinationPage;
-
-    $scope.ok = function () {
-        $modalInstance.close($scope.destinationPage);
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
 });

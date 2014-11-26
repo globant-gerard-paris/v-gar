@@ -4,8 +4,11 @@ import com.searshc.mygarage.apis.ncdb.NCDBApiImpl;
 import com.searshc.mygarage.apis.ncdb.response.EsbMsgRequest;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
-import com.searshc.mygarage.entities.Order;
-import com.searshc.mygarage.entities.UserVehicle;
+
+import com.searshc.mygarage.entities.record.Order;
+
+import com.searshc.mygarage.entities.FamilyVehicle;
+
 import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;

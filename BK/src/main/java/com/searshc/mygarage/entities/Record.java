@@ -24,9 +24,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public class Record extends AbstractEntity {
 
     @OneToOne(cascade = CascadeType.ALL)
-    private UserVehicle userVehicle;
+    private FamilyVehicle familyVehicle;
 
-    private String mileage;
+    private int mileage;
 
     private String source;
 
@@ -46,21 +46,21 @@ public class Record extends AbstractEntity {
     private String comment;
 
     public Record() {
-        this.userVehicle = null;
+        this.familyVehicle = null;
     }
 
     /**
-     * @param userVehicle
+     * @param familyVehicle
      * @param mileage
      * @param source
      * @param service
      * @param date
      * @param comment
      */
-    public Record(UserVehicle userVehicle, String mileage, String source,
+    public Record(FamilyVehicle familyVehicle, int mileage, String source,
             String service, Date date, String comment) {
         super();
-        this.userVehicle = userVehicle;
+        this.familyVehicle = familyVehicle;
         this.mileage = mileage;
         this.source = source;
         this.service = service;
@@ -69,17 +69,17 @@ public class Record extends AbstractEntity {
     }
 
     /**
-     * @return the userVehicle
+     * @return the familyVehicle
      */
-    public UserVehicle getUserVehicle() {
-        return userVehicle;
+    public FamilyVehicle getFamilyVehicle() {
+        return familyVehicle;
     }
 
     /**
-     * @param userVehicle the userVehicle to set
+     * @param familyVehicle the familyVehicle to set
      */
-    public void setUserVehicle(UserVehicle userVehicle) {
-        this.userVehicle = userVehicle;
+    public void setFamilyVehicle(FamilyVehicle familyVehicle) {
+        this.familyVehicle = familyVehicle;
     }
 
     public Date getDate() {
@@ -114,11 +114,11 @@ public class Record extends AbstractEntity {
         this.source = source;
     }
 
-    public String getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
-    public void setMileage(String mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
@@ -135,7 +135,7 @@ public class Record extends AbstractEntity {
         }
         Record rhs = (Record) obj;
         return new EqualsBuilder()
-                .append(this.userVehicle, rhs.userVehicle)
+                .append(this.familyVehicle, rhs.familyVehicle)
                 .append(this.mileage, rhs.mileage)
                 .append(this.source, rhs.source)
                 .append(this.service, rhs.service)
@@ -146,7 +146,7 @@ public class Record extends AbstractEntity {
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
-                .append(this.userVehicle)
+                .append(this.familyVehicle)
                 .append(this.mileage)
                 .append(this.source)
                 .append(this.service)
