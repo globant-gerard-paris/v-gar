@@ -1,33 +1,11 @@
-$headerColor: #1fafc8;
-$bodyColor: #555e6c;
-$linkColor: #32b5ca;
-$linkColorAlt: #91c7ca;
-$highlighterTitleColor: #000000;
-$storeItemBkg: #fcfbf9;
-$storeItemBorderColor: #cdd2d6;
-$buttonBorderColor: #32b5ca;
-$buttonBorderBkg: #ffffff;
-$buttonColor: #32b5ca;
-$screen-sm-min: 768px;
-
-
-html,body{height:100%;}
 
 .store-container {
-    color:$bodyColor;
+    color:$commonColor;
     font-family: 'Roboto';
 
     max-width: 1000px;
     margin-right: auto;
     margin-left: auto;
-}
-
-a{
-    color:$linkColor;
-    &:hover{
-        color:$linkColorAlt;
-        text-decoration: none;
-    }
 }
 
 .header-title{
@@ -53,7 +31,7 @@ a{
 //    margin: 10px 0;
 
     .store-icon-big{
-        background-image: url(locationBIG.png);
+        background-image: url($locationBIG);
         width: 47px;
         height: 57px;
         margin: 15px 10px 10px 10px;
@@ -128,7 +106,7 @@ a{
             }
 
             .store-list-icon{
-                background-image: url(locationSMALL.png);
+                background-image: url($locationSMALL);
                 width: 21px;
                 height: 29px;
             }
@@ -170,17 +148,17 @@ a{
     }
 
     .stores-social-internal{
-        background-image: url("share_internal.jpg");
+        background-image: url($shareInternal);
         width: 39px;
         height: 39px;
     }
     .stores-social-facebook{
-        background-image: url("share_fb.jpg");
+        background-image: url($shareFb);
         width: 39px;
         height: 39px;
     }
     .stores-social-twitter{
-        background-image: url("share_tw.jpg");
+        background-image: url($shareTw);
         width: 39px;
         height: 39px;
     }
