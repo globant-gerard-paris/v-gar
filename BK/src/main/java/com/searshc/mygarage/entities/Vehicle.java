@@ -1,232 +1,165 @@
 package com.searshc.mygarage.entities;
 
-public class Vehicle {
+import static org.apache.commons.lang3.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.notNull;
 
-    private Integer tangibleIdNumber;
-    private String tangibleTypeCode;
-    private Integer familyIdNumber;
-    private String familyTypeCode;
-    private Integer vehicleYearNumber;
-    private String vehicleMake;
-    private String vehicleModel;
-    private String vehicleEngine;
-    private String vehicleColor;
-    private String vinNumber;
-    private String vinLast6Digits;
-    private Integer catalogId;
-    private String licensePlateNumber;
-    private String lastUpdateUserId;
+import java.io.Serializable;
 
-    private String vehicleSts;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
+@Entity
+@Table(name = "vehicle")
+public class Vehicle extends AbstractEntity implements Serializable {
 
     /**
-     * @return the tangibleIdNumber
+     * The Serial Version UID.
      */
-    public Integer getTangibleIdNumber() {
-        return tangibleIdNumber;
+    private static final long serialVersionUID = -4412113151100181178L;
+    /**
+     * The Vehicle year. Required.
+     */
+    @Column(name = "year")
+    private int year;
+    /**
+     * The Vehicle Make. Required.
+     */
+    @Column(name = "make")
+    private String make;
+    /**
+     * The Vehicle Model. Required.
+     */
+    @Column(name = "model")
+    private String model;
+    /**
+     * The Vehicle Engine.
+     */
+    @Column(name = "engine")
+    private String engine;
+    /**
+     * The Vehicle Type. TODO: use a enum insted of String.
+     * <br>Possible values:
+     * <ul><strong>P</strong> for passenger Vehicles</ul>
+     * <ul><strong>LT</strong> for Light Duty Vehicles</ul>
+     * <ul><strong>MD</strong> for Medium Duty Vehicles</ul>
+     */
+    @Column(name = "type")
+    private String type;
+
+    public Vehicle() {
+        super();
+        this.year = 0;
+        this.make = "";
+        this.model = "";
     }
 
     /**
-     * @param tangibleIdNumber the tangibleIdNumber to set
+     * @param year required.
+     * @param make required.
+     * @param model required.
+     * @param engine
+     * @param type
      */
-    public void setTangibleIdNumber(Integer tangibleIdNumber) {
-        this.tangibleIdNumber = tangibleIdNumber;
+    public Vehicle(final int year, final String make, final String model, final String engine, final String type) {
+        super();
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
+        this.make = notNull(make, "The Make cannot be null");
+        this.model = notNull(model, "The Model cannot be null");
+        this.engine = engine;
+        this.type = type;
     }
 
     /**
-     * @return the tangibleTypeCode
+     * @return the year
      */
-    public String getTangibleTypeCode() {
-        return tangibleTypeCode;
+    public int getYear() {
+        return year;
     }
 
     /**
-     * @param tangibleTypeCode the tangibleTypeCode to set
+     * @param year the year to set
      */
-    public void setTangibleTypeCode(String tangibleTypeCode) {
-        this.tangibleTypeCode = tangibleTypeCode;
+    public void setYear(int year) {
+        isTrue(year >= 0, "The year cannot be lower than 0");
+        this.year = year;
     }
 
     /**
-     * @return the familyIdNumber
+     * @return the make
      */
-    public Integer getFamilyIdNumber() {
-        return familyIdNumber;
+    public String getMake() {
+        return make;
     }
 
     /**
-     * @param familyIdNumber the familyIdNumber to set
+     * @param make the make to set
      */
-    public void setFamilyIdNumber(Integer familyIdNumber) {
-        this.familyIdNumber = familyIdNumber;
+    public void setMake(String make) {
+        this.make = notNull(make, "The Make cannot be null");
     }
 
     /**
-     * @return the familyTypeCode
+     * @return the model
      */
-    public String getFamilyTypeCode() {
-        return familyTypeCode;
+    public String getModel() {
+        return model;
     }
 
     /**
-     * @param familyTypeCode the familyTypeCode to set
+     * @param model the model to set
      */
-    public void setFamilyTypeCode(String familyTypeCode) {
-        this.familyTypeCode = familyTypeCode;
+    public void setModel(String model) {
+        this.model = notNull(model, "The Model cannot be null");
     }
 
     /**
-     * @return the vehicleYearNumber
+     * @return the engine
      */
-    public Integer getVehicleYearNumber() {
-        return vehicleYearNumber;
+    public String getEngine() {
+        return engine;
     }
 
     /**
-     * @param vehicleYearNumber the vehicleYearNumber to set
+     * @param engine the engine to set
      */
-    public void setVehicleYearNumber(Integer vehicleYearNumber) {
-        this.vehicleYearNumber = vehicleYearNumber;
+    public void setEngine(String engine) {
+        this.engine = engine;
     }
 
     /**
-     * @return the vehicleMake
+     * @return the type
      */
-    public String getVehicleMake() {
-        return vehicleMake;
+    public String getType() {
+        return type;
     }
 
     /**
-     * @param vehicleMake the vehicleMake to set
+     * @param type the type to set
      */
-    public void setVehicleMake(String vehicleMake) {
-        this.vehicleMake = vehicleMake;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    /**
-     * @return the vehicleModel
-     */
-    public String getVehicleModel() {
-        return vehicleModel;
-    }
-
-    /**
-     * @param vehicleModel the vehicleModel to set
-     */
-    public void setVehicleModel(String vehicleModel) {
-        this.vehicleModel = vehicleModel;
-    }
-
-    /**
-     * @return the vehicleEngine
-     */
-    public String getVehicleEngine() {
-        return vehicleEngine;
-    }
-
-    /**
-     * @param vehicleEngine the vehicleEngine to set
-     */
-    public void setVehicleEngine(String vehicleEngine) {
-        this.vehicleEngine = vehicleEngine;
-    }
-
-    /**
-     * @return the vehicleColor
-     */
-    public String getVehicleColor() {
-        return vehicleColor;
-    }
-
-    /**
-     * @param vehicleColor the vehicleColor to set
-     */
-    public void setVehicleColor(String vehicleColor) {
-        this.vehicleColor = vehicleColor;
-    }
-
-    /**
-     * @return the vinNumber
-     */
-    public String getVinNumber() {
-        return vinNumber;
-    }
-
-    /**
-     * @param vinNumber the vinNumber to set
-     */
-    public void setVinNumber(String vinNumber) {
-        this.vinNumber = vinNumber;
-    }
-
-    /**
-     * @return the vinLast6Digits
-     */
-    public String getVinLast6Digits() {
-        return vinLast6Digits;
-    }
-
-    /**
-     * @param vinLast6Digits the vinLast6Digits to set
-     */
-    public void setVinLast6Digits(String vinLast6Digits) {
-        this.vinLast6Digits = vinLast6Digits;
-    }
-
-    /**
-     * @return the catalogId
-     */
-    public Integer getCatalogId() {
-        return catalogId;
-    }
-
-    /**
-     * @param catalogId the catalogId to set
-     */
-    public void setCatalogId(Integer catalogId) {
-        this.catalogId = catalogId;
-    }
-
-    /**
-     * @return the licensePlateNumber
-     */
-    public String getLicensePlateNumber() {
-        return licensePlateNumber;
-    }
-
-    /**
-     * @param licensePlateNumber the licensePlateNumber to set
-     */
-    public void setLicensePlateNumber(String licensePlateNumber) {
-        this.licensePlateNumber = licensePlateNumber;
-    }
-
-    /**
-     * @return the lastUpdateUserId
-     */
-    public String getLastUpdateUserId() {
-        return lastUpdateUserId;
-    }
-
-    /**
-     * @param lastUpdateUserId the lastUpdateUserId to set
-     */
-    public void setLastUpdateUserId(String lastUpdateUserId) {
-        this.lastUpdateUserId = lastUpdateUserId;
-    }
-
-    /**
-     * @return the vehicleSts
-     */
-    public String getVehicleSts() {
-        return vehicleSts;
-    }
-
-    /**
-     * @param vehicleSts the vehicleSts to set
-     */
-    public void setVehicleSts(String vehicleSts) {
-        this.vehicleSts = vehicleSts;
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Vehicle rhs = (Vehicle) obj;
+        return new EqualsBuilder()
+                .append(this.year, rhs.year)
+                .append(this.make, rhs.make)
+                .append(this.model, rhs.model).isEquals();
     }
 
 }

@@ -1,13 +1,15 @@
 package com.searshc.mygarage.services;
 
+import java.util.List;
+
 import com.searshc.mygarage.entities.Order;
 import com.searshc.mygarage.entities.Vehicle;
-import java.util.List;
+import com.searshc.mygarage.exceptions.NCDBApiException;
 
 public interface NcdbService {
 
-    List<Vehicle> listVehicles(Integer ncdbId);
+    List<Vehicle> listVehicles(final Long familyId) throws NCDBApiException;
 
-    List<Order> getTransactions(Integer ncdbId, Integer tangibleId);
+    List<Order> getTransactions(final Long familyId, Long tangibleId) throws NCDBApiException;
 
 }

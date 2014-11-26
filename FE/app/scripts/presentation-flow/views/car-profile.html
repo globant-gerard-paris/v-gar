@@ -51,7 +51,11 @@
     .vg-carprofile-store-search {
         margin-bottom: 30px;
     }
+    .vg-record-btn-add {
+        text-decoration: none;
+        color: black;
 
+    }
 </style>
 
 <div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
@@ -139,9 +143,10 @@
                 <div class="pull-right">
                     <div class="pull-right vg-carprofile-button-add-record navbar-brand" ng-controller="RecordCtrl">
                         <div ng-include="'scripts/presentation-flow/views/record.html'"></div>
-                        <img ng-click="openNewRecordForm()"
-                             src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADO0lEQVRYR8WXW4hNURjHZ0S5h0kkkXuKhNyVKJfkhTJjHigx5IUol+bBNUKEwgNC5JpmXlBuD8olt0R4MiMiQi6JkPD7nfaZ9pzOZe89Lqt+7bPP/tb6/vtb39rrW8VF0VsrTKfAOBgA3aF10P0j1ydwDy7BGfgUZejiCEa9sVkBM6AZvICbUAPvg/5tufaEodAJvsAx2AiP8/nIJ0Bn62ARfIY9cAgewq8cgzpef5gJ8wLB27muhK/Z+uQS0AvjaugD22A9GOY4rU3geGEgehpXo1avZRMwEItzgeLpXG/E8ZrFdhT/nYTGMAHMk7qWKcA3vwpvYTw433+idWGQC2BURoYjERbQnAcml5k9IqLzcux+wokIKhVxPXi5YVxTOREWsIV7E240RA37RWx/wKQIAjRx7Mugr+VhAS41s9uEWxZxMM3iCrDPDlgAfaEmHYH93JilXSFOticR0A4fT+E4VCjAOX8FO2O+fdII2M9IV0BHBZhIR8EPyIMY4W+IgEF0vgNlCtgLJpFZmusLl0tXkilwLP0a9Wp/uPSegzkQtyUVoJ/TUKIAPzoHYGlc79g3RIB7RLkCvsNq2JAhwNyYU0CUc+m03S1g50bm5zjcVnFTmU9AGQazCww8JBBwu4DdPp6fyiXgDQ8O/s8pMAnddKb+4xyoS0KX4WToHIQzjo6kSdgIJy7DKnPAUsvyyTrvfhzv2CYVMJi+5k2pAiw2VbM7QR4kFeCG5ArrkN6MzFKrHzejDzGikERACeO7GR2B+WkBVrSPwA1pyV8WsIvx54LbcW24INkcOB/D1bIsSosbgbEM6rnBcr1SB2EBluFWQobIkuxZBAWl2FiSZX5ksnXtxp+WZC9hOHzLFOB9D7gG5oFFaRQREXQW6fw8tASLUk9RqZatLHc5amyt5+f4ShQPeWwMu8vcPWMi1FvquQ4mRqIK+oGJuQbexRTiVK4F6z/PAm73dW+eLwLpZ00Dx4u5Ol8u1cPgzpercPEL58FmFrjOm8DWYJzUnGe2XBEI2xkND6duzy3gNdwCD53ZDqft+d+zpOt8E9RmcxwlApn9TCD3jPDx3JOOzaTVUfp4fjYQkc936tlvAw/AZXwmM6IAAAAASUVORK5CYII="
-                             alt="add"> Add recent Record
+                        <span ng-click="openNewRecordForm()">
+                            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADO0lEQVRYR8WXW4hNURjHZ0S5h0kkkXuKhNyVKJfkhTJjHigx5IUol+bBNUKEwgNC5JpmXlBuD8olt0R4MiMiQi6JkPD7nfaZ9pzOZe89Lqt+7bPP/tb6/vtb39rrW8VF0VsrTKfAOBgA3aF10P0j1ydwDy7BGfgUZejiCEa9sVkBM6AZvICbUAPvg/5tufaEodAJvsAx2AiP8/nIJ0Bn62ARfIY9cAgewq8cgzpef5gJ8wLB27muhK/Z+uQS0AvjaugD22A9GOY4rU3geGEgehpXo1avZRMwEItzgeLpXG/E8ZrFdhT/nYTGMAHMk7qWKcA3vwpvYTw433+idWGQC2BURoYjERbQnAcml5k9IqLzcux+wokIKhVxPXi5YVxTOREWsIV7E240RA37RWx/wKQIAjRx7Mugr+VhAS41s9uEWxZxMM3iCrDPDlgAfaEmHYH93JilXSFOticR0A4fT+E4VCjAOX8FO2O+fdII2M9IV0BHBZhIR8EPyIMY4W+IgEF0vgNlCtgLJpFZmusLl0tXkilwLP0a9Wp/uPSegzkQtyUVoJ/TUKIAPzoHYGlc79g3RIB7RLkCvsNq2JAhwNyYU0CUc+m03S1g50bm5zjcVnFTmU9AGQazCww8JBBwu4DdPp6fyiXgDQ8O/s8pMAnddKb+4xyoS0KX4WToHIQzjo6kSdgIJy7DKnPAUsvyyTrvfhzv2CYVMJi+5k2pAiw2VbM7QR4kFeCG5ArrkN6MzFKrHzejDzGikERACeO7GR2B+WkBVrSPwA1pyV8WsIvx54LbcW24INkcOB/D1bIsSosbgbEM6rnBcr1SB2EBluFWQobIkuxZBAWl2FiSZX5ksnXtxp+WZC9hOHzLFOB9D7gG5oFFaRQREXQW6fw8tASLUk9RqZatLHc5amyt5+f4ShQPeWwMu8vcPWMi1FvquQ4mRqIK+oGJuQbexRTiVK4F6z/PAm73dW+eLwLpZ00Dx4u5Ol8u1cPgzpercPEL58FmFrjOm8DWYJzUnGe2XBEI2xkND6duzy3gNdwCD53ZDqft+d+zpOt8E9RmcxwlApn9TCD3jPDx3JOOzaTVUfp4fjYQkc936tlvAw/AZXwmM6IAAAAASUVORK5CYII="
+                                    alt="add"> Add recent Record
+                        </span>
                     </div>
                 </div>
             </div>

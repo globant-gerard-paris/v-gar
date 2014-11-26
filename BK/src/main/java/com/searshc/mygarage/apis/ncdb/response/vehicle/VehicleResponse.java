@@ -5,35 +5,44 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.dozer.Mapping;
+
 @XmlType(name = "vehicle_Typs")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class VehicleResponse {
 
     @XmlElement(name = "tng_id_no")
+    @Mapping("tangibleId")
     private Integer tangibleIdNumber;
 
     @XmlElement(name = "tng_typ_cd")
     private String tangibleTypeCode;
 
     @XmlElement(name = "fam_id_no")
+    @Mapping("familyId")
     private Integer familyIdNumber;
 
     @XmlElement(name = "fam_typ_cd")
     private String familyTypeCode;
 
     @XmlElement(name = "veh_yr_no")
+    @Mapping("vehicle.year")
     private Integer vehicleYearNumber;
 
     @XmlElement(name = "veh_mak_ds")
+    @Mapping("vehicle.make")
     private String vehicleMake;
 
     @XmlElement(name = "veh_mod_ds")
+    @Mapping("vehicle.model")
     private String vehicleModel;
 
     @XmlElement(name = "veh_eng_ds")
+    @Mapping("vehicle.engine")
     private String vehicleEngine;
 
     @XmlElement(name = "veh_col_ds")
+    @Mapping("color")
     private String vehicleColor;
 
     @XmlElement(name = "vin_no")

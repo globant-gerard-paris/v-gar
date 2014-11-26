@@ -1,34 +1,29 @@
 package com.searshc.mygarage.entities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang3.Validate;
+
 public class Order {
 
     private String orderNumber;
-//    private String customerIdNumber;
-//    private String tangibleIdNumber;
-//    private String storeNumber;
-//    private String registerNumber;
-//    private String transactionNumber;
-    private String transactionDate;
-    private String transactionLocalTime;
-//    private String orderReferenceNumber;
-    private Double odometerNumber;
-//    private String orderOriginationCode;
-//    private String orderTotalAmount;
-//    private String ringingAssociateId;
-//    private String loyaltyIdNumber;
-//    private String orderCommentText;
-//    private String familyIdNumber;
-    private List<OrderItem> orderItems;
+    private Long familyIdNumber;
+    private Long tangibleIdNumber;
+    private Integer storeNumber;
+    private Integer transactionNumber;
+    private Date transactionDateTime;
+    private String orderReferenceNumber;
+    private Double odometerAmount;
+    private Double orderTotalAmount;
+
+    private List<OrderItem> orderItems = new ArrayList<OrderItem>();
 
     /**
      * @return the orderItems
      */
     public List<OrderItem> getOrderItems() {
-        return orderItems != null ? this.orderItems : new ArrayList<OrderItem>();
+        return this.orderItems;
     }
 
     /**
@@ -65,44 +60,114 @@ public class Order {
     }
 
     /**
-     * @return the transactionDate
+     * @return the familyIdNumber
      */
-    public String getTransactionDate() {
-        return transactionDate;
+    public Long getFamilyIdNumber() {
+        return familyIdNumber;
     }
 
     /**
-     * @param transactionDate the transactionDate to set
+     * @param familyIdNumber the familyIdNumber to set
      */
-    public void setTransactionDate(String transactionDate) {
-        this.transactionDate = transactionDate;
+    public void setFamilyIdNumber(Long familyIdNumber) {
+        this.familyIdNumber = familyIdNumber;
     }
 
     /**
-     * @return the transactionLocalTime
+     * @return the tangibleIdNumber
      */
-    public String getTransactionLocalTime() {
-        return transactionLocalTime;
+    public Long getTangibleIdNumber() {
+        return tangibleIdNumber;
     }
 
     /**
-     * @param transactionLocalTime the transactionLocalTime to set
+     * @param tangibleIdNumber the tangibleIdNumber to set
      */
-    public void setTransactionLocalTime(String transactionLocalTime) {
-        this.transactionLocalTime = transactionLocalTime;
+    public void setTangibleIdNumber(Long tangibleIdNumber) {
+        this.tangibleIdNumber = tangibleIdNumber;
     }
 
     /**
-     * @return the odometerNumber
+     * @return the storeNumber
      */
-    public Double getOdometerNumber() {
-        return odometerNumber;
+    public Integer getStoreNumber() {
+        return storeNumber;
     }
 
     /**
-     * @param odometerNumber the odometerNumber to set
+     * @param storeNumber the storeNumber to set
      */
-    public void setOdometerNumber(Double odometerNumber) {
-        this.odometerNumber = odometerNumber;
+    public void setStoreNumber(Integer storeNumber) {
+        this.storeNumber = storeNumber;
+    }
+
+    /**
+     * @return the transactionNumber
+     */
+    public Integer getTransactionNumber() {
+        return transactionNumber;
+    }
+
+    /**
+     * @param transactionNumber the transactionNumber to set
+     */
+    public void setTransactionNumber(Integer transactionNumber) {
+        this.transactionNumber = transactionNumber;
+    }
+
+    /**
+     * @return the orderReferenceNumber
+     */
+    public String getOrderReferenceNumber() {
+        return orderReferenceNumber;
+    }
+
+    /**
+     * @param orderReferenceNumber the orderReferenceNumber to set
+     */
+    public void setOrderReferenceNumber(String orderReferenceNumber) {
+        this.orderReferenceNumber = orderReferenceNumber;
+    }
+
+    /**
+     * @return the odometerAmount
+     */
+    public Double getOdometerAmount() {
+        return odometerAmount;
+    }
+
+    /**
+     * @param odometerAmount the odometerAmount to set
+     */
+    public void setOdometerAmount(Double odometerAmount) {
+        this.odometerAmount = odometerAmount;
+    }
+
+    /**
+     * @return the orderTotalAmount
+     */
+    public Double getOrderTotalAmount() {
+        return orderTotalAmount;
+    }
+
+    /**
+     * @param orderTotalAmount the orderTotalAmount to set
+     */
+    public void setOrderTotalAmount(Double orderTotalAmount) {
+        this.orderTotalAmount = orderTotalAmount;
+    }
+
+    /**
+     * @return the transactionDateTime
+     */
+    public Date getTransactionDateTime() {
+        return transactionDateTime;
+    }
+
+    /**
+     * @param transactionDateTime the transactionDateTime to set
+     */
+    public void setTransactionDateTime(Date transactionDateTime) {
+        this.transactionDateTime = transactionDateTime;
     }
 }
