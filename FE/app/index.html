@@ -12,11 +12,9 @@
         <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <!-- endbuild -->
         <!-- build:css(app) styles/bundle.css -->
-        <link rel="stylesheet" href="bower_components/swiper/dist/idangerous.swiper.css">
         <link rel="stylesheet" href="styles/bundle.css">
         <!-- endbuild -->
 
-        <!--TODO move to internal?-->
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,300,300italic' rel='stylesheet' type='text/css'>
     </head>
     <body ng-controller="MainCtrl">
@@ -46,7 +44,6 @@
         <script src="bower_components/moment/moment.js"></script>
         <script src="bower_components/datejs/build/production/date.min.js"></script>
         <script src="bower_components/geolib/dist/geolib.js"></script>
-        <script src="bower_components/swiper/dist/idangerous.swiper.js"></script>
         <!-- endbower -->
 
         <!-- endbuild -->
@@ -73,7 +70,6 @@
         <script src="scripts/presentation-flow/controllers/store-locator.js"></script>
         <script src="scripts/presentation-flow/controllers/record.js"></script>
         <script src="scripts/presentation-flow/controllers/recalls.js"></script>
-
         <script src="scripts/presentation-flow/controllers/services.js"></script>
 
         <!-- yo:controllers -->
@@ -93,6 +89,7 @@
         <script src="scripts/presentation-flow/services/trends.js"></script>
 
         <script src="scripts/presentation-flow/services/linked-car.js"></script>
+        <script src="scripts/presentation-flow/services/services.js"></script>
         <script src="scripts/presentation-flow/services/landing.js"></script>
         <!-- yo:services -->
 
@@ -101,9 +98,11 @@
         <!-- yo:filters -->
 
         <script src="scripts/directives/directives.js"></script>
+
         <script src="scripts/directives/store.js"></script>
         <script src="scripts/directives/store-card.js"></script>
         <script src="scripts/directives/recall-information.js"></script>
+        <script src="scripts/directives/service-information.js"></script>
         <script src="scripts/directives/record-row.js"></script>
         <script src="scripts/directives/car-confirmation.js"></script>
         <script src="scripts/directives/trend-view.js"></script>

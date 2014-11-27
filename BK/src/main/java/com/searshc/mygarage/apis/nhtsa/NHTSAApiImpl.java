@@ -11,6 +11,12 @@ import org.springframework.web.client.RestTemplate;
 import com.searshc.mygarage.apis.nhtsa.response.NHTSARecalls;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 
+//USE THIS CONFIG IF YOU ARE IN SEARS VPN
+/*import java.net.InetSocketAddress;
+import java.net.Proxy;
+import java.net.Proxy.Type;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
+*/
 @Component
 public class NHTSAApiImpl implements NHTSAApi {
 
