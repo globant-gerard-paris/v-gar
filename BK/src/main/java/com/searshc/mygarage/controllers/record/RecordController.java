@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.searshc.mygarage.dtos.record.RecordAssembly;
 import com.searshc.mygarage.dtos.record.RecordDto;
 
-import com.searshc.mygarage.entities.Record;
+import com.searshc.mygarage.entities.record.Record;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.record.RecordService;
