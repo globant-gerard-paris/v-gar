@@ -9,10 +9,20 @@ redirectToAddCar()
 
 -->
 
-<div class="dashboard">
+<div class="dashboard row">
 
     <div class="dashboard-car-holder">
-        <car-card car="car" ng-repeat="car in model.cars"></car-card>
+    
+        <div class="dashboard-car-actions-top">
+            <div class="dashboard-add-car">ADD CAR</div>
+        </div>
+        <div class="dashboard-car-actions-bottom">
+            <div class="dashboard-manage-cars">Manage your cars</div>
+        </div>
+        <div class="car-slick-carousel" slick>
+            <car-card car="car" ng-repeat="car in model.cars"></car-card>
+        </div>
     </div>
 
 </div>
+
