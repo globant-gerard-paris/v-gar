@@ -8,14 +8,14 @@
         "hosts": {
             "DEV": "http://127.0.0.1:9000",
             "BACKEND": "http://127.0.0.1:8080",
-            "STAGE": "http://stage.sears",
-            "PROD": "http://prod.sears"
+            "STAGE": "http://127.0.0.1:8080",
+            "PROD": "http://127.0.0.1:8080"
         },
         "methods": {
             "SYW_LOGIN": {
-                "use_host": "DEV",
+                "use_host": "PROD",
                 "host_paths": {
-                    "DEV": "/logint/dev"
+                    "PROD": "/logint/prod"
                 }
             }
         }

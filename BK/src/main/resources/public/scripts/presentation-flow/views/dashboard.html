@@ -1,0 +1,152 @@
+<style>
+    .dashboard-box {
+        border-style: solid;
+        border-width: 1px;
+        border-radius: 35px 35px 35px 35px;
+        height: 300px;
+        margin: 0 auto;
+        border-color: gray;
+        background-color: white;
+    }
+
+    .dashboard-body {
+        width: 600px;
+        margin: 0 auto;
+        cursor:pointer;
+    }
+
+    .page-title {
+        text-align: center;
+        font-weight: bold;
+        color: black;
+        font-size: 45px;
+    }
+
+    .page-subtitle {
+        text-align: center;
+        color: black;
+        font-size: 24px;
+        margin-bottom: 25px;
+    }
+
+    .image-car {
+        background: url(../resources/images/car.jpg) no-repeat;
+    }
+
+    .image-add-car {
+        background: url(../resources/images/add3.jpg) no-repeat;
+        margin-bottom: 46px;
+        position: relative;
+        top: 21px;
+    }
+
+    .image-car2 {
+        background: url(../resources/images/car2.jpg) no-repeat;
+    }
+    .image-carrousel {
+        background: url('../resources/images/carrousel.jpg') no-repeat scroll 0% transparent;
+        height: 168px;
+        background-color: #639;
+        margin: 0 auto;
+        width: 440px;
+    }
+    .image-service-center {
+        background: url('../resources/images/image-service-center.jpg') no-repeat scroll 0% 0% #F00;
+        height: 45px;
+        width: 492px;
+        margin: 0 auto;
+        margin-top: 12px;
+        margin-bottom: 12px;
+    }
+
+    .image-car2, .image-car, .image-add-car {
+        margin-top: 38px;
+        width: 100px;
+        height: 100px;
+        background-size: cover;
+        margin-left: 33px;
+    }
+
+    .text-box-dashboard , .text-box-dashboard-add {
+        font-size: 15px;
+        font-weight: bold;
+        color: black;
+        margin-top: 5px;
+        text-align: center;
+    }
+
+    .text-box-dashboard-add {
+        font-size: 22px;
+    }
+
+    .image-close {
+        background-size: 25px;
+        float: right;
+    }
+    .text-box-body{
+        font-weight: bold;
+        position: relative;
+        top: 33px;
+    }
+
+</style>
+
+<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
+
+<h2 class="page-title">My Virtual Garage</h2>
+<h4 class="page-subtitle">You have 2 cars in your garage</h4>
+<div class="dashboard-body container-fluid">
+    <div class="row">
+        <div class="col-xs-4 col-centered" ng-click="getToCarProfile(1)">
+            <div class="form-group dashboard-box">
+                <img alt="The Image close icon." class="image-close" src="../resources/images/close.jpg">
+                <div class="image-car img-circle"></div>
+                <h4 class="text-box-dashboard">
+                    2008 FORD EDGE<br>
+                    33,045 Miles<br>
+                </h4>
+                <h5 class="text-box-body text-center">1 Recall<br>
+                56 services<br>
+                <small>
+                    Las serviced @ Sears<br>
+                    Las Visit 10/04/2099
+                </small>
+                </h5>
+            </div>
+        </div>
+        <div class="col-xs-4 col-centered box" ng-click="getToCarProfile(2)">
+            <div class="form-group dashboard-box">
+                <img alt="The Image close icon." class="image-close" src="../resources/images/close.jpg">
+                <div class="image-car2 img-circle"></div>
+                <h4 class="text-box-dashboard">
+                    2010 AUDI A3<br>
+                    145,00 Miles<br>
+                </h4>
+                <h5 class="text-box-body text-center">786 Recall<br>
+                    4 services<br>
+                    <small>
+                        Las serviced @ Sears<br>
+                        Las Visit 10/04/2099
+                    </small>
+                </h5>
+            </div>
+        </div>
+        <div class="col-xs-4 col-centered" ng-click="redirectToAddCar()">
+            <div class="form-group dashboard-box" style="">
+                <div class="image-add-car img-circle"></div>
+                <p class="text-box-dashboard-add">
+                    ADD NEW <br>
+                    CAR
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-12 col-centered">
+            <div class="image-service-center">
+            </div>
+        </div>
+        <div class="col-sm-12 col-centered">
+            <div class="image-carrousel">
+            </div>
+        </div>
+    </div>
+</div>

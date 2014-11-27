@@ -1,0 +1,93 @@
+<div id="store-row" class="store-row store-row-directive">
+    <div class="media panel vg-store-locator-row-panel">
+
+        <div id="map_canvas_{{idStore}}" class="vg-store-locator-map">
+        </div>
+
+        <div class="media-body">
+            <div class="row">
+                <div class="col-xs-8 text-muted">
+                    <h5 class="vg-store-locator-h5 media-heading text-muted">
+                        <strong>
+                            {{address}}<br>
+                            {{districtName}} - {{districtNumber}}<br>
+                            {{city}}<br>
+                            {{zipCode}}<br>
+                            {{phone}}<br>
+                        </strong>
+                        <br>
+                        <br>
+                        {{formatMilesAway(distance)}} miles away
+                    </h5>
+                </div>
+                <div class="col-xs-4">
+                    <div class="vg-store-locator-button center-block">
+                        <span ng-if="!isFavoriteStore">
+                        <button type="button" ng-click="setFavoriteStore()" class="vg-store-locator-row-button center-block pull-right btn btn-md btn-default">SET AS MY STORE
+                        </button>
+                        </span>
+                        <span ng-if="isFavoriteStore">
+                         <button type="button" ng-click="redirectToStorePage()" class="vg-store-locator-row-button center-block pull-right btn btn-md btn-success">MY STORE
+                         </button>
+                        </span>
+
+                        <h3 class="text-center vg-store-locator-sub-text-button">
+                            <small>{{currentDate}} {{hoursStore}}</small>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="text-center vg-store-locator-expand-header" ng-click="model.isCollapsed = !model.isCollapsed">
+            <span class="caret"></span>
+
+            <div collapse="!model.isCollapsed">
+
+                <div class="row well well-lg text-left">
+                    <div class="col-xs-6">
+                        <h4 class="vg-store-locator-h4">Store Detail</h4>
+
+                        <p>
+                            A car is a wheeled, self-powered motor vehicle used
+                            for transporting passengers. Most definitions of the term
+                            specify that cars are designed to run primarily on roads,
+                            to have seating for one to eight people, to typically have four wheels,
+                            and to be constructed principally for the transport of people rather than
+                            goods.[3][4] The year 1886 is regarded as the birth year of the modern car.
+                            In that year, German inventor Karl Benz built the Benz Patent-Motorwagen.
+                            Cars did not become widely available until the early 20th century.
+                            One of the first cars that was accessible to the masses was the 1908 Model T,
+                            an American car manufactured by the Ford Motor Company. Cars were rapidly adopted in
+                            the United States of America, where they replaced animal-drawn carriages and carts,
+                            but took much longer to be accepted in Western Europe and other less-developed parts of
+                            the world.
+                        </p>
+                    </div>
+                    <div class="col-xs-4">
+                        <h4 class="vg-store-locator-h4">Hours Operation<br></h4>
+                        {{zipCode}}<br>
+                        {{phone}}<br>
+                        <br>
+                        <div class="days-row">
+                            <ul class="list-unstyled">
+
+                                <li class="vg-store-locator-li" ng-repeat="day in days">
+                                    <span style="width: 150px">{{day}}</span><br>
+                                </li>
+                            </ul>
+                        </div>
+                        <br>
+                        <h4 class="vg-store-locator-h4">After Horus?</h4>
+
+                        <p>
+                            A car is a wheeled, self-powered motor vehicle used
+                            for transporting passengers. Most definitions of the term
+                            specify that cars are designed to run primarily on roads.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
