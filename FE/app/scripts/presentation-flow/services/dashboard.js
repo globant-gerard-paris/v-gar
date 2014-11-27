@@ -6,7 +6,7 @@
 angular.module('PresentationFlow').service('DashboardSrv', function (ApiHttpSrv, config) {
 
     var getCars = function (userId, successCallback, faildCallback) {
-        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/vehicle/vehicle/confirmed/user' + userId)
+        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/vehicle/vehicles/confirmed/user/' + userId)
             .then(successCallback, faildCallback);
     };
 
