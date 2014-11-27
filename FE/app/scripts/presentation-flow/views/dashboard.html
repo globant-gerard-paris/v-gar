@@ -1,6 +1,4 @@
 
-<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
-
 <!--
 
 getToCarProfile(1)
@@ -9,10 +7,34 @@ redirectToAddCar()
 
 -->
 
+
 <div class="dashboard row">
 
-    <div class="dashboard-car-holder">
-    
+    <div class="dashboard-page-header row">
+        <div class="col-sm-4">            
+            <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>            
+        </div>   
+        <div class="col-sm-4 header-text">  
+            <div class="hidden-sm" ng-show="model.cars">
+                <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
+            </div>
+        </div> 
+        <div class="col-sm-4 right-zone">
+            <div class="syw-id">Your SYW ID#: 49568376976</div>
+            <div class="pull-right header-buttons">
+                <a href="#" class="btn-social btn-mail"> 
+                </a>
+                <a href="#" class="btn-social btn-facebook">
+                </a>
+                <a href="#" class="btn-social btn-twitter">
+                </a>
+                <div class="btn-appointment">            
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-car-holder row">
         <div class="dashboard-car-actions-top">
             <div class="dashboard-add-car">ADD CAR</div>
         </div>

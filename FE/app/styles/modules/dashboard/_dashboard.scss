@@ -173,4 +173,90 @@
 			background-image: url(../resources/images/dashboard/BackgroundMobile.jpg);
 		}
 	}
+
+
+	.dashboard-page-header{
+		 .home-page-title, .home-page-title:hover {
+	        text-decoration: none;
+	        color: #444;
+	        font-weight: bold;
+	        font-size: 20px;
+	    }
+	    
+	    .user-info {
+	        line-height: 30px;
+	    }
+
+	    .home-header-page-logo{
+	        background-image: url(../resources/images/dashboard/header-logo.png);
+	        height: 90px;
+	        background-position: left center;
+	        background-repeat: no-repeat;
+	        width: 100%;
+	        margin-left: 20px;
+	    }
+
+	    .page-header{
+	        height: 90px;
+	        border:0;
+	        margin:0;
+	    }
+
+
+	    .right-zone{
+	        position: relative;
+	        margin-top:24px;
+
+	    	.header-buttons{
+	    		min-width:312px;
+		        .btn-social{
+			        display: inline-block;
+			        width: 26px;
+			        height: 26px;
+			        margin-left: -5px;
+			        position: relative;
+			        top: -10px;
+			       	&.btn-facebook{
+				        background-image: url(../resources/images/dashboard/shareicon_3.png);
+				    }
+
+				    &.btn-twitter{
+				        background-image: url(../resources/images/dashboard/shareicon_2.png);
+				    }
+
+				    &.btn-mail{
+				        background-image: url(../resources/images/dashboard/shareicon_1.png);
+				    }
+				}
+				.btn-appointment{
+			        margin-left:16px;
+			        display: inline-block;
+			        cursor: pointer;
+			        width: 220px;
+			        height: 45px;
+			        background-image: url(../resources/images/dashboard/appointment.png);        
+		    	}
+	    	}
+
+	    	.syw-id{
+		        	position: absolute;
+		        	right: 18px;
+		        	top: -20px;
+		        	font-size: 0.7em;
+		        	font-weight: bold;
+		        	color: #bbb;
+		    }
+	    }
+
+	    .header-text{
+	        font-size:1.2em;
+	        margin-top: 1.9em;
+	        color:#888;
+	       	.header-text-name{
+	        	color:#555;
+	    	}
+	    }
+
+	}
+
 }
