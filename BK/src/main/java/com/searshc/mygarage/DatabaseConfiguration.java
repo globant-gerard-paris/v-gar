@@ -11,8 +11,10 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -33,7 +35,8 @@ public class DatabaseConfiguration {
 
     private static DataSource dataSource;
 
-    @Bean
+    @Bean(name="datasource-application")
+    @Primary
     public DataSource getDataSource() {
         if (this.environment == null) {
             throw new IllegalArgumentException("The Environment cannot be null");
@@ -61,6 +64,30 @@ public class DatabaseConfiguration {
         }
         return DatabaseConfiguration.dataSource;
     }
+    
+    @Bean(name="datasource-teradata")
+	public DataSource getTeradataConnection() {
+		
+    	if (this.environment == null) {
+			throw new IllegalArgumentException("The Environment cannot be null");
+		}
+
+		log.info("############## >>>>> Active Profile: " + this.environment.getProperty("spring.profiles.active"));
+
+		String url = this.environment.getProperty("job.mappingtable.ncdbsyw.origin.jdbc.url");
+		String username = this.environment.getProperty("job.mappingtable.ncdbsyw.origin.jdbc.username");
+		String password = this.environment.getProperty("job.mappingtable.ncdbsyw.origin.jdbc.password");
+
+		DataSource ds = DataSourceBuilder.create()
+		.driverClassName("com.teradata.jdbc.TeraDriver")
+		.password(password)
+		.username(username)
+		.url(url)
+		.build();
+		
+		log.info("Database Teradata Connection: " + username + "@" + url);
+		return ds;
+	}
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

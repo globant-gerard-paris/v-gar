@@ -18,6 +18,7 @@
         <json-path-assert-version>0.8.1</json-path-assert-version>
         <net.sf.dozer-version>5.4.0</net.sf.dozer-version>
         <guava-version>18.0</guava-version>
+        <teradata-driver-version>14.10.00.01</teradata-driver-version>
     </properties>
 
     <parent>
@@ -195,6 +196,16 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-social-facebook</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.teradata</groupId>
+            <artifactId>teradata-jdbc</artifactId>
+            <version>${teradata-driver-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.teradata</groupId>
+            <artifactId>teradata-config</artifactId>
+            <version>${teradata-driver-version}</version>
         </dependency>
     </dependencies>
 
