@@ -8,6 +8,7 @@ module.exports = function (grunt) {
         options: {
             ignore: [
                 // Relax following general errors not necessary to valid
+                'End of file seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                 'Start tag seen without seeing a doctype first. Expected “<!DOCTYPE html>”.',
                 'XHTML element “head” is missing a required instance of child element “title”.',
                 'Attribute “ng-include” not allowed on XHTML element “div” at this point.',
@@ -442,6 +443,7 @@ module.exports = function (grunt) {
                 'Attribute “ng-minlength” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-repeat” not allowed on XHTML element “li” at this point.',
                 'XHTML element “car-confirmation” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “trend-view” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “carousel” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }

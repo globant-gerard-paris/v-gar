@@ -13,7 +13,8 @@ angular.module('Directives').directive('recallInformation', function () {
             summary: '=',
             consequence: '=',
             remedy: '=',
-            notes: '='
+            notes: '=',
+            position: '='
         },
         link: function () {
 

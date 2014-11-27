@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, $location) {
+angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, TrendsSrv, $location) {
 
     var modelYear = '2008',
             make = 'Ford',
@@ -18,6 +18,7 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         records: [],
         option: params.option,
         lastRecall: false,
+        trend: false,
         vehicle: {
             modelYear: modelYear,
             make: make,
@@ -48,6 +49,7 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     var init = function () {
 
         RecallsSrv.getLastRecall(modelYear, make, model, lastRecallResultSuccess, lastRecallResultFaild);
+        TrendsSrv.getTrend(make, trendResultSuccess, trendResultFaild);
 
         RecordSrv.getRecords().then(getRecordSuccess, getRecordFail);
 
@@ -71,6 +73,14 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     };
 
     var lastRecallResultFaild = function (response) {
+        console.log('ERROR: ' + response);
+    };
+
+    var trendResultSuccess = function (response) {
+        $scope.model.trend = response.data || false;
+    };
+
+    var trendResultFaild = function (response) {
         console.log('ERROR: ' + response);
     };
 
