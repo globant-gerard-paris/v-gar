@@ -72,9 +72,14 @@
 			color:#555e6c;
 			font-size: 1.3em;
 			margin-top: -0.5em;
+			line-height: 0.8em;
 		}
 		.car-card-mileage{
-			margin-top: 100px;
+			position: absolute;
+			bottom: 28px;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
 			.car-card-mileage-title{
 				color:#b0b4ba;
 				font-weight: normal;
@@ -190,7 +195,20 @@
 			.car-card-mileage {
 				margin-top: 82px;
 			}
+			.car-card-brand{
+				color:#555e6c;
+				font-size: 1.8em;
+				margin-top: -0.5em;
+			}
+			.car-card-model{
+				color:#555e6c;
+				font-size: 1.1em;
+				margin-top: -0.4em;
+				line-height: 0.8em;
+			}
 		}
+
+	
 
 		.header-text{
 			position: relative;

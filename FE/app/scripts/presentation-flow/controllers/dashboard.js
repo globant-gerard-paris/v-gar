@@ -1,6 +1,12 @@
 'use strict';
 
 
+angular.module('PresentationFlow').filter('capitalize', function() {
+    return function(input, all) {
+      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+    }
+});
+
 angular.module('PresentationFlow').directive('slick', function($timeout) {
     return function(scope, el, attrs) {
         $timeout((function() {
@@ -29,7 +35,9 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
     }
 })
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, $timeout) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, $http) {
+
+    var mock = true;
 
     $scope.redirectToCarProfile = function () {
         RedirectSrv.redirectTo('/car-profile');
@@ -43,56 +51,18 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         RedirectSrv.redirectTo('/car-profile?option=' + option);
     };
 
-    $timeout(function(){
-    	$scope.model.clock = {x:1};
-    },1000);
+    var servicesResultSuccess = function(response){
+        $scope.model = {
+            cars : response.data.vehicles
+        }
+    }
 
-    $scope.model = {
-    	clock: {},
-    	cars : [
-    		{
-	            year: '2014',
-	            brand: 'Chevrolet',
-	            model: 'Colorado',
-	            mileage: '44000',
-	            nameTag: 'My Little Luxury'
-    		},
-    		{
-	            year: '2001',
-	            brand: 'Kia',
-	            model: 'Sportage',
-	            mileage: '134000',
-	            nameTag: 'The Monster'
-    		},
-  		{
-	            year: '2012',
-	            brand: 'Ford',
-	            model: 'Fiesta',
-	            mileage: '12000',
-	            nameTag: 'My Mom\'s Car'
-    		},
-    		{
-	            year: '2001',
-	            brand: 'KiaA',
-	            model: 'Sportage',
-	            mileage: '134000',
-	            nameTag: 'The Monster'
-    		},
-  		{
-	            year: '2014',
-	            brand: 'ChevroletB',
-	            model: 'Colorado',
-	            mileage: '44000',
-	            nameTag: 'My Little Luxury'
-    		},
-    		{
-	            year: '2001',
-	            brand: 'KiaB',
-	            model: 'Sportage',
-	            mileage: '134000',
-	            nameTag: 'The Monster'
-    		}
-    	]
-	};
+    if(mock){
+        $http.get('resources/mocks/dashboard.json').then(servicesResultSuccess);
+    }
+    else{
+        //ServicesSrv.getVehicleSomething
+    }
+
 
 });
