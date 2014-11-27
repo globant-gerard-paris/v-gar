@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  *
  */
 @Entity
-public class Store extends AbstractEntity {
+public class Store extends AbstractEntityStatefull {
 
     private String standing, address, city, state, phone, latitude, longitude;
 

@@ -1,6 +1,6 @@
 USE `mygarage`;
 
-CREATE TABLE IF NOT EXISTS `suggested_translation` (
+CREATE TABLE IF NOT EXISTS `suggested_service` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `description` varchar(255) NOT NULL,
   `sku` varchar(255) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `suggested_translation` (
   UNIQUE KEY `UK_lp23g5r9xrxo7j1u0c04fd89e` (`sku`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
-INSERT INTO `suggested_translation` (`id`, `description`, `sku`) VALUES
+INSERT INTO `suggested_service` (`id`, `description`, `sku`) VALUES
 	(1, 'APR STATE,INSPECTION', '02841804'),
 	(2, 'AUG STATE,INSPECTION', '02841808'),
 	(3, 'DEC STATE,INSPECTION', '02841812'),
