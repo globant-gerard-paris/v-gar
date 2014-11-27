@@ -34,7 +34,7 @@
 	}
 
 	.service-type-manual{
-		background-image: url("../resources/images/wrench.png");
+		background-image: url($wrench);
       	background-repeat: no-repeat;
       	background-position: center center;
       	height: 40px;
@@ -76,7 +76,7 @@
 		}
 	}
 	.service-type-manual{
-		background-image: url("../resources/images/wrench.png");
+		background-image: url($wrench);
 		background-repeat: no-repeat;
 		background-position: center center;
 		height: 40px;
