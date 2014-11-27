@@ -7,10 +7,10 @@ redirectToAddCar()
 
 -->
 
-
 <div class="dashboard row">
 
-    <div class="dashboard-page-header row hidden-xs">
+
+    <div class="dashboard-page-header hidden-xs">
         <div class="col-sm-4">            
             <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>            
         </div>   
@@ -34,15 +34,21 @@ redirectToAddCar()
         </div>
     </div>
 
-    <div class="dashboard-car-holder row">
-        <div class="dashboard-car-actions-top">
-            <div class="dashboard-add-car">ADD CAR</div>
-        </div>
-        <div class="dashboard-car-actions-bottom">
-            <div class="dashboard-manage-cars">Manage your cars</div>
-        </div>
-        <div class="car-slick-carousel" slick>
-            <car-card car="car" ng-repeat="car in model.cars"></car-card>
+    <div class="dashboard-car-holder">
+        <div class="col-xs-12">
+            <div class="mini-logo visible-xs-block"></div>
+            <div class="dashboard-car-actions-top">
+                <div class="dashboard-add-car">ADD CAR</div>
+            </div>
+            <div class="dashboard-car-actions-bottom">
+                <div class="dashboard-manage-cars">Manage your cars</div>
+            </div>
+            <div class="visible-xs-block header-text" ng-show="model.cars">
+                <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
+            </div>
+            <div class="car-slick-carousel" slick>
+                <car-card car="car" ng-repeat="car in model.cars"></car-card>
+            </div>
         </div>
     </div>
 

@@ -172,11 +172,53 @@
 		.dashboard-car-holder{
 			background-image: url(../resources/images/dashboard/BackgroundMobile.jpg);
 		}
+		.dashboard-car-actions-top{
+			top: 10px;
+			text-align: right;
+			.dashboard-add-car{
+				margin-right: 19px
+			}
+		}
+		.dashboard-car-actions-bottom{
+			bottom: 88px;
+		}
+
+		.car-card{
+			margin: 102px auto;
+			width: 180px;
+			height: 240px;
+			.car-card-mileage {
+				margin-top: 82px;
+			}
+		}
+
+		.header-text{
+			position: relative;
+			top: 92px;
+			font-size: 0.9em;
+			text-align: center;
+			color: #888;
+       		.header-text-name{
+	        	color:#555;
+	    	}
+		}
+
+		.mini-logo{
+			background-image: url(../resources/images/landing/Logo_Small.png);
+			position: absolute;
+			top:22px;
+			left: 0;
+			right: 0;
+			background-position: center center;
+			height: 40px;
+			background-repeat: no-repeat;
+		}
 	}
 
 
 	.dashboard-page-header{
-		 .home-page-title, .home-page-title:hover {
+		height: 90px;
+		.home-page-title, .home-page-title:hover {
 	        text-decoration: none;
 	        color: #444;
 	        font-weight: bold;
@@ -249,9 +291,10 @@
 	    }
 
 	    .header-text{
+	    	text-align: center;
 	        font-size:1.2em;
 	        margin-top: 1.9em;
-	        color:#888;
+	        color:#888 !important;
 	       	.header-text-name{
 	        	color:#555;
 	    	}
