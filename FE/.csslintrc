@@ -9,7 +9,7 @@
     "zero-units": true,
     "overqualified-elements": false,
     "shorthand": true,
-    "duplicate-background-images": true,
+    "duplicate-background-images": false,
     "font-sizes": true,
     "ids": true,
     "important": false,
