@@ -15,6 +15,7 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
         var modalNewRecord = $modal.open({
             templateUrl: 'modalNewRecord.html',
             controller: 'ModalNewRecordCtrl',
+            windowClass: 'vg-record-modal',
             size: 'md',
             resolve: {
                 context: function () {
