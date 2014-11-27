@@ -12,7 +12,8 @@ module.exports = function(grunt) {
                 'W002', // <head> is missing X-UA-Compatible <meta> tag that disables old IE compatibility modes
                 'W003', // <head> is missing viewport <meta> tag that enables responsiveness
                 'W005', // Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work
-                'E013' // ??
+                'E013', // ??
+				'E014', // ??
             ]
         },
         files: [
