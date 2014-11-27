@@ -1,0 +1,28 @@
+MAPA a la izq
+<section class="store-box row margin-top-10">
+    <div class="store-icon-big col-xs-1"></div>
+    <div class="">
+        <div class="">{{model.address}}</div>
+        <div class="pull-left margin-right-10">{{model.districtName}}, {{model.zipCode}}</div>
+        <div class="pull-left"><small>Call: {{model.phone}}</small></div>
+    </div>
+</section>
+
+<div class="clearfix"></div>
+
+<div class="row">
+    <section class="col-xs-12 col-sm-8 store-map-box">
+        <div class="store-map"></div>
+    </section>
+
+    <section class="store-hours-box col-xs-12 col-sm-4">
+        <div class="store-subtitle">Hours of Operations</div>
+        <ul class="list-unstyled">
+            <li ng-repeat="day in days track by day" ng-class="{bolder:currentDateIndex===$index}" class="clearfix">
+                <span class="pull-left">{{day}}</span><span class="pull-right">{{hours[$index]}}</span>
+            </li>
+        </ul>
+    </section>
+</div>
+
+<div class="clearfix"></div>

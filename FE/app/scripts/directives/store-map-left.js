@@ -1,7 +1,7 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('store', function ($timeout, StoreLocatorSrv, StringUtilSrv) {
+angular.module('Directives').directive('storeMapLeft', function ($timeout, StoreLocatorSrv, StringUtilSrv) {
     'use strict';
 
     return {
@@ -10,9 +10,9 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
             model: '='
         },
 
-        templateUrl: 'scripts/directives/views/store.html',
+        templateUrl: 'scripts/directives/views/store-map-left.html',
 
-        link: function (scope, element/*, attributes*/) {
+        link: function (scope, element, attributes) {
 
             var SUNDAY_NUMBER = 0,
                 map = element.find('.store-map')[0];
@@ -24,6 +24,12 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 var m = 'Error, map canvas not found';
                 alert(m);
                 console.log(m);
+            }
+
+            if(attributes.type==='popup'){
+                element.context.classList.add('store-modal')
+            } else {
+                element.context.classList.add('store-normal')
             }
 
             /**

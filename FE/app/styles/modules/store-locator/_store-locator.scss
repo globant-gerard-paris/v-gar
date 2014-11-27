@@ -40,6 +40,7 @@
         font-size: 1.7rem;
     }
 }
+
 .store-map-box{
     min-height: 100%;
     height: 100%;
@@ -185,7 +186,18 @@
     }
 }
 
+.swiper-container {
+    /* Specify Swiper's Size: */
 
+    width:200px;
+	height: 200px;
+}
+.swiper-slide {
+    /* Specify Slides's Size: */
+
+    width: 200px;
+	height: 200px;
+}
 
 //.store-box{background-color: #0066bb;}
 //.header-title{background-color: #006666;}

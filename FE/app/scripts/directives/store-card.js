@@ -1,11 +1,11 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv) {
+angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv, $modal) {
     'use strict';
 
     return {
-        restrict: 'E',
+        restrict: 'EA',
         scope: {
             model: '='
         },
@@ -21,6 +21,18 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
 
                 });
             }
+
+            scope.seeMoreDetailPopup = function () {
+
+                var modalInstance = $modal.open({
+                    //TODO replace for relative ?
+                    template: '<store model="model.myStore" type="popup"></store>',
+                    scope: scope,
+                    size: 'lg'
+                    //controller: 'ModalInstanceCtrl',
+                });
+
+            };
 
             /**
              * Set the favorite store of the current user.
