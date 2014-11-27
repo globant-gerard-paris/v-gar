@@ -6,15 +6,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  *
- * The {@link LandingController} have the responsibility to redirect to Landing page.
+ * The {@link LandingController} have the responsibility to redirect to Landing
+ * page.
+ *
  * @author Jero
  *
  */
 @Controller
 public class LandingController {
 
-	@RequestMapping(value = "/landing", method = RequestMethod.GET)
-	public String redirect() {
-		return "redirect:/";
-	}
+    @RequestMapping(value = "/landing", method = RequestMethod.GET)
+    public String redirect() {
+        return "redirect:/";
+    }
 }
