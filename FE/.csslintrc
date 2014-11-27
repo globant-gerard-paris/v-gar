@@ -10,7 +10,7 @@
     "overqualified-elements": false,
     "shorthand": true,
     "duplicate-background-images": false,
-    "font-sizes": true,
+    "font-sizes": false,
     "ids": true,
     "important": false,
     "qualified-headings": false,
