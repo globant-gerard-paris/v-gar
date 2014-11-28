@@ -4,17 +4,29 @@
  *  @author Jero <jeronimo.carrizo@globant.com>
  */
 angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($scope, StoreLocatorSrv, $location, StringUtilSrv, Geocoder, $timeout) {
+    //var mySwiper;
 
     $scope.model = {
         stores: [],
         address: null,
+        oldAddress: null,
         isCollapsed: true,
         myStore: null,
-        myStoreId: null
+        myStoreId: null,
+        searching: false
     };
 
     $scope.$on('SET_FAVORITE_STORE_SUCCESS', function (/*event, dataResponse*/) {
         initialize();
+    });
+
+    $scope.$on('NG_REPEAT_FINISHED', function(/*ngRepeatFinishedEvent*/) {
+//        mySwiper = new Swiper('.swiper-container',{
+////                pagination: '.pagination',
+//            paginationClickable: true,
+//            centeredSlides: true,
+//            slidesPerView: 'auto'
+//        });
     });
 
     /**
@@ -24,18 +36,27 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         var params = $location.search();
         if ((params && params.zipcode)) {
             $scope.model.address = params.zipcode;
+            $scope.model.oldAddress = params.zipcode;
+
+            //TODO implement promises
             StoreLocatorSrv.getStoreNearby($scope.model.address, getStoreNearbySuccess, getStoreNearbyFail);
         }
     };
 
     var getStoreNearbySuccess = function (response) {
+        //debugger
+        $scope.model.searching = false;
         $scope.model.stores = response.data[0] || [];
         fixLatitudeLongitudeStores($scope.model.stores);
         StoreLocatorSrv.getFavoriteStore(getFavoriteStoreSuccess, getFavoriteStoreFail);
+        //$scope.$apply();
     };
 
     var getStoreNearbyFail = function (response) {
+        //debugger
+        $scope.model.searching = false;
         console.log('ERROR: ' + response);
+        //$scope.$apply();
     };
 
     var getFavoriteStoreSuccess = function (response) {
@@ -136,7 +157,13 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
     };
 
     $scope.getStoreNearby = function () {
-        $location.search('zipcode', ($scope.model.address));
+        if($scope.model.oldAddress !== $scope.model.address){
+            $scope.model.oldAddress = $scope.model.address;
+
+            $scope.model.searching = true;
+            //TODO IMPROVE! ????
+            $location.search('zipcode', ($scope.model.address));
+        }
     };
 
     initialize();
