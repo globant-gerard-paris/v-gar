@@ -2,14 +2,14 @@
 
 
 angular.module('PresentationFlow').filter('capitalize', function() {
-    return function(input, all) {
-      return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-    }
+    return function(input) {
+        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
+    };
 });
 
 angular.module('PresentationFlow').directive('slick', function($timeout) {
-    return function(scope, el, attrs) {
-        $timeout((function() {
+    return function(scope, el) {
+        $timeout(function() {
             el.slick({
                 dots: false,
                 infinite: false,
@@ -18,22 +18,22 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
                 slidesToScroll: 1,
                 responsive: [
                     {
-                      breakpoint: 768,
-                      settings: {
-                        slidesToShow: 1
-                      }
+                        breakpoint: 768,
+                        settings: {
+                            slidesToShow: 1
+                        }
                     },
                     {
-                      breakpoint: 992,
-                      settings: {
-                        slidesToShow: 2
-                      }
+                        breakpoint: 992,
+                        settings: {
+                            slidesToShow: 2
+                        }
                     }
                 ]
-            })
-        }), 500)
-    }
-})
+            });
+        }, 500);
+    };
+});
 
 angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, $http) {
 
@@ -54,8 +54,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
     var servicesResultSuccess = function(response){
         $scope.model = {
             cars : response.data.vehicles
-        }
-    }
+        };
+    };
 
     if(mock){
         $http.get('resources/mocks/dashboard.json').then(servicesResultSuccess);
