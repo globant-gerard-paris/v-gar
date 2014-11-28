@@ -3,12 +3,10 @@ package com.searshc.mygarage.controllers.record;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import static org.apache.commons.lang3.Validate.notNull;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.http.HttpStatus;
@@ -49,20 +47,6 @@ public class RecordController {
         this.ncdbService = notNull(ncdbService, "The NCDB Service cannot be null");
     }
 
-    @SuppressWarnings("unchecked")
-    @RequestMapping(value = "/familyvehicle/{familyVehicleId}/records",
-            method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<Record>> getRecords(@PathVariable("familyVehicleId") Long familyVehicleId)
-            throws Exception {
-        List<Record> records = this.recordService.getRecordsByFamilyVehicleId(familyVehicleId);
-        if (CollectionUtils.isNotEmpty(records)) {
-            return new ResponseEntity<List<Record>>(records, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<List<Record>>(Collections.EMPTY_LIST, HttpStatus.OK);
-        }
-    }
-
     @RequestMapping(value = "/{recordId}",
             method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -82,27 +66,15 @@ public class RecordController {
         return new ResponseEntity<Object>(HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/family/{familyId}/vehicle/{tangibleId}",
+    @RequestMapping(value = "/vehicle/{familyVehicleId}",
             method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<List<ServiceRecord>> getCarRecords(@PathVariable("familyId") Long familyId,
-            @PathVariable("tangibleId") Long tangibleId) throws NCDBApiException {
-
-        List<ServiceRecord> records = this.recordService.getNcdbServiceRecords(familyId, tangibleId);
-
-        return new ResponseEntity<List<ServiceRecord>>(records, null, HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/vehicle/{vehicleId}",
-            method = RequestMethod.GET,
-            produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public ResponseEntity<List<ServiceRecord>> getCarRecords(@PathVariable("vehicleId") Long vehicleId)
+    public ResponseEntity<List<ServiceRecord>> getCarRecords(@PathVariable("familyVehicleId") Long familyVehicleId)
             throws NCDBApiException {
 
         List<ServiceRecord> serviceRecords
-                = this.recordService.getServiceRecords(vehicleId);
+                = this.recordService.getServiceRecords(familyVehicleId);
 
         return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
