@@ -143,6 +143,9 @@
 	.dashboard-car-actions-top{
 		top: -17px;
 		.dashboard-add-car{
+			&.close-add-car{
+				background-image: url(../resources/images/dashboard/close-add-car.png);
+			}
 			font-size: 0.9em;
 			font-weight: bold;
 			cursor: pointer;
