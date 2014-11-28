@@ -149,16 +149,7 @@ public class VehicleController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(/*
-			@RequestParam(value = "userId", required = true) Long userId,
-			@RequestParam(value = "vehicleId", required = false) Long vehicleId,
-			@RequestParam(value = "make", required = true) String make,
-			@RequestParam(value = "model", required = true) String model,
-			@RequestParam(value = "year", required = true) int year,
-			@RequestParam(value = "color", required = false) String color,
-			@RequestParam(value = "mileage", required = true) int mileage,
-			@RequestParam(value = "name", required = false) String name*/
-			@RequestBody AddNewManualFamilyVehicleDTO data) {
+	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@RequestBody AddNewManualFamilyVehicleDTO data) {
 
 		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
 				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getColor(), data.getName());
