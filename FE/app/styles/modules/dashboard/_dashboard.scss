@@ -103,8 +103,6 @@
 			@include border-radius(3px); 
 			background-color: #1fafc8;
 			color:white;
-			background-color: #1fafc8;
-			color: white;
 			padding: 2px 10px 2px 10px;
 			width: 90px;
 		}
@@ -222,7 +220,7 @@
 		}
 
 		.mini-logo{
-			background-image: url(../resources/images/landing/Logo_Small.png);
+			background-image: url(../resources/images/dashboard/Logo_Small.png);
 			position: absolute;
 			top:22px;
 			left: 0;

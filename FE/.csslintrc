@@ -17,5 +17,9 @@
     "outline-none": false,
     "unique-headings": false,
     "adjoining-classes": false,
-    "compatible-vendor-prefixes": false
+    "compatible-vendor-prefixes": false,
+    "box-sizing": false,
+    "known-properties": false,
+    "vendor-prefix": false,
+    "font-sizes": false
 }
