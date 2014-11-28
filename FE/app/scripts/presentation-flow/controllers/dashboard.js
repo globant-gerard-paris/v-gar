@@ -35,7 +35,7 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
     };
 });
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http, StoreLocatorSrv) {
 
     var mock = false;
 
@@ -81,4 +81,15 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
     else{
         DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
     }
+
+
+
+    var getFavoriteStoreSuccess = function (response) {
+        // Apply changes after digest process, to redraw the stores list.
+        $timeout(function () {
+            $scope.model.myStore = response.data.store;
+        });
+    };
+
+    StoreLocatorSrv.getFavoriteStore(getFavoriteStoreSuccess);
 });
