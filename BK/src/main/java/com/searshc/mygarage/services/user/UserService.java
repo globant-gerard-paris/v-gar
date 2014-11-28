@@ -82,7 +82,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 		if (user == null) {
 			SYWUserResponse userInfoByToken = sywApi.getUserInfoByToken(token);
 			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
-			Validate.notNull(userInfoByToken.getSywrMemberNumber(), "The user not have shopyourway member number: " + token);
+			Validate.notNull(userInfoByToken.getSywrMemberNumber(), "The response of SYW service don't have the shopyourway member number, the token used was: " + token);
 			user = toUser(userInfoByToken);
 			if (user.getFamilyId() == null) {
 				String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
