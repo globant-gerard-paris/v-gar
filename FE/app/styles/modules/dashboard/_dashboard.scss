@@ -331,6 +331,13 @@
 		margin-top: 50px;
 		position: relative;
 
+		.dashboard-extra-title{
+			color:#1fafc8;
+			.title-big-font{
+				font-size:2.0em;
+			}
+		}
+
 		.dashboard-extra-feedback{
 			position: absolute;
 			right: 0;
