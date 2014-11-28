@@ -20,6 +20,9 @@ module.exports = function(grunt) {
         ]);
     });
 
+    //runs back-end server
+    grunt.registerTask('serveBK', ['shell:runBKserver']);
+
     //runs mockey from console and waits
     grunt.registerTask('run-mockey', ['shell:mockey']);
 
@@ -72,7 +75,7 @@ module.exports = function(grunt) {
             'copy:dist'
         ]);
 
-        
+
         if (target === 'android') {
             tasks = tasks.concat([
                 'clean:hybrid',
@@ -94,7 +97,7 @@ module.exports = function(grunt) {
                 'cordovacli:emulate_ios'
             ]);
         }
-        
+
 
         grunt.task.run(tasks);
     });
