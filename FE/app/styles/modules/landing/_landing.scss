@@ -111,6 +111,7 @@ $landingBottomSize : 100% - $landingTopSize;
         width: 60%;
         text-align: center;
         font-weight: 200;
+        max-height: 66px;
     }
 
 
@@ -128,7 +129,6 @@ $landingBottomSize : 100% - $landingTopSize;
     .carousel-indicators { 
         top: 390px;
     }
-
 
     @media (max-width: 768px) { 
         .landing-bottom{
@@ -196,6 +196,15 @@ $landingBottomSize : 100% - $landingTopSize;
         .carousel-indicators {
             top: 370px;
         }
+
+        @media (max-width: 768px) { 
+            .landing-page-logo {
+                margin-top: 20px;
+            }      
+            .landing-page-text{
+                max-height: 88px;
+            }      
+        }
     }
 
     @media (max-height: 480px) {
@@ -207,8 +216,12 @@ $landingBottomSize : 100% - $landingTopSize;
             height: 100px;
             margin-top: 15px;
         }
+
+        @media (max-width: 768px) { 
+            .landing-page-text{
+                max-height: 88px;
+            }      
+        }
     }
-
-
 
 }
