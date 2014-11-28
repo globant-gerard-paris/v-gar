@@ -23,6 +23,27 @@
 		background-size: cover;
 	}
 
+	.btn-social{
+	    display: inline-block;
+	    width: 26px;
+	    height: 26px;
+	    margin-left: -5px;
+	    position: relative;
+	    top: -10px;
+	    background-position: center center;
+	   	&.btn-facebook{
+	        background-image: url(../resources/images/dashboard/shareicon_3.png);
+	    }
+
+	    &.btn-twitter{
+	        background-image: url(../resources/images/dashboard/shareicon_2.png);
+	    }
+
+	    &.btn-mail{
+	        background-image: url(../resources/images/dashboard/shareicon_1.png);
+	    }
+	}
+
 
 	@extend %font-Roboto;
 	.dashboard-car-holder{
@@ -270,25 +291,6 @@
 
 	    	.header-buttons{
 	    		min-width:312px;
-		        .btn-social{
-			        display: inline-block;
-			        width: 26px;
-			        height: 26px;
-			        margin-left: -5px;
-			        position: relative;
-			        top: -10px;
-			       	&.btn-facebook{
-				        background-image: url(../resources/images/dashboard/shareicon_3.png);
-				    }
-
-				    &.btn-twitter{
-				        background-image: url(../resources/images/dashboard/shareicon_2.png);
-				    }
-
-				    &.btn-mail{
-				        background-image: url(../resources/images/dashboard/shareicon_1.png);
-				    }
-				}
 				.btn-appointment{
 			        margin-left:16px;
 			        display: inline-block;
@@ -324,5 +326,51 @@
 	.add-car-dropdown-container{
 		margin-top: 100px;
 	}
+
+	.dashboard-extra-holder{
+		margin-top: 50px;
+		position: relative;
+
+		.dashboard-extra-feedback{
+			position: absolute;
+			right: 0;
+			top:100px;
+			background-image: url(../resources/images/dashboard/feedback_vert.png);  
+			width: 29px;
+			height: 93px;
+			z-index:99;
+		}
+
+		.dashboard-service-center{
+			height: 211px;
+		}
+
+		.dashboard-coupons{
+			background-repeat: no-repeat;
+			background-image: url(../resources/images/dashboard/coupons.jpg);  
+			background-position: top center;
+			height: 211px;
+			min-width: 318px;
+		}
+	}
+
+	.dashboard-bottom-mobile{
+		.footer-btns{
+			margin-top: 40px;
+		}
+		.btn-social{
+			margin: 0px;
+		}
+		text-align: center;
+		.dashboard-mobile-feedback{
+			display: inline-block;
+			background-image: url(../resources/images/dashboard/feedback_horiz.png);  
+			height: 29px;
+			width: 93px;
+		}
+	}
+
+
+
 
 }
