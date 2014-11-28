@@ -44,19 +44,15 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
     };
 
     var getStoreNearbySuccess = function (response) {
-        //debugger
         $scope.model.searching = false;
         $scope.model.stores = response.data[0] || [];
         fixLatitudeLongitudeStores($scope.model.stores);
         StoreLocatorSrv.getFavoriteStore(getFavoriteStoreSuccess, getFavoriteStoreFail);
-        //$scope.$apply();
     };
 
     var getStoreNearbyFail = function (response) {
-        //debugger
         $scope.model.searching = false;
         console.log('ERROR: ' + response);
-        //$scope.$apply();
     };
 
     var getFavoriteStoreSuccess = function (response) {
@@ -84,6 +80,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         $timeout(function () {
             $scope.model.myStore = response.data.store;
             $scope.model.stores = sortedStores;
+            $scope.$broadcast('RELOAD_STORE');
         });
     };
 
