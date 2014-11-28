@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
+import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -35,6 +36,7 @@ import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.exceptions.VehicleTrendException;
+import com.searshc.mygarage.orchestrators.AddNewManualFamilyVehicleOrchestrator;
 import com.searshc.mygarage.orchestrators.DashboardOrchestrator;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
@@ -59,6 +61,7 @@ public class VehicleController {
 	private ObjectMapper objectMapper;
 	private DashboardOrchestrator dashboardOrchestrator;
     private VehicleTrendService vehicleTrendService;
+    private AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator;
 
 	@Inject
 	public VehicleController(final NcdbService ncdbService,
@@ -68,7 +71,8 @@ public class VehicleController {
 			final ConfirmedVehicleService confirmedVehicleService,
 			final UserService userService, final ObjectMapper objectMapper,
 			final DashboardOrchestrator dashboardOrchestrator,
-			final VehicleTrendService vehicleTrendService) {
+			final VehicleTrendService vehicleTrendService,
+			final AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator) {
 		this.ncdbService = notNull(ncdbService,
 				"The NCDB Service cannot be null");
 		this.recordService = notNull(recordService,
@@ -85,7 +89,9 @@ public class VehicleController {
 				"The ObjectMapper cannot be null");
 		this.dashboardOrchestrator = notNull(dashboardOrchestrator);
 		this.vehicleTrendService = notNull(vehicleTrendService,
-				"The Vehicle Trend Service cannot be null");		
+				"The Vehicle Trend Service cannot be null");	
+		this.addNewManualFamilyVehicleOrchestrator = notNull(addNewManualFamilyVehicleOrchestrator,
+				"The AddNewManualFamilyVehicleOrchestrator cannot be null");
 	}
 
 	@RequestMapping(value = "/family/{familyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -141,19 +147,21 @@ public class VehicleController {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<FamilyVehicle> createAndSaveNewVehicle(
-			@RequestParam("familyId") Long familyId,
-			@RequestParam("tangibleId") Long tangibleId,
-			@RequestParam("make") String make,
-			@RequestParam("model") String model,
-			@RequestParam("year") int year,
-			@RequestParam("color") String color,
-			@RequestParam("mileage") int mileage) {
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(/*
+			@RequestParam(value = "userId", required = true) Long userId,
+			@RequestParam(value = "vehicleId", required = false) Long vehicleId,
+			@RequestParam(value = "make", required = true) String make,
+			@RequestParam(value = "model", required = true) String model,
+			@RequestParam(value = "year", required = true) int year,
+			@RequestParam(value = "color", required = false) String color,
+			@RequestParam(value = "mileage", required = true) int mileage,
+			@RequestParam(value = "name", required = false) String name*/
+			@RequestBody AddNewManualFamilyVehicleDTO data) {
 
-		FamilyVehicle familyVehicle = this.familyVehicleService
-				.createAndSaveNewVehicle(familyId, tangibleId, make, model,
-						year, color, mileage);
+		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getColor(), data.getName());
 		return new ResponseEntity<FamilyVehicle>(familyVehicle, null,
 				HttpStatus.OK);
 	}
