@@ -3,6 +3,7 @@ package com.searshc.mygarage.controllers.landing;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class LandingController {
 
     @RequestMapping(value = "/landing", method = RequestMethod.GET)
-    public String redirect() {
-        return "redirect:/";
+    public String redirect(@RequestParam String token) {
+        return "redirect:/?token=" + token;
     }
 }
