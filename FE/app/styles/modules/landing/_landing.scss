@@ -196,6 +196,15 @@ $landingBottomSize : 100% - $landingTopSize;
         .carousel-indicators {
             top: 370px;
         }
+
+        @media (max-width: 768px) { 
+            .landing-page-logo {
+                margin-top: 20px;
+            }      
+            .landing-page-text{
+                max-height: 88px;
+            }      
+        }
     }
 
     @media (max-height: 480px) {
@@ -206,6 +215,12 @@ $landingBottomSize : 100% - $landingTopSize;
         .landing-page-logo {
             height: 100px;
             margin-top: 15px;
+        }
+
+        @media (max-width: 768px) { 
+            .landing-page-text{
+                max-height: 88px;
+            }      
         }
     }
 
