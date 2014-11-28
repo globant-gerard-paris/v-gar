@@ -37,9 +37,9 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
 
 angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http) {
 
-    var mock = true;
+    var mock = false;
 
-    var userId = '5';
+    var userId = '600';
 
     $scope.model = {
         cars: [],
