@@ -35,9 +35,18 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
     };
 });
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, $http) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http) {
 
-    var mock = true;
+    var mock = false;
+
+    var userId = '600';
+
+    $scope.model = {
+        cars: [],
+        user: {
+            userId: userId
+        }
+    };
 
 
     $scope.addCar = false;
@@ -56,18 +65,20 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         RedirectSrv.redirectTo('/car-profile?option=' + option);
     };
 
-    var servicesResultSuccess = function(response){
+    var carsResultSuccess = function(response){
         $scope.model = {
             cars : response.data.vehicles
         };
     };
 
+    var carsResultFailed = function (response) {
+        console.log('ERROR: ' + response);
+    };
+
     if(mock){
-        $http.get('resources/mocks/dashboard.json').then(servicesResultSuccess);
+        $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
     }
     else{
-        //ServicesSrv.getVehicleSomething
+        DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
     }
-
-
 });
