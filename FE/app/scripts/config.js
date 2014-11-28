@@ -13,9 +13,9 @@
         },
         "methods": {
             "SYW_LOGIN": {
-                "use_host": "PROD",
+                "use_host": "DEV",
                 "host_paths": {
-                    "PROD": "/logint/prod"
+                    "DEV": "/logint/dev"
                 }
             }
         }
