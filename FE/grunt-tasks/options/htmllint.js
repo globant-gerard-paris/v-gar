@@ -447,7 +447,7 @@ module.exports = function (grunt) {
                 'XHTML element “car-confirmation” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “trend-view” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “slick” not allowed on XHTML element “div” at this point.',
-                'XHTML element “car-card” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “car-card” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “carousel” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “store” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “store-card” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
