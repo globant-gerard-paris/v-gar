@@ -9,7 +9,6 @@ import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
-import com.searshc.mygarage.exceptions.VehicleNotFoundException;
 
 @Component
 public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator implements AddNewManualFamilyVehicleOrchestrator {
