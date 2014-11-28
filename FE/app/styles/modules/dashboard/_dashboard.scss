@@ -1,0 +1,376 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/transform";
+@import "slick";
+
+%font-Roboto {
+  font-family: "Roboto";
+}
+
+.dashboard{
+	.slick-prev{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/dashboard/ArrowLeft.png);
+		background-size: cover;
+	}
+
+	.slick-next{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/dashboard/ArrowRight.png);
+		background-size: cover;
+	}
+
+	.btn-social{
+	    display: inline-block;
+	    width: 26px;
+	    height: 26px;
+	    margin-left: -5px;
+	    position: relative;
+	    top: -10px;
+	    background-position: center center;
+	   	&.btn-facebook{
+	        background-image: url(../resources/images/dashboard/shareicon_3.png);
+	    }
+
+	    &.btn-twitter{
+	        background-image: url(../resources/images/dashboard/shareicon_2.png);
+	    }
+
+	    &.btn-mail{
+	        background-image: url(../resources/images/dashboard/shareicon_1.png);
+	    }
+	}
+
+
+	@extend %font-Roboto;
+	.dashboard-car-holder{
+		position: relative;
+		height:412px;
+		width: 100%;
+		background-image: url(../resources/images/dashboard/Dashboard_background.jpg);
+		background-position: center center;
+		background-size: cover;
+	}
+
+	.car-card{
+		margin: 60px auto;
+		position: relative;
+		background-image: url(../resources/images/dashboard/NoCarThumbnail.png);
+		background-position: center center;
+		background-repeat: no-repeat;
+		font-weight: bold;
+		padding:20px;
+		@include border-radius(12px);
+		border:1px solid #bbb;
+		background-color: white;
+		width: 200px;
+		height: 264px;
+		text-align: center;
+		.car-edit-btn{
+			position: absolute;
+			right: 8px;
+			top: 8px;
+			background-image: url(../resources/images/dashboard/edit.png);
+			height: 23px;
+			width: 23px;
+			cursor: pointer;
+		}
+
+		.car-card-year{
+			color:#b0b4ba;
+			font-size: 1.1em;
+
+		}
+		.car-card-brand{
+			color:#555e6c;
+			font-size: 2.2em;
+			margin-top: -0.5em;
+		}
+		.car-card-model{
+			color:#555e6c;
+			font-size: 1.3em;
+			margin-top: -0.5em;
+			line-height: 0.8em;
+		}
+		.car-card-mileage{
+			position: absolute;
+			bottom: 28px;
+			margin: 0 auto;
+			left: 0;
+			right: 0;
+			.car-card-mileage-title{
+				color:#b0b4ba;
+				font-weight: normal;
+
+			}
+			.car-card-mileage-data{
+				color:#555e6c;
+				font-size: 1.2em;
+				margin-top: -0.2em;
+			}
+		}
+		.car-card-tag{
+			@include simple-transform(1, -10deg, 0, 50%);
+			position: absolute;
+			bottom:0;
+			left:0;
+			right: 0;
+			margin: 0 auto;
+			font-size: 0.95em;
+			line-height: 1.0em;
+			@include border-radius(3px);
+			background-color: #1fafc8;
+			color:white;
+			padding: 2px 10px 2px 10px;
+			width: 90px;
+		}
+	}
+
+	.car-card-slick-container{
+		// padding so car tag is visible
+		padding-bottom: 30px;
+	}
+
+	.car-slick-carousel{
+		margin: 0 auto;
+	}
+
+	.dashboard-car-actions-bottom, .dashboard-car-actions-top{
+		@extend %font-Roboto;
+		text-align: center;
+		font-size: 0.9em;
+		position: absolute;
+		left: 0;
+		right: 0;	
+		z-index: 99;
+	}
+
+	.dashboard-car-actions-bottom{
+		bottom: 19px;
+		.dashboard-manage-cars{
+			cursor: pointer;
+			display: inline-block;
+			color:white;
+			padding-left: 20px;
+			background-image: url(../resources/images/dashboard/edit-icon.png);
+			background-repeat: no-repeat;
+			background-position: left center;
+		}
+	}
+
+	.dashboard-car-actions-top{
+		top: -17px;
+		.dashboard-add-car{
+			&.close-add-car{
+				background-image: url(../resources/images/dashboard/close-add-car.png);
+			}
+			font-size: 0.9em;
+			font-weight: bold;
+			cursor: pointer;
+			display: inline-block;
+			padding-top: 30px;
+			background-image: url(../resources/images/dashboard/add-car.png);
+			background-repeat: no-repeat;
+			background-position: center top;
+			color: #555e6c;
+		}
+	}
+
+	@include bp(md){
+		.car-slick-carousel{
+			width: 780px !important;
+		}
+	}
+
+
+	@include bp(sm){
+		.car-slick-carousel{
+			width: 512px;
+		}
+	}
+
+	@include bp(xs){
+		.car-slick-carousel{
+			width: 240px;
+		}
+		.dashboard-car-holder{
+			background-image: url(../resources/images/dashboard/BackgroundMobile.jpg);
+		}
+		.dashboard-car-actions-top{
+			top: 10px;
+			text-align: right;
+			.dashboard-add-car{
+				margin-right: 19px
+			}
+		}
+		.dashboard-car-actions-bottom{
+			bottom: 88px;
+		}
+
+		.car-card{
+			margin: 102px auto;
+			width: 180px;
+			height: 240px;
+			.car-card-mileage {
+				margin-top: 82px;
+			}
+			.car-card-brand{
+				color:#555e6c;
+				font-size: 1.8em;
+				margin-top: -0.5em;
+			}
+			.car-card-model{
+				color:#555e6c;
+				font-size: 1.1em;
+				margin-top: -0.4em;
+				line-height: 0.8em;
+			}
+		}
+
+	
+
+		.header-text{
+			position: relative;
+			top: 92px;
+			font-size: 0.9em;
+			text-align: center;
+			color: #888;
+       		.header-text-name{
+	        	color:#555;
+	    	}
+		}
+
+		.mini-logo{
+			background-image: url(../resources/images/dashboard/Logo_Small.png);
+			position: absolute;
+			top:22px;
+			left: 0;
+			right: 0;
+			background-position: center center;
+			height: 40px;
+			background-repeat: no-repeat;
+		}
+	}
+
+
+	.dashboard-page-header{
+		height: 90px;
+		.home-page-title, .home-page-title:hover {
+	        text-decoration: none;
+	        color: #444;
+	        font-weight: bold;
+	        font-size: 20px;
+	    }
+	    
+	    .user-info {
+	        line-height: 30px;
+	    }
+
+	    .home-header-page-logo{
+	        background-image: url(../resources/images/dashboard/header-logo.png);
+	        height: 90px;
+	        background-position: left center;
+	        background-repeat: no-repeat;
+	        width: 100%;
+	        margin-left: 20px;
+	    }
+
+	    .page-header{
+	        height: 90px;
+	        border:0;
+	        margin:0;
+	    }
+
+
+	    .right-zone{
+	        position: relative;
+	        margin-top:24px;
+
+	    	.header-buttons{
+	    		min-width:312px;
+				.btn-appointment{
+			        margin-left:16px;
+			        display: inline-block;
+			        cursor: pointer;
+			        width: 220px;
+			        height: 45px;
+			        background-image: url(../resources/images/dashboard/appointment.png);        
+		    	}
+	    	}
+
+	    	.syw-id{
+		        	position: absolute;
+		        	right: 18px;
+		        	top: -20px;
+		        	font-size: 0.7em;
+		        	font-weight: bold;
+		        	color: #bbb;
+		    }
+	    }
+
+	    .header-text{
+	    	text-align: center;
+	        font-size:1.2em;
+	        margin-top: 1.9em;
+	        color:#888 !important;
+	       	.header-text-name{
+	        	color:#555;
+	    	}
+	    }
+
+	}
+
+	.add-car-dropdown-container{
+		margin-top: 100px;
+	}
+
+	.dashboard-extra-holder{
+		margin-top: 50px;
+		position: relative;
+
+		.dashboard-extra-feedback{
+			position: absolute;
+			right: 0;
+			top:100px;
+			background-image: url(../resources/images/dashboard/feedback_vert.png);  
+			width: 29px;
+			height: 93px;
+			z-index:99;
+		}
+
+		.dashboard-service-center{
+			height: 211px;
+		}
+
+		.dashboard-coupons{
+			background-repeat: no-repeat;
+			background-image: url(../resources/images/dashboard/coupons.jpg);  
+			background-position: top center;
+			height: 211px;
+			min-width: 318px;
+		}
+	}
+
+	.dashboard-bottom-mobile{
+		.footer-btns{
+			margin-top: 40px;
+		}
+		.btn-social{
+			margin: 0px;
+		}
+		text-align: center;
+		.dashboard-mobile-feedback{
+			display: inline-block;
+			background-image: url(../resources/images/dashboard/feedback_horiz.png);  
+			height: 29px;
+			width: 93px;
+		}
+	}
+
+
+
+
+}
