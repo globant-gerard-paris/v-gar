@@ -48,13 +48,18 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         }
     };
 
+
+    $scope.addCar = false;
+
     $scope.redirectToCarProfile = function () {
         RedirectSrv.redirectTo('/car-profile');
     };
 
-    $scope.redirectToAddCar = function () {
-        RedirectSrv.redirectTo('/add-car');
+    $scope.toggleAddCar = function () {
+        $scope.addCar = !$scope.addCar;
     };
+
+
 
     $scope.getToCarProfile = function (option) {
         RedirectSrv.redirectTo('/car-profile?option=' + option);

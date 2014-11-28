@@ -38,16 +38,49 @@ redirectToAddCar()
         <div class="col-xs-12">
             <div class="mini-logo visible-xs-block"></div>
             <div class="dashboard-car-actions-top">
-                <div class="dashboard-add-car">ADD CAR</div>
+                <div class="dashboard-add-car" ng-class="addCar ? 'close-add-car':''" ng-click="toggleAddCar()">
+                    {{addCar ? 'CLOSE' : 'ADD CAR'}}
+                </div>
             </div>
-            <div class="dashboard-car-actions-bottom">
-                <div class="dashboard-manage-cars">Manage your cars</div>
+            <div ng-hide="addCar" class="dashboard-content-common">
+                <div class="dashboard-car-actions-bottom">
+                    <div class="dashboard-manage-cars">Manage your cars</div>
+                </div>
+                <div class="visible-xs-block header-text" ng-show="model.cars">
+                    <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
+                </div>
+                <div class="car-slick-carousel" slick>
+                    <car-card car="car" ng-repeat="car in model.cars"></car-card>
+                </div>
             </div>
-            <div class="visible-xs-block header-text" ng-show="model.cars">
-                <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
-            </div>
-            <div class="car-slick-carousel" slick>
-                <car-card car="car" ng-repeat="car in model.cars"></car-card>
+            <div ng-show="addCar" class="dashboard-content-add-car">
+                <div class="row add-car-dropdown-container">
+                    <!--
+                    <div class="btn-group col-sm-2 col-sm-offset-3" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Make <span class="caret"></span>
+                      </button>
+                    </div>
+
+                    <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Year <span class="caret"></span>
+                      </button>
+                    </div>
+
+                    <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Model <span class="caret"></span>
+                      </button>
+                    </div>
+
+                     <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Trim <span class="caret"></span>
+                      </button>
+                    </div>
+                    -->
+                </div>
             </div>
         </div>
     </div>
