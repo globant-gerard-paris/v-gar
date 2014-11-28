@@ -109,6 +109,8 @@
         <!--<script type="text/javascript" src="//www.shopyourway.com/platform/loader" ></script>-->
         <script type="text/javascript" src="https://www.shopyourway.com/secured/platform/loader" ></script>
 
+<<<<<<< .merge_file_a09792
+        <script src="scripts/directives/service-information.js"></script>
         <!-- GET CURRENT SESSION TOKEN FROM I-FRAME -->
         <script>
             var currentToken = null;
@@ -131,6 +133,8 @@
                 }
             };
         </script>
+=======
+>>>>>>> .merge_file_a04976
         <!-- yo:directives -->
 
         <!-- endbuild -->

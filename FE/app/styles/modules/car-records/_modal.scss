@@ -1,0 +1,69 @@
+.vg-record-modal {
+	.modal-content {
+		border-radius: 0;
+		width: 100%;
+		padding-left: 30px;
+	}
+
+	.modal-header {
+  		border: none;
+  		padding-bottom: 8px;
+
+  		h1 {
+  			font-size: 22px;
+			font-weight: 200;
+  		}
+	}
+
+	.form-group > div {
+		padding-right: 0; 
+	}
+
+	.form-control {
+		border-radius: 0;
+		-webkit-appearance: none;
+		height: 40px;
+
+		&.vg-record-modal-form-control-calendar {
+			border-right: 0;
+		}
+
+		&.vg-record-modal-textarea {
+			height: 90px;
+		}
+	}
+
+	.btn {
+		border-radius: 0;
+		-webkit-appearance: none;
+
+		&.vg-record-modal-btn-calendar {
+			border-left: 0;
+			border-color: #ccc;
+			height: 40px;
+			
+			&:hover {
+				background-color: #fff;
+			}
+		}
+	}
+
+	.modal-footer {
+		border: none;
+		text-align: center;
+		padding-top: 0;
+
+		button {
+			width: 120px;
+
+			background-color: #00bacf;
+			border-color: #98dae3;
+			&.btn-warning {
+				color: black;
+				background-color: white;
+				border-color: #ccc;
+			}
+		}
+
+	}
+}

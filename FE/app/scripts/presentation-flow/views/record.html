@@ -6,14 +6,14 @@
     <form name="recordForm" novalidate ng-submit="addRecord()" role="recordForm">
         <div class="modal-body form-horizontal">
             <div class="form-group" ng-class="{ 'has-error' : (recordForm.mileage.$invalid && recordForm.submitted) || ( recordForm.mileage.$invalid && recordForm.mileage.$dirty), 'has-success': recordForm.mileage.$valid}">
-                <div class="col-sm-6">
+                <div class="col-md-5">
                     <input id="record-mileage" name="mileage" ng-model="model.recordForm.mileage" type="number"  min="0" class="form-control" placeholder="Enter your millage" required/>
                     <div ng-show="recordForm.mileage.$invalid && recordForm.submitted" class="help-block">Millage are required.</div>
                     <div ng-show="recordForm.mileage.$error.required && recordForm.submitted" class="help-block">Millage should be a number.</div>
-                </div>
-                <div class="col-sm-6">
+                </div>              
+                <div class="col-md-3">
                     <div class="input-group">
-                         <input name="date" id="record-date" type="text" class="form-control"
+                         <input name="date" id="record-date" type="text" class="form-control vg-record-modal-form-control-calendar"
                                 datepicker-popup="{{model.dateRecordFormat}}"
                                 ng-model="model.recordForm.date"
                                 is-open="opened"
@@ -23,31 +23,27 @@
                                 ng-required="true"
                                 close-text="Close"/>
                          <span class="input-group-btn">
-                                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                                <button type="button" class="btn btn-default vg-record-modal-btn-calendar" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
                         </span>
                     </div>
                     <div ng-show="recordForm.date.$error.required  && recordForm.submitted" class="help-block">Date are required.</div>
                 </div>                
-            </div>
-            <div class="form-group">
-                <div class="col-sm-9">
+                <div class="col-md-3">
                     <select class="form-control"
                             ng-model="model.recordForm.service"
                             ng-options="service.desc for service in model.services">
                         <option value=""> - Others - </option>
                     </select>
                 </div>
-            </div>            
-            <div class="form-group" ng-class="{ 'has-error' : (recordForm.source.$invalid && recordForm.submitted) || ( recordForm.source.$invalid && recordForm.source.$dirty), 'has-success': recordForm.source.$valid}">
-                <div class="col-sm-9">
+                <div class="col-md-7">
                     <input id="record-source" name="source" ng-model="model.recordForm.source"  type="text" class="form-control" placeholder="Service center" required/>
                     <div ng-show="recordForm.source.$invalid  && recordForm.submitted" class="help-block">Source are required.</div>
                     <div ng-show="recordForm.source.$error.required  && recordForm.submitted" class="help-block">Source should be a text.</div>
                 </div>
             </div>
             <div class="form-group" ng-class="{ 'has-error' : (recordForm.comment.$invalid && recordForm.submitted) || ( recordForm.comment.$invalid && recordForm.comment.$dirty), 'has-success': recordForm.comment.$valid}">
-                <div class="col-sm-12">
-                    <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control" placeholder="Comments" required/>
+                <div class="col-md-11">
+                    <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control vg-record-modal-textarea" placeholder="Comments" required/>
                     <div ng-show="recordForm.comment.$invalid && recordForm.submitted" class="help-block">Description are required.</div>
                     <div ng-show="recordForm.comment.$error.required  && recordForm.submitted" class="help-block">Description should be a text.</div>
                 </div>
