@@ -1,152 +1,108 @@
-<style>
-    .dashboard-box {
-        border-style: solid;
-        border-width: 1px;
-        border-radius: 35px 35px 35px 35px;
-        height: 300px;
-        margin: 0 auto;
-        border-color: gray;
-        background-color: white;
-    }
 
-    .dashboard-body {
-        width: 600px;
-        margin: 0 auto;
-        cursor:pointer;
-    }
+<!--
 
-    .page-title {
-        text-align: center;
-        font-weight: bold;
-        color: black;
-        font-size: 45px;
-    }
+getToCarProfile(1)
+getToCarProfile(2)
+redirectToAddCar()
 
-    .page-subtitle {
-        text-align: center;
-        color: black;
-        font-size: 24px;
-        margin-bottom: 25px;
-    }
+-->
 
-    .image-car {
-        background: url(../resources/images/car.jpg) no-repeat;
-    }
+<div class="dashboard row">
 
-    .image-add-car {
-        background: url(../resources/images/add3.jpg) no-repeat;
-        margin-bottom: 46px;
-        position: relative;
-        top: 21px;
-    }
 
-    .image-car2 {
-        background: url(../resources/images/car2.jpg) no-repeat;
-    }
-    .image-carrousel {
-        background: url('../resources/images/carrousel.jpg') no-repeat scroll 0% transparent;
-        height: 168px;
-        background-color: #639;
-        margin: 0 auto;
-        width: 440px;
-    }
-    .image-service-center {
-        background: url('../resources/images/image-service-center.jpg') no-repeat scroll 0% 0% #F00;
-        height: 45px;
-        width: 492px;
-        margin: 0 auto;
-        margin-top: 12px;
-        margin-bottom: 12px;
-    }
-
-    .image-car2, .image-car, .image-add-car {
-        margin-top: 38px;
-        width: 100px;
-        height: 100px;
-        background-size: cover;
-        margin-left: 33px;
-    }
-
-    .text-box-dashboard , .text-box-dashboard-add {
-        font-size: 15px;
-        font-weight: bold;
-        color: black;
-        margin-top: 5px;
-        text-align: center;
-    }
-
-    .text-box-dashboard-add {
-        font-size: 22px;
-    }
-
-    .image-close {
-        background-size: 25px;
-        float: right;
-    }
-    .text-box-body{
-        font-weight: bold;
-        position: relative;
-        top: 33px;
-    }
-
-</style>
-
-<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
-
-<h2 class="page-title">My Virtual Garage</h2>
-<h4 class="page-subtitle">You have 2 cars in your garage</h4>
-<div class="dashboard-body container-fluid">
-    <div class="row">
-        <div class="col-xs-4 col-centered" ng-click="getToCarProfile(1)">
-            <div class="form-group dashboard-box">
-                <img alt="The Image close icon." class="image-close" src="../resources/images/close.jpg">
-                <div class="image-car img-circle"></div>
-                <h4 class="text-box-dashboard">
-                    2008 FORD EDGE<br>
-                    33,045 Miles<br>
-                </h4>
-                <h5 class="text-box-body text-center">1 Recall<br>
-                56 services<br>
-                <small>
-                    Las serviced @ Sears<br>
-                    Las Visit 10/04/2099
-                </small>
-                </h5>
+    <div class="dashboard-page-header hidden-xs">
+        <div class="col-sm-4">            
+            <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>            
+        </div>   
+        <div class="col-sm-4 header-text">  
+            <div class="hidden-sm" ng-show="model.cars">
+                <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
             </div>
-        </div>
-        <div class="col-xs-4 col-centered box" ng-click="getToCarProfile(2)">
-            <div class="form-group dashboard-box">
-                <img alt="The Image close icon." class="image-close" src="../resources/images/close.jpg">
-                <div class="image-car2 img-circle"></div>
-                <h4 class="text-box-dashboard">
-                    2010 AUDI A3<br>
-                    145,00 Miles<br>
-                </h4>
-                <h5 class="text-box-body text-center">786 Recall<br>
-                    4 services<br>
-                    <small>
-                        Las serviced @ Sears<br>
-                        Las Visit 10/04/2099
-                    </small>
-                </h5>
-            </div>
-        </div>
-        <div class="col-xs-4 col-centered" ng-click="redirectToAddCar()">
-            <div class="form-group dashboard-box" style="">
-                <div class="image-add-car img-circle"></div>
-                <p class="text-box-dashboard-add">
-                    ADD NEW <br>
-                    CAR
-                </p>
-            </div>
-        </div>
-        <div class="col-sm-12 col-centered">
-            <div class="image-service-center">
-            </div>
-        </div>
-        <div class="col-sm-12 col-centered">
-            <div class="image-carrousel">
+        </div> 
+        <div class="col-sm-4 right-zone">
+            <div class="syw-id">Your SYW ID#: 49568376976</div>
+            <div class="pull-right header-buttons">
+                <a href="#" class="btn-social btn-mail"> 
+                </a>
+                <a href="#" class="btn-social btn-facebook">
+                </a>
+                <a href="#" class="btn-social btn-twitter">
+                </a>
+                <div class="btn-appointment">            
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="dashboard-car-holder">
+        <div class="col-xs-12">
+            <div class="mini-logo visible-xs-block"></div>
+            <div class="dashboard-car-actions-top">
+                <div class="dashboard-add-car" ng-class="addCar ? 'close-add-car':''" ng-click="toggleAddCar()">
+                    {{addCar ? 'CLOSE' : 'ADD CAR'}}
+                </div>
+            </div>
+            <div ng-hide="addCar" class="dashboard-content-common">
+                <div class="dashboard-car-actions-bottom">
+                    <div class="dashboard-manage-cars">Manage your cars</div>
+                </div>
+                <div class="visible-xs-block header-text" ng-show="model.cars">
+                    <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
+                </div>
+                <div class="car-slick-carousel" slick>
+                    <car-card car="car" ng-repeat="car in model.cars"></car-card>
+                </div>
+            </div>
+            <div ng-show="addCar" class="dashboard-content-add-car">
+                <div class="row add-car-dropdown-container">
+                    <!--
+                    <div class="btn-group col-sm-2 col-sm-offset-3" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Make <span class="caret"></span>
+                      </button>
+                    </div>
+
+                    <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Year <span class="caret"></span>
+                      </button>
+                    </div>
+
+                    <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Model <span class="caret"></span>
+                      </button>
+                    </div>
+
+                     <div class="btn-group col-sm-2" dropdown>
+                      <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
+                        Trim <span class="caret"></span>
+                      </button>
+                    </div>
+                    -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-extra-holder">
+        <div class="col-xs-12 col-sm-7 col-md-8 dashboard-service-center"></div>
+        <div class="col-xs-12 col-sm-5 col-md-4 dashboard-coupons"></div>
+        <div class="dashboard-extra-feedback hidden-xs"></div>
+    </div>
+
+    <div class="dashboard-bottom-mobile visible-xs">
+        <div class="col-xs-12 footer-btns">
+                <a href="#" class="btn-social btn-mail"> 
+                </a>
+                <a href="#" class="btn-social btn-facebook">
+                </a>
+                <a href="#" class="btn-social btn-twitter">
+                </a>
+                <br/>
+                <div class="dashboard-mobile-feedback"></div>
+        </div>
+    </div>
+
 </div>
+

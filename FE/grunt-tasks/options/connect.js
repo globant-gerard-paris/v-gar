@@ -20,7 +20,7 @@ module.exports = function(grunt) {
                     return [
                         lrSnippet,
                         modRewrite([
-                            '!\\.html|\\.js|\\.jpg|\\.png|\\.json|\\.css$ /index.html'
+                            '!\\.html|\\.js|\\.jpg|\\.png|\\.svg|\\.ttf|\\.json|\\.eot|\\.css$ /index.html'
                         ]),
                         mountFolder(connect, grunt.config.app)
                     ];
