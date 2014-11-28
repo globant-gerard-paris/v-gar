@@ -38,7 +38,7 @@ public class DashboardOrchestrator extends BaseOrchestrator{
     	
     	List<FamilyVehicle> familyVehicles = this.familyVehicleService.getConfirmedFamilyVehiclesByUserId(userId);
     	
-    	int highestMileage, localMileage, NcdbMileage;
+    	double highestMileage, localMileage, NcdbMileage;
     	for(FamilyVehicle familyVehicle : familyVehicles) {
     		highestMileage = familyVehicle.getMileage();
     		localMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicle.getId());

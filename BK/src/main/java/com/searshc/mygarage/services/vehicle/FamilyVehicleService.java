@@ -69,12 +69,15 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 		this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
 	}
 	
-    public FamilyVehicle createAndSaveNewVehicle(final Long familyId, final Long tangibleId,
-            final String make, final String model, final int year, final String color, final int mileage) {
-        Vehicle vehicle = new Vehicle(year, make, model, null, null);
-        FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, familyId, tangibleId, null, mileage, null);
-        return super.save(familyVehicle);
-    }
+	@Override
+	public FamilyVehicle getItem(final Long id) throws FamilyVehicleNotFoundException {
+		Validate.notNull(id, "The FamilyVehicleId cannot be null");
+		FamilyVehicle result = this.repository.findOne(id);
+		if(result == null) {
+			throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
+		}
+		return result;
+	}
 
     public List<FamilyVehicle> getFamilyVehiclesByFamilyId(final Long familyId) {
         return repository.getFamilyVehiclesByFamilyId(familyId);
@@ -92,11 +95,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     	Integer highestMileage = -1;
     	
     	FamilyVehicle familyVehicle = this.getItem(familyVehicleId);
-		if(familyVehicle == null) {
-			String msg = new StringBuilder().append("FamilyVehicle not found with id: ").append(familyVehicleId).toString();
-			log.error(msg);
-			throw new FamilyVehicleNotFoundException(msg);
-		}
+
 		Integer databaseHighestMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicleId);
 		Integer ncdbHighMileage = this.ncdbService.getHighestMileage(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
 		highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
@@ -261,7 +260,12 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
                 continue;
             }
             if (dto.getVehicleId() != 0) {
-                familyVehicle = this.getItem(dto.getVehicleId());
+                try {
+					familyVehicle = this.getItem(dto.getVehicleId());
+				} catch (FamilyVehicleNotFoundException e) {
+					log.error(e);
+					continue;
+				}
             } else if (dto.getTangibleId() != null) {
             	familyVehicle = mapper.map(dto, FamilyVehicle.class);
             	Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
