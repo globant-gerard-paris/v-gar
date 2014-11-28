@@ -40,11 +40,19 @@
 
     <section class="stores-list-box row">
         <div class="store-found-subtitle">{{model.stores.length}} store/s found</div>
-        <div class="stores-list-content swiper-container" ng-if="model.stores"  on-finish-render="test()">
-            <div class="swiper-wrapper">
-                <store-card model="store" ng-repeat="store in model.stores track by $index" class="swiper-slide"></store-card>
-            </div>
+        <!--<div class="stores-list-content swiper-container" ng-if="model.stores"  on-finish-render="test()">-->
+            <!--<div class="swiper-wrapper">-->
+                <!--<store-card model="store" ng-repeat="store in model.stores track by $index" class="swiper-slide"></store-card>-->
+                <!--<div model="store" ng-repeat="store in model.stores track by $index" class="swiper-slide">A</div>-->
+            <!--</div>-->
+        <div class="stores-list-content" ng-if="model.stores">
+            <carousel disable-animation="true">
+                <slide ng-repeat="store in model.stores track by $index" active="slide.active" class="slide-content">
+                    <store-card model="store"></store-card>
+                </slide>
+            </carousel>
         </div>
+        <!--</div>-->
     </section>
 
 

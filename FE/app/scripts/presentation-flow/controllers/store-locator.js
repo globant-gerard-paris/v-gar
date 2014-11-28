@@ -4,7 +4,7 @@
  *  @author Jero <jeronimo.carrizo@globant.com>
  */
 angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($scope, StoreLocatorSrv, $location, StringUtilSrv, Geocoder, $timeout) {
-    var mySwiper;
+    //var mySwiper;
 
     $scope.model = {
         stores: [],
@@ -21,12 +21,12 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
     });
 
     $scope.$on('NG_REPEAT_FINISHED', function(/*ngRepeatFinishedEvent*/) {
-        mySwiper = new Swiper('.swiper-container',{
-//                pagination: '.pagination',
-            paginationClickable: true,
-            centeredSlides: true,
-            slidesPerView: 'auto'
-        });
+//        mySwiper = new Swiper('.swiper-container',{
+////                pagination: '.pagination',
+//            paginationClickable: true,
+//            centeredSlides: true,
+//            slidesPerView: 'auto'
+//        });
     });
 
     /**

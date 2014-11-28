@@ -39,6 +39,7 @@
     small{
         font-size: 1.7rem;
     }
+
 }
 
 .store-map-box{
@@ -99,7 +100,7 @@
             background-color: $storeItemBkg;
             font-size: 1.75rem;
             padding: 20px 0 0 0;
-            margin: 0 5px;
+            margin: 0 auto;
             .store-list-info{
                 text-align: left;
             }
@@ -133,6 +134,16 @@
                 margin-top: 10px;
 
             }
+        }
+    }
+
+    .carousel-indicators{
+        display: none;
+    }
+
+    .carousel-control{
+        &.right, &.left{
+            background-image: none;
         }
     }
 }
@@ -186,18 +197,32 @@
     }
 }
 
-.swiper-container {
-    /* Specify Swiper's Size: */
-
-    width:200px;
-	height: 200px;
-}
-.swiper-slide {
-    /* Specify Slides's Size: */
-
-    width: 200px;
-	height: 200px;
-}
+//.swiper-container {
+//    /* Specify Swiper's Size: */
+//
+//    width: 200px;
+//    height: 200px;
+//    margin: 0 auto;
+//    position: relative;
+//    overflow: hidden;
+//    backface-visibility: hidden;
+//    /* Fix of Webkit flickering */
+//    z-index: 1;
+//
+//
+//}
+//.swiper-slide {
+//    /* Specify Slides's Size: */
+//
+//    width: 100%;
+//    height: 100%;
+//    padding-left: 15px;
+//    padding-right: 15px;
+//    //  	overflow: auto;
+//    .row {
+//        height: 100%;
+//    }
+//}
 
 //.store-box{background-color: #0066bb;}
 //.header-title{background-color: #006666;}
