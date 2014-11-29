@@ -5,6 +5,15 @@ module.exports = function(grunt) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'open:dist', 'connect:dist:keepalive']);
         }
+
+        var definedTarget = 'localhost';
+
+        if(target){
+            definedTarget = target;
+        }else{
+            definedTarget = definedTarget;
+        }
+
         grunt.task.run([
             'jshint',
             'htmllint',
@@ -15,7 +24,7 @@ module.exports = function(grunt) {
             'start-mockey',
             'connect:livereload',
             'open:server',
-            'ngconstant:development',
+            'ngconstant:'+definedTarget,
             'watch'
         ]);
     });
@@ -54,6 +63,14 @@ module.exports = function(grunt) {
     grunt.registerTask('build',function(target) {
         var tasks = [];
 
+        var definedTarget = 'localhost';
+
+        if(target){
+            definedTarget = target;
+        }else{
+            definedTarget = definedTarget;
+        }
+
         tasks = tasks.concat([
             'jshint',
             'htmllint',
@@ -61,7 +78,7 @@ module.exports = function(grunt) {
             'clean:dist',
             'bowerInstall',
             'compass:dist',
-            'ngconstant:production',
+            'ngconstant:'+definedTarget,
             'useminPrepare',
             'concat',
             'concurrent:dist',
@@ -110,14 +127,18 @@ module.exports = function(grunt) {
         'build'
     ]);
 
-    grunt.registerTask('production', [
-        'ngconstant:production'
-    // Add further deploy related tasks here
+    grunt.registerTask('prod', [
+        'ngconstant:prod'
     ]);
 
-    grunt.registerTask('staging', [
-        'ngconstant:staging'
-    // Add further deploy related tasks here
+    grunt.registerTask('qa', [
+        'ngconstant:qa'
+    ]);
+    grunt.registerTask('dev', [
+        'ngconstant:dev'
+    ]);
+    grunt.registerTask('localhost', [
+        'ngconstant:localhost'
     ]);
 
     // commit task for git

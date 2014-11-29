@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, TrendsSrv , SessionDataSrv) {
+angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, TrendsSrv, SessionDataSrv) {
 
 
     $scope.model = {
@@ -9,8 +9,7 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         trend: false,
         vehicle: SessionDataSrv.getCurrentFamilyVehicle().vehicle,
         vehicles: SessionDataSrv.getCurrentFamilyVehicles(),
-        mileage: SessionDataSrv.getCurrentFamilyVehicle().mileage,
-        selectedFamilyVehicle: null
+        mileage: SessionDataSrv.getCurrentFamilyVehicle().mileage
     };
 
     /**
@@ -25,12 +24,11 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         RedirectSrv.redirectTo('/recalls');
     };
 
-    $scope.changeToFamilyVehicle = function(){
-        SessionDataSrv.saveCurrentFamilyVehicles($scope.model.selectedFamilyVehicle);
-
-        $scope.$apply(function(scope) {
-            init();
-        });
+    $scope.getCurrentVehicles = function () {
+        return SessionDataSrv.getCurrentFamilyVehicles();
+    };
+    $scope.getCurrentVehicle = function () {
+        return SessionDataSrv.getCurrentFamilyVehicle();
     };
 
     $scope.$on('NEWLY_ADDED_RECORD', function (/*event, dataResponse*/) {
@@ -44,10 +42,10 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     var init = function () {
         $scope.model.vehicle = SessionDataSrv.getCurrentFamilyVehicle().vehicle;
         $scope.model.vehicles = SessionDataSrv.getCurrentFamilyVehicles();
-        $scope.mileage = SessionDataSrv.getCurrentFamilyVehicle().mileage;
+        $scope.model.mileage = SessionDataSrv.getCurrentFamilyVehicle().mileage;
 
         RecallsSrv.getLastRecall($scope.model.vehicle.year, $scope.model.vehicle.make, $scope.model.vehicle.model, lastRecallResultSuccess, lastRecallResultFaild);
-//        TrendsSrv.getTrend($scope.model.vehicle.make, trendResultSuccess, trendResultFaild);
+        TrendsSrv.getTrend($scope.model.vehicle.make, trendResultSuccess, trendResultFaild);
         RecordSrv.getRecords().then(getRecordSuccess, getRecordFail);
     };
 

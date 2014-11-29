@@ -27,23 +27,29 @@ module.exports = function(grunt) {
             space: '    '
         },
         // Environment targets
-        development: [{
+        localhost: [{
+            dest:  grunt.config.app+'/scripts/config.js',
+            wrap: '/* jshint quotmark:true, indent:false, white: false */\n"use strict";\n\n <%= __ngModule %>',
+            name: 'AppConfig',
+            constants: loadConfig('localhost-config.json')
+        }],
+        dev: [{
             dest:  grunt.config.app+'/scripts/config.js',
             wrap: '/* jshint quotmark:true, indent:false, white: false */\n"use strict";\n\n <%= __ngModule %>',
             name: 'AppConfig',
             constants: loadConfig('dev-config.json')
         }],
-        production: [{
+        qa: [{
+            dest: grunt.config.app+'/scripts/config.js',
+            wrap: '/* jshint quotmark:true, indent:false, white: false */\n"use strict";\n\n <%= __ngModule %>',
+            name: 'AppConfig',
+            constants:  loadConfig('qa-config.json')
+        }],
+        prod: [{
             dest: grunt.config.app+'/scripts/config.js',
             wrap: '/* jshint quotmark:true, indent:false, white: false */\n"use strict";\n\n <%= __ngModule %>',
             name: 'AppConfig',
             constants: loadConfig('prod-config.json')
-        }],
-        staging: [{
-            dest: grunt.config.app+'/scripts/config.js',
-            wrap: '/* jshint quotmark:true, indent:false, white: false */\n"use strict";\n\n <%= __ngModule %>',
-            name: 'AppConfig',
-            constants:  loadConfig('stage-config.json')
         }]
     });
 };

@@ -70,14 +70,6 @@
                 </ol>
             </div>
             <div class="col-md-3 col-sm-4">
-                <label class="control-label">Change car</label>
-
-                <select ng-options="familyVehicle as (familyVehicle.vehicle.year + '  ' + familyVehicle.vehicle.make + ' ' + familyVehicle.vehicle.model) for familyVehicle in model.vehicles" ng-model="model.selectedFamilyVehicle" ng-change="changeToFamilyVehicle()">
-                    <option value="">-- Change Car --</option>
-                </select>
-                <!--<select class="form-control">-->
-                    <!--<option ng-options="familyVehicle in model.vehicles">{{familyVehicle.vehicle.year}} {{familyVehicle.vehicle.make}} {{familyVehicle.vehicle.model}}" ng-changed="changeToFamilyVehicle(familyVehicle)" </option>-->
-                <!--</select>-->
             </div>
         </div>
         <div class="media">
