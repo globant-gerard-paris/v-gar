@@ -5,14 +5,16 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
     'use strict';
 
     return {
+        replace: true,
         restrict: 'EA',
         scope: {
-            model: '='
+            model: '=',
         },
 
         templateUrl: 'scripts/directives/views/store-card.html',
 
-        link: function (scope /*element, attributes*/) {
+        link: function (scope) {
+
             //debugger
             if (scope.$parent.$last === true) {
                 $timeout(function () {

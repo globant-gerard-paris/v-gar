@@ -433,6 +433,7 @@ module.exports = function (grunt) {
                 'Attribute “ng-transclude” not allowed on XHTML element “li” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “li” at this point.',
                 'Attribute “on-finish-render” not allowed on XHTML element “div” at this point.',
+                'XHTML element “store” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 //Custom
                 'XHTML element “store-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “ui-gmap-google-map” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',

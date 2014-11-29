@@ -1,7 +1,8 @@
+@import "../dashboard/slick";
 
 .store-container {
     color:$commonColor;
-    font-family: 'Roboto';
+    @extend %font-Roboto;
 
     max-width: 1000px;
     margin-right: auto;
@@ -14,6 +15,7 @@
     text-align: center;
     h1 {
         font-size:2.4rem;
+        
     }
 }
 .store-subtitle{
@@ -35,6 +37,7 @@
         width: 47px;
         height: 57px;
         margin: 15px 10px 10px 10px;
+        background-repeat: no-repeat;
     }
     small{
         font-size: 1.7rem;
@@ -61,14 +64,22 @@
 }
 
 .store-hours-box{
+    margin-top: 10px;
+    @include bp(xs){
+        margin-top: 40px;
+    }
     div {
         text-align: center;
-        font-size: 1.7rem;
+        font-size: 1.3rem;
     }
     ul>li{
-        font-size: 1.7rem;
-        width: 250px;
-        margin: 0 auto;
+        font-size: 1.2rem;
+        width: 100%;
+        margin: 5px auto;
+        @include bp(xs){
+            font-size: 1.9rem;
+            width: 250px;
+        }
     }
 
 }
@@ -76,6 +87,13 @@
 .store-find-box{
     text-align: center;
     font-size: 1.7rem;
+    @extend %font-Roboto;
+    .store-find-desc {
+        text-align: left;
+        max-width: 250px;
+        font-size: .8em;
+        color: gray;
+    }
 }
 
 
@@ -95,16 +113,35 @@
     .stores-list-content{
         width: 100%;
     }
+    .store-card-slick-container{
+        margin: 30px;
 
-    .carousel-indicators{
-        display: none;
+        .store-address {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+
     }
 
-    .carousel-control{
-        &.right, &.left{
-            background-image: none;
+
+    .store-slick-carousel{
+        margin: 0 auto;
+    }
+    @include bp(md){
+        .store-slick-carousel{
+            width: 980px !important;
         }
     }
+
+
+    @include bp(sm){
+        .store-slick-carousel{
+            width: 980px !important;
+        }
+    }
+
 }
 
 .store-list-item{
@@ -115,6 +152,10 @@
     font-size: 1.75rem;
     padding: 20px 0 0 0;
     margin: 0 auto;
+    @include bp(xs){
+        width: 100%;
+    }
+
     .store-list-info{
         text-align: left;
     }
@@ -190,6 +231,17 @@
         padding: 10px 35px;
         letter-spacing: 2px;
     }
+}
+.find-store-btn {
+    background-color: #3A4986;
+    @extend %font-Roboto;
+    color: white;
+    border-radius: 0;
+    font-size: 9px;
+    line-height: 20px;
+}
+.no-padding {
+    padding:0;
 }
 
 // != phone:

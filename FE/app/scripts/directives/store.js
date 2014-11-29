@@ -84,7 +84,8 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 var marker = new google.maps.Marker({
                     position: storePosition,
                     map: _map,
-                    title: scope.model.address
+                    title: scope.model.address,
+                    icon: '../resources/images/store-locator/searsauto.jpg'
                 });
 
                 scope.map = _map;
