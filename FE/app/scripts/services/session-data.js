@@ -2,7 +2,8 @@
 
 angular.module('Services').service('SessionDataSrv', function () {
 
-    var dest = 'local';
+    var dest = 'local',
+        currentVehicleKey = 'CURRENT_VEHICLE_KEY';
 
     var model = {
         currentUser: null,
@@ -16,6 +17,10 @@ angular.module('Services').service('SessionDataSrv', function () {
     var saveData = function (key, value) {
         window[dest+'Storage'].setItem(key,JSON.stringify(value));
         return value;
+    };
+
+    var saveCurrentVehicle = function(value){
+        saveData(currentVehicleKey, value)
     };
 
     var getData = function (key) {
@@ -70,6 +75,10 @@ angular.module('Services').service('SessionDataSrv', function () {
         return model.cachedVehicleUsers;
     };
 
+    var getCurrentVehicle = function(){
+        return getData(currentVehicleKey);
+    };
+
     /**
      * FIXME: This should be removed.
      * @returns {string}
@@ -98,7 +107,9 @@ angular.module('Services').service('SessionDataSrv', function () {
         getCurrentTangibleId: getCurrentTangibleId,
         getCurrentToken: getCurrentToken,
         getCachedVehicleUsers: getCachedVehicleUsers,
-        setCachedVehicleUsers: setCachedVehicleUsers
+        setCachedVehicleUsers: setCachedVehicleUsers,
+        saveCurrentVehicle : saveCurrentVehicle,
+        getCurrentVehicle : getCurrentVehicle
     };
 
 });

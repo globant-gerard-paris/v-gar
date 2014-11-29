@@ -26,7 +26,7 @@ angular.module('PresentationFlow').service('RecordSrv', function (ApiHttpSrv, Se
         return ApiHttpSrv.createHttp('DELETE', config.api.hosts.BACKEND + '/family/' + SessionDataSrv.getCurrentFamilyId()+ '/tangible/' + SessionDataSrv.getCurrentTangibleId() + '/record/' + recordId);
     };
     var getRecords = function () {
-        return ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/family/' + SessionDataSrv.getCurrentFamilyId() + '/tangible/' + SessionDataSrv.getCurrentTangibleId() + '/records');
+        return ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '//record/vehicle/{familyVehicleId}/' + SessionDataSrv.getCurrentFamilyId() + '/tangible/' + SessionDataSrv.getCurrentTangibleId() + '/records');
     };
 
     return {
