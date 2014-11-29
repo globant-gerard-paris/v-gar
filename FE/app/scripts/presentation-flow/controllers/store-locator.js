@@ -80,7 +80,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         $timeout(function () {
             $scope.model.myStore = response.data.store;
             $scope.model.stores = sortedStores;
-            $scope.$broadcast('RELOAD_STORE');
+            $scope.$broadcast('RELOAD_STORE',$scope.model.myStore);
         });
     };
 
