@@ -20,12 +20,11 @@
     </head>
     <body ng-controller="MainCtrl">
 
+         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <!-- Add your site or application content here -->
         <div class="container-fluid" ng-view></div>
 
         <!-- build:js scripts/modules.js -->
-
-        <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
         <!-- bower:js -->
         <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -113,8 +112,10 @@
         <script src="scripts/directives/trend-view.js"></script>
         <script src="scripts/directives/dashboard/car-card.js"></script>
 
-        <!--<script type="text/javascript" src="//www.shopyourway.com/platform/loader" ></script>-->
-        <script type="text/javascript" src="https://www.shopyourway.com/secured/platform/loader" ></script>
+
+        <!-- yo:directives -->
+
+        <!-- endbuild -->
 
         <!-- GET CURRENT SESSION TOKEN FROM I-FRAME -->
         <script>
@@ -138,8 +139,8 @@
                 }
             };
         </script>
-        <!-- yo:directives -->
 
-        <!-- endbuild -->
+         <!--<script type="text/javascript" src="//www.shopyourway.com/platform/loader" ></script>-->
+         <script type="text/javascript" src="https://www.shopyourway.com/secured/platform/loader" ></script>
     </body>
 </html>
