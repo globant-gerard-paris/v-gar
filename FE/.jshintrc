@@ -38,6 +38,8 @@
         "moment": false,
         "geolib": false,
         "Platform": false,
-        "Swiper": false
+        "Swiper": false,
+        "localStorage" : false,
+        "sessionStorage" : false
     }
 }

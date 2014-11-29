@@ -1,29 +1,16 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, TrendsSrv, $location) {
+angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope, RedirectSrv, RecordSrv, RecallsSrv, TrendsSrv , SessionDataSrv) {
 
-    var modelYear = '2008',
-            make = 'Ford',
-            model = 'Edge';
-
-    var params = $location.search();
-
-    if (params.option === '2') {
-        modelYear = '2010';
-        make = 'Audi';
-        model = 'A3';
-    }
 
     $scope.model = {
         records: [],
-        option: params.option,
         lastRecall: false,
         trend: false,
-        vehicle: {
-            modelYear: modelYear,
-            make: make,
-            model: model
-        }
+        vehicle: SessionDataSrv.getCurrentFamilyVehicle().vehicle,
+        vehicles: SessionDataSrv.getCurrentFamilyVehicles(),
+        mileage: SessionDataSrv.getCurrentFamilyVehicle().mileage,
+        selectedFamilyVehicle: null
     };
 
     /**
@@ -34,8 +21,16 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
         RedirectSrv.redirectTo('/store-locator?zipcode=' + (storeZipCode || ''));
     };
 
-    $scope.viewRecalls = function (option) {
-        RedirectSrv.redirectTo('/recalls?option=' + option);
+    $scope.viewRecalls = function () {
+        RedirectSrv.redirectTo('/recalls');
+    };
+
+    $scope.changeToFamilyVehicle = function(){
+        SessionDataSrv.saveCurrentFamilyVehicles($scope.model.selectedFamilyVehicle);
+
+        $scope.$apply(function(scope) {
+            init();
+        });
     };
 
     $scope.$on('NEWLY_ADDED_RECORD', function (/*event, dataResponse*/) {
@@ -47,12 +42,13 @@ angular.module('PresentationFlow').controller('CarProfileCtrl', function ($scope
     });
 
     var init = function () {
+        $scope.model.vehicle = SessionDataSrv.getCurrentFamilyVehicle().vehicle;
+        $scope.model.vehicles = SessionDataSrv.getCurrentFamilyVehicles();
+        $scope.mileage = SessionDataSrv.getCurrentFamilyVehicle().mileage;
 
-        RecallsSrv.getLastRecall(modelYear, make, model, lastRecallResultSuccess, lastRecallResultFaild);
-        TrendsSrv.getTrend(make, trendResultSuccess, trendResultFaild);
-
+        RecallsSrv.getLastRecall($scope.model.vehicle.year, $scope.model.vehicle.make, $scope.model.vehicle.model, lastRecallResultSuccess, lastRecallResultFaild);
+//        TrendsSrv.getTrend($scope.model.vehicle.make, trendResultSuccess, trendResultFaild);
         RecordSrv.getRecords().then(getRecordSuccess, getRecordFail);
-
     };
 
     var getRecordSuccess = function (response) {

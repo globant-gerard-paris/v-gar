@@ -39,7 +39,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
 
     var mock = false;
 
-    var userId =  SessionDataSrv.getCurrentUser(); //'600';
+    var userId =  SessionDataSrv.getCurrentUser();
 
     $scope.model = {
         cars: [],
@@ -59,13 +59,13 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         $scope.addCar = !$scope.addCar;
     };
 
-
-
-    $scope.getToCarProfile = function (option) {
-        RedirectSrv.redirectTo('/car-profile?option=' + option);
+    $scope.getToCarProfile = function (familyVehicle) {
+        SessionDataSrv.saveCurrentFamilyVehicle(familyVehicle);
+        RedirectSrv.redirectTo('/car-profile');
     };
 
     var carsResultSuccess = function(response){
+        SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
         $scope.model = {
             cars : response.data.vehicles
         };

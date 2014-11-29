@@ -50,7 +50,7 @@ redirectToAddCar()
                     <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
                 </div>
                 <div class="car-slick-carousel" slick>
-                    <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car.id)"></car-card>
+                    <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>
             <div ng-show="addCar" class="dashboard-content-add-car">
