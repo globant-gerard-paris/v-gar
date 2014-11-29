@@ -14,10 +14,10 @@
         <div class="store-map"></div>
     </section>
 
-    <section class="store-hours-box col-xs-12 col-sm-4">
+    <section class="store-hours-box col-xs-12 col-sm-3">
         <div class="store-subtitle">Hours of Operations</div>
         <ul class="list-unstyled">
-            <li ng-repeat="day in days track by day" ng-class="{bolder:currentDateIndex===$index}" class="clearfix">
+            <li ng-repeat="day in days track by day" ng-class="{bolder:currentDateIndex===$index}" class="clearfix hours-title">
                 <span class="pull-left">{{day}}</span><span class="pull-right">{{hours[$index]}}</span>
             </li>
         </ul>

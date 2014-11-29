@@ -13,7 +13,8 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         isCollapsed: true,
         myStore: null,
         myStoreId: null,
-        searching: false
+        searching: false,
+        count: 3
     };
 
     $scope.$on('SET_FAVORITE_STORE_SUCCESS', function (/*event, dataResponse*/) {

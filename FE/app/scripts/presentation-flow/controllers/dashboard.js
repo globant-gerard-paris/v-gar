@@ -67,7 +67,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
     var carsResultSuccess = function(response){
         SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
         $scope.model = {
-            cars : response.data.vehicles
+            cars : response.data.vehicles,
+            store: response.data.store
         };
     };
 
