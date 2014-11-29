@@ -27,7 +27,8 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 console.log(m);
             }
 
-            scope.$on('RELOAD_STORE', function (/*event, dataResponse*/) {
+            scope.$on('RELOAD_STORE', function (event, dataResponse) {
+                scope.model = dataResponse;
                 load();
             });
 
@@ -94,7 +95,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
 
             $timeout(function () {
                 load();
-            },500);
+            },200);
         }
     };
 });
