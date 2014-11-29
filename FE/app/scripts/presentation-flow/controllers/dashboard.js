@@ -35,11 +35,11 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
     };
 });
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
 
     var mock = false;
 
-    var userId = '600';
+    var userId =  SessionDataSrv.getCurrentUser(); //'600';
 
     $scope.model = {
         cars: [],
