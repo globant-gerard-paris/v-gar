@@ -26,7 +26,7 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
 
                 $modal.open({
                     //TODO replace for relative ?
-                    template: '<store model="model.myStore" type="popup"></store>',
+                    template: '<store-map-left model="model"></store-map-left>',
                     scope: scope,
                     size: 'lg'
                     //controller: 'ModalInstanceCtrl',

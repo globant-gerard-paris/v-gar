@@ -95,7 +95,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
 
             $timeout(function () {
                 load();
-            },500);
+            },200);
         }
     };
 });
