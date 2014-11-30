@@ -2,7 +2,7 @@
     "config": {
         "api":{
             "hosts": {
-                "BACKEND": "hfqasywvgapp01.vm.itg.corp.us.shldcorp.com:8080"
+                "BACKEND": "http://hfqasywvgapp01.vm.itg.corp.us.shldcorp.com:8080"
             }
         }
     }
