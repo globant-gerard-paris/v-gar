@@ -22,6 +22,7 @@ import com.searshc.mygarage.entities.record.Record;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.exceptions.NCDBApiException;
+import com.searshc.mygarage.orchestrators.RecordOrchestrator;
 import com.searshc.mygarage.services.record.RecordService;
 
 @RestController
@@ -29,10 +30,13 @@ import com.searshc.mygarage.services.record.RecordService;
 public class RecordController {
 
     private RecordService recordService;
+    
+    private RecordOrchestrator recordOrchestrator;
 
     @Inject
-    public RecordController(final RecordService recordService) {
+    public RecordController(final RecordService recordService, final RecordOrchestrator recordOrchestrator) {
         this.recordService = notNull(recordService, "The Record Service cannot be null");
+        this.recordOrchestrator = notNull(recordOrchestrator, "The RecordOrchestrator cannot be null");
     }
 
     @RequestMapping(value = "/{recordId}",
@@ -49,8 +53,7 @@ public class RecordController {
     public ResponseEntity<Object> addRecord(@RequestBody RecordDto recordDto,
             @PathVariable("familyVehicleId") Long familyVehicleId)
             throws Exception {
-        Record record = RecordAssembly.toRecord(recordDto);
-        this.recordService.save(record);
+        this.recordOrchestrator.addRecord(recordDto, familyVehicleId);
         return new ResponseEntity<Object>(HttpStatus.CREATED);
     }
 

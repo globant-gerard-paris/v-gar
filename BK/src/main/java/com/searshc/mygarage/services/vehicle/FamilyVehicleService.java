@@ -69,6 +69,15 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
     }
 
+    @Override
+    public FamilyVehicle getItem(final Long id) {
+    	FamilyVehicle familyVehicle = this.repository.findOne(id);
+    	if(familyVehicle == null) {
+    		throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
+    	}
+    	return familyVehicle;
+    }
+    
     public FamilyVehicle createAndSaveNewVehicle(final Long familyId, final Long tangibleId,
             final String make, final String model, final int year, final String color, final int mileage) {
         Vehicle vehicle = new Vehicle(year, make, model, null, null);
@@ -88,15 +97,10 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return repository.getFamilyVehicleByTangibleId(tangibleId);
     }
 
-    public Integer getHighestMileage(final Long familyVehicleId) throws FamilyVehicleNotFoundException, NCDBApiException {
+    public Integer getHighestMileage(final Long familyVehicleId) throws NCDBApiException {
         Integer highestMileage = -1;
 
         FamilyVehicle familyVehicle = this.getItem(familyVehicleId);
-        if (familyVehicle == null) {
-            String msg = new StringBuilder().append("FamilyVehicle not found with id: ").append(familyVehicleId).toString();
-            log.error(msg);
-            throw new FamilyVehicleNotFoundException(msg);
-        }
         Integer databaseHighestMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicleId);
         Integer ncdbHighMileage = this.ncdbService.getHighestMileage(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
         highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
