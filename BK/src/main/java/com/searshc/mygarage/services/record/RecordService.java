@@ -12,10 +12,12 @@ import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.entities.record.Record;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.exceptions.NCDBApiException;
+import com.searshc.mygarage.exceptions.SuggestedServiceNotFoundException;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
 import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.repositories.SuggestedServiceRepository;
 import com.searshc.mygarage.services.ncdb.NcdbService;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -43,7 +45,7 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
     }
 
     public void deleteRecord(final Long recordId) {
-        repository.delete(recordId);
+        repository.deleteRecord(recordId);
     }
 
     public List<ServiceRecord> getServiceRecords(final Long familyVehicleId) throws NCDBApiException {
@@ -89,5 +91,13 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
 
     public List<SuggestedService> getSuggestedServices() {
         return this.suggestedServiceRepository.findAll();
+    }
+    
+    public SuggestedService getSuggestedServiceById(final Long id) {
+    	SuggestedService suggestedService = this.suggestedServiceRepository.findOne(id);
+    	if(suggestedService == null) {
+    		throw new SuggestedServiceNotFoundException("SuggestedService not found with id: " + id);
+    	}
+    	return suggestedService;
     }
 }
