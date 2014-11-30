@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class LandingController {
 
     @RequestMapping(value = "/landing", method = RequestMethod.GET)
-    public String redirect(@RequestParam String token) {
+    public String redirect(@RequestParam(required = false) String token) {
         return "redirect:/?token=" + token;
     }
 }
