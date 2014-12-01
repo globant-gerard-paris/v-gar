@@ -21,6 +21,10 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         RedirectSrv.redirectTo('/car-profile');
     };
 
+    $scope.redirectToFSC = function () {
+        RedirectSrv.redirectTo('/store-locator');
+    };
+
     $scope.toggleAddCar = function () {
         $scope.addCar = !$scope.addCar;
     };
