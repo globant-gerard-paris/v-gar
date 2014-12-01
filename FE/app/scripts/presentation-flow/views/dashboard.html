@@ -11,24 +11,24 @@ redirectToAddCar()
 
 
     <div class="dashboard-page-header hidden-xs">
-        <div class="col-sm-4">            
-            <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>            
-        </div>   
-        <div class="col-sm-4 header-text">  
+        <div class="col-sm-4">
+            <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>
+        </div>
+        <div class="col-sm-4 header-text">
             <div class="hidden-sm" ng-show="model.cars">
                 <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
             </div>
-        </div> 
+        </div>
         <div class="col-sm-4 right-zone">
             <div class="syw-id">Your SYW ID#: 49568376976</div>
             <div class="pull-right header-buttons">
-                <a href="#" class="btn-social btn-mail"> 
+                <a href="#" class="btn-social btn-mail">
                 </a>
                 <a href="#" class="btn-social btn-facebook">
                 </a>
                 <a href="#" class="btn-social btn-twitter">
                 </a>
-                <div class="btn-appointment">            
+                <div class="btn-appointment">
                 </div>
             </div>
         </div>
@@ -86,6 +86,12 @@ redirectToAddCar()
     </div>
 
     <div class="dashboard-extra-holder">
+        <div class="visible-xs btn-appointment"></div>
+        <section class="header-title row">
+            <div class="col-xs-12">
+                <h1>Your service center</h1>
+            </div>
+        </section>
         <div class="col-xs-12 col-sm-7 col-md-8 dashboard-service-center">
             <store model=model.store></store>
         </div>
@@ -95,7 +101,7 @@ redirectToAddCar()
 
     <div class="dashboard-bottom-mobile visible-xs">
         <div class="col-xs-12 footer-btns">
-                <a href="#" class="btn-social btn-mail"> 
+                <a href="#" class="btn-social btn-mail">    <a href="#" class="btn-social btn-mail">
                 </a>
                 <a href="#" class="btn-social btn-facebook">
                 </a>

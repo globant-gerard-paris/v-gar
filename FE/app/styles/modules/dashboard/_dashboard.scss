@@ -6,6 +6,15 @@
   font-family: "Roboto";
 }
 
+%btn-appointment{
+    margin-left:16px;
+    display: inline-block;
+    cursor: pointer;
+    width: 220px;
+    height: 45px;
+    background-image: url(../resources/images/dashboard/appointment.png);
+}
+
 .dashboard{
 	.slick-prev{
 		&.slick-disabled{
@@ -144,7 +153,7 @@
 		font-size: 0.9em;
 		position: absolute;
 		left: 0;
-		right: 0;	
+		right: 0;
 		z-index: 99;
 	}
 
@@ -230,7 +239,7 @@
 			}
 		}
 
-	
+
 
 		.header-text{
 			position: relative;
@@ -264,7 +273,7 @@
 	        font-weight: bold;
 	        font-size: 20px;
 	    }
-	    
+
 	    .user-info {
 	        line-height: 30px;
 	    }
@@ -291,14 +300,10 @@
 
 	    	.header-buttons{
 	    		min-width:312px;
-				.btn-appointment{
-			        margin-left:16px;
-			        display: inline-block;
-			        cursor: pointer;
-			        width: 220px;
-			        height: 45px;
-			        background-image: url(../resources/images/dashboard/appointment.png);        
-		    	}
+
+                .btn-appointment{
+                    @extend %btn-appointment;
+                }
 	    	}
 
 	    	.syw-id{
@@ -331,11 +336,22 @@
 		margin-top: 50px;
 		position: relative;
 
+        @include bp(md){
+            width: 960px;
+            margin: 0 auto;
+        }
+
+        .btn-appointment{
+            display: block;
+            margin: 0 auto;
+            @extend %btn-appointment;
+        }
+
 		.dashboard-extra-feedback{
-			position: absolute;
+			position: fixed;
 			right: 0;
-			top:100px;
-			background-image: url(../resources/images/dashboard/feedback_vert.png);  
+			top:600px;
+			background-image: url(../resources/images/dashboard/feedback_vert.png);
 			width: 29px;
 			height: 93px;
 			z-index:99;
@@ -343,7 +359,7 @@
 
 		.dashboard-service-center{
 			height: 211px;
-			@include bp(xs){ 
+			@include bp(xs){
 				height: 100%;
 			}
 
@@ -351,7 +367,7 @@
 
 		.dashboard-coupons{
 			background-repeat: no-repeat;
-			background-image: url(../resources/images/dashboard/coupons.jpg);  
+			background-image: url(../resources/images/dashboard/coupons.jpg);
 			background-position: top center;
 			height: 211px;
 			min-width: 318px;
@@ -369,7 +385,7 @@
 		text-align: center;
 		.dashboard-mobile-feedback{
 			display: inline-block;
-			background-image: url(../resources/images/dashboard/feedback_horiz.png);  
+			background-image: url(../resources/images/dashboard/feedback_horiz.png);
 			height: 29px;
 			width: 93px;
 		}
