@@ -7,7 +7,15 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
 
     $scope.model = {
         dateRecordFormat: 'MM/dd/yyyy',
-        services: RecordSrv.getRecordService()
+        services: null
+    };
+
+    var successGetServices = function(response){
+        $scope.model.services = response.data;
+    };
+
+    var init = function(){
+        RecordSrv.getRecordService().then(successGetServices);
     };
 
     $scope.openNewRecordForm = function () {
@@ -39,6 +47,9 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
             console.log('ERROR: ' + response);
         };
     };
+
+    init();
+
 }).controller('ModalNewRecordCtrl', function ($scope, $modalInstance, context) {
 
     $scope.model = context;
