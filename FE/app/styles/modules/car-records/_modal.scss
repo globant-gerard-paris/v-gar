@@ -59,6 +59,9 @@
 		}
 	}
 
+	.has-success .form-control {
+		border-color: #ccc;
+	}
 	.form-control {
 		border-radius: 0;
 		-webkit-appearance: none;
