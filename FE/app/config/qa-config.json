@@ -1,0 +1,9 @@
+{
+    "config": {
+        "api":{
+            "hosts": {
+                "BACKEND": "http://hfqasywvgapp01.vm.itg.corp.us.shldcorp.com:8080"
+            }
+        }
+    }
+}

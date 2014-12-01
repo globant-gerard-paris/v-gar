@@ -18,8 +18,14 @@ var _mainModules = [
             // yo:ngMainModules
 ];
 
-
 angular.module('virtualGarage', _mainModules)
+
+//        .run(function(SessionDataSrv){
+//            if(SessionDataSrv.isDataSave()){
+//                SessionDataSrv.reload();
+//            }
+//        })
+
         .config(function ($routeProvider, $locationProvider) {
             //redirect any invalid hash to /home
             $routeProvider.otherwise({
@@ -91,7 +97,7 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'StoreLocatorCtrl'
                 }
             });
-            
+
             routes.push({
                 name: '/recalls',
                 params: {

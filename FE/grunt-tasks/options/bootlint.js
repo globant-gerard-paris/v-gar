@@ -13,7 +13,7 @@ module.exports = function(grunt) {
                 'W003', // <head> is missing viewport <meta> tag that enables responsiveness
                 'W005', // Unable to locate jQuery, which is required for Bootstrap's JavaScript plugins to work
                 'E013', // ??
-				'E014', // ??
+                'E014' // ??
             ]
         },
         files: [

@@ -1,13 +1,8 @@
 {
     "config": {
-        "api":{
-            "methods":{
-                "SYW_LOGIN":{
-                    "use_host":"PROD",
-                    "host_paths": {
-                        "PROD": "/logint/prod"
-                    }
-                }
+        "api": {
+            "hosts": {
+                "BACKEND": "NOT_DEFINED"
             }
         }
     }

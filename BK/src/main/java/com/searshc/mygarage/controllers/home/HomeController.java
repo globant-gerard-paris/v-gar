@@ -17,8 +17,8 @@ import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
 
 /**
  *
- * The {@link HomeController} have the responsibility to manager the request about the base
- * information of the application.
+ * The {@link HomeController} have the responsibility to manager the request
+ * about the base information of the application.
  *
  * @author Jero
  *
@@ -27,21 +27,22 @@ import com.searshc.mygarage.services.vehicle.FamilyVehicleService;
 @RequestMapping("/home")
 public class HomeController {
 
-	private FamilyVehicleService familyVehicleService;
+    private FamilyVehicleService familyVehicleService;
 
-	/**
-	 * @param userService
-	 */
-	@Inject
-	public HomeController(FamilyVehicleService familyVehicleService) {
-		this.familyVehicleService = Validate.notNull(familyVehicleService,
-				"The User Vehicle Service cannot be null");
-	}
+    /**
+     * @param userService
+     */
+    @Inject
+    public HomeController(FamilyVehicleService familyVehicleService) {
+        this.familyVehicleService = Validate.notNull(familyVehicleService,
+                "The User Vehicle Service cannot be null");
+    }
 
-	@RequestMapping(value = "/user/token/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<HomeDto> getUser(@PathVariable("token") String token) {
-		HomeDto homeInformation = this.familyVehicleService.getHomeInformation(token);
-		return new ResponseEntity<HomeDto>(homeInformation, HttpStatus.OK);
-	}
+    @RequestMapping(value = "/user/token/{token}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<HomeDto> getUser(@PathVariable("token") String token) {
+        HomeDto homeInformation = this.familyVehicleService.getHomeInformation(token);
+        return new ResponseEntity<HomeDto>(homeInformation, HttpStatus.OK);
+    }
+
 }

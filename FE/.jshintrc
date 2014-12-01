@@ -37,6 +37,9 @@
         "$": false,
         "moment": false,
         "geolib": false,
-        "Platform": false
+        "Platform": false,
+        "Swiper": false,
+        "localStorage" : false,
+        "sessionStorage" : false
     }
 }

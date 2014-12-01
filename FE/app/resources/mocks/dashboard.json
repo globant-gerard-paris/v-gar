@@ -1,0 +1,104 @@
+{
+"store": {
+"id": 92283,
+"standing": "A",
+"address": "200 EASTVIEW MALL",
+"city": "VICTOR",
+"state": "NY",
+"phone": "(585)421-3395",
+"latitude": "43,029778",
+"longitude": "-77,449771",
+"wifi": false,
+"districtNumber": "514",
+"districtName": "Buffalo",
+"regionNumber": "9072",
+"regionName": "Northeast",
+"storeType": "SAC",
+"sacStore": "6217",
+"zipCode": "14564",
+"storeManager": "J Carl Harder",
+"carRental": false,
+"oneStop": false,
+"mondayOpen": "8",
+"mondayClose": "19",
+"tuesdayOpen": "8",
+"tuesdayClose": "19",
+"wednesdayOpen": "8",
+"wednesdayClose": "19",
+"thursdayOpen": "8",
+"thursdayClose": "19",
+"fridayOpen": "8",
+"fridayClose": "19",
+"saturdayOpen": "8",
+"saturdayClose": "19",
+"sundayOpen": "10",
+"sundayClose": "17",
+"zip_code":"60118"
+},
+"vehicles": [
+{
+"id": 51,
+"vehicle": {
+"id": 43,
+"year": 2000,
+"make": "CHRYSLER",
+"model": "TOWN & CTRY VAN FWD",
+"engine": null,
+"type": null
+},
+"familyId": 69925967,
+"tangibleId": 24503902,
+"color": "",
+"mileage": 93223,
+"name": "Brother's Beast"
+}, 
+{
+"id": 51,
+"vehicle": {
+"id": 43,
+"year": 2000,
+"make": "Chevrolet",
+"model": "Colorado",
+"engine": null,
+"type": null
+},
+"familyId": 69925967,
+"tangibleId": 24503902,
+"color": "",
+"mileage": 93223,
+"name": "My Little Luxury"
+},
+{
+"id": 51,
+"vehicle": {
+"id": 43,
+"year": 2000,
+"make": "Kia",
+"model": "Sportage",
+"engine": null,
+"type": null
+},
+"familyId": 69925967,
+"tangibleId": 24503902,
+"color": "",
+"mileage": 93223,
+"name": "My Dream Car"
+},
+{
+"id": 51,
+"vehicle": {
+"id": 43,
+"year": 2000,
+"make": "CHRYSLER4",
+"model": "TEST",
+"engine": null,
+"type": null
+},
+"familyId": 69925967,
+"tangibleId": 24503902,
+"color": "",
+"mileage": 93223,
+"name": ""
+}
+]
+}

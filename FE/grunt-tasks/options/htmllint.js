@@ -164,6 +164,7 @@ module.exports = function (grunt) {
                 'Attribute “ng-repeat” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-selected” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-show” not allowed on XHTML element “a” at this point.',
+                'Attribute “ng-show” not allowed on XHTML element “section” at this point.',
                 'Attribute “ng-src” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-srcset” not allowed on XHTML element “a” at this point.',
                 'Attribute “ng-style” not allowed on XHTML element “a” at this point.',
@@ -431,6 +432,8 @@ module.exports = function (grunt) {
                 'Attribute “ng-switch” not allowed on XHTML element “li” at this point.',
                 'Attribute “ng-transclude” not allowed on XHTML element “li” at this point.',
                 'Attribute “ng-value” not allowed on XHTML element “li” at this point.',
+                'Attribute “on-finish-render” not allowed on XHTML element “div” at this point.',
+                'XHTML element “store” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 //Custom
                 'XHTML element “store-row” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “ui-gmap-google-map” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
@@ -444,8 +447,13 @@ module.exports = function (grunt) {
                 'Attribute “ng-repeat” not allowed on XHTML element “li” at this point.',
                 'XHTML element “car-confirmation” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “trend-view” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “slick” not allowed on XHTML element “div” at this point.',
+                'XHTML element “car-card” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “carousel” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-				'XHTML element “service-information” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “store” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “store-card” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “service-information” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “slick-data” not allowed on XHTML element “div” at this point.'
             ]
         }
     });

@@ -1,0 +1,96 @@
+<div class="landing-page-container">
+    <div class="row landing-top">
+        <carousel interval="myInterval" disable-animation="true">
+          <slide ng-repeat="slide in slides" active="slide.active">
+            <div class="carousel_img {{slide.class}}"></div>
+          </slide>
+        </carousel>
+        <div class="carousel_data">
+            <div class="top_logo"></div>
+            <div class="landing-page-logo center-block"></div>
+            <p class="landing-page-text center-block"> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <div class="btn-start-now-box center-block" ng-click="startNow()"></div>
+        </div>
+    </div>
+    <div class="row landing-bottom">    
+        <div class="col-sm-4 landing_box landing_box_1">
+            <p>Get notifications when your cart needs services</p>
+        </div>
+        <div class="col-sm-4 landing_box landing_box_2">
+            <p>Get service recommendation based on your milleage</p>
+        </div>
+        <div class="col-sm-4 landing_box landing_box_3">
+            <p>Enjoy great discount on your Automotive parts</p>
+        </div>
+    </div>
+</div>
+
+<!-- TODO: templates, move to ng-include? -->
+
+<script type="text/ng-template" id="myModalContent.html">
+
+    <div ng-if="destinationPage === '/add-car'">
+        <div class="modal-header">
+            <img src="../resources/images/pop-title-login.jpg">
+        </div>
+        <div class="modal-body form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="firstName">First Name</label>
+                <div class="col-sm-5 ">
+                    <input id="firstName" type="text" class="form-control" placeholder="First Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="lastName">Last Name</label>
+                <div class="col-sm-5">
+                    <input id="lastName" type="text" class="form-control" placeholder="Last Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="email">Email</label>
+                <div class="col-sm-5">
+                    <input id="email" type="email" class="form-control" placeholder="Email">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="password">Password</label>
+                <div class="col-sm-5">
+                    <input id="password" type="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+
+    </div>
+
+    <div ng-if="destinationPage === '/dashboard'">
+        <div class="modal-header">
+            <h3 class="modal-title">I'm a modal! SIGN-IN</h3>
+        </div>
+        <div class="modal-body form-horizontal">
+            <img src="../resources/images/pop-social-login.jpg">
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="userName">USer Name</label>
+                <div class="col-sm-5 ">
+                    <input id="userName" type="text" class="form-control" placeholder="First Name">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3 col-sm-offset-1" for="password">Password</label>
+                <div class="col-sm-5">
+                    <input id="password" type="password" class="form-control" placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+
+</script>

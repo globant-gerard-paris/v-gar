@@ -2,9 +2,20 @@
 
 angular.module('Services').service('SessionDataSrv', function () {
 
-    var model = {
-        currentUser: null,
-        cachedVehicleUsers: null
+    var currentUserKey = 'CURRENT_USER_KEY',
+        currentFamilyVehicleKey = 'CURRENT_FAMILY_VEHICLE_KEY',
+        currentFamilyVehiclesKey = 'CURRENT_FAMILY_VEHICLES_KEY';
+
+    var isDataSaved = function () {
+        return !!(getData(currentUserKey));
+    };
+
+    var saveData = function (key, value) {
+        localStorage.setItem(key, JSON.stringify(value));
+    };
+
+    var getData = function (key) {
+        return JSON.parse(localStorage.getItem(key));
     };
 
     /**
@@ -20,7 +31,7 @@ angular.module('Services').service('SessionDataSrv', function () {
      * @returns {string}
      */
     var getCurrentUser = function () {
-        return model.currentUser;
+        return parseInt(getData(currentUserKey),10);
     };
 
     /**
@@ -28,15 +39,29 @@ angular.module('Services').service('SessionDataSrv', function () {
      * @param user
      */
     var setCurrentUser = function (user) {
-        model.currentUser = user;
+        saveData(currentUserKey, user);
     };
 
     var setCachedVehicleUsers = function (vehicles) {
-        model.cachedVehicleUsers = vehicles;
+        console.log(vehicles);
+    };
+    var getCachedVehicleUsers = function () {
     };
 
-    var getCachedVehicleUsers = function () {
-        return model.cachedVehicleUsers;
+    var saveCurrentFamilyVehicle = function (familyVehicle) {
+        saveData(currentFamilyVehicleKey, familyVehicle);
+    };
+
+    var getCurrentFamilyVehicle = function () {
+        return getData(currentFamilyVehicleKey);
+    };
+
+    var saveCurrentFamilyVehicles = function (familyVehicles) {
+        saveData(currentFamilyVehiclesKey, familyVehicles);
+    };
+
+    var getCurrentFamilyVehicles = function () {
+        return getData(currentFamilyVehiclesKey);
     };
 
     /**
@@ -56,13 +81,20 @@ angular.module('Services').service('SessionDataSrv', function () {
     };
 
     return {
+        isDataSave: isDataSaved,
+        saveData: saveData,
+        getData: getData,
         getCurrentUser: getCurrentUser,
         setCurrentUser: setCurrentUser,
         getCurrentFamilyId: getCurrentFamilyId,
         getCurrentTangibleId: getCurrentTangibleId,
         getCurrentToken: getCurrentToken,
         getCachedVehicleUsers: getCachedVehicleUsers,
-        setCachedVehicleUsers: setCachedVehicleUsers
+        setCachedVehicleUsers: setCachedVehicleUsers,
+        saveCurrentFamilyVehicle: saveCurrentFamilyVehicle,
+        getCurrentFamilyVehicle: getCurrentFamilyVehicle,
+        saveCurrentFamilyVehicles: saveCurrentFamilyVehicles,
+        getCurrentFamilyVehicles: getCurrentFamilyVehicles
     };
 
 });

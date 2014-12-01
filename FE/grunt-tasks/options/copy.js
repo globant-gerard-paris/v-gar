@@ -14,7 +14,7 @@ module.exports = function(grunt) {
                         'offline.html',
                         '.htaccess',
                         'resources/fonts/**',
-                        'resources/images/**',
+                        'resources/images/**'
                     ]
                 }
             ]

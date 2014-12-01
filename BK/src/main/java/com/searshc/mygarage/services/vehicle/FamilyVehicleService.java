@@ -43,32 +43,41 @@ import com.searshc.mygarage.services.user.UserService;
 @Transactional
 public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, FamilyVehicleRepository> {
 
-	private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
-	
-	@Inject
-	private SYWApi sywApi;
+    private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
 
-	@Inject
-	private NCDBApi ncdbApi;
+    @Inject
+    private SYWApi sywApi;
 
-	@Inject
-	private NCDBLocalService ncdbLocal;
+    @Inject
+    private NCDBApi ncdbApi;
 
-	@Inject
-	private UserService userService;
-	
-	@Inject
-	private VehicleService vehicleService;
-	
-	private RecordService recordService;
-	private NcdbService ncdbService;
+    @Inject
+    private NCDBLocalService ncdbLocal;
 
-	@Inject
-	public FamilyVehicleService(final RecordService recordService, final NcdbService ncdbService) {
-		this.recordService = Validate.notNull(recordService, "The Record Service cannot be null");
-		this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
-	}
-	
+    @Inject
+    private UserService userService;
+
+    @Inject
+    private VehicleService vehicleService;
+
+    private RecordService recordService;
+    private NcdbService ncdbService;
+
+    @Inject
+    public FamilyVehicleService(final RecordService recordService, final NcdbService ncdbService) {
+        this.recordService = Validate.notNull(recordService, "The Record Service cannot be null");
+        this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
+    }
+
+    @Override
+    public FamilyVehicle getItem(final Long id) {
+    	FamilyVehicle familyVehicle = this.repository.findOne(id);
+    	if(familyVehicle == null) {
+    		throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
+    	}
+    	return familyVehicle;
+    }
+    
     public FamilyVehicle createAndSaveNewVehicle(final Long familyId, final Long tangibleId,
             final String make, final String model, final int year, final String color, final int mileage) {
         Vehicle vehicle = new Vehicle(year, make, model, null, null);
@@ -88,25 +97,17 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return repository.getFamilyVehicleByTangibleId(tangibleId);
     }
 
-    public Integer getHighestMileage(final Long familyVehicleId) throws FamilyVehicleNotFoundException, NCDBApiException {
-    	Integer highestMileage = -1;
-    	
-    	FamilyVehicle familyVehicle = this.getItem(familyVehicleId);
-		if(familyVehicle == null) {
-			String msg = new StringBuilder().append("FamilyVehicle not found with id: ").append(familyVehicleId).toString();
-			log.error(msg);
-			throw new FamilyVehicleNotFoundException(msg);
-		}
-		Integer databaseHighestMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicleId);
-		Integer ncdbHighMileage = this.ncdbService.getHighestMileage(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
-		highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
-		log.debug(highestMileage + "is the Highest Mileage for familyVehicleId " + familyVehicleId);
-		return highestMileage;
+    public Integer getHighestMileage(final Long familyVehicleId) throws NCDBApiException {
+        Integer highestMileage = -1;
+
+        FamilyVehicle familyVehicle = this.getItem(familyVehicleId);
+        Integer databaseHighestMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicleId);
+        Integer ncdbHighMileage = this.ncdbService.getHighestMileage(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
+        highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
+        log.debug(highestMileage + "is the Highest Mileage for familyVehicleId " + familyVehicleId);
+        return highestMileage;
     }
 
-    
-    
-    
     public Set<FamilyVehicle> combineNCDBAndLocalVehicles(final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> localVehicles) {
         Map<Long, FamilyVehicle> ncdbLocallyStoreVehiclesMap = new HashMap<Long, FamilyVehicle>();
         Long tangibleId;
@@ -130,125 +131,129 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return result;
     }
 
-    /** Given a {@code token} prepare a all the home information.
-	 * 
-	 * @param token
-	 * @return return the {@link HomeDto}.
-	 */
-	public HomeDto getHomeInformation(String token) {
-		User user = userService.processUserByToken(token);
-		Set<VehicleConfirmationDTO> result = null;
-		
-		// If still familyId null, means that User not have register on NCDB.
-		if (user.getFamilyId() != null) {
-			result = createReport(user.getId(), user.getFamilyId());
-		} else {
-			result = createReportWithoutNCDB(user.getId());
-		}
-		
-		return new HomeDto(result, user.getId());
-	}
+    /**
+     * Given a {@code token} prepare a all the home information.
+     *
+     * @param token
+     * @return return the {@link HomeDto}.
+     */
+    public HomeDto getHomeInformation(String token) {
+        User user = userService.processUserByToken(token);
+        Set<VehicleConfirmationDTO> result = null;
 
-	/**
-	 * Create the {@code UserVehicleStatus} against to NCDB service information.
-	 * 
-	 * @param userId of Virtual garage.
-	 * @return return {@link UserVehicleStatus}.
-	 */
-	private Set<VehicleConfirmationDTO> createReport(final Long userId, final Long familyId) {
-		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
-		//If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
-		List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
+        // If still familyId null, means that User not have register on NCDB.
+        if (user.getFamilyId() != null) {
+            result = createReport(user.getId(), user.getFamilyId());
+        } else {
+            result = createReportWithoutNCDB(user.getId());
+        }
 
-		if (!CollectionUtils.isEmpty(ncdbVehicles)) {
-			List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
-			//FIXME: the difference between list should be using hashCode and equals methods
-			//ncdbVehicles.removeAll(linkedVehicles);
-			ncdbVehicles = this.getNcdbVehicles(ncdbVehicles, linkedVehicles);
-			result.addAll(this.convert(ncdbVehicles, false));
-			result.addAll(this.convert(linkedVehicles, true));
-		}
+        return new HomeDto(result, user.getId());
+    }
 
-		List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles);
-		result.addAll(this.convert(manualCars, true));
-		return result;
-	}
-	
-	/**
-	 * Calculate the list of {@link FamilyVehicle} that was added manually.
-	 * @param localVehicle
-	 * @param ncdbVehicles
-	 * @return return {@link UserVehicleStatus}.
-	 */
-	private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles,final List<FamilyVehicle> ncdbVehicles){
-		if(CollectionUtils.isEmpty(localVehicles)){
-			return new ArrayList<FamilyVehicle>();
-		}
-		
-		if(CollectionUtils.isEmpty(ncdbVehicles)){
-			return localVehicles;
-		}
-		localVehicles.removeAll(ncdbVehicles);
-		return localVehicles;
-	}
-	
-	/**
-	 * Calculate the list of {@link FamilyVehicle} that was linked from NCDB.
-	 * @param localVehicle
-	 * @param ncdbVehicles
-	 * @return return {@link UserVehicleStatus}.
-	 */
-	private List<FamilyVehicle> getLinkedCar(final List<FamilyVehicle> localVehicles,final List<FamilyVehicle> ncdbVehicles){
-		List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>();
-		if (!CollectionUtils.isEmpty(localVehicles) && !CollectionUtils.isEmpty(ncdbVehicles)) {
-			for (FamilyVehicle ncdbVehicle : ncdbVehicles) {
-				for (FamilyVehicle localVehicle : localVehicles) {
-					if(ncdbVehicle.getTangibleId().equals(localVehicle.getTangibleId())) {
-						linkedVehicles.add(localVehicle);
-					}
-				}
-			}
-		}
-		return linkedVehicles;
-	}
-	
-	@Deprecated
-	private List<FamilyVehicle> getNcdbVehicles(final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> linkedVehicles) {
-		List<FamilyVehicle> result = new ArrayList<FamilyVehicle>();
-		boolean isLinked = false;
-		for(FamilyVehicle currentVehicle : ncdbVehicles) {
-			isLinked = false;
-			for(FamilyVehicle linkedVehicle : linkedVehicles) {
-				if(currentVehicle.getTangibleId().equals(linkedVehicle.getTangibleId())){
-					isLinked = true;
-				}
-			}
-			if(!isLinked) {
-				result.add(currentVehicle);
-			}
-		}
-		return result;
-	}
+    /**
+     * Create the {@code UserVehicleStatus} against to NCDB service information.
+     *
+     * @param userId of Virtual garage.
+     * @return return {@link UserVehicleStatus}.
+     */
+    private Set<VehicleConfirmationDTO> createReport(final Long userId, final Long familyId) {
+        Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
+        List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
+        //If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
+        List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
 
-	/**
-	 * Create {@code UserVehicleStatus} without NCDB information because the {@code userId} don't
-	 * have familyId assigned. (Is the same that is not have NCDB_Id).
-	 * 
-	 * @param {@code userId} of Virtual garage.
-	 * @return return {@linked UserVehicleStatus}.
-	 */
-	private Set<VehicleConfirmationDTO> createReportWithoutNCDB(final Long userId) {
-		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> vehiclesUser = getConfirmedFamilyVehiclesByUserId(userId);
-		if (!CollectionUtils.isEmpty(vehiclesUser)) {
-			result.addAll(this.convert(vehiclesUser, true));
-		}
-		return result;
-	}
+        if (!CollectionUtils.isEmpty(ncdbVehicles)) {
+            List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
+            //FIXME: the difference between list should be using hashCode and equals methods
+            //ncdbVehicles.removeAll(linkedVehicles);
+            ncdbVehicles = this.getNcdbVehicles(ncdbVehicles, linkedVehicles);
+            result.addAll(this.convert(ncdbVehicles, false));
+            result.addAll(this.convert(linkedVehicles, true));
+        }
 
-	
-	public Set<ConfirmedVehicle> convert(final List<VehicleConfirmationDTO> vehicleConfirmationDTOs, final User user) {
+        List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles);
+        result.addAll(this.convert(manualCars, true));
+        return result;
+    }
+
+    /**
+     * Calculate the list of {@link FamilyVehicle} that was added manually.
+     *
+     * @param localVehicle
+     * @param ncdbVehicles
+     * @return return {@link UserVehicleStatus}.
+     */
+    private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles, final List<FamilyVehicle> ncdbVehicles) {
+        if (CollectionUtils.isEmpty(localVehicles)) {
+            return new ArrayList<FamilyVehicle>();
+        }
+
+        if (CollectionUtils.isEmpty(ncdbVehicles)) {
+            return localVehicles;
+        }
+        localVehicles.removeAll(ncdbVehicles);
+        return localVehicles;
+    }
+
+    /**
+     * Calculate the list of {@link FamilyVehicle} that was linked from NCDB.
+     *
+     * @param localVehicle
+     * @param ncdbVehicles
+     * @return return {@link UserVehicleStatus}.
+     */
+    private List<FamilyVehicle> getLinkedCar(final List<FamilyVehicle> localVehicles, final List<FamilyVehicle> ncdbVehicles) {
+        List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>();
+        if (!CollectionUtils.isEmpty(localVehicles) && !CollectionUtils.isEmpty(ncdbVehicles)) {
+            for (FamilyVehicle ncdbVehicle : ncdbVehicles) {
+                for (FamilyVehicle localVehicle : localVehicles) {
+                    if (ncdbVehicle.getTangibleId().equals(localVehicle.getTangibleId())) {
+                        linkedVehicles.add(localVehicle);
+                    }
+                }
+            }
+        }
+        return linkedVehicles;
+    }
+
+    @Deprecated
+    private List<FamilyVehicle> getNcdbVehicles(final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> linkedVehicles) {
+        List<FamilyVehicle> result = new ArrayList<FamilyVehicle>();
+        boolean isLinked = false;
+        for (FamilyVehicle currentVehicle : ncdbVehicles) {
+            isLinked = false;
+            for (FamilyVehicle linkedVehicle : linkedVehicles) {
+                if (currentVehicle.getTangibleId().equals(linkedVehicle.getTangibleId())) {
+                    isLinked = true;
+                }
+            }
+            if (!isLinked) {
+                result.add(currentVehicle);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Create {@code UserVehicleStatus} without NCDB information because the
+     * {@code userId} don't have familyId assigned. (Is the same that is not
+     * have NCDB_Id).
+     *
+     * @param {@code userId} of Virtual garage.
+     * @return return {
+     * @linked UserVehicleStatus}.
+     */
+    private Set<VehicleConfirmationDTO> createReportWithoutNCDB(final Long userId) {
+        Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
+        List<FamilyVehicle> vehiclesUser = getConfirmedFamilyVehiclesByUserId(userId);
+        if (!CollectionUtils.isEmpty(vehiclesUser)) {
+            result.addAll(this.convert(vehiclesUser, true));
+        }
+        return result;
+    }
+
+    public Set<ConfirmedVehicle> convert(final List<VehicleConfirmationDTO> vehicleConfirmationDTOs, final User user) {
         Validate.notNull(vehicleConfirmationDTOs, "Could not convert a null list of VehicleConfirmationDTO");
         Set<ConfirmedVehicle> result = new HashSet<ConfirmedVehicle>();
         ConfirmedVehicle confirmedVehicle;
@@ -257,21 +262,24 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
         for (VehicleConfirmationDTO dto : vehicleConfirmationDTOs) {
             familyVehicle = null;
-        	if (dto.isConfirmed() == false) {
+            if (dto.isConfirmed() == false) {
                 continue;
             }
             if (dto.getVehicleId() != 0) {
                 familyVehicle = this.getItem(dto.getVehicleId());
             } else if (dto.getTangibleId() != null) {
-            	familyVehicle = mapper.map(dto, FamilyVehicle.class);
-            	Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
-           		familyVehicle.setVehicle(vehicle);
+                familyVehicle = mapper.map(dto, FamilyVehicle.class);
+                Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
+                if (vehicle == null) {
+                    vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
+                }
+                familyVehicle.setVehicle(vehicle);
             }
 
-            if(familyVehicle == null || familyVehicle.getVehicle() == null) {
-        		//no vehicle found
-        		continue;
-        	}
+            if (familyVehicle == null || familyVehicle.getVehicle() == null) {
+                //no vehicle found
+                continue;
+            }
             confirmedVehicle = new ConfirmedVehicle();
             confirmedVehicle.setUser(user);
             confirmedVehicle.setFamilyVehicle(familyVehicle);
@@ -299,20 +307,21 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         }
         return result;
     }
-    
+
     public Status determineFamlyVehicleStatus(final FamilyVehicle familyVehicle) {
-    	Long id = familyVehicle.getId();
-    	Long tangibleId = familyVehicle.getTangibleId();
-    	if(tangibleId != null) {
-    		if (id != null && id != 0) {
-    			return Status.LINKED;
-    		} else {
-    			return Status.NCDB;
-    		}
-    	}
-		else if(id != null && id != 0) {
-    			return Status.MANUAL;
-    		} else return null;
+        Long id = familyVehicle.getId();
+        Long tangibleId = familyVehicle.getTangibleId();
+        if (tangibleId != null) {
+            if (id != null && id != 0) {
+                return Status.LINKED;
+            } else {
+                return Status.NCDB;
+            }
+        } else if (id != null && id != 0) {
+            return Status.MANUAL;
+        } else {
+            return null;
+        }
 
     }
 

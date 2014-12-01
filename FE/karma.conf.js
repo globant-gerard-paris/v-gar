@@ -30,6 +30,7 @@ module.exports = function(config) {
             'app/bower_components/moment/moment.js',
             'app/bower_components/datejs/build/production/date.min.js',
             'app/bower_components/geolib/dist/geolib.js',
+            'app/bower_components/slick.js/slick/slick.min.js',
             // endbower files
             'app/bower_components/jasmine-expect/dist/jasmine-matchers.js',
             'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js',
