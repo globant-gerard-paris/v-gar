@@ -366,6 +366,11 @@
 				height: 100%;
 			}
 
+            .border{
+                @include bp(sm) {
+                    border: 1px solid #cccccc;
+                }
+            }
 		}
 
 		.dashboard-coupons{
@@ -374,7 +379,13 @@
 			background-position: top center;
 			height: 211px;
 			min-width: 318px;
-			margin-top: 22px;
+            @include bp(sm) {
+                margin-top: 82px;
+            }
+            @include bp(xs) {
+                margin-top: 22px;
+            }
+
 		}
 	}
 
