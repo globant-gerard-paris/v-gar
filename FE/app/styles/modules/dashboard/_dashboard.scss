@@ -333,12 +333,15 @@
 	}
 
 	.dashboard-extra-holder{
-		margin-top: 50px;
+//		margin-top: 50px;
 		position: relative;
 
-        @include bp(md){
-            width: 960px;
-            margin: 0 auto;
+        .fixed960{
+
+            @include bp(md){
+                width: 960px;
+                margin: 0 auto;
+            }
         }
 
         .btn-appointment{

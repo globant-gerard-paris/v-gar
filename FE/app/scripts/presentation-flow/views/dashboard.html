@@ -85,19 +85,31 @@ redirectToAddCar()
         </div>
     </div>
 
-    <div class="dashboard-extra-holder">
-        <div class="visible-xs btn-appointment"></div>
-        <section class="header-title row">
-            <div class="col-xs-12">
-                <h1>Your service center <small>(<a ng-click="redirectToFSC()">Change your service center</a>)</small></h1>
+
+    <section class="dashboard-extra-holder col-xs-12">
+        <div class="row">
+            <div class="fixed960">
+
+            <section class="col-xs-12 visible-xs">
+                <div class="btn-appointment"></div>
+            </section>
+            <section class="col-xs-12 header-title">
+                <h1 class="pull-left">Your service center <small>(<a ng-click="redirectToFSC()">Change your service center</a>)</small></h1>
+            </section>
+            <div class="clearfix"></div>
+
+            <div class="col-xs-12 col-sm-7 dashboard-service-center">
+                <store model="model.store"></store>
             </div>
-        </section>
-        <div class="col-xs-12 col-sm-7 col-md-8 dashboard-service-center">
-            <store model=model.store></store>
+            <div class="col-xs-12 col-sm-5 dashboard-coupons"></div>
+
+            <div class="clearfix"></div>
+
+            <div class="dashboard-extra-feedback hidden-xs"></div>
+
+            </div>
         </div>
-        <div class="col-xs-12 col-sm-5 col-md-4 dashboard-coupons"></div>
-        <div class="dashboard-extra-feedback hidden-xs"></div>
-    </div>
+    </section>
 
     <div class="dashboard-bottom-mobile visible-xs">
         <div class="col-xs-12 footer-btns">
