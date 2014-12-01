@@ -1,41 +1,7 @@
 'use strict';
 
 
-angular.module('PresentationFlow').filter('capitalize', function() {
-    return function(input) {
-        return (!!input) ? input.replace(/([^\W_]+[^\s-]*) */g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();}) : '';
-    };
-});
-
-angular.module('PresentationFlow').directive('slick', function($timeout) {
-    return function(scope, el) {
-        $timeout(function() {
-            el.slick({
-                dots: false,
-                infinite: false,
-                autoplay: false,
-                slidesToShow: 3,
-                slidesToScroll: 1,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            slidesToShow: 1
-                        }
-                    },
-                    {
-                        breakpoint: 992,
-                        settings: {
-                            slidesToShow: 2
-                        }
-                    }
-                ]
-            });
-        }, 500);
-    };
-});
-
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
 
     var mock = false;
 
@@ -77,7 +43,11 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
     };
 
     if(mock){
-        $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
+        $timeout( function(){
+
+            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);    
+        },2000);
+        
     }
     else{
         DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
