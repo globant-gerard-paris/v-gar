@@ -16,6 +16,7 @@ angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $m
             templateUrl: 'modalNewRecord.html',
             controller: 'ModalNewRecordCtrl',
             windowClass: 'vg-record-modal',
+            backdropClass: 'vg-record-backdrop',
             size: 'md',
             resolve: {
                 context: function () {

@@ -1,7 +1,37 @@
 .vg-record-modal {
-	.modal-content {
-		border-radius: 0;
+
+	.modal-dialog {
 		width: 100%;
+	}
+
+	.modal-content {
+		width: 100%;
+		border: 0;
+		-webkit-box-shadow: none;
+		box-shadow: none;	
+		background-color: transparent;	
+		padding-top: 60px;
+	}
+
+	.modal-close {
+		position: fixed;
+		right: 0;
+		background-color: white;
+		border-radius: 6px;
+		border: 1px solid #aaa;
+
+		.btn {
+			background-color: white;
+			border-radius: 6px;
+			padding: 16px 20px;
+		}
+	}
+	.modal-window {
+		width: 50%;
+		margin: auto;
+		background-color: white;
+		border: 1px solid #aaa;
+		margin-top: 60px;
 		padding-left: 30px;
 	}
 
@@ -15,14 +45,23 @@
   		}
 	}
 
+	.modal-body { 
+		padding-bottom: 10px;
+	}
+
 	.form-group > div {
 		padding-right: 0; 
+		padding-bottom: 17px;
+
+		&:last-child {
+			padding-bottom: 0;
+		}
 	}
 
 	.form-control {
 		border-radius: 0;
 		-webkit-appearance: none;
-		height: 40px;
+		height: 38px;
 
 		&.vg-record-modal-form-control-calendar {
 			border-right: 0;
@@ -40,20 +79,20 @@
 		&.vg-record-modal-btn-calendar {
 			border-left: 0;
 			border-color: #ccc;
-			height: 40px;
+			height: 38px;
 			
 			&:hover {
 				background-color: #fff;
 			}
 		}
-	}
+	}		
 
 	.modal-footer {
 		border: none;
 		text-align: center;
 		padding-top: 0;
 
-		button {
+		.btn {
 			width: 120px;
 
 			background-color: #00bacf;
@@ -64,6 +103,10 @@
 				border-color: #ccc;
 			}
 		}
-
 	}
+}
+
+.vg-record-backdrop.modal-backdrop.in {
+	filter: alpha(opacity=20);
+	opacity: .2;
 }
