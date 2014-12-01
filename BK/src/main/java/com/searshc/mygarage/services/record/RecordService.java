@@ -57,8 +57,9 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         }
         List<Record> records = repository.getRecordsByFamilyVehicleId(familyVehicleId);
         for (Record record : records) {
+        	
             String service = record.getSuggestedService() == null ? null : record.getSuggestedService().getDescription();
-            LocalServiceRecord lsr = new LocalServiceRecord(service, record.getMileage(), record.getDate(), null);
+            LocalServiceRecord lsr = new LocalServiceRecord(record.getId(), service, record.getMileage(), record.getDate(), null);
             result.add(lsr);
         }
 
