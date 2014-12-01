@@ -167,6 +167,7 @@
         background-image: url($locationSMALL);
         width: 21px;
         height: 29px;
+        margin: 6px 10px;
     }
 
     .store-list-miles{
@@ -256,6 +257,18 @@
 @media (min-width: $screen-sm-min) {
     .header-title .col-xs-12, .store-found-subtitle{
         text-align: left;
+    }
+}
+
+
+@include bp(xs){
+    .store-find-box{
+        .store-find-desc{
+            text-align: center;
+            max-width: 100%;
+            margin-bottom: 20px;
+            font-size: 1.0em;
+        }
     }
 }
 
