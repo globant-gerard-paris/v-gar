@@ -9,7 +9,7 @@
         <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}">{{model.phone}}</a></div>
     </div>
     <div><button ng-click="setFavoriteStore()" type="button">SET AS MY STORE</button></div>
-    <div class="store-list-miles">{{model.distance}} Miles</div>
+    <div class="store-list-miles">{{model.distance | number:0}} Miles</div>
     <div class="store-link"><a ng-click="seeMoreDetailPopup()">See more details</a></div>
     <div class="clearfix"></div>
 </div>

@@ -1,4 +1,5 @@
 @import "../dashboard/slick";
+@import "compass/css3/border-radius";
 
 .store-container {
     color:$commonColor;
@@ -11,11 +12,10 @@
 
 .header-title{
     color:$headerColor;
-    font-weight: normal;
     text-align: center;
     h1 {
         font-size:2.4rem;
-        
+        font-weight: 400;
     }
 }
 .store-subtitle{
@@ -107,14 +107,13 @@
         font-weight: bold;
         color: $highlighterTitleColor;
         margin-left: 15px;
-        margin-bottom: 15px;
     }
 
     .stores-list-content{
         width: 100%;
     }
     .store-card-slick-container{
-        margin: 30px;
+        margin: 15px;
 
         .store-address {
             text-overflow: ellipsis;
@@ -158,6 +157,10 @@
 
     .store-list-info{
         text-align: left;
+        a{
+            color:$commonColor;
+            text-decoration: none;
+        }
     }
 
     .store-list-icon{
@@ -239,6 +242,11 @@
     border-radius: 0;
     font-size: 9px;
     line-height: 20px;
+}
+.vg-store-locator-input{
+    input{
+        @include border-radius(0);
+    }
 }
 .no-padding {
     padding:0;
