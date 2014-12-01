@@ -68,6 +68,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 $scope.nextURL = '/add-car';
             }
+            RedirectSrv.redirectTo($scope.nextURL);
         }
     };
     var failGetUserInfo = function (response) {

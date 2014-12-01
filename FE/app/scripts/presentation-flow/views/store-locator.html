@@ -40,7 +40,7 @@
 
     <section class="stores-list-box row">
         <div class="store-found-subtitle">{{model.stores.length}} store/s found</div>
-            <div class="store-slick-carousel" slick>
+            <div class="store-slick-carousel" slick slick-data="model.stores">
                 <store-card  model="store" ng-repeat="store in model.stores track by $index"></store-card>
             </div>
     </section>

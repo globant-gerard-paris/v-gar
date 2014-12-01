@@ -7,10 +7,17 @@ angular.module('Directives').directive('slick', function () {
             data: '=slickData'
         },
         link: function(scope, el) {
-            var unregister = scope.$watch('data', function(val){
+            scope.$watch('data', function(val){
                 if(!angular.isArray(val) || val.length === 0){
                     return;
                 }
+
+                // remove slick if data changed
+                if(el.unslick){
+                    el.unslick();
+                }
+
+                // (re|)init
                 el.slick({
                     dots: false,
                     infinite: false,
@@ -32,7 +39,7 @@ angular.module('Directives').directive('slick', function () {
                         }
                     ]
                 });
-                unregister();
+                
             });
         }
     };
