@@ -36,6 +36,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
             cars : response.data.vehicles,
             store: response.data.store
         };
+        $scope.$broadcast('RELOAD_STORE',response.data.store);
     };
 
     var carsResultFailed = function (response) {
@@ -46,7 +47,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         $timeout( function(){
             $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
         },2000);
-        
+
     }
     else{
         DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
