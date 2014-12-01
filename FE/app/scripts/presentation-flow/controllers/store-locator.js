@@ -41,6 +41,8 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
 
             //TODO implement promises
             StoreLocatorSrv.getStoreNearby($scope.model.address, getStoreNearbySuccess, getStoreNearbyFail);
+        } else {
+            StoreLocatorSrv.getFavoriteStore(getFavoriteStoreSuccess, getFavoriteStoreFail);
         }
     };
 
@@ -68,15 +70,20 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
         var lat2 = StoreLocatorSrv.getCurrentSearchLatitude();
         var long2 = StoreLocatorSrv.getCurrentSearchLongitude();
 
-        var distance = Geocoder.calculateDistance(lat1, long1, lat2, long2);
+        var sortedStores = [];
 
-        // Sync the same distance calculator algorithm
-        favoriteStore.distance = distance;
-        overrideDistance(lat2, long2);
+        if(!(isNaN(lat2) && isNaN(long2))){
 
-        // Re-sorted store
-        var sortedStores = sorterFromDistance(lat2, long2, storesWithoutFavoriteStores);
+            var distance = Geocoder.calculateDistance(lat1, long1, lat2, long2);
 
+            // Sync the same distance calculator algorithm
+            favoriteStore.distance = distance;
+            overrideDistance(lat2, long2);
+
+            // Re-sorted store
+            var sortedStores = sorterFromDistance(lat2, long2, storesWithoutFavoriteStores);
+
+        }
         // Apply changes after digest process, to redraw the stores list.
         $timeout(function () {
             $scope.model.myStore = response.data.store;
