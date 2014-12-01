@@ -27,6 +27,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 console.log(m);
             }
 
+            //TODO yes, it needs to improve, you can do it!
             scope.$on('RELOAD_STORE', function (event, dataResponse) {
                 scope.model = dataResponse;
                 load();

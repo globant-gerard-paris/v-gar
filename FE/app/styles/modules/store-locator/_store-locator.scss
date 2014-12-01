@@ -1,4 +1,5 @@
 @import "../dashboard/slick";
+@import "compass/css3/border-radius";
 
 .store-container {
     color:$commonColor;
@@ -11,11 +12,10 @@
 
 .header-title{
     color:$headerColor;
-    font-weight: normal;
     text-align: center;
     h1 {
         font-size:2.4rem;
-        
+        font-weight: 400;
     }
 }
 .store-subtitle{
@@ -107,14 +107,13 @@
         font-weight: bold;
         color: $highlighterTitleColor;
         margin-left: 15px;
-        margin-bottom: 15px;
     }
 
     .stores-list-content{
         width: 100%;
     }
     .store-card-slick-container{
-        margin: 30px;
+        margin: 15px;
 
         .store-address {
             text-overflow: ellipsis;
@@ -158,12 +157,17 @@
 
     .store-list-info{
         text-align: left;
+        a{
+            color:$commonColor;
+            text-decoration: none;
+        }
     }
 
     .store-list-icon{
         background-image: url($locationSMALL);
         width: 21px;
         height: 29px;
+        margin: 6px 10px;
     }
 
     .store-list-miles{
@@ -240,6 +244,11 @@
     font-size: 9px;
     line-height: 20px;
 }
+.vg-store-locator-input{
+    input{
+        @include border-radius(0);
+    }
+}
 .no-padding {
     padding:0;
 }
@@ -248,6 +257,18 @@
 @media (min-width: $screen-sm-min) {
     .header-title .col-xs-12, .store-found-subtitle{
         text-align: left;
+    }
+}
+
+
+@include bp(xs){
+    .store-find-box{
+        .store-find-desc{
+            text-align: center;
+            max-width: 100%;
+            margin-bottom: 20px;
+            font-size: 1.0em;
+        }
     }
 }
 
