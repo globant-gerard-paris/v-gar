@@ -21,6 +21,7 @@ import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 import com.searshc.mygarage.services.ncdb.NCDBLocalService;
+import com.searshc.mygarage.services.store.StoreService;
 
 /**
  *
@@ -35,17 +36,15 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 
 	private static final Log log = LogFactory.getLog(UserService.class);
 	
-    private StoreRepository storeRepository;
-    private UserRepository userRepository;
+    private StoreService storeService;
     private SYWApi sywApi;
 	private NCDBLocalService ncdbLocal;
     /**
      * @param storeRepository
      */
     @Inject
-    public UserService(final StoreRepository storeRepository, final UserRepository userRepository, final SYWApi sywApi, final NCDBLocalService ncdbLocal) {
-        this.storeRepository = Validate.notNull(storeRepository, "The Store Repository cannot be null");
-        this.userRepository = Validate.notNull(userRepository, "The User Information Repository cannot be null");
+    public UserService(final StoreService storeService, final SYWApi sywApi, final NCDBLocalService ncdbLocal) {
+        this.storeService = Validate.notNull(storeService, "The Store Service cannot be null");
         this.sywApi = Validate.notNull(sywApi, "The sywApi cannot be null");
         this.ncdbLocal = Validate.notNull(ncdbLocal, "The NCDB local service cannot be null.");
     }
@@ -61,14 +60,10 @@ public class UserService extends GenericService<User, Long, UserRepository> {
         Validate.notNull(storeId, "The storeId can't be null");
         Validate.notNull(userId, "The userId can't be null");
 
-        Store store = storeRepository.findOne(storeId);
-        Validate.notNull(store, "The storeId " + storeId + " doesn't exist.");
-
-        try {
-            processFavoriteStore(store, userId);
-        } catch (Exception e) {
-            throw new Exception("An error occured when trying to persist the registry.", e);
-        }
+        User user = this.getItem(userId);
+        Store store = storeService.getItem(storeId);
+        user.setStore(store);
+        this.saveUser(user);
     }
 
 
@@ -104,27 +99,12 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 		}
 		return user;
 	}
-    
-	/**
-	 * First search if already exist one {@link User}, and then update or create them.
-	 * 
-	 * @param store
-	 * @param userId
-	 */
-	private void processFavoriteStore(final Store store, final Long userId) {
-        User information = userRepository.findOne(userId);
-        if (information == null) {
-            information = new User();
-        }
-        information.setSywId(1L);//FIXME: this are fixed in order to work but need to resolve this.  
-        information.setStore(store);
-        repository.saveAndFlush(information);
-    }
+
 
 	@Override
 	public User getItem(Long id) {
 		Validate.notNull(id, "The userId can't be null");
-        User user = userRepository.findOne(id);
+        User user = this.repository.findOne(id);
         if (user == null) {
         	String msg = new StringBuilder().append("No user found with id: ").append(id).toString();
         	log.error(msg);
@@ -150,14 +130,14 @@ public class UserService extends GenericService<User, Long, UserRepository> {
      */
     public User findBySywId(Long sywId) {
     	Validate.notNull(sywId, "The sywId can't be null");
-    	return userRepository.findBySywId(sywId);
+    	return this.repository.findBySywId(sywId);
     }
 
     
     public User saveUser(User user) {
     	Validate.notNull(user, "The user can't be null.");
     	try {
-    		return userRepository.saveAndFlush(user);
+    		return this.repository.saveAndFlush(user);
 		} catch (Exception e) {
 			log.error(e);
             throw new VirtualGarageServiceException(e);

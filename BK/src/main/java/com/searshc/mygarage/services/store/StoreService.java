@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.Store;
+import com.searshc.mygarage.exceptions.StoreNotFoundException;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.util.VGUtils;
 
@@ -78,5 +79,14 @@ public class StoreService extends GenericService<Store, Long, StoreRepository>{
     public Store findBySacStore(String sacStore) {
     	Validate.notNull(sacStore, "The SacStore cannot be null");
     	return repository.findBySacStore(sacStore);
+    }
+    
+    @Override
+    public Store getItem(final Long id) {
+    	Store store = this.repository.findOne(id);
+    	if(store == null) {
+    		throw new StoreNotFoundException("Store not found with id: " + id);
+    	}
+    	return store;
     }
 }
