@@ -44,8 +44,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
 
     if(mock){
         $timeout( function(){
-
-            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);    
+            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
         },2000);
         
     }
