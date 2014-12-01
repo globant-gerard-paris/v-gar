@@ -20,19 +20,20 @@
 "carRental": false,
 "oneStop": false,
 "mondayOpen": "8",
-"mondayClose": "18",
+"mondayClose": "19",
 "tuesdayOpen": "8",
-"tuesdayClose": "18",
+"tuesdayClose": "19",
 "wednesdayOpen": "8",
-"wednesdayClose": "18",
+"wednesdayClose": "19",
 "thursdayOpen": "8",
-"thursdayClose": "18",
+"thursdayClose": "19",
 "fridayOpen": "8",
-"fridayClose": "18",
+"fridayClose": "19",
 "saturdayOpen": "8",
-"saturdayClose": "18",
+"saturdayClose": "19",
 "sundayOpen": "10",
-"sundayClose": "17"
+"sundayClose": "17",
+"zip_code":"60118"
 },
 "vehicles": [
 {

@@ -50,7 +50,7 @@ redirectToAddCar()
                     <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
                 </div>
                 <div class="car-slick-carousel" slick>
-                    <car-card car="car" ng-repeat="car in model.cars"></car-card>
+                    <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>
             <div ng-show="addCar" class="dashboard-content-add-car">
@@ -86,13 +86,10 @@ redirectToAddCar()
     </div>
 
     <div class="dashboard-extra-holder">
-        <div class="col-xs-12 col-md-10 col-md-offset-1  dashboard-extra-title">
-            <span class="title-big-font">Your service center </span><span>(<a href="">change your service center</a>)</span>
+        <div class="col-xs-12 col-sm-7 col-md-8 dashboard-service-center">
+            <store model=model.store></store>
         </div>
-        <div class="col-xs-12 col-sm-7 col-md-7 col-md-offset-1 dashboard-service-center container">
-            <store model="model.myStore"></store>
-        </div>
-        <div class="col-xs-12 col-sm-5 col-md-3 dashboard-coupons"></div>
+        <div class="col-xs-12 col-sm-5 col-md-4 dashboard-coupons"></div>
         <div class="dashboard-extra-feedback hidden-xs"></div>
     </div>
 

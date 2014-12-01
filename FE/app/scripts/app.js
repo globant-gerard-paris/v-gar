@@ -20,12 +20,11 @@ var _mainModules = [
 
 angular.module('virtualGarage', _mainModules)
 
-        .run(function(SessionDataSrv){
-
-            if(SessionDataSrv.isDataSave()){
-                SessionDataSrv.reload();
-            }
-        })
+//        .run(function(SessionDataSrv){
+//            if(SessionDataSrv.isDataSave()){
+//                SessionDataSrv.reload();
+//            }
+//        })
 
         .config(function ($routeProvider, $locationProvider) {
             //redirect any invalid hash to /home

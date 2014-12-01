@@ -25,7 +25,7 @@ public class Record extends AbstractEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private FamilyVehicle familyVehicle;
 
-    private int mileage;
+    private double mileage;
 
     private String source;
 
@@ -57,7 +57,7 @@ public class Record extends AbstractEntity {
      * @param date
      * @param comment
      */
-    public Record(FamilyVehicle familyVehicle, int mileage, String source,
+    public Record(FamilyVehicle familyVehicle, double mileage, String source,
             SuggestedService suggestedService, Date date, String comment) {
         super();
         this.familyVehicle = familyVehicle;
@@ -85,14 +85,14 @@ public class Record extends AbstractEntity {
     /**
      * @return the mileage
      */
-    public int getMileage() {
+    public double getMileage() {
         return mileage;
     }
 
     /**
      * @param mileage the mileage to set
      */
-    public void setMileage(int mileage) {
+    public void setMileage(double mileage) {
         this.mileage = mileage;
     }
 

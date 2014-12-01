@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('RecallsCtrl', function ($scope, RedirectSrv, RecallsSrv, $location) {
+angular.module('PresentationFlow').controller('RecallsCtrl', function ($scope, RedirectSrv, RecallsSrv, $location, SessionDataSrv) {
 
     $scope.model = {
-        recalls: []
+        recalls: [],
+        vehicle : SessionDataSrv.getCurrentFamilyVehicle().vehicle
     };
 
-    $scope.redirectToCarProfile = function (option) {
-        RedirectSrv.redirectTo('/car-profile?option=' + option);
+    $scope.redirectToCarProfile = function () {
+        RedirectSrv.redirectTo('/car-profile');
     };
 
     $scope.redirectToDashboard = function () {
@@ -22,28 +23,6 @@ angular.module('PresentationFlow').controller('RecallsCtrl', function ($scope, R
         console.log('ERROR: ' + response);
     };
 
-    var modelYear = '2008',
-            make = 'Ford',
-            model = 'Edge';
-
-    var params = $location.search();
-
-    if (params.option === '2') {
-        modelYear = '2010';
-        make = 'Audi';
-        model = 'A3';
-    }
-
-    $scope.model = {
-        option: params.option,
-        recalls: [],
-        vehicle: {
-            modelYear: modelYear,
-            make: make,
-            model: model
-        }
-    };
-
-    RecallsSrv.getRecalls(modelYear, make, model, recallsResultSuccess, recallsResultFaild);
+    RecallsSrv.getRecalls($scope.model.vehicle.year, $scope.model.vehicle.make, $scope.model.vehicle.model, recallsResultSuccess, recallsResultFaild);
 
 });

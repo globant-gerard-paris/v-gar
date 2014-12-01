@@ -2,7 +2,7 @@
 
 angular.module('PresentationFlow').service('StoreLocatorSrv', function (Geocoder, ApiHttpSrv, config, SessionDataSrv, StringUtilSrv) {
 
-    var defaultLimitSearch = 8,
+    var defaultLimitSearch = 4,
         defaultDistanceToSearch = 1000,
         currentSetFavoriteStoreId,
         currentStoreNearbyLatitude,

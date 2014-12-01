@@ -35,11 +35,11 @@ angular.module('PresentationFlow').directive('slick', function($timeout) {
     };
 });
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http, StoreLocatorSrv) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
 
     var mock = false;
 
-    var userId = '600';
+    var userId =  SessionDataSrv.getCurrentUser();
 
     $scope.model = {
         cars: [],
@@ -59,15 +59,16 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
         $scope.addCar = !$scope.addCar;
     };
 
-
-
-    $scope.getToCarProfile = function (option) {
-        RedirectSrv.redirectTo('/car-profile?option=' + option);
+    $scope.getToCarProfile = function (familyVehicle) {
+        SessionDataSrv.saveCurrentFamilyVehicle(familyVehicle);
+        RedirectSrv.redirectTo('/car-profile');
     };
 
     var carsResultSuccess = function(response){
+        SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
         $scope.model = {
-            cars : response.data.vehicles
+            cars : response.data.vehicles,
+            store: response.data.store
         };
     };
 
@@ -81,15 +82,4 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($scope,
     else{
         DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
     }
-
-
-
-    var getFavoriteStoreSuccess = function (response) {
-        // Apply changes after digest process, to redraw the stores list.
-        $timeout(function () {
-            $scope.model.myStore = response.data.store;
-        });
-    };
-
-    StoreLocatorSrv.getFavoriteStore(getFavoriteStoreSuccess);
 });

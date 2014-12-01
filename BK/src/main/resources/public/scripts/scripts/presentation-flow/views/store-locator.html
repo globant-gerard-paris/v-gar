@@ -1,0 +1,74 @@
+<div ng-include="'scripts/presentation-flow/views/nav-top.html'" class="visible-lg visible-sm visible-md"></div>
+
+<div class="container-fluid store-container">
+
+    <section ng-show="model.myStore">
+        <section class="header-title row">
+            <div class="col-xs-12">
+                <h1>Your service center</h1>
+            </div>
+        </section>
+
+        <store model="model.myStore"></store>
+
+    </section>
+
+    <div class="store-find-box row margin-top-10">
+        <form name="storeLocatorSearch" novalidate="">
+            <div class="header-title row">
+                <div class="col-xs-12">
+                    <h1>Find a store</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-5">Enter your ZIP code or address to find a Sears Auto center near you.</div>
+                <div class="col-xs-12 col-sm-7">
+                    <div class="input-group vg-store-locator-input">
+                        <input type="text" class="form-control" ng-model="model.address" value="{{model.address}}" ng-minlength="1" required="" placeholder="Enter zip code" ng-disabled="model.searching">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button" ng-click="getStoreNearby()">FIND MY STORE</button>
+                        </span>
+                        <!--TODO improve it!-->
+                        <span ng-show="model.searching">(loading...)</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <section class="stores-list-box row">
+        <div class="store-found-subtitle">{{model.stores.length}} store/s found</div>
+        <!--<div class="stores-list-content swiper-container" ng-if="model.stores"  on-finish-render="test()">-->
+            <!--<div class="swiper-wrapper">-->
+                <!--<store-card model="store" ng-repeat="store in model.stores track by $index" class="swiper-slide"></store-card>-->
+                <!--<div model="store" ng-repeat="store in model.stores track by $index" class="swiper-slide">A</div>-->
+            <!--</div>-->
+        <div class="stores-list-content" ng-if="model.stores">
+            <carousel disable-animation="true">
+                <slide ng-repeat="store in model.stores track by $index" active="slide.active" class="slide-content">
+                    <store-card model="store"></store-card>
+                </slide>
+            </carousel>
+        </div>
+        <!--</div>-->
+    </section>
+
+
+    <div class="stores-social-box row visible-xs">
+        <div class="stores-social">
+            <div class="stores-social-internal"></div>
+        </div>
+        <div class="stores-social">
+            <div class="stores-social-facebook"></div>
+        </div>
+        <div class="stores-social">
+            <div class="stores-social-twitter"></div>
+        </div>
+    </div>
+
+    <section class="feedback-box row visible-xs">
+        <button type="button">FEEDBACK</button>
+    </section>
+
+
+</div>

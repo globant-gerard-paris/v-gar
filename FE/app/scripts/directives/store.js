@@ -14,6 +14,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
 
         link: function (scope, element/*, attributes*/) {
 
+
             var SUNDAY_NUMBER = 0,
                 map = element.find('.store-map')[0];
 
@@ -25,6 +26,11 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 alert(m);
                 console.log(m);
             }
+
+            scope.$on('RELOAD_STORE', function (event, dataResponse) {
+                scope.model = dataResponse;
+                load();
+            });
 
             /**
              * Load days of the current week with the hours open and close of the store.
@@ -78,7 +84,8 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 var marker = new google.maps.Marker({
                     position: storePosition,
                     map: _map,
-                    title: scope.model.address
+                    title: scope.model.address,
+                    icon: '../resources/images/store-locator/searsauto.jpg'
                 });
 
                 scope.map = _map;
@@ -89,7 +96,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
 
             $timeout(function () {
                 load();
-            },1500);
+            },200);
         }
     };
 });

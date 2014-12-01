@@ -1,13 +1,8 @@
 {
     "config": {
         "api": {
-            "methods": {
-                "SYW_LOGIN": {
-                    "use_host": "DEV",
-                    "host_paths": {
-                        "DEV": "/logint/dev"
-                    }
-                }
+            "hosts": {
+                "BACKEND": "http://hfdvsywvgapp01.vm.itg.corp.us.shldcorp.com:8080"
             }
         }
     }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 
 @ResponseStatus(value = HttpStatus.NOT_FOUND, reason = "FamilyVehicle not found")
-public class FamilyVehicleNotFoundException extends Exception implements Serializable {
+public class FamilyVehicleNotFoundException extends RuntimeException implements Serializable {
 
 	/**
 	 * The Serial Version UID. 
