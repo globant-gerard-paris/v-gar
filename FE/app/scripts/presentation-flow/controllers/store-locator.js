@@ -81,7 +81,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
             overrideDistance(lat2, long2);
 
             // Re-sorted store
-            var sortedStores = sorterFromDistance(lat2, long2, storesWithoutFavoriteStores);
+            sortedStores = sorterFromDistance(lat2, long2, storesWithoutFavoriteStores);
 
         }
         // Apply changes after digest process, to redraw the stores list.

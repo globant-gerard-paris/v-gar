@@ -1,41 +1,18 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, RedirectSrv, ServicesSrv, $http) {
-
-    $scope.model = {
-        services: []
-    };
-
-    var mock = false;
-
-
-    /*
-        var groupByDate = function(arr){
-        var res = {};
-        _.each(arr, function(val){
-            var date = new Date(val.date);
-            var year = date.getFullYear();
-            if(!angular.isArray(res[year])){
-                res[year] = []
-            }
-            res[year].push(val);
-        });
-        return res;
-    };
-    */
+angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, RedirectSrv, ServicesSrv, $http, SessionDataSrv) {
 
     var servicesResultSuccess = function (response) {
+
         $scope.model.services = response.data || [];
 
-        //$scope.model.services = _.orderBy($scope.model.services, );
-
-        $scope.model.services = _.sortBy($scope.model.services, function(srv){
+        $scope.model.services = _.sortBy($scope.model.services, function (srv) {
             return srv.date;
         }).reverse();
 
         $scope.model.years = [];
 
-        $scope.model.groupedServices = _.groupBy($scope.model.services, function(srv){
+        $scope.model.groupedServices = _.groupBy($scope.model.services, function (srv) {
             var date = new Date(srv.date);
             var year = date.getFullYear();
             $scope.model.years.push(year);
@@ -49,24 +26,13 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         console.log('ERROR: ' + response);
     };
 
-    var familyId = '69925967',
-        tangibleId = '24503902';
+    var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
 
     $scope.model = {
         services: [],
-        vehicle: {
-            familyId: familyId,
-            tangibleId: tangibleId
-        }
+        familyVehicle: familyVehicle
     };
 
-
-
-    if(mock){
-        $http.get('resources/mocks/services.json').then(servicesResultSuccess, servicesResultFailed);
-    }
-    else{
-        ServicesSrv.getServices(familyId, tangibleId, servicesResultSuccess, servicesResultFailed);
-    }
+    ServicesSrv.getServices(familyVehicle.id, servicesResultSuccess, servicesResultFailed);
 
 });

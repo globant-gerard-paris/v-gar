@@ -5,9 +5,8 @@
 
 angular.module('PresentationFlow').service('ServicesSrv', function (ApiHttpSrv, config) {
 
-    var getServices = function (familyId, tangibleId, successCallback, faildCallback) {
-        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/record/family/' +
-            familyId + '/vehicle/' + tangibleId)
+    var getServices = function (familyVehicleId, successCallback, faildCallback) {
+        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/record/familyvehicle/' + familyVehicleId)
             .then(successCallback, faildCallback);
     };
 

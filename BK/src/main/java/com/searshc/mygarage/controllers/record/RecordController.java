@@ -30,7 +30,7 @@ import com.searshc.mygarage.services.record.RecordService;
 public class RecordController {
 
     private RecordService recordService;
-    
+
     private RecordOrchestrator recordOrchestrator;
 
     @Inject
@@ -70,10 +70,10 @@ public class RecordController {
         return new ResponseEntity<List<ServiceRecord>>(serviceRecords, null, HttpStatus.OK);
     }
 
-	@RequestMapping(value = "/suggestedservices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<SuggestedService>> getSuggestedServices() throws NCDBApiException {
-		List<SuggestedService> suggestedServices = this.recordService.getSuggestedServices();
-		return new ResponseEntity<List<SuggestedService>>(suggestedServices, HttpStatus.OK);
-	}
+    @RequestMapping(value = "/suggestedservices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<List<SuggestedService>> getSuggestedServices() throws NCDBApiException {
+        List<SuggestedService> suggestedServices = this.recordService.getSuggestedServices();
+        return new ResponseEntity<List<SuggestedService>>(suggestedServices, HttpStatus.OK);
+    }
 }
