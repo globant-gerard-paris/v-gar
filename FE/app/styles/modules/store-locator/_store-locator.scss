@@ -156,7 +156,10 @@
     }
 
     .store-list-info{
+        width: 200px;
+        margin: 0 auto;
         text-align: left;
+        padding-left: 17px;
         a{
             color:$commonColor;
             text-decoration: none;
@@ -165,9 +168,11 @@
 
     .store-list-icon{
         background-image: url($locationSMALL);
+        background-repeat: no-repeat;
         width: 21px;
-        height: 29px;
-        margin: 6px 10px;
+        height: 65px;
+        margin: 7px 12px 0 22px;
+        float: left;
     }
 
     .store-list-miles{
