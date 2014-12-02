@@ -242,8 +242,13 @@
     color: white;
     border-radius: 0;
     font-size: 9px;
-    line-height: 20px;
+    line-height: 20px;    
 }
+
+.find-store-btn:hover,.find-store-btn:focus,.find-store-btn:active {
+    color: white;    
+}
+
 .vg-store-locator-input{
     input{
         @include border-radius(0);
