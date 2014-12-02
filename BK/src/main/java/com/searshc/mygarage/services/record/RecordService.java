@@ -10,6 +10,7 @@ import com.searshc.mygarage.entities.record.LocalServiceRecord;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.entities.record.Record;
+import com.searshc.mygarage.entities.record.ServiceCenter;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.SuggestedServiceNotFoundException;
@@ -57,9 +58,10 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         }
         List<Record> records = repository.getRecordsByFamilyVehicleId(familyVehicleId);
         for (Record record : records) {
-        	
             String service = record.getSuggestedService() == null ? null : record.getSuggestedService().getDescription();
-            LocalServiceRecord lsr = new LocalServiceRecord(record.getId(), service, record.getMileage(), record.getDate(), null);
+            ServiceCenter serviceCenter = new ServiceCenter();
+            serviceCenter.setAddress(record.getSource());
+            LocalServiceRecord lsr = new LocalServiceRecord(record.getId(), service, record.getMileage(), record.getDate(), serviceCenter);
             result.add(lsr);
         }
 
@@ -93,12 +95,12 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
     public List<SuggestedService> getSuggestedServices() {
         return this.suggestedServiceRepository.findAll();
     }
-    
+
     public SuggestedService getSuggestedServiceById(final Long id) {
-    	SuggestedService suggestedService = this.suggestedServiceRepository.findOne(id);
-    	if(suggestedService == null) {
-    		throw new SuggestedServiceNotFoundException("SuggestedService not found with id: " + id);
-    	}
-    	return suggestedService;
+        SuggestedService suggestedService = this.suggestedServiceRepository.findOne(id);
+        if (suggestedService == null) {
+            throw new SuggestedServiceNotFoundException("SuggestedService not found with id: " + id);
+        }
+        return suggestedService;
     }
 }

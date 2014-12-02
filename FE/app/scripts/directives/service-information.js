@@ -15,9 +15,11 @@ angular.module('Directives').directive('serviceInformation', function () {
             scope.serviceCenterStr = 'None';
 
             if (scope.serviceCenter !== null) {
-                scope.serviceCenterStr = scope.serviceCenter.address +
-                    ' @ ' + scope.serviceCenter.city +
+                scope.serviceCenterStr = scope.serviceCenter.address;
+                if(scope.serviceCenter.city){
+                    scope.serviceCenterStr += ' @ ' + scope.serviceCenter.city +
                     ', ' + scope.serviceCenter.zipCode;
+                }
             }
 
             var serviceDescArr = [];
