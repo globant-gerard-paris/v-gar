@@ -66,33 +66,33 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                 /**
                  * Is function is executed after digest process in order to draw the maps & marker in the page.
                  */
-                //$timeout(function () {
+                $timeout(function () {
                     /**
                      *  The options of the map.
                      * @type {{center: google.maps.LatLng, coords: google.maps.LatLng, zoom: number}}
                      */
-                var map_options = {
-                    center: storePosition,
-                    coords: storePosition,
-                    zoom: 15,
-                    streetViewControl: false,
-                    scrollwheel: false,
-                    mapTypeControl: false
-                };
+                    var map_options = {
+                        center: storePosition,
+                        coords: storePosition,
+                        zoom: 15,
+                        streetViewControl: false,
+                        scrollwheel: false,
+                        mapTypeControl: false
+                    };
 
-                var _map = new google.maps.Map(map, map_options);
+                    var _map = new google.maps.Map(map, map_options);
 
-                var marker = new google.maps.Marker({
-                    position: storePosition,
-                    map: _map,
-                    title: scope.model.address,
-                    icon: '../resources/images/store-locator/searsauto.jpg'
-                });
+                    var marker = new google.maps.Marker({
+                        position: storePosition,
+                        map: _map,
+                        title: scope.model.address,
+                        icon: '../resources/images/store-locator/searsauto.jpg'
+                    });
 
-                scope.map = _map;
-                marker.setMap(_map);
+                    scope.map = _map;
+                    marker.setMap(_map);
 
-                //}, 1000);
+                }, 1000);
             };
 
             $timeout(function () {
