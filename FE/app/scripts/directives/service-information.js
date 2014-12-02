@@ -11,13 +11,16 @@ angular.module('Directives').directive('serviceInformation', function () {
             serviceRecords: '='
         },
         link: function (scope) {
+            
+            scope.serviceCenterStr = 'None';
+
             if (scope.serviceCenter !== null) {
                 scope.serviceCenterStr = scope.serviceCenter.address +
                     ' @ ' + scope.serviceCenter.city +
                     ', ' + scope.serviceCenter.zipCode;
             }
-            var serviceDescArr = [];
 
+            var serviceDescArr = [];
 
             _.each(scope.serviceRecords, function(record){
                 serviceDescArr.push(record.description);

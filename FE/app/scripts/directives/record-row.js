@@ -42,6 +42,14 @@ angular.module('Directives').directive('recordRow', function (RecordSrv, $q, $mo
                 console.log('ERROR ' + response);
             };
 
+            var recordDescArr = [];
+
+            _.each(scope.record.serviceRecordItems, function(record){
+                recordDescArr.push(record.description);
+            });
+
+            scope.recordDesc = recordDescArr.join(', ');
+
         }
     };
 }).controller('ModalConfirmationDeleteCtrl', function ($scope, $modalInstance) {

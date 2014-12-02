@@ -22,7 +22,7 @@ angular.module('Directives').directive('slick', function () {
                     dots: false,
                     infinite: false,
                     autoplay: false,
-                    slidesToShow: 3,
+                    slidesToShow: val.length < 3 ? val.length : 3,
                     slidesToScroll: 1,
                     responsive: [
                         {
@@ -34,7 +34,7 @@ angular.module('Directives').directive('slick', function () {
                         {
                             breakpoint: 992,
                             settings: {
-                                slidesToShow: 2
+                                slidesToShow: val.length < 2 ? val.length : 2
                             }
                         }
                     ]
