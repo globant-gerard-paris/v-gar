@@ -43,7 +43,6 @@ import com.searshc.mygarage.services.user.UserService;
 @Transactional
 public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, FamilyVehicleRepository> {
 
-<<<<<<< HEAD
     private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
 
     @Inject
@@ -85,43 +84,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, familyId, tangibleId, null, mileage, null);
         return super.save(familyVehicle);
     }
-=======
-	private static final Log log = LogFactory.getLog(FamilyVehicleService.class);
-	
-	@Inject
-	private SYWApi sywApi;
-
-	@Inject
-	private NCDBApi ncdbApi;
-
-	@Inject
-	private NCDBLocalService ncdbLocal;
-
-	@Inject
-	private UserService userService;
-	
-	@Inject
-	private VehicleService vehicleService;
-	
-	private RecordService recordService;
-	private NcdbService ncdbService;
-
-	@Inject
-	public FamilyVehicleService(final RecordService recordService, final NcdbService ncdbService) {
-		this.recordService = Validate.notNull(recordService, "The Record Service cannot be null");
-		this.ncdbService = Validate.notNull(ncdbService, "The NCDB Service cannot be null");
-	}
-	
-	@Override
-	public FamilyVehicle getItem(final Long id) throws FamilyVehicleNotFoundException {
-		Validate.notNull(id, "The FamilyVehicleId cannot be null");
-		FamilyVehicle result = this.repository.findOne(id);
-		if(result == null) {
-			throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
-		}
-		return result;
-	}
->>>>>>> MYG000-98 - Updated Add Manual Vehicle Method
 
     public List<FamilyVehicle> getFamilyVehiclesByFamilyId(final Long familyId) {
         return repository.getFamilyVehiclesByFamilyId(familyId);
@@ -135,7 +97,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return repository.getFamilyVehicleByTangibleId(tangibleId);
     }
 
-<<<<<<< HEAD
     public Integer getHighestMileage(final Long familyVehicleId) throws NCDBApiException {
         Integer highestMileage = -1;
 
@@ -145,18 +106,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
         log.debug(highestMileage + "is the Highest Mileage for familyVehicleId " + familyVehicleId);
         return highestMileage;
-=======
-    public Integer getHighestMileage(final Long familyVehicleId) throws FamilyVehicleNotFoundException, NCDBApiException {
-    	Integer highestMileage = -1;
-    	
-    	FamilyVehicle familyVehicle = this.getItem(familyVehicleId);
-
-		Integer databaseHighestMileage = this.recordService.getHighestMileageByFamilyVehicleId(familyVehicleId);
-		Integer ncdbHighMileage = this.ncdbService.getHighestMileage(familyVehicle.getFamilyId(), familyVehicle.getTangibleId());
-		highestMileage = databaseHighestMileage > ncdbHighMileage ? databaseHighestMileage : ncdbHighMileage;
-		log.debug(highestMileage + "is the Highest Mileage for familyVehicleId " + familyVehicleId);
-		return highestMileage;
->>>>>>> MYG000-98 - Updated Add Manual Vehicle Method
     }
 
     public Set<FamilyVehicle> combineNCDBAndLocalVehicles(final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> localVehicles) {

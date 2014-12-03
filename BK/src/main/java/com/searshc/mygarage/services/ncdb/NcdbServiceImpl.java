@@ -18,10 +18,10 @@ import org.springframework.stereotype.Service;
 import scala.collection.mutable.StringBuilder;
 
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
-
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHeaderResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderItemResponse;
+import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.entities.record.NcdbServiceRecord;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceCenter;
@@ -32,9 +32,7 @@ import com.searshc.mygarage.entities.record.OrderItem;
 import com.searshc.mygarage.entities.record.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.record.SuggestedService;
-
 import com.searshc.mygarage.entities.FamilyVehicle;
-
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
 import com.searshc.mygarage.repositories.RecordRepository;
@@ -43,6 +41,7 @@ import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.SuggestedServiceRepository;
 import com.searshc.mygarage.util.ServiceRecordType;
 import com.searshc.mygarage.util.VGUtils;
+
 import java.util.Date;
 
 @Service
@@ -259,6 +258,16 @@ public class NcdbServiceImpl implements NcdbService {
             return -1;
         }
         return lastOrder.getStoreNumber();
+    }
+    
+    @Override
+    public List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber) {
+    	return this.ncdbApi.getVehicleByVINNumber(vinNumber);
+    }
+    
+    @Override
+    public List<VehicleGenericDescriptionDTO> getVehicleByLicensePlate(final String licensePlate) throws NCDBApiException {
+    	return this.ncdbApi.getVehicleByLicensePlate(licensePlate);
     }
 
 }
