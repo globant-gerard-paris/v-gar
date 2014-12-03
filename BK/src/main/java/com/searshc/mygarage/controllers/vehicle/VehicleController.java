@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
+import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
@@ -238,4 +239,17 @@ public class VehicleController {
     	return new ResponseEntity<VehicleTrend>(response, null, HttpStatus.OK);
     }       
 
+    @RequestMapping("/vin/{vinNumber}")
+    @ResponseBody
+    public ResponseEntity<List<VehicleGenericDescriptionDTO>> getVehiclesByVINNumber(@PathVariable("vinNumber") final String vinNumber) {
+    	List<VehicleGenericDescriptionDTO> response = this.ncdbService.getVehicleByVINNumber(vinNumber);
+    	return new ResponseEntity<List<VehicleGenericDescriptionDTO>>(response, null, HttpStatus.OK);
+    }
+    
+    @RequestMapping("/licenseplate/{licensePlate}")
+    @ResponseBody
+    public ResponseEntity<List<VehicleGenericDescriptionDTO>> getVehiclesByLicensePlate(@PathVariable("licensePlate") final String licensePlate) {
+    	List<VehicleGenericDescriptionDTO> response = this.ncdbService.getVehicleByLicensePlate(licensePlate);
+    	return new ResponseEntity<List<VehicleGenericDescriptionDTO>>(response, null, HttpStatus.OK);
+    }
 }
