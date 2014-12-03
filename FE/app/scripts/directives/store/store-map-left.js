@@ -10,7 +10,7 @@ angular.module('Directives').directive('storeMapLeft', function ($timeout, Store
             model: '='
         },
 
-        templateUrl: 'scripts/directives/views/store-map-left.html',
+        templateUrl: 'scripts/directives/views/store/store-map-left.html',
 
         link: function (scope, element /*, attributes*/) {
 

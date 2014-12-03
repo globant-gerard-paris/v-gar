@@ -43,10 +43,6 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
     @Column(name = "tangible_id", nullable = true)
     private Long tangibleId;
 
-    //TODO: change the String to another data type
-    @Column(name = "color")
-    private String color;
-
     @Column(name = "mileage", nullable = false)
     private int mileage;
 
@@ -62,7 +58,6 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
         this.vehicle = null;
         this.familyId = null;
         this.tangibleId = null;
-        this.color = "";
         this.mileage = 0;
         this.name = null;
     }
@@ -75,11 +70,10 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      * @param mileage: Optional
      * @param name: Optional
      */
-    public FamilyVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final String color, final int mileage, final String name) {
+    public FamilyVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final int mileage, final String name) {
         this.vehicle = Validate.notNull(vehicle, "The Vehicle cannot be null");
         this.familyId = familyId;
         this.tangibleId = tangibleId;
-        this.color = color;
         Validate.isTrue(mileage > 0, "The Mileage cannot be lower than 0");
         this.mileage = mileage;
         this.name = name;
@@ -128,20 +122,6 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
     }
 
     /**
-     * @return the color
-     */
-    public String getColor() {
-        return color;
-    }
-
-    /**
-     * @param color the color to set
-     */
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    /**
      * @return the mileage
      */
     public int getMileage() {
@@ -152,8 +132,8 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      * @param mileage the mileage to set
      */
     public void setMileage(int mileage) {
-        Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
-        this.mileage = mileage;
+    	Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
+    	this.mileage = mileage;
     }
 
     /**
@@ -189,8 +169,7 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
         return new HashCodeBuilder()
                 .append(this.vehicle)
                 .append(this.familyId)
-                .append(this.tangibleId)
-                .append(this.color).hashCode();
+                .append(this.tangibleId).hashCode();
     }
 
     @Override
@@ -208,7 +187,6 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
         return new EqualsBuilder()
                 .append(this.vehicle, rhs.vehicle)
                 .append(this.familyId, rhs.familyId)
-                .append(this.tangibleId, rhs.tangibleId)
-                .append(this.color, rhs.color).isEquals();
+                .append(this.tangibleId, rhs.tangibleId).isEquals();
     }
 }
