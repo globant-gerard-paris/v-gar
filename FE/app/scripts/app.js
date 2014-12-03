@@ -91,6 +91,14 @@ angular.module('virtualGarage', _mainModules)
             });
 
             routes.push({
+                name: '/car-profile2',
+                params: {
+                    templateUrl: 'scripts/car-profile/car-profile.html',
+                    controller: 'CarProfileCtrl2'
+                }
+            });
+
+            routes.push({
                 name: '/store-locator',
                 params: {
                     templateUrl: 'scripts/presentation-flow/views/store-locator.html',
