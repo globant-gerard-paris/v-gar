@@ -106,7 +106,7 @@ public class NcdbSywBatch {
 		JdbcBatchItemWriter<SYWNCDBMappingDTO> writer = new JdbcBatchItemWriter<SYWNCDBMappingDTO>();
 		writer.setItemSqlParameterSourceProvider(new BeanPropertyItemSqlParameterSourceProvider<SYWNCDBMappingDTO>());
 		writer.setDataSource(dataSourceApp);
-		writer.setSql("insert  into `sywrncdbidmapping_test`(`SywrId`,`NcdbId`) values (:SywrId, :NcdbId)");
+		writer.setSql("insert  into `sywrncdbidmapping`(`SywrId`,`NcdbId`) values (:SywrId, :NcdbId)");
 		return writer;
 	}
 
