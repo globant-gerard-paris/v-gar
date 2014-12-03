@@ -21,8 +21,9 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         RedirectSrv.redirectTo('/car-profile');
     };
 
-    $scope.redirectToFSC = function () {
-        RedirectSrv.redirectTo('/store-locator');
+    $scope.redirectToFSC = function (search) {
+        search = search ? '?zipcode='+search:'';
+        RedirectSrv.redirectTo('/store-locator'+search);
     };
 
     $scope.toggleAddCar = function () {

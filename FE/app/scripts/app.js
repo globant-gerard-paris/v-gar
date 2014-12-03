@@ -93,7 +93,7 @@ angular.module('virtualGarage', _mainModules)
             routes.push({
                 name: '/store-locator',
                 params: {
-                    templateUrl: 'scripts/presentation-flow/views/store-locator.html',
+                    templateUrl: 'scripts/store-locator/store-locator.html',
                     controller: 'StoreLocatorCtrl'
                 }
             });
