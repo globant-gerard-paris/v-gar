@@ -94,13 +94,38 @@ redirectToAddCar()
             <section class="col-xs-12 visible-xs">
                 <div class="btn-appointment"></div>
             </section>
-            <section class="col-xs-12 header-title">
+            <section class="col-xs-12 header-title" ng-if="model.store">
                 <h1 class="pull-left">Your service center <small>(<a ng-click="redirectToFSC()">Change your service center</a>)</small></h1>
             </section>
             <div class="clearfix"></div>
 
             <div class="col-xs-12 col-sm-7 dashboard-service-center">
-                <store model="model.store"></store>
+                <div ng-if="model.store">
+                    <store model="model.store"></store>
+                </div>
+
+                <div class="store-find-box margin-top-10"  ng-if="!model.store">
+                    <form name="storeLocatorSearch" novalidate>
+                        <div class="header-title">
+                            <div class="col-xs-12">
+                                <h1>Find a store</h1>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 store-find-desc">Enter your ZIP code or address to find a Sears Auto center near you.</div>
+                        <div class="col-xs-12">
+                            <div class="input-group vg-store-locator-input">
+                                <input type="text" class="form-control"  ng-model="model.address" value="{{model.address}}" ng-minlength="1" required
+                                       placeholder="Enter zip code" ng-disabled="model.searching">
+                                    <span class="input-group-btn">
+                                        <button class="btn find-store-btn" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
+                                                ng-click="redirectToFSC(model.address)">FIND MY STORE</button>
+                                    </span>
+                                <!--TODO improve it!-->
+                                <span ng-show="model.searching">(loading...)</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-5 dashboard-coupons"></div>
 
