@@ -12,7 +12,7 @@ import org.junit.Test;
 public class OrderTest {
 
     private final String ORDER_NUMBER = "132710172";
-    private final Double ODOMETER = 22222.0;
+    private final Integer ODOMETER = 22222;
 
     @Test
     public void createOrderHappyPath() {

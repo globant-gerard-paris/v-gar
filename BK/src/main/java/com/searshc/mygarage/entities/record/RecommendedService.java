@@ -1,26 +1,35 @@
 package com.searshc.mygarage.entities.record;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class RecommendedService extends NcdbServiceRecord {
 
-    private boolean valid;
+    private List<ServiceRecordItem> previousServiceRecordItems = new ArrayList<ServiceRecordItem>();
 
-    public RecommendedService(boolean valid, Order order, ServiceCenter serviceCenter) {
+    public RecommendedService() {
+    }
+
+    public RecommendedService(Order order, ServiceCenter serviceCenter) {
         super(order, serviceCenter);
-        this.valid = valid;
+    }
+
+    public void addPreviousServiceRecordItem(ServiceRecordItem item) {
+        this.getPreviousServiceRecordItems().add(item);
     }
 
     /**
-     * @return the valid
+     * @return the previousServiceRecordItems
      */
-    public boolean isValid() {
-        return valid;
+    public List<ServiceRecordItem> getPreviousServiceRecordItems() {
+        return previousServiceRecordItems;
     }
 
     /**
-     * @param valid the valid to set
+     * @param previousServiceRecordItems the previousServiceRecordItems to set
      */
-    public void setValid(boolean valid) {
-        this.valid = valid;
+    public void setPreviousServiceRecordItems(List<ServiceRecordItem> previousServiceRecordItems) {
+        this.previousServiceRecordItems = previousServiceRecordItems;
     }
 
 }
