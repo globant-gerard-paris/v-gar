@@ -1,0 +1,13 @@
+<div class="col-md-12">
+    <div class="service-history-img col-md-3">
+        <div class="service-history-icon"></div>
+    </div>
+    <div class="service-history-data col-md-9">
+        <div class="sh-data">{{service.serviceCenterStr}}</div>
+        <div class="sh-data-desc">{{service.serviceDesc}}</div>
+        <div class="row">
+            <div class="sh-data-mileage col-md-6">{{service.serviceMileage | number}}</div>
+            <div class="sh-date-small col-md-6">{{service.serviceDate | date:'MM/dd/yy'}}</div>
+        </div>
+    </div>
+</div>

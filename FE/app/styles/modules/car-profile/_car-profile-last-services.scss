@@ -1,9 +1,89 @@
 .car-profile-last-services{
-
-	background-color: #2b9ace;	
-
+  @extend %font-Roboto;
+  background-color: #2b9ace;
+  color: #ffffff;
+  font-weight: 400;
+  text-align: left;
 
 	//inner classes HERE
+  .last-service-top {
 
-
+    .last-service-title {
+      font-size: 30px;
+      color:  #ffffff;
+      font-weight: 400;
+    }
+  }
+  .btn-history {
+    color:  #91dcff;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  .service-history {
+    .service-history-img {
+      margin: 60px auto;
+      position: relative;
+      background-image: url(../resources/images/dashboard/NoCarThumbnail.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      padding:20px;
+      @include border-radius(12px);
+      border:1px solid #bbb;
+      width: 253px;
+      height: 119px;
+      .service-history-icon{
+        position: absolute;
+        background-image: url(../resources/images/car-profile/ServiceHistoryIcon.png);
+        height: 48px;
+        width: 53px;
+      }
+      .sh-data{
+        font-size: 18px;
+        font-weight: 400;
+      }
+      .sh-data-desc{
+        font-size: 14px;
+        font-weight: 400;
+      }
+      .sh-data-mileage{
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 23px;
+      }
+      .sh-date-small{
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+  }
+  .car-article {
+    .car-article-img {
+      margin: 60px auto;
+      position: relative;
+      background-image: url(../resources/images/dashboard/NoCarThumbnail.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      padding:20px;
+      @include border-radius(12px);
+      border:1px solid #bbb;
+      width: 321px;
+      height: 175px;
+    }
+    .car-article-title {
+      @extend .sh-data;
+    }
+    .car-article-desc {
+      @extend .sh-data-desc;
+    }
+    .car-article-url {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgb(255, 255, 255, 0.47);
+    }
+    .car-article-tag {
+      font-size: 12px;
+      font-weight: 400;
+      margin-top: 20px;
+    }
+  }
 }
