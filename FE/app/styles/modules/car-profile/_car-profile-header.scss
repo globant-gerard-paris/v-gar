@@ -1,6 +1,45 @@
 .car-profile-header{
 	height: 240px;
-	background-color: #ddd;
+	background-color: white;
+	font-family: Roboto;
 
-	//inner classes HERE
+	.car-card{
+		padding-left: 100px;
+		margin-left: 20px;
+
+		.car-card-year{
+			color: #555e6c;
+			font-size: 1.8em;
+			font-weight: 900;
+			line-height: 0.8em;
+		}
+
+		.car-card-brand{
+			color: #555e6c;
+			font-size: 3.6em;
+			font-weight: 900;
+			line-height: 0.8em;
+		}
+
+		.car-card-model{
+			color: #b0b4ba;
+			font-size: 2.0em;
+			font-weight: 900;
+			line-height: 0.8em;
+		}
+
+		.car-card-mileage-title{
+			display: none;
+		}
+
+		.car-card-mileage-data{
+			font-family: Roboto;
+			color: #555e6c;
+			font-size: 1.0em;
+			font-weight: 900;
+		}
+
+
+	}
+
 }
