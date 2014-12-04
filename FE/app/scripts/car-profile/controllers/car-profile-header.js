@@ -10,5 +10,5 @@ angular.module('PresentationFlow').controller('CarProfileHeaderCtrl', function (
     //MOCKK
     $timeout( function(){
         $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
-    },2000);
+    },0);
 });
