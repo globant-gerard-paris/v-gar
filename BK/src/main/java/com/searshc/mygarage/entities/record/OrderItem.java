@@ -1,7 +1,5 @@
 package com.searshc.mygarage.entities.record;
 
-import com.searshc.mygarage.util.ServiceRecordType;
-
 public class OrderItem {
 
     private String orderNumber;
@@ -15,8 +13,6 @@ public class OrderItem {
     private Double regularPrice;
     private Double pluPriceAmount;
     private Double itemCost;
-
-    private ServiceRecordType type;
 
     @Override
     public String toString() {
@@ -147,20 +143,6 @@ public class OrderItem {
      */
     public void setItemCost(Double itemCost) {
         this.itemCost = itemCost;
-    }
-
-    /**
-     * @return the type
-     */
-    public ServiceRecordType getType() {
-        return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(ServiceRecordType type) {
-        this.type = type;
     }
 
 }

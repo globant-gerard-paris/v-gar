@@ -41,7 +41,6 @@ import com.searshc.mygarage.repositories.RecordRepository;
 import com.searshc.mygarage.repositories.ServiceTranslationRepository;
 import com.searshc.mygarage.repositories.StoreRepository;
 import com.searshc.mygarage.repositories.SuggestedServiceRepository;
-import com.searshc.mygarage.util.ServiceRecordType;
 import com.searshc.mygarage.util.VGUtils;
 import java.util.Date;
 
@@ -128,7 +127,6 @@ public class NcdbServiceImpl implements NcdbService {
                 if (ordersMap.containsKey(orderItemResponse.getOrderNumber())) {
                     Order order = ordersMap.get(orderItemResponse.getOrderNumber());
                     OrderItem orderItem = this.mapper.map(orderItemResponse, OrderItem.class);
-                    orderItem.setType(ServiceRecordType.UNKNOWN);
                     order.addOrderItems(orderItem);
                     if (recordFilter != null) {
                         recordFilter.filter(order, orderItem);
@@ -168,13 +166,16 @@ public class NcdbServiceImpl implements NcdbService {
         RecommendedService recommendedService = null;
         Order lastOrder = this.getLastOrder(familyId, tangibleId);
         if (lastOrder != null) {
-            recommendedService = new RecommendedService(true, lastOrder, lastOrder.getServiceCenter());
+            recommendedService = new RecommendedService(lastOrder, lastOrder.getServiceCenter());
             for (OrderItem item : lastOrder.getOrderItems()) {
                 ServiceRecordItem sri = this.createServiceRecordItem(item);
-                if (sri != null
-                        && this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
-                        && this.checkIsNotRecommendedServiceBlocked(lastOrder, sri.getCode())) {
-                    recommendedService.addServiceRecordItem(sri);
+                if (sri != null) {
+                    if (this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
+                            && this.checkIsNotRecommendedServiceBlocked(lastOrder, sri.getCode())) {
+                        recommendedService.addServiceRecordItem(sri);
+                    } else {
+                        recommendedService.addPreviousServiceRecordItem(sri);
+                    }
                 }
             }
         }
@@ -198,7 +199,6 @@ public class NcdbServiceImpl implements NcdbService {
                 = this.suggestedServiceRepository.findBySku(item.getItemId());
         ServiceRecordItem sri = null;
         if (sgt != null) {
-            item.setType(ServiceRecordType.RECOMMENDED_SERVICE);
             sri = mapper.map(sgt, ServiceRecordItem.class);
             sri.setCode(item.getItemId());
         }
@@ -213,22 +213,15 @@ public class NcdbServiceImpl implements NcdbService {
             ServiceTranslation st
                     = serviceTranslationRepository.findByProductFlag(orderItem.getProductFlag());
             if (st != null) {
-                orderItem.setType(ServiceRecordType.REAL_SERVICE);
                 ServiceRecordItem sri = this.createServiceRecordItem(orderItem, st);
                 if (serviceRecordsMap.containsKey(order.getOrderNumber())) {
                     serviceRecordsMap.get(order.getOrderNumber())
                             .addServiceRecordItem(sri);
                 } else {
                     serviceRecordsMap.put(order.getOrderNumber(),
-                            this.createServiceRecord(order, sri));
+                            new NcdbServiceRecord(order, order.getServiceCenter(), sri));
                 }
             }
-        }
-
-        private NcdbServiceRecord createServiceRecord(Order order, ServiceRecordItem sri) {
-            NcdbServiceRecord nsr = new NcdbServiceRecord(order, order.getServiceCenter());
-            nsr.addServiceRecordItem(sri);
-            return nsr;
         }
 
         private ServiceRecordItem createServiceRecordItem(OrderItem orderItem, ServiceTranslation st) {
@@ -243,7 +236,7 @@ public class NcdbServiceImpl implements NcdbService {
     public int getHighestMileage(final Long familyId, final Long tangibleId)
             throws NCDBApiException {
         Order lastOrder = this.getLastOrder(familyId, tangibleId);
-        return lastOrder == null ? -1 : lastOrder.getOdometerAmount().intValue();
+        return lastOrder == null ? -1 : lastOrder.getOdometerAmount();
     }
 
     @Override
