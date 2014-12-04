@@ -9,16 +9,12 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
-import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.Step;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
-import org.springframework.batch.core.repository.JobExecutionAlreadyRunningException;
-import org.springframework.batch.core.repository.JobInstanceAlreadyCompleteException;
-import org.springframework.batch.core.repository.JobRestartException;
 import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider;
@@ -33,7 +29,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResourceLoader;
 import org.springframework.core.io.UrlResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -63,6 +59,9 @@ public class StoreBatch {
     public static final String DELIMITER_SEMI_COMMA = ";";
     
     private Job job;
+    
+    @Value("${stores.file.path}")
+    private String storeFilePath;
     
     @Autowired
     private JobLauncher jobLauncher;
@@ -112,7 +111,7 @@ public class StoreBatch {
     }
 
     private FlatFileItemReader<Store> setClassPathResource(final FlatFileItemReader<Store> reader) {
-        reader.setResource(new ClassPathResource("store-list.csv"));
+        reader.setResource(new FileSystemResourceLoader().getResource(storeFilePath));
         return reader;
     }
 

@@ -39,6 +39,7 @@ module.exports = function (grunt) {
                 'Attribute “ng-hide” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-href” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-if” not allowed on XHTML element “div” at this point.',
+                'Attribute “ng-if” not allowed on XHTML element “section” at this point.',
                 'Attribute “ng-include” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-init” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-keydown” not allowed on XHTML element “div” at this point.',

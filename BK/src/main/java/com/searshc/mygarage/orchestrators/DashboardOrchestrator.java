@@ -31,7 +31,6 @@ public class DashboardOrchestrator extends BaseOrchestrator{
 		}
 		return new StoreInfoAndFamilyVehiclesDTO(store, confirmedFamilyVehicles);
 	}
-	
 	   
     public Set<FamilyVehicle> getConfirmedFamilyVehicleWithUpdatedMileage(final long userId) {
     	this.userService.getItem(userId);

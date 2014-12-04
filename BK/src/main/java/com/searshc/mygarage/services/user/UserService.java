@@ -69,7 +69,6 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 
     public User processUserByToken(final String token){
     	Validate.notNull(token, "The token can't be null.");
-
 		Long sywId = SYWUtils.getSywId(token);
 		Validate.notNull(sywId, "The token " + token + " is not valid.");
 
@@ -79,10 +78,8 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 			Validate.notNull(userInfoByToken, "Not found user on SYW service with token: " + token);
 			Validate.notNull(userInfoByToken.getSywrMemberNumber(), "The user not have shopyourway member number: " + token);
 			user = toUser(userInfoByToken);
-			if (user.getFamilyId() == null) {
-				String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
-				user = assignFamilyId(user, familyId);
-			}
+			String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
+			user = assignFamilyId(user, familyId);
 			saveUser(user);
 		} else if (user.getFamilyId() == null) {
 			String familyId = ncdbLocal.getNcdbIdBySywMemberNumber(user.getSywrMemberNumber());
@@ -99,7 +96,6 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 		}
 		return user;
 	}
-
 
 	@Override
 	public User getItem(Long id) {
