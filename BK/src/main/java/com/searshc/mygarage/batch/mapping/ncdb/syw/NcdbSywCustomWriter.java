@@ -22,7 +22,7 @@ import com.searshc.mygarage.batch.mapping.ncdb.syw.dto.SYWNCDBMappingDTO;
 @Configuration
 public class NcdbSywCustomWriter implements ItemWriter<SYWNCDBMappingDTO> {
 	
-	Log log = LogFactory.getLog(NcdbSywCustomWriter.class);
+	private Log log = LogFactory.getLog(NcdbSywCustomWriter.class);
 	
 	@Autowired
 	private ItemWriter<SYWNCDBMappingDTO> writer;
@@ -34,6 +34,8 @@ public class NcdbSywCustomWriter implements ItemWriter<SYWNCDBMappingDTO> {
 				writer.write(usersMapping);
 			} catch (DuplicateKeyException e) {
 				log.debug("The user with NCDB_ID: "+userMapping.getNcdbId()+" & SWI_ID:"+userMapping.getSywrId()+" already exist.");
+			} catch (Exception e){
+				log.error("Error when try persist user mappings Jobs.", e);
 			}
 		}
 	}
