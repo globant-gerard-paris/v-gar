@@ -10,7 +10,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
             model: '='
         },
 
-        templateUrl: 'scripts/directives/views/store.html',
+        templateUrl: 'scripts/directives/views/store/store.html',
 
         link: function (scope, element/*, attributes*/) {
 

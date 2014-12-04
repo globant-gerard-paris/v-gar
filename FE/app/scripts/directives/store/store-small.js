@@ -1,7 +1,7 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('storeMapLeft', function ($timeout, StoreLocatorSrv, StringUtilSrv) {
+angular.module('Directives').directive('storeSmall', function ($timeout, StoreLocatorSrv, StringUtilSrv) {
     'use strict';
 
     return {
@@ -10,7 +10,7 @@ angular.module('Directives').directive('storeMapLeft', function ($timeout, Store
             model: '='
         },
 
-        templateUrl: 'scripts/directives/views/store-map-left.html',
+        templateUrl: 'scripts/directives/views/store/store-small.html',
 
         link: function (scope, element /*, attributes*/) {
 
