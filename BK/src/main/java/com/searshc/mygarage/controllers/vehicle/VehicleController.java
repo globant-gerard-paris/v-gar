@@ -39,6 +39,7 @@ import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.exceptions.VehicleTrendException;
 import com.searshc.mygarage.orchestrators.AddNewManualFamilyVehicleOrchestrator;
 import com.searshc.mygarage.orchestrators.DashboardOrchestrator;
+import com.searshc.mygarage.orchestrators.VehicleConfirmationOrchestrator;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
@@ -63,6 +64,7 @@ public class VehicleController {
 	private DashboardOrchestrator dashboardOrchestrator;
     private VehicleTrendService vehicleTrendService;
     private AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator;
+    private VehicleConfirmationOrchestrator vehicleConfirmationOrchestrator;
 
 	@Inject
 	public VehicleController(final NcdbService ncdbService,
@@ -73,7 +75,8 @@ public class VehicleController {
 			final UserService userService, final ObjectMapper objectMapper,
 			final DashboardOrchestrator dashboardOrchestrator,
 			final VehicleTrendService vehicleTrendService,
-			final AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator) {
+			final AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator,
+			final VehicleConfirmationOrchestrator vehicleConfirmationOrchestrator) {
 		this.ncdbService = notNull(ncdbService,
 				"The NCDB Service cannot be null");
 		this.recordService = notNull(recordService,
@@ -93,6 +96,8 @@ public class VehicleController {
 				"The Vehicle Trend Service cannot be null");	
 		this.addNewManualFamilyVehicleOrchestrator = notNull(addNewManualFamilyVehicleOrchestrator,
 				"The AddNewManualFamilyVehicleOrchestrator cannot be null");
+		this.vehicleConfirmationOrchestrator = notNull(vehicleConfirmationOrchestrator,
+				"The VehicleConfirmationOrchestrator cannot be null");
 	}
 
 	@RequestMapping(value = "/family/{familyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -171,18 +176,7 @@ public class VehicleController {
 	@ResponseBody
 	public ResponseEntity<Set<VehicleConfirmationDTO>> getVehiclesToConfirm(
 			@PathVariable("userId") long userId) throws NCDBApiException {
-		User user = this.userService.getItem(userId);
-		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> localVehicles = this.familyVehicleService
-				.getConfirmedFamilyVehiclesByUserId(user.getId());
-		result.addAll(this.familyVehicleService.convert(localVehicles, true));
-		if (user.getFamilyId() != null) {
-			List<FamilyVehicle> ncdbVehicles = this.ncdbService
-					.listVehicles(user.getFamilyId());
-			ncdbVehicles.removeAll(localVehicles);
-			result.addAll(this.familyVehicleService
-					.convert(ncdbVehicles, false));
-		}
+		Set<VehicleConfirmationDTO> result = this.vehicleConfirmationOrchestrator.getLocalAndNCDBVehiclesMixed(userId);
 		return new ResponseEntity<Set<VehicleConfirmationDTO>>(result, null,
 				HttpStatus.OK);
 	}
