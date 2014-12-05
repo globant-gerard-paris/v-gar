@@ -2,7 +2,17 @@
 	height: 240px;
 	background-color: white;
 	font-family: Roboto;
-	min-width: 1200px;
+	min-width: 1400px;
+
+	/* diagonal experiment
+	position: relative;
+	top: 20px;
+	z-index: 16;
+	transform: rotate(4deg);
+	.car-profile-header-inner{
+		transform: rotate(-4deg);
+	}
+	*/
 
 	.header-left{
 		position: relative;

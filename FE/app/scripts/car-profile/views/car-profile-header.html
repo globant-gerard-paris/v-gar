@@ -1,20 +1,22 @@
 <div class="car-profile-header" ng-controller="CarProfileHeaderCtrl">
-	<div class="header-left">
-		<div class="car-profile-picture"></div>
-		<car-card car="model.data.vehicle"></car-card>
-	</div>
-	<div class="header-center">
-		<service-alert model="model.data.vehicleStatus"></service-alert>
-	</div>
-	<div class="header-right">
-		<div class="recall-info">
-			<div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
-			<div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
-			<a href="">See more details</a>
+	<div class="car-profile-header-inner">
+		<div class="header-left">
+			<div class="car-profile-picture"></div>
+			<car-card car="model.data.vehicle"></car-card>
 		</div>
-		<div class="service-info">
-			<div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
-			<div class="summary"></div>
+		<div class="header-center">
+			<service-alert model="model.data.vehicleStatus"></service-alert>
+		</div>
+		<div class="header-right">
+			<div class="recall-info">
+				<div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
+				<div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
+				<a href="">See more details</a>
+			</div>
+			<div class="service-info">
+				<div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
+				<div class="summary"></div>
+			</div>
 		</div>
 	</div>
 </div>
