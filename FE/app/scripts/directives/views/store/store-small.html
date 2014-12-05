@@ -8,7 +8,7 @@
             <div class="store-address">{{model.address}} {{model.city}}</div>
             <div>{{model.state}}, {{model.zipCode}}</div>
             <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
-            <div class="store-change-service"><a href="#">Change your service center</a></div>
+            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
         </div>
         <div class="store-map-brand col-xs-12"><div>&nbsp;</div></div>
     </section>

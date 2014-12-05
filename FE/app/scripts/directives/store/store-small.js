@@ -1,7 +1,7 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('storeSmall', function () {
+angular.module('Directives').directive('storeSmall', function (RedirectSrv) {
     'use strict';
 
     return {
@@ -12,8 +12,11 @@ angular.module('Directives').directive('storeSmall', function () {
 
         templateUrl: 'scripts/directives/views/store/store-small.html',
 
-        link: function (/*scope, element , attributes*/) {
+        link: function (scope /*, element , attributes*/) {
 
+            scope.redirectToFindServiceCenter = function () {
+                RedirectSrv.redirectTo('/store-locator');
+            };
 
         }
     };
