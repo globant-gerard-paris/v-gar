@@ -1,5 +1,6 @@
 package com.searshc.mygarage.dtos.carprofile;
 
+import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceCenter;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import java.util.List;
@@ -14,7 +15,8 @@ public class CarProfileDTO {
     private VehicleStatusDTO vehicleStatus;
     private ServiceCenter serviceCenter;
     private RecallsInformationDTO recallsInformation;
-    private List<ServiceRecord> lastServiceHitory;
+    private RecommendedService recommendedService;
+    private List<ServiceRecord> lastServiceHistory;
 
     public CarProfileDTO() {
     }
@@ -80,17 +82,31 @@ public class CarProfileDTO {
     }
 
     /**
-     * @return the lastServiceHitory
+     * @return the recommendedService
      */
-    public List<ServiceRecord> getLastServiceHitory() {
-        return lastServiceHitory;
+    public RecommendedService getRecommendedService() {
+        return recommendedService;
     }
 
     /**
-     * @param lastServiceHitory the lastServiceHitory to set
+     * @param recommendedService the recommendedService to set
      */
-    public void setLastServiceHitory(List<ServiceRecord> lastServiceHitory) {
-        this.lastServiceHitory = lastServiceHitory;
+    public void setRecommendedService(RecommendedService recommendedService) {
+        this.recommendedService = recommendedService;
+    }
+
+    /**
+     * @return the lastServiceHistory
+     */
+    public List<ServiceRecord> getLastServiceHistory() {
+        return lastServiceHistory;
+    }
+
+    /**
+     * @param lastServiceHistory the lastServiceHistory to set
+     */
+    public void setLastServiceHistory(List<ServiceRecord> lastServiceHistory) {
+        this.lastServiceHistory = lastServiceHistory;
     }
 
 }

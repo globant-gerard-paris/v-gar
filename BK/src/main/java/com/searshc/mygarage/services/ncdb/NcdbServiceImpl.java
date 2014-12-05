@@ -168,13 +168,14 @@ public class NcdbServiceImpl implements NcdbService {
         if (lastOrder != null) {
             recommendedService = new RecommendedService(lastOrder, lastOrder.getServiceCenter());
             for (OrderItem item : lastOrder.getOrderItems()) {
-                ServiceRecordItem sri = this.createServiceRecordItem(item);
-                if (sri != null) {
-                    if (this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
-                            && this.checkIsNotRecommendedServiceBlocked(lastOrder, sri.getCode())) {
-                        recommendedService.addServiceRecordItem(sri);
-                    } else {
-                        recommendedService.addPreviousServiceRecordItem(sri);
+                ServiceRecordItem sri = this.createRecommendedServiceRecordItem(item);
+                if (sri != null && this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
+                        && this.checkIsNotRecommendedServiceBlocked(lastOrder, sri.getCode())) {
+                    recommendedService.addServiceRecordItem(sri);
+                } else {
+                    ServiceRecordItem prev = this.createNcdbServiceRecordItem(item);
+                    if (prev != null) {
+                        recommendedService.addPreviousServiceRecordItem(prev);
                     }
                 }
             }
@@ -194,7 +195,7 @@ public class NcdbServiceImpl implements NcdbService {
                         order.getFamilyIdNumber(), order.getTangibleIdNumber(), sku) == 0;
     }
 
-    private ServiceRecordItem createServiceRecordItem(OrderItem item) {
+    private ServiceRecordItem createRecommendedServiceRecordItem(OrderItem item) {
         SuggestedService sgt
                 = this.suggestedServiceRepository.findBySku(item.getItemId());
         ServiceRecordItem sri = null;
@@ -205,15 +206,24 @@ public class NcdbServiceImpl implements NcdbService {
         return sri;
     }
 
+    private ServiceRecordItem createNcdbServiceRecordItem(OrderItem orderItem) {
+        ServiceTranslation st
+                = serviceTranslationRepository.findByProductFlag(orderItem.getProductFlag());
+        ServiceRecordItem sri = null;
+        if (st != null) {
+            sri = mapper.map(st, ServiceRecordItem.class);
+            sri.setCode(String.valueOf(orderItem.getProductFlag()));
+        }
+        return sri;
+    }
+
     private class RecordFilter {
 
         Map<String, ServiceRecord> serviceRecordsMap = new HashMap<String, ServiceRecord>();
 
         public void filter(Order order, OrderItem orderItem) {
-            ServiceTranslation st
-                    = serviceTranslationRepository.findByProductFlag(orderItem.getProductFlag());
-            if (st != null) {
-                ServiceRecordItem sri = this.createServiceRecordItem(orderItem, st);
+            ServiceRecordItem sri = createNcdbServiceRecordItem(orderItem);
+            if (sri != null) {
                 if (serviceRecordsMap.containsKey(order.getOrderNumber())) {
                     serviceRecordsMap.get(order.getOrderNumber())
                             .addServiceRecordItem(sri);
@@ -223,13 +233,6 @@ public class NcdbServiceImpl implements NcdbService {
                 }
             }
         }
-
-        private ServiceRecordItem createServiceRecordItem(OrderItem orderItem, ServiceTranslation st) {
-            ServiceRecordItem sri = mapper.map(st, ServiceRecordItem.class);
-            sri.setCode(String.valueOf(orderItem.getProductFlag()));
-            return sri;
-        }
-
     }
 
     @Override
