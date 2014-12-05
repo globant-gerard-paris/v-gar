@@ -15,7 +15,17 @@
 			</div>
 			<div class="service-info">
 				<div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
-				<div class="summary"></div>
+				<div class="service-list">
+					<span class="item" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
+						{{srv.description | capitalize}}
+					</span>
+				</div>
+				<div class="prev-service">
+					Previous service: 
+					<span class="item" ng-repeat="srv in model.data.recommendedService.previousServiceRecordItems">
+						{{srv.description | capitalize}},
+					</span>
+				</div>
 			</div>
 		</div>
 	</div>

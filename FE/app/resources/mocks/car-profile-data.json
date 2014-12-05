@@ -35,7 +35,27 @@
       "serviceRecordItems":[
          {
             "code":"22833151000",
-            "description":"FOR TEST",
+            "description":"Wheel alignment",
+            "category":null
+         },
+         {
+            "code":"22833151000",
+            "description":"Oil Change",
+            "category":null
+         },
+         {
+            "code":"22833151000",
+            "description":"Suspension",
+            "category":null
+         },
+         {
+            "code":"22833151000",
+            "description":"TIRES",
+            "category":null
+         },
+         {
+            "code":"22833151000",
+            "description":"Engine/Drive Train",
             "category":null
          }
       ],
