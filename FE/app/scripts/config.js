@@ -6,7 +6,7 @@
 .constant("config", {
     "api": {
         "hosts": {
-            "BACKEND": "http://127.0.0.1:1234"
+            "BACKEND": "http://127.0.0.1:8080"
         }
     }
 })
