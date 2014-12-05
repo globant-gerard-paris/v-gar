@@ -13,8 +13,5 @@ angular.module('PresentationFlow').controller('CarProfileHeaderCtrl', function (
 		brakesMessage : 'Annual inspection approaching due'
 	};
 
-    //MOCKK
-    $timeout( function(){
-        $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
-    },0);
+
 });
