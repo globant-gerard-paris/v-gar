@@ -22,7 +22,7 @@ public class OrderTest {
         order.setOdometerAmount(ODOMETER);
 
         assertTrue(order.getOrderNumber().equalsIgnoreCase(ORDER_NUMBER));
-        assertTrue(order.getOdometerAmount().equals(ODOMETER));
+        assertTrue(order.getOdometerAmount() == (ODOMETER));
         assertTrue(order.getOrderItems().isEmpty());
     }
 
