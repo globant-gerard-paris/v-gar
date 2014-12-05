@@ -41,15 +41,15 @@
 	    top: -10px;
 	    background-position: center center;
 	   	&.btn-facebook{
-	        background-image: url(../resources/images/dashboard/shareicon_facebook.png);
+	        background-image: url($facebookDesktop);
 	    }
 
 	    &.btn-twitter{
-	        background-image: url(../resources/images/dashboard/shareicon_twitter.png);
+	        background-image: url($twitterDesktop);
 	    }
 
 	    &.btn-mail{
-	        background-image: url(../resources/images/dashboard/shareicon_mail.png);
+	        background-image: url($mailDesktop);
 	    }
 	}
 
@@ -300,15 +300,15 @@
 			margin-left: 4px;
 
 		   	&.btn-facebook{
-		        background-image: url(../resources/images/dashboard/shareicon_facebook_mobile.png);
+		        background-image: url($facebookMobile);
 		    }
 
 		    &.btn-twitter{
-		        background-image: url(../resources/images/dashboard/shareicon_twitter_mobile.png);
+		        background-image: url($twitterMobile);
 		    }
 
 		    &.btn-mail{
-		        background-image: url(../resources/images/dashboard/shareicon_mail_mobile.png);
+		        background-image: url($mailMobile);
 		    }
 		}		
 	}
