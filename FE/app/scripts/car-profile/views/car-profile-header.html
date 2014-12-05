@@ -6,6 +6,15 @@
 	<div class="header-center">
 		<service-alert model="model.data.vehicleStatus"></service-alert>
 	</div>
-	<div class="header-rigth">
+	<div class="header-right">
+		<div class="recall-info">
+			<div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
+			<div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
+			<a href="">See more details</a>
+		</div>
+		<div class="service-info">
+			<div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
+			<div class="summary"></div>
+		</div>
 	</div>
 </div>

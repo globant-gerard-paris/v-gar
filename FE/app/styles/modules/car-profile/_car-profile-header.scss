@@ -28,20 +28,20 @@
 
 			.car-card-year{
 				color: #555e6c;
-				font-size: 1.8em;
+				font-size: 2.0em;
 				line-height: 0.8em;
 			}
 
 			.car-card-brand{
 				color: #555e6c;
-				font-size: 3.6em;
+				font-size: 4.0em;
 				line-height: 0.8em;
 			}
 
 			.car-card-model{
 				color: #b0b4ba;
-				font-size: 2.0em;
-				line-height: 0.8em;
+				font-size: 2.8em;
+				line-height: 0.9em;
 			}
 
 			.car-card-mileage-title{
@@ -126,6 +126,42 @@
 				background-image: url(../resources/images/car-profile/brakes-bg.png);
 				background-position: 22px 15px;
 				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	.header-right{
+		color:  #555e6c;
+		float: left;
+		width: 220px;
+		.recall-info{
+			padding-left:44px;
+			background-image: url(../resources/images/car-profile/recall.png);
+			background-repeat: no-repeat;
+			.count{
+				font-size: 1.2em;
+				font-weight: 900;
+			}
+			.summary,a{
+				font-size: 1.0em; 
+				font-weight: 400;
+			}
+			.summary{
+				height: 2.4em;
+				line-height: 1.2em;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+
+		.service-info{
+			margin-top: 10px;
+			padding-left:44px;
+			background-image: url(../resources/images/car-profile/RecommendedService.png);
+			background-repeat: no-repeat;
+			.count{
+				font-size: 1.2em;
+				font-weight: 900;
 			}
 		}
 	}
