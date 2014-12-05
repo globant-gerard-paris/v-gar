@@ -29,14 +29,17 @@
 }
 
 .store-box{
-    font-size: 2.4rem;
+    font-size: 1.7rem;
+    font-weight: 100;
 //    margin: 10px 0;
 
     .store-icon-big{
         background-image: url($locationBIG);
-        width: 47px;
-        height: 57px;
-        margin: 15px 10px 10px 10px;
+        background-size: 32px;
+        width: 38px;
+        height: 38px;
+        margin-left: 6px;
+        margin-top: 4px;
         background-repeat: no-repeat;
     }
     small{
@@ -48,12 +51,23 @@
 //    height: 200px;
 }
 .store-map-box{
-    min-height: 100%;
-    height: 100%;
-    padding: 0;
+    margin-top: 8px;
+    margin-left: -9px;
+
+    section {
+        min-height: 100%;
+        height: 100%;
+        padding: 0;    
+
+        &.store-hours-box{
+            margin-top: 10px;
+            padding-right: 5%;
+        }
+    }
 }
 .store-map-box .store-map {
-    height: 180px;
+    height: 210px;
+    width: 340px;
 }
 
 .margin-right-10{
@@ -64,7 +78,7 @@
 }
 
 .store-hours-box{
-    margin-top: 10px;
+
     @include bp(xs){
         margin-top: 40px;
     }

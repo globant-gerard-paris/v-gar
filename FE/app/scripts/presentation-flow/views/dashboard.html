@@ -54,7 +54,7 @@ redirectToAddCar()
                 <div class="visible-xs-block header-text" ng-show="model.cars">
                     <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
                 </div>
-                <div class="car-slick-carousel" slick slick-data="model.cars">
+                <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''" ng-click="toggleAddCar()">
                     <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>

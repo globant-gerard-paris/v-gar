@@ -72,7 +72,7 @@
 		background-repeat: no-repeat;
 		font-weight: bold;
 		padding:20px;
-		border:1px solid #bbb;
+		/* border:1px solid #bbb; */
 		@include border-radius(12px);
 		background-color: white;
 		width: 206px;
@@ -137,13 +137,28 @@
 		}
 	}
 
+
+
 	.car-card-slick-container{
 		// padding so car tag is visible
 		padding-bottom: 30px;
+		background-image: url(../resources/images/dashboard/car_card_shaddow.png);
+		background-position: center center;
+		background-size: 274px;
+		background-repeat: no-repeat;
 	}
 
 	.car-slick-carousel{
 		margin: 0 auto;
+
+		&.only-two {
+			.car-card-slick-container:nth-child(1) .car-card {
+				margin: 64px 20px 64px auto;
+			}
+			.car-card-slick-container:nth-child(2) .car-card {
+				margin: 64px auto 64px 20px;
+			}
+		}		
 	}
 
 	.dashboard-car-actions-bottom, .dashboard-car-actions-top, .dashboard-content-common-top{
@@ -228,11 +243,11 @@
 			}
 		}
 		.dashboard-car-actions-bottom{
-			bottom: 88px;
+			bottom: 58px;
 		}
 
 		.car-card{
-			margin: 102px auto;
+			margin: 102px auto 74px auto;
 			width: 180px;
 			height: 240px;
 			.car-card-mileage {
@@ -255,13 +270,17 @@
 
 		.header-text{
 			position: relative;
-			top: 92px;
+			top: 75px;
 			font-size: 0.9em;
 			text-align: center;
 			color: #888;
        		.header-text-name{
 	        	color:#555;
 	    	}
+		}
+
+		.dashboard-content-common-top {
+			top: 98px;
 		}
 
 		.mini-logo{
@@ -274,6 +293,24 @@
 			height: 40px;
 			background-repeat: no-repeat;
 		}
+
+		.btn-social{
+			width: 60px;
+			height: 58px;
+			margin-left: 4px;
+
+		   	&.btn-facebook{
+		        background-image: url(../resources/images/dashboard/shareicon_facebook_mobile.png);
+		    }
+
+		    &.btn-twitter{
+		        background-image: url(../resources/images/dashboard/shareicon_twitter_mobile.png);
+		    }
+
+		    &.btn-mail{
+		        background-image: url(../resources/images/dashboard/shareicon_mail_mobile.png);
+		    }
+		}		
 	}
 
 
@@ -332,6 +369,7 @@
 	    .header-text{
 	    	text-align: center;
 	        font-size:1.2em;
+	        font-weight: 100;
 	        margin-top: 1.9em;
 	        color:#888 !important;
 	       	.header-text-name{
@@ -355,6 +393,21 @@
                 width: 960px;
                 margin: 0 auto;
             }
+        }
+
+        .header-title {
+        	margin-top: 12px;
+			padding-left: 4px;
+
+			h1 {
+				font-size: 2.9rem;
+				font-weight: 200;
+
+				small {
+					color: inherit;
+					font-size: 0.5em;
+				}
+			}
         }
 
         .btn-appointment{
@@ -388,12 +441,13 @@
 
 		.dashboard-coupons{
 			background-repeat: no-repeat;
-			background-image: url(../resources/images/dashboard/coupons.jpg);
+			background-image: url(../resources/images/dashboard/coupons.png);
 			background-position: top center;
 			height: 211px;
 			min-width: 318px;
             @include bp(sm) {
-                margin-top: 82px;
+                margin-top: 56px;
+                background-position: top right;
             }
             @include bp(xs) {
                 margin-top: 22px;
@@ -406,15 +460,13 @@
 		.footer-btns{
 			margin-top: 40px;
 		}
-		.btn-social{
-			margin: 0;
-		}
 		text-align: center;
 		.dashboard-mobile-feedback{
 			display: inline-block;
-			background-image: url(../resources/images/dashboard/feedback_horiz.png);
-			height: 29px;
-			width: 93px;
+			background-image: url(../resources/images/dashboard/feedBack_mobile.png);
+			height: 86px;
+			width: 90px;
+			margin-top: 40px;
 		}
 	}
 
