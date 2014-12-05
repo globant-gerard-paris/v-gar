@@ -75,7 +75,21 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
                 return o2.getDate().compareTo(o1.getDate());
             }
         });
+
+        this.updateMileage(fv, result);
+
         return result;
+    }
+
+    private void updateMileage(FamilyVehicle fv, List<ServiceRecord> result) {
+        if (!result.isEmpty()) {
+            ServiceRecord sr = result.get(0);
+            if (sr.getDate().after(fv.getLastMileageUpdate())) {
+                fv.setMileage(sr.getMileage());
+                fv.setLastMileageUpdate(sr.getDate());
+                this.familyVehicleRepository.saveAndFlush(fv);
+            }
+        }
     }
 
     public RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
