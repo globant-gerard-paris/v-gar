@@ -9,6 +9,14 @@ public class RecallsInformationDTO {
     private int totalRecalls;
     private LastRecallDTO lastRecall;
 
+    public RecallsInformationDTO() {
+    }
+
+    public RecallsInformationDTO(int totalRecalls, LastRecallDTO lastRecall) {
+        this.totalRecalls = totalRecalls;
+        this.lastRecall = lastRecall;
+    }
+
     /**
      * @return the totalRecalls
      */

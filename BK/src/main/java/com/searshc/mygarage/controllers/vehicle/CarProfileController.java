@@ -27,13 +27,14 @@ public class CarProfileController {
         this.carProfileService = carProfileService;
     }
 
-    @RequestMapping(value = "/{familyVehicleId}", method = RequestMethod.GET,
+    @RequestMapping(value = "/user/{userId}/familyvehicle/{familyVehicleId}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<CarProfileDTO> getCarProfile(
-            @PathVariable("{familyVehicleId}") Long familyVehicleId) {
+            @PathVariable("userId") Long userId,
+            @PathVariable("familyVehicleId") Long familyVehicleId) {
 
-        CarProfileDTO carProfileDTO = this.carProfileService.getCarProfile(familyVehicleId);
+        CarProfileDTO carProfileDTO = this.carProfileService.getCarProfile(userId,familyVehicleId);
 
         return new ResponseEntity<CarProfileDTO>(carProfileDTO, null, HttpStatus.OK);
     }
