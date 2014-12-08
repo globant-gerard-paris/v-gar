@@ -31,7 +31,7 @@
       }
 
     }
-    .separator{
+    .separator {
       background-image: url("../resources/images/recalls_separator.png");
       background-repeat: no-repeat;
       height: 44px;
@@ -46,7 +46,7 @@
       background-color: white;
       padding-top: 17px;
       text-align: right !important;
-      position: relative;
+      position: relative !important;
       left: 50%;
     }
   }
@@ -73,6 +73,36 @@
   }
 }
 
+@include bp(sm) {
+  .recall-box {
+    .recalls-info {
+      .separator-header {
+        height: 50px;
+        font-size: 21px !important;
+        background-color: white;
+        padding-top: 17px;
+        text-align: right !important;
+        position: relative !important;
+        left: 50%;
+      }
+    }
+  }
+}
+
+@include bp(md) {
+  .recall-box {
+    .recalls-info {
+      .separator-header {
+        height: 50px;
+        font-size: 21px !important;
+        background-color: white;
+        padding-top: 17px;
+        text-align: right !important;
+        position: static !important;
+      }
+    }
+  }
+}
 
 @include bp(xs) {
   .recall-box {
