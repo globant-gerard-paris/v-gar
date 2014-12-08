@@ -16,6 +16,21 @@
     margin-bottom: 10px;
   }
 
+  .btn-add {
+    font-size: 0.9em;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 30px;
+    z-index: 20;
+    margin-bottom: 30px;
+    padding-top: 30px;
+    background-image: url(../resources/images/dashboard/add-car.png);
+    background-repeat: no-repeat;
+    background-position: center top;
+  }
   .last-service-top {
     margin-top: 40px;
     .btn-history {
@@ -73,10 +88,7 @@
       }
     }
   }
-
-  .articles {
-    margin-top: 30px;
-  }
+    
   .car-article {
     margin-top: 40px;
     .car-article-img {
