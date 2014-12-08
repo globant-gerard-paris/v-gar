@@ -5,75 +5,94 @@
   font-weight: 400;
   text-align: left;
 
-	//inner classes HERE
-  .last-service-top {
-
-    .last-service-title {
-      font-size: 30px;
-      color:  #ffffff;
-      font-weight: 400;
-    }
+  .section-title {
+    font-size: 30px;
+    color:  #ffffff;
+    font-weight: 400;
   }
-  .btn-history {
-    color:  #91dcff;
-    font-weight: 500;
-    font-size: 18px;
+  .section-desc {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .last-service-top {
+    margin-top: 40px;
+    .btn-history {
+      color:  #91dcff;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 45px;
+      left: -50px;
+    }
   }
   .service-history {
     .service-history-img {
-      margin: 60px auto;
+      margin: 10px 20px 20px 45px;
       position: relative;
-      background-image: url(../resources/images/car-profile/tellUsMoreIcon.png);
+      background-image: url(../resources/images/car-profile/shape.png);
       background-position: center center;
       background-repeat: no-repeat;
-      padding:20px;
-      @include border-radius(12px);
-      border:1px solid #bbb;
+      padding: 20px;
+      border: 1px solid #105cb6;
       width: 253px;
       height: 119px;
-      .service-history-icon{
+      .service-history-icon {
         position: absolute;
-        background-image: url(../resources/images/car-profile/ServiceHistoryIcon.png);
-        height: 48px;
-        width: 53px;
+        background-repeat: no-repeat;
+        height: 53px;
+        width: 48px;
+        float: left;
+        margin: 30px auto;
       }
+      .service-history-icon-private {
+        background-image: url(../resources/images/car-profile/ServiceHistoryIconPrivate.png);
+      }
+      .service-history-icon-non-private {
+        background-image: url(../resources/images/car-profile/ServiceHistoryIcon.png);
+      }
+    }
+    .service-history-data {
+      margin-top: 10px;
       .sh-data{
         font-size: 18px;
         font-weight: 400;
-      }
-      .sh-data-desc{
-        font-size: 14px;
-        font-weight: 400;
+        margin-bottom: 10px;
       }
       .sh-data-mileage{
         font-size: 18px;
         font-weight: 900;
-        line-height: 23px;
+        line-height: 16px;
+        float: left;
       }
       .sh-date-small{
         font-size: 14px;
         font-weight: 700;
+        float: left;
+        margin-left: 20px;
       }
     }
   }
+
+  .articles {
+    margin-top: 30px;
+  }
   .car-article {
+    margin-top: 40px;
     .car-article-img {
-      margin: 60px auto;
-      position: relative;
-      background-image: url(../resources/images/car-profile/tellUsMoreIcon.png);
+      margin: 10px 20px 20px 30px;
+      background-image: url(../resources/images/car-profile/shape.png);
       background-position: center center;
-      background-repeat: no-repeat;
-      padding:20px;
-      @include border-radius(12px);
-      border:1px solid #bbb;
+      //background-repeat: no-repeat;
+      padding: 20px;
+      border: 1px solid #105cb6;
       width: 321px;
       height: 175px;
     }
     .car-article-title {
-      @extend .sh-data;
-    }
-    .car-article-desc {
-      @extend .sh-data-desc;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
     }
     .car-article-url {
       font-size: 11px;

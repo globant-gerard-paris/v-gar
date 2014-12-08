@@ -3,7 +3,7 @@
 
 angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, $http) {
 
-    var mock = false;
+    var mock = true;
 
     var carsResultSuccess = function(response){
         $scope.model = {

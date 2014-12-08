@@ -1,13 +1,13 @@
-<div class="service-history">
-    <div class="service-history-img col-md-3">
-        <div class="service-history-icon"></div>
+<div class="service-history row">
+    <div class="service-history-img col-md-5">
+        <div class="service-history-icon" ng-class="iconPrivate ? 'service-history-icon-private' : 'service-history-icon-non-private'"></div>
     </div>
-    <div class="service-history-data col-md-9">
+    <div class="service-history-data col-md-7">
         <div class="sh-data">{{serviceCenterStr}}</div>
-        <div class="sh-data-desc">{{serviceDesc}}</div>
-        <div class="row">
-            <div class="sh-data-mileage col-md-6">{{serviceMileage | number}}</div>
-            <div class="sh-date-small col-md-6">{{serviceDate | date:'MM/dd/yy'}}</div>
+        <div class="section-desc">{{serviceDesc}}</div>
+        <div>
+            <div class="sh-data-mileage">{{serviceMileage | number}} Miles</div>
+            <div class="sh-date-small">{{serviceDate | date:'mediumDate'}}</div>
         </div>
     </div>
 </div>

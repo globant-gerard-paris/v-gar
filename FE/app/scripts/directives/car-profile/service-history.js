@@ -12,7 +12,8 @@ angular.module('Directives').directive('serviceHistory', function () {
             serviceDate: '=',
             serviceMileage: '=',
             serviceCenter: '=',
-            serviceRecords: '='
+            serviceRecords: '=',
+            iconPrivate: '='
         },
         link: function (scope) {
 

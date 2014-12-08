@@ -456,7 +456,10 @@ module.exports = function (grunt) {
                 'XHTML element “service-information” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “slick-data” not allowed on XHTML element “div” at this point.',
                 'XHTML element “store-small” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'Attribute “ng-if” not allowed on XHTML element “section” at this point.'
+                'Attribute “ng-if” not allowed on XHTML element “section” at this point.',
+				'XHTML element “service-alert” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+				'XHTML element “service-history” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+				'XHTML element “car-article” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });

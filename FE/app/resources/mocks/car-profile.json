@@ -17,7 +17,8 @@
                         "description":"Tire Rotation Service",
                         "category":"Tires"
                     }
-                ]
+                ],
+                "iconPrivate": true
             },
             {
                 "mileage":86276,
@@ -40,7 +41,8 @@
                         "description":"Tire Rotation Service",
                         "category":"Tires"
                     }
-                ]
+                ],
+                "iconPrivate": false
             }
         ],
     "article":
