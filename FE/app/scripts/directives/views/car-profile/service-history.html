@@ -1,6 +1,6 @@
 <div class="service-history row">
     <div class="service-history-img col-md-5">
-        <div class="service-history-icon" ng-class="iconPrivate ? 'service-history-icon-private' : 'service-history-icon-non-private'"></div>
+        <div class="service-history-icon" ng-class="serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'"></div>
     </div>
     <div class="service-history-data col-md-7">
         <div class="sh-data">{{serviceCenterStr}}</div>

@@ -1,20 +1,20 @@
 <div class="car-profile-last-services" ng-controller="CarProfileLastServicesCtrl">
     <section>
         <div class="btn-add">ADD RECENT SERVICE HISTORY</div>
-        <div class="row">
+        <div class="row" ng-show="model.services">
             <div class="last-service-top col-md-12">
                 <div class="section-title col-md-6">Your last service history</div>
                 <a href="/services">
                     <div class="btn-history col-xs-6 col-md-6">See all history</div>
                 </a>
             </div>
-           <service-history service-date="service.date" service-mileage="service.mileage" icon-private ="service.iconPrivate"
+           <service-history service-date="service.date" service-mileage="service.mileage" service-type="service.type"
                             service-center="service.serviceCenter" service-records="service.serviceRecordItems"
                             ng-repeat="service in model.services">
            </service-history>
         </div>
     </section>
-    <section>
+    <section class="section-article">
         <div class="articles col-md-12">
             <div class="section-title">Auto articles</div>
             <div class="section-desc">These articles are recomemended for you</div>

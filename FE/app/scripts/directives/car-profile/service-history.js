@@ -13,7 +13,7 @@ angular.module('Directives').directive('serviceHistory', function () {
             serviceMileage: '=',
             serviceCenter: '=',
             serviceRecords: '=',
-            iconPrivate: '='
+            serviceType: '='
         },
         link: function (scope) {
 

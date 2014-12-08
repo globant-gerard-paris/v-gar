@@ -22,8 +22,8 @@
     cursor: pointer;
     display: inline-block;
     position: relative;
-    left: 50%;
-    top: 30px;
+    left: 40%;
+    top: 20px;
     z-index: 20;
     margin-bottom: 30px;
     padding-top: 30px;
@@ -88,33 +88,32 @@
       }
     }
   }
-    
-  .car-article {
-    margin-top: 40px;
-    .car-article-img {
-      margin: 10px 20px 20px 30px;
-      background-image: url(../resources/images/car-profile/shape.png);
-      background-position: center center;
-      //background-repeat: no-repeat;
-      padding: 20px;
-      border: 1px solid #105cb6;
-      width: 321px;
-      height: 175px;
-    }
-    .car-article-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .car-article-url {
-      font-size: 11px;
-      font-weight: 400;
-      color: rgba(255, 255, 255, 0.47);
-    }
-    .car-article-tag {
-      font-size: 12px;
-      font-weight: 400;
-      margin-top: 20px;
+
+  .section-article {
+    height: 310px;
+
+    .car-article {
+      .car-article-img {
+        .car-article-media-object {
+          height: 200px;
+          margin-left: 15px;
+        }
+      }
+      .car-article-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .car-article-url {
+        font-size: 11px;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.47);
+      }
+      .car-article-tag {
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 20px;
+      }
     }
   }
 }
