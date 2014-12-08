@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,16 +28,26 @@ public class CarProfileController {
         this.carProfileService = carProfileService;
     }
 
-    @RequestMapping(value = "/user/{userId}/familyvehicle/{familyVehicleId}", method = RequestMethod.GET,
+    @RequestMapping(value = "/user/{userId}/familyvehicle/{familyVehicleId}",
+            method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<CarProfileDTO> getCarProfile(
             @PathVariable("userId") Long userId,
             @PathVariable("familyVehicleId") Long familyVehicleId) {
-
-        CarProfileDTO carProfileDTO = this.carProfileService.getCarProfile(userId,familyVehicleId);
-
+        CarProfileDTO carProfileDTO = this.carProfileService.getCarProfile(userId, familyVehicleId);
         return new ResponseEntity<CarProfileDTO>(carProfileDTO, null, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/familyvehicle/{familyVehicleId}/mileage",
+            method = RequestMethod.POST,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Object> updateMileage(
+            @PathVariable("familyVehicleId") Long familyVehicleId,
+            @RequestParam("mileage") int mileage) {
+        this.carProfileService.updateMileage(familyVehicleId, mileage);
+        return new ResponseEntity<Object>(null, null, HttpStatus.OK);
     }
 
 }

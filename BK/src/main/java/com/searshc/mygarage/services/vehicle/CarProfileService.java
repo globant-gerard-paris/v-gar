@@ -16,11 +16,13 @@ import com.searshc.mygarage.repositories.FamilyVehicleRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
+import java.util.Date;
 import java.util.List;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 /**
  *
@@ -30,6 +32,7 @@ import org.springframework.stereotype.Service;
 public class CarProfileService {
 
     private final Integer MAX_SERVICE_SERVICE_RESULT = 2;
+    private final String DEFAULT_VEHICLE_NAME = "My Car";
 
     private final Mapper mapper = new DozerBeanMapper();
     private FamilyVehicleRepository familyVehicleRepository;
@@ -72,6 +75,9 @@ public class CarProfileService {
     private VehicleDTO createVehicleDTO(FamilyVehicle familyVehicle) {
         VehicleDTO vehicle = this.mapper.map(familyVehicle.getVehicle(), VehicleDTO.class);
         this.mapper.map(familyVehicle, vehicle);
+        if (StringUtils.isEmpty(vehicle.getName())) {
+            vehicle.setName(DEFAULT_VEHICLE_NAME);
+        }
         return vehicle;
     }
 
@@ -115,6 +121,15 @@ public class CarProfileService {
     private RecommendedService createRecommendedService(FamilyVehicle familyVehicle) {
         return this.recordService.getRecommendedServices(familyVehicle.getFamilyId(),
                 familyVehicle.getTangibleId());
+    }
+
+    public void updateMileage(Long familyVehicleId, int mileage) {
+        FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
+        if (familyVehicle != null) {
+            familyVehicle.setMileage(mileage);
+            familyVehicle.setLastMileageUpdate(new Date());
+            this.familyVehicleRepository.saveAndFlush(familyVehicle);
+        }
     }
 
 }
