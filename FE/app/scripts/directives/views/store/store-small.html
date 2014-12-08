@@ -1,27 +1,16 @@
-<div style="background-color: #ffffff" class="row">
-    <section class="col-xs-12 col-sm-2 no-padding">
-        <div class="store-map" style="height: 200px; width: 100%"></div>
+<div class="row map-bg">
+    <section>
+        <h1>Your service center</h1>
     </section>
-
-    <section class="col-xs-12 col-sm-6 no-padding">
-        <div class="store-list-item row" style="border:0;background-color: #ffffff">
-            <div class="store-list-icon"></div>
-            <div class="store-list-info">
-                <div class="store-address">SMALL{{model.address}}</div>
-                <div>{{model.district_name}}, {{model.zip_code}}</div>
-                <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}">{{model.phone}}</a></div>
-            </div>
-            <div><button ng-click="setFavoriteStore()" type="button">SET AS MY STORE</button></div>
-            <div class="store-list-miles">{{model.distance | number:0}} Miles</div>
+    <section class="store-info">
+        <div class="store-icon-big pull-left col-xs-3"></div>
+        <div class="store-data pull-left col-xs-9">
+            <div class="store-address">{{model.address}} {{model.city}}</div>
+            <div>{{model.state}}, {{model.zipCode}}</div>
+            <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
         </div>
-    </section>
-
-    <section class="col-xs-8 col-sm-4 store-hours-box">
-        <div class="store-subtitle">Hours of Operations</div>
-        <ul class="list-unstyled">
-            <li ng-repeat="day in days track by day" ng-class="{bolder:currentDateIndex===$index}" class="clearfix">
-                <span class="pull-left">{{day}}</span><span class="pull-right">{{hours[$index]}}</span>
-            </li>
-        </ul>
+        <div class="store-map-brand col-xs-12"><div>&nbsp;</div></div>
     </section>
 </div>
+
