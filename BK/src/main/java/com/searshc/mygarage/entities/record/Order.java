@@ -14,7 +14,7 @@ public class Order {
     private Integer transactionNumber;
     private Date transactionDateTime;
     private String orderReferenceNumber;
-    private Double odometerAmount;
+    private int odometerAmount;
     private Double orderTotalAmount;
 
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
@@ -134,14 +134,14 @@ public class Order {
     /**
      * @return the odometerAmount
      */
-    public Double getOdometerAmount() {
+    public int getOdometerAmount() {
         return odometerAmount;
     }
 
     /**
      * @param odometerAmount the odometerAmount to set
      */
-    public void setOdometerAmount(Double odometerAmount) {
+    public void setOdometerAmount(int odometerAmount) {
         this.odometerAmount = odometerAmount;
     }
 
