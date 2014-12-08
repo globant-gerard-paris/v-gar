@@ -84,7 +84,8 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
     private void updateMileage(FamilyVehicle fv, List<ServiceRecord> result) {
         if (!result.isEmpty()) {
             ServiceRecord sr = result.get(0);
-            if (sr.getDate().after(fv.getLastMileageUpdate())) {
+            if (fv.getLastMileageUpdate() == null
+                    || sr.getDate().after(fv.getLastMileageUpdate())) {
                 fv.setMileage(sr.getMileage());
                 fv.setLastMileageUpdate(sr.getDate());
                 this.familyVehicleRepository.saveAndFlush(fv);

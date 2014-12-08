@@ -57,8 +57,16 @@ public class CarProfileService {
             carProfileDTO.setRecallsInformation(this.createRecallsInformationDTO(familyVehicle));
             carProfileDTO.setLastServiceHistory(this.getLastServiceRecord(familyVehicle));
             carProfileDTO.setRecommendedService(this.createRecommendedService(familyVehicle));
+            this.refreshMileage(familyVehicleId, carProfileDTO);
         }
         return carProfileDTO;
+    }
+
+    private void refreshMileage(Long familyVehicleId, CarProfileDTO carProfileDTO) {
+        FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
+        if (familyVehicle != null) {
+            carProfileDTO.getVehicle().setMileage(familyVehicle.getMileage());
+        }
     }
 
     private VehicleDTO createVehicleDTO(FamilyVehicle familyVehicle) {
