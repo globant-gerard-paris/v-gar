@@ -44,13 +44,17 @@ redirectToAddCar()
                 </div>
             </div>
             <div ng-hide="addCar" class="dashboard-content-common">
+                <div class="dashboard-content-common-top">
+                    <div class="dashboard-manage-cars">Click card for details</div>
+                </div>                
                 <div class="dashboard-car-actions-bottom">
-                    <div class="dashboard-manage-cars">Manage your cars</div>
+                    <a href="#" class="dashboard-manage-cars-edit"></a>
+                    <a href="#" class="dashboard-manage-cars-manage">Manage your cars</a>
                 </div>
                 <div class="visible-xs-block header-text" ng-show="model.cars">
                     <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
                 </div>
-                <div class="car-slick-carousel" slick slick-data="model.cars">
+                <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''" ng-click="toggleAddCar()">
                     <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>
@@ -94,13 +98,38 @@ redirectToAddCar()
             <section class="col-xs-12 visible-xs">
                 <div class="btn-appointment"></div>
             </section>
-            <section class="col-xs-12 header-title">
+            <section class="col-xs-12 header-title" ng-if="model.store">
                 <h1 class="pull-left">Your service center <small>(<a ng-click="redirectToFSC()">Change your service center</a>)</small></h1>
             </section>
             <div class="clearfix"></div>
 
             <div class="col-xs-12 col-sm-7 dashboard-service-center">
-                <store model="model.store"></store>
+                <div ng-if="model.store">
+                    <store model="model.store"></store>
+                </div>
+
+                <div class="store-find-box margin-top-10"  ng-if="!model.store">
+                    <form name="storeLocatorSearch" novalidate>
+                        <div class="header-title">
+                            <div class="col-xs-12">
+                                <h1>Find a store</h1>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 store-find-desc">Enter your ZIP code or address to find a Sears Auto center near you.</div>
+                        <div class="col-xs-12">
+                            <div class="input-group vg-store-locator-input">
+                                <input type="text" class="form-control"  ng-model="model.address" value="{{model.address}}" ng-minlength="1" required
+                                       placeholder="Enter zip code" ng-disabled="model.searching">
+                                    <span class="input-group-btn">
+                                        <button class="btn find-store-btn" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
+                                                ng-click="redirectToFSC(model.address)">FIND MY STORE</button>
+                                    </span>
+                                <!--TODO improve it!-->
+                                <span ng-show="model.searching">(loading...)</span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-5 dashboard-coupons"></div>
 
