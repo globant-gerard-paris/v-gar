@@ -4,10 +4,15 @@
 
 .page-title{
   color:#18abc5;
-  font-size:24px;
+  font-size:30px;
   font-weight: normal;
 }
 .recall-box{
+  .recall-row-header {
+    background-color: white;
+    text-align: right;
+    font-size: 20px;
+  }
   .recalls-info{
     position: relative;
     border-bottom: 1px solid #ddd;
@@ -27,19 +32,22 @@
 
     }
     .separator{
-      position: absolute;
-      bottom: -27px;
-      left: 0;
-      right: 0;
-      margin: 0 auto;
-      width: 100px;
-      height: 51px;
       background-image: url("../resources/images/recalls_separator.png");
       background-repeat: no-repeat;
-      .separator-number {
-        @extend %font-Roboto;
-        display: none;
-      }
+      height: 44px;
+      position: absolute;
+      bottom: -19px;
+      left: 45%;
+    }
+
+    .separator-header {
+      height: 50px;
+      font-size: 21px !important;
+      background-color: white;
+      padding-top: 17px;
+      text-align: right !important;
+      position: relative;
+      left: 50%;
     }
   }
 }
@@ -56,10 +64,12 @@
     font-size: 20px;
     color:#a7abb0;
   }
-  .selected{
-    background-color:#f4f4f4;
-    color:#505b6a;
+  .selected {
+    background-color: #ffffff;
     font-weight: bold;
+  }
+  .un-selected {
+    background-color:#f4f4f4;
   }
 }
 
@@ -70,7 +80,6 @@
       padding: 0;
       border-bottom: 0;
       .row {
-        width: 100%;
         .recall-info-title {
           color: #a7a8aa;
           font-weight: inherit !important;
@@ -86,22 +95,24 @@
         }
       }
       .separator {
+        position: static !important;
         background-color: #ffffff;
         margin-left: -15px;
         margin-right: -15px;
-        width: auto;
-        position: relative;
-        background-position: 15px 5px;
+        background-position: 24px 5px;
         background-size: 90px;
-        bottom: 0;
-        .separator-number {
-          font-size: 1.5em;
-          margin-left: 80%;
-          padding-top: 10px;
-          color: #A8ACAF;
-          display: block;
-        }
+        height: 50px;
       }
+
+      .separator-header {
+        height: 50px;
+        font-size: 21px !important;
+        background-color: white;
+        padding-top: 17px;
+        text-align: right !important;
+        position: static !important;
+      }
+
     }
   }
   .data-summary, .data-remedy, .data-notes {
@@ -122,6 +133,7 @@
   .page-buttons {
     .selected {
       background-color: #ffffff;
+      font-weight: bold;
     }
     .un-selected {
       background-color:#f4f4f4;
