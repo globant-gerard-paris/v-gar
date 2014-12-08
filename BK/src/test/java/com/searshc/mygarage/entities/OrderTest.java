@@ -12,7 +12,7 @@ import org.junit.Test;
 public class OrderTest {
 
     private final String ORDER_NUMBER = "132710172";
-    private final Double ODOMETER = 22222.0;
+    private final Integer ODOMETER = 22222;
 
     @Test
     public void createOrderHappyPath() {
@@ -22,7 +22,7 @@ public class OrderTest {
         order.setOdometerAmount(ODOMETER);
 
         assertTrue(order.getOrderNumber().equalsIgnoreCase(ORDER_NUMBER));
-        assertTrue(order.getOdometerAmount().equals(ODOMETER));
+        assertTrue(order.getOdometerAmount() == (ODOMETER));
         assertTrue(order.getOrderItems().isEmpty());
     }
 

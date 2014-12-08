@@ -9,15 +9,9 @@ public class ServiceCenter implements Serializable {
     private String city;
     private String state;
     private String zipCode;
+    private String phone;
 
     public ServiceCenter() {
-    }
-
-    public ServiceCenter(String sacStore, String address, String state, String zipCode) {
-        this.sacStore = sacStore;
-        this.address = address;
-        this.state = state;
-        this.zipCode = zipCode;
     }
 
     /**
@@ -88,6 +82,20 @@ public class ServiceCenter implements Serializable {
      */
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
 }
