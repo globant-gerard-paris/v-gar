@@ -5,6 +5,7 @@ import com.searshc.mygarage.entities.FamilyVehicle;
 import java.util.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -25,7 +26,7 @@ public class Record extends AbstractEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private FamilyVehicle familyVehicle;
 
-    private double mileage;
+    private int mileage;
 
     private String source;
 
@@ -43,9 +44,10 @@ public class Record extends AbstractEntity {
     /**
      * A technical detail of what was done to the car.
      */
+    @Column(columnDefinition = "text")
     private String comment;
 
-    public Record() {
+    public Record() {        
         this.familyVehicle = null;
     }
 
@@ -57,7 +59,7 @@ public class Record extends AbstractEntity {
      * @param date
      * @param comment
      */
-    public Record(FamilyVehicle familyVehicle, double mileage, String source,
+    public Record(FamilyVehicle familyVehicle, int mileage, String source,
             SuggestedService suggestedService, Date date, String comment) {
         super();
         this.familyVehicle = familyVehicle;
@@ -85,14 +87,14 @@ public class Record extends AbstractEntity {
     /**
      * @return the mileage
      */
-    public double getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
     /**
      * @param mileage the mileage to set
      */
-    public void setMileage(double mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 

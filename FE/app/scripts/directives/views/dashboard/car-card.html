@@ -1,7 +1,7 @@
 
 <div class="car-card-slick-container">
 	<div class="car-card">
-		<div class="car-edit-btn"></div>
+		<!--div class="car-edit-btn"></div-->
 
 	    <div class="car-card-year">{{car.year || car.vehicle.year}}</div>
 	    <div class="car-card-brand">{{car.make || car.vehicle.make | capitalize}}</div>
@@ -12,6 +12,6 @@
 	    	<div class="car-card-mileage-data">{{car.mileage | number}} Miles</div>
 	    </div>
 
-	    <div ng-show="car.name" class="car-card-tag">{{car.name}}</div>
+	    <div ng-show="car.vehicle.make" class="car-card-tag">{{car.vehicle.make}}</div>
 	<div>
 </div>

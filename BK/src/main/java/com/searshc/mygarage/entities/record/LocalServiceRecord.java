@@ -1,22 +1,22 @@
 package com.searshc.mygarage.entities.record;
 
+import com.searshc.mygarage.util.ServiceRecordType;
 import java.util.Date;
 
 public class LocalServiceRecord extends ServiceRecord {
 
-	private Long id;
-    private String service;
+    private Long id;
+    private String source;
 
     public LocalServiceRecord() {
+        this.type = ServiceRecordType.LOCAL_SERVICE;
     }
 
-    public LocalServiceRecord(Long id, String service, Double mileage, Date date, ServiceCenter serviceCenter) {
-        super(mileage, date, serviceCenter);
-        ServiceRecordItem item = new ServiceRecordItem();
-        item.setDescription(service);
-        this.addServiceRecordItem(item);
+    public LocalServiceRecord(Long id, String source, int mileage, Date date,
+            ServiceRecordItem serviceRecordItem) {
+        super(mileage, date, ServiceRecordType.LOCAL_SERVICE, serviceRecordItem);
         this.id = id;
-        this.service = service;
+        this.source = source;
     }
 
     /**
@@ -32,19 +32,19 @@ public class LocalServiceRecord extends ServiceRecord {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     /**
-     * @return the service
+     * @return the source
      */
-    public String getService() {
-        return service;
+    public String getSource() {
+        return source;
     }
 
     /**
-     * @param service the service to set
+     * @param source the source to set
      */
-    public void setService(String service) {
-        this.service = service;
-    }    
+    public void setSource(String source) {
+        this.source = source;
+    }
 
 }

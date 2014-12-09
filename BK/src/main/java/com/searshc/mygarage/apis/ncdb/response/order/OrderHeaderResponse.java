@@ -41,7 +41,7 @@ public class OrderHeaderResponse {
     private String orderReferenceNumber;
 
     @XmlElement(name = "odm_am")
-    private Double odometerAmount;
+    private Integer odometerAmount;
 
     @XmlElement(name = "ord_ori_cd")
     private String orderOriginationCode;
@@ -201,14 +201,14 @@ public class OrderHeaderResponse {
     /**
      * @return the odometerAmount
      */
-    public Double getOdometerAmount() {
+    public Integer getOdometerAmount() {
         return odometerAmount;
     }
 
     /**
      * @param odometerAmount the odometerAmount to set
      */
-    public void setOdometerAmount(Double odometerAmount) {
+    public void setOdometerAmount(Integer odometerAmount) {
         this.odometerAmount = odometerAmount;
     }
 
