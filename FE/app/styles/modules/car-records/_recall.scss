@@ -6,8 +6,18 @@
   color:#18abc5;
   font-size:30px;
   font-weight: normal;
+  margin: 0 auto;
+  max-width: 1200px;
 }
+
+.title-car-records {
+  margin-bottom: 20px;
+}
+
 .recall-box{
+
+   max-width: 1200px;
+   margin: 0 auto;
   .recall-row-header {
     background-color: white;
     text-align: right;
@@ -53,7 +63,9 @@
   }
 }
 .page-buttons{
-  margin-top:20px;
+  margin-top: 20px;
+  margin: 0 auto;
+  max-width: 1200px;
   .no-border-right{
     border-right: none !important;
   }
