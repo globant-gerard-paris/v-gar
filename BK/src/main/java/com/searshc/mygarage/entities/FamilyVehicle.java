@@ -1,6 +1,7 @@
 package com.searshc.mygarage.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,6 +55,8 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      */
     @Column(name = "name")
     private String name;
+
+    private Date lastMileageUpdate;
 
     public FamilyVehicle() {
         this.vehicle = null;
@@ -149,8 +152,8 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      * @param mileage the mileage to set
      */
     public void setMileage(int mileage) {
-    	Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
-    	this.mileage = mileage;
+        Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
+        this.mileage = mileage;
     }
 
     /**
@@ -167,10 +170,24 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
         this.name = name;
     }
 
+    /**
+     * @return the lastMileageUpdate
+     */
+    public Date getLastMileageUpdate() {
+        return lastMileageUpdate;
+    }
+
+    /**
+     * @param lastMileageUpdate the lastMileageUpdate to set
+     */
+    public void setLastMileageUpdate(Date lastMileageUpdate) {
+        this.lastMileageUpdate = lastMileageUpdate;
+    }
+
     @Override
     public int hashCode() {
         return new HashCodeBuilder()
-        		.append(this.vehicle)
+                .append(this.vehicle)
                 .append(this.familyId)
                 .append(this.tangibleId)
                 .append(this.color).hashCode();

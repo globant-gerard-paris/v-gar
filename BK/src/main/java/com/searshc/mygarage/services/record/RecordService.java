@@ -10,7 +10,7 @@ import com.searshc.mygarage.entities.record.LocalServiceRecord;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.entities.record.Record;
-import com.searshc.mygarage.entities.record.ServiceCenter;
+import com.searshc.mygarage.entities.record.ServiceRecordItem;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.SuggestedServiceNotFoundException;
@@ -49,8 +49,17 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         repository.deleteRecord(recordId);
     }
 
-    public List<ServiceRecord> getServiceRecords(final Long familyVehicleId) throws NCDBApiException {
+    private LocalServiceRecord createLocalServiceRecord(Record record) {
+        ServiceRecordItem sri = new ServiceRecordItem();
+        if (record.getSuggestedService() != null) {
+            sri.setCode(record.getSuggestedService().getSku());
+            sri.setDescription(record.getSuggestedService().getDescription());
+        }
+        return new LocalServiceRecord(record.getId(), record.getSource(),
+                record.getMileage(), record.getDate(), sri);
+    }
 
+    public List<ServiceRecord> getServiceRecords(final Long familyVehicleId) throws NCDBApiException {
         List<ServiceRecord> result = new ArrayList<ServiceRecord>();
         FamilyVehicle fv = this.familyVehicleRepository.findOne(familyVehicleId);
         if (fv != null && fv.getFamilyId() != null && fv.getTangibleId() != null) {
@@ -58,13 +67,8 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
         }
         List<Record> records = repository.getRecordsByFamilyVehicleId(familyVehicleId);
         for (Record record : records) {
-            String service = record.getSuggestedService() == null ? null : record.getSuggestedService().getDescription();
-            ServiceCenter serviceCenter = new ServiceCenter();
-            serviceCenter.setAddress(record.getSource());
-            LocalServiceRecord lsr = new LocalServiceRecord(record.getId(), service, record.getMileage(), record.getDate(), serviceCenter);
-            result.add(lsr);
+            result.add(this.createLocalServiceRecord(record));
         }
-
         Collections.sort(result, new Comparator<ServiceRecord>() {
             @Override
             public int compare(ServiceRecord o1, ServiceRecord o2) {
@@ -72,7 +76,21 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
             }
         });
 
+        this.updateMileage(fv, result);
+
         return result;
+    }
+
+    private void updateMileage(FamilyVehicle fv, List<ServiceRecord> result) {
+        if (!result.isEmpty()) {
+            ServiceRecord sr = result.get(0);
+            if (fv.getLastMileageUpdate() == null
+                    || sr.getDate().after(fv.getLastMileageUpdate())) {
+                fv.setMileage(sr.getMileage());
+                fv.setLastMileageUpdate(sr.getDate());
+                this.familyVehicleRepository.saveAndFlush(fv);
+            }
+        }
     }
 
     public RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
