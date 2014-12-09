@@ -86,7 +86,7 @@ angular.module('Directives').directive('store', function ($timeout, StoreLocator
                         position: storePosition,
                         map: _map,
                         title: scope.model.address,
-                        icon: '../resources/images/store-locator/searsauto.jpg'
+                        icon: '../resources/images/store-locator/sears.png'
                     });
 
                     scope.map = _map;

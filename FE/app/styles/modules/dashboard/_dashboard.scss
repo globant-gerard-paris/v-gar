@@ -149,16 +149,7 @@
 	}
 
 	.car-slick-carousel{
-		margin: 0 auto;
-
-		&.only-two {
-			.car-card-slick-container:nth-child(1) .car-card {
-				margin: 64px 20px 64px auto;
-			}
-			.car-card-slick-container:nth-child(2) .car-card {
-				margin: 64px auto 64px 20px;
-			}
-		}		
+		margin: 0 auto;	
 	}
 
 	.dashboard-car-actions-bottom, .dashboard-car-actions-top, .dashboard-content-common-top{
@@ -225,6 +216,22 @@
 	@include bp(sm){
 		.car-slick-carousel{
 			width: 512px;
+
+			&.only-two {
+				.car-card-slick-container:nth-child(1) {
+					background-position: right center;
+
+					.car-card {
+						margin: 64px 20px 64px auto;
+					}
+				}
+				.car-card-slick-container:nth-child(2)  {
+					background-position: left center;
+					.car-card {
+						margin: 64px auto 64px 20px;
+					}
+				}
+			}	
 		}
 	}
 
@@ -451,6 +458,7 @@
             }
             @include bp(xs) {
                 margin-top: 22px;
+                background-size: 90%;
             }
 
 		}
