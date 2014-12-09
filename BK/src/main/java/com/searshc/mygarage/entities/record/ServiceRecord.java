@@ -1,24 +1,30 @@
 package com.searshc.mygarage.entities.record;
 
+import com.searshc.mygarage.util.ServiceRecordType;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public abstract class ServiceRecord {
 
-    protected Double mileage;
+    protected int mileage;
     protected Date date;
-    protected ServiceCenter serviceCenter;
+    protected ServiceRecordType type;
 
-    private List<ServiceRecordItem> serviceRecordItems = new ArrayList<ServiceRecordItem>();
+    protected List<ServiceRecordItem> serviceRecordItems = new ArrayList<ServiceRecordItem>();
 
     public ServiceRecord() {
     }
 
-    public ServiceRecord(Double mileage, Date date, ServiceCenter serviceCenter) {
+    public ServiceRecord(int mileage, Date date, ServiceRecordType type) {
         this.mileage = mileage;
         this.date = date;
-        this.serviceCenter = serviceCenter;
+        this.type = type;
+    }
+
+    public ServiceRecord(int mileage, Date date, ServiceRecordType type, ServiceRecordItem serviceRecordItem) {
+        this(mileage, date, type);
+        this.serviceRecordItems.add(serviceRecordItem);
     }
 
     public void addServiceRecordItem(ServiceRecordItem item) {
@@ -28,14 +34,14 @@ public abstract class ServiceRecord {
     /**
      * @return the mileage
      */
-    public Double getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
     /**
      * @param mileage the mileage to set
      */
-    public void setMileage(Double mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 
@@ -54,20 +60,6 @@ public abstract class ServiceRecord {
     }
 
     /**
-     * @return the serviceCenter
-     */
-    public ServiceCenter getServiceCenter() {
-        return serviceCenter;
-    }
-
-    /**
-     * @param serviceCenter the serviceCenter to set
-     */
-    public void setServiceCenter(ServiceCenter serviceCenter) {
-        this.serviceCenter = serviceCenter;
-    }
-
-    /**
      * @return the serviceRecordItems
      */
     public List<ServiceRecordItem> getServiceRecordItems() {
@@ -79,6 +71,20 @@ public abstract class ServiceRecord {
      */
     public void setServiceRecordItems(List<ServiceRecordItem> serviceRecordItems) {
         this.serviceRecordItems = serviceRecordItems;
+    }
+
+    /**
+     * @return the type
+     */
+    public ServiceRecordType getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(ServiceRecordType type) {
+        this.type = type;
     }
 
 }
