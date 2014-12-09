@@ -69,6 +69,20 @@
 				margin-top: 6px;
 				background-image: url(../resources/images/car-profile/carIconMillage.png);
 				background-repeat: no-repeat;
+
+				input{
+					width:120px;
+					border:1px solid grey;
+					display: inline;
+				}
+			}
+
+			.car-card-mileage-change{
+				color: #2b9ace;
+				font-size: 0.8em;
+				font-weight: 700;
+				margin-left:5px;
+				cursor: pointer;
 			}
 
 			.car-card-tag{

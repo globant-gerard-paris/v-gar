@@ -44,13 +44,17 @@ redirectToAddCar()
                 </div>
             </div>
             <div ng-hide="addCar" class="dashboard-content-common">
+                <div class="dashboard-content-common-top">
+                    <div class="dashboard-manage-cars">Click card for details</div>
+                </div>                
                 <div class="dashboard-car-actions-bottom">
-                    <div class="dashboard-manage-cars">Manage your cars</div>
+                    <a href="#" class="dashboard-manage-cars-edit"></a>
+                    <a href="#" class="dashboard-manage-cars-manage">Manage your cars</a>
                 </div>
                 <div class="visible-xs-block header-text" ng-show="model.cars">
                     <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
                 </div>
-                <div class="car-slick-carousel" slick slick-data="model.cars">
+                <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''" ng-click="toggleAddCar()">
                     <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>
