@@ -10,8 +10,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
     $scope.model.vehicle = vehicleData ? vehicleData.vehicle : {};
 
     var carsResultSuccess = function(response){
-
-        $scope.model.services = response.data.lastServiceHistory || [];
+        $scope.model.services = response.data.lastServiceHistory;
     };
 
     var articleResultSuccess = function(response) {

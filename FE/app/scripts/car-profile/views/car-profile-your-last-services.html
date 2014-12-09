@@ -10,11 +10,8 @@
             </div>
             <div class="clearfix"></div>
             <div ng-show="model.services" class="col-xs-12">
-               <service-history service-date="service.date" service-mileage="service.mileage" service-type="service.type"
-                                    service-center="service.serviceCenter" service-records="service.serviceRecordItems"
-                                    ng-repeat="service in model.services">
-                   </service-history>
-                </div>
+               <service-history services="model.services"></service-history>
+            </div>
             <div class="clearfix"></div>
         </section>
         <section class="row section-article">
