@@ -5,7 +5,7 @@ angular.module('CarProfile').controller('CarProfileCtrl2', function ($scope, $ti
 
     $scope.model = {};
 
-    var mock = false;
+    var mock = true;
 
 	var carsResultSuccess = function(response){
 	    $scope.model.data = response.data;
