@@ -14,7 +14,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
 
     var articleResultSuccess = function(response) {
         $scope.model.article = response.data || false;
-    }
+    };
 
     var servicesResultFailed = function (response) {
         console.log('ERROR: ' + response);
