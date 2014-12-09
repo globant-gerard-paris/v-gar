@@ -53,6 +53,31 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 		return result;
 	}
 	
+	@Override
+	public void confirmVehicles(final Long userId, final List<VehicleConfirmationDTO> vehicleConfirmationDTOs) {
+		Validate.notNull(userId, "The userId cannot be null");
+		Validate.notNull(vehicleConfirmationDTOs, "The Vehicle Confirmation DTO's cannot be null");
+		User user = this.userService.getItem(userId);
+		int recordsDeleted = this.confirmedVehicleService.deleteConfirmedVehiclesByUserId(userId);
+		log.info(recordsDeleted + " ConfirmedVehicles records deleted for userId " + userId);
+		
+		List<VehicleConfirmationDTO> vehicleDtoList = this.confirmedVehicleService
+				.discardUnconfirmed(vehicleConfirmationDTOs);
+		log.debug(vehicleDtoList.size() + " vehicles to be confirmed");
+
+		Set<ConfirmedVehicle> confirmedVehicles = this.familyVehicleService
+				.convert(vehicleDtoList, user);
+		
+		Set<FamilyVehicle> newVehicles = this.confirmedVehicleService
+				.extractNoPersistedVehicles(confirmedVehicles);
+		if (newVehicles.size() > 0) {
+			this.familyVehicleService.saveAndFlush(newVehicles);
+		}
+		confirmedVehicles = this.confirmedVehicleService
+				.saveAndFlush(confirmedVehicles);
+		log.info(confirmedVehicles.size() + " vehicles were confirmed");
+	}
+	
 	/**
 	 * Classify and separates in 3 different lists the vehicles.
 	 * <br>The classification is based on:

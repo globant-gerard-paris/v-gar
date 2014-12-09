@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -184,32 +185,9 @@ public class VehicleController {
 	@RequestMapping(value = "/vehicles/confirm/user/{userId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> updateVehicleConfirmation(
-			@PathVariable("userId") Long userId, @RequestBody String jsonBody)
+			@PathVariable("userId") Long userId, @RequestBody List<VehicleConfirmationDTO> vehicleConfirmationDTOs)
 			throws IOException, UserNotFoundException {
-		VehicleConfirmationDTO[] vehicleConfirmationDTOs = objectMapper
-				.readValue(jsonBody, VehicleConfirmationDTO[].class);
-		User user = this.userService.getItem(userId);
-		if (user == null) {
-			throw new UserNotFoundException("User not found with id: " + userId);
-		}
-
-		int recordsDeleted = this.confirmedVehicleService
-				.deleteConfirmedVehiclesByUserId(userId);
-		log.info(recordsDeleted
-				+ " ConfirmedVehicles records deleted for userId " + userId);
-		List<VehicleConfirmationDTO> vehicleDtoList = this.confirmedVehicleService
-				.discardUnconfirmed(vehicleConfirmationDTOs);
-
-		Set<ConfirmedVehicle> confirmedVehicles = this.familyVehicleService
-				.convert(vehicleDtoList, user);
-		Set<FamilyVehicle> newVehicles = this.confirmedVehicleService
-				.extractNoPersistedVehicles(confirmedVehicles);
-		if (newVehicles.size() > 0) {
-			this.familyVehicleService.saveAndFlush(newVehicles);
-		}
-		confirmedVehicles = this.confirmedVehicleService
-				.saveAndFlush(confirmedVehicles);
-		log.info(confirmedVehicles.size() + " vehicles were confirmed");
+		this.vehicleConfirmationOrchestrator.confirmVehicles(userId, vehicleConfirmationDTOs);
 		return new ResponseEntity<Object>(null, null, HttpStatus.OK);
 	}
 

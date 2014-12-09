@@ -1,5 +1,6 @@
 package com.searshc.mygarage.orchestrators;
 
+import java.util.List;
 import java.util.Set;
 
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
@@ -13,4 +14,6 @@ public interface VehicleConfirmationOrchestrator {
 	 * @return a set of {@link VehicleConfirmationDTO}.
 	 */
 	Set<VehicleConfirmationDTO> getLocalAndNCDBVehiclesMixed(final Long userId);
+	
+	void confirmVehicles(final Long userId, final List<VehicleConfirmationDTO> vehicleConfirmationDTOs);
 }

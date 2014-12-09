@@ -41,7 +41,7 @@ public class ConfirmedVehicleService extends GenericService<ConfirmedVehicle, Lo
 
     
 
-    public List<VehicleConfirmationDTO> discardUnconfirmed(VehicleConfirmationDTO[] vehicleConfirmationDTOs) {
+    public List<VehicleConfirmationDTO> discardUnconfirmed(List<VehicleConfirmationDTO> vehicleConfirmationDTOs) {
         List<VehicleConfirmationDTO> result = new ArrayList<VehicleConfirmationDTO>();
         for (VehicleConfirmationDTO dto : vehicleConfirmationDTOs) {
             if (dto.isConfirmed()) {

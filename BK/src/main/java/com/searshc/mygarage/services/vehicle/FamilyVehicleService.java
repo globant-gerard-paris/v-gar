@@ -272,19 +272,26 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
                 continue;
             }
             if (dto.getVehicleId() != 0) {
-                try {
+                //The FamilyVehicle already exists in database
+            	try {
 					familyVehicle = this.getItem(dto.getVehicleId());
 				} catch (FamilyVehicleNotFoundException e) {
 					log.error(e);
 					continue;
 				}
             } else if (dto.getTangibleId() != null) {
-                familyVehicle = mapper.map(dto, FamilyVehicle.class);
-                Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
-                if (vehicle == null) {
-                    vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
-                }
-                familyVehicle.setVehicle(vehicle);
+                //Find if the FamilyVehicle was confirmed by another user (with same FamilyId)
+            	familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
+            	if(familyVehicle == null) {
+            		//The FamilyVehicle have not been confirmed previously
+            		familyVehicle = mapper.map(dto, FamilyVehicle.class);
+                    Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
+                    if (vehicle == null) {
+                        vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
+                    }
+                    familyVehicle.setVehicle(vehicle);
+            	}
+            	
             }
 
             if (familyVehicle == null || familyVehicle.getVehicle() == null) {
