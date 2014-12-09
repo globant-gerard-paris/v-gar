@@ -1,6 +1,20 @@
+
+
 .car-profile-last-services{
   margin-top: -10px;
+  padding-bottom: 200px;
 
+  //skew header
+  position: relative;
+  left: -68px;
+  z-index: 15;
+  transform: rotate(4.6deg);
+  .car-profile-last-services-inner{
+    transform: rotate(-4.6deg);
+    margin-left:36px;
+  }
+  
+  //skew end
 
   @extend %font-Roboto;
   background-color: #2b9ace;
