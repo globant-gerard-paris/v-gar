@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('recallInformation', function () {
+angular.module('Directives').directive('recallInformation', function (SessionDataSrv) {
     return {
         restrict: 'E',
         templateUrl: 'scripts/directives/views/recall-information.html',
@@ -16,8 +16,10 @@ angular.module('Directives').directive('recallInformation', function () {
             notes: '=',
             position: '='
         },
-        link: function () {
-
+        link: function (scope) {
+            scope.isMobileDevice = function(){
+                return SessionDataSrv.isMobileDevice();
+            };
         }
     };
 });

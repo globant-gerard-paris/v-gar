@@ -2,7 +2,7 @@
 
     <div class="row recall-row-header">
         <div class="separator col-xs-6 col-md-12"></div>
-        <div class="separator-header recall-info-title col-xs-6 col-md-12">{{recallDate  | date:'MM/dd/yyyy'}}</div>
+        <div ng-if="isMobileDevice()" class="separator-header recall-info-title col-xs-6 col-md-12">{{recallDate  | date:'MM/dd/yyyy'}}</div>
     </div>
 
     <div class="row recall-row">
@@ -14,6 +14,12 @@
         <div class="recall-info-title col-xs-6 col-md-2">Component</div>
         <div class="recall-info-data data-component col-xs-6 col-md-10">{{component}}</div>
     </div>
+
+    <div ng-if="!isMobileDevice()" class="row recall-row">
+        <div class="recall-info-title col-xs-6 col-md-2">DATE</div>
+        <div class="recall-info-data data-component col-xs-6 col-md-10">{{recallDate  | date:'MM/dd/yyyy'}}</div>
+    </div>
+
     <div class="row recall-row">
         <div class="recall-info-title title-summary col-xs-12 col-md-2">Summary</div>
         <div class="recall-info-data data-summary col-xs-12 col-md-10">{{summary}}</div>
