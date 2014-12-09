@@ -1,7 +1,12 @@
 .car-profile{
+
+	.header{
+		height: 272px;
+	}
 	padding: 0;
 	overflow-x: hidden;
 	height: 100%;
+
 	section{
 		padding:0;
 	}
@@ -10,12 +15,13 @@
 		position: relative;
 		background-color:#2b9ace;
 		z-index:10;
-		left:35px;
+		margin-top: 40px;
 	}
 
     .service-center{
         background-color: #555e6c;
-        height: 100%;
+        height: 1000px;
+        padding-right: 76px;
     }
 
 	margin-bottom: -80px;
