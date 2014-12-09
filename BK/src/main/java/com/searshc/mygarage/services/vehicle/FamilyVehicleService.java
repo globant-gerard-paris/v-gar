@@ -77,13 +77,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     	}
     	return familyVehicle;
     }
-    
-    public FamilyVehicle createAndSaveNewVehicle(final Long familyId, final Long tangibleId,
-            final String make, final String model, final int year, final String color, final int mileage) {
-        Vehicle vehicle = new Vehicle(year, make, model, null, null);
-        FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, familyId, tangibleId, null, mileage, null);
-        return super.save(familyVehicle);
-    }
 
     public List<FamilyVehicle> getFamilyVehiclesByFamilyId(final Long familyId) {
         return repository.getFamilyVehiclesByFamilyId(familyId);

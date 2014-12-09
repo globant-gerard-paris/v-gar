@@ -31,4 +31,13 @@ public class VehicleService extends GenericService<Vehicle, Long, VehicleReposit
 		}
 		return null;
 	}
+	
+	public Vehicle getVehicleByMakeModelAndYearOrCreateNewVehicle(final String make, final String model, final int year) {
+		Vehicle vehicle = this.getVehicleByMakeModelAndYear(make, model, year);
+		if(vehicle == null) {
+			vehicle = new Vehicle(year, make, model, null, null);
+			vehicle = this.repository.saveAndFlush(vehicle);
+		}
+		return vehicle;
+	}
 }

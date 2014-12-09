@@ -159,10 +159,21 @@ public class VehicleController {
 	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@RequestBody AddNewManualFamilyVehicleDTO data) {
 
 		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
-				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getColor(), data.getName());
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
 		return new ResponseEntity<FamilyVehicle>(familyVehicle, null,
 				HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Object> updateManualFamilyVehicle(@PathVariable("userId") final long userId,
+			@RequestBody VehicleGenericDescriptionDTO data) {
+
+		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
+	}
+	
 
 	@RequestMapping(value = "/{vehicleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FamilyVehicle> getAdditionalVehicleDetails(

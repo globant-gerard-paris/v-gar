@@ -7,7 +7,6 @@ public class AddNewManualFamilyVehicleDTO {
 	private String make;
 	private String model;
 	private int year;
-	private String color;
 	private double mileage;
 	private String name;
 	
@@ -25,7 +24,7 @@ public class AddNewManualFamilyVehicleDTO {
 	 * @param name
 	 */
 	public AddNewManualFamilyVehicleDTO(Long userId, Long vehicleId,
-			String make, String model, int year, String color, double mileage,
+			String make, String model, int year, double mileage,
 			String name) {
 		super();
 		this.userId = userId;
@@ -33,7 +32,6 @@ public class AddNewManualFamilyVehicleDTO {
 		this.make = make;
 		this.model = model;
 		this.year = year;
-		this.color = color;
 		this.mileage = mileage;
 		this.name = name;
 	}
@@ -108,20 +106,6 @@ public class AddNewManualFamilyVehicleDTO {
 	 */
 	public void setYear(int year) {
 		this.year = year;
-	}
-
-	/**
-	 * @return the color
-	 */
-	public String getColor() {
-		return color;
-	}
-
-	/**
-	 * @param color the color to set
-	 */
-	public void setColor(String color) {
-		this.color = color;
 	}
 
 	/**

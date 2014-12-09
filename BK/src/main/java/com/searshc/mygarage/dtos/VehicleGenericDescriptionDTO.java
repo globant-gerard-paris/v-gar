@@ -12,6 +12,10 @@ public class VehicleGenericDescriptionDTO {
 	
 	private int year;
 	
+	private long familyId;
+	
+	private long tangibleId;
+	
 	private String color;
 	
 	private String name;
@@ -35,6 +39,8 @@ public class VehicleGenericDescriptionDTO {
 	 * @param make
 	 * @param model
 	 * @param year
+	 * @param familyId
+	 * @param tangibleId
 	 * @param color
 	 * @param name
 	 * @param mileage
@@ -44,15 +50,18 @@ public class VehicleGenericDescriptionDTO {
 	 * @param licensePlatestate
 	 */
 	public VehicleGenericDescriptionDTO(long familyVehicleId, long vehicleId,
-			String make, String model, int year, String color, String name,
-			double mileage, String engine, String vinNumber,
-			String licensePlate, String licensePlatestate) {
+			String make, String model, int year, long familyId,
+			long tangibleId, String color, String name, double mileage,
+			String engine, String vinNumber, String licensePlate,
+			String licensePlatestate) {
 		super();
 		this.familyVehicleId = familyVehicleId;
 		this.vehicleId = vehicleId;
 		this.make = make;
 		this.model = model;
 		this.year = year;
+		this.familyId = familyId;
+		this.tangibleId = tangibleId;
 		this.color = color;
 		this.name = name;
 		this.mileage = mileage;
@@ -130,6 +139,34 @@ public class VehicleGenericDescriptionDTO {
 	 */
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	/**
+	 * @return the familyId
+	 */
+	public long getFamilyId() {
+		return familyId;
+	}
+
+	/**
+	 * @param familyId the familyId to set
+	 */
+	public void setFamilyId(long familyId) {
+		this.familyId = familyId;
+	}
+
+	/**
+	 * @return the tangibleId
+	 */
+	public long getTangibleId() {
+		return tangibleId;
+	}
+
+	/**
+	 * @param tangibleId the tangibleId to set
+	 */
+	public void setTangibleId(long tangibleId) {
+		this.tangibleId = tangibleId;
 	}
 
 	/**

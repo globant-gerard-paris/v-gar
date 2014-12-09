@@ -3,12 +3,20 @@ package com.searshc.mygarage.orchestrators;
 import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
+import java.util.Calendar;
+
+import org.apache.commons.lang3.Validate;
+import org.crsh.console.jline.internal.Log;
 import org.springframework.stereotype.Component;
+
+import scala.collection.mutable.StringBuilder;
 
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
+import com.searshc.mygarage.exceptions.CannotModifyLinkedVehicleException;
+import com.searshc.mygarage.exceptions.FamilyVehicleNotConfirmedByUserException;
 
 @Component
 public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator implements AddNewManualFamilyVehicleOrchestrator {
@@ -16,7 +24,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 
 	@Override
 	public FamilyVehicle addNewManualFamilyVehicle(final long userId, final long vehicleId, final String make,
-			final String model, final int year, final double mileage, final String color, final String name) {
+			final String model, final int year, final double mileage, final String name) {
 		isTrue(userId > 0, "The User Id must be greater than 0");
 		notNull(make, "The Make cannot be null");
 		notNull(model, "The Model cannot be null");
@@ -40,11 +48,50 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 		}
 		
 		
-		FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, user.getFamilyId(), null, color, mileage, name);
+		FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, user.getFamilyId(), null, mileage, name);
 		familyVehicle = this.familyVehicleService.save(familyVehicle);
 		
 		ConfirmedVehicle confirmedVehicle = new ConfirmedVehicle(user, familyVehicle);
 		this.confirmedVehicleService.save(confirmedVehicle);
 		return familyVehicle;
+	}
+	
+	@Override
+	public void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final double mileage, final String name) {
+		Validate.isTrue(familyVehicleId > 0, "The FamilyVehicleId must be greater than 0");
+		User user = this.userService.findByUserId(userId);
+		FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
+		
+		if(!this.confirmedVehicleService.isAConfirmedVehicleByTheUser(user, familyVehicle)) {
+			String msg = new StringBuilder("The FamilyVehicle with id: ")
+				.append(familyVehicleId).append(" is not confirmed by user with id: ").append(userId).toString();
+			Log.error(msg);
+			throw new FamilyVehicleNotConfirmedByUserException(msg);
+		}
+		
+
+		Vehicle vehicleDetails = familyVehicle.getVehicle();
+		if(!vehicleDetails.getModel().equalsIgnoreCase(model)
+				|| !vehicleDetails.getMake().equalsIgnoreCase(make)
+				|| vehicleDetails.getYear() != year) {
+			//The user has change the model, make, year or all of them
+			if(familyVehicle.getTangibleId() != null) {
+				String msg = new StringBuilder("Cannot Modify FamilyVehicle with id: ")
+				.append(familyVehicleId).append(" because is not a manual vehicle").toString();
+				Log.error(msg);
+				throw new CannotModifyLinkedVehicleException(msg);
+			}
+			
+			Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYearOrCreateNewVehicle(make, model, year);
+			familyVehicle.setVehicle(vehicle);
+		}
+
+		if(familyVehicle.getMileage() != mileage) {
+			familyVehicle.setMileage(mileage);
+			familyVehicle.setLastMileageUpdate(Calendar.getInstance().getTime());
+		}
+		
+		familyVehicle.setName(name);
+		this.familyVehicleService.saveAndFlush(familyVehicle);
 	}
 }
