@@ -52,7 +52,6 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
 
                     }
 
-
                 }
 
                 scope.model = {
