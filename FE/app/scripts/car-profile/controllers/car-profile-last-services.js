@@ -5,7 +5,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
 
     var mock = true;
 
-    $scope.model.vehicle = SessionDataSrv.getCurrentFamilyVehicle().vehicle;
+    //$scope.model.vehicle = SessionDataSrv.getCurrentFamilyVehicle().vehicle;
 
     var carsResultSuccess = function(response){
 

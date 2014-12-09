@@ -1,7 +1,7 @@
-.car-profile-store{
-    height: 100%;
-    margin-top: -25px;
-	background-color: #555d6a;
+.car-profile{
+//    height: 100%;
+//    margin-top: -25px;
+//    background-color: #555d6a;
 
     .map-bg{
         background-image: url($locationMapBg);
@@ -13,14 +13,14 @@
 
     //DUPLICATE
     .store-icon-big{
-         background-image: url($locationBIG);
-         width: 47px;
-         height: 57px;
-         margin: 15px 10px 10px 10px;
-         background-repeat: no-repeat;
-     }
+        background-image: url($locationBIG);
+        width: 47px;
+        height: 57px;
+        margin: 15px 10px 10px 10px;
+        background-repeat: no-repeat;
+    }
     .store-info{
-//        padding-left: 30px;
+        //        padding-left: 30px;
     }
     .store-data{
         padding-top: 20px;
