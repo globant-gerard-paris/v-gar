@@ -102,7 +102,7 @@
   .section-article {
     margin-top: 40px;
     .car-article {
-      .car-article-img {
+      .car-img {
         width: 100%;
         height: 100%;
       }
@@ -114,7 +114,7 @@
       .car-article-url {
         font-size: 11px;
         font-weight: 400;
-        color: rgba(255, 255, 255, 0.47);
+        color: #91dcff
       }
       .car-article-tag {
         font-size: 12px;
@@ -142,7 +142,11 @@
         }
         a {
           float: none;
+          margin-left: 0;
         }
+      }
+      .last-service-body {
+        margin-bottom: 30px;
       }
       .service-history {
         margin: 40px 25px auto 25px;
@@ -156,6 +160,31 @@
         }
         .sh-date-small {
           margin-left: 0;
+        }
+      }
+      .section-article {
+        .section-title {
+          text-align: center;
+          font-size: 36px;
+          font-weight: 700;
+        }
+        .section-desc {
+          text-align: center;
+          font-size: 18px;
+        }
+        .car-article {
+          width: 300px;
+          margin: auto;
+          .car-article-img {
+            text-align: center;
+          }
+          .car-article-title {
+            margin-top: 10px;
+          }
+          .car-article-url {
+            font-size: 18px;
+            font-weight: 700;
+          }
         }
       }
     }
