@@ -1,7 +1,7 @@
 /**
  *  The basic directive.
  */
-angular.module('Directives').directive('carTellUsMore', function ($timeout) {
+angular.module('Directives').directive('carTellUsMore', function () {
     'use strict';
 
     return {

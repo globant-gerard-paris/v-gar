@@ -18,13 +18,11 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
 
                 if(!scope.services){return;}
 
-                var r = [],
-                    l = scope.services.length,
-                    i = 0;
+                var r = [];
 
-                for(;i<l;i++){
-                    var service = scope.services[i],
-                        serviceCenter = service.serviceCenter,
+                _.each(scope.services, function(service){
+
+                    var serviceCenter = service.serviceCenter,
                         serviceCenterStr = '',
                         serviceDescArr = [];
 
@@ -51,7 +49,7 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
 
                     }
 
-                }
+                });
 
                 scope.model = {
                     services : r
