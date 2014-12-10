@@ -123,54 +123,6 @@
 	.header-center{
 		width: 500px;
 		float: left;
-		.service-alert{
-			width: 430px;
-			height: 136px;
-			background-image: url(../resources/images/car-profile/car-alerts-bg.png);
-			background-position: center center;
-			background-repeat: no-repeat;
-			&>div{
-				padding-top: 134px;
-				width: 33.3%;
-				height: 100%;
-				display: inline-block;
-				vertical-align: top;
-				text-align: center;
-			}
-
-			.title{
-				color: #555e6c;
-				font-size: 1.2em;
-				font-weight: 900;
-			}
-
-			.data{
-				display: block;
-				color: #b0b4ba;
-				font-size: 1.0em;
-				font-weight: 500;
-				line-height: 1.0em;
-			}
-
-			.service-alert-oil{
-				background-image: url(../resources/images/car-profile/oilchange-bg.png);
-				background-position: 47px 20px;
-				background-repeat: no-repeat;
-			}
-
-
-			.service-alert-tire{
-				background-image: url(../resources/images/car-profile/tirerotation-bg.png);
-				background-position: 16px 35px;
-				background-repeat: no-repeat;
-			}
-
-			.service-alert-brakes{
-				background-image: url(../resources/images/car-profile/brakes-bg.png);
-				background-position: 22px 15px;
-				background-repeat: no-repeat;
-			}
-		}
 	}
 
 	.header-right{
@@ -224,6 +176,63 @@
 
 	}
 
+}
+
+.service-alert{
+	font-family: Roboto;
+	width: 430px;
+	height: 136px;
+	background-image: url(../resources/images/car-profile/car-alerts-bg.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	&>div{
+		padding-top: 134px;
+		width: 33.3%;
+		height: 100%;
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+	}
+
+	.title{
+		color: #555e6c;
+		font-size: 1.2em;
+		font-weight: 900;
+	}
+
+	.data{
+		display: block;
+		color: #b0b4ba;
+		font-size: 1.0em;
+		font-weight: 500;
+		line-height: 1.0em;
+	}
+
+	.service-alert-oil{
+		background-image: url(../resources/images/car-profile/oilchange-bg.png);
+		background-position: 47px 20px;
+		background-repeat: no-repeat;
+	}
+
+
+	.service-alert-tire{
+		background-image: url(../resources/images/car-profile/tirerotation-bg.png);
+		background-position: 16px 35px;
+		background-repeat: no-repeat;
+	}
+
+	.service-alert-brakes{
+		background-image: url(../resources/images/car-profile/brakes-bg.png);
+		background-position: 22px 15px;
+		background-repeat: no-repeat;
+	}
+}
+
+.mobile-version{
+	font-family: Roboto;
+	.service-alert{
+		margin: 20px auto 80px auto;
+	}
 }
 
 @include bp(xs) {
