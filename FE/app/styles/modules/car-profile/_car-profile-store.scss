@@ -33,6 +33,12 @@
         color:#2b9ace;
         font-size: 1.5rem;
         font-weight: 500;
+
+        a {
+            @include bp(xs) {
+                color: #ffffff;
+            }
+        }
     }
     .store-map-brand{
         margin-top: 20px;
@@ -68,7 +74,7 @@
 
     .btn-appointment{
         @extend %btn-appointment;
-        margin-left: 19px;
+        margin: 0 auto;
     }
 
     .tell-us-more{

@@ -20,11 +20,20 @@
 
     .service-center{
         background-color: #555e6c;
+        padding-right: 76px;//needed??
+
+        @include bp(xs) {
+            background-color: #ffffff;
+            padding-right: 0;
+        }
 //        height: 1000px;
-        padding-right: 76px;
     }
 
-	margin-bottom: -80px;
+	margin-bottom: -80px;//needed??
+
+    @include bp(xs) {
+	    margin-bottom: 0;
+    }
 }
 
 
