@@ -1,17 +1,19 @@
-
+@import "compass/css3/transform";
 
 .car-profile-last-services{
+  padding-top: 80px;
   min-height: 800px;
   margin-top: -10px;
   padding-bottom:120px;
+  padding-left: 20px;
 
   //skew header
   position: relative;
   left: -88px;
   z-index: 15;
-  transform: rotate(4.6deg);
+  @include rotate(4.6deg);
   .car-profile-last-services-inner{
-    transform: rotate(-4.6deg);
+    @include rotate(-4.6deg);
     margin-left:36px;
   }
   
@@ -34,19 +36,6 @@
     margin-bottom: 10px;
   }
 
-  .btn-add {
-    font-size: 0.9em;
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    margin-top: 20px;
-    z-index: 20;
-    margin-bottom: 30px;
-    padding-top: 30px;
-    background-image: url(../resources/images/dashboard/add-car.png);
-    background-repeat: no-repeat;
-    background-position: center top;
-  }
   .last-service-top {
     .section-title {
       float: left;
