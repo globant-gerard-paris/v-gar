@@ -1,4 +1,4 @@
-<section class="tell-us-more hidden-xs">
+<section class="tell-us-more hidden-xs" ng-if="!mobile">
     <br/>
     <hr/>
     <h1>Tell us more!</h1>
@@ -6,7 +6,10 @@
     <div class="btn-lorem">
         <button type="button">Lorem ipsum</button>
     </div>
+    <section class="store-car-heart">SEEEEE&nbsp;</section>
 </section>
-<section class="store-car-heart hidden-xs">
-    <div>&nbsp;</div>
+
+<section ng-if="mobile" class="visible-xs">
+    <div>&nbsp;lalalalalal</div>
 </section>
+

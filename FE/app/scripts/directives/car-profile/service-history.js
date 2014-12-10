@@ -16,7 +16,6 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
             //TODO use promeses
             $timeout(function () {
 
-                console.log('carsResultSuccess222');
                 if(!scope.services){return;}
 
                 var r = [],
