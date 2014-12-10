@@ -22,7 +22,7 @@ angular.module('Directives').directive('carCard', function () {
                     }
                 }
                 scope.editMode = !scope.editMode;
-            }
+            };
         }
     };
 });
