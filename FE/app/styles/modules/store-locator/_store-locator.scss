@@ -33,7 +33,7 @@
     font-weight: 100;
 //    margin: 10px 0;
 
-    .store-icon-big{
+    .store-icon-big {
         background-image: url($locationBIG);
         background-size: 32px;
         width: 38px;
@@ -41,6 +41,9 @@
         margin-left: 6px;
         margin-top: 4px;
         background-repeat: no-repeat;
+    }
+    .store-box-address{
+        padding-left: 0;
     }
     small{
         font-size: 1.7rem;
@@ -152,16 +155,19 @@
     }
     @include bp(md){
         .store-slick-carousel{
-            width: 980px !important;
+            width: 512px;
         }
     }
-
-
     @include bp(sm){
         .store-slick-carousel{
             width: 980px !important;
         }
     }
+    @include bp(xs){
+        .store-slick-carousel{
+            width: 240px;
+        }
+    }    
 
 }
 
