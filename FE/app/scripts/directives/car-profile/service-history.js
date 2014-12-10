@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('Directives').directive('serviceHistory', function () {
+angular.module('Directives').directive('serviceHistory', function ($timeout) {
     return {
         replace: true,
         restrict: 'E',
@@ -13,7 +13,6 @@ angular.module('Directives').directive('serviceHistory', function () {
         },
 
         link: function (scope) {
-            //TODO use promeses
             scope.$watch( 'services', function(){
 
                 if(!scope.services){return;}
@@ -54,6 +53,7 @@ angular.module('Directives').directive('serviceHistory', function () {
                 scope.model = {
                     services : r
                 };
+
 
                 //scope.serviceCenterStr = 'None';
                 //

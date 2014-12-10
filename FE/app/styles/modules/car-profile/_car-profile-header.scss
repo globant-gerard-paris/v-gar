@@ -229,14 +229,18 @@
 				text-align: center
 			}
 		}
-}
 
-.mobile-version{
-	font-family: Roboto;
-	.service-alert{
-		margin: 20px auto 80px auto;
+	.mobile-version{
+		.service-alert{
+			margin: 48px auto 80px auto;
+		}
+		.car-card-slick-container{
+			text-align: center;
+		}
 	}
 }
+
+
 
 @include bp(xs) {
     //to change order of divs
