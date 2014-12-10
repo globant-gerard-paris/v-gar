@@ -29,7 +29,6 @@ public class NCDBApiImplTest {
         this.vehicleResponse1.setVehicleMake("HONDA");
         this.vehicleResponse1.setVehicleModel("ACCORD");
         this.vehicleResponse1.setVehicleEngine("4-2354 2.4L DOHC");
-        this.vehicleResponse1.setVehicleColor("");
         this.vehicleResponse1.setVinNumber("");
         this.vehicleResponse1.setVinLast6Digits("");
         this.vehicleResponse1.setCatalogId(32846);
@@ -46,7 +45,6 @@ public class NCDBApiImplTest {
         this.vehicleResponse2.setVehicleMake("HONDA");
         this.vehicleResponse2.setVehicleModel("CIVIC");
         this.vehicleResponse2.setVehicleEngine("4-1799 1.8L SOHC");
-        this.vehicleResponse2.setVehicleColor("");
         this.vehicleResponse2.setVinNumber("");
         this.vehicleResponse2.setVinLast6Digits("");
         this.vehicleResponse2.setCatalogId(31757);

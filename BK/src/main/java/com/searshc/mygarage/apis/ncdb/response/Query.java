@@ -17,6 +17,15 @@ public class Query {
 
     @XmlElement(name = "tng_id_no1")
     private Long tangibleIdNumber;
+    
+    @XmlElement(name = "tng_typ_cd")
+    private String tangibleTypeCode;
+    
+    @XmlElement(name = "vin_no")
+    private String vinNumber;
+    
+    @XmlElement(name = "lic_plt_no")
+    private String licensePlateNumber;
 
     public Query() {
     }
@@ -71,5 +80,47 @@ public class Query {
     public void setTangibleIdNumber(Long tangibleIdNumber) {
         this.tangibleIdNumber = tangibleIdNumber;
     }
+
+	/**
+	 * @return the tangibleTypeCode
+	 */
+	public String getTangibleTypeCode() {
+		return tangibleTypeCode;
+	}
+
+	/**
+	 * @param tangibleTypeCode the tangibleTypeCode to set
+	 */
+	public void setTangibleTypeCode(String tangibleTypeCode) {
+		this.tangibleTypeCode = tangibleTypeCode;
+	}
+
+	/**
+	 * @return the vinNumber
+	 */
+	public String getVinNumber() {
+		return vinNumber;
+	}
+
+	/**
+	 * @param vinNumber the vinNumber to set
+	 */
+	public void setVinNumber(String vinNumber) {
+		this.vinNumber = vinNumber;
+	}
+
+	/**
+	 * @return the licensePlateNumber
+	 */
+	public String getLicensePlateNumber() {
+		return licensePlateNumber;
+	}
+
+	/**
+	 * @param licensePlateNumber the licensePlateNumber to set
+	 */
+	public void setLicensePlateNumber(String licensePlateNumber) {
+		this.licensePlateNumber = licensePlateNumber;
+	}
 
 }
