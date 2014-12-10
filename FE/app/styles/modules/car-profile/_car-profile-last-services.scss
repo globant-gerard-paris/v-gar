@@ -126,7 +126,38 @@
 }
 
 @include bp(xs){
+  .background-service-center {
+    background-color: #ffffff;
+  }
   .car-profile-last-services {
-    left: 0;
+    left: -60px;
+    width: 600px;
+    .car-profile-last-services-inner {
+      margin-left: 38px;
+      width: 66%;
+      .last-service-top {
+        text-align: center;
+        .section-title {
+          float: none;
+        }
+        a {
+          float: none;
+        }
+      }
+      .service-history {
+        margin: 40px 25px auto 25px;
+        .service-history-img {
+          width: 163px;
+          height: 119px;
+          padding: 0;
+          .service-history-icon {
+            margin: 30px auto 30px 50px;
+          }
+        }
+        .sh-date-small {
+          margin-left: 0;
+        }
+      }
+    }
   }
 }
