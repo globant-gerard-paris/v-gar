@@ -66,7 +66,7 @@
   }
   .service-history {
     .service-history-img {
-      margin: 10px 0 20px 0;
+      margin-right: 30px;
       background-image: url(../resources/images/car-profile/mecanic.jpg);
       background-position: center center;
       background-repeat: no-repeat;
@@ -90,7 +90,6 @@
       }
     }
     .service-history-data {
-      margin-top: 10px;
       .sh-data{
         font-size: 18px;
         font-weight: 400;
@@ -112,8 +111,10 @@
   }
 
   .section-article {
+    margin-top: 40px;
     .car-article {
       .car-article-img {
+        margin-right: 30px;
         .car-article-media-object {
           height: 200px;
         }
