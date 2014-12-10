@@ -1,4 +1,4 @@
-<div class="row map-bg">
+<div class="row map-bg hidden-xs">
     <section>
         <h1>Your service center</h1>
     </section>
@@ -11,6 +11,21 @@
             <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
         </div>
         <div class="store-map-brand col-xs-12"><div>&nbsp;</div></div>
+    </section>
+</div>
+
+<div class="row map-bg visible-xs">
+    <section>
+        <button type="button" class="btn find-store-btn">schedule an appointment</button>
+    </section>
+    <section class="store-info">
+        <div class="store-map-brand pull-left"><div>&nbsp;</div></div>
+        <div class="store-data pull-left">
+            <div class="store-address">{{model.address}} {{model.city}}</div>
+            <div>{{model.state}}, {{model.zipCode}}</div>
+            <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
+        </div>
     </section>
 </div>
 
