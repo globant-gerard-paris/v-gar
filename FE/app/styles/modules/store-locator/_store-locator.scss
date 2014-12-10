@@ -65,9 +65,16 @@
         }
     }
 }
-.store-map-box .store-map {
-    height: 210px;
-    width: 340px;
+.store-map-box {
+    .store-map {
+        height: 210px;
+        width: 90%;
+    }
+    @include bp(xs){
+        .store-map {
+            width: 100%;
+        }
+    }
 }
 
 .margin-right-10{
