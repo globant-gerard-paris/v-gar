@@ -124,3 +124,9 @@
     }
   }
 }
+
+@include bp(xs){
+  .car-profile-last-services {
+    left: 0;
+  }
+}

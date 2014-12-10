@@ -37,7 +37,118 @@
 		position: relative;
 		width: 500px;
 		float: left;
+	}
 
+	.header-center{
+		width: 500px;
+		float: left;
+	}
+
+	.header-right{
+		color:  #555e6c;
+		float: left;
+		width: 220px;
+		.recall-info{
+			padding-left:44px;
+			background-image: url(../resources/images/car-profile/recall.png);
+			background-repeat: no-repeat;
+			.count{
+				font-size: 1.2em;
+				font-weight: 900;
+			}
+			.summary,a{
+				font-size: 1.0em;
+				font-weight: 400;
+			}
+			.summary{
+				height: 2.4em;
+				line-height: 1.2em;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+		}
+
+		.service-info{
+			margin-top: 10px;
+			padding-left:44px;
+			background-image: url(../resources/images/car-profile/RecommendedService.png);
+			background-repeat: no-repeat;
+			.count{
+				font-size: 1.2em;
+				font-weight: 900;
+			}
+			.service-list .item{
+				color: #2b9ace;
+				font-size: 1.0em;
+				font-weight: 400;
+				display: block;
+			}
+			.prev-service{
+				margin-top: 5px;
+				margin-bottom: 10px;
+				color: #b0b4ba;
+				font-size: 0.8em;
+				font-weight: 400;
+			}
+		}
+
+
+	}
+
+}
+
+.service-alert{
+	font-family: Roboto;
+	width: 430px;
+	height: 136px;
+	background-image: url(../resources/images/car-profile/car-alerts-bg.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+	&>div{
+		padding-top: 134px;
+		width: 33.3%;
+		height: 100%;
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+	}
+
+	.title{
+		color: #555e6c;
+		font-size: 1.2em;
+		font-weight: 900;
+	}
+
+	.data{
+		display: block;
+		color: #b0b4ba;
+		font-size: 1.0em;
+		font-weight: 500;
+		line-height: 1.0em;
+	}
+
+	.service-alert-oil{
+		background-image: url(../resources/images/car-profile/oilchange-bg.png);
+		background-position: 47px 20px;
+		background-repeat: no-repeat;
+	}
+
+
+	.service-alert-tire{
+		background-image: url(../resources/images/car-profile/tirerotation-bg.png);
+		background-position: 16px 35px;
+		background-repeat: no-repeat;
+	}
+
+	.service-alert-brakes{
+		background-image: url(../resources/images/car-profile/brakes-bg.png);
+		background-position: 22px 15px;
+		background-repeat: no-repeat;
+	}
+}
+
+.car-profile{
+		font-family: Roboto;
 		.car-profile-picture{
 			background-image: url(../resources/images/car-profile/ImageProfile.jpg);
 			background-position: center center;
@@ -118,112 +229,13 @@
 				text-align: center
 			}
 		}
+}
+
+.mobile-version{
+	font-family: Roboto;
+	.service-alert{
+		margin: 20px auto 80px auto;
 	}
-
-	.header-center{
-		width: 500px;
-		float: left;
-		.service-alert{
-			width: 430px;
-			height: 136px;
-			background-image: url(../resources/images/car-profile/car-alerts-bg.png);
-			background-position: center center;
-			background-repeat: no-repeat;
-			&>div{
-				padding-top: 134px;
-				width: 33.3%;
-				height: 100%;
-				display: inline-block;
-				vertical-align: top;
-				text-align: center;
-			}
-
-			.title{
-				color: #555e6c;
-				font-size: 1.2em;
-				font-weight: 900;
-			}
-
-			.data{
-				display: block;
-				color: #b0b4ba;
-				font-size: 1.0em;
-				font-weight: 500;
-				line-height: 1.0em;
-			}
-
-			.service-alert-oil{
-				background-image: url(../resources/images/car-profile/oilchange-bg.png);
-				background-position: 47px 20px;
-				background-repeat: no-repeat;
-			}
-
-
-			.service-alert-tire{
-				background-image: url(../resources/images/car-profile/tirerotation-bg.png);
-				background-position: 16px 35px;
-				background-repeat: no-repeat;
-			}
-
-			.service-alert-brakes{
-				background-image: url(../resources/images/car-profile/brakes-bg.png);
-				background-position: 22px 15px;
-				background-repeat: no-repeat;
-			}
-		}
-	}
-
-	.header-right{
-		color:  #555e6c;
-		float: left;
-		width: 220px;
-		.recall-info{
-			padding-left:44px;
-			background-image: url(../resources/images/car-profile/recall.png);
-			background-repeat: no-repeat;
-			.count{
-				font-size: 1.2em;
-				font-weight: 900;
-			}
-			.summary,a{
-				font-size: 1.0em;
-				font-weight: 400;
-			}
-			.summary{
-				height: 2.4em;
-				line-height: 1.2em;
-				text-overflow: ellipsis;
-				overflow: hidden;
-			}
-		}
-
-		.service-info{
-			margin-top: 10px;
-			padding-left:44px;
-			background-image: url(../resources/images/car-profile/RecommendedService.png);
-			background-repeat: no-repeat;
-			.count{
-				font-size: 1.2em;
-				font-weight: 900;
-			}
-			.service-list .item{
-				color: #2b9ace;
-				font-size: 1.0em;
-				font-weight: 400;
-				display: block;
-			}
-			.prev-service{
-				margin-top: 5px;
-				margin-bottom: 10px;
-				color: #b0b4ba;
-				font-size: 0.8em;
-				font-weight: 400;
-			}
-		}
-
-
-	}
-
 }
 
 @include bp(xs) {
