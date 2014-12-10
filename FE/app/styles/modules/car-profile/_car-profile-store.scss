@@ -61,6 +61,16 @@
         letter-spacing: 2px;
     }
 
+    .triangle{
+        height: 35px;
+        width: 100%;
+    }
+
+    .btn-appointment{
+        @extend %btn-appointment;
+        margin-left: 19px;
+    }
+
     .tell-us-more{
         background-color: #555e6c;
         width: 100%;
