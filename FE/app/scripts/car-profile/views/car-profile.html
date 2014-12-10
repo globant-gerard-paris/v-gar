@@ -2,24 +2,36 @@
 
 <div class="container-fluid row car-profile" >
     <!--HEADER-->
-    <section class="header col-xs-12">
+    <section class="header col-xs-12 hidden-xs">
         <div class="car-profile-header" ng-controller="CarProfileHeaderCtrl">
+
             <div class="car-profile-header-inner">
+
                 <div class="header-left">
                     <div class="car-profile-picture"></div>
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
+
                 <div class="header-center">
                     <service-alert model="model.data.vehicleStatus"></service-alert>
                 </div>
+
                 <div class="header-right">
                     <recalls-and-services model="model"></recalls-and-services>
                 </div>
             </div>
+
         </div>
     </section>
-    
+
     <div class="clearfix"></div>
+
+    <section class="visible-xs mobile-version">
+        <car-card car="model.data.vehicle" change-miles="true"></car-card>
+        <service-alert model="model.data.vehicleStatus"></service-alert>
+    </section>
+    <!-- /HEADER-->
+
 
     <!--SERVICE CENTER-->
     <section class="service-center col-xs-12 col-sm-5">
@@ -33,6 +45,9 @@
         </div>
     </section>
 
+    <section class="visible-xs mobile-version">
+        <recalls-and-services model="model"></recalls-and-services>
+    </section>
 
     <section class="service-history col-xs-12 col-sm-7">
 
@@ -69,4 +84,8 @@
 
     </section>
     <div class="clearfix"></div>
+
+    <section class="visible-xs">
+        social icons
+    </section>
 </div>

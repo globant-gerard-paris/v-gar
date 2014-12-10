@@ -15,7 +15,6 @@
 	}
 	//skew end
 
-
 	.header-left{
 		position: relative;
 		width: 500px;
@@ -203,8 +202,16 @@
 				font-weight: 400;
 			}
 		}
-
-
 	}
+}
 
+@include bp(xs) {
+    .reorder-xs{
+        .up-xs{
+            display: table-header-group;
+        }
+        .down-xs{
+            display: table-footer-group;
+        }
+    }
 }
