@@ -50,10 +50,16 @@
         <recalls-and-services model="model"></recalls-and-services>
     </section>
 
-    <section class="service-history col-xs-12 col-sm-7">
+    <section class="last-service-history col-xs-12 col-sm-7" ng-controller="CarProfileLastServicesCtrl">
 
-        <div class="car-profile-last-services" ng-controller="CarProfileLastServicesCtrl">
+        <!--just for mobile-->
+        <div class="row visible-xs">
+            <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
+            </svg>
+        </div>
 
+        <div class="car-profile-last-services">
             <div class="car-profile-last-services-inner">
                 <section class="row">
                     <div class="last-service-top col-xs-12">
