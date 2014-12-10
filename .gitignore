@@ -49,3 +49,14 @@ build
 .settings
 nbproject
 ENV
+FE/app/scripts/presentation-flow/controllers/dashboard.js.orig
+FE/app/config.rb
+FE/app/scripts/directives/dashboard/car-card.js.orig
+FE/app/styles/config.rb
+FE/config.rb
+FE/grunt-tasks/options/bootlint.js.orig
+FE/grunt-tasks/options/htmllint.js.orig
+FE/app/scripts/car-profile/car-profile-your-services.html.BACKUP.3140.html
+FE/app/scripts/car-profile/car-profile-your-services.html.BASE.3140.html
+FE/app/scripts/car-profile/car-profile-your-services.html.LOCAL.3140.html
+FE/app/scripts/car-profile/car-profile-your-services.html.REMOTE.3140.html

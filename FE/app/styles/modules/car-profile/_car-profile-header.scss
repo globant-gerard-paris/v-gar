@@ -1,19 +1,37 @@
+@import "compass/css3/transform";
+
 .car-profile-header{
 	height: 280px;
 	background-color: white;
 	font-family: Roboto;
 	min-width: 1460px;
-
+	position: relative;
 
 	//skew header
-	position: relative;
 	top: 38px;
 	z-index: 16;
-	transform: rotate(3.6deg);
+	@include rotate(3.6deg);
 	.car-profile-header-inner{
-		transform: rotate(-3.6deg);
+		@include rotate(-3.6deg);
+		height: 100%;
 	}
 	//skew end
+
+	.btn-add {
+	    font-size: 0.9em;
+	    font-weight: bold;
+	    cursor: pointer;
+	    text-align: center;
+	    padding-top: 30px;
+	    background-image: url(../resources/images/dashboard/add-car.png);
+	    background-repeat: no-repeat;
+	    background-position: center top;
+	    position: absolute;
+	  	left: 60vw;
+		bottom: -3vw;
+		color: white;
+  	}
+
 
 	.header-left{
 		position: relative;
@@ -202,10 +220,14 @@
 				font-weight: 400;
 			}
 		}
+
+
 	}
+
 }
 
 @include bp(xs) {
+    //to change order of divs
     .reorder-xs{
         .up-xs{
             display: table-header-group;
