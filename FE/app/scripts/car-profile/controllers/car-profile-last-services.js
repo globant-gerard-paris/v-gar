@@ -40,10 +40,6 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         };
     };
 
-    var carsResultSuccess = function(response){
-        $scope.model.services = response.data.lastServiceHistory;
-    };
-
     var articleResultSuccess = function(response) {
         $scope.model.article = response.data || false;
     };
@@ -52,14 +48,14 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         console.log('ERROR: ' + response);
     };
 
+    $scope.$on('car-profile-data-ready', function(){
+        $scope.model.services = $scope.model.data.lastServiceHistory;
+    });
+
     if(mock){
-        $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
         $http.get('resources/mocks/car-article.json').then(articleResultSuccess);
     }
     else{
-        var userId = SessionDataSrv.getCurrentUser();
-        var familyVehicleId = familyVehicle.id;
-        ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
         TrendsSrv.getTrend($scope.model.vehicle.make, articleResultSuccess, servicesResultFailed);
     }
 });

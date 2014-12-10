@@ -9,7 +9,7 @@ angular.module('CarProfile').controller('CarProfileCtrl2', function ($scope, $ti
 
     var carsResultSuccess = function(response){
         $scope.model.data = response.data;
-        $scope.$emit('car-profile-data-ready');
+        $scope.$broadcast('car-profile-data-ready');
     };
 
 
