@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('Directives').directive('serviceHistory', function ($timeout) {
+angular.module('Directives').directive('serviceHistory', function () {
     return {
         replace: true,
         restrict: 'E',
@@ -14,7 +14,7 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
 
         link: function (scope) {
             //TODO use promeses
-            $timeout(function () {
+            scope.$watch( 'services', function(){
 
                 if(!scope.services){return;}
 
@@ -55,7 +55,6 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
                     services : r
                 };
 
-
                 //scope.serviceCenterStr = 'None';
                 //
                 //if (scope.serviceCenter !== null) {
@@ -76,7 +75,7 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
                 //scope.serviceDesc = serviceDescArr.join(', ');
 
 
-            },500);
+            });
 
 
         }
