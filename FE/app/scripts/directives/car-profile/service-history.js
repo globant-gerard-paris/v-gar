@@ -13,8 +13,7 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
         },
 
         link: function (scope) {
-            //TODO use promeses
-            $timeout(function () {
+            scope.$watch( 'services', function(){
 
                 if(!scope.services){return;}
 
@@ -76,7 +75,7 @@ angular.module('Directives').directive('serviceHistory', function ($timeout) {
                 //scope.serviceDesc = serviceDescArr.join(', ');
 
 
-            },500);
+            });
 
 
         }
