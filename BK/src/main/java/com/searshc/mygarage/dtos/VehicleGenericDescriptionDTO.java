@@ -20,7 +20,7 @@ public class VehicleGenericDescriptionDTO {
 	
 	private String name;
 	
-	private double mileage;
+	private int mileage;
 	
 	private String engine;
 	
@@ -51,7 +51,7 @@ public class VehicleGenericDescriptionDTO {
 	 */
 	public VehicleGenericDescriptionDTO(long familyVehicleId, long vehicleId,
 			String make, String model, int year, long familyId,
-			long tangibleId, String color, String name, double mileage,
+			long tangibleId, String color, String name, int mileage,
 			String engine, String vinNumber, String licensePlate,
 			String licensePlatestate) {
 		super();
@@ -200,14 +200,14 @@ public class VehicleGenericDescriptionDTO {
 	/**
 	 * @return the mileage
 	 */
-	public double getMileage() {
+	public int getMileage() {
 		return mileage;
 	}
 
 	/**
 	 * @param mileage the mileage to set
 	 */
-	public void setMileage(double mileage) {
+	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
 

@@ -7,7 +7,7 @@ public class AddNewManualFamilyVehicleDTO {
 	private String make;
 	private String model;
 	private int year;
-	private double mileage;
+	private int mileage;
 	private String name;
 	
 	public AddNewManualFamilyVehicleDTO() {
@@ -24,7 +24,7 @@ public class AddNewManualFamilyVehicleDTO {
 	 * @param name
 	 */
 	public AddNewManualFamilyVehicleDTO(Long userId, Long vehicleId,
-			String make, String model, int year, double mileage,
+			String make, String model, int year, int mileage,
 			String name) {
 		super();
 		this.userId = userId;
@@ -111,14 +111,14 @@ public class AddNewManualFamilyVehicleDTO {
 	/**
 	 * @return the mileage
 	 */
-	public double getMileage() {
+	public int getMileage() {
 		return mileage;
 	}
 
 	/**
 	 * @param mileage the mileage to set
 	 */
-	public void setMileage(double mileage) {
+	public void setMileage(int mileage) {
 		this.mileage = mileage;
 	}
 

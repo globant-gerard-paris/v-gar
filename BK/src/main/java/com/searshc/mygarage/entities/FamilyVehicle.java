@@ -44,7 +44,7 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
     private Long tangibleId;
 
     @Column(name = "mileage", nullable = false)
-    private double mileage;
+    private int mileage;
 
     /**
      * The FamilyVehicle name
@@ -70,7 +70,7 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
      * @param mileage: Optional
      * @param name: Optional
      */
-    public FamilyVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final double mileage, final String name) {
+    public FamilyVehicle(final Vehicle vehicle, final Long familyId, final Long tangibleId, final int mileage, final String name) {
         this.vehicle = Validate.notNull(vehicle, "The Vehicle cannot be null");
         this.familyId = familyId;
         this.tangibleId = tangibleId;
@@ -124,14 +124,14 @@ public class FamilyVehicle extends AbstractEntity implements Serializable {
     /**
      * @return the mileage
      */
-    public double getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
     /**
      * @param mileage the mileage to set
      */
-    public void setMileage(double mileage) {
+    public void setMileage(int mileage) {
     	Validate.isTrue(mileage >= 0, "The Mileage cannot be lower than 0");
     	this.mileage = mileage;
     }

@@ -24,7 +24,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 
 	@Override
 	public FamilyVehicle addNewManualFamilyVehicle(final long userId, final long vehicleId, final String make,
-			final String model, final int year, final double mileage, final String name) {
+			final String model, final int year, final int mileage, final String name) {
 		isTrue(userId > 0, "The User Id must be greater than 0");
 		notNull(make, "The Make cannot be null");
 		notNull(model, "The Model cannot be null");
@@ -57,7 +57,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 	}
 	
 	@Override
-	public void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final double mileage, final String name) {
+	public void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final int mileage, final String name) {
 		Validate.isTrue(familyVehicleId > 0, "The FamilyVehicleId must be greater than 0");
 		User user = this.userService.findByUserId(userId);
 		FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);

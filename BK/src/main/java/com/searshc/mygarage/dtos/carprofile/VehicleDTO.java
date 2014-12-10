@@ -14,7 +14,7 @@ public class VehicleDTO {
     private String type;
     private String color;
 
-    private double mileage;
+    private int mileage;
 
     /**
      * @return the name
@@ -103,14 +103,14 @@ public class VehicleDTO {
     /**
      * @return the mileage
      */
-    public double getMileage() {
+    public int getMileage() {
         return mileage;
     }
 
     /**
      * @param mileage the mileage to set
      */
-    public void setMileage(double mileage) {
+    public void setMileage(int mileage) {
         this.mileage = mileage;
     }
 

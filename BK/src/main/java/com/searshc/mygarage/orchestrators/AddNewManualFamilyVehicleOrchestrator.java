@@ -24,7 +24,7 @@ public interface AddNewManualFamilyVehicleOrchestrator{
 	 * @return an instance of {@link FamilyVehicle}
 	 */
 	FamilyVehicle addNewManualFamilyVehicle(final long userId, final long vehicleId, final String make,
-			final String model, final int year, final double mileage, final String name);
+			final String model, final int year, final int mileage, final String name);
 	
-	void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final double mileage, final String name);
+	void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final int mileage, final String name);
 }

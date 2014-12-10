@@ -41,10 +41,6 @@ public class VehicleResponse {
     @Mapping("vehicle.engine")
     private String vehicleEngine;
 
-    @XmlElement(name = "veh_col_ds")
-    @Mapping("color")
-    private String vehicleColor;
-
     @XmlElement(name = "vin_no")
     private String vinNumber;
 
@@ -176,20 +172,6 @@ public class VehicleResponse {
      */
     public void setVehicleEngine(String vehicleEngine) {
         this.vehicleEngine = vehicleEngine;
-    }
-
-    /**
-     * @return the vehicleColor
-     */
-    public String getVehicleColor() {
-        return vehicleColor;
-    }
-
-    /**
-     * @param vehicleColor the vehicleColor to set
-     */
-    public void setVehicleColor(String vehicleColor) {
-        this.vehicleColor = vehicleColor;
     }
 
     /**
