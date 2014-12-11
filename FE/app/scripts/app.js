@@ -15,6 +15,7 @@ var _mainModules = [
             , 'Error'
             , 'Navigation'
             , 'PresentationFlow'
+            , 'CarProfile'
             // yo:ngMainModules
 ];
 
@@ -75,11 +76,11 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'LinkedCarCtrl'
                 }
             });
-
+            
             routes.push({
                 name: '/car-profile',
                 params: {
-                    templateUrl: 'scripts/presentation-flow/views/car-profile.html',
+                    templateUrl: 'scripts/car-profile/views/car-profile.html',
                     controller: 'CarProfileCtrl'
                 }
             });

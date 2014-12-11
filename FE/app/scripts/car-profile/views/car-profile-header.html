@@ -1,0 +1,32 @@
+<div class="car-profile-header" ng-controller="CarProfileHeaderCtrl">
+	<div class="car-profile-header-inner">
+		<div class="header-left">
+			<div class="car-profile-picture"></div>
+			<car-card car="model.data.vehicle" change-miles="true"></car-card>
+		</div>
+		<div class="header-center">
+			<service-alert model="model.data.vehicleStatus"></service-alert>
+		</div>
+		<div class="header-right">
+			<div class="recall-info">
+				<div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
+				<div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
+				<a href="">See more details</a>
+			</div>
+			<div class="service-info">
+				<div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
+				<div class="service-list">
+					<span class="item" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
+						{{srv.description | capitalize}}
+					</span>
+				</div>
+				<div class="prev-service">
+					Previous service: 
+					<span class="item" ng-repeat="srv in model.data.recommendedService.previousServiceRecordItems">
+						{{srv.description | capitalize}},
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

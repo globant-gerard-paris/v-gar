@@ -1,0 +1,47 @@
+.car-profile{
+
+	.header{
+		height: 272px;
+	}
+	padding: 0;
+	overflow-x: hidden;
+	height: 100%;
+
+	section{
+		padding:0;
+	}
+// use includes below, unless LAYOUT styling
+	.last-service-history{
+		position: relative;
+		background-color:#2b9ace;
+		z-index:10;
+		margin-top: 40px;
+	}
+
+    .service-center{
+        background-color: #555e6c;
+        padding-right: 76px;//needed??
+
+        @include bp(xs) {
+            background-color: #ffffff;
+            padding-right: 0;
+        }
+//        height: 1000px;
+    }
+
+	margin-bottom: -80px;//needed??
+
+    @include bp(xs) {
+	    margin-bottom: 0;
+    }
+}
+
+
+
+.background-service-center{
+    background-color: #555e6c;
+}
+
+@import "car-profile-header";
+@import "car-profile-last-services";
+@import "car-profile-store";

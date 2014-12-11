@@ -77,13 +77,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     	}
     	return familyVehicle;
     }
-    
-    public FamilyVehicle createAndSaveNewVehicle(final Long familyId, final Long tangibleId,
-            final String make, final String model, final int year, final String color, final int mileage) {
-        Vehicle vehicle = new Vehicle(year, make, model, null, null);
-        FamilyVehicle familyVehicle = new FamilyVehicle(vehicle, familyId, tangibleId, null, mileage, null);
-        return super.save(familyVehicle);
-    }
 
     public List<FamilyVehicle> getFamilyVehiclesByFamilyId(final Long familyId) {
         return repository.getFamilyVehiclesByFamilyId(familyId);
@@ -162,9 +155,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
         //If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
         List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
-
+        List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>(); 
         if (!CollectionUtils.isEmpty(ncdbVehicles)) {
-            List<FamilyVehicle> linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
+            linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
             //FIXME: the difference between list should be using hashCode and equals methods
             //ncdbVehicles.removeAll(linkedVehicles);
             ncdbVehicles = this.getNcdbVehicles(ncdbVehicles, linkedVehicles);
@@ -172,7 +165,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             result.addAll(this.convert(linkedVehicles, true));
         }
 
-        List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles);
+        List<FamilyVehicle> manualCars = getManualVehicle(localVehicles, ncdbVehicles, linkedVehicles);
         result.addAll(this.convert(manualCars, true));
         return result;
     }
@@ -184,15 +177,20 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
      * @param ncdbVehicles
      * @return return {@link UserVehicleStatus}.
      */
-    private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles, final List<FamilyVehicle> ncdbVehicles) {
+    private List<FamilyVehicle> getManualVehicle(final List<FamilyVehicle> localVehicles, final List<FamilyVehicle> ncdbVehicles, final List<FamilyVehicle> linkedVehicles) {
         if (CollectionUtils.isEmpty(localVehicles)) {
             return new ArrayList<FamilyVehicle>();
         }
 
-        if (CollectionUtils.isEmpty(ncdbVehicles)) {
-            return localVehicles;
+        if (!CollectionUtils.isEmpty(ncdbVehicles)) {
+        	localVehicles.removeAll(ncdbVehicles);
         }
-        localVehicles.removeAll(ncdbVehicles);
+        
+        if (!CollectionUtils.isEmpty(linkedVehicles)) {
+        	localVehicles.removeAll(linkedVehicles);
+        }
+        /*localVehicles.removeAll(ncdbVehicles);
+        localVehicles.removeAll(linkedVehicles);*/
         return localVehicles;
     }
 
@@ -256,6 +254,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     public Set<ConfirmedVehicle> convert(final List<VehicleConfirmationDTO> vehicleConfirmationDTOs, final User user) {
         Validate.notNull(vehicleConfirmationDTOs, "Could not convert a null list of VehicleConfirmationDTO");
         Set<ConfirmedVehicle> result = new HashSet<ConfirmedVehicle>();
+        List<ConfirmedVehicle> list = new ArrayList<ConfirmedVehicle>();
         ConfirmedVehicle confirmedVehicle;
         FamilyVehicle familyVehicle;
         Mapper mapper = new DozerBeanMapper();
@@ -266,14 +265,26 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
                 continue;
             }
             if (dto.getVehicleId() != 0) {
-                familyVehicle = this.getItem(dto.getVehicleId());
+                //The FamilyVehicle already exists in database
+            	try {
+					familyVehicle = this.getItem(dto.getVehicleId());
+				} catch (FamilyVehicleNotFoundException e) {
+					log.error(e);
+					continue;
+				}
             } else if (dto.getTangibleId() != null) {
-                familyVehicle = mapper.map(dto, FamilyVehicle.class);
-                Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
-                if (vehicle == null) {
-                    vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
-                }
-                familyVehicle.setVehicle(vehicle);
+                //Find if the FamilyVehicle was confirmed by another user (with same FamilyId)
+            	familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
+            	if(familyVehicle == null) {
+            		//The FamilyVehicle have not been confirmed previously
+            		familyVehicle = mapper.map(dto, FamilyVehicle.class);
+                    Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
+                    if (vehicle == null) {
+                        vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
+                    }
+                    familyVehicle.setVehicle(vehicle);
+            	}
+            	
             }
 
             if (familyVehicle == null || familyVehicle.getVehicle() == null) {
@@ -284,8 +295,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             confirmedVehicle.setUser(user);
             confirmedVehicle.setFamilyVehicle(familyVehicle);
 
-            result.add(confirmedVehicle);
+            list.add(confirmedVehicle);
         }
+        result.addAll(list);
         return result;
     }
 

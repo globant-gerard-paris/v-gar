@@ -1,0 +1,213 @@
+@import "compass/css3/transform";
+
+.car-profile-last-services{
+  padding-top: 80px;
+  min-height: 800px;
+  margin-top: -10px;
+  padding-bottom:120px;
+  padding-left: 20px;
+
+  //skew header
+  position: relative;
+  left: -88px;
+  z-index: 15;
+  @include rotate(4.6deg);
+  .car-profile-last-services-inner{
+    @include rotate(-4.6deg);
+    margin-left:36px;
+  }
+  
+  //skew end
+
+  @extend %font-Roboto;
+  background-color: #2b9ace;
+  color: #ffffff;
+  font-weight: 400;
+  text-align: left;
+
+  .section-title {
+    font-size: 30px;
+    color:  #ffffff;
+    font-weight: 400;
+  }
+  .section-desc {
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+  }
+
+  .last-service-top {
+    .section-title {
+      float: left;
+    }
+    a {
+      display: block;
+      margin-left: 20px;
+      float: left;
+    }
+    .btn-history {
+      color:  #91dcff;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 45px;
+      left: -50px;
+    }
+  }
+  .service-history {
+    margin: 30px auto;
+    .service-history-img {
+      margin-right: 30px;
+      background-image: url(../resources/images/car-profile/mecanic.jpg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      padding: 20px;
+      border: 1px solid #105cb6;
+      width: 253px;
+      height: 119px;
+      .service-history-icon {
+        position: absolute;
+        background-repeat: no-repeat;
+        height: 53px;
+        width: 48px;
+        float: left;
+        margin: 30px auto;
+      }
+      .service-history-icon-private {
+        background-image: url(../resources/images/car-profile/ServiceHistoryIconPrivate.png);
+      }
+      .service-history-icon-non-private {
+        background-image: url(../resources/images/car-profile/ServiceHistoryIcon.png);
+      }
+    }
+    .service-history-data {
+      .sh-data{
+        font-size: 18px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+      .sh-data-mileage{
+        font-size: 18px;
+        font-weight: 900;
+        line-height: 16px;
+        float: left;
+      }
+      .sh-date-small{
+        font-size: 14px;
+        font-weight: 700;
+        float: left;
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .section-article {
+    margin-top: 40px;
+    .car-article {
+      .car-img {
+        width: 100%;
+        height: 100%;
+      }
+      .car-article-title {
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+      .car-article-url {
+        font-size: 11px;
+        font-weight: 400;
+        a {
+          color: #91dcff
+        }
+      }
+      .car-article-tag {
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 20px;
+      }
+    }
+  }
+}
+
+@include bp(xs){
+  .background-service-center {
+    background-color: #ffffff;
+  }
+  .car-profile {
+    .last-service-history {
+      background-color: transparent;
+      .car-profile-last-services {
+        padding-top: 0;
+        min-height: 800px;
+        margin-top: -5px;
+        padding-bottom: 0;
+        padding-left: 0;
+
+        //skew header
+        position: relative;
+        left: 0;
+        @include rotate(0);
+        .car-profile-last-services-inner {
+          @include rotate(0);
+          margin-left: 0;
+
+          .last-service-top {
+            text-align: center;
+            .section-title {
+              float: none;
+            }
+            a {
+              float: none;
+              margin-left: 0;
+            }
+          }
+          .last-service-body {
+            margin-bottom: 30px;
+
+            .service-history {
+              margin: 40px 5% auto 5%;
+              .service-history-img {
+                width: 163px;
+                height: 119px;
+                padding: 0;
+                .service-history-icon {
+                  margin: 30px auto 30px 50px;
+                }
+              }
+              .sh-date-small {
+                margin-left: 0;
+              }
+            }
+          }
+        }
+        .section-article {
+          .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+          }
+          .section-desc {
+            text-align: center;
+            font-size: 18px;
+          }
+          .car-article {
+            width: 300px;
+            margin: auto;
+            .car-article-img {
+              text-align: center;
+            }
+            .car-article-data {
+              margin-bottom: 30px;
+              .car-article-title {
+                margin-top: 10px;
+              }
+              .car-article-url {
+                font-size: 18px;
+                font-weight: 700;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
