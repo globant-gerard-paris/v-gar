@@ -24,7 +24,6 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
      * Each time that reload the URL validate bradecrumb.
      */
     $scope.$on('$routeChangeSuccess', function () {
-        console.log('CAMBIO EL PATHH '+$location.path());
         $scope.model.currentPath = $location.path();
     });
 
