@@ -178,6 +178,22 @@
 		font-size: 0.95em;
 	}
 
+	.dashboard-content-common-middle {
+		position: absolute;
+		top: 147px;
+		right: 0;
+
+		.dashboard-manage-feedback {
+			cursor: pointer;
+			display: inline-block;
+			height: 117px;
+			width: 42px;
+			background-image: url(../resources/images/dashboard/FeedBack.png);
+			background-repeat: no-repeat;
+			background-position: left center;
+		}
+	}	
+
 	.dashboard-car-actions-bottom{
 		bottom: 32px;
 		.dashboard-manage-cars-edit{
