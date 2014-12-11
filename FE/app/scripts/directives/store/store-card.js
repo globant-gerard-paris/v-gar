@@ -11,7 +11,7 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
             model: '=',
         },
 
-        templateUrl: 'scripts/directives/views/store-card.html',
+        templateUrl: 'scripts/directives/views/store/store-card.html',
 
         link: function (scope) {
 

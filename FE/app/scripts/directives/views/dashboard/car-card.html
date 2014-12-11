@@ -3,15 +3,24 @@
 	<div class="car-card">
 		<!--div class="car-edit-btn"></div-->
 
-	    <div class="car-card-year">{{car.vehicle.year}}</div>
-	    <div class="car-card-brand">{{car.vehicle.make | capitalize}}</div>
-	    <div class="car-card-model">{{car.vehicle.model | capitalize}}</div>
+	    <div class="car-card-year">{{car.year || car.vehicle.year}}</div>
+	    <div class="car-card-brand">{{car.make || car.vehicle.make | capitalize}}</div>
+	    <div class="car-card-model">{{car.model || car.vehicle.model | capitalize}}</div>
 
 	    <div class="car-card-mileage">
 	    	<div class="car-card-mileage-title">Last reported mileage</div>
-	    	<div class="car-card-mileage-data">{{car.mileage | number}} Miles</div>
+	    	<div class="car-card-mileage-data">
+
+	    		<span ng-hide="editMode">{{car.mileage | number}} Miles</span>
+				<input ng-show="editMode" ng-model="car.newMileage" type="number" />
+
+	    		<a class="car-card-mileage-change" ng-show="changeMiles()" ng-click="toggleEditMiles()">{{editMode ? 'Save' : 'Change'}}</a>
+	    	</div>
+	    	
 	    </div>
 
 	    <div ng-show="car.vehicle.make" class="car-card-tag">{{car.vehicle.make}}</div>
+
+
 	<div>
 </div>
