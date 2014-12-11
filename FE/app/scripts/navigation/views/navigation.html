@@ -1,3 +1,66 @@
-<div>
-    
+<div ng-switch="model.currentPath" class="brade-crumb-vg">
+    <ul ng-switch-when="/car-profile" class="brade-crumb-ul">
+        <li class="level-one-li">
+            <a href="/dashboard" class="level-one">Home</a>
+        </li>
+        <li class="level-two-li">
+            <a href="/car-profile" class="level-two">{{model.currentCar.vehicle.model}}</a>
+        </li>
+    </ul>
+    <ul ng-switch-when="/store-locator" class="brade-crumb-ul">
+        <li class="level-one-li">
+            <a href="/dashboard" class="level-one">Home</a>
+        </li>
+        <li class="level-three-li" style="position:relative;left: -15px !important;">
+            <a href="#" class="level-three">Your service center</a>
+        </li>
+    </ul>
+    <ul ng-switch-when="/recalls" class="brade-crumb-ul">
+        <li class="level-one-li">
+            <a href="/dashboard" class="level-one">Home</a>
+        </li>
+        <li class="level-two-li">
+            <a href="/car-profile" class="level-two">{{model.currentCar.vehicle.model}}</a>
+        </li>
+        <li class="level-three-li">
+            <a href="#" class="level-three">Your service center</a>
+        </li>
+    </ul>
+    <ul ng-switch-when="/services" class="brade-crumb-ul">
+        <li class="level-one-li">
+            <a href="/dashboard" class="level-one">Home</a>
+        </li>
+        <li class="level-two-li">
+            <a href="/car-profile" class="level-two">{{model.currentCar.vehicle.model}}</a>
+        </li>
+        <li class="level-three-li">
+            <a href="#" class="level-three">Your service center</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="dashboard-page-header">
+    <div class="col-xs-4 home-page-title-logo">
+        <a href="/" class="home-page-title"><div class="home-header-page-logo"></div></a>
+    </div>
+    <div class="col-xs-4 header-text">
+        <div  ng-show="isDashboardPage()">
+            <span class="header-text-name"><span class="header-text-name-word">{{model.userName}}</span>, You have {{model.countLinkedCars}} for Sears AutoCareOne</span>
+        </div>
+    </div>
+    <div class="col-xs-4 right-zone pull-right">
+        <div class="syw-id">Your SYW ID#: {{getSywNumber()}}</div>
+        <div class="pull-right header-buttons">
+            <a href="#" class="btn-social btn-mail">
+            </a>
+            <a href="#" class="btn-social btn-facebook">
+            </a>
+            <a href="#" class="btn-social btn-twitter">
+            </a>
+            <a href="about:blank" target="_blank">
+                <div class="btn-appointment"></div>
+            </a>
+        </div>
+    </div>
 </div>

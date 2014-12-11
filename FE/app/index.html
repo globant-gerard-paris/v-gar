@@ -20,7 +20,9 @@
     </head>
     <body ng-controller="MainCtrl">
 
-         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <div ng-if="!isLandingPage()" ng-include="'scripts/navigation/views/navigation.html'" class="visible-lg visible-sm visible-md"></div>
+
+        <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <!-- Add your site or application content here -->
         <div class="container-fluid" ng-view></div>
 
@@ -117,7 +119,6 @@
         <script src="scripts/directives/trend-view.js"></script>
         <script src="scripts/directives/dashboard/car-card.js"></script>
         <script src="scripts/directives/dashboard/slick.js"></script>
-
 
         <script src="scripts/directives/car-profile/service-alert.js"></script>
         <script src="scripts/directives/car-profile/service-history.js"></script>

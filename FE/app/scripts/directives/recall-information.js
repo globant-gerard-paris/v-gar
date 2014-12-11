@@ -13,8 +13,7 @@ angular.module('Directives').directive('recallInformation', function (SessionDat
             summary: '=',
             consequence: '=',
             remedy: '=',
-            notes: '=',
-            position: '='
+            notes: '='
         },
         link: function (scope) {
             scope.isMobileDevice = function(){

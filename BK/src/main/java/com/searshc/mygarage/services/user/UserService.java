@@ -149,6 +149,7 @@ public class UserService extends GenericService<User, Long, UserRepository> {
 		User user = new User();
 		user.setSywId(userInfoByToken.getId());
 		user.setSywrMemberNumber(userInfoByToken.getSywrMemberNumber());
+		user.setName(userInfoByToken.getName());
 		return user;
 	}
 }

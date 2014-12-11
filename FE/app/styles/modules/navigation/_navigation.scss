@@ -1,0 +1,224 @@
+
+%btn-appointment{
+  margin-left:16px;
+  display: inline-block;
+  cursor: pointer;
+  width: 220px;
+  height: 45px;
+  background: url(../resources/images/header/appointment.png) no-repeat;
+}
+
+.btn-social {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  margin-left: -3px;
+  position: relative;
+  top: -10px;
+  background-position: center center;
+  &.btn-facebook {
+    background-image: url($facebookDesktop);
+  }
+
+  &.btn-twitter {
+    background-image: url($twitterDesktop);
+  }
+
+  &.btn-mail {
+    background-image: url($mailDesktop);
+  }
+}
+
+.dashboard-page-header {
+  height: 90px;
+
+  .home-page-title-logo{
+    min-width: 220px;
+  }
+
+  .home-page-title-link, .home-page-title-link:hover {
+    text-decoration: none;
+    color: #444;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .user-info {
+    line-height: 30px;
+  }
+
+  .home-header-page-logo {
+    height: 90px;
+    background: url(../resources/images/header/sears_logo.png) no-repeat left center;
+    width: 100%;
+    margin-left: 20px;
+  }
+
+  .page-header {
+    height: 90px;
+    border: 0;
+    margin: 0;
+  }
+
+  .right-zone {
+    position: relative;
+    margin-top: 24px;
+
+    .header-buttons {
+      min-width: 320px;
+      position: relative;
+      left: 5px;
+
+      .btn-appointment {
+        @extend %btn-appointment;
+        margin-left: 19px;
+      }
+    }
+
+    .syw-id {
+      position: absolute;
+      right: 18px;
+      top: -20px;
+      font-size: 0.7em;
+      font-weight: bold;
+      color: #bbb;
+    }
+  }
+
+  .header-text {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 250;
+    margin-top: 1.9em;
+    color: rgb(85, 93, 106);
+    .header-text-name {
+      color: rgb(85, 93, 106);
+    }
+  }
+  .header-text-name-word {
+    color: #000000;
+    font-weight: bold;
+  }
+
+}
+
+
+
+@include bp(sm) {
+  .header-text {
+    max-width: 33% !important;
+    position: relative;
+    bottom: 10px;
+  }
+}
+
+@include bp(xs) {
+
+  .header-text {
+    max-width: 25%;
+    position: relative;
+    bottom: 10px;
+  }
+
+  .dashboard-content-common-top {
+    top: 98px;
+  }
+
+  .mini-logo {
+    background-image: url(../resources/images/header/sears_logo.png);
+    position: absolute;
+    top: 22px;
+    left: 0;
+    right: 0;
+    background-position: center center;
+    height: 40px;
+    background-repeat: no-repeat;
+  }
+
+  .btn-social {
+    width: 60px;
+    height: 58px;
+    margin-left: 4px;
+
+    &.btn-facebook {
+      background-image: url($facebookMobile);
+    }
+
+    &.btn-twitter {
+      background-image: url($twitterMobile);
+    }
+
+    &.btn-mail {
+      background-image: url($mailMobile);
+    }
+  }
+}
+
+
+
+.brade-crumb-vg {
+  %common-brade-crumb {
+    height: 30px;
+    font-size: 12px;
+    font-family: Roboto;
+  }
+
+  .brade-crumb-ul{
+    list-style: none;
+    overflow: hidden;
+    margin-left: -40px !important;
+  }
+
+  .brade-crumb-ul .level-one-li{
+    width: 120px;
+  }
+
+  .brade-crumb-ul .level-two-li{
+    width: 120px;
+    position: relative;
+    left: -15px;
+  }
+
+  .brade-crumb-ul .level-three-li{
+    position: relative;
+    left: -40px;
+    width: 167px;
+  }
+
+  .brade-crumb-ul li{
+    float: left;
+  }
+
+  .brade-crumb-ul li a {
+    text-decoration: none;
+    padding: 6px 25px 20px 20px;
+    position: relative;
+    display: block;
+    float: left;
+  }
+
+  .level-one {
+    @extend %common-brade-crumb;
+    z-index: 10;
+    color: #626a77;
+    width: 160px;
+    font-weight: 700;
+    background: url("../resources/images/header/breadcrumb_1.png") no-repeat;
+  }
+  .level-two {
+    @extend %common-brade-crumb;
+    z-index: 5;
+    color: #626a77;
+    width: 160px;
+    font-weight: 700;
+    background: url("../resources/images/header/breadcrumb_2.png") no-repeat;
+  }
+  .level-three {
+    @extend %common-brade-crumb;
+    z-index: 1;
+    color: rgba(98, 106, 119, 0.56);
+    font-weight: 400;
+    width: 170px;
+    background: url("../resources/images/header/breadcrumb_3.png") no-repeat;
+  }
+}

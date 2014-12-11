@@ -35,7 +35,7 @@ public class NcdbSywCustomWriter implements ItemWriter<SYWNCDBMappingDTO> {
 			} catch (DuplicateKeyException e) {
 				log.debug("The user with NCDB_ID: "+userMapping.getNcdbId()+" & SWI_ID:"+userMapping.getSywrId()+" already exist.");
 			} catch (Exception e){
-				log.error("Error when try persist user mappings Jobs.", e);
+				log.error("Error when try persist user mappings Jobs with NCDB_ID: "+ userMapping.getNcdbId(), e);
 			}
 		}
 	}

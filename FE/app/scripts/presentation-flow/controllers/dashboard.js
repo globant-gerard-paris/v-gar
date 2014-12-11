@@ -32,6 +32,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
 
     $scope.getToCarProfile = function (familyVehicle) {
         SessionDataSrv.saveCurrentFamilyVehicle(familyVehicle);
+        $scope.$emit('RELOAD_SELECTED_VEHICLE',familyVehicle);
         RedirectSrv.redirectTo('/car-profile');
     };
 
@@ -42,6 +43,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
             store: response.data.store
         };
         $scope.$broadcast('RELOAD_STORE',response.data.store);
+        $scope.$emit('RELOAD_VEHICLES',response.data.vehicles);
     };
 
     var carsResultFailed = function (response) {
