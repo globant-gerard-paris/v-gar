@@ -1,8 +1,8 @@
-package com.searshc.mygarage.dtos.familyvehicle;
+package com.searshc.mygarage.dtos.manualvehicle;
 
-public class AddNewManualFamilyVehicleDTO {
-	
-	private Long userId;
+public class AddOrUpdateManualFamilyVehicleDTO {
+
+	private Long familyVehicleId;
 	private Long vehicleId;
 	private String make;
 	private String model;
@@ -10,24 +10,24 @@ public class AddNewManualFamilyVehicleDTO {
 	private int mileage;
 	private String name;
 	
-	public AddNewManualFamilyVehicleDTO() {
+	public AddOrUpdateManualFamilyVehicleDTO() {
 	}
 
 	/**
 	 * @param userId
+	 * @param familyVehicleId
 	 * @param vehicleId
 	 * @param make
 	 * @param model
 	 * @param year
-	 * @param color
 	 * @param mileage
 	 * @param name
 	 */
-	public AddNewManualFamilyVehicleDTO(Long userId, Long vehicleId,
-			String make, String model, int year, int mileage,
+	public AddOrUpdateManualFamilyVehicleDTO(Long userId, Long familyVehicleId,
+			Long vehicleId, String make, String model, int year, int mileage,
 			String name) {
 		super();
-		this.userId = userId;
+		this.familyVehicleId = familyVehicleId;
 		this.vehicleId = vehicleId;
 		this.make = make;
 		this.model = model;
@@ -36,20 +36,18 @@ public class AddNewManualFamilyVehicleDTO {
 		this.name = name;
 	}
 
-
-
 	/**
-	 * @return the userId
+	 * @return the familyVehicleId
 	 */
-	public Long getUserId() {
-		return userId;
+	public Long getFamilyVehicleId() {
+		return familyVehicleId;
 	}
 
 	/**
-	 * @param userId the userId to set
+	 * @param familyVehicleId the familyVehicleId to set
 	 */
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setFamilyVehicleId(Long familyVehicleId) {
+		this.familyVehicleId = familyVehicleId;
 	}
 
 	/**

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import scala.collection.mutable.StringBuilder;
 
+import com.searshc.mygarage.dtos.manualvehicle.AddOrUpdateManualFamilyVehicleDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -23,9 +24,14 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 
 
 	@Override
-	public FamilyVehicle addNewManualFamilyVehicle(final long userId, final long vehicleId, final String make,
-			final String model, final int year, final int mileage, final String name) {
+	public FamilyVehicle addNewManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 		isTrue(userId > 0, "The User Id must be greater than 0");
+		long vehicleId = addOrUpdateManualFamilyVehicleDTO.getVehicleId();
+		String make = addOrUpdateManualFamilyVehicleDTO.getMake();
+		String model = addOrUpdateManualFamilyVehicleDTO.getModel();
+		int year = addOrUpdateManualFamilyVehicleDTO.getYear();
+		int mileage = addOrUpdateManualFamilyVehicleDTO.getMileage();
+		String name = addOrUpdateManualFamilyVehicleDTO.getName();
 		notNull(make, "The Make cannot be null");
 		notNull(model, "The Model cannot be null");
 		isTrue(year > 0, "The Year is invalid");
@@ -57,7 +63,14 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 	}
 	
 	@Override
-	public void updateManualFamilyVehicle(final long userId, final long familyVehicleId, final String make, final String model, final int year, final int mileage, final String name) {
+	public void updateManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
+		long familyVehicleId = addOrUpdateManualFamilyVehicleDTO.getFamilyVehicleId();
+		String make = addOrUpdateManualFamilyVehicleDTO.getMake();
+		String model = addOrUpdateManualFamilyVehicleDTO.getModel();
+		int year = addOrUpdateManualFamilyVehicleDTO.getYear();
+		int mileage = addOrUpdateManualFamilyVehicleDTO.getMileage();
+		String name = addOrUpdateManualFamilyVehicleDTO.getName();
+		
 		Validate.isTrue(familyVehicleId > 0, "The FamilyVehicleId must be greater than 0");
 		User user = this.userService.findByUserId(userId);
 		FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
