@@ -232,6 +232,15 @@
 		}
 
 	.mobile-version{
+		position: relative;
+		.btn-add-mobile{
+			position: absolute;
+			background-image: url(../resources/images/car-profile/mobile-edit.png);
+			width: 47px;
+			height: 47px;
+			right: 30px;
+			top: 10px;
+		}
 		.service-alert{
 			margin: 18px 0 36px 0;
 			position: relative;
