@@ -20,11 +20,15 @@
     </head>
     <body ng-controller="MainCtrl">
 
-        <div ng-if="!isLandingPage()" ng-include="'scripts/navigation/views/navigation.html'" class="visible-lg visible-sm visible-md"></div>
+        <div class="visible-lg visible-sm visible-md" ng-if="!isLandingPage() && !isMobile()" ng-include="'scripts/navigation/views/navigation.html'"></div>
+        <div class="visible-xl" ng-if="!isLandingPage() && !isDashboardPage()" ng-include="'scripts/navigation/views/navigation-mobile-header.html'"></div>
 
         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <!-- Add your site or application content here -->
         <div class="container-fluid" ng-view></div>
+
+        <div class="visible-xl" ng-if="!isLandingPage() && !isDashboardPage()" ng-include="'scripts/navigation/views/navigation-mobile-footer.html'" class="visible-lg visible-sm visible-md"></div>
+
 
         <!-- build:js scripts/modules.js -->
 

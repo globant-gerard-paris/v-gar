@@ -222,3 +222,29 @@
     background: url("../resources/images/header/breadcrumb_3.png") no-repeat;
   }
 }
+
+.dashboard-mobile-header{
+  .header-btns{
+    height: 50px;
+    background: url("../resources/images/header/arrow-black.png") no-repeat;
+  }
+  .header-title{
+    .mobile-logo{
+
+    }
+  }
+}
+
+.dashboard-bottom-mobile{
+  .footer-btns{
+    margin-bottom: 90px;
+  }
+  text-align: center;
+  .dashboard-mobile-feedback{
+    display: inline-block;
+    background-image: url(../resources/images/dashboard/feedBack_mobile.png);
+    height: 86px;
+    width: 90px;
+    margin-top: 40px;
+  }
+}

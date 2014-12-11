@@ -47,6 +47,10 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         return $location.path() === '/store-locator';
     };
 
+    $scope.isMobile = function(){
+        return SessionDataSrv.isMobileDevice();
+    };
+
     $scope.getSywNumber = function(){
         if($scope.model.sywNumber){
             return $scope.model.sywNumber.substring(1, $scope.model.sywNumber.length - 1);

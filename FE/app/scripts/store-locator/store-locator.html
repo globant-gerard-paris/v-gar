@@ -1,4 +1,4 @@
-<div class="container-fluid store-container">
+<div style="margin-bottom: 70px" class="container-fluid store-container">
 
     <section ng-show="model.myStore">
         <section class="header-title row">
@@ -42,23 +42,5 @@
                 <store-card  model="store" ng-repeat="store in model.stores track by $index"></store-card>
             </div>
     </section>
-
-
-    <div class="stores-social-box row visible-xs">
-        <div class="stores-social">
-            <div class="stores-social-internal"></div>
-        </div>
-        <div class="stores-social">
-            <div class="stores-social-facebook"></div>
-        </div>
-        <div class="stores-social">
-            <div class="stores-social-twitter"></div>
-        </div>
-    </div>
-
-    <section class="feedback-box row visible-xs">
-        <button type="button">FEEDBACK</button>
-    </section>
-
 
 </div>
