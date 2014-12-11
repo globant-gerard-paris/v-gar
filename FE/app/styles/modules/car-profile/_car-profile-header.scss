@@ -233,7 +233,10 @@
 
 	.mobile-version{
 		.service-alert{
-			margin: 48px auto 80px auto;
+			margin: 18px auto 36px auto;
+			position: relative;
+			left: 50%;
+			@include transform(translateX(-50%) scale(0.7));
 		}
 		.car-card-slick-container{
 			text-align: center;
