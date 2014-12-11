@@ -3,7 +3,7 @@
         <div class="recall-info">
             <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
             <div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
-            <a href="">See more details</a>
+            <a href="#" ng-click="redirectToRecalls()">See more details</a>
         </div>
 	</div>
 	<div class="up-xs" ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
