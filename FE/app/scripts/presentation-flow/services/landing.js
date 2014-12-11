@@ -19,8 +19,10 @@ angular.module('PresentationFlow').service('LandingSrv', function ($q, SessionDa
                     statusVehicle = updateStatusReport(statusVehicle, vehicle.status);
                 }
                 SessionDataSrv.setCachedVehicleUsers(vehicles);
-                SessionDataSrv.setCurrentUser(response.data.userId);
             }
+            SessionDataSrv.setCurrentUser(response.data.userId);
+            SessionDataSrv.setCurrentUserName(response.data.userName);
+            SessionDataSrv.saveSywMemberNumber(response.data.sywMemberNumber);
             deferGetUserSession.resolve(statusVehicle);
         };
 

@@ -134,7 +134,7 @@ public class NcdbSywBatch {
 	@Scheduled(cron = "0 0 4 * * ?")
 	public void run() {
 		try {
-			LOG.info(" ****** Starting to update mapping table NCDV & SYW User Job ******* ");
+			LOG.info(" ****** Starting to update mapping table NCDB & SYW User Job ******* ");
 			JobParameters jobParameters = new JobParametersBuilder().addLong("time",
 					System.currentTimeMillis()).toJobParameters();
 			jobLauncher.run(job, jobParameters);

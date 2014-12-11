@@ -5,7 +5,9 @@
 angular.module('Services').service('SessionDataSrv', function () {
 
     var currentUserKey = 'CURRENT_USER_KEY',
+        currentUserNameKey = 'CURRENT_USER_NAME_KEY',
         currentFamilyVehicleKey = 'CURRENT_FAMILY_VEHICLE_KEY',
+        currentSywMembernumberKey = 'CURRENT_SYW_MEMBERNUMBER_KEY',
         currentFamilyVehiclesKey = 'CURRENT_FAMILY_VEHICLES_KEY';
 
     var isDataSaved = function () {
@@ -18,6 +20,14 @@ angular.module('Services').service('SessionDataSrv', function () {
 
     var getData = function (key) {
         return JSON.parse(localStorage.getItem(key));
+    };
+
+    var saveSywMemberNumber = function(value){
+        saveData(currentSywMembernumberKey, JSON.stringify(value));
+    };
+
+    var getSywMemberNumber = function(){
+        return getData(currentSywMembernumberKey);
     };
 
     /**
@@ -44,10 +54,24 @@ angular.module('Services').service('SessionDataSrv', function () {
         saveData(currentUserKey, user);
     };
 
+    /**
+     * Return the Current Name session.
+     * @returns {string}
+     */
+    var getCurrentUserName = function () {
+        return getData(currentUserNameKey);
+    };
+
+    /**
+     * Set the current virtual garage user Name.
+     * @param user
+     */
+    var setCurrentUserName = function (user) {
+        saveData(currentUserNameKey, user);
+    };
+
     var setCachedVehicleUsers = function (vehicles) {
         console.log(vehicles);
-    };
-    var getCachedVehicleUsers = function () {
     };
 
     var saveCurrentFamilyVehicle = function (familyVehicle) {
@@ -97,17 +121,20 @@ angular.module('Services').service('SessionDataSrv', function () {
         saveData: saveData,
         getData: getData,
         getCurrentUser: getCurrentUser,
+        getCurrentUserName: getCurrentUserName,
         setCurrentUser: setCurrentUser,
+        setCurrentUserName: setCurrentUserName,
         getCurrentFamilyId: getCurrentFamilyId,
         getCurrentTangibleId: getCurrentTangibleId,
         getCurrentToken: getCurrentToken,
-        getCachedVehicleUsers: getCachedVehicleUsers,
         setCachedVehicleUsers: setCachedVehicleUsers,
         saveCurrentFamilyVehicle: saveCurrentFamilyVehicle,
         getCurrentFamilyVehicle: getCurrentFamilyVehicle,
         saveCurrentFamilyVehicles: saveCurrentFamilyVehicles,
         getCurrentFamilyVehicles: getCurrentFamilyVehicles,
-        isMobileDevice: isMobileDevice
+        isMobileDevice: isMobileDevice,
+        saveSywMemberNumber: saveSywMemberNumber,
+        getSywMemberNumber: getSywMemberNumber
     };
 
 });

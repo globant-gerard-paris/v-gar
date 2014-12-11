@@ -141,7 +141,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             result = createReportWithoutNCDB(user.getId());
         }
 
-        return new HomeDto(result, user.getId());
+        return new HomeDto(result, user.getId(), user.getName(), user.getSywrMemberNumber());
     }
 
     /**
