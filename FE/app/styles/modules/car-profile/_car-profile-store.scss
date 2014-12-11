@@ -33,6 +33,12 @@
         color:#2b9ace;
         font-size: 1.5rem;
         font-weight: 500;
+
+        a {
+            @include bp(xs) {
+                color: #ffffff;
+            }
+        }
     }
     .store-map-brand{
         margin-top: 20px;
@@ -59,6 +65,16 @@
         text-align: center;
         font-weight: 200;
         letter-spacing: 2px;
+    }
+
+    .triangle{
+        height: 35px;
+        width: 100%;
+    }
+
+    .btn-appointment{
+        @extend %btn-appointment;
+        margin: 0 auto;
     }
 
     .tell-us-more{

@@ -237,6 +237,56 @@
 		.car-card-slick-container{
 			text-align: center;
 		}
+		.recalls-and-services{
+			color: #555e6c;
+			text-align: center;
+			font-size: 1.2em;
+			font-weight: 400;
+			text-align: center;
+			width: 78%;
+			margin: 0 auto;
+			.count{
+				font-size: 2.0em;
+				font-weight: 900;
+				margin: 14px;
+			}
+			.service-info, .recall-info{
+				background-position: top center;
+				background-repeat: no-repeat;
+				padding-top:50px;
+				margin-top: 40px;
+				margin-bottom: 40px;
+			}
+			.service-info{
+				background-image: url(../resources/images/car-profile/servicehistory-mobile.png);	
+				.service-list{
+					.item{
+						color: #2b9ace;
+						font-weight: 400;
+						text-align: left;
+						display: block;
+					}
+				}
+				.prev-service{
+					display: block;
+					color:  #b0b4ba;
+					margin-top:24px;
+				}
+			}
+			.recall-info{
+				margin-top: 0;
+				background-image: url(../resources/images/car-profile/recall-mobile.png);
+				.summary{
+					line-height: 1.4em;
+					height: 4.2em;
+					overflow: hidden;
+				}
+				a{
+					margin-top: 12px;
+					display: block;
+				}
+			}
+		}
 	}
 }
 

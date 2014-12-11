@@ -50,10 +50,16 @@
         <recalls-and-services model="model"></recalls-and-services>
     </section>
 
-    <section class="service-history col-xs-12 col-sm-7">
+    <section class="last-service-history col-xs-12 col-sm-7" ng-controller="CarProfileLastServicesCtrl">
 
-        <div class="car-profile-last-services" ng-controller="CarProfileLastServicesCtrl">
+        <!--just for mobile-->
+        <div class="row visible-xs">
+            <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
+            </svg>
+        </div>
 
+        <div class="car-profile-last-services">
             <div class="car-profile-last-services-inner">
                 <section class="row">
                     <div class="last-service-top col-xs-12">
@@ -63,7 +69,7 @@
                         </a>
                     </div>
                     <div class="clearfix"></div>
-                    <div ng-show="model.services" class="col-xs-12">
+                    <div ng-show="model.services" class="col-xs-12 last-service-body">
                         <service-history services="model.services"></service-history>
                     </div>
                     <div class="clearfix"></div>
@@ -86,6 +92,22 @@
     <div class="clearfix background-service-center"></div>
 
     <section class="visible-xs">
-        social icons
+
+        <div class="stores-social-box row visible-xs">
+            <div class="stores-social">
+                <div class="stores-social-internal"></div>
+            </div>
+            <div class="stores-social">
+                <div class="stores-social-facebook"></div>
+            </div>
+            <div class="stores-social">
+                <div class="stores-social-twitter"></div>
+            </div>
+        </div>
+
+        <section class="feedback-box row visible-xs">
+            <button type="button">FEEDBACK</button>
+        </section>
+
     </section>
 </div>
