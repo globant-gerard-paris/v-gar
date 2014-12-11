@@ -42,6 +42,55 @@
     background-color: #555e6c;
 }
 
+
+.stores-social-box-big{
+    width: 210px;
+    margin: 50px auto 20px auto;
+
+    .stores-social{
+        width: 70px;
+        float: left;
+    }
+
+    .stores-social-internal{
+        background-image: url($shareInternalBig);
+        width: 60px;
+        height: 58px;
+    }
+    .stores-social-facebook{
+        background-image: url($shareFbBig);
+        width: 60px;
+        height: 58px;
+    }
+    .stores-social-twitter{
+        background-image: url($shareTwBig);
+        width: 59px;
+        height: 58px;
+    }
+}
+
+
+.feedback-card{
+    text-align: center;
+    margin: 0 auto;
+    color: #a2a2a2;
+    font-size: 1.7rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+
+    button{
+        margin-top:20px;
+        border: 0;
+        width: 60px;
+        height: 58px;
+        background-image: url($feedbackCard);
+    }
+
+    div{
+        margin: 20px;
+    }
+}
+
 @import "car-profile-header";
 @import "car-profile-last-services";
 @import "car-profile-store";
