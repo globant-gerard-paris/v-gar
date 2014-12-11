@@ -11,19 +11,20 @@ angular.module('Directives').directive('serviceHistory', function () {
         scope: {
             services: '='
         },
-
         link: function (scope) {
-            scope.$watch( 'services', function(){
+            scope.$watch('services', function () {
 
-                if(!scope.services){return;}
+                if (!scope.services) {
+                    return;
+                }
 
                 var r = [];
 
-                _.each(scope.services, function(service){                    
+                _.each(scope.services, function (service) {
 
                     var serviceCenter = service.serviceCenter,
-                        serviceCenterStr = '',
-                        serviceDescArr = [];
+                            serviceCenterStr = '',
+                            serviceDescArr = [];
 
                     var serviceToReturn = {
                         serviceDate: service.date,
@@ -31,51 +32,29 @@ angular.module('Directives').directive('serviceHistory', function () {
                         serviceType: service.type
                     };
 
-                    _.each(service.serviceRecordItems, function(record){
+                    _.each(service.serviceRecordItems, function (record) {
                         serviceDescArr.push(record.description);
                     });
 
                     if (serviceCenter) {
                         serviceCenterStr += serviceCenter.address;
                         serviceCenterStr += serviceCenter.city ? ' @ ' + serviceCenter.city +
-                                            ', ' + serviceCenter.zipCode : '';
-                        serviceToReturn.serviceCenterStr = serviceCenterStr;                                               
+                                ', ' + serviceCenter.zipCode : '';
+                        serviceToReturn.serviceCenterStr = serviceCenterStr;
                     } else {
                         serviceToReturn.serviceCenterStr = service.source;
                     }
 
-                    serviceToReturn.serviceDesc = serviceDescArr.join(', '); 
+                    serviceToReturn.serviceDesc = serviceDescArr.join(', ');
                     r.push(serviceToReturn);
 
                 });
 
                 scope.model = {
-                    services : r
+                    services: r
                 };
 
-
-                //scope.serviceCenterStr = 'None';
-                //
-                //if (scope.serviceCenter !== null) {
-                //    scope.serviceCenterStr = scope.serviceCenter.address;
-                //
-                //    if(scope.serviceCenter.city){
-                //        scope.serviceCenterStr += ' @ ' + scope.serviceCenter.city +
-                //            ', ' + scope.serviceCenter.zipCode;
-                //    }
-                //}
-                //
-                //var serviceDescArr = [];
-                //
-                //_.each(scope.serviceRecords, function(record){
-                //    serviceDescArr.push(record.description);
-                //});
-                //
-                //scope.serviceDesc = serviceDescArr.join(', ');
-
-
             });
-
 
         }
     };
