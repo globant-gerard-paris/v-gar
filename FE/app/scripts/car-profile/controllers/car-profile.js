@@ -1,6 +1,5 @@
 'use strict';
 
-
 angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $http, config, SessionDataSrv, ApiHttpSrv) {
 
     $scope.model = {};
@@ -16,6 +15,5 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $htt
 
     ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
             userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
-
 
 });

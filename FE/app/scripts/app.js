@@ -76,7 +76,7 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'LinkedCarCtrl'
                 }
             });
-
+            
             routes.push({
                 name: '/car-profile',
                 params: {
