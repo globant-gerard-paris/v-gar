@@ -4,8 +4,6 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,7 +18,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,9 +26,7 @@ import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
-import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
-import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.entities.trends.VehicleTrend;
 import com.searshc.mygarage.exceptions.NCDBApiException;
