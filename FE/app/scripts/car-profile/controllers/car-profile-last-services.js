@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, $http, $modal, config, SessionDataSrv, TrendsSrv, ApiHttpSrv, RecordSrv) {
+angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, $http, $modal, config, SessionDataSrv, TrendsSrv, ApiHttpSrv, RecordSrv, RedirectSrv) {
 
     var mock = true;
 
@@ -51,6 +51,10 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
     $scope.$on('car-profile-data-ready', function(){
         $scope.model.services = $scope.model.data.lastServiceHistory;
     });
+
+    $scope.seeAllHistory = function() {
+        RedirectSrv.redirectTo('/services');
+    };
 
     if(mock){
         $http.get('resources/mocks/car-article.json').then(articleResultSuccess);
