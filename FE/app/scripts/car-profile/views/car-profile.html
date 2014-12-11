@@ -3,7 +3,7 @@
 <div class="container-fluid row car-profile" >
     <!--HEADER-->
     <section class="header col-xs-12 hidden-xs">
-        <div class="car-profile-header" ng-controller="CarProfileHeaderCtrl">
+        <div class="car-profile-header">
 
             <div class="car-profile-header-inner">
 
@@ -28,6 +28,7 @@
     <div class="clearfix"></div>
 
     <section class="visible-xs mobile-version">
+        <div class="btn-add-mobile" ng-click="openNewRecordForm()"></div>
         <car-card car="model.data.vehicle" change-miles="true"></car-card>
         <service-alert model="model.data.vehicleStatus"></service-alert>
     </section>
@@ -91,7 +92,7 @@
 
     <section class="visible-xs">
 
-        <div class="stores-social-box row visible-xs">
+        <div class="stores-social-box-big row visible-xs">
             <div class="stores-social">
                 <div class="stores-social-internal"></div>
             </div>
@@ -103,8 +104,9 @@
             </div>
         </div>
 
-        <section class="feedback-box row visible-xs">
-            <button type="button">FEEDBACK</button>
+        <section class="feedback-card row visible-xs">
+            <button type="button">&nbsp;</button>
+            <div>FEEDBACK</div>
         </section>
 
     </section>

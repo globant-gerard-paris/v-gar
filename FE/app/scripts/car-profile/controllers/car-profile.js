@@ -1,19 +1,28 @@
 'use strict';
 
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $http, config, SessionDataSrv, ApiHttpSrv) {
+
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $timeout, $http, config, SessionDataSrv, ApiHttpSrv) {
 
     $scope.model = {};
 
-    var carsResultSuccess = function (response) {
+    var mock = true;
+
+    var carsResultSuccess = function(response){
         $scope.model.data = response.data;
         $scope.$broadcast('car-profile-data-ready');
     };
 
-    var userId = SessionDataSrv.getCurrentUser();
-    var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
-    var familyVehicleId = familyVehicle.id;
 
-    ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
-            userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
+    if(mock){
+     //MOCK
+        $timeout( function(){
+            $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
+        },500);
+    }else{
+        var userId = SessionDataSrv.getCurrentUser();
+        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
+        var familyVehicleId = familyVehicle.id;
+        ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
+    }
 
 });

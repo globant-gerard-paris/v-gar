@@ -28,7 +28,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
+<<<<<<< HEAD
 import com.searshc.mygarage.dtos.manualvehicle.AddOrUpdateManualFamilyVehicleDTO;
+=======
+import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
+>>>>>>> 8862bd4... merge all
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -154,12 +158,21 @@ public class VehicleController {
 				HttpStatus.OK);
 	}
 
+<<<<<<< HEAD
 	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@PathVariable("userId") final long userId,
 			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 
 		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(userId, addOrUpdateManualFamilyVehicleDTO);
+=======
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@RequestBody AddNewManualFamilyVehicleDTO data) {
+
+		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+>>>>>>> 8862bd4... merge all
 		return new ResponseEntity<FamilyVehicle>(familyVehicle, null,
 				HttpStatus.OK);
 	}
@@ -167,9 +180,16 @@ public class VehicleController {
 	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> updateManualFamilyVehicle(@PathVariable("userId") final long userId,
+<<<<<<< HEAD
 			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 
 		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, addOrUpdateManualFamilyVehicleDTO);
+=======
+			@RequestBody VehicleGenericDescriptionDTO data) {
+
+		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+>>>>>>> 8862bd4... merge all
 		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
 	}
 	
