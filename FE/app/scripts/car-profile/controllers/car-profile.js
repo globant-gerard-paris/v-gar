@@ -12,7 +12,16 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
         $scope.$broadcast('car-profile-data-ready');
     };
 
-    //TODO: remove when refactor duplicate this in record.js.
+    //Set POPUP.
+    $scope.model = {
+        dateRecordFormat: 'MM/dd/yyyy',
+        servicesPopup: null
+    };
+
+    var successGetServices = function(response){
+        $scope.model.servicesPopup = response.data;
+    };
+
     $scope.openNewRecordForm = function () {
 
         var modalNewRecord = $modal.open({
@@ -65,6 +74,7 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
             var userId = SessionDataSrv.getCurrentUser();
             var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
             var familyVehicleId = familyVehicle.id;
+        RecordSrv.getRecordService().then(successGetServices);
             ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
         }
     };
