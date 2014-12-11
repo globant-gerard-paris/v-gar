@@ -4,6 +4,8 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,8 +28,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
-import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
+import com.searshc.mygarage.dtos.manualvehicle.AddOrUpdateManualFamilyVehicleDTO;
+import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
+import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.entities.trends.VehicleTrend;
 import com.searshc.mygarage.exceptions.NCDBApiException;
@@ -149,12 +154,12 @@ public class VehicleController {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@RequestBody AddNewManualFamilyVehicleDTO data) {
+	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@PathVariable("userId") final long userId,
+			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 
-		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
-				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(userId, addOrUpdateManualFamilyVehicleDTO);
 		return new ResponseEntity<FamilyVehicle>(familyVehicle, null,
 				HttpStatus.OK);
 	}
@@ -162,10 +167,9 @@ public class VehicleController {
 	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> updateManualFamilyVehicle(@PathVariable("userId") final long userId,
-			@RequestBody VehicleGenericDescriptionDTO data) {
+			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 
-		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, data.getVehicleId(),
-				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, addOrUpdateManualFamilyVehicleDTO);
 		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
 	}
 	

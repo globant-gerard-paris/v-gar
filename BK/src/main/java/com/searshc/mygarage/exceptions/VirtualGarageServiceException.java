@@ -20,4 +20,7 @@ public class VirtualGarageServiceException extends RuntimeException implements S
 	public VirtualGarageServiceException(final Throwable cause) {
 		super(cause);
 	}
+	public VirtualGarageServiceException(final String message, final Throwable cause) {
+		super(message, cause);
+	}
 }
