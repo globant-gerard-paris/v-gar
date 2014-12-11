@@ -7,6 +7,64 @@
 	overflow-x: hidden;
 	height: 100%;
 
+    .second-header{
+
+        background-color: #f7f8f8;
+        border: 1px solid #e7e7e7;
+
+        height: 80px;
+
+        .row{
+            height: 100%;
+        }
+
+
+        .img{
+            background-position: left center;
+            background-repeat: no-repeat;
+            padding-left: 37px;
+            margin-right: 10px;
+            height: 100%;
+        }
+
+        .recall{
+            .img{
+                background-image: url($headerRecall);
+                padding-left: 42px;
+            }
+        }
+        .services{
+            .img{
+                background-image: url($headerService);
+                padding-left: 36px;
+            }
+        }
+
+        .wrapper-parent{
+            position: relative;
+            height: 100%;
+        }
+
+        .wrapper-center{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .second-header-text{
+            font-size: 1.8rem;
+            font-weight: 900;
+            width: 100%;
+        }
+        .divisor{
+            border-left: 1px #a0a0a0 solid;
+            height: 50px;
+            margin-top: 15px;
+        }
+    }
+
+
 	section{
 		padding:0;
 	}

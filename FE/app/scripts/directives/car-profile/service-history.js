@@ -19,7 +19,7 @@ angular.module('Directives').directive('serviceHistory', function () {
 
                 var r = [];
 
-                _.each(scope.services, function(service){
+                _.each(scope.services, function(service){                    
 
                     var serviceCenter = service.serviceCenter,
                         serviceCenterStr = '',
@@ -35,18 +35,17 @@ angular.module('Directives').directive('serviceHistory', function () {
                         serviceDescArr.push(record.description);
                     });
 
-                    if (serviceCenter !== null) {
-
+                    if (serviceCenter) {
                         serviceCenterStr += serviceCenter.address;
                         serviceCenterStr += serviceCenter.city ? ' @ ' + serviceCenter.city +
                                             ', ' + serviceCenter.zipCode : '';
-
-                        serviceToReturn.serviceCenterStr = serviceCenterStr;
-                        serviceToReturn.serviceDesc = serviceDescArr.join(', ');
-
-                        r.push(serviceToReturn);
-
+                        serviceToReturn.serviceCenterStr = serviceCenterStr;                                               
+                    } else {
+                        serviceToReturn.serviceCenterStr = service.source;
                     }
+
+                    serviceToReturn.serviceDesc = serviceDescArr.join(', '); 
+                    r.push(serviceToReturn);
 
                 });
 

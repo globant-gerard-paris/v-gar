@@ -4,27 +4,25 @@ angular.module('Directives').directive('serviceInformation', function () {
     return {
         restrict: 'E',
         templateUrl: 'scripts/directives/views/service-information.html',
-        scope: {
-            serviceDate: '=',
-            serviceMileage: '=',
-            serviceCenter: '=',
-            serviceRecords: '='
+        scope: {            
+            service: '='
         },
         link: function (scope) {
             
             scope.serviceCenterStr = 'None';
 
-            if (scope.serviceCenter !== null) {
-                scope.serviceCenterStr = scope.serviceCenter.address;
-                if(scope.serviceCenter.city){
-                    scope.serviceCenterStr += ' @ ' + scope.serviceCenter.city +
-                    ', ' + scope.serviceCenter.zipCode;
-                }
+            if (scope.service.serviceCenter) {
+                scope.serviceCenterStr = scope.service.serviceCenter.address;                
+                scope.serviceCenterStr += ' @ ' + scope.service.serviceCenter.city +
+                    ', ' + scope.service.serviceCenter.zipCode;                
+            }
+            else {
+                scope.serviceCenterStr = scope.service.source;
             }
 
             var serviceDescArr = [];
 
-            _.each(scope.serviceRecords, function(record){
+            _.each(scope.service.serviceRecordItems, function(record){
                 serviceDescArr.push(record.description);
             });
 

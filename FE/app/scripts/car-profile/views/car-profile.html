@@ -7,16 +7,16 @@
 
             <div class="car-profile-header-inner">
 
-                <div class="header-left pull-left">
-                    <div class="car-profile-picture pull-left"></div>
+                <div class="header-left">
+                    <div class="car-profile-picture"></div>
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
 
-                <div class="header-center pull-left">
+                <div class="header-center">
                     <service-alert model="model.data.vehicleStatus"></service-alert>
                 </div>
 
-                <div class="header-right pull-left">
+                <div class="header-right">
                     <recalls-and-services model="model"></recalls-and-services>
                 </div>
                 <div class="btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
@@ -28,7 +28,24 @@
     <div class="clearfix"></div>
 
     <section class="visible-xs mobile-version">
-        <div class="btn-add-mobile" ng-click="openNewRecordForm()"></div>
+        <div class="second-header">
+            <section class="row">
+                <div class="col-xs-6 recall wrapper-parent" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
+                    <div class="wrapper-center">
+                        <div class="img second-header-text">{{model.data.recallsInformation.totalRecalls}} Recall</div>
+                    </div>
+                </div>
+                <div class="col-xs-6 services wrapper-parent divisor"
+                     ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
+                    <div class="wrapper-center">
+                        <div class="img second-header-text">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Services</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
         <car-card car="model.data.vehicle" change-miles="true"></car-card>
         <service-alert model="model.data.vehicleStatus"></service-alert>
     </section>
@@ -64,8 +81,8 @@
             <div class="car-profile-last-services-inner">
                 <section class="row">
                     <div class="last-service-top col-xs-12">
-                        <div class="section-title pull-left">Your last service history</div>
-                        <div class="btn-history pull-left" ng-click="seeAllHistory()">See all history</div>
+                        <div class="section-title">Your last service history</div>
+                        <div class="btn-history" ng-click="seeAllHistory()">See all history</div>
                     </div>
                     <div class="clearfix"></div>
                     <div ng-show="model.services" class="col-xs-12 last-service-body">
@@ -93,13 +110,13 @@
     <section class="visible-xs">
 
         <div class="stores-social-box-big row visible-xs">
-            <div class="stores-social pull-left">
+            <div class="stores-social">
                 <div class="stores-social-internal"></div>
             </div>
-            <div class="stores-social pull-left">
+            <div class="stores-social">
                 <div class="stores-social-facebook"></div>
             </div>
-            <div class="stores-social pull-left">
+            <div class="stores-social">
                 <div class="stores-social-twitter"></div>
             </div>
         </div>

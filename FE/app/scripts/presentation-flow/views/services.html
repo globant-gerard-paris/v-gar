@@ -15,10 +15,7 @@
                     <div class="col-sm-4">Service Center</div>
                     <div class="col-sm-5">Service</div>
                 </div>
-                <service-information service-date="service.date" service-mileage="service.mileage"
-                                     service-center="service.serviceCenter" service-records="service.serviceRecordItems"
-                                    ng-repeat="service in model.groupedServices[year]">
-                </service-information>
+                <service-information service="service" ng-repeat="service in model.groupedServices[year]"></service-information>
             </div>
         </div>
     </div>
