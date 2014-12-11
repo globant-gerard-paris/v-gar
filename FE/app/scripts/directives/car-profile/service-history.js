@@ -35,17 +35,15 @@ angular.module('Directives').directive('serviceHistory', function () {
                         serviceDescArr.push(record.description);
                     });
 
-                    if (serviceCenter !== null) {
-
+                    if (serviceCenter) {
                         serviceCenterStr += serviceCenter.address;
                         serviceCenterStr += serviceCenter.city ? ' @ ' + serviceCenter.city +
                                             ', ' + serviceCenter.zipCode : '';
-
                         serviceToReturn.serviceCenterStr = serviceCenterStr;
                         serviceToReturn.serviceDesc = serviceDescArr.join(', ');
-
                         r.push(serviceToReturn);
-
+                    } else {
+                        serviceCenterStr = service.source;
                     }
 
                 });
