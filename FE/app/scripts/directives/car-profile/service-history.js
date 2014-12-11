@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('Directives').directive('serviceHistory', function ($timeout) {
+angular.module('Directives').directive('serviceHistory', function () {
     return {
         replace: true,
         restrict: 'E',

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,8 +24,10 @@ import com.searshc.mygarage.apis.ncdb.response.Query;
 import com.searshc.mygarage.apis.ncdb.response.order.OrderHistoryResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleResponse;
 import com.searshc.mygarage.apis.ncdb.response.vehicle.VehicleRetrievalResponse;
+import com.searshc.mygarage.apis.ncdb.response.vintovehicle.VehicleByLicensePlateOrVinNumberResponse;
+import com.searshc.mygarage.apis.ncdb.response.vintovehicle.VehiclesListByLicensePlateOrVinNumberResponse;
+import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
-
 import com.searshc.mygarage.exceptions.NCDBApiException;
 
 @Component
@@ -37,6 +40,9 @@ public class NCDBApiImpl implements NCDBApi {
 
     @Value("${ncdb.api.order.history.inquiry.service.name}")
     private String orderHistoryInquiryServiceName;
+    
+    @Value("${ncdb.api.vehicle.list.inquiry.vinnumber.service.name}")
+    private String vehicleListInquiryByVINNumberServiceName;
 
     @Value("${ncdb.api.endpoint}")
     private String serviceUrl;
@@ -127,5 +133,92 @@ public class NCDBApiImpl implements NCDBApi {
         }
         log.info(response.getVehicles().size() + " vehicles were found");
         return response;
+    }
+    
+    @Override
+    public List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber) {
+    	VehiclesListByLicensePlateOrVinNumberResponse ncdbVehiclesList = this.getNCDBVehicleByVINNumber(vinNumber);
+    	List<VehicleGenericDescriptionDTO> results = this.convertToVehicleByVINOrLicensePlateDTO(ncdbVehiclesList.getVehicles());
+    	return results;
+    }
+    
+    @Override
+    public List<VehicleGenericDescriptionDTO> getVehicleByLicensePlate(final String licensePlate) {
+    	VehiclesListByLicensePlateOrVinNumberResponse ncdbVehiclesList = this.getNCDBVehicleByLicensePlate(licensePlate);
+    	List<VehicleGenericDescriptionDTO> results = this.convertToVehicleByVINOrLicensePlateDTO(ncdbVehiclesList.getVehicles());
+    	return results;
+    }
+    
+    
+    public VehiclesListByLicensePlateOrVinNumberResponse getNCDBVehicleByVINNumber(final String vinNumber) {
+    	Validate.isTrue(!StringUtils.isEmpty(vinNumber), "The VIN Number is required");
+    	MdsHeader header = new MdsHeader(this.vehicleListInquiryByVINNumberServiceName);
+    	header.setRequestorUserId(this.requestorUserId);
+        header.setMessageOriginationTime(this.simpleDateFormat.format(new Date()));
+        header.setSequenceNumber("001");
+        
+        Query query = new Query();
+        query.setFamilyTypeCode("R");
+        query.setTangibleTypeCode("R");
+        query.setVinNumber(vinNumber);
+        
+        EsbMsgRequest request = new EsbMsgRequest(header, query);
+        VehiclesListByLicensePlateOrVinNumberResponse response = null;
+        log.info(new StringBuilder().append("Looking NCDB vehicles by VIN number ").append(vinNumber).append(" at ").append(serviceUrl).toString());
+        try {
+			//TODO: use the real service
+        	//response = this.restTemplate.postForObject(this.serviceUrl, request, VehiclesListVINResponse.class);
+        	response = this.restTemplate.postForObject("http://localhost:8080/ncdbmock/vinnumber", request, VehiclesListByLicensePlateOrVinNumberResponse.class);
+		} catch (Exception e) {
+			String message = new StringBuilder().append("Could not get Vehicles by VIN Number: ").append(vinNumber).toString();
+			log.error(message, e);
+			throw new NCDBApiException(message);
+		}
+        log.info(response.getVehicleCount() + " vehicles were found");
+        return response;
+    }
+    
+    public VehiclesListByLicensePlateOrVinNumberResponse getNCDBVehicleByLicensePlate(final String licensePlate) {
+    	Validate.isTrue(!StringUtils.isEmpty(licensePlate), "The License Plate is required");
+    	MdsHeader header = new MdsHeader(this.vehicleListInquiryByVINNumberServiceName);
+    	header.setRequestorUserId(this.requestorUserId);
+        header.setMessageOriginationTime(this.simpleDateFormat.format(new Date()));
+        header.setSequenceNumber("001");
+        
+        Query query = new Query();
+        query.setFamilyTypeCode("R");
+        query.setTangibleTypeCode("R");
+        query.setLicensePlateNumber(licensePlate);
+        
+        EsbMsgRequest request = new EsbMsgRequest(header, query);
+        VehiclesListByLicensePlateOrVinNumberResponse response = null;
+        log.info(new StringBuilder().append("Looking NCDB vehicles by Lincense Plate number ").append(licensePlate).append(" at ").append(serviceUrl).toString());
+        try {
+			//TODO: use the real service
+        	//response = this.restTemplate.postForObject(this.serviceUrl, request, VehiclesListVINResponse.class);
+        	response = this.restTemplate.postForObject("http://localhost:8080/ncdbmock/vinnumber", request, VehiclesListByLicensePlateOrVinNumberResponse.class);
+		} catch (Exception e) {
+			String message = new StringBuilder().append("Could not get Vehicles by License Plate Number: ").append(licensePlate).toString();
+			log.error(message, e);
+			throw new NCDBApiException(message);
+		}
+        log.info(response.getVehicleCount() + " vehicles were found");
+        return response;
+    }
+    
+    public List<VehicleGenericDescriptionDTO> convertToVehicleByVINOrLicensePlateDTO(List<VehicleByLicensePlateOrVinNumberResponse> vehicleVINResponseList) {
+    	Validate.notNull(vehicleVINResponseList, "The List of Vehicles cannot be null");
+    	log.debug("Items to be converted: " + vehicleVINResponseList.size());
+    	List<VehicleGenericDescriptionDTO> result = new ArrayList<VehicleGenericDescriptionDTO>();
+    	for(VehicleByLicensePlateOrVinNumberResponse ncdbVehicle : vehicleVINResponseList) {
+    		try {
+				result.add(this.mapper.map(ncdbVehicle, VehicleGenericDescriptionDTO.class));
+			} catch (MappingException e) {
+				log.error("Could not convert to VehicleByVINOrLicensePlateDTO", e);
+			}
+    	}
+    	log.debug("Items converted: " + result.size());
+    	return result;
+    	
     }
 }
