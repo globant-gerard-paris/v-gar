@@ -40,17 +40,15 @@
     .section-title {
       float: left;
     }
-    a {
-      display: block;
-      margin-left: 20px;
-      float: left;
-    }
     .btn-history {
       color:  #91dcff;
       font-weight: 500;
       font-size: 18px;
       line-height: 45px;
       left: -50px;
+      cursor: pointer;
+      margin-left: 20px;
+      float: left;
     }
   }
   .service-history {

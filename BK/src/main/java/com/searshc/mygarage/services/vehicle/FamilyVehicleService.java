@@ -251,7 +251,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         return result;
     }
 
-    public Set<ConfirmedVehicle> prepareConfirmedVehicle(final List<VehicleConfirmationDTO> vehicleConfirmationDTOs, final User user) {
+    public Set<ConfirmedVehicle> convert(final List<VehicleConfirmationDTO> vehicleConfirmationDTOs, final User user) {
         Validate.notNull(vehicleConfirmationDTOs, "Could not convert a null list of VehicleConfirmationDTO");
         Set<ConfirmedVehicle> result = new HashSet<ConfirmedVehicle>();
         List<ConfirmedVehicle> list = new ArrayList<ConfirmedVehicle>();
@@ -264,14 +264,28 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             if (dto.isConfirmed() == false) {
                 continue;
             }
-            
-            familyVehicle = this.getFamilyVehicleByIdOrTangibleId(dto.getFamilyId(), dto.getTangibleId());
-            if(familyVehicle == null) {
-            	familyVehicle = mapper.map(dto, FamilyVehicle.class);
-            	Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYearOrCreateNewVehicle(dto.getMake(), dto.getModel(), dto.getYear());
-            	familyVehicle.setVehicle(vehicle);
+            if (dto.getVehicleId() != 0) {
+                //The FamilyVehicle already exists in database
+            	try {
+					familyVehicle = this.getItem(dto.getVehicleId());
+				} catch (FamilyVehicleNotFoundException e) {
+					log.error(e);
+					continue;
+				}
+            } else if (dto.getTangibleId() != null) {
+                //Find if the FamilyVehicle was confirmed by another user (with same FamilyId)
+            	familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
+            	if(familyVehicle == null) {
+            		//The FamilyVehicle have not been confirmed previously
+            		familyVehicle = mapper.map(dto, FamilyVehicle.class);
+                    Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
+                    if (vehicle == null) {
+                        vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
+                    }
+                    familyVehicle.setVehicle(vehicle);
+            	}
+            	
             }
-
 
             if (familyVehicle == null || familyVehicle.getVehicle() == null) {
                 //no vehicle found
@@ -321,31 +335,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             return null;
         }
 
-    }
-    
-    /**
-     * Find a FamilyVehicle based, firstly, on its id and, if it was not found, then by the tangibleId.
-     * @param familyVehicleId
-     * @param tangibleId
-     * @return an instance of {@link FamilyVehicle} or null if no FamilyVehicle was found
-     */
-    public FamilyVehicle getFamilyVehicleByIdOrTangibleId(final Long familyVehicleId, final Long tangibleId) {
-    	FamilyVehicle familyVehicle = null;
-    	if(familyVehicleId != null) {
-    		try {
-				familyVehicle = this.getItem(familyVehicleId);
-			} catch (FamilyVehicleNotFoundException e) {
-				log.warn(new StringBuilder("FamilyVehicle not found with id: ").append(familyVehicleId).toString());
-			}
-    	}
-    	if(familyVehicle == null && tangibleId != null) {
-    		try {
-				familyVehicle = this.getFamilyVehicleByTangibleId(tangibleId);
-			} catch (Exception e) {
-				log.warn(new StringBuilder("FamilyVehicle not found with TangibleId: ").append(tangibleId).toString());
-			}
-    	}
-    	return familyVehicle;
     }
 
 }

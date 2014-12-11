@@ -14,7 +14,7 @@
 	}
 
 	.modal-close {
-		position: fixed;
+		position: absolute;
 		right: 0;
 		background-color: white;
 		border-radius: 6px;
@@ -39,6 +39,7 @@
 	.modal-header {
   		border: none;
   		padding-bottom: 8px;
+  		position: relative;
 
   		h1 {
   			font-size: 22px;

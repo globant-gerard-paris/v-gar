@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('recallsAndServices', function () {
+angular.module('Directives').directive('recallsAndServices', function (RedirectSrv) {
     return {
         replace: true,
         restrict: 'E',
@@ -8,7 +8,10 @@ angular.module('Directives').directive('recallsAndServices', function () {
         scope: {
             model: '='
         },
-        link: function () {
+        link: function (scope) {
+            scope.redirectToRecalls = function(){
+                RedirectSrv.redirectTo('/recalls');
+            };
         }
     };
 });

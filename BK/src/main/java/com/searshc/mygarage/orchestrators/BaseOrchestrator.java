@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Component;
 
+import com.searshc.mygarage.services.feedback.FeedbackService;
 import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
@@ -38,5 +39,8 @@ public abstract class BaseOrchestrator {
 	
 	@Inject
 	protected VehicleRecallsService vehicleRecallsService;
+	
+	@Inject
+	protected FeedbackService feedbackService;
 	
 }
