@@ -14,6 +14,7 @@ public class VehicleConfirmationDTO implements Serializable {
      */
     private static final long serialVersionUID = -5908698017918896106L;
     @Mapping(value = "id")
+    //TODO: vehicleId should be changed to familyVehicleId
     private Long vehicleId;
     private Long familyId;
     private Long tangibleId;
