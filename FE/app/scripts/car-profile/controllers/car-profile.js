@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('CarProfile').controller('CarProfileCtrl2', function ($scope, $timeout, $http, config, SessionDataSrv, ApiHttpSrv) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $timeout, $http, config, SessionDataSrv, ApiHttpSrv) {
 
     $scope.model = {};
 

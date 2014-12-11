@@ -16,6 +16,7 @@ import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
+import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.repositories.ConfirmedVehicleRepository;
 
 @Service
@@ -38,10 +39,15 @@ public class ConfirmedVehicleService extends GenericService<ConfirmedVehicle, Lo
         int deletedCount = query.setParameter("userId", userId).executeUpdate();
         return deletedCount;
     }
+    
+    public boolean isAConfirmedVehicleByTheUser(final User user, final FamilyVehicle familyVehicle) {
+    	ConfirmedVehicle confirmedVehicle = this.repository.findByUserAndFamilyVehicle(user, familyVehicle);
+    	return confirmedVehicle != null ? true : false;
+    }
 
     
 
-    public List<VehicleConfirmationDTO> discardUnconfirmed(VehicleConfirmationDTO[] vehicleConfirmationDTOs) {
+    public List<VehicleConfirmationDTO> discardUnconfirmed(List<VehicleConfirmationDTO> vehicleConfirmationDTOs) {
         List<VehicleConfirmationDTO> result = new ArrayList<VehicleConfirmationDTO>();
         for (VehicleConfirmationDTO dto : vehicleConfirmationDTOs) {
             if (dto.isConfirmed()) {

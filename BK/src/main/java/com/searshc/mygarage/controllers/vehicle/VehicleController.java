@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -26,6 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
+import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
+import com.searshc.mygarage.dtos.familyvehicle.AddNewManualFamilyVehicleDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -35,7 +38,9 @@ import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.exceptions.VehicleTrendException;
+import com.searshc.mygarage.orchestrators.AddNewManualFamilyVehicleOrchestrator;
 import com.searshc.mygarage.orchestrators.DashboardOrchestrator;
+import com.searshc.mygarage.orchestrators.VehicleConfirmationOrchestrator;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
@@ -59,6 +64,8 @@ public class VehicleController {
 	private ObjectMapper objectMapper;
 	private DashboardOrchestrator dashboardOrchestrator;
     private VehicleTrendService vehicleTrendService;
+    private AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator;
+    private VehicleConfirmationOrchestrator vehicleConfirmationOrchestrator;
 
 	@Inject
 	public VehicleController(final NcdbService ncdbService,
@@ -68,7 +75,9 @@ public class VehicleController {
 			final ConfirmedVehicleService confirmedVehicleService,
 			final UserService userService, final ObjectMapper objectMapper,
 			final DashboardOrchestrator dashboardOrchestrator,
-			final VehicleTrendService vehicleTrendService) {
+			final VehicleTrendService vehicleTrendService,
+			final AddNewManualFamilyVehicleOrchestrator addNewManualFamilyVehicleOrchestrator,
+			final VehicleConfirmationOrchestrator vehicleConfirmationOrchestrator) {
 		this.ncdbService = notNull(ncdbService,
 				"The NCDB Service cannot be null");
 		this.recordService = notNull(recordService,
@@ -85,7 +94,11 @@ public class VehicleController {
 				"The ObjectMapper cannot be null");
 		this.dashboardOrchestrator = notNull(dashboardOrchestrator);
 		this.vehicleTrendService = notNull(vehicleTrendService,
-				"The Vehicle Trend Service cannot be null");		
+				"The Vehicle Trend Service cannot be null");	
+		this.addNewManualFamilyVehicleOrchestrator = notNull(addNewManualFamilyVehicleOrchestrator,
+				"The AddNewManualFamilyVehicleOrchestrator cannot be null");
+		this.vehicleConfirmationOrchestrator = notNull(vehicleConfirmationOrchestrator,
+				"The VehicleConfirmationOrchestrator cannot be null");
 	}
 
 	@RequestMapping(value = "/family/{familyId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -141,22 +154,26 @@ public class VehicleController {
 				HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<FamilyVehicle> createAndSaveNewVehicle(
-			@RequestParam("familyId") Long familyId,
-			@RequestParam("tangibleId") Long tangibleId,
-			@RequestParam("make") String make,
-			@RequestParam("model") String model,
-			@RequestParam("year") int year,
-			@RequestParam("color") String color,
-			@RequestParam("mileage") int mileage) {
+	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<FamilyVehicle> addNewManualFamilyVehicle(@RequestBody AddNewManualFamilyVehicleDTO data) {
 
-		FamilyVehicle familyVehicle = this.familyVehicleService
-				.createAndSaveNewVehicle(familyId, tangibleId, make, model,
-						year, color, mileage);
+		FamilyVehicle familyVehicle = this.addNewManualFamilyVehicleOrchestrator.addNewManualFamilyVehicle(data.getUserId(), data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
 		return new ResponseEntity<FamilyVehicle>(familyVehicle, null,
 				HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/manualvehicle/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Object> updateManualFamilyVehicle(@PathVariable("userId") final long userId,
+			@RequestBody VehicleGenericDescriptionDTO data) {
+
+		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, data.getVehicleId(),
+				data.getMake(), data.getModel(), data.getYear(), data.getMileage(), data.getName());
+		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
+	}
+	
 
 	@RequestMapping(value = "/{vehicleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FamilyVehicle> getAdditionalVehicleDetails(
@@ -171,18 +188,7 @@ public class VehicleController {
 	@ResponseBody
 	public ResponseEntity<Set<VehicleConfirmationDTO>> getVehiclesToConfirm(
 			@PathVariable("userId") long userId) throws NCDBApiException {
-		User user = this.userService.getItem(userId);
-		Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-		List<FamilyVehicle> localVehicles = this.familyVehicleService
-				.getConfirmedFamilyVehiclesByUserId(user.getId());
-		result.addAll(this.familyVehicleService.convert(localVehicles, true));
-		if (user.getFamilyId() != null) {
-			List<FamilyVehicle> ncdbVehicles = this.ncdbService
-					.listVehicles(user.getFamilyId());
-			ncdbVehicles.removeAll(localVehicles);
-			result.addAll(this.familyVehicleService
-					.convert(ncdbVehicles, false));
-		}
+		Set<VehicleConfirmationDTO> result = this.vehicleConfirmationOrchestrator.getLocalAndNCDBVehiclesMixed(userId);
 		return new ResponseEntity<Set<VehicleConfirmationDTO>>(result, null,
 				HttpStatus.OK);
 	}
@@ -190,32 +196,9 @@ public class VehicleController {
 	@RequestMapping(value = "/vehicles/confirm/user/{userId}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> updateVehicleConfirmation(
-			@PathVariable("userId") Long userId, @RequestBody String jsonBody)
+			@PathVariable("userId") Long userId, @RequestBody List<VehicleConfirmationDTO> vehicleConfirmationDTOs)
 			throws IOException, UserNotFoundException {
-		VehicleConfirmationDTO[] vehicleConfirmationDTOs = objectMapper
-				.readValue(jsonBody, VehicleConfirmationDTO[].class);
-		User user = this.userService.getItem(userId);
-		if (user == null) {
-			throw new UserNotFoundException("User not found with id: " + userId);
-		}
-
-		int recordsDeleted = this.confirmedVehicleService
-				.deleteConfirmedVehiclesByUserId(userId);
-		log.info(recordsDeleted
-				+ " ConfirmedVehicles records deleted for userId " + userId);
-		List<VehicleConfirmationDTO> vehicleDtoList = this.confirmedVehicleService
-				.discardUnconfirmed(vehicleConfirmationDTOs);
-
-		Set<ConfirmedVehicle> confirmedVehicles = this.familyVehicleService
-				.convert(vehicleDtoList, user);
-		Set<FamilyVehicle> newVehicles = this.confirmedVehicleService
-				.extractNoPersistedVehicles(confirmedVehicles);
-		if (newVehicles.size() > 0) {
-			this.familyVehicleService.saveAndFlush(newVehicles);
-		}
-		confirmedVehicles = this.confirmedVehicleService
-				.saveAndFlush(confirmedVehicles);
-		log.info(confirmedVehicles.size() + " vehicles were confirmed");
+		this.vehicleConfirmationOrchestrator.confirmVehicles(userId, vehicleConfirmationDTOs);
 		return new ResponseEntity<Object>(null, null, HttpStatus.OK);
 	}
 
@@ -239,4 +222,17 @@ public class VehicleController {
     	return new ResponseEntity<VehicleTrend>(response, null, HttpStatus.OK);
     }       
 
+    @RequestMapping("/vin/{vinNumber}")
+    @ResponseBody
+    public ResponseEntity<List<VehicleGenericDescriptionDTO>> getVehiclesByVINNumber(@PathVariable("vinNumber") final String vinNumber) {
+    	List<VehicleGenericDescriptionDTO> response = this.ncdbService.getVehicleByVINNumber(vinNumber);
+    	return new ResponseEntity<List<VehicleGenericDescriptionDTO>>(response, null, HttpStatus.OK);
+    }
+    
+    @RequestMapping("/licenseplate/{licensePlate}")
+    @ResponseBody
+    public ResponseEntity<List<VehicleGenericDescriptionDTO>> getVehiclesByLicensePlate(@PathVariable("licensePlate") final String licensePlate) {
+    	List<VehicleGenericDescriptionDTO> response = this.ncdbService.getVehicleByLicensePlate(licensePlate);
+    	return new ResponseEntity<List<VehicleGenericDescriptionDTO>>(response, null, HttpStatus.OK);
+    }
 }

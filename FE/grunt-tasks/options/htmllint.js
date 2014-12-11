@@ -459,7 +459,13 @@ module.exports = function (grunt) {
                 'Attribute “ng-if” not allowed on XHTML element “section” at this point.',
 				'XHTML element “service-alert” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
 				'XHTML element “service-history” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-				'XHTML element “car-article” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+				'XHTML element “car-article” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “recalls-and-services” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “car-tell-us-more” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “car-card” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “service-alert” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “recalls-and-services” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “ng-controller” not allowed on XHTML element “section” at this point.'
             ]
         }
     });
