@@ -6,7 +6,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
 
     $scope.model.vehicle = familyVehicle ? familyVehicle.vehicle : {};
 
-    var articleResultSuccess = function (response) {
+    var articleResultSuccess = function(response) {
         $scope.model.article = response.data || false;
     };
 
@@ -14,7 +14,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         console.log('ERROR: ' + response);
     };
 
-    $scope.$on('car-profile-data-ready', function () {
+    $scope.$on('car-profile-data-ready', function(){
         $scope.model.services = $scope.model.data.lastServiceHistory;
     });
 

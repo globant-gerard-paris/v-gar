@@ -38,8 +38,7 @@
 
   .last-service-top {
     .section-title {
-      /*float: left;*/
-      text-align: inherit
+      float: left;
     }
     .btn-history {
       color:  #91dcff;
@@ -49,7 +48,7 @@
       left: -50px;
       cursor: pointer;
       margin-left: 20px;
-      /*float: left;*/
+      float: left;
     }
   }
   .service-history {
@@ -68,7 +67,7 @@
         background-repeat: no-repeat;
         height: 53px;
         width: 48px;
-        /*float: left;*/
+        float: left;
         margin: 30px auto;
       }
       .service-history-icon-private {
@@ -88,12 +87,12 @@
         font-size: 18px;
         font-weight: 900;
         line-height: 16px;
-        /*float: left;*/
+        float: left;
       }
       .sh-date-small{
         font-size: 14px;
         font-weight: 700;
-        /*float: left;*/
+        float: left;
         margin-left: 20px;
       }
     }

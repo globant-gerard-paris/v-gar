@@ -27,6 +27,7 @@ angular.module('Directives').directive('serviceInformation', function () {
             });
 
             scope.serviceDesc = serviceDescArr.join(', ');
+            scope.serviceMileage = scope.service.mileage;
 
         }
     };

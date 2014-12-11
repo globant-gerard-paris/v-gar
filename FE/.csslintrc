@@ -21,5 +21,6 @@
     "box-sizing": false,
     "known-properties": false,
     "vendor-prefix": false,
-    "font-sizes": false
+    "font-sizes": false,
+    "floats": false
 }

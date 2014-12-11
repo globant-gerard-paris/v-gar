@@ -41,6 +41,7 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
         });
 
         var successAddRecord = function (response) {
+            $scope.loadProfileData();
             $scope.$emit('NEWLY_ADDED_RECORD', response);
         };
         var failAddRecord = function (response) {
@@ -49,11 +50,16 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
         };
     };
 
-    var userId = SessionDataSrv.getCurrentUser();
-    var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
-    var familyVehicleId = familyVehicle.id;
-    RecordSrv.getRecordService().then(successGetServices);
-    ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
-            userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
+    $scope.loadProfileData = function () {
+        var userId = SessionDataSrv.getCurrentUser();
+        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
+        var familyVehicleId = familyVehicle.id;
+        RecordSrv.getRecordService().then(successGetServices);
+        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
+                userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
+    };
+
+    //load initial data
+    $scope.loadProfileData();
 
 });
