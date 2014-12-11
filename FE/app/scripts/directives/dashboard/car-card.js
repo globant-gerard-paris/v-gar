@@ -13,7 +13,7 @@ angular.module('Directives').directive('carCard', function (SessionDataSrv, conf
             var updateMileage = function(mileage){
                 var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
                 var familyVehicleId = familyVehicle.id;
-                 ApiHttpSrv.createHttp('POST', config.api.hosts.BACKEND + '/car-profile/familyvehicle/'+familyVehicleId+'/mileage', mileage);
+                ApiHttpSrv.createHttp('POST', config.api.hosts.BACKEND + '/car-profile/familyvehicle/'+familyVehicleId+'/mileage', mileage);
             };
 
             scope.editMode = false;

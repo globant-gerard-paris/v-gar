@@ -66,15 +66,14 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 		log.debug(vehicleDtoList.size() + " vehicles to be confirmed");
 
 		Set<ConfirmedVehicle> confirmedVehicles = this.familyVehicleService
-				.convert(vehicleDtoList, user);
+				.prepareConfirmedVehicle(vehicleDtoList, user);
 		
 		Set<FamilyVehicle> newVehicles = this.confirmedVehicleService
 				.extractNoPersistedVehicles(confirmedVehicles);
 		if (newVehicles.size() > 0) {
 			this.familyVehicleService.saveAndFlush(newVehicles);
 		}
-		confirmedVehicles = this.confirmedVehicleService
-				.saveAndFlush(confirmedVehicles);
+		this.confirmedVehicleService.saveConfirmedVehicles(confirmedVehicles);
 		log.info(confirmedVehicles.size() + " vehicles were confirmed");
 	}
 	
