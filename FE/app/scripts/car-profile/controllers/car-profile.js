@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $timeout, $http, config, SessionDataSrv, ApiHttpSrv) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $timeout, $http, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
 
     $scope.model = {};
 
@@ -10,6 +10,37 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
     var carsResultSuccess = function(response){
         $scope.model.data = response.data;
         $scope.$broadcast('car-profile-data-ready');
+    };
+
+    //TODO: remove when refactor duplicate this in record.js.
+    $scope.openNewRecordForm = function () {
+
+        var modalNewRecord = $modal.open({
+            templateUrl: 'modalNewRecord.html',
+            controller: 'ModalNewRecordCtrl',
+            windowClass: 'vg-record-modal',
+            backdropClass: 'vg-record-backdrop',
+            size: 'md',
+            resolve: {
+                context: function () {
+                    return $scope.model;
+                }
+            }
+        });
+
+        modalNewRecord.result.then(function (model) {
+            RecordSrv.addRecord(model.recordForm).then(successAddRecord, failAddRecord);
+        }, function () {
+            // 'Modal dismissed at: ' + new Date()
+        });
+
+        var successAddRecord = function (response) {
+            $scope.$emit('NEWLY_ADDED_RECORD', response);
+        };
+        var failAddRecord = function (response) {
+            alert('An error has occurred, please try again.');
+            console.log('ERROR: ' + response);
+        };
     };
 
 
