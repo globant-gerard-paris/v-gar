@@ -34,14 +34,15 @@
     <section class="visible-xs mobile-version">
         <div class="second-header">
             <section class="row">
-                <div class="col-xs-6 recall wrapper-parent">
+                <div class="col-xs-6 recall wrapper-parent" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
                     <div class="wrapper-center">
-                        <div class="img second-header-text">1 Recall</div>
+                        <div class="img second-header-text">{{model.data.recallsInformation.totalRecalls}} Recall</div>
                     </div>
                 </div>
-                <div class="col-xs-6 services wrapper-parent divisor">
+                <div class="col-xs-6 services wrapper-parent divisor"
+                     ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
                     <div class="wrapper-center">
-                        <div class="img second-header-text">13 Recommended Services</div>
+                        <div class="img second-header-text">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Services</div>
                     </div>
                 </div>
             </section>
