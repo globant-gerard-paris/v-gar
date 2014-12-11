@@ -1,9 +1,6 @@
 'use strict';
 
-
 angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, $http, $modal, config, SessionDataSrv, TrendsSrv, ApiHttpSrv, RecordSrv, RedirectSrv) {
-
-    var mock = true;
 
     var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
 
@@ -40,7 +37,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         };
     };
 
-    var articleResultSuccess = function(response) {
+    var articleResultSuccess = function (response) {
         $scope.model.article = response.data || false;
     };
 
@@ -48,7 +45,7 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         console.log('ERROR: ' + response);
     };
 
-    $scope.$on('car-profile-data-ready', function(){
+    $scope.$on('car-profile-data-ready', function () {
         $scope.model.services = $scope.model.data.lastServiceHistory;
     });
 
@@ -56,10 +53,6 @@ angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', func
         RedirectSrv.redirectTo('/services');
     };
 
-    if(mock){
-        $http.get('resources/mocks/car-article.json').then(articleResultSuccess);
-    }
-    else{
-        TrendsSrv.getTrend($scope.model.vehicle.make, articleResultSuccess, servicesResultFailed);
-    }
+    TrendsSrv.getTrend($scope.model.vehicle.make, articleResultSuccess, servicesResultFailed);
+
 });
