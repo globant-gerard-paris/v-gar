@@ -20,7 +20,7 @@
     </head>
     <body ng-controller="MainCtrl">
 
-        <div ng-if="!isLandingPage()" ng-include="'scripts/navigation/views/navigation.html'" class="visible-lg visible-sm visible-md"></div>
+        <div ng-if="!isMobile() && !isLandingPage()" ng-include="'scripts/navigation/views/navigation.html'" class="visible-lg visible-sm visible-md"></div>
 
         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
         <!-- Add your site or application content here -->
