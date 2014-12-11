@@ -7,14 +7,12 @@ angular.module('Directives').directive('carTellUsMore', function () {
     return {
         restrict: 'E',
         scope: {
-            model: '='
+            model: '=',
+            type: '='
         },
-
         templateUrl: 'scripts/directives/views/car-profile/tell-us-more.html',
-
-        link: function (/*scope, element , attributes*/) {
-
-
+        link: function (scope /*, element , attributes*/) {
+            scope.mobile = (scope.type === 'xs');// ? 'visible-xs': 'hidden-xs';
         }
     };
 });
