@@ -35,6 +35,7 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
         });
 
         var successAddRecord = function (response) {
+            $scope.loadProfileData();
             $scope.$emit('NEWLY_ADDED_RECORD', response);
         };
         var failAddRecord = function (response) {
@@ -50,10 +51,25 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
             $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
         },500);
     }else{
-        var userId = SessionDataSrv.getCurrentUser();
-        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
-        var familyVehicleId = familyVehicle.id;
-        ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
+        $scope.loadProfileData();
     }
+
+
+    $scope.loadProfileData = function(){
+        if(mock){
+         //MOCK
+            $timeout( function(){
+                $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
+            },500);
+        }else{
+            var userId = SessionDataSrv.getCurrentUser();
+            var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
+            var familyVehicleId = familyVehicle.id;
+            ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
+        }
+    };
+
+    //load initial data
+    $scope.loadProfileData();
 
 });
