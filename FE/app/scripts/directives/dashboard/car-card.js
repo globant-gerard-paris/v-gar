@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('carCard', function () {
+angular.module('Directives').directive('carCard', function (SessionDataSrv, config, ApiHttpSrv) {
     return {
         replace: true,
         restrict: 'E',
@@ -10,6 +10,12 @@ angular.module('Directives').directive('carCard', function () {
             changeMiles: '&'
         },
         link: function (scope) {
+            var updateMileage = function(mileage){
+                var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
+                var familyVehicleId = familyVehicle.id;
+                ApiHttpSrv.createHttp('POST', config.api.hosts.BACKEND + '/car-profile/familyvehicle/'+familyVehicleId+'/mileage', mileage);
+            };
+
             scope.editMode = false;
             scope.toggleEditMiles = function(){
                 if(!scope.car.newMileage){
@@ -18,7 +24,7 @@ angular.module('Directives').directive('carCard', function () {
                 if(scope.editMode){
                     if(scope.car.newMileage){
                         scope.car.mileage = scope.car.newMileage;
-                        //call service here
+                        updateMileage(scope.car.mileage);
                     }
                 }
                 scope.editMode = !scope.editMode;
