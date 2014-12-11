@@ -26,7 +26,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 	@Override
 	public FamilyVehicle addNewManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
 		isTrue(userId > 0, "The User Id must be greater than 0");
-		long vehicleId = addOrUpdateManualFamilyVehicleDTO.getVehicleId();
+		Long vehicleId = addOrUpdateManualFamilyVehicleDTO.getVehicleId();
 		String make = addOrUpdateManualFamilyVehicleDTO.getMake();
 		String model = addOrUpdateManualFamilyVehicleDTO.getModel();
 		int year = addOrUpdateManualFamilyVehicleDTO.getYear();
@@ -39,7 +39,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 		
 		User user = this.userService.findByUserId(userId);
 		Vehicle vehicle = null;
-		if(vehicleId > 0) {
+		if(vehicleId == null) {
 			//If vehicleId is valid, retrieve an object based on that
 			vehicle = this.vehicleService.getItem(vehicleId);
 		} else {
@@ -64,14 +64,14 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 	
 	@Override
 	public void updateManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
-		long familyVehicleId = addOrUpdateManualFamilyVehicleDTO.getFamilyVehicleId();
+		Long familyVehicleId = addOrUpdateManualFamilyVehicleDTO.getFamilyVehicleId();
 		String make = addOrUpdateManualFamilyVehicleDTO.getMake();
 		String model = addOrUpdateManualFamilyVehicleDTO.getModel();
 		int year = addOrUpdateManualFamilyVehicleDTO.getYear();
 		int mileage = addOrUpdateManualFamilyVehicleDTO.getMileage();
 		String name = addOrUpdateManualFamilyVehicleDTO.getName();
 		
-		Validate.isTrue(familyVehicleId > 0, "The FamilyVehicleId must be greater than 0");
+		Validate.notNull(familyVehicleId, "The FamilyVehicleId cannot be null");
 		User user = this.userService.findByUserId(userId);
 		FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
 		
