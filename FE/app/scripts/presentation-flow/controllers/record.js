@@ -3,7 +3,8 @@
 /**
  *  @author Jero <jeronimo.carrizo@globant.com>
  */
-angular.module('PresentationFlow').controller('RecordCtrl', function ($scope, $modal, RecordSrv) {
+angular.module('PresentationFlow').controller('' +
+    '', function ($scope, $modal, RecordSrv) {
 
     $scope.model = {
         dateRecordFormat: 'MM/dd/yyyy',
