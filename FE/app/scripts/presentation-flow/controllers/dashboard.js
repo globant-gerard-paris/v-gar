@@ -53,8 +53,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         var modalNewRecord = $modal.open({
             templateUrl: 'modalFeedback.html',
             controller: 'ModalFeedbackCtrl',
-            windowClass: 'vg-record-modal',
-            backdropClass: 'vg-record-backdrop',
+            windowClass: 'vg-feedback-modal',
+            backdropClass: 'vg-feedback-backdrop',
             size: 'md',
             resolve: {
                 context: function () {

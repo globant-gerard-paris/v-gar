@@ -3,7 +3,7 @@ package com.searshc.mygarage.entities.feedback;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -21,13 +21,13 @@ public class Feedback extends AbstractEntity{
 	/**
 	 * The {@link User} who submitted the comment.
 	 */
-	@OneToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = CascadeType.ALL, optional = false)
 	private User user;
 	
 	/**
 	 * The comment provided as feedback.
 	 */
-	@Column(name = "comment", nullable = false)
+	@Column(name = "comment", nullable = false, columnDefinition = "TEXT")
 	private String comment;
 	
 	public Feedback() {
