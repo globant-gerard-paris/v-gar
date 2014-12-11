@@ -36,17 +36,17 @@
 	.header-left{
 		position: relative;
 		width: 500px;
-		float: left;
+		/*float: left;*/
 	}
 
 	.header-center{
 		width: 500px;
-		float: left;
+		/*float: left;*/
 	}
 
 	.header-right{
 		color:  #555e6c;
-		float: left;
+		/*float: left;*/
 		width: 220px;
 		.recall-info{
 			padding-left:44px;
@@ -154,7 +154,7 @@
 			background-position: center center;
 			background-repeat: no-repeat;
 			/*display: inline-block;*/
-			float: left;
+			/*float: left;*/
 			height: 141px;
 			width: 141px;
 			margin-left: 18px;
@@ -232,8 +232,20 @@
 		}
 
 	.mobile-version{
+		position: relative;
+		.btn-add-mobile{
+			position: absolute;
+			background-image: url(../resources/images/car-profile/mobile-edit.png);
+			width: 47px;
+			height: 47px;
+			right: 30px;
+			top: 100px;
+		}
 		.service-alert{
-			margin: 48px auto 80px auto;
+			margin: 18px 0 36px 0;
+			position: relative;
+			left: 50%;
+			@include transform(translateX(-50%) scale(0.7));
 		}
 		.car-card-slick-container{
 			text-align: center;
@@ -248,7 +260,8 @@
 			.count{
 				font-size: 2.0em;
 				font-weight: 900;
-				margin: 14px;
+				margin: 14px 2px 14px 2px;
+				line-height: 1em;
 			}
 			.service-info, .recall-info{
 				background-position: top center;
@@ -258,7 +271,7 @@
 				margin-bottom: 40px;
 			}
 			.service-info{
-				background-image: url(../resources/images/car-profile/servicehistory-mobile.png);	
+				background-image: url(../resources/images/car-profile/servicehistory-mobile.png);
 				.service-list{
 					.item{
 						color: #2b9ace;

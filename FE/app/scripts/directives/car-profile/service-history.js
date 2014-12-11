@@ -35,45 +35,23 @@ angular.module('Directives').directive('serviceHistory', function () {
                         serviceDescArr.push(record.description);
                     });
 
-                    if (serviceCenter !== null) {
-
+                    if (serviceCenter) {
                         serviceCenterStr += serviceCenter.address;
                         serviceCenterStr += serviceCenter.city ? ' @ ' + serviceCenter.city +
                                             ', ' + serviceCenter.zipCode : '';
-
                         serviceToReturn.serviceCenterStr = serviceCenterStr;
-                        serviceToReturn.serviceDesc = serviceDescArr.join(', ');
-
-                        r.push(serviceToReturn);
-
+                    } else {
+                        serviceToReturn.serviceCenterStr = service.source;
                     }
+
+                    serviceToReturn.serviceDesc = serviceDescArr.join(', ');
+                    r.push(serviceToReturn);
 
                 });
 
                 scope.model = {
                     services : r
                 };
-
-
-                //scope.serviceCenterStr = 'None';
-                //
-                //if (scope.serviceCenter !== null) {
-                //    scope.serviceCenterStr = scope.serviceCenter.address;
-                //
-                //    if(scope.serviceCenter.city){
-                //        scope.serviceCenterStr += ' @ ' + scope.serviceCenter.city +
-                //            ', ' + scope.serviceCenter.zipCode;
-                //    }
-                //}
-                //
-                //var serviceDescArr = [];
-                //
-                //_.each(scope.serviceRecords, function(record){
-                //    serviceDescArr.push(record.description);
-                //});
-                //
-                //scope.serviceDesc = serviceDescArr.join(', ');
-
 
             });
 
