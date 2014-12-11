@@ -17,7 +17,7 @@
             <div class="prev-service">
                 Previous service:
                 <span class="item" ng-repeat="srv in model.data.recommendedService.previousServiceRecordItems">
-                    {{srv.description | capitalize}},
+                    {{srv.description | capitalize}}{{ !$last ? ', ':''}}
                 </span>
             </div>
         </div>
