@@ -77,7 +77,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<FamilyVehicle> listVehicles(Long familyId) throws NCDBApiException {
+    public List<FamilyVehicle> listVehicles(Long familyId) {
         return this.ncdbApi.getVehicles(familyId);
     }
 
@@ -116,8 +116,7 @@ public class NcdbServiceImpl implements NcdbService {
         return orders.isEmpty() ? null : orders.get(0);
     }
 
-    private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter)
-            throws NCDBApiException {
+    private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter) {
         OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehicleHistory(familyId, tangibleId);
         List<Order> orders = null;
         if (orderHistoryResponse != null) {
@@ -144,8 +143,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId)
-            throws NCDBApiException {
+    public List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId) {
         RecordFilter ncdbRecordFilter = new RecordFilter();
         this.processTransactions(familyId, tangibleId, ncdbRecordFilter);
         List<ServiceRecord> serviceRecords
@@ -160,8 +158,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
-            throws NCDBApiException {
+    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId) {
         RecommendedService recommendedService = null;
         Order lastOrder = this.getLastOrder(familyId, tangibleId);
         if (lastOrder != null) {
@@ -255,15 +252,15 @@ public class NcdbServiceImpl implements NcdbService {
         }
         return lastOrder.getStoreNumber();
     }
-    
+
     @Override
     public List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber) {
-    	return this.ncdbApi.getVehicleByVINNumber(vinNumber);
+        return this.ncdbApi.getVehicleByVINNumber(vinNumber);
     }
-    
+
     @Override
     public List<VehicleGenericDescriptionDTO> getVehicleByLicensePlate(final String licensePlate) throws NCDBApiException {
-    	return this.ncdbApi.getVehicleByLicensePlate(licensePlate);
+        return this.ncdbApi.getVehicleByLicensePlate(licensePlate);
     }
 
 }

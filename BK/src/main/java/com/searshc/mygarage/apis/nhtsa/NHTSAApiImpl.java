@@ -44,7 +44,7 @@ public class NHTSAApiImpl implements NHTSAApi {
         log.info("Querying recalls at: " + url);
         try {
             response = this.restTemplate.getForEntity(url, NHTSARecalls.class);
-        } catch (RestClientException e) {
+        } catch (Exception e) {
             String message = new StringBuilder()
                     .append("Could not get Recalls for: ")
                     .append(make)
