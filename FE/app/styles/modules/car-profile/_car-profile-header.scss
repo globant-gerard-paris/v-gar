@@ -161,10 +161,12 @@
 		}
 
 		.car-card{
-			display: inline-block;
-			margin-left: 20px;
-			margin-top: 20px;
-			font-weight: 900;
+			display: block;
+			padding-left: 20px;
+			margin-right: 10px;
+ 			margin-top: 20px;
+ 			font-weight: 900;
+			overflow: hidden;
 
 			.car-card-year{
 				color: #555e6c;
@@ -259,6 +261,10 @@
 			}
 			.car-card-mileage{
 				margin-top: 38px;
+				.car-card-mileage-data{
+					margin: 0 auto;
+					width: 310px;
+				}
 			}
 		}
 		.recalls-and-services{
