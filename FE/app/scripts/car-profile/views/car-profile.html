@@ -1,4 +1,5 @@
 <div class="container-fluid row car-profile" >
+<div class="car-profile-container">
     <!--HEADER-->
     <section class="header col-xs-12 hidden-xs">
         <div class="car-profile-header">
@@ -95,10 +96,10 @@
                 <!--just for mobile-->
                 <car-tell-us-more model="model.data" type="'xs'"></car-tell-us-more>
 
-                <section class="row section-article">
+                <section class="row section-article" ng-show="model.article">
                     <div class="section-title col-xs-12">Auto articles</div>
                     <div class="section-desc col-xs-12">These articles are recomemended for you</div>
-                    <div ng-show="model.article" class="col-xs-12">
+                    <div class="col-xs-12">
                         <car-article model="model.article"></car-article>
                     </div>
                 </section>
@@ -128,4 +129,5 @@
         </section>
 
     </section>
+</div>
 </div>

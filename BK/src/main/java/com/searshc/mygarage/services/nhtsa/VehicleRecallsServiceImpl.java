@@ -14,6 +14,9 @@ import com.searshc.mygarage.apis.nhtsa.NHTSAUtils;
 import com.searshc.mygarage.apis.nhtsa.response.NHTSARecalls;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class VehicleRecallsServiceImpl implements VehicleRecallsService {
@@ -26,14 +29,19 @@ public class VehicleRecallsServiceImpl implements VehicleRecallsService {
     }
 
     @Override
-    public List<VehicleRecalls> getRecalls(int year, String make, String model) throws NHTSARecallsException {
-        NHTSARecalls nhtsaRecalls = this.nhtsaApi.getRecalls(year, make, model);
-        return NHTSAUtils.convert(nhtsaRecalls);
+    public List<VehicleRecalls> getRecalls(int year, String make, String model) {
+        NHTSARecalls nhtsaRecalls = null;
+        try {
+            nhtsaRecalls = this.nhtsaApi.getRecalls(year, make, model);
+        } catch (NHTSARecallsException ex) {
+            Logger.getLogger(VehicleRecallsServiceImpl.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+        }
+        return nhtsaRecalls == null ? new ArrayList<VehicleRecalls>() : NHTSAUtils.convert(nhtsaRecalls);
     }
 
     @Override
     public List<VehicleRecalls> getRecallsOrderedByDate(final int year, final String make,
-            final String model, final boolean isAscending) throws NHTSARecallsException {
+            final String model, final boolean isAscending) {
         List<VehicleRecalls> recalls = this.getRecalls(year, make, model);
         Collections.sort(recalls, new Comparator<VehicleRecalls>() {
 
@@ -48,7 +56,7 @@ public class VehicleRecallsServiceImpl implements VehicleRecallsService {
 
     @Override
     public VehicleRecalls getLastRecall(final int year, final String make,
-            final String model) throws NHTSARecallsException {
+            final String model) {
         List<VehicleRecalls> recalls = this.getRecallsOrderedByDate(year, make, model, false);
         return recalls != null && recalls.size() > 0 ? recalls.get(0) : null;
     }

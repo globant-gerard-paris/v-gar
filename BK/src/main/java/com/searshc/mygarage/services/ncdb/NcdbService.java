@@ -11,20 +11,18 @@ import com.searshc.mygarage.exceptions.NCDBApiException;
 
 public interface NcdbService {
 
-    List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId)
-            throws NCDBApiException;
+    List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId);
 
-    RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
-            throws NCDBApiException;
+    RecommendedService getRecommendedServices(Long familyId, Long tangibleId);
 
-    List<FamilyVehicle> listVehicles(final Long familyId) throws NCDBApiException;
+    List<FamilyVehicle> listVehicles(final Long familyId);
 
     int getHighestMileage(final Long familyId, final Long tangibleId) throws NCDBApiException;
 
     int getLastUsedStoreId(final Long familyId, final Long tangibleId) throws NCDBApiException;
-    
+
     List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber) throws NCDBApiException;
-    
+
     List<VehicleGenericDescriptionDTO> getVehicleByLicensePlate(final String licensePlate) throws NCDBApiException;
 
 }
