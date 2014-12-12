@@ -3,7 +3,6 @@
 angular.module('PresentationFlow').service('TrendsSrv', function (ApiHttpSrv, config) {
 
     var getTrend = function (make, successCallback, faildCallback) {
-		make = 'TOYOTA';
         ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/vehicle/trends/make/' + make + '/last')
                 .then(successCallback, faildCallback);
     };

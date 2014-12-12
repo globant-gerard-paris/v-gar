@@ -9,7 +9,6 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +17,6 @@ import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
-import com.searshc.mygarage.exceptions.VirtualGarageServiceException;
 import com.searshc.mygarage.repositories.ConfirmedVehicleRepository;
 
 @Service
@@ -69,14 +67,4 @@ public class ConfirmedVehicleService extends GenericService<ConfirmedVehicle, Lo
         }
         return result;
     }
-
-	public void saveConfirmedVehicles(Set<ConfirmedVehicle> confirmedVehicles) {
-		Validate.isTrue(!CollectionUtils.isEmpty(confirmedVehicles), "The ConfirmedVehicle collection must have elements to be saved");
-    	try {
-			super.saveAndFlush(confirmedVehicles);
-		} catch (Exception e) {
-			throw new VirtualGarageServiceException("Could not save the ConfirmedVehicle collection", e);
-		}
-		
-	}
 }

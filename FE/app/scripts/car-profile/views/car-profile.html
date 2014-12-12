@@ -1,5 +1,3 @@
-<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
-
 <div class="container-fluid row car-profile" >
     <!--HEADER-->
     <section class="header col-xs-12 hidden-xs">
@@ -7,16 +5,16 @@
 
             <div class="car-profile-header-inner">
 
-                <div class="header-left">
-                    <div class="car-profile-picture"></div>
+                <div class="header-left pull-left">
+                    <div class="car-profile-picture pull-left"></div>
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
 
-                <div class="header-center">
+                <div class="header-center pull-left">
                     <service-alert model="model.data.vehicleStatus"></service-alert>
                 </div>
 
-                <div class="header-right">
+                <div class="header-right pull-left">
                     <recalls-and-services model="model"></recalls-and-services>
                 </div>
 

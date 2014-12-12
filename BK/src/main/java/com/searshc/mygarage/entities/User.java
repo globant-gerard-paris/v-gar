@@ -33,6 +33,9 @@ public class User extends AbstractEntity implements Serializable {
     @Column(name = "syw_id", nullable = false)
     private Long sywId;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "sywr_member_number", nullable = false)
     private String sywrMemberNumber;
 
@@ -111,8 +114,16 @@ public class User extends AbstractEntity implements Serializable {
     public Date getLastUpdate() {
         return lastUpdate;
     }
+    
+    public String getName() {
+		return name;
+	}
 
-    @Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -126,6 +137,7 @@ public class User extends AbstractEntity implements Serializable {
         User rhs = (User) obj;
         return new EqualsBuilder()
                 .append(this.sywId, rhs.sywId)
+                .append(this.name, rhs.name)
                 .append(this.familyId, rhs.familyId).isEquals();
     }
 
@@ -133,6 +145,7 @@ public class User extends AbstractEntity implements Serializable {
     public int hashCode() {
         return new HashCodeBuilder()
                 .append(this.sywId)
+                .append(this.name)
                 .append(this.familyId).hashCode();
     }
 }

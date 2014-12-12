@@ -1,13 +1,10 @@
 'use strict';
 
-
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $timeout, $http, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
 
     $scope.model = {};
 
-    var mock = true;
-
-    var carsResultSuccess = function(response){
+    var carsResultSuccess = function (response) {
         $scope.model.data = response.data;
         $scope.$broadcast('car-profile-data-ready');
     };
@@ -18,7 +15,7 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
         servicesPopup: null
     };
 
-    var successGetServices = function(response){
+    var successGetServices = function (response) {
         $scope.model.servicesPopup = response.data;
     };
 
@@ -53,30 +50,13 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $tim
         };
     };
 
-
-    if(mock){
-     //MOCK
-        $timeout( function(){
-            $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
-        },500);
-    }else{
-        $scope.loadProfileData();
-    }
-
-
-    $scope.loadProfileData = function(){
-        if(mock){
-         //MOCK
-            $timeout( function(){
-                $http.get('resources/mocks/car-profile-data.json').then(carsResultSuccess);
-            },500);
-        }else{
-            var userId = SessionDataSrv.getCurrentUser();
-            var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
-            var familyVehicleId = familyVehicle.id;
+    $scope.loadProfileData = function () {
+        var userId = SessionDataSrv.getCurrentUser();
+        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
+        var familyVehicleId = familyVehicle.id;
         RecordSrv.getRecordService().then(successGetServices);
-            ApiHttpSrv.createHttp('GET',config.api.hosts.BACKEND + '/car-profile/user/'+userId+'/familyvehicle/'+familyVehicleId ).then(carsResultSuccess);
-        }
+        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
+                userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
     };
 
     //load initial data

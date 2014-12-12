@@ -1,7 +1,4 @@
 
-
-<div ng-include="'scripts/presentation-flow/views/nav-top.html'"></div>
-
 <div ng-init="selectedTab = 'recalls'" ng-include="'scripts/presentation-flow/views/car-records-header.html'"></div>
 
 <div class="recall-box">
@@ -16,8 +13,7 @@
                                 consequence="recall.consequence"
                                 remedy="recall.remedy"
                                 notes="recall.notes"
-                                position="$index + 1"
-                                ng-repeat="recall in model.recalls"></recall-information>
+                                ng-repeat="recall in model.recalls track by $index"></recall-information>
         </div>
     </div>
 

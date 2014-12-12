@@ -1,0 +1,29 @@
+<!-- ModalNewRecordCtrl -->
+<script type="text/ng-template" id="modalFeedback.html">    
+    <div class="modal-close">
+        <button type="button" class="btn btn-lg" ng-click="cancel()">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+    </div>
+    <div class="modal-window">
+        <div class="modal-header">
+            <h1 class="text-center">Give us Feedback!</h1>
+            <p>Please enter your comments into the box below and click submit</p> 
+        </div>
+        <form name="recordForm" novalidate ng-submit="addRecord()" role="recordForm">
+            <div class="modal-body form-horizontal">
+                <div class="form-group" ng-class="{ 'has-error' : (recordForm.comment.$invalid && recordForm.submitted) || ( recordForm.comment.$invalid && recordForm.comment.$dirty), 'has-success': recordForm.comment.$valid}">
+                    <div class="col-md-12 col-xs-12">
+                        <textarea id="record-comment" name="comment" ng-model="model.recordForm.comment"  type="text" class="form-control vg-record-modal-textarea" placeholder="Comments" required/>
+                        <div ng-show="recordForm.comment.$invalid && recordForm.submitted" class="help-block">Description are required.</div>
+                        <div ng-show="recordForm.comment.$error.required  && recordForm.submitted" class="help-block">Description should be a text.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-warning hidden-xs"  ng-click="cancel()">Cancel</button>
+                <button type="submit" class="btn btn-primary">ADD</button>
+            </div>
+        </form>
+    </div>
+</script>
