@@ -39,7 +39,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
     var carsResultSuccess = function(response){
         SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
         if(response.data.store){
-            SessionDataSrv.saveCurrentFavoriteStore(response.data.store.id);
+            SessionDataSrv.saveCurrentFavoriteStore(response.data.store.sacStore);
         }
         $scope.model.cars = response.data.vehicles;
         $scope.model.store = response.data.store;
