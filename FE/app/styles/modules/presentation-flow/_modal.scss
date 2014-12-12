@@ -1,4 +1,4 @@
-.vg-record-modal {
+.vg-record-modal, .vg-feedback-modal {
 
 	.modal-dialog {
 		width: 100%;
@@ -132,8 +132,27 @@
 	}
 }
 
-.vg-record-backdrop.modal-backdrop.in {
+.vg-record-backdrop.modal-backdrop.in, .vg-feedback-backdrop.modal-backdrop.in {
 	filter: alpha(opacity=20);
 	opacity: .2;
+}
+
+.vg-feedback-modal {
+	.modal-header p {
+		margin: 0;
+		color: #5b5f68;
+	}
+
+	.modal-body {
+		padding-top: 0;
+	}
+
+	@include bp(xs){
+		.form-control {
+			&.vg-record-modal-textarea {
+				height: 180px;
+			}
+		}
+	}
 }
 

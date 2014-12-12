@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, FeedbackSrv, $http, SessionDataSrv) {
 
     var mock = false;
 
@@ -50,6 +50,37 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         console.log('ERROR: ' + response);
     };
 
+    $scope.openFeedbackForm = function () {
+
+        var modalNewRecord = $modal.open({
+            templateUrl: 'modalFeedback.html',
+            controller: 'ModalFeedbackCtrl',
+            windowClass: 'vg-feedback-modal',
+            backdropClass: 'vg-feedback-backdrop',
+            size: 'md',
+            resolve: {
+                context: function () {
+                    return $scope.model;
+                }
+            }
+        });
+
+        modalNewRecord.result.then(function (model) {
+            console.log('Store feedback');
+            FeedbackSrv.addFeedback(userId, model.recordForm).then(successAddFeedback, failAddFeedback);
+        }, function () {
+            // 'Modal dismissed at: ' + new Date()
+        });
+
+        var successAddFeedback = function (response) {
+            $scope.$emit('NEWLY_ADDED_FEEDBACK', response);
+        };
+        var failAddFeedback = function (response) {
+            alert('An error has occurred, please try again.');
+            console.log('ERROR: ' + response);
+        };
+    };
+
     if(mock){
         $timeout( function(){
             $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
@@ -59,4 +90,29 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
     else{
         DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
     }
+
+}).controller('ModalFeedbackCtrl', function ($scope, $modalInstance, context) {
+
+    $scope.model = context;
+    $scope.model.recordForm = {
+        comment: null
+    };
+
+    $scope.addRecord = function () {
+        if ($scope.recordForm.$valid) {
+            $modalInstance.close($scope.model);
+        }else{
+            $scope.recordForm.submitted = true;
+        }
+    };
+
+    $scope.open = function ($event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        $scope.opened = true;
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
