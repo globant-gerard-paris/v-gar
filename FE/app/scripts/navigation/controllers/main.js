@@ -7,7 +7,8 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         countLinkedCars: 0,
         sywNumber: 0,
         currentPath: $location.path(),
-        currentCar: ''
+        currentCar: '',
+        backButtonMobileLink: '/dashboard'
     };
 
     $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
@@ -18,13 +19,6 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
 
     $scope.$on('RELOAD_SELECTED_VEHICLE', function (/*event, dataResponse*/) {
         $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
-    });
-
-    /**
-     * Each time that reload the URL validate bradecrumb.
-     */
-    $scope.$on('$routeChangeSuccess', function () {
-        $scope.model.currentPath = $location.path();
     });
 
     $scope.isMobile = function () {
@@ -39,7 +33,7 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
     };
 
     $scope.isCarProfilePage = function () {
-        return $location.path() === '/car-profile';
+        return $location.path() === 'C';
     };
 
     $scope.isServicesOrRecallsPage = function () {
@@ -60,4 +54,18 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         }
         return '';
     };
+
+    /**
+     * Each time that reload the URL validate bradecrumb.
+     */
+    $scope.$on('$routeChangeSuccess', function () {
+        $scope.model.currentPath = $location.path();
+        if($scope.isServicesOrRecallsPage()){
+            $scope.model.backButtonMobileLink = '/car-profile';
+            $scope.model.backButtonMobileText = $scope.model.currentCar.vehicle.make;
+        }else{
+            $scope.model.backButtonMobileLink = '/dashboard';
+            $scope.model.backButtonMobileText = 'Home';
+        }
+    });
 });

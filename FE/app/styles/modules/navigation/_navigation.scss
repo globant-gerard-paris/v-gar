@@ -1,6 +1,6 @@
 
-%btn-appointment{
-  margin-left:16px;
+%btn-appointment {
+  margin-left: 16px;
   display: inline-block;
   cursor: pointer;
   width: 220px;
@@ -32,7 +32,7 @@
 .dashboard-page-header {
   height: 90px;
 
-  .home-page-title-logo{
+  .home-page-title-logo {
     min-width: 220px;
   }
 
@@ -102,8 +102,6 @@
 
 }
 
-
-
 @include bp(sm) {
   .header-text {
     max-width: 33% !important;
@@ -154,8 +152,6 @@
   }
 }
 
-
-
 .brade-crumb-vg {
   %common-brade-crumb {
     height: 30px;
@@ -163,29 +159,29 @@
     font-family: Roboto;
   }
 
-  .brade-crumb-ul{
+  .brade-crumb-ul {
     list-style: none;
     overflow: hidden;
     margin-left: -40px !important;
   }
 
-  .brade-crumb-ul .level-one-li{
+  .brade-crumb-ul .level-one-li {
     width: 120px;
   }
 
-  .brade-crumb-ul .level-two-li{
+  .brade-crumb-ul .level-two-li {
     width: 120px;
     position: relative;
     left: -15px;
   }
 
-  .brade-crumb-ul .level-three-li{
+  .brade-crumb-ul .level-three-li {
     position: relative;
     left: -40px;
     width: 167px;
   }
 
-  .brade-crumb-ul li{
+  .brade-crumb-ul li {
     float: left;
   }
 
@@ -201,7 +197,7 @@
     @extend %common-brade-crumb;
     z-index: 10;
     color: #626a77;
-    width: 160px;
+    width: 120px;
     font-weight: 700;
     background: url("../resources/images/header/breadcrumb_1.png") no-repeat;
   }
@@ -209,7 +205,7 @@
     @extend %common-brade-crumb;
     z-index: 5;
     color: #626a77;
-    width: 160px;
+    width: 120px;
     font-weight: 700;
     background: url("../resources/images/header/breadcrumb_2.png") no-repeat;
   }
@@ -224,28 +220,32 @@
   }
 }
 
-.dashboard-mobile-header{
-  .header-btns{
-    height: 50px;
-    background: url("../resources/images/header/arrow-black.png") no-repeat;
+.dashboard-mobile-header {
+  background-color: rgb(246,246,248) !important;
+  %common-menu {
+    height: 55px;
+    cursor: pointer;
   }
-  .header-title{
-    .mobile-logo{
-
+  .header-btns {
+    @extend %common-menu;
+    background: url("../resources/images/header/arrow-black.png") no-repeat;
+    background-position-y: 10px;
+    background-position-x: 20px;
+    .text-arrow {
+      position: relative;
+      top: 12px;
+      left: 35px;
+      color: rgb(82,94,106);
+      color: rgba(82,94,106,0.98);
+      font-weight: 500;
+      font-size: 20px;
     }
   }
-}
 
-.dashboard-bottom-mobile{
-  .footer-btns{
-    margin-bottom: 90px;
-  }
-  text-align: center;
-  .dashboard-mobile-feedback{
-    display: inline-block;
-    background-image: url(../resources/images/dashboard/feedBack_mobile.png);
-    height: 86px;
-    width: 90px;
-    margin-top: 40px;
+  .header-title {
+    @extend %common-menu;
+    background: url(../resources/images/header/sears_logo_mobile.png) no-repeat;
+    background-position-x: 40px;
+    background-position-y: 15px;
   }
 }
