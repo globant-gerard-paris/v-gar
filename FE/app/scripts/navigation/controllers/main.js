@@ -8,13 +8,15 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         sywNumber: 0,
         currentPath: $location.path(),
         currentCar: '',
-        backButtonMobileLink: '/dashboard'
+        backButtonMobileLink: '/dashboard',
+        appoinmentUrl: 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
     };
 
     $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
         $scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles().length;
         $scope.model.userName = SessionDataSrv.getCurrentUserName();
         $scope.model.sywNumber = SessionDataSrv.getSywMemberNumber();
+        $scope.model.appoinmentUrl = 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore();
     });
 
     $scope.$on('RELOAD_SELECTED_VEHICLE', function (/*event, dataResponse*/) {

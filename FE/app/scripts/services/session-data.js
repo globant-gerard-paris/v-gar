@@ -8,6 +8,7 @@ angular.module('Services').service('SessionDataSrv', function () {
         currentUserNameKey = 'CURRENT_USER_NAME_KEY',
         currentFamilyVehicleKey = 'CURRENT_FAMILY_VEHICLE_KEY',
         currentSywMembernumberKey = 'CURRENT_SYW_MEMBERNUMBER_KEY',
+        currentFavoriteStoreKey = 'CURRENT_FAVORITE_STORE_KEY',
         currentFamilyVehiclesKey = 'CURRENT_FAMILY_VEHICLES_KEY';
 
     var isDataSaved = function () {
@@ -52,6 +53,21 @@ angular.module('Services').service('SessionDataSrv', function () {
      */
     var setCurrentUser = function (user) {
         saveData(currentUserKey, user);
+    };
+    /**
+     * Return the Current favorite store.
+     * @returns {string}
+     */
+    var getCurrentFavoriteStore = function () {
+        return parseInt(getData(currentFavoriteStoreKey),10);
+    };
+
+    /**
+     * Set the current favorite store.
+     * @param user
+     */
+    var saveCurrentFavoriteStore = function (user) {
+        saveData(currentFavoriteStoreKey, user);
     };
 
     /**
@@ -134,7 +150,9 @@ angular.module('Services').service('SessionDataSrv', function () {
         getCurrentFamilyVehicles: getCurrentFamilyVehicles,
         isMobileDevice: isMobileDevice,
         saveSywMemberNumber: saveSywMemberNumber,
-        getSywMemberNumber: getSywMemberNumber
+        getSywMemberNumber: getSywMemberNumber,
+        getCurrentFavoriteStore: getCurrentFavoriteStore,
+        saveCurrentFavoriteStore: saveCurrentFavoriteStore
     };
 
 });

@@ -12,7 +12,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
             name: userName,
             userId: userId
         },
-        linkApoinment : 'http://www.searsauto.com/stores/123'
+        linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
     };
 
     $scope.addCar = false;
@@ -38,8 +38,11 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
 
     var carsResultSuccess = function(response){
         SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
-        $scope.model.cars = response.data.vehicles,
-        $scope.model.store = response.data.store
+        if(response.data.store){
+            SessionDataSrv.saveCurrentFavoriteStore(response.data.store.id);
+        }
+        $scope.model.cars = response.data.vehicles;
+        $scope.model.store = response.data.store;
         $scope.$broadcast('RELOAD_STORE',response.data.store);
         $scope.$emit('RELOAD_VEHICLES',response.data.vehicles);
     };

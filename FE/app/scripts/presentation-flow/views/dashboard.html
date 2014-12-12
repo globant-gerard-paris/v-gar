@@ -74,7 +74,9 @@ redirectToAddCar()
             <div class="fixed960">
 
             <section class="col-xs-12 visible-xs">
-                <div class="btn-appointment"></div>
+                <a ng-href="{{model.linkApoinment}}" target="appoinment link">
+                    <div class="btn-appointment"></div>
+                </a>
             </section>
             <section class="col-xs-12 header-title" ng-if="model.store">
                 <h1 class="pull-left">Your service center <small>(<a ng-click="redirectToFSC()">Change your service center</a>)</small></h1>
