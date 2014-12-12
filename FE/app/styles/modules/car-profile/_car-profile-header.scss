@@ -250,6 +250,17 @@
 		.car-card-slick-container{
 			text-align: center;
 		}
+		.car-card{
+			.car-card-tag{
+				position: absolute;
+				left: 15px;
+				right: 0;
+				top:186px;
+			}
+			.car-card-mileage{
+				margin-top: 38px;
+			}
+		}
 		.recalls-and-services{
 			color: #555e6c;
 			text-align: center;
