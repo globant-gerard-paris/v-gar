@@ -12,7 +12,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
             name: userName,
             userId: userId
         },
-        linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
+        linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore(),
+        linkCoupon: 'http://www.searsauto.com/offers'
     };
 
     $scope.addCar = false;
