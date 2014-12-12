@@ -3,17 +3,17 @@
 
 angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, FeedbackSrv, $http, SessionDataSrv) {
 
-    var mock = false;
-
-    var userId =  SessionDataSrv.getCurrentUser();
-
+    var mock = false,
+        userId =  SessionDataSrv.getCurrentUser(),
+        userName = SessionDataSrv.getCurrentUserName();
     $scope.model = {
         cars: [],
         user: {
+            name: userName,
             userId: userId
-        }
+        },
+        linkApoinment : 'http://www.searsauto.com/stores/123'
     };
-
 
     $scope.addCar = false;
 
@@ -38,10 +38,8 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
 
     var carsResultSuccess = function(response){
         SessionDataSrv.saveCurrentFamilyVehicles(response.data.vehicles);
-        $scope.model = {
-            cars : response.data.vehicles,
-            store: response.data.store
-        };
+        $scope.model.cars = response.data.vehicles,
+        $scope.model.store = response.data.store
         $scope.$broadcast('RELOAD_STORE',response.data.store);
         $scope.$emit('RELOAD_VEHICLES',response.data.vehicles);
     };

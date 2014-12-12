@@ -249,3 +249,18 @@
     background-position-y: 15px;
   }
 }
+
+
+.dashboard-bottom-mobile{
+  .footer-btns{
+    margin-top: 40px;
+  }
+  text-align: center;
+  .dashboard-mobile-feedback{
+    display: inline-block;
+    background-image: url(../resources/images/dashboard/feedBack_mobile.png);
+    height: 86px;
+    width: 90px;
+    margin-top: 40px;
+  }
+}

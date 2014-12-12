@@ -230,7 +230,6 @@
 		}
 	}
 
-
 	@include bp(sm){
 		.car-slick-carousel{
 			width: 512px;
@@ -277,23 +276,29 @@
 
 
 
-		.header-text{
-			position: relative;
-			top: 75px;
-			font-size: 0.9em;
-			text-align: center;
-			color: #888;
+		.header-text-dashboard{
+          position: relative;
+          top: 75px;
+          font-size: 0.9em;
+          text-align: center;
+          color: #5D5858;
+          height: 60px;
        		.header-text-name{
 	        	color:#555;
 	    	}
 		}
+
+      .header-text-dashboard-name-word {
+        color: rgb(68, 66, 66);
+        font-weight: bold;
+      }
 
 		.dashboard-content-common-top {
 			top: 98px;
 		}
 
 		.mini-logo{
-			background-image: url(../resources/images/dashboard/Logo_Small.png);
+			background-image: url(../resources/images/header/newLogo_innerPages.png);
 			position: absolute;
 			top:22px;
 			left: 0;
@@ -375,13 +380,13 @@
 		    }
 	    }
 
-	    .header-text{
+	    .header-text-dashboard{
 	    	text-align: center;
 	        font-size:1.2em;
 	        font-weight: 100;
 	        margin-top: 1.9em;
 	        color:#888 !important;
-	       	.header-text-name{
+	       	.header-text-dashboard-name{
 	        	color:#555;
 	    	}
 	    }

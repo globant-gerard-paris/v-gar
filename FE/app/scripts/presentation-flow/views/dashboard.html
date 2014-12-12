@@ -8,7 +8,6 @@ redirectToAddCar()
 -->
 
 <div class="dashboard row">
-
     <div class="dashboard-car-holder">
         <div class="col-xs-12">
             <div class="mini-logo visible-xs-block"></div>
@@ -30,8 +29,8 @@ redirectToAddCar()
                     <a href="#" class="dashboard-manage-cars-edit"></a>
                     <a href="#" class="dashboard-manage-cars-manage">Manage your cars</a>
                 </div>
-                <div class="visible-xs-block header-text" ng-show="model.cars">
-                    <span class="header-text-name">James</span>, you have {{model.cars.length}} cars in Virtual Garage
+                <div class="visible-xs-block header-text-dashboard" ng-show="model.cars">
+                    <span class="header-text-dashboard-name"><span class="header-text-dashboard-name-word">{{model.user.name}}</span>, You have {{model.cars.length}} for Sears AutoCareOne</span>
                 </div>
                 <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''" ng-click="toggleAddCar()">
                     <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
@@ -119,6 +118,19 @@ redirectToAddCar()
             </div>
         </div>
     </section>
+
+    <div class="dashboard-bottom-mobile visible-xs">
+        <div class="col-xs-12 footer-btns">
+            <a href="#" class="btn-social btn-mail">
+            </a>
+            <a href="#" class="btn-social btn-facebook">
+            </a>
+            <a href="#" class="btn-social btn-twitter">
+            </a>
+            <br/>
+            <div class="dashboard-mobile-feedback"></div>
+        </div>
+    </div>
 
 </div>
 
