@@ -216,6 +216,7 @@
   .level-three {
     @extend %common-brade-crumb;
     z-index: 1;
+    color: rgb(98, 106, 119);
     color: rgba(98, 106, 119, 0.56);
     font-weight: 400;
     width: 170px;
