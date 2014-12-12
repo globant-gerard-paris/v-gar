@@ -101,11 +101,11 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 		result.put(NOT_LINKED_VEHICLES, notLinkedVehicles);
 		
 		if(CollectionUtils.isEmpty(confirmedLocalVehicles)) {
-			notLinkedVehicles = ncdbVehicles;
+			notLinkedVehicles.addAll(ncdbVehicles);
 			return result;
 		}
 		if(CollectionUtils.isEmpty(ncdbVehicles)) {
-			manualVehicles = confirmedLocalVehicles;
+			manualVehicles.addAll(confirmedLocalVehicles);
 			return result;
 		}
 		
