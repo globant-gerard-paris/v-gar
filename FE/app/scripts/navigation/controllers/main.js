@@ -33,7 +33,7 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
     });
 
     $scope.$on('RELOAD_SELECTED_VEHICLE', function (/*event, dataResponse*/) {
-        reloadVehicleInformation()
+        reloadVehicleInformation();
     });
     $scope.$on('SET_FAVORITE_STORE_SUCCESS', function (/*event, dataResponse*/) {
         updateAppoinment();

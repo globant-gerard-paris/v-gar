@@ -32,7 +32,7 @@ redirectToAddCar()
                 <div class="visible-xs-block header-text-dashboard" ng-show="model.cars">
                     <span class="header-text-dashboard-name"><span class="header-text-dashboard-name-word">{{model.user.name}}</span>, You have {{model.cars.length}} for Sears AutoCareOne</span>
                 </div>
-                <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''" ng-click="toggleAddCar()">
+                <div class="car-slick-carousel" slick slick-data="model.cars" ng-class="model.cars.length === 2 ? 'only-two':''">
                     <car-card car="car" ng-repeat="car in model.cars" ng-click="getToCarProfile(car)"></car-card>
                 </div>
             </div>
