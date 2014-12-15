@@ -3,7 +3,7 @@
 
 angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
 
-    var mock = false,
+    var mock = true,
         userId =  SessionDataSrv.getCurrentUser(),
         userName = SessionDataSrv.getCurrentUserName();
     $scope.model = {

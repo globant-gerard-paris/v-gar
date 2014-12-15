@@ -12,7 +12,7 @@ angular.module('PresentationFlow').directive('disableAnimation', function ($anim
     };
 });
 
-angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv) {
+angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv, stBlurredDialog) {
 
     $scope.nextURL = '/landing'; //default
 
@@ -59,6 +59,11 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         }
     };
 
+
+    var openLinkedCarModal = function(){
+        stBlurredDialog.open('scripts/presentation-flow/views/linked-car.html');
+    };
+
     var successGetUserInfo = function (response) {
         if(response){
             if(response.haveManualCars || response.haveLinkedCars ){
@@ -68,7 +73,12 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 $scope.nextURL = '/add-car';
             }
-            RedirectSrv.redirectTo($scope.nextURL);
+
+            if($scope.nextURL === '/linked-car'){
+                openLinkedCarModal();
+            }else{
+                RedirectSrv.redirectTo($scope.nextURL);
+            }
         }
     };
     var failGetUserInfo = function (response) {

@@ -73,7 +73,7 @@ angular.module('virtualGarage', _mainModules)
                 name: '/linked-car',
                 params: {
                     templateUrl: 'scripts/presentation-flow/views/linked-car.html',
-                    controller: 'LinkedCarCtrl'
+                    controller: ''
                 }
             });
             
