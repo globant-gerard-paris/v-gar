@@ -15,7 +15,7 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
     };
     var reloadVehicleInformation = function () {
         $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
-        if($scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles()){
+        if(SessionDataSrv.getCurrentFamilyVehicles()){
             $scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles().length;
         }
     };
