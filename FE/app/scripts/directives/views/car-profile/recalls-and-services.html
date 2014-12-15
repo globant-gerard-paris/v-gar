@@ -10,16 +10,13 @@
         <div class="service-info">
             <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
             <div class="service-list">
-                <span class="item" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
-                    {{srv.description | capitalize}}
-                </span>
-            </div>
-            <div class="prev-service">
-                Previous service:
-                <span class="item" ng-repeat="srv in model.data.recommendedService.previousServiceRecordItems">
-                    {{srv.description | capitalize}}{{ !$last ? ', ':''}}
-                </span>
-            </div>
+                <div class="well well-sm" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
+                    <button type="button" class="close">
+                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <a ng-href="{{srv.link}}" target="_blank">{{srv.description | capitalize}}</a>
+                </div>              
+            </div>            
         </div>
 	</div>
 </div>

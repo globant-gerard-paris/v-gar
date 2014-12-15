@@ -4,5 +4,9 @@
             "hosts": {
             }
         }
+        ,
+        "extUrl" : {
+            "appoinment" : "http://www.searsauto.com/stores/"
+        }
     }
 }

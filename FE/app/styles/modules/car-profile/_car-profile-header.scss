@@ -47,7 +47,7 @@
 	.header-right{
 		color:  #555e6c;
 		/*float: left;*/
-		width: 220px;
+		width: 300px;
 		.recall-info{
 			padding-left:44px;
 			background-image: url(../resources/images/car-profile/recall.png);
@@ -76,13 +76,20 @@
 			.count{
 				font-size: 1.2em;
 				font-weight: 900;
+				line-height: 1em;
+			}			
+			.service-list{
+				margin-top: 15px;
 			}
-			.service-list .item{
-				color: #2b9ace;
+			.service-list .well{				
 				font-size: 1.0em;
 				font-weight: 400;
 				display: block;
+				margin: 5px 0 0;
 			}
+			.service-list .well a{
+				color: #555e6c;
+			}			
 			.prev-service{
 				margin-top: 5px;
 				margin-bottom: 10px;
@@ -105,7 +112,7 @@
 	background-position: center center;
 	background-repeat: no-repeat;
 	&>div{
-		padding-top: 134px;
+		padding-top: 155px;
 		width: 33.3%;
 		height: 100%;
 		display: inline-block;
@@ -209,6 +216,8 @@
 			}
 
 			.car-card-mileage-change{
+				background: url(../resources/images/car-profile/edit.png) no-repeat left;
+				padding-left: 15px;				
 				color: #2b9ace;
 				font-size: 0.8em;
 				font-weight: 700;
@@ -295,6 +304,16 @@
 						font-weight: 400;
 						text-align: left;
 						display: block;
+					}
+					.well{				
+						font-size: 0.95em;
+						font-weight: 400;
+						display: block;
+						margin: 5px 0 0;
+						text-align: left;
+						a {
+							color: #555e6c;	
+						}
 					}
 				}
 				.prev-service{
