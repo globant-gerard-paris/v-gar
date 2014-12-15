@@ -9,12 +9,48 @@
 	position: absolute;
 	left: -20px;
 	right: -20px;
-	bottom: -30px;
+	bottom: -120px;
 	top: 150px;
 }
 
 .linked-car{
 	@include rotate(1.8deg);
+	font-family: Roboto;
+
+	.bottom-add-cars{
+		margin-top:20px;
+		color: #555e6c;
+		font-size: 1.3em;
+		font-weight: 700;
+		text-align: center;
+		a{
+			color: #3ea3d1;
+		}
+	}
+
+	.btn-confirm{
+		margin: 0 auto;
+		border-radius: 3px;
+		background-color: #3ea3d1;
+		text-align: center;
+		padding:20px 0;
+		font-size: 1.5em;
+		font-weight: 400;
+		width: 160px;
+		color: white;
+		cursor: pointer;
+	}
+
+	&>.title{
+		color: #555e6c;
+		width: 60%;
+		margin: 0 auto;
+		font-size: 2.2em;
+		font-weight: 400;
+		text-align: center;
+		margin-top: 48px;
+	}
+
 	.slick-prev{
 		&.slick-disabled{
 			background-image: none;
@@ -33,7 +69,6 @@
 		background-repeat: no-repeat;
 	}
 
-	font-family: Roboto;
 
 	
 
@@ -69,7 +104,7 @@
 
 	.car-card{
 		cursor: pointer;
-		margin: 64px auto;
+		margin: 32px auto;
 		position: relative;
 		background-image: url(../resources/images/linked-car/car-unselected-bg.png);
 		background-position: center 40px;
