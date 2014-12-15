@@ -2,6 +2,13 @@
 
 angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
 
+    $scope.toggleCarSelect = function(car){
+        if(!car){
+            return;
+        }
+        car.selected = !car.selected;
+    };
+
     $scope.areMineAction = function () {
         LinkedCarSrv.confirmCars($scope.model.vehicles, function () {
             RedirectSrv.redirectTo('/dashboard');

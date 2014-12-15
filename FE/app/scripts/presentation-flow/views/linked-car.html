@@ -1,5 +1,11 @@
 <div class="linked-car" ng-controller="LinkedCarCtrl">
         <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
-                <car-card car="car" ng-repeat="car in model.vehicles" ng-click=""></car-card>
+                <div ng-repeat="car in model.vehicles" ng-class="car.selected ? 'selected':''">
+                    <car-card car="car" ng-click="toggleCarSelect(car)">
+                        <div class="car-selected-icon" ng-show="car.selected"></div>
+                        <div class="car-last-service">last service placeholder TEXT
+                        more text to cover 2 lines and test the stiles</div>
+                    </car-card>
+                </div>
         </div>
 </div>
