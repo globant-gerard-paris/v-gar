@@ -33,6 +33,8 @@ import com.searshc.mygarage.entities.record.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.entities.FamilyVehicle;
+import com.searshc.mygarage.entities.record.RealServiceRecordItem;
+import com.searshc.mygarage.entities.record.RecommendedServiceRecordItem;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
 import com.searshc.mygarage.repositories.RecordRepository;
@@ -196,7 +198,7 @@ public class NcdbServiceImpl implements NcdbService {
                 = this.suggestedServiceRepository.findBySku(item.getItemId());
         ServiceRecordItem sri = null;
         if (sgt != null) {
-            sri = mapper.map(sgt, ServiceRecordItem.class);
+            sri = mapper.map(sgt, RecommendedServiceRecordItem.class);
             sri.setCode(item.getItemId());
         }
         return sri;
@@ -207,7 +209,7 @@ public class NcdbServiceImpl implements NcdbService {
                 = serviceTranslationRepository.findByProductFlag(orderItem.getProductFlag());
         ServiceRecordItem sri = null;
         if (st != null) {
-            sri = mapper.map(st, ServiceRecordItem.class);
+            sri = mapper.map(st, RealServiceRecordItem.class);
             sri.setCode(String.valueOf(orderItem.getProductFlag()));
         }
         return sri;

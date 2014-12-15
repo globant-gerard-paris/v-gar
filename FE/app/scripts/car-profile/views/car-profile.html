@@ -81,13 +81,13 @@
 
         <div class="car-profile-last-services">
             <div class="car-profile-last-services-inner">
-                <section class="row">
+                <section class="row" ng-show="model.services">
                     <div class="last-service-top col-xs-12">
                         <div class="section-title">Your last service history</div>
                         <div class="btn-history" ng-click="seeAllHistory()">See all history</div>
                     </div>
                     <div class="clearfix"></div>
-                    <div ng-show="model.services" class="col-xs-12 last-service-body">
+                    <div class="col-xs-12 last-service-body">
                         <service-history services="model.services"></service-history>
                     </div>
                     <div class="clearfix"></div>
@@ -97,8 +97,7 @@
                 <car-tell-us-more model="model.data" type="'xs'"></car-tell-us-more>
 
                 <section class="row section-article" ng-show="model.article">
-                    <div class="section-title col-xs-12">Auto articles</div>
-                    <div class="section-desc col-xs-12">These articles are recomemended for you</div>
+                    <div class="section-title col-xs-12">Auto articles</div>                    
                     <div class="col-xs-12">
                         <car-article model="model.article"></car-article>
                     </div>
