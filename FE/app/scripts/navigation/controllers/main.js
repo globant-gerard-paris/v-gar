@@ -16,15 +16,24 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         $scope.model.appoinmentUrl = config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore();
     };
 
-    $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
+    var reloadVehicleInformation = function(){
+        $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
         $scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles().length;
+    };
+
+    var reloadUserInformation = function(){
         $scope.model.userName = SessionDataSrv.getCurrentUserName();
         $scope.model.sywNumber = SessionDataSrv.getSywMemberNumber();
+    };
+
+    $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
+        reloadVehicleInformation();
+        reloadUserInformation();
         updateAppoinment();
     });
 
     $scope.$on('RELOAD_SELECTED_VEHICLE', function (/*event, dataResponse*/) {
-        $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
+        reloadVehicleInformation()
     });
     $scope.$on('SET_FAVORITE_STORE_SUCCESS', function (/*event, dataResponse*/) {
         updateAppoinment();
@@ -77,4 +86,12 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
             $scope.model.backButtonMobileText = 'Home';
         }
     });
+
+    var init = function(){
+        reloadVehicleInformation();
+        reloadUserInformation();
+        updateAppoinment();
+    };
+
+    init();
 });
