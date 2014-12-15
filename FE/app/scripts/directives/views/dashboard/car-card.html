@@ -3,8 +3,10 @@
 	<div class="car-card">
 		<!--div class="car-edit-btn"></div-->
 
-	    <div class="car-card-year">{{car.year || car.vehicle.year}}</div>
-	    <div class="car-card-brand">{{car.make || car.vehicle.make | capitalize}}</div>
+		<div class="car-card-year-brand">
+	    	<div class="car-card-year">{{car.year || car.vehicle.year}}</div>
+	    	<div class="car-card-brand">{{car.make || car.vehicle.make | capitalize}}</div>
+	    </div>
 	    <div class="car-card-model">{{car.model || car.vehicle.model | capitalize}}</div>
 
 	    <div class="car-card-mileage">

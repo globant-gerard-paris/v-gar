@@ -1,3 +1,5 @@
 <div class="linked-car" ng-controller="LinkedCarCtrl">
-HELLO
+        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
+                <car-card car="car" ng-repeat="car in model.vehicles" ng-click=""></car-card>
+        </div>
 </div>
