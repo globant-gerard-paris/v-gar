@@ -2,7 +2,7 @@
 
 angular.module('PresentationFlow').service('LinkedCarSrv', function ($timeout, $http, ApiHttpSrv, config, SessionDataSrv) {
 
-    var mock = true;
+    var mock = false;
 
     var getLinkedCars = function (successCallback, faildCallback) {
         if(!mock){

@@ -1,14 +1,15 @@
+'use strict';
+
 angular.module('PresentationFlow')
     .constant('stBlurredDialogClasses',{
-        blurredRegion: 'st-blurred-region'  
-     })
+        blurredRegion: 'st-blurred-region'
+    })
     .factory('stBlurredDialog', ['$timeout', function($timeout){
         var state = {
             subscribers: [],
             isOpen: false,
             dialogData: null
-        }   
-
+        };
         return {
             open: function(pathToTemplate, data){
                 $timeout(function(){
@@ -36,7 +37,7 @@ angular.module('PresentationFlow')
             subscribe: function(cb){
                 state.subscribers.push(cb);
             }
-        }
+        };
     }])
     // This directive is used to blur the page
     .directive('stBlurredDialogRegion', [function(){
@@ -45,7 +46,7 @@ angular.module('PresentationFlow')
             scope: {},
             controller: ['$scope', 'stBlurredDialog', '$element', 'stBlurredDialogClasses', function($scope, stBlurredDialog, $element, stBlurredDialogClasses){
 
-                stBlurredDialog.subscribe(function(isOpen, path, data){
+                stBlurredDialog.subscribe(function(isOpen){
                     if(isOpen){
                         $element.addClass(stBlurredDialogClasses.blurredRegion);
                     }
@@ -55,9 +56,9 @@ angular.module('PresentationFlow')
                 });
 
             }],
-            link: function(scope, element, attrs){
+            link: function(){
             }
-        }
+        };
     }])
     // This directive is used to show the modal dialog
     .directive('stBlurredDialogOverlay', [function(){
@@ -75,7 +76,7 @@ angular.module('PresentationFlow')
                     // We need to bind to the state of the service to check for state changes
                     isOpen: false,
                     pathToTemplate: null
-                }
+                };
 
                 stBlurredDialog.subscribe(function(isOpen, path){
                     $scope.model.isOpen = isOpen;
@@ -84,9 +85,9 @@ angular.module('PresentationFlow')
                 
                 $scope.close = function(){
                     stBlurredDialog.close();
-                }
+                };
             }],
             link: function(){
             }
-        }
+        };
     }]);

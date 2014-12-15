@@ -51,16 +51,12 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
     $scope.typeModal = '';
 
     $scope.startNow = function () {
-        /*
         if($scope.needSYWLogin){
             Platform.Authentication.openSignupDialog(null,null,'signIn');
             $scope.needSYWLogin = true;
         }else{
             RedirectSrv.redirectTo($scope.nextURL);
         }
-        */
-
-        openLinkedCarModal();
     };
 
 
@@ -77,7 +73,6 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 $scope.nextURL = '/add-car';
             }
-
 
             if($scope.nextURL === '/linked-car'){
                 openLinkedCarModal();
