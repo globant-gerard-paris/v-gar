@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Navigation').controller('MainCtrl', function ($scope, $location, SessionDataSrv) {
+angular.module('Navigation').controller('MainCtrl', function ($scope, $location, SessionDataSrv, config) {
 
     $scope.model = {
         userName: '',
@@ -9,18 +9,25 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         currentPath: $location.path(),
         currentCar: '',
         backButtonMobileLink: '/dashboard',
-        appoinmentUrl: 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
+        appoinmentUrl: config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore()
+    };
+
+    var updateAppoinment = function(){
+        $scope.model.appoinmentUrl = config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore();
     };
 
     $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
         $scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles().length;
         $scope.model.userName = SessionDataSrv.getCurrentUserName();
         $scope.model.sywNumber = SessionDataSrv.getSywMemberNumber();
-        $scope.model.appoinmentUrl = 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore();
+        updateAppoinment();
     });
 
     $scope.$on('RELOAD_SELECTED_VEHICLE', function (/*event, dataResponse*/) {
         $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
+    });
+    $scope.$on('SET_FAVORITE_STORE_SUCCESS', function (/*event, dataResponse*/) {
+        updateAppoinment();
     });
 
     $scope.isMobile = function () {

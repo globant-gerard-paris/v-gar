@@ -1,14 +1,14 @@
 /**
  *  The basic directive of {@link Store}.
  */
-angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv, $modal) {
+angular.module('Directives').directive('storeCard', function ($timeout, StoreLocatorSrv, $modal, SessionDataSrv) {
     'use strict';
 
     return {
         replace: true,
         restrict: 'EA',
         scope: {
-            model: '=',
+            model: '='
         },
 
         templateUrl: 'scripts/directives/views/store/store-card.html',
@@ -40,6 +40,7 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
              * Set the favorite store of the current user.
              */
             scope.setFavoriteStore = function () {
+                SessionDataSrv.saveCurrentFavoriteStore(scope.model.sac_store);
                 StoreLocatorSrv.setFavoriteStore(scope.model.id, successSetFavoriteStore, faildSetFavoriteStore);
             };
 
