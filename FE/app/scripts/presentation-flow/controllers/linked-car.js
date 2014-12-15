@@ -3,7 +3,7 @@
 angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
 
     $scope.areMineAction = function () {
-        LinkedCarSrv.confirmCars($scope.model.vehicules, function () {
+        LinkedCarSrv.confirmCars($scope.model.vehicles, function () {
             RedirectSrv.redirectTo('/dashboard');
         }, function (response) {
             console.log('ERROR: ' + response);
@@ -16,18 +16,18 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
     };
 
     $scope.model = {
-        vehicules: []
+        vehicles: []
     };
 
     $scope.totalConfirmed = 0;
 
     LinkedCarSrv.getLinkedCars(function (response) {
-        $scope.model.vehicules = response.data || [];
+        $scope.model.vehicles = response.data || [];
     }, function (response) {
         console.log('ERROR: ' + response);
     });
 
-    $scope.$watch('model.vehicules', function (data) {
+    $scope.$watch('model.vehicles', function (data) {
         var count = 0;
         angular.forEach(data, function (veh) {
             count += veh.isConfirmed ? 1 : 0;
