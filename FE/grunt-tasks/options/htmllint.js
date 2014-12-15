@@ -467,7 +467,8 @@ module.exports = function (grunt) {
                 'XHTML element “recalls-and-services” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “ng-controller” not allowed on XHTML element “section” at this point.',
                 'Attribute “ng-switch-when” not allowed on XHTML element “ul” at this point.',
-                'XHTML element “footer-vg” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “footer-vg” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “feedback-tag” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });

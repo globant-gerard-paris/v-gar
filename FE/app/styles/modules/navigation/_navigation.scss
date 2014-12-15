@@ -312,3 +312,20 @@
     cursor: pointer;
   }
 }
+
+
+.feedback-content-common-middle {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  .dashboard-manage-feedback {
+    cursor: pointer;
+    display: inline-block;
+    height: 117px;
+    width: 42px;
+    background-image: url(../resources/images/dashboard/FeedBack.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    z-index: 99;
+  }
+}

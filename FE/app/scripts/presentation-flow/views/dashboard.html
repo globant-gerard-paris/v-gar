@@ -20,11 +20,7 @@ redirectToAddCar()
                 <div class="dashboard-content-common-top">
                     <div class="dashboard-manage-cars">Click card for details</div>
                 </div>    
-                <div class="dashboard-content-common-middle hidden-xs">
-                    <!-- FEEDBACK POPUP TEMPLATE -->
-                    <div ng-include="'scripts/presentation-flow/views/feedback.html'"></div>
-                    <a href="#" ng-click="openFeedbackForm()" class="dashboard-manage-feedback"></a>
-                </div>                              
+
                 <div class="dashboard-car-actions-bottom">
                     <a href="#" class="dashboard-manage-cars-edit"></a>
                     <a href="#" class="dashboard-manage-cars-manage">Manage your cars</a>
@@ -112,14 +108,11 @@ redirectToAddCar()
                 </div>
             </div>
             <a class="col-xs-12 col-sm-5 dashboard-coupons" ng-href="{{model.linkCoupon}}" target="coupon link"></a>
-
             <div class="clearfix"></div>
-
-            <div class="dashboard-extra-feedback hidden-xs"></div>
-
             </div>
         </div>
     </section>
+    <feedback-tag vertical-height="215"></feedback-tag>
     <footer-vg></footer-vg>
 </div>
 
