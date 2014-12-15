@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Navigation').controller('MainCtrl', function ($scope, $location, SessionDataSrv) {
+angular.module('Navigation').controller('MainCtrl', function ($scope, $location, SessionDataSrv, config) {
 
     $scope.model = {
         userName: '',
@@ -9,11 +9,11 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         currentPath: $location.path(),
         currentCar: '',
         backButtonMobileLink: '/dashboard',
-        appoinmentUrl: 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
+        appoinmentUrl: config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore()
     };
 
     var updateAppoinment = function(){
-        $scope.model.appoinmentUrl = 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore();
+        $scope.model.appoinmentUrl = config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore();
     };
 
     $scope.$on('RELOAD_VEHICLES', function (/*event, dataResponse*/) {
