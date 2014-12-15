@@ -1,11 +1,13 @@
-<div class="linked-car" ng-controller="LinkedCarCtrl">
-        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
-                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
-                    <car-card car="car" ng-click="toggleCarSelect(car)">
-                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
-                        <div class="car-last-service">last service placeholder TEXT
-                        more text to cover 2 lines and test the stiles</div>
-                    </car-card>
-                </div>
-        </div>
+<div class="linked-car-container">
+	<div class="linked-car" ng-controller="LinkedCarCtrl">
+	        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
+	                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
+	                    <car-card car="car" ng-click="toggleCarSelect(car)">
+	                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
+	                        <div class="car-last-service">last service placeholder TEXT
+	                        more text to cover 2 lines and test the stiles</div>
+	                    </car-card>
+	                </div>
+	        </div>
+	</div>
 </div>

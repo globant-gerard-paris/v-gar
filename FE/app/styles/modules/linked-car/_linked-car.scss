@@ -1,5 +1,20 @@
-.linked-car{
+@import "st-blurred-dialog";
+@import "compass/css3/transform";
 
+
+.linked-car-container{
+	background-color:rgb(255,255,255);
+	background-color:rgba(255,255,255,0.80);
+	@include rotate(-1.8deg);
+	position: absolute;
+	left: -20px;
+	right: -20px;
+	bottom: -30px;
+	top: 150px;
+}
+
+.linked-car{
+	@include rotate(1.8deg);
 	.slick-prev{
 		&.slick-disabled{
 			background-image: none;
@@ -20,13 +35,14 @@
 
 	font-family: Roboto;
 
-	background-color: #ddd;
+	
 
 	.selected{
 		.car-card{
 			background-image: url(../resources/images/linked-car/car-selected-bg.png);
 			border-bottom: 4px solid  #41a0d1;
 			box-shadow: none;
+			background-color:  white;
 
 			.car-card-brand, .car-card-model, .car-card-mileage-data{
 				color: #555e6c
@@ -75,6 +91,7 @@
 			font-weight: 500;
 			margin: 14px -32px 0 -32px;
 			line-height: 1.1em;
+			color:  #909090;
 		}
 
 		.car-card-year-brand{
