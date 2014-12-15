@@ -6,7 +6,7 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
         if(!car){
             return;
         }
-        car.selected = !car.selected;
+        car.isConfirmed = !car.isConfirmed;
     };
 
     $scope.areMineAction = function () {

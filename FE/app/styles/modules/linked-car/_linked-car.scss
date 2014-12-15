@@ -1,5 +1,23 @@
 .linked-car{
 
+	.slick-prev{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/linked-car/slick-left.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	.slick-next{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/linked-car/slick-right.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
 	font-family: Roboto;
 
 	background-color: #ddd;
@@ -96,7 +114,7 @@
 
 	.car-slick-carousel{
 		margin: 0 auto;
-		max-width: 800px;
+		max-width: 700px;
 
 		&.only-two {
 			.car-card-slick-container:nth-child(1) .car-card {
