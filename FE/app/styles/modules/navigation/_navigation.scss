@@ -85,12 +85,23 @@
     }
   }
 
+
   .header-text {
     text-align: center;
     font-size: 1.2em;
     font-weight: 250;
     margin-top: 1.9em;
     color: rgb(85, 93, 106);
+    @media (min-width: 992px) {
+      bottom: 10px !important;
+    }
+    @media (min-width: 1050px) {
+        bottom: 0 !important;
+    }
+    @media (max-width: 900px) {
+      position: relative;
+      right: 7%;
+    }
     .header-text-name {
       color: rgb(85, 93, 106);
     }
@@ -100,6 +111,12 @@
     font-weight: bold;
   }
 
+}
+
+@include bp(md) {
+  .header-text {
+    bottom: 0 !important;
+  }
 }
 
 @include bp(sm) {
@@ -157,6 +174,17 @@
     height: 30px;
     font-size: 12px;
     font-family: Roboto;
+    font-weight: 700;
+  }
+
+  .selected-level {
+    color: #626a77;
+    font-weight: 700 !important;
+  }
+
+  .deselected-level{
+    color: #9b9b9b;
+    font-weight: 500 !important;
   }
 
   .brade-crumb-ul {
@@ -191,30 +219,30 @@
     position: relative;
     display: block;
     float: left;
+    text-align: center;
   }
 
   .level-one {
     @extend %common-brade-crumb;
     z-index: 10;
-    color: #626a77;
     width: 120px;
-    font-weight: 700;
     background: url("../resources/images/header/breadcrumb_1.png") no-repeat;
+    .level-one-text{
+      text-align: center;
+    }
   }
   .level-two {
     @extend %common-brade-crumb;
     z-index: 5;
-    color: #626a77;
     width: 120px;
-    font-weight: 700;
     background: url("../resources/images/header/breadcrumb_2.png") no-repeat;
+    .level-two-text{
+      text-align: center;
+    }
   }
   .level-three {
     @extend %common-brade-crumb;
     z-index: 1;
-    color: rgb(98, 106, 119);
-    color: rgba(98, 106, 119, 0.56);
-    font-weight: 400;
     width: 170px;
     background: url("../resources/images/header/breadcrumb_3.png") no-repeat;
   }
