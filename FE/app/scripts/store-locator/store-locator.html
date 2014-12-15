@@ -18,7 +18,7 @@
         <form name="storeLocatorSearch" novalidate>
             <div class="header-title row">
                 <div class="col-xs-12">
-                    <h1>Find a store</h1>
+                    <h1>Find a service center</h1>
                 </div>
             </div>
             <div class="row">
@@ -29,7 +29,7 @@
                                placeholder="Enter zip code" ng-disabled="model.searching">
                         <span class="input-group-btn">
                             <button class="btn find-store-btn" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
-                                ng-click="getStoreNearby()">FIND MY STORE</button>
+                                ng-click="getStoreNearby()">FIND MY SERVICE CENTER</button>
                         </span>
                         <!--TODO improve it!-->
                         <span ng-show="model.searching">(loading...)</span>
@@ -40,7 +40,7 @@
     </div>
 
     <section class="stores-list-box row">
-        <div class="store-found-subtitle">{{model.stores.length}} store/s found</div>
+        <div class="store-found-subtitle">{{model.stores.length}} service center/s found</div>
             <div class="store-slick-carousel" slick slick-data="model.stores">
                 <store-card  model="store" ng-repeat="store in model.stores track by $index"></store-card>
             </div>

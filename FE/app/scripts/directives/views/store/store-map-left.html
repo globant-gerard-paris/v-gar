@@ -11,7 +11,7 @@
                 <div>{{model.district_name}}, {{model.zip_code}}</div>
                 <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}">{{model.phone}}</a></div>
             </div>
-            <div><button ng-click="setFavoriteStore()" type="button">SET AS MY STORE</button></div>
+            <div><button ng-click="setFavoriteStore()" type="button">SET AS MY SERVICE CENTER</button></div>
             <div class="store-list-miles">{{model.distance | number:0}} Miles</div>
         </div>
     </section>
