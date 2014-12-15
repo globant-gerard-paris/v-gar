@@ -1,6 +1,7 @@
 @import "../dashboard/slick";
 @import "compass/css3/border-radius";
 
+
 .store-container {
     color:$commonColor;
     @extend %font-Roboto;
@@ -57,7 +58,8 @@
     section {
         min-height: 100%;
         height: 100%;
-        padding: 0;    
+        padding: 0;
+        padding-right:15px;    
 
         &.store-hours-box{
             margin-top: 10px;
@@ -67,7 +69,7 @@
 }
 .store-map-box .store-map {
     height: 210px;
-    width: 340px;
+    width: 100%;
 }
 
 .margin-right-10{
