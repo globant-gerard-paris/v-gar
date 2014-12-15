@@ -7,6 +7,7 @@ import org.apache.commons.lang3.Validate;
 import com.searshc.mygarage.base.GenericService;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.record.LocalServiceRecord;
+import com.searshc.mygarage.entities.record.RealServiceRecordItem;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.entities.record.Record;
@@ -50,7 +51,7 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
     }
 
     private LocalServiceRecord createLocalServiceRecord(Record record) {
-        ServiceRecordItem sri = new ServiceRecordItem();
+        ServiceRecordItem sri = new RealServiceRecordItem();
         if (record.getSuggestedService() != null) {
             sri.setCode(record.getSuggestedService().getSku());
             sri.setDescription(record.getSuggestedService().getDescription());

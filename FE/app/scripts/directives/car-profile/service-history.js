@@ -11,19 +11,20 @@ angular.module('Directives').directive('serviceHistory', function () {
         scope: {
             services: '='
         },
-
         link: function (scope) {
-            scope.$watch( 'services', function(){
+            scope.$watch('services', function () {
 
-                if(!scope.services){return;}
+                if (!scope.services) {
+                    return;
+                }
 
                 var r = [];
 
-                _.each(scope.services, function(service){
+                _.each(scope.services, function (service) {
 
                     var serviceCenter = service.serviceCenter,
-                        serviceCenterStr = '',
-                        serviceDescArr = [];
+                            serviceCenterStr = '',
+                            serviceDescArr = [];
 
                     var serviceToReturn = {
                         serviceDate: service.date,
@@ -31,14 +32,13 @@ angular.module('Directives').directive('serviceHistory', function () {
                         serviceType: service.type
                     };
 
-                    _.each(service.serviceRecordItems, function(record){
+                    _.each(service.serviceRecordItems, function (record) {
                         serviceDescArr.push(record.description);
                     });
 
                     if (serviceCenter) {
-                        serviceCenterStr += serviceCenter.address;
-                        serviceCenterStr += serviceCenter.city ? ' @ ' + serviceCenter.city +
-                                            ', ' + serviceCenter.zipCode : '';
+                        serviceCenterStr += serviceCenter.address + ' ' + serviceCenter.city +
+                                ', ' + serviceCenter.zipCode;
                         serviceToReturn.serviceCenterStr = serviceCenterStr;
                     } else {
                         serviceToReturn.serviceCenterStr = service.source;
@@ -50,7 +50,7 @@ angular.module('Directives').directive('serviceHistory', function () {
                 });
 
                 scope.model = {
-                    services : r
+                    services: r
                 };
 
             });
