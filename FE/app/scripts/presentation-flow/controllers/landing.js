@@ -60,24 +60,18 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
     };
 
 
-    var openLinkedCarModal = function(){
-        stBlurredDialog.open('scripts/presentation-flow/views/linked-car.html');
+    var openFullScreenModal = function(template){
+        stBlurredDialog.open(template);
     };
 
     var successGetUserInfo = function (response) {
         if(response){
             if(response.haveManualCars || response.haveLinkedCars ){
-                $scope.nextURL = '/dashboard';
+                RedirectSrv.redirectTo('/dashboard');
             } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                $scope.nextURL = '/linked-car';
+                openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                $scope.nextURL = '/add-car';
-            }
-
-            if($scope.nextURL === '/linked-car'){
-                openLinkedCarModal();
-            }else{
-                RedirectSrv.redirectTo($scope.nextURL);
+                RedirectSrv.redirectTo('/add-car');
             }
         }
     };
