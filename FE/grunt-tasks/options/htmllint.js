@@ -470,7 +470,8 @@ module.exports = function (grunt) {
                 'XHTML element “st-blurred-dialog-overlay” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)',
                 'Attribute “st-blurred-dialog-region” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-switch-when” not allowed on XHTML element “ul” at this point.',
-                'XHTML element “footer-vg” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “footer-vg” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “st-blurred-dialog-overlay” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });
