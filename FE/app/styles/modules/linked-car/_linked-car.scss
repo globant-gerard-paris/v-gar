@@ -9,7 +9,7 @@
 	position: absolute;
 	left: -20px;
 	right: -20px;
-	bottom: -120px;
+	bottom: -300px;
 	top: 150px;
 }
 
@@ -131,14 +131,19 @@
 
 		.car-card-year-brand{
 			div{
-				display: inline;
+				display: block;
+				float:left;
 			}
-		}
-		.car-card-year{
+			.car-card-year{
 
-		}
-		.car-card-brand{
-	
+			}
+			.car-card-brand{
+				margin-left: 5px;
+				max-width: 102px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 		.car-card-model{
 			line-height: 0.8em;
