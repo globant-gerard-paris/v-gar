@@ -83,9 +83,12 @@
 			}
 			.service-list .well{				
 				font-size: 1.0em;
-				font-weight: 400;
-				display: block;
-				margin: 5px 0 0;
+				font-weight: 400;				
+				margin: 3px 0 0;
+				border: none;
+				border-radius: 0;
+				box-shadow: none;
+				-webkit-box-shadow: none;
 			}
 			.service-list .well a{
 				color: #555e6c;
@@ -302,15 +305,17 @@
 					.item{
 						color: #2b9ace;
 						font-weight: 400;
-						text-align: left;
-						display: block;
+						text-align: left;						
 					}
 					.well{				
 						font-size: 0.95em;
-						font-weight: 400;
-						display: block;
-						margin: 5px 0 0;
+						font-weight: 400;						
+						margin: 3px 0 0;
 						text-align: left;
+						border: none;
+						border-radius: 0;
+						box-shadow: none;
+				        -webkit-box-shadow: none;
 						a {
 							color: #555e6c;	
 						}
