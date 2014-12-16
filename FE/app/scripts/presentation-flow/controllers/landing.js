@@ -12,7 +12,7 @@ angular.module('PresentationFlow').directive('disableAnimation', function ($anim
     };
 });
 
-angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv) {
+angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv, stBlurredDialog) {
 
     $scope.nextURL = '/landing'; //default
 
@@ -59,16 +59,20 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         }
     };
 
+
+    var openFullScreenModal = function(template){
+        stBlurredDialog.open(template);
+    };
+
     var successGetUserInfo = function (response) {
         if(response){
             if(response.haveManualCars || response.haveLinkedCars ){
-                $scope.nextURL = '/dashboard';
+                RedirectSrv.redirectTo('/dashboard');
             } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                $scope.nextURL = '/linked-car';
+                openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                $scope.nextURL = '/add-car';
+                RedirectSrv.redirectTo('/add-car');
             }
-            RedirectSrv.redirectTo($scope.nextURL);
         }
     };
     var failGetUserInfo = function (response) {

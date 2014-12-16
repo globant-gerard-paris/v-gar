@@ -68,14 +68,6 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'DashboardCtrl'
                 }
             });
-
-            routes.push({
-                name: '/linked-car',
-                params: {
-                    templateUrl: 'scripts/presentation-flow/views/linked-car.html',
-                    controller: 'LinkedCarCtrl'
-                }
-            });
             
             routes.push({
                 name: '/car-profile',

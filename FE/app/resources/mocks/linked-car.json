@@ -1,0 +1,90 @@
+[
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132622509,
+      "make":"BMW",
+      "model":"128 Series",
+      "year":2012,
+      "engine":"6-2996 3.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621744,
+      "make":"BMW",
+      "model":"335 Series",
+      "year":2010,
+      "engine":"6-2979 3.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621758,
+      "make":"HYUNDAI",
+      "model":"ELANTRA",
+      "year":2008,
+      "engine":"4-1975 2.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621731,
+      "make":"AUDI",
+      "model":"A4",
+      "year":2010,
+      "engine":"4-1984 2.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621756,
+      "make":"FORD",
+      "model":"FUSION",
+      "year":2010,
+      "engine":"V6-182  3.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621757,
+      "make":"CHEVROLET",
+      "model":"IMPALA",
+      "year":2009,
+      "engine":"V6-213  3.5L",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132621735,
+      "make":"AUDI",
+      "model":"A5",
+      "year":2012,
+      "engine":"4-1984 2.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   },
+   {
+      "vehicleId":0,
+      "familyId":132625384,
+      "tangibleId":132625094,
+      "make":"BMW",
+      "model":"335 Series",
+      "year":2013,
+      "engine":"6-2979 3.0L DOHC",
+      "status":"NCDB",
+      "isConfirmed":false
+   }
+]
