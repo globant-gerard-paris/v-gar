@@ -99,12 +99,10 @@
     font-size: 1.2em;
     font-weight: 250;
     margin-top: 1.9em;
+    bottom: 0;
     color: rgb(85, 93, 106);
-    @media (min-width: 992px) {
+    @media (max-width: 1318px) {
       bottom: 10px !important;
-    }
-    @media (min-width: 1050px) {
-        bottom: 0 !important;
     }
     @media (max-width: 900px) {
       position: relative;
@@ -119,12 +117,6 @@
     font-weight: bold;
   }
 
-}
-
-@include bp(md) {
-  .header-text {
-    bottom: 0 !important;
-  }
 }
 
 @include bp(sm) {
