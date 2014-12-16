@@ -16,6 +16,7 @@ var _mainModules = [
             , 'Navigation'
             , 'PresentationFlow'
             , 'CarProfile'
+            , 'ManageCar'
             // yo:ngMainModules
 ];
 
@@ -53,13 +54,13 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
-            routes.push({
-                name: '/add-car',
-                params: {
-                    templateUrl: 'scripts/presentation-flow/views/add-car.html',
-                    controller: 'AddCarCtrl'
-                }
-            });
+            //routes.push({
+            //    name: '/add-car',
+            //    params: {
+            //        templateUrl: 'scripts/presentation-flow/views/add-car.html',
+            //        controller: 'AddCarCtrl'
+            //    }
+            //});
 
             routes.push({
                 name: '/dashboard',
@@ -68,7 +69,7 @@ angular.module('virtualGarage', _mainModules)
                     controller: 'DashboardCtrl'
                 }
             });
-            
+
             routes.push({
                 name: '/car-profile',
                 params: {
