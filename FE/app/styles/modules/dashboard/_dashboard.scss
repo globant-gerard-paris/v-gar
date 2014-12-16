@@ -147,12 +147,14 @@
 		margin: 0 auto;
 
 		&.only-two {
-			.car-card-slick-container:nth-child(1) .car-card {
-				margin: 64px 10px 62px auto;
-			}
-			.car-card-slick-container:nth-child(2) .car-card {
-				margin: 64px auto 64px 10px;
-			}
+//          @media (min-width: 348px) {
+//            .car-card-slick-container:nth-child(1) .car-card {
+//              margin: 64px 10px 62px auto;
+//            }
+//            .car-card-slick-container:nth-child(2) .car-card {
+//              margin: 64px auto 64px 10px;
+//            }
+//          }
 		}		
 	}
 
@@ -262,7 +264,7 @@
 			}
 		}
 		.dashboard-car-actions-bottom{
-			bottom: 50px;
+			bottom: 48px;
 		}
 
 		.car-card{
@@ -305,11 +307,12 @@
             top: 62px;
           }
           .slick-next{
-            left: 96%;
+            left: 100%;
           }
           .slick-prev {
             left: -8%;
           }
+
         }
 
 
