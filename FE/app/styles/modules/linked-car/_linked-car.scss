@@ -18,7 +18,7 @@
 	position: absolute;
 	left: -20px;
 	right: -20px;
-	bottom: -300px;
+	bottom: -20px;
 	top: 68px;
 }
 
@@ -29,6 +29,7 @@
 .linked-car-container{
 	@include rotate(-1.8deg);
 	top: 150px;
+	bottom: -300px;
 }
 
 .linked-car{
@@ -207,4 +208,24 @@
 		}		
 	}
 
+}
+
+
+@include bp(xs) {
+	.linked-car-base-container{
+		top: 0;
+		background-color: transparent;
+	}
+	.dashboard-blurred-dialog{
+		.st-blurred-region-close{
+			right: 32px;
+			top: 22px;
+			margin: 0;
+			left: inherit;
+			transform: none;
+		}
+	}
+	.linked-car-base{
+		margin-top: 100px;
+	}
 }
