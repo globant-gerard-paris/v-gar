@@ -1,77 +1,88 @@
-
 <div class="" ng-controller="CarAddCtrl">
 
-<style>
-    .page-title {
-        text-align: center;
-    }
-    .add-car-box {
-        width: 350px;
-        margin: 0 auto;
-        text-align: center;
-    }
-</style>
+    <style>
+        .page-title {
+            text-align: center;
+        }
 
-<h2 class="page-title">My Virtual Garage a{{model.lala}}b</h2>
-<h4 class="page-title">We didn't find any history about your car, tell us about it.</h4>
-<div class="add-car-box">
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="form-group">
-                <select class="form-control">
-                    <option>Make</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
+        .add-car-box {
+            width: 350px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    <section ng-if="(model.state===0)">
+
+        <h2 class="page-title">Add a car</h2>
+        <h4 class="page-title">Select your car below</h4>
+        <fieldset ng-disabled="!model.available">
+            <div class="add-car-box">
+                <div>Loading: {{model.loading}}</div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <select class="form-control"
+                                    ng-required="required"
+                                    ng-model="model.yearSelected"
+                                    ng-options="item for item in model.years"
+                                    ng-change="yearSelected()">
+                                <option style="display:none" value="">Year</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control"
+                                    ng-required="required"
+                                    ng-model="model.makeSelected"
+                                    ng-options="item.name for item in model.makes track by item.id"
+                                    ng-change="makeSelected()"
+                                    ng-disabled="model.yearSelected===''">
+                                <option style="display:none" value="">Make</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control"
+                                    ng-required="required"
+                                    ng-model="model.modelSelected"
+                                    ng-options="item.name for item in model.models track by item.id"
+                                    ng-change="modelSelected()"
+                                    ng-disabled="model.makeSelected===''">
+                                <option style="display:none" value="">Model</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="number" class="form-control" placeholder="Mileage"
+                                   ng-required="required"
+                                   min="0"
+                                   maxlength="7"
+                                   ng-model="model.mileage"
+                                   ng-minlength="1"
+                                   ng-maxlength="7"
+                                   ng-disabled="!(model.available && model.mileageEnabled)">
+                        </div>
+                    </div>
+                </div>
+
+                <div>Or find by License Plate</div>
+                <div class="form-group">
+                    <input type="text" style="text-transform: uppercase;" class="form-control" placeholder=""
+                           ng-model="model.license">
+                </div>
+
+                <div>
+                    <button type="button" class="btn btn-lg btn-success"
+                            ng-disabled="!((model.mileage>=0 && model.mileage!=='') || model.license.length > 0)"
+                            ng-click="addCar()">
+                        Add
+                    </button>
+                </div>
+                <div>
+                    <a href="#">Back</a>
+                </div>
             </div>
-            <div class="form-group">
-                <select class="form-control">
-                    <option>Model</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control">
-                    <option>Trim</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                </select>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="form-group">
-                <select class="form-control">
-                    <option>Year</option>
-                    <option>2014</option>
-                    <option>2013</option>
-                    <option>2012</option>
-                    <option>2011</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <select class="form-control">
-                    <option>Exterior color</option>
-                    <option>Blue</option>
-                    <option>Green</option>
-                    <option>Red</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Mileage">
-            </div>
-        </div>
-    </div>
-    <div>
-        <button type="button" class="btn btn-lg btn-success" ng-click="addCarAction()">
-            Add cart
-        </button>
-    </div>
-</div>
+        </fieldset>
+    </section>
+    <section ng-if="(model.state===1)">
+        step 2
+    </section>
 </div>
