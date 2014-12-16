@@ -12,6 +12,7 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
     $scope.areMineAction = function () {
         LinkedCarSrv.confirmCars($scope.model.vehicles, function () {
             RedirectSrv.redirectTo('/dashboard');
+            $scope.$emit('linked-cars-updated');
         }, function (response) {
             console.log('ERROR: ' + response);
             alert('Error, please try again.');

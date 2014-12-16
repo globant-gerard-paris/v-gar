@@ -58,23 +58,32 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
     };
 
     $scope.manageCars = function(){
-        openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
+        openFullScreenModal('scripts/presentation-flow/views/linked-car-modify.html');
     };
 
-
-
-    if(mock){
-        $timeout( function(){
-            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
-        },2000);
-
-    }
-    else{
-        DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
-    }
+    $scope.$on('linked-cars-updated', function(){
+        $scope.loadCars();
+        stBlurredDialog.close();
+    });
 
     $scope.openFeedbackForm = function(){
         $scope.$emit('OPEN_MODAL_FEEDBACK');
     };
+
+    $scope.loadCars = function(){
+        if(mock){
+            $timeout( function(){
+                $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
+            },2000);
+
+        }
+        else{
+            DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
+        }
+    };
+
+    $scope.loadCars();
+
+
 
 });

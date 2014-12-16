@@ -1,0 +1,16 @@
+<div class="linked-car-base-container">
+	<div class="linked-car-base linked-car-modify" ng-controller="LinkedCarCtrl">
+			<div class="title">Manage your cars</div>
+			<p class="desc">
+				You can select or deselect cars below or <a href="">add a new car</a>
+			</p>
+	        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
+	                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
+	                    <car-card car="car" ng-click="toggleCarSelect(car)">
+	                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
+	                    </car-card>
+	                </div>
+	        </div>
+	        <div class="btn-confirm" ng-click="areMineAction()">SAVE</div>
+	</div>
+</div>
