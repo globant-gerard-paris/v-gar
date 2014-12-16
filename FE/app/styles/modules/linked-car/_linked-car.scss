@@ -3,11 +3,12 @@
 @import "compass/utilities/general/clearfix";
 
 
+
 .dashboard-blurred-dialog{
 	.st-blurred-region-close{
 		right: 0;
 		left: 0;
-		transform: scale(.5);
+		@include transform(scale(0.5));
 		margin: 0 auto;
 		top: 64px;
 	}
@@ -38,11 +39,12 @@
 	font-family: Roboto;
 
 	.bottom-add-cars{
-		margin-top:20px;
 		color: #555e6c;
 		font-size: 1.3em;
 		font-weight: 700;
 		text-align: center;
+		margin: 20px auto;
+		width: 75%;
 		a{
 			color: #3ea3d1;
 		}
@@ -256,6 +258,9 @@
 			font-size: 1.4em;
 			line-height: 1.0em;
 			width: 70%;
+		}
+		.car-card{
+			//@include transform(scale(0.85));
 		}
 	}
 }
