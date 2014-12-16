@@ -6,6 +6,20 @@
     filter: blur(8px);
 }
 
+@include bp(xs) {
+	.st-blurred-region {
+		-webkit-filter: none;
+	    -moz-filter: none;
+	    -o-filter: none;
+	    -ms-filter: none;
+	    filter: none;
+	}
+	.st-blurred-region-overlay {
+		background-color: rgb(255,255,255);
+		background-color: rgba(220, 220, 220, 0.90);
+	}
+}
+
 .st-blurred-region-overlay {
 	position:fixed;
 	overflow-y: auto;
