@@ -1,12 +1,14 @@
 @import "st-blurred-dialog";
 @import "compass/css3/transform";
+@import "compass/utilities/general/clearfix";
+
 
 
 .dashboard-blurred-dialog{
 	.st-blurred-region-close{
 		right: 0;
 		left: 0;
-		transform: scale(.5);
+		@include transform(scale(0.5));
 		margin: 0 auto;
 		top: 64px;
 	}
@@ -22,9 +24,6 @@
 	top: 68px;
 }
 
-.linked-car-modify{
-	@include rotate(0deg);
-}
 
 .linked-car-container{
 	@include rotate(-1.8deg);
@@ -40,11 +39,12 @@
 	font-family: Roboto;
 
 	.bottom-add-cars{
-		margin-top:20px;
 		color: #555e6c;
 		font-size: 1.3em;
 		font-weight: 700;
 		text-align: center;
+		margin: 20px auto;
+		width: 75%;
 		a{
 			color: #3ea3d1;
 		}
@@ -210,6 +210,28 @@
 
 }
 
+.grid-car-card{
+	margin-top: 40px;
+	.car-card-slick-container{
+		padding: 0;
+	}
+	@include clearfix;
+	width: 396px;
+	margin: 20px auto 30px auto;
+	.car-card{
+		float:left;
+		margin:2px;
+	}
+	.btn-confirm{
+		
+	}
+}
+
+.linked-car-modify{
+	.btn-confirm{
+		margin-bottom: 100px;
+	}
+}
 
 @include bp(xs) {
 	.linked-car-base-container{
@@ -227,5 +249,18 @@
 	}
 	.linked-car-base{
 		margin-top: 100px;
+		&>.title{
+			font-size: 2.6em;
+			font-weight: 700;
+			width: 80%;
+		}
+		&>.desc{
+			font-size: 1.4em;
+			line-height: 1.0em;
+			width: 70%;
+		}
+		.car-card{
+			//@include transform(scale(0.85));
+		}
 	}
 }
