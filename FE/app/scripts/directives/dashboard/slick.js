@@ -13,9 +13,12 @@ angular.module('Directives').directive('slick', function () {
                 }
 
                 // remove slick if data changed
-                if(el.unslick){
-                    el.unslick();
-                }
+                el.unslick();
+
+                //... this is a bug, does not remove this element and generate others children on this one,
+                // this snippet remove the previous one.
+                var stickList = el.context.getElementsByClassName('slick-list')[0];
+                if(stickList){stickList.remove();}
 
                 // (re|)init
                 el.slick({
@@ -39,7 +42,7 @@ angular.module('Directives').directive('slick', function () {
                         }
                     ]
                 });
-                
+
             });
         }
     };
