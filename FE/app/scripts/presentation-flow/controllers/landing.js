@@ -29,9 +29,6 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         },
         {
             class: 'carousel_img_LP_4'
-        },
-        {
-            class: 'carousel_img_LP_5'
         }
 
     ];
