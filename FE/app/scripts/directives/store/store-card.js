@@ -15,15 +15,6 @@ angular.module('Directives').directive('storeCard', function ($timeout, StoreLoc
 
         link: function (scope) {
 
-            //debugger
-            if (scope.$parent.$last === true) {
-                $timeout(function () {
-                    //just for swiper
-                    scope.$emit('NG_REPEAT_FINISHED');
-
-                });
-            }
-
             scope.seeMoreDetailPopup = function () {
 
                 $modal.open({
