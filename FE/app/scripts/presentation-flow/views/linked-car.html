@@ -5,14 +5,21 @@
          		Please confirm if these cars are yours. <br/>
                 If not, select or deselect below:
 			</p>
-	        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
+	        <div class="car-slick-carousel hidden-xs" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
 	                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
 	                    <car-card car="car" ng-click="toggleCarSelect(car)">
 	                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
-	                        <div class="car-last-service hidden-xs">last service placeholder TEXT
+	                        <div class="car-last-service">last service placeholder TEXT
 	                        more text to cover 2 lines and test the stiles</div>
 	                    </car-card>
 	                </div>
+	        </div>
+	        <div class="grid-car-card visible-xs">
+	        	<div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
+		        	<car-card car="car" ng-click="toggleCarSelect(car)">
+		                <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
+		            </car-card>
+	            </div>
 	        </div>
 	        <div class="btn-confirm" ng-click="areMineAction()">CONFIRM</div>
 	        <div class="bottom-add-cars">None of the cars adove are yours? <a href="">Add it here</a></div>
