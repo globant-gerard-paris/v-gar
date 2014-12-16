@@ -1,8 +1,9 @@
-<div class="linked-car-container">
-	<div class="linked-car" ng-controller="LinkedCarCtrl">
-			<p class="title">
-				Great! Lorem ipsum text found that lorem
-ipsum information is right below. please lorem
+<div class="linked-car-base-container linked-car-container">
+	<div class="linked-car-base linked-car" ng-controller="LinkedCarCtrl">
+			<div class="title">We found {{model.vehicles.length}} cars!</div>
+			<p class="desc">
+         		Please confirm if these cars are yours. <br/>
+                If not, select or deselect below:
 			</p>
 	        <div class="car-slick-carousel" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
 	                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">

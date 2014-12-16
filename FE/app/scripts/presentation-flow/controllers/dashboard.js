@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, $http, SessionDataSrv) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, $http, SessionDataSrv, stBlurredDialog) {
 
     var mock = false,
         userId =  SessionDataSrv.getCurrentUser(),
@@ -14,6 +14,11 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         },
         linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore(),
         linkCoupon: 'http://www.searsauto.com/offers'
+    };
+
+
+    var openFullScreenModal = function(template){
+        stBlurredDialog.open(template);
     };
 
     $scope.addCar = false;
@@ -52,20 +57,33 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         console.log('ERROR: ' + response);
     };
 
+    $scope.manageCars = function(){
+        openFullScreenModal('scripts/presentation-flow/views/linked-car-modify.html');
+    };
 
-
-    if(mock){
-        $timeout( function(){
-            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
-        },2000);
-
-    }
-    else{
-        DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
-    }
+    $scope.$on('linked-cars-updated', function(){
+        $scope.loadCars();
+        stBlurredDialog.close();
+    });
 
     $scope.openFeedbackForm = function(){
         $scope.$emit('OPEN_MODAL_FEEDBACK');
     };
+
+    $scope.loadCars = function(){
+        if(mock){
+            $timeout( function(){
+                $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
+            },2000);
+
+        }
+        else{
+            DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
+        }
+    };
+
+    $scope.loadCars();
+
+
 
 });

@@ -6,8 +6,10 @@ getToCarProfile(2)
 redirectToAddCar()
 
 -->
-
-<div class="dashboard row">
+<div class="dashboard-blurred-dialog">
+    <st-blurred-dialog-overlay></st-blurred-dialog-overlay>
+</div>
+<div class="dashboard row" st-blurred-dialog-region>
     <div class="dashboard-car-holder">
         <div class="col-xs-12">
             <div class="mini-logo visible-xs-block"></div>
@@ -27,7 +29,7 @@ redirectToAddCar()
                 </div>                              
                 <div class="dashboard-car-actions-bottom">
                     <a href="#" class="dashboard-manage-cars-edit"></a>
-                    <a href="#" class="dashboard-manage-cars-manage">Manage your cars</a>
+                    <a href="#" ng-click="manageCars()" class="dashboard-manage-cars-manage">Manage your cars</a>
                 </div>
                 <div class="visible-xs-block header-text-dashboard" ng-show="model.cars">
                     <span class="header-text-dashboard-name"><span class="header-text-dashboard-name-word">{{model.user.name}}</span>, You have {{model.cars.length}} for Sears AutoCareOne</span>

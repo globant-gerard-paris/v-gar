@@ -2,19 +2,40 @@
 @import "compass/css3/transform";
 
 
-.linked-car-container{
+.dashboard-blurred-dialog{
+	.st-blurred-region-close{
+		right: 0;
+		left: 0;
+		transform: scale(.5);
+		margin: 0 auto;
+		top: 64px;
+	}
+}
+
+.linked-car-base-container{
 	background-color:rgb(255,255,255);
 	background-color:rgba(255,255,255,0.80);
-	@include rotate(-1.8deg);
 	position: absolute;
 	left: -20px;
 	right: -20px;
-	bottom: -120px;
+	bottom: -300px;
+	top: 68px;
+}
+
+.linked-car-modify{
+	@include rotate(0deg);
+}
+
+.linked-car-container{
+	@include rotate(-1.8deg);
 	top: 150px;
 }
 
 .linked-car{
 	@include rotate(1.8deg);
+}
+
+.linked-car-base{
 	font-family: Roboto;
 
 	.bottom-add-cars{
@@ -41,14 +62,17 @@
 		cursor: pointer;
 	}
 
-	&>.title{
+	&>.title, &>.desc{
 		color: #555e6c;
 		width: 60%;
 		margin: 0 auto;
-		font-size: 2.2em;
 		font-weight: 400;
 		text-align: center;
+	}
+
+	&>.title{
 		margin-top: 48px;
+		font-size: 2.2em;
 	}
 
 	.slick-prev{
@@ -131,14 +155,19 @@
 
 		.car-card-year-brand{
 			div{
-				display: inline;
+				display: block;
+				float:left;
 			}
-		}
-		.car-card-year{
+			.car-card-year{
 
-		}
-		.car-card-brand{
-	
+			}
+			.car-card-brand{
+				margin-left: 5px;
+				max-width: 102px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
 		}
 		.car-card-model{
 			line-height: 0.8em;
