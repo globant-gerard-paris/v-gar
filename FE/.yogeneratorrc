@@ -92,6 +92,10 @@
     {
       "name": "Footer vg",
       "value": "footer-vg"
+    },
+    {
+      "name": "Feedback tag",
+      "value": "feedback-tag"
     }
   ],
   "service": [

@@ -20,7 +20,11 @@ angular.module('Services').service('SessionDataSrv', function () {
     };
 
     var getData = function (key) {
-        return JSON.parse(localStorage.getItem(key));
+        if(localStorage.getItem(key) && localStorage.getItem(key) !== 'undefined'){
+            return JSON.parse(localStorage.getItem(key));
+        }else{
+            return '';
+        }
     };
 
     var saveSywMemberNumber = function(value){
