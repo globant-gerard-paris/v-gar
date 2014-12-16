@@ -1,301 +1,316 @@
 @import "../dashboard/slick";
 @import "compass/css3/border-radius";
 
-
 .store-container {
-    color:$commonColor;
-    @extend %font-Roboto;
+  color: $commonColor;
+  @extend %font-Roboto;
 
-    max-width: 1000px;
-    margin-right: auto;
-    margin-left: auto;
+  max-width: 1000px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-.header-title{
-    color:$headerColor;
-    text-align: center;
-    h1 {
-        font-size:2.4rem;
-        font-weight: 400;
+.header-title {
+  color: $headerColor;
+  text-align: center;
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 400;
+  }
+}
+
+.store-subtitle {
+  color: $highlighterTitleColor;
+  font-weight: bold;
+  text-align: center;
+}
+
+.bolder {
+  font-weight: bold;
+}
+
+.store-box {
+  font-size: 1.7rem;
+  font-weight: 100;
+  //    margin: 10px 0;
+
+  .store-icon-big {
+    background-image: url($locationBIG);
+    background-size: 32px;
+    width: 38px;
+    height: 38px;
+    margin-left: 6px;
+    margin-top: 4px;
+    background-repeat: no-repeat;
+  }
+
+  @include bp(sm) {
+    small {
+      float: left;
+      font-size: 1.7rem;
     }
-}
-.store-subtitle{
-    color:$highlighterTitleColor;
-    font-weight: bold;
-    text-align: center;
-}
-
-.bolder{
-    font-weight: bold;
-}
-
-.store-box{
-    font-size: 1.7rem;
-    font-weight: 100;
-//    margin: 10px 0;
-
-    .store-icon-big{
-        background-image: url($locationBIG);
-        background-size: 32px;
-        width: 38px;
-        height: 38px;
-        margin-left: 6px;
-        margin-top: 4px;
-        background-repeat: no-repeat;
+    .margin-right-10 {
+      float: left;
     }
-    small{
-        font-size: 1.7rem;
+  }
+  @include bp(xs) {
+    small {
+      font-size: 1.7rem;
+      display: block !important;
+      color: rgb(103,109,125);
+      font-weight: 550;
+      margin-left: 5px;
     }
-
+  }
 }
-.store-map{
-//    height: 200px;
+
+.store-map {
+  //    height: 200px;
 }
-.store-map-box{
-    margin-top: 8px;
-    margin-left: -9px;
 
-    section {
-        min-height: 100%;
-        height: 100%;
-        padding: 0;
-        padding-right:15px;    
+.store-map-box {
+  margin-top: 8px;
+  margin-left: -9px;
 
-        &.store-hours-box{
-            margin-top: 10px;
-            padding-right: 5%;
-        }
+  section {
+    min-height: 100%;
+    height: 100%;
+    padding: 0;
+    padding-right: 15px;
+
+    &.store-hours-box {
+      margin-top: 10px;
+      padding-right: 5%;
     }
+  }
 }
+
 .store-map-box .store-map {
-    height: 210px;
+  height: 210px;
+  width: 100%;
+}
+
+.margin-right-10 {
+  margin-right: 10px;
+}
+
+.margin-top-10 {
+  margin-top: 10px;
+}
+
+.store-hours-box {
+
+  @include bp(xs) {
+    margin-top: 40px;
+  }
+  div {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+  ul > li {
+    font-size: 1.2rem;
     width: 100%;
-}
-
-.margin-right-10{
-    margin-right: 10px;
-}
-.margin-top-10{
-    margin-top:10px;
-}
-
-.store-hours-box{
-
-    @include bp(xs){
-        margin-top: 40px;
+    margin: 5px auto;
+    @include bp(xs) {
+      font-size: 1.9rem;
+      width: 250px;
     }
-    div {
-        text-align: center;
-        font-size: 1.3rem;
-    }
-    ul>li{
-        font-size: 1.2rem;
-        width: 100%;
-        margin: 5px auto;
-        @include bp(xs){
-            font-size: 1.9rem;
-            width: 250px;
-        }
-    }
+  }
 
 }
 
-.store-find-box{
-    text-align: center;
-    font-size: 1.7rem;
-    @extend %font-Roboto;
-    .store-find-desc {
-        text-align: left;
-        max-width: 100%;
-        margin-bottom: 20px;
-        font-size: 0.95em;
-        color: gray;
-    }
+.store-find-box {
+  text-align: center;
+  font-size: 1.7rem;
+  @extend %font-Roboto;
+  .store-find-desc {
+    text-align: left;
+    max-width: 100%;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    color: gray;
+  }
 }
 
+.stores-list-box {
+  margin-top: 15px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 1.5rem;
 
-.stores-list-box{
-    margin-top: 15px;
-    padding-top: 15px;
-    text-align: center;
-    font-size: 1.5rem;
+  .store-found-subtitle {
+    font-weight: bold;
+    color: $highlighterTitleColor;
+    margin-left: 15px;
+  }
 
-    .store-found-subtitle{
-        font-weight: bold;
-        color: $highlighterTitleColor;
-        margin-left: 15px;
+  .stores-list-content {
+    width: 100%;
+  }
+  .store-card-slick-container {
+    margin: 15px;
+    background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
+    .store-address {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
     }
 
-    .stores-list-content{
-        width: 100%;
-    }
-    .store-card-slick-container{
-        margin: 15px;
-        background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
-        .store-address {
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-        }
+  }
 
-
-    }
-
-
-    .store-slick-carousel{
-        margin: 0 auto;
-    }
-    @include bp(md){
-        .store-slick-carousel{
-            width: 980px !important;
-        }
-    }
-
-
-    @include bp(sm){
-        .store-slick-carousel{
-            width: 980px !important;
-        }
-    }
-
-}
-
-.store-list-item{
-    text-align: center;
-    border: solid $storeItemBorderColor 1px;
-    width: 272px;
-    min-height: 192px;
-    background-color: $storeItemBkg;
-    font-size: 1.75rem;
-    padding: 20px 0 0 0;
+  .store-slick-carousel {
     margin: 0 auto;
-    @include bp(xs){
-        width: 100%;
+  }
+  @include bp(md) {
+    .store-slick-carousel {
+      width: 980px !important;
     }
+  }
 
-    .store-list-info{
-        width: 200px;
-        margin: 0 auto;
-        text-align: left;
-        padding-left: 17px;
-        a{
-            color:$commonColor;
-            text-decoration: none;
-        }
+  @include bp(sm) {
+    .store-slick-carousel {
+      width: 980px !important;
     }
+  }
 
-    .store-list-icon{
-        background-image: url($locationSMALL);
-        background-repeat: no-repeat;
-        width: 21px;
-        height: 65px;
-        margin: 7px 12px 0 22px;
-        float: left;
-    }
-
-    .store-list-miles{
-        color: #afb0b5;
-        font-size: 1.9rem;
-    }
-
-    .store-link{
-        font-size: 1.2rem;
-        margin-top: 5px;
-        float: right;
-        margin-right: 10px;
-        margin-bottom: 10px;
-    }
-
-    button {
-        border: 2px solid $buttonBorderColor;
-        background-color: $buttonBorderBkg;
-        color: $buttonColor;
-        font-size: 1.1rem;
-        font-weight: bold;
-        padding: 6px 16px 6px 16px;
-        margin-top: 10px;
-
-    }
 }
 
-.stores-social-box{
-    width: 135px;
-    margin: 20px auto 0 auto;
+.store-list-item {
+  text-align: center;
+  border: solid $storeItemBorderColor 1px;
+  width: 272px;
+  min-height: 192px;
+  background-color: $storeItemBkg;
+  font-size: 1.75rem;
+  padding: 20px 0 0 0;
+  margin: 0 auto;
+  @include bp(xs) {
+    width: 100%;
+  }
 
-    .stores-social{
-        width: 45px;
-        float: left;
+  .store-list-info {
+    width: 200px;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 17px;
+    a {
+      color: $commonColor;
+      text-decoration: none;
     }
+  }
 
-    .stores-social-internal{
-        background-image: url($shareInternal);
-        width: 39px;
-        height: 39px;
-    }
-    .stores-social-facebook{
-        background-image: url($shareFb);
-        width: 39px;
-        height: 39px;
-    }
-    .stores-social-twitter{
-        background-image: url($shareTw);
-        width: 39px;
-        height: 39px;
-    }
+  .store-list-icon {
+    background-image: url($locationSMALL);
+    background-repeat: no-repeat;
+    width: 21px;
+    height: 65px;
+    margin: 7px 12px 0 22px;
+    float: left;
+  }
+
+  .store-list-miles {
+    color: #afb0b5;
+    font-size: 1.9rem;
+  }
+
+  .store-link {
+    font-size: 1.2rem;
+    margin-top: 5px;
+    float: right;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
+  button {
+    border: 2px solid $buttonBorderColor;
+    background-color: $buttonBorderBkg;
+    color: $buttonColor;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 6px 16px 6px 16px;
+    margin-top: 10px;
+
+  }
 }
 
+.stores-social-box {
+  width: 135px;
+  margin: 20px auto 0 auto;
+
+  .stores-social {
+    width: 45px;
+    float: left;
+  }
+
+  .stores-social-internal {
+    background-image: url($shareInternal);
+    width: 39px;
+    height: 39px;
+  }
+  .stores-social-facebook {
+    background-image: url($shareFb);
+    width: 39px;
+    height: 39px;
+  }
+  .stores-social-twitter {
+    background-image: url($shareTw);
+    width: 39px;
+    height: 39px;
+  }
+}
 
 .feedback-box {
-    text-align: center;
-    height: 50px;
-    margin-bottom: 10px;
-    button{
-        margin-top: 15px;
-        border: 0;
-        background-color: #555e6d;
-        color: #ffffff;
-        font-size: 1.6rem;
-        padding: 10px 35px;
-        letter-spacing: 2px;
-    }
+  text-align: center;
+  height: 50px;
+  margin-bottom: 10px;
+  button {
+    margin-top: 15px;
+    border: 0;
+    background-color: #555e6d;
+    color: #ffffff;
+    font-size: 1.6rem;
+    padding: 10px 35px;
+    letter-spacing: 2px;
+  }
 }
+
 .find-store-btn {
-    background-color: #3A4986;
-    @extend %font-Roboto;
-    color: white;
-    border-radius: 0;
-    font-size: 9px;
-    line-height: 20px;
+  background-color: #3A4986;
+  @extend %font-Roboto;
+  color: white;
+  border-radius: 0;
+  font-size: 9px;
+  line-height: 20px;
 }
 
-.find-store-btn:hover,.find-store-btn:focus,.find-store-btn:active {
-    color: white;
+.find-store-btn:hover, .find-store-btn:focus, .find-store-btn:active {
+  color: white;
 }
 
-.vg-store-locator-input{
-    input{
-        @include border-radius(0);
-    }
+.vg-store-locator-input {
+  input {
+    @include border-radius(0);
+  }
 }
+
 .no-padding {
-    padding:0;
+  padding: 0;
 }
 
 // != phone:
 @media (min-width: $screen-sm-min) {
-    .header-title .col-xs-12, .store-found-subtitle{
-        text-align: left;
-    }
+  .header-title .col-xs-12, .store-found-subtitle {
+    text-align: left;
+  }
 }
 
-
-@include bp(xs){
-    .store-find-box{
-        .store-find-desc{
-            text-align: center;
-            font-size: 1.0em;
-        }
+@include bp(xs) {
+  .store-find-box {
+    .store-find-desc {
+      text-align: center;
+      font-size: 1.0em;
     }
+  }
 }
 
 //.swiper-container {
