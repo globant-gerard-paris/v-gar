@@ -4,6 +4,7 @@ angular.module('Directives').directive('carCard', function (SessionDataSrv, conf
     return {
         replace: true,
         restrict: 'E',
+        transclude:true,
         templateUrl: 'scripts/directives/views/dashboard/car-card.html',
         scope: {
             car: '=',
@@ -15,6 +16,10 @@ angular.module('Directives').directive('carCard', function (SessionDataSrv, conf
                 var familyVehicleId = familyVehicle.id;
                 ApiHttpSrv.createHttp('POST', config.api.hosts.BACKEND + '/car-profile/familyvehicle/'+familyVehicleId+'/mileage', mileage);
             };
+
+            if(scope.car && !scope.car.mileage){
+                scope.car.mileage = 0;
+            }
 
             scope.editMode = false;
             scope.toggleEditMiles = function(){

@@ -1,0 +1,186 @@
+@import "st-blurred-dialog";
+@import "compass/css3/transform";
+
+
+.linked-car-container{
+	background-color:rgb(255,255,255);
+	background-color:rgba(255,255,255,0.80);
+	@include rotate(-1.8deg);
+	position: absolute;
+	left: -20px;
+	right: -20px;
+	bottom: -300px;
+	top: 150px;
+}
+
+.linked-car{
+	@include rotate(1.8deg);
+	font-family: Roboto;
+
+	.bottom-add-cars{
+		margin-top:20px;
+		color: #555e6c;
+		font-size: 1.3em;
+		font-weight: 700;
+		text-align: center;
+		a{
+			color: #3ea3d1;
+		}
+	}
+
+	.btn-confirm{
+		margin: 0 auto;
+		border-radius: 3px;
+		background-color: #3ea3d1;
+		text-align: center;
+		padding:20px 0;
+		font-size: 1.5em;
+		font-weight: 400;
+		width: 160px;
+		color: white;
+		cursor: pointer;
+	}
+
+	&>.title{
+		color: #555e6c;
+		width: 60%;
+		margin: 0 auto;
+		font-size: 2.2em;
+		font-weight: 400;
+		text-align: center;
+		margin-top: 48px;
+	}
+
+	.slick-prev{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/linked-car/slick-left.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+	.slick-next{
+		&.slick-disabled{
+			background-image: none;
+		}
+		background-image: url(../resources/images/linked-car/slick-right.png);
+		background-size: contain;
+		background-repeat: no-repeat;
+	}
+
+
+	
+
+	.selected{
+		.car-card{
+			background-image: url(../resources/images/linked-car/car-selected-bg.png);
+			border-bottom: 4px solid  #41a0d1;
+			box-shadow: none;
+			background-color:  white;
+
+			.car-card-brand, .car-card-model, .car-card-mileage-data{
+				color: #555e6c
+			}
+
+			.car-selected-icon{
+				background-image: url(../resources/images/linked-car/selected-corner.png);
+				background-repeat: no-repeat;
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				right: -1px;
+				top: 0;
+			}
+			
+			.car-last-service{
+				color:  #555e6c;
+			}
+		}
+	}
+
+
+
+
+	.car-card{
+		cursor: pointer;
+		margin: 32px auto;
+		position: relative;
+		background-image: url(../resources/images/linked-car/car-unselected-bg.png);
+		background-position: center 40px;
+		background-repeat: no-repeat;
+		font-weight: 700;
+		padding:20px;
+		padding-top:92px;
+		width: 194px;
+		height: 194px;
+		text-align: center;
+		background-color:  #f7f7f7;
+		box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.16);
+		color: #adadad;
+		font-size: 1.3em;
+
+		.car-last-service{
+			text-align: center;
+			font-size: 0.70em;
+			font-weight: 500;
+			margin: 14px -32px 0 -32px;
+			line-height: 1.1em;
+			color:  #909090;
+		}
+
+		.car-card-year-brand{
+			div{
+				display: block;
+				float:left;
+			}
+			.car-card-year{
+
+			}
+			.car-card-brand{
+				margin-left: 5px;
+				max-width: 102px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+		}
+		.car-card-model{
+			line-height: 0.8em;
+		}
+		.car-card-mileage{
+			.car-card-mileage-title{
+				display: none;
+			}
+			.car-card-mileage-data{
+				font-size: 0.75em;
+				line-height: 4.5em;
+			}
+		}
+	}
+
+
+
+	.car-card-slick-container{
+		// padding so car tag is visible
+		padding-bottom: 30px;
+		background-position: center center;
+		background-size: 274px;
+		background-repeat: no-repeat;
+	}
+
+	.car-slick-carousel{
+		margin: 0 auto;
+		max-width: 700px;
+
+		&.only-two {
+			.car-card-slick-container:nth-child(1) .car-card {
+				margin: 64px 20px 64px auto;
+			}
+			.car-card-slick-container:nth-child(2) .car-card {
+				margin: 64px auto 64px 20px;
+			}
+		}		
+	}
+
+}
