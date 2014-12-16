@@ -14,7 +14,7 @@
 	    		<span ng-hide="editMode">{{car.mileage | number}} Miles</span>
 				<input ng-show="editMode" ng-model="car.newMileage" type="number" />
 
-	    		<a class="car-card-mileage-change" ng-show="changeMiles()" ng-click="toggleEditMiles()">{{editMode ? 'Save' : 'Change'}}</a>
+	    		<a class="car-card-mileage-change" ng-show="changeMiles()" ng-click="toggleEditMiles()">{{editMode ? 'Save' : 'Edit'}}</a>
 	    	</div>
 	    	
 	    </div>
