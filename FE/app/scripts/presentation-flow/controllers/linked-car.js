@@ -44,8 +44,8 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
     }, true);
 
 
-    $scope.redirectToAddCar = function () {
-        stBlurredDialog.open('scripts/manage-car/add-car.html');
+    $scope.redirectToAddCar = function (from) {
+        stBlurredDialog.open('scripts/manage-car/add-car.html',{from:from});
     };
 
 });

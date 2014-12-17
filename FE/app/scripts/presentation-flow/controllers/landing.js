@@ -68,7 +68,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
             } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                RedirectSrv.redirectTo('/add-car');
+                openFullScreenModal('scripts/manage-car/add-car.html');
             }
         }
     };

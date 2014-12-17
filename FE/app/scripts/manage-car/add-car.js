@@ -8,15 +8,17 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     var states = {
         add:0,
         found:1,
-        notFound:2,
-        added:3
+        added:2
     };
 
     var mock = true;
 
     $scope.states = states;
+    $scope.landing = false;
+
     $scope.model = {
-        state: states.add, //TODO constants: 0 = add car, 1 = license valid
+        state: states.add,
+        notFounded: false,
         available: false,
         loading: true,
 
@@ -37,6 +39,8 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
 
     function init(){
         refreshYears();
+
+        $scope.landing = (stBlurredDialog.getDialogData().from === 'landing');
     }
 
     function loadingOn(){
@@ -126,12 +130,15 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
             setCar(loadingOff);
         } else {
             console.log('looking for license plate');
+            var license = $scope.model.license.toUpperCase();
 
-            if ($scope.model.license === 'ASD') {
+            if (license === 'ASD') {
                 $scope.model.state = states.found;
                 loadingOff();
             } else {
-                $scope.model.state = states.notFound;
+                $scope.model.state = states.add;
+                $scope.model.notFounded = true;
+
                 loadingOff();
             }
         }
@@ -139,6 +146,30 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
 
     $scope.selectCar = function () {
         setCar(loadingOff);
+    };
+
+    $scope.goBack = function () {
+        console.log('back');
+
+        switch ($scope.model.state){
+            case states.add:
+                if($scope.model.notFounded){
+                    $scope.model.notFounded = false;
+                    $scope.model.state = states.add;
+                } else {
+                    if($scope.landing){
+                        console.log('implement return to cars');
+
+                    } else { //dashboard
+                        stBlurredDialog.close();
+                    }
+                }
+                break;
+            case states.found:
+                $scope.model.state = states.add;
+                break;
+        }
+
     };
 
     function setCar(cb){

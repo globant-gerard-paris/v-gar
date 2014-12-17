@@ -12,9 +12,12 @@
         }
     </style>
     <div>Loading: {{model.loading}}</div>
+    <div ng-if="(model.state!==states.added)">
+        <button type="button" ng-click="goBack()">Back</button>
+    </div>
     <section ng-if="(model.state===states.add)">
-
-        <h2 class="page-title">Add a car</h2>
+        <h2 class="page-title" ng-hide="model.notFounded">Add a car</h2>
+        <h2 class="page-title" ng-show="model.notFounded">No car found for plate {{model.license}}</h2>
         <h4 class="page-title">Select your car below</h4>
         <fieldset ng-disabled="!model.available">
             <div class="add-car-box">
@@ -63,21 +66,20 @@
                     </div>
                 </div>
 
-                <div>Or find by License Plate</div>
-                <div class="form-group">
-                    <input type="text" style="text-transform: uppercase;" class="form-control" placeholder=""
-                           ng-model="model.license">
-                </div>
+                <section ng-hide="model.notFounded">
+                    <div>Or find by License Plate</div>
+                    <div class="form-group">
+                        <input type="text" style="text-transform: uppercase;" class="form-control" placeholder=""
+                               ng-model="model.license">
+                    </div>
+                </section>
 
                 <div>
                     <button type="button" class="btn btn-lg btn-success"
-                            ng-disabled="!((model.mileage>=0 && model.mileage!=='') || model.license.length > 0)"
+                            ng-disabled="!((model.mileage>=0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
                             ng-click="addCar()">
                         Add
                     </button>
-                </div>
-                <div>
-                    <a href="#">Back</a>
                 </div>
             </div>
         </fieldset>
@@ -86,10 +88,6 @@
         step found
 
         <button type="button" ng-click="selectCar()">ADD</button>
-    </section>
-    <section ng-if="(model.state===states.notFound)">
-        step not fouond
-
     </section>
     <section ng-if="(model.state===states.added)">
         <div>Great! We have added your car</div>
