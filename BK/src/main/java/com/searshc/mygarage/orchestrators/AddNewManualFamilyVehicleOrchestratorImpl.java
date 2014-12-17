@@ -4,6 +4,7 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.apache.commons.lang3.Validate;
 import org.crsh.console.jline.internal.Log;
@@ -38,7 +39,7 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
 
         User user = this.userService.findByUserId(userId);
         Vehicle vehicle = null;
-        if (vehicleId == null) {
+        if (vehicleId != null) {
             //If vehicleId is valid, retrieve an object based on that
             vehicle = this.vehicleService.getItem(vehicleId);
         } else {
@@ -104,4 +105,20 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
         familyVehicle.setName(name);
         this.familyVehicleService.saveAndFlush(familyVehicle);
     }
+    
+    @Override
+    public List<String> getDistinctYears() {
+    	return this.vehicleService.getDistinctYears();
+    }    
+    
+    @Override
+    public List<String> getDistinctMakesByYear(final int year){
+    	return this.vehicleService.getDistinctMakesByYear(year);
+    }
+
+    @Override
+    public List<String> getDistinctModelsByYearMake(final int year, final String make){
+    	return this.vehicleService.getDistinctModelsByYearMake(year, make);
+    }
+
 }
