@@ -216,11 +216,28 @@
 		padding: 0;
 	}
 	@include clearfix;
-	width: 396px;
+	width: 308px;
 	margin: 20px auto 30px auto;
 	.car-card{
 		float:left;
+		background-position: center 19px;
+		background-size: 60%;
+		padding-top: 60px;
 		margin:2px;
+		width: 150px;
+		height: 150px;
+		.car-card-year-brand{
+			div{
+				display: block;
+				float:none;
+				line-height: 1.1em;
+			}
+		}
+		.car-card-mileage{
+			.car-card-mileage-data {
+				line-height: 2.7em;
+			}
+		}
 	}
 	.btn-confirm{
 		
