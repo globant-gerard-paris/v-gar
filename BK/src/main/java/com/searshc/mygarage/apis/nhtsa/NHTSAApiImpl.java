@@ -5,7 +5,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.searshc.mygarage.apis.nhtsa.response.NHTSARecalls;
@@ -40,7 +39,11 @@ public class NHTSAApiImpl implements NHTSAApi {
 
     public NHTSARecalls getRecalls(final int modelYear, final String make, final String model) throws NHTSARecallsException {
         ResponseEntity<NHTSARecalls> response;
-        String url = String.format(this.endpoint, modelYear, make, model);
+        String encodedMake = this.deleteInvalidCharactersForNHTSA(make);
+        String encodedModel = this.deleteInvalidCharactersForNHTSA(model);
+
+        String url = String.format(this.endpoint, modelYear, encodedMake, encodedModel);
+        
         log.info("Querying recalls at: " + url);
         try {
             response = this.restTemplate.getForEntity(url, NHTSARecalls.class);
@@ -58,6 +61,15 @@ public class NHTSAApiImpl implements NHTSAApi {
 
         log.info("Recalls found: " + response.getBody().getCount());
         return response.getBody();
+    }
+    
+    /**
+     * According to NHTSA notes the <strong>&</strong> characters should be replaced by <strong>_</strong>
+     * and spaces and hyphens should not be replaced.
+     * Source: http://www.nhtsa.gov/webapi/Default.aspx?Recalls/API/83
+     */
+    public String deleteInvalidCharactersForNHTSA(final String value) {
+    	return value.replace('&', '_');
     }
 
 }
