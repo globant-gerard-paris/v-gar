@@ -3,13 +3,20 @@
  */
 'use strict';
 
-angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv) {
+angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog) {
 
+    var states = {
+        add:0,
+        found:1,
+        notFound:2,
+        added:3
+    };
 
     var mock = true;
 
+    $scope.states = states;
     $scope.model = {
-        state: 0, //TODO constants: 0 = add car, 1 = license valid
+        state: states.add, //TODO constants: 0 = add car, 1 = license valid
         available: false,
         loading: true,
 
@@ -22,7 +29,10 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         modelSelected: '',
         mileage: '',
         mileageEnabled: false,
-        license: ''
+        license: '',
+
+        cars: [],
+        carSelect: {}
     };
 
     function init(){
@@ -40,7 +50,12 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         $scope.model.available = true;
     }
 
+    $scope.close = function () {
+        RedirectSrv.redirectTo('/dashboard');
+        stBlurredDialog.close();
+    };
 
+    //FIRST STEP
     function refreshYears(){
         refreshMakes();
         if(mock){
@@ -95,14 +110,42 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         //console.log('model selected!');
         $scope.model.mileageEnabled = true;
     };
+    //END FIRST STEP
 
+
+
+    $scope.addCar = function () {
+        loadingOn();
+
+        if (($scope.model.mileage === 0 ||$scope.model.mileage >= 0) &&
+            $scope.model.modelSelected &&
+            $scope.model.makeSelected &&
+            $scope.model.yearSelected) {
+            //the user fill al data, so this has priority over that license plate
+            console.log('user fill all data');
+            setCar(loadingOff);
+        } else {
+            console.log('looking for license plate');
+
+            if ($scope.model.license === 'ASD') {
+                $scope.model.state = states.found;
+                loadingOff();
+            } else {
+                $scope.model.state = states.notFound;
+                loadingOff();
+            }
+        }
+    };
+
+    $scope.selectCar = function () {
+        setCar(loadingOff);
+    };
+
+    function setCar(cb){
+        $scope.model.state = states.added;
+        cb();
+    }
 
 
     init();
-
-    $scope.addCar = function () {
-        $scope.model.state = 1;
-        //RedirectSrv.redirectTo('/dashboard');
-    };
-
 });

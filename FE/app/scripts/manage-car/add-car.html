@@ -11,13 +11,13 @@
             text-align: center;
         }
     </style>
-    <section ng-if="(model.state===0)">
+    <div>Loading: {{model.loading}}</div>
+    <section ng-if="(model.state===states.add)">
 
         <h2 class="page-title">Add a car</h2>
         <h4 class="page-title">Select your car below</h4>
         <fieldset ng-disabled="!model.available">
             <div class="add-car-box">
-                <div>Loading: {{model.loading}}</div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -82,7 +82,17 @@
             </div>
         </fieldset>
     </section>
-    <section ng-if="(model.state===1)">
-        step 2
+    <section ng-if="(model.state===states.found)">
+        step found
+
+        <button type="button" ng-click="selectCar()">ADD</button>
+    </section>
+    <section ng-if="(model.state===states.notFound)">
+        step not fouond
+
+    </section>
+    <section ng-if="(model.state===states.added)">
+        <div>Great! We have added your car</div>
+        <button type="button" ng-click="close()">Close</button>
     </section>
 </div>
