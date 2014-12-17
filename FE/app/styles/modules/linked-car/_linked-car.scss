@@ -155,15 +155,15 @@
 		}
 
 		.car-card-year-brand{
+			text-align: center;
 			div{
-				display: block;
-				float:left;
+				display: inline-block;
+				overflow: hidden;
 			}
 			.car-card-year{
 
 			}
 			.car-card-brand{
-				margin-left: 5px;
 				max-width: 102px;
 				overflow: hidden;
 				text-overflow: ellipsis;
