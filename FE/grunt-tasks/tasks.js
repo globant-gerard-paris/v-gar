@@ -31,6 +31,9 @@ module.exports = function(grunt) {
 
     //runs back-end server
     grunt.registerTask('serveBK', ['shell:runBKserver']);
+    grunt.registerTask('updateBK', ['shell:makeJARUncompress','shell:runBKserver']);
+    grunt.registerTask('makeJARCompress', ['shell:makeJARCompress']);
+    grunt.registerTask('makeJARUncompress', ['shell:makeJARUncompress']);
 
     //runs mockey from console and waits
     grunt.registerTask('run-mockey', ['shell:mockey']);
