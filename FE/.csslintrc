@@ -22,5 +22,6 @@
     "known-properties": false,
     "vendor-prefix": false,
     "font-sizes": false,
-    "floats": false
+    "floats": false,
+    "star-property-hack":false
 }

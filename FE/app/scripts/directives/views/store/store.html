@@ -1,9 +1,10 @@
 <section class="store-box row">
     <div class="store-icon-big col-xs-1"></div>
     <div class="">
+        <div class="">Sears Auto Center</div>
         <div class="">{{model.address}}</div>
-        <div class="pull-left margin-right-10">{{model.districtName}}, {{model.zipCode}}</div>
-        <div class="pull-left"><small>Call: {{model.phone}}</small></div>
+        <div class="margin-right-10">{{model.districtName}}, {{model.zipCode}}</div>
+        <div><small>Call: {{model.phone}}</small></div>
     </div>
 </section>
 
@@ -15,7 +16,7 @@
     </section>
 
     <section class="store-hours-box col-xs-12 col-sm-4">
-        <div class="store-subtitle">Hours of Operations</div>
+        <div class="store-subtitle">Hours of operations</div>
         <ul class="list-unstyled">
             <li ng-repeat="day in days track by day" ng-class="{bolder:currentDateIndex===$index}" class="clearfix hours-title">
                 <span class="pull-left">{{day}}</span><span class="pull-right">{{hours[$index]}}</span>

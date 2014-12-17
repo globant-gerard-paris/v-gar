@@ -13,7 +13,7 @@ angular.module('Directives').directive('serviceInformation', function () {
 
             if (scope.service.serviceCenter) {
                 scope.serviceCenterStr = scope.service.serviceCenter.address;
-                scope.serviceCenterStr += ' @ ' + scope.service.serviceCenter.city +
+                scope.serviceCenterStr += ' ' + scope.service.serviceCenter.city +
                         ', ' + scope.service.serviceCenter.zipCode;
             }
             else {
