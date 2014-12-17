@@ -1,7 +1,7 @@
 'use strict';
 
 
-angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, FeedbackSrv, $http, SessionDataSrv) {
+angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeout, $scope, $modal, RedirectSrv, DashboardSrv, $http, SessionDataSrv, stBlurredDialog) {
 
     var mock = false,
         userId =  SessionDataSrv.getCurrentUser(),
@@ -12,7 +12,13 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
             name: userName,
             userId: userId
         },
-        linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore()
+        linkApoinment : 'http://www.searsauto.com/stores/'+ SessionDataSrv.getCurrentFavoriteStore(),
+        linkCoupon: 'http://www.searsauto.com/offers'
+    };
+
+
+    var openFullScreenModal = function(template){
+        stBlurredDialog.open(template);
     };
 
     $scope.addCar = false;
@@ -51,69 +57,33 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         console.log('ERROR: ' + response);
     };
 
-    $scope.openFeedbackForm = function () {
-
-        var modalNewRecord = $modal.open({
-            templateUrl: 'modalFeedback.html',
-            controller: 'ModalFeedbackCtrl',
-            windowClass: 'vg-feedback-modal',
-            backdropClass: 'vg-feedback-backdrop',
-            size: 'md',
-            resolve: {
-                context: function () {
-                    return $scope.model;
-                }
-            }
-        });
-
-        modalNewRecord.result.then(function (model) {
-            console.log('Store feedback');
-            FeedbackSrv.addFeedback(userId, model.recordForm).then(successAddFeedback, failAddFeedback);
-        }, function () {
-            // 'Modal dismissed at: ' + new Date()
-        });
-
-        var successAddFeedback = function (response) {
-            $scope.$emit('NEWLY_ADDED_FEEDBACK', response);
-        };
-        var failAddFeedback = function (response) {
-            alert('An error has occurred, please try again.');
-            console.log('ERROR: ' + response);
-        };
+    $scope.manageCars = function(){
+        openFullScreenModal('scripts/presentation-flow/views/linked-car-modify.html');
     };
 
-    if(mock){
-        $timeout( function(){
-            $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
-        },2000);
+    $scope.$on('linked-cars-updated', function(){
+        $scope.loadCars();
+        stBlurredDialog.close();
+    });
 
-    }
-    else{
-        DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
-    }
-
-}).controller('ModalFeedbackCtrl', function ($scope, $modalInstance, context) {
-
-    $scope.model = context;
-    $scope.model.recordForm = {
-        comment: null
+    $scope.openFeedbackForm = function(){
+        $scope.$emit('OPEN_MODAL_FEEDBACK');
     };
 
-    $scope.addRecord = function () {
-        if ($scope.recordForm.$valid) {
-            $modalInstance.close($scope.model);
-        }else{
-            $scope.recordForm.submitted = true;
+    $scope.loadCars = function(){
+        if(mock){
+            $timeout( function(){
+                $http.get('resources/mocks/dashboard.json').then(carsResultSuccess);
+            },2000);
+
+        }
+        else{
+            DashboardSrv.getCars(userId, carsResultSuccess, carsResultFailed);
         }
     };
 
-    $scope.open = function ($event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        $scope.opened = true;
-    };
+    $scope.loadCars();
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
+
+
 });

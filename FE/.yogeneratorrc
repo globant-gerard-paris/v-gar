@@ -88,6 +88,14 @@
     {
       "name": "Car confirmation",
       "value": "car-confirmation"
+    },
+    {
+      "name": "Footer vg",
+      "value": "footer-vg"
+    },
+    {
+      "name": "Feedback tag",
+      "value": "feedback-tag"
     }
   ],
   "service": [

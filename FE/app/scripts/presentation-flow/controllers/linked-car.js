@@ -2,9 +2,17 @@
 
 angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
 
+    $scope.toggleCarSelect = function(car){
+        if(!car){
+            return;
+        }
+        car.isConfirmed = !car.isConfirmed;
+    };
+
     $scope.areMineAction = function () {
-        LinkedCarSrv.confirmCars($scope.model.vehicules, function () {
+        LinkedCarSrv.confirmCars($scope.model.vehicles, function () {
             RedirectSrv.redirectTo('/dashboard');
+            $scope.$emit('linked-cars-updated');
         }, function (response) {
             console.log('ERROR: ' + response);
             alert('Error, please try again.');
@@ -16,18 +24,18 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
     };
 
     $scope.model = {
-        vehicules: []
+        vehicles: []
     };
 
     $scope.totalConfirmed = 0;
 
     LinkedCarSrv.getLinkedCars(function (response) {
-        $scope.model.vehicules = response.data || [];
+        $scope.model.vehicles = response.data || [];
     }, function (response) {
         console.log('ERROR: ' + response);
     });
 
-    $scope.$watch('model.vehicules', function (data) {
+    $scope.$watch('model.vehicles', function (data) {
         var count = 0;
         angular.forEach(data, function (veh) {
             count += veh.isConfirmed ? 1 : 0;

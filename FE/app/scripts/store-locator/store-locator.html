@@ -39,24 +39,12 @@
     <section class="stores-list-box row">
         <div class="store-found-subtitle">{{model.stores.length}} store/s found</div>
             <div class="store-slick-carousel" slick slick-data="model.stores">
-                <store-card  model="store" ng-repeat="store in model.stores track by $index"></store-card>
+                <div ng-repeat="store in model.stores track by $index">
+                    <store-card model="store"></store-card>
+                </div>
             </div>
     </section>
 
-    <section class="visible-xs">
-        <div class="clearfix"></div>
-        <div class="dashboard-bottom-mobile visible-xs">
-            <div class="col-xs-12 footer-btns">
-                <a href="#" class="btn-social btn-mail">
-                </a>
-                <a href="#" class="btn-social btn-facebook">
-                </a>
-                <a href="#" class="btn-social btn-twitter">
-                </a>
-                <br/>
-                <div class="dashboard-mobile-feedback"></div>
-            </div>
-        </div>
-    </section>
+    <footer-vg></footer-vg>
 
 </div>

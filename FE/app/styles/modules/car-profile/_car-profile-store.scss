@@ -34,7 +34,7 @@
         }
     }
     .store-change-service{
-//        margin-top: 10px;
+        margin-top: 5px;
         color:#2b9ace;
         font-size: 1.5rem;
         font-weight: 500;
@@ -42,6 +42,8 @@
 
         a {
             cursor: pointer;
+            background: url(../resources/images/car-profile/edit.png) no-repeat left;
+            padding-left: 15px;     
             @include bp(xs) {
                 color: #ffffff;
             }

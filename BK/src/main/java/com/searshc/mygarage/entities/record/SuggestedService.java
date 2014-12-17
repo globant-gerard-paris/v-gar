@@ -12,7 +12,12 @@ public class SuggestedService extends AbstractEntity {
     private String sku;
 
     @NotBlank
+    private String systemDescription;
+
+    @NotBlank
     private String description;
+
+    private String link;
 
     /**
      * @return the sku
@@ -29,6 +34,20 @@ public class SuggestedService extends AbstractEntity {
     }
 
     /**
+     * @return the systemDescription
+     */
+    public String getSystemDescription() {
+        return systemDescription;
+    }
+
+    /**
+     * @param systemDescription the systemDescription to set
+     */
+    public void setSystemDescription(String systemDescription) {
+        this.systemDescription = systemDescription;
+    }
+
+    /**
      * @return the description
      */
     public String getDescription() {
@@ -41,5 +60,21 @@ public class SuggestedService extends AbstractEntity {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    /**
+     * @return the link
+     */
+    public String getLink() {
+        return link;
+    }
+
+    /**
+     * @param link the link to set
+     */
+    public void setLink(String link) {
+        this.link = link;
+    }
+    
+    
 
 }
