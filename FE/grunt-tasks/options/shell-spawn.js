@@ -12,6 +12,24 @@ module.exports = function(grunt) {
                 }
             }
         },
+        'makeJARCompress':{
+            command: 'build.bat local dist',
+            options: {
+                async: false,
+                execOptions: {
+                    cwd: '../'
+                }
+            }
+        },
+        'makeJARUncompress':{
+            command: 'build.bat local app',
+            options: {
+                async: false,
+                execOptions: {
+                    cwd: '../'
+                }
+            }
+        },
 
         //async
         'mockey-async':{
