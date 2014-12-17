@@ -17,6 +17,7 @@ BK/.tmp
 BK/.merge_file*
 BK/.springBeans
 BK/nbactions*
+BK/src/main/resources/public/*
 
 #############
 # FRONT-END #
