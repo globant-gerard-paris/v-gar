@@ -1,0 +1,76 @@
+@import "compass/css3/transform";
+@import "compass/utilities/general/clearfix";
+
+
+.add-car-base{
+    .add-car-right-align{
+        select, input {
+            float: right;
+            width: 200px;
+        }
+    }
+    .add-car-left-align {
+        select, input{
+            float: left;
+            width: 200px;
+        }
+    }
+
+    .license-plate{
+        text-transform: uppercase;
+        width: 200px;
+        margin: 0 auto;
+        font-size: 30px;
+        height: 50px;
+        text-align: center;
+    }
+
+    .btn-confirm{
+        border: 0;
+        text-transform: uppercase;
+        &:disabled{
+            background-color: #cccccc;
+        }
+    }
+
+    .loading{
+        background-image: url($manageCarLoader);
+        height: 24px;
+        width: 24px;
+        background-color: #000000;
+        margin: 0 auto;
+    }
+
+    .backSection {
+        float: left;
+        margin-top: -60px;
+        margin-left: 60px;
+    }
+
+    .btn-back{
+        color: #3ea3d1;
+        font-size: 1.3em;
+        font-weight: 700;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .confirmed-box{
+        text-align: center;
+        margin: 0 auto;
+        .btn-confirm{
+            margin-top: 20px;
+        }
+    }
+
+    .confirmed{
+        background-image: url($manageAddCarConfirmed);
+        height: 120px;
+        width: 120px;
+        margin: 0 auto;
+    }
+
+    .car-card-mileage-data{
+        display: none;
+    }
+}

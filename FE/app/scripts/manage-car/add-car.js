@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog) {
+angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog, LinkedCarSrv) {
 
     var states = {
         add:0,
@@ -33,8 +33,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         mileageEnabled: false,
         license: '',
 
-        cars: [],
-        carSelect: {}
+        btnAddCarSelectedDisabled: true
     };
 
     function init(){
@@ -117,6 +116,28 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     //END FIRST STEP
 
 
+    //SECOND STEP
+    $scope.toggleCarSelect = function(car){
+        if(!car){
+            return;
+        }
+        var i = 0, l = $scope.model.vehicles.length,
+            confirmTemp = car.isConfirmed;
+
+        $scope.model.btnAddCarSelectedDisabled = true;
+
+        for(;i<l;i++){
+            $scope.model.vehicles[i].isConfirmed = false;
+        }
+
+        car.isConfirmed = !confirmTemp;
+
+        if (car.isConfirmed) {
+            $scope.model.btnAddCarSelectedDisabled = false;
+        }
+    };
+    //END SECOND STEP
+
 
     $scope.addCar = function () {
         loadingOn();
@@ -130,11 +151,18 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
             setCar(loadingOff);
         } else {
             console.log('looking for license plate');
-            var license = $scope.model.license.toUpperCase();
+            var license = $scope.model.license = $scope.model.license.toUpperCase();
 
             if (license === 'ASD') {
-                $scope.model.state = states.found;
-                loadingOff();
+                //TODO change it!
+                LinkedCarSrv.getLinkedCars(function (response) {
+                    $scope.model.state = states.found;
+                    $scope.model.vehicles = response.data || [];
+                    loadingOff();
+                }, function (response) {
+                    console.log('ERROR: ' + response);
+                });
+
             } else {
                 $scope.model.state = states.add;
                 $scope.model.notFounded = true;
@@ -158,7 +186,8 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
                     $scope.model.state = states.add;
                 } else {
                     if($scope.landing){
-                        console.log('implement return to cars');
+                        //TODO
+                        console.log('TODO implement return to cars');
 
                     } else { //dashboard
                         stBlurredDialog.close();

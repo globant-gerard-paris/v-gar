@@ -1,29 +1,20 @@
-<div class="" ng-controller="CarAddCtrl">
+<div class="linked-car-base-container linked-car-container">
+    <div class="linked-car-base linked-car add-car-base" ng-controller="CarAddCtrl">
 
-    <style>
-        .page-title {
-            text-align: center;
-        }
+        <div class="loading" ng-show="model.loading">ver donde iria</div>
+        <div ng-if="(model.state!==states.added)" class="visible-xs backSection">
+            <div class="btn-back" ng-click="goBack()">Back</div>
+        </div>
 
-        .add-car-box {
-            width: 350px;
-            margin: 0 auto;
-            text-align: center;
-        }
-    </style>
-    <div>Loading: {{model.loading}}</div>
-    <div ng-if="(model.state!==states.added)">
-        <button type="button" ng-click="goBack()">Back</button>
-    </div>
-    <section ng-if="(model.state===states.add)">
-        <h2 class="page-title" ng-hide="model.notFounded">Add a car</h2>
-        <h2 class="page-title" ng-show="model.notFounded">No car found for plate {{model.license}}</h2>
-        <h4 class="page-title">Select your car below</h4>
-        <fieldset ng-disabled="!model.available">
-            <div class="add-car-box">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group">
+
+        <section ng-if="(model.state===states.add)">
+            <h2 class="title" ng-hide="model.notFounded">Add a car</h2>
+            <h2 class="title" ng-show="model.notFounded">No car found for plate {{model.license}}</h2>
+            <h4 class="desc">Select your car below</h4>
+            <fieldset ng-disabled="!model.available">
+                <div class="add-car-box">
+                    <div class="row">
+                        <div class="form-group col-xs-6 add-car-right-align">
                             <select class="form-control"
                                     ng-required="required"
                                     ng-model="model.yearSelected"
@@ -32,7 +23,7 @@
                                 <option style="display:none" value="">Year</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-xs-6 add-car-left-align">
                             <select class="form-control"
                                     ng-required="required"
                                     ng-model="model.makeSelected"
@@ -42,7 +33,7 @@
                                 <option style="display:none" value="">Make</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group col-xs-6 add-car-right-align">
                             <select class="form-control"
                                     ng-required="required"
                                     ng-model="model.modelSelected"
@@ -53,7 +44,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-xs-6 add-car-left-align">
                             <input type="number" class="form-control" placeholder="Mileage"
                                    ng-required="required"
                                    min="0"
@@ -64,33 +55,64 @@
                                    ng-disabled="!(model.available && model.mileageEnabled)">
                         </div>
                     </div>
-                </div>
 
-                <section ng-hide="model.notFounded">
-                    <div>Or find by License Plate</div>
-                    <div class="form-group">
-                        <input type="text" style="text-transform: uppercase;" class="form-control" placeholder=""
-                               ng-model="model.license">
+                    <section ng-hide="model.notFounded">
+                        <h4 class="desc">Or find by License Plate</h4>
+                        <div class="form-group">
+                            <input type="text" class="form-control license-plate" placeholder=""
+                                   ng-model="model.license">
+                        </div>
+                    </section>
+
+                    <div class="text-center">
+                        <button type="button" class="btn-confirm"
+                                ng-disabled="!((model.mileage>=0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
+                                ng-click="addCar()">
+                            ADD
+                        </button>
                     </div>
-                </section>
+                </div>
+            </fieldset>
+        </section>
 
-                <div>
-                    <button type="button" class="btn btn-lg btn-success"
-                            ng-disabled="!((model.mileage>=0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
-                            ng-click="addCar()">
-                        Add
-                    </button>
+
+        <section ng-if="(model.state===states.found)">
+            <div class="title">We found {{model.vehicles.length}} vehicles!</div>
+            <p class="desc">
+                Please confirm if these vehicles are yours. <br/>
+                If not, select or deselect below:
+            </p>
+            <div class="car-slick-carousel hidden-xs" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
+                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
+                    <car-card car="car" ng-click="toggleCarSelect(car)">
+                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
+                    </car-card>
                 </div>
             </div>
-        </fieldset>
-    </section>
-    <section ng-if="(model.state===states.found)">
-        step found
+            <div class="grid-car-card visible-xs">
+                <div ng-repeat="car in model.vehicles" ng-class="car.isConfirmed ? 'selected':''">
+                    <car-card car="car" ng-click="toggleCarSelect(car)">
+                        <div class="car-selected-icon" ng-show="car.isConfirmed"></div>
+                    </car-card>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn-confirm" ng-click="selectCar()" ng-disabled="model.btnAddCarSelectedDisabled">ADD</button>
+            </div>
+        </section>
 
-        <button type="button" ng-click="selectCar()">ADD</button>
-    </section>
-    <section ng-if="(model.state===states.added)">
-        <div>Great! We have added your car</div>
-        <button type="button" ng-click="close()">Close</button>
-    </section>
+
+        <section ng-if="(model.state===states.added)">
+            <div class="confirmed-box">
+                <div class="confirmed"></div>
+                <h2 class="title" ng-hide="model.notFounded">Great! We have added your car</h2>
+                <button type="button" class="btn-confirm" ng-click="close()">Close</button>
+            </div>
+        </section>
+
+
+        <div ng-if="(model.state!==states.added)" class="hidden-xs">
+            <div class="btn-back" ng-click="goBack()">Back</div>
+        </div>
+    </div>
 </div>
