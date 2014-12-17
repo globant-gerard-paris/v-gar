@@ -1,8 +1,8 @@
 <div class="linked-car-base-container linked-car-container">
 	<div class="linked-car-base linked-car" ng-controller="LinkedCarCtrl">
-			<div class="title">We found {{model.vehicles.length}} cars!</div>
+			<div class="title">We found {{model.vehicles.length}} vehicles!</div>
 			<p class="desc">
-         		Please confirm if these cars are yours. <br/>
+         		Please confirm if these vehicles are yours. <br/>
                 If not, select or deselect below:
 			</p>
 	        <div class="car-slick-carousel hidden-xs" slick slick-data="model.vehicles" ng-class="model.vehicles.length === 2 ? 'only-two':''">
@@ -22,6 +22,6 @@
 	            </div>
 	        </div>
 	        <div class="btn-confirm" ng-click="areMineAction()">CONFIRM</div>
-	        <div class="bottom-add-cars">None of the cars adove are yours? <a href="">Add it here</a></div>
+	        <div class="bottom-add-cars">None of the vehicles adove are yours? <a href="">Add it here</a></div>
 	</div>
 </div>
