@@ -33,6 +33,8 @@ import com.searshc.mygarage.entities.record.ServiceTranslation;
 import com.searshc.mygarage.entities.Store;
 import com.searshc.mygarage.entities.record.SuggestedService;
 import com.searshc.mygarage.entities.FamilyVehicle;
+import com.searshc.mygarage.entities.record.RealServiceRecordItem;
+import com.searshc.mygarage.entities.record.RecommendedServiceRecordItem;
 import com.searshc.mygarage.exceptions.NCDBApiException;
 import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
 import com.searshc.mygarage.repositories.RecordRepository;
@@ -77,7 +79,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<FamilyVehicle> listVehicles(Long familyId) throws NCDBApiException {
+    public List<FamilyVehicle> listVehicles(Long familyId) {
         return this.ncdbApi.getVehicles(familyId);
     }
 
@@ -116,8 +118,7 @@ public class NcdbServiceImpl implements NcdbService {
         return orders.isEmpty() ? null : orders.get(0);
     }
 
-    private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter)
-            throws NCDBApiException {
+    private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter) {
         OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehicleHistory(familyId, tangibleId);
         List<Order> orders = null;
         if (orderHistoryResponse != null) {
@@ -144,8 +145,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId)
-            throws NCDBApiException {
+    public List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId) {
         RecordFilter ncdbRecordFilter = new RecordFilter();
         this.processTransactions(familyId, tangibleId, ncdbRecordFilter);
         List<ServiceRecord> serviceRecords
@@ -160,8 +160,7 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     @Override
-    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId)
-            throws NCDBApiException {
+    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId) {
         RecommendedService recommendedService = null;
         Order lastOrder = this.getLastOrder(familyId, tangibleId);
         if (lastOrder != null) {
@@ -199,7 +198,7 @@ public class NcdbServiceImpl implements NcdbService {
                 = this.suggestedServiceRepository.findBySku(item.getItemId());
         ServiceRecordItem sri = null;
         if (sgt != null) {
-            sri = mapper.map(sgt, ServiceRecordItem.class);
+            sri = mapper.map(sgt, RecommendedServiceRecordItem.class);
             sri.setCode(item.getItemId());
         }
         return sri;
@@ -210,7 +209,7 @@ public class NcdbServiceImpl implements NcdbService {
                 = serviceTranslationRepository.findByProductFlag(orderItem.getProductFlag());
         ServiceRecordItem sri = null;
         if (st != null) {
-            sri = mapper.map(st, ServiceRecordItem.class);
+            sri = mapper.map(st, RealServiceRecordItem.class);
             sri.setCode(String.valueOf(orderItem.getProductFlag()));
         }
         return sri;
@@ -255,15 +254,15 @@ public class NcdbServiceImpl implements NcdbService {
         }
         return lastOrder.getStoreNumber();
     }
-    
+
     @Override
     public List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber) {
-    	return this.ncdbApi.getVehicleByVINNumber(vinNumber);
+        return this.ncdbApi.getVehicleByVINNumber(vinNumber);
     }
-    
+
     @Override
     public List<VehicleGenericDescriptionDTO> getVehicleByLicensePlate(final String licensePlate) throws NCDBApiException {
-    	return this.ncdbApi.getVehicleByLicensePlate(licensePlate);
+        return this.ncdbApi.getVehicleByLicensePlate(licensePlate);
     }
 
 }

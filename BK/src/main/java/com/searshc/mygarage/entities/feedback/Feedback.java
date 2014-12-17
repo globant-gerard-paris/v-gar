@@ -27,7 +27,7 @@ public class Feedback extends AbstractEntity{
 	/**
 	 * The comment provided as feedback.
 	 */
-	@Column(name = "comment", nullable = false, columnDefinition = "TEXT")
+	@Column(nullable = false, columnDefinition = "text")
 	private String comment;
 	
 	public Feedback() {

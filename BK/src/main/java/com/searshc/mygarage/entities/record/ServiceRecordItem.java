@@ -1,10 +1,9 @@
 package com.searshc.mygarage.entities.record;
 
-public class ServiceRecordItem {
+public abstract class ServiceRecordItem {
 
-    private String code;
-    private String description;
-    private String category;
+    protected String code;
+    protected String description;    
 
     /**
      * @return the code
@@ -32,20 +31,6 @@ public class ServiceRecordItem {
      */
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    /**
-     * @return the category
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * @param category the category to set
-     */
-    public void setCategory(String category) {
-        this.category = category;
-    }
+    }    
 
 }

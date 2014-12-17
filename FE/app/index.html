@@ -19,10 +19,11 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700,700italic,300,300italic' rel='stylesheet' type='text/css'>
     </head>
     <body ng-controller="MainCtrl">
-
-        <div ng-if="!isMobile() && !isLandingPage()" ng-include="'scripts/navigation/views/navigation.html'" class="visible-lg visible-sm visible-md"></div>
-
         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+        <div class="hidden-xs" ng-if="!isLandingPage() && !isMobile()" ng-include="'scripts/navigation/views/navigation.html'"></div>
+        <div class="visible-xs" ng-if="!isLandingPage() && !isDashboardPage()" ng-include="'scripts/navigation/views/navigation-mobile-header.html'"></div>
+
         <!-- Add your site or application content here -->
         <div class="container-fluid" ng-view></div>
 
@@ -99,6 +100,8 @@
         <script src="scripts/presentation-flow/services/services.js"></script>
         <script src="scripts/presentation-flow/services/landing.js"></script>
         <script src="scripts/presentation-flow/services/dashboard.js"></script>
+
+        <script src="scripts/presentation-flow/services/st-blurred-dialog.js"></script>
         <!-- yo:services -->
 
         <script src="scripts/filters/filters.js"></script>
@@ -115,7 +118,6 @@
         <script src="scripts/directives/recall-information.js"></script>
         <script src="scripts/directives/service-information.js"></script>
         <script src="scripts/directives/record-row.js"></script>
-        <script src="scripts/directives/car-confirmation.js"></script>
         <script src="scripts/directives/trend-view.js"></script>
         <script src="scripts/directives/dashboard/car-card.js"></script>
         <script src="scripts/directives/dashboard/slick.js"></script>
@@ -125,7 +127,9 @@
         <script src="scripts/directives/car-profile/car-article.js"></script>
         <script src="scripts/directives/car-profile/tell-us-more.js"></script>
         <script src="scripts/directives/car-profile/recalls-and-services.js"></script>
-        <!-- yo:directives -->
+        <script src="scripts/directives/footer-vg.js"></script>
+  <script src="scripts/directives/feedback-tag.js"></script>
+  <!-- yo:directives -->
 
         <!-- endbuild -->
 

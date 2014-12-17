@@ -1,0 +1,51 @@
+.st-blurred-region {
+    -webkit-filter: blur(8px);
+    -moz-filter: blur(8px);
+    -o-filter: blur(8px);
+    -ms-filter: blur(8px);
+    filter: blur(8px);
+}
+
+@include bp(xs) {
+	.st-blurred-region {
+		-webkit-filter: none;
+	    -moz-filter: none;
+	    -o-filter: none;
+	    -ms-filter: none;
+	    filter: none;
+	}
+	.st-blurred-region-overlay {
+		background-color: rgb(255,255,255);
+		background-color: rgba(230, 230, 230, 0.95);
+	}
+}
+
+.st-blurred-region-overlay {
+	position:fixed;
+	overflow-y: auto;
+	top:0;
+	left:0;
+	width:100%;
+	height:110%;
+
+	z-index:10000;
+	-webkit-overflow-scrolling: touch;
+	overflow-x: hidden;
+	margin-bottom: -100px;
+}
+
+.st-blurred-region-close:focus {outline:0;}
+
+.st-blurred-region-close{
+	background-image: url(../resources/images/linked-car/close.png);
+	width: 59px;
+	height: 59px;
+	font-size: 0;
+	background-color: transparent;
+	border: none;
+	position: absolute;
+	right: 40px;
+	top: 106px;
+	z-index: 50000;
+}
+

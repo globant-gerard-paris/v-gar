@@ -1,13 +1,21 @@
 
-%btn-appointment{
-  margin-left:16px;
+%btn-appointment {
+  margin-left: 16px;
   display: inline-block;
   cursor: pointer;
   width: 220px;
   height: 45px;
   background: url(../resources/images/header/appointment.png) no-repeat;
 }
-
+.btn-close-top-right{
+  position: fixed;
+  top: 0;
+  right: 20px;
+  background: url("../resources/images/close_btn.png") no-repeat;
+  height: 60px;
+  border-style: none;
+  width: 60px;
+}
 .btn-social {
   display: inline-block;
   width: 26px;
@@ -32,7 +40,7 @@
 .dashboard-page-header {
   height: 90px;
 
-  .home-page-title-logo{
+  .home-page-title-logo {
     min-width: 220px;
   }
 
@@ -85,12 +93,21 @@
     }
   }
 
+
   .header-text {
     text-align: center;
     font-size: 1.2em;
     font-weight: 250;
     margin-top: 1.9em;
+    bottom: 0;
     color: rgb(85, 93, 106);
+    @media (max-width: 1369px) {
+      bottom: 10px;
+    }
+    @media (max-width: 900px) {
+      position: relative;
+      right: 7%;
+    }
     .header-text-name {
       color: rgb(85, 93, 106);
     }
@@ -102,8 +119,6 @@
 
 }
 
-
-
 @include bp(sm) {
   .header-text {
     max-width: 33% !important;
@@ -113,6 +128,16 @@
 }
 
 @include bp(xs) {
+
+  .btn-close-top-right{
+    position: relative;
+    top: 10px;
+    left: 80%;
+    background: url("../resources/images/close_btn.png") no-repeat;
+    height: 60px;
+    border-style: none;
+    width: 60px;
+  }
 
   .header-text {
     max-width: 25%;
@@ -154,38 +179,47 @@
   }
 }
 
-
-
 .brade-crumb-vg {
   %common-brade-crumb {
     height: 30px;
     font-size: 12px;
     font-family: Roboto;
+    font-weight: 700;
   }
 
-  .brade-crumb-ul{
+  .selected-level {
+    color: #626a77;
+    font-weight: 700 !important;
+  }
+
+  .deselected-level{
+    color: #9b9b9b;
+    font-weight: 500 !important;
+  }
+
+  .brade-crumb-ul {
     list-style: none;
     overflow: hidden;
     margin-left: -40px !important;
   }
 
-  .brade-crumb-ul .level-one-li{
+  .brade-crumb-ul .level-one-li {
     width: 120px;
   }
 
-  .brade-crumb-ul .level-two-li{
+  .brade-crumb-ul .level-two-li {
     width: 120px;
     position: relative;
     left: -15px;
   }
 
-  .brade-crumb-ul .level-three-li{
+  .brade-crumb-ul .level-three-li {
     position: relative;
     left: -40px;
     width: 167px;
   }
 
-  .brade-crumb-ul li{
+  .brade-crumb-ul li {
     float: left;
   }
 
@@ -195,31 +229,95 @@
     position: relative;
     display: block;
     float: left;
+    text-align: center;
   }
 
   .level-one {
     @extend %common-brade-crumb;
     z-index: 10;
-    color: #626a77;
-    width: 160px;
-    font-weight: 700;
+    width: 120px;
     background: url("../resources/images/header/breadcrumb_1.png") no-repeat;
+    .level-one-text{
+      text-align: center;
+    }
   }
   .level-two {
     @extend %common-brade-crumb;
     z-index: 5;
-    color: #626a77;
-    width: 160px;
-    font-weight: 700;
+    width: 120px;
     background: url("../resources/images/header/breadcrumb_2.png") no-repeat;
+    .level-two-text{
+      text-align: center;
+    }
   }
   .level-three {
     @extend %common-brade-crumb;
     z-index: 1;
-    color: rgb(98, 106, 119);
-    color: rgba(98, 106, 119, 0.56);
-    font-weight: 400;
     width: 170px;
     background: url("../resources/images/header/breadcrumb_3.png") no-repeat;
+  }
+}
+
+.dashboard-mobile-header {
+  background-color: rgb(246,246,248) !important;
+  %common-menu {
+    height: 55px;
+    cursor: pointer;
+  }
+  .header-btns {
+    @extend %common-menu;
+    background: url("../resources/images/header/arrow-black.png") no-repeat;
+    background-position-y: 10px;
+    background-position-x: 20px;
+    .text-arrow {
+      position: relative;
+      top: 12px;
+      left: 35px;
+      color: rgb(82,94,106);
+      color: rgba(82,94,106,0.98);
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+
+  .header-title {
+    @extend %common-menu;
+    background: url(../resources/images/header/sears_logo_mobile.png) no-repeat;
+    background-position-x: 40px;
+    background-position-y: 15px;
+  }
+}
+
+
+.dashboard-bottom-mobile{
+  .footer-btns{
+    margin-top: 40px;
+    margin-bottom: 50px;
+  }
+  text-align: center;
+  .dashboard-mobile-feedback{
+    display: inline-block;
+    background-image: url(../resources/images/dashboard/feedBack_mobile.png);
+    height: 86px;
+    width: 90px;
+    margin-top: 40px;
+    cursor: pointer;
+  }
+}
+
+
+.feedback-content-common-middle {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  .dashboard-manage-feedback {
+    cursor: pointer;
+    display: inline-block;
+    height: 117px;
+    width: 42px;
+    background-image: url(../resources/images/dashboard/FeedBack.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    z-index: 99;
   }
 }

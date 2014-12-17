@@ -1,5 +1,7 @@
-
-<div class="landing-page-container">
+<div class="landing-blurred-dialog">
+    <st-blurred-dialog-overlay></st-blurred-dialog-overlay>
+</div>
+<div class="landing-page-container" st-blurred-dialog-region>
     <div class="row landing-top">
         <carousel interval="myInterval" disable-animation="true">
           <slide ng-repeat="slide in slides" active="slide.active">

@@ -10,6 +10,7 @@
 
 .dashboard{
 	.slick-prev{
+        left: -8% !important;
 		&.slick-disabled{
 			background-image: none;
 		}
@@ -18,6 +19,7 @@
 	}
 
 	.slick-next{
+        left: 104%;
 		&.slick-disabled{
 			background-image: none;
 		}
@@ -68,7 +70,7 @@
 		/* border:1px solid #bbb; */
 		@include border-radius(12px);
 		background-color: white;
-		width: 206px;
+		width: 204px;
 		height: 264px;
 		text-align: center;
 		.car-edit-btn{
@@ -134,7 +136,7 @@
 
 	.car-card-slick-container{
 		// padding so car tag is visible
-		padding-bottom: 30px;
+		padding-bottom: 20px;
 		background-image: url(../resources/images/dashboard/car_card_shaddow.png);
 		background-position: center center;
 		background-size: 274px;
@@ -145,12 +147,14 @@
 		margin: 0 auto;
 
 		&.only-two {
-			.car-card-slick-container:nth-child(1) .car-card {
-				margin: 64px 20px 64px auto;
-			}
-			.car-card-slick-container:nth-child(2) .car-card {
-				margin: 64px auto 64px 20px;
-			}
+//          @media (min-width: 348px) {
+//            .car-card-slick-container:nth-child(1) .car-card {
+//              margin: 64px 10px 62px auto;
+//            }
+//            .car-card-slick-container:nth-child(2) .car-card {
+//              margin: 64px auto 64px 10px;
+//            }
+//          }
 		}		
 	}
 
@@ -226,10 +230,9 @@
 
 	@include bp(md){
 		.car-slick-carousel{
-			width: 780px !important;
+			width: 680px !important;
 		}
 	}
-
 
 	@include bp(sm){
 		.car-slick-carousel{
@@ -238,6 +241,15 @@
 	}
 
 	@include bp(xs){
+
+        .slick-prev {
+          top: 48%;
+          left: -12% !important;
+        }
+        .slick-next {
+          top: 48%;
+        }
+
 		.car-slick-carousel{
 			width: 240px;
 		}
@@ -252,13 +264,13 @@
 			}
 		}
 		.dashboard-car-actions-bottom{
-			bottom: 58px;
+			bottom: 48px;
 		}
 
 		.car-card{
-			margin: 102px auto 74px auto;
+			margin: 64px auto 74px auto;
 			width: 180px;
-			height: 240px;
+			height: 235px;
 			.car-card-mileage {
 				margin-top: 82px;
 			}
@@ -277,25 +289,46 @@
 
 
 
-		.header-text{
-			position: relative;
-			top: 75px;
-			font-size: 0.9em;
-			text-align: center;
-			color: #888;
+		.header-text-dashboard{
+          position: relative;
+          top: 75px;
+          font-size: 0.9em;
+          text-align: center;
+          color: #5D5858;
+          height: 60px;
        		.header-text-name{
 	        	color:#555;
 	    	}
 		}
+
+        @media (max-width: 348px) {
+          .header-text-dashboard {
+            position: relative;
+            top: 62px;
+          }
+          .slick-next{
+            left: 100%;
+          }
+          .slick-prev {
+            left: -8%;
+          }
+
+        }
+
+
+      .header-text-dashboard-name-word {
+        color: rgb(68, 66, 66);
+        font-weight: bold;
+      }
 
 		.dashboard-content-common-top {
 			top: 98px;
 		}
 
 		.mini-logo{
-			background-image: url(../resources/images/dashboard/Logo_Small.png);
+			background-image: url(../resources/images/header/newLogo_innerPages.png);
 			position: absolute;
-			top:22px;
+			top: 10px;
 			left: 0;
 			right: 0;
 			background-position: center center;
@@ -375,13 +408,13 @@
 		    }
 	    }
 
-	    .header-text{
+	    .header-text-dashboard{
 	    	text-align: center;
 	        font-size:1.2em;
 	        font-weight: 100;
 	        margin-top: 1.9em;
 	        color:#888 !important;
-	       	.header-text-name{
+	       	.header-text-dashboard-name{
 	        	color:#555;
 	    	}
 	    }
@@ -395,6 +428,7 @@
 	.dashboard-extra-holder{
 //		margin-top: 50px;
 		position: relative;
+		margin-bottom: 30px;
 
         .fixed960{
 
@@ -411,12 +445,31 @@
 			h1 {
 				font-size: 2.9rem;
 				font-weight: 200;
-
+                float: left;
 				small {
 					color: inherit;
 					font-size: 0.5em;
 				}
 			}
+        }
+
+        @include bp(xs){
+          .header-title {
+            padding-left: 4px;
+            text-align: center;
+            margin: 0 auto;
+
+            h1 {
+              font-size: 2.9rem;
+              font-weight: 200;
+              width: 100%;
+              small {
+                display: block;
+                color: inherit;
+                font-size: 0.5em;
+              }
+            }
+          }
         }
 
         .btn-appointment{
@@ -465,21 +518,5 @@
 		}
 	}
 
-	.dashboard-bottom-mobile{
-		.footer-btns{
-			margin-top: 40px;
-		}
-		text-align: center;
-		.dashboard-mobile-feedback{
-			display: inline-block;
-			background-image: url(../resources/images/dashboard/feedBack_mobile.png);
-			height: 86px;
-			width: 90px;
-			margin-top: 40px;
-		}
-	}
-
-
-
-
 }
+
