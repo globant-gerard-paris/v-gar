@@ -13,13 +13,13 @@ angular.module('Directives').directive('slick', function ($timeout) {
                     return;
                 }
 
-                // remove slick if data changed
-                if(scope.initialized){
-                    el.unslick();
-                    scope.initialized = false;
+
+                el.unslick();
+                var stickList = el.find('.slick-list');
+                if(stickList){
+                    stickList.remove();
                 }
 
-                scope.initialized = true;
                 $timeout( function(){
                     // (re|)init
                     el.slick({
@@ -43,7 +43,7 @@ angular.module('Directives').directive('slick', function ($timeout) {
                             }
                         ]
                     });
-                },500);
+                });
 
             });
         }
