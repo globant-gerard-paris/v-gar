@@ -88,9 +88,13 @@
 			font-size: 1.2em;
 		}
 		.car-card-brand{
-			color:#555e6c;
+			color: #555e6c;
 			font-size: 2.2em;
 			margin-top: -0.5em;
+			width: 164px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 		.car-card-model{
 			color:#b0b4ba;
@@ -275,6 +279,7 @@
 				margin-top: 82px;
 			}
 			.car-card-brand{
+				width: 138px;
 				color:#555e6c;
 				font-size: 1.8em;
 				margin-top: -0.5em;
