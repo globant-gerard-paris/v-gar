@@ -3,15 +3,13 @@
  */
 'use strict';
 
-angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog, LinkedCarSrv) {
+angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog, LinkedCarSrv, ManageCarSrv) {
 
     var states = {
         add:0,
         found:1,
         added:2
     };
-
-    var mock = true;
 
     $scope.states = states;
     $scope.landing = false;
@@ -53,6 +51,11 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         $scope.model.available = true;
     }
 
+    function errorInApi(response){
+        console.log('ERROR: ' + response);
+        alert('Error, please try again.');
+    }
+
     $scope.close = function () {
         RedirectSrv.redirectTo('/dashboard');
         stBlurredDialog.close();
@@ -61,12 +64,11 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     //FIRST STEP
     function refreshYears(){
         refreshMakes();
-        if(mock){
-            $scope.model.years = [2011,2012,2013,2014];
-            loadingOff();
-        } else {
 
-        }
+        ManageCarSrv.getYears(function (response) {
+            $scope.model.years = response.data;
+            loadingOff();
+        }, errorInApi);
     }
     $scope.yearSelected = function() {
         //console.log('year selected!');
@@ -82,12 +84,10 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
 
         if($scope.model.yearSelected === ''){return;}
 
-        if (mock) {
-            $scope.model.makes = [{name:'name1',id:'1'},{name:'name2',id:'2'}];
+        ManageCarSrv.getMakes($scope.model.yearSelected, function (response) {
+            $scope.model.makes = response.data;
             loadingOff();
-        } else {
-
-        }
+        }, errorInApi);
     }
     $scope.makeSelected = function() {
         //console.log('make selected!');
@@ -102,12 +102,10 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
 
         if($scope.model.makeSelected === ''){return;}
 
-        if (mock) {
-            $scope.model.models = [{name:'model1',id:'1'},{name:'model2',id:'2'}];
+        ManageCarSrv.getModels($scope.model.yearSelected, $scope.model.makeSelected, function (response) {
+            $scope.model.models = response.data;
             loadingOff();
-        } else {
-
-        }
+        }, errorInApi);
     }
     $scope.modelSelected = function() {
         //console.log('model selected!');
@@ -147,7 +145,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
             $scope.model.makeSelected &&
             $scope.model.yearSelected) {
             //the user fill al data, so this has priority over that license plate
-            console.log('user fill all data');
+            //console.log('user fills all data');
             setCar(loadingOff);
         } else {
             console.log('looking for license plate');
@@ -173,7 +171,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     };
 
     $scope.selectCar = function () {
-        setCar(loadingOff);
+        //setCar(loadingOff);
     };
 
     $scope.goBack = function () {
@@ -198,12 +196,25 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
                 $scope.model.state = states.add;
                 break;
         }
-
     };
 
     function setCar(cb){
-        $scope.model.state = states.added;
-        cb();
+
+		var vehicle = {
+            'familyVehicleId': null,
+            'vehicleId': null,
+            'make': $scope.model.makeSelected,
+            'model': $scope.model.modelSelected,
+            'year': $scope.model.yearSelected,
+            'mileage': $scope.model.mileage,
+            'name': null
+        };
+
+        ManageCarSrv.addCar(vehicle, function (response) {
+            $scope.model.state = states.added;
+            cb();
+        }, errorInApi);
+
     }
 
 

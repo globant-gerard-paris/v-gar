@@ -27,7 +27,7 @@
                             <select class="form-control"
                                     ng-required="required"
                                     ng-model="model.makeSelected"
-                                    ng-options="item.name for item in model.makes track by item.id"
+                                    ng-options="item for item in model.makes"
                                     ng-change="makeSelected()"
                                     ng-disabled="model.yearSelected===''">
                                 <option style="display:none" value="">Make</option>
@@ -37,7 +37,7 @@
                             <select class="form-control"
                                     ng-required="required"
                                     ng-model="model.modelSelected"
-                                    ng-options="item.name for item in model.models track by item.id"
+                                    ng-options="item for item in model.models"
                                     ng-change="modelSelected()"
                                     ng-disabled="model.makeSelected===''">
                                 <option style="display:none" value="">Model</option>
@@ -47,7 +47,7 @@
                         <div class="form-group col-xs-6 add-car-left-align">
                             <input type="number" class="form-control" placeholder="Mileage"
                                    ng-required="required"
-                                   min="0"
+                                   min="1"
                                    maxlength="7"
                                    ng-model="model.mileage"
                                    ng-minlength="1"
@@ -56,17 +56,19 @@
                         </div>
                     </div>
 
-                    <section ng-hide="model.notFounded">
-                        <h4 class="desc">Or find by License Plate</h4>
-                        <div class="form-group">
-                            <input type="text" class="form-control license-plate" placeholder=""
-                                   ng-model="model.license">
-                        </div>
-                    </section>
+                    <!--not yet, this works, just need discomment and implement integration on server-->
+
+                    <!--<section ng-hide="model.notFounded">-->
+                        <!--<h4 class="desc">Or find by License Plate</h4>-->
+                        <!--<div class="form-group">-->
+                            <!--<input type="text" class="form-control license-plate" placeholder=""-->
+                                   <!--ng-model="model.license">-->
+                        <!--</div>-->
+                    <!--</section>-->
 
                     <div class="text-center">
                         <button type="button" class="btn-confirm"
-                                ng-disabled="!((model.mileage>=0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
+                                ng-disabled="!((model.mileage>0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
                                 ng-click="addCar()">
                             ADD
                         </button>
