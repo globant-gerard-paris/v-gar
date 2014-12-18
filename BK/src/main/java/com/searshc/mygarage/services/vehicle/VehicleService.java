@@ -52,12 +52,7 @@ public class VehicleService extends
 
 	public List<String> getDistinctYears() {
 		List<String> years = null;
-		try {
-			years = this.repository.getDistinctYears();
-		} catch (NullPointerException exception) {
-			log.warn("No years where found in the vehicle entity");
-			return Collections.<String>emptyList();
-		}
+		years = this.repository.getDistinctYears();
 
 		if (years == null || years.size() == 0) {
 			log.warn("No years where found in the vehicle entity");
@@ -68,12 +63,7 @@ public class VehicleService extends
 
 	public List<String> getDistinctMakesByYear(final int year) {
 		List<String> makes = null;
-		try {
-			makes = this.repository.getDistinctMakesByYear(year);
-		} catch (NullPointerException exception) {
-			log.warn("No makes where found in the vehicle entity");
-			return Collections.<String>emptyList();
-		}
+		makes = this.repository.getDistinctMakesByYear(year);
 		if (makes == null || makes.size() == 0) {
 			log.warn("No makes where found in the vehicle entity");
 			return Collections.<String>emptyList();
@@ -83,12 +73,7 @@ public class VehicleService extends
 
 	public List<String> getDistinctModelsByYearMake(final int year, final String make) {
 		List<String> models = null;
-		try {
-			models = this.repository.getDistinctModelsByYearMake(year, make);
-		} catch (NullPointerException exception) {
-			log.warn("No models where found in the vehicle entity");
-			return Collections.<String>emptyList();
-		}
+		models = this.repository.getDistinctModelsByYearMake(year, make);
 		if (models == null || models.size() == 0) {
 			log.warn("No models where found in the vehicle entity");
 			return Collections.<String>emptyList();
