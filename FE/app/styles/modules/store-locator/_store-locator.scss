@@ -31,14 +31,15 @@
 
 .store-box {
   font-size: 1.7rem;
-  font-weight: 100;
-  //    margin: 10px 0;
+  font-family: Roboto;
+  color: #555e6c;
+  font-weight: 400;
 
   .store-icon-big {
     background-image: url($locationBIG);
     background-size: 32px;
     width: 38px;
-    height: 58px;
+    height: 72px;
     margin-left: 6px;
     margin-top: 4px;
     background-repeat: no-repeat;
@@ -46,8 +47,9 @@
 
   @include bp(sm) {
     small {
+      margin-top: 5px;
       float: left;
-      font-size: 1.7rem;
+      font-size: 1.2rem;
     }
     .margin-right-10 {
       float: left;
@@ -55,12 +57,25 @@
   }
   @include bp(xs) {
     small {
-      font-size: 1.7rem;
+      margin-top: 5px;
+      font-size: 1.4rem;
       display: block !important;
       color: rgb(103,109,125);
       font-weight: 550;
       margin-left: 5px;
     }
+  }
+}
+
+@include bp(xs) {
+  .store-box {
+    font-size: 2.5rem;
+    .store-icon-big {
+
+      height: 120px;
+    }
+
+
   }
 }
 
@@ -88,6 +103,16 @@
 .store-map-box .store-map {
   height: 210px;
   width: 100%;
+}
+
+@include bp(xs) {
+  .dashboard-service-center, .store-container, div[ng-view] {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .store-box{
+    margin-left: 10px;
+  }
 }
 
 .margin-right-10 {
@@ -150,6 +175,7 @@
   .store-card-slick-container {
     margin: 15px;
     background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
+    background-size: cover;
     .store-address {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -175,6 +201,14 @@
 
 }
 
+@include bp(xs) {
+    .stores-list-box {
+      .store-card-slick-container{
+        margin: 0 auto;
+      }
+    }
+}
+
 .store-list-item {
   text-align: center;
   border: solid $storeItemBorderColor 1px;
@@ -185,7 +219,8 @@
   padding: 20px 0 0 0;
   margin: 0 auto;
   @include bp(xs) {
-    width: 100%;
+    width: 80%;
+    margin: 15px 0 0 10%;
   }
 
   .store-list-info {
@@ -217,7 +252,7 @@
     font-size: 1.2rem;
     margin-top: 5px;
     float: right;
-    margin-right: 10px;
+    margin-right: 32px;
     margin-bottom: 10px;
   }
 
