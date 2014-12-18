@@ -106,9 +106,11 @@
 }
 
 @include bp(xs) {
-  .store-map-box {
-    margin-left: -28px;
-    margin-right: -46px;
+  .dashboard-service-center {
+    padding: 0;
+  }
+  .store-box{
+    margin-left: 10px;
   }
 }
 
