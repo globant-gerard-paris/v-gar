@@ -1,16 +1,19 @@
 <div class="service-history" ng-repeat="service in model.services">
-    <div class="pull-left">
-        <div class="service-history-img">
-            <div class="service-history-icon pull-left"
-                 ng-class="service.serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'">
-             </div>
+    <div class="media">
+        <div class="pull-left">
+            <div class="service-history-img">
+                <div class="service-history-icon pull-left"
+                     ng-class="service.serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'">
+                </div>
+            </div>
+        </div>
+        <div class="media-body">
+            <div class="service-history-data">
+                <div class="sh-data">Service done @ {{service.serviceCenterStr}}</div>
+                <div class="section-desc hidden-xs">{{service.serviceDesc}}</div>
+                <div class="sh-data-mileage pull-left">{{service.serviceMileage| number}} Miles</div>
+                <div class="sh-date-small pull-left">{{service.serviceDate| date:'mediumDate'}}</div>
+            </div>
         </div>
     </div>
-    <div class="service-history-data">
-        <div class="sh-data">Service done @ {{service.serviceCenterStr}}</div>
-        <div class="section-desc hidden-xs">{{service.serviceDesc}}</div>
-        <div class="sh-data-mileage pull-left">{{service.serviceMileage | number}} Miles</div>
-        <div class="sh-date-small pull-left">{{service.serviceDate | date:'mediumDate'}}</div>
-    </div>
-    <div class="clearfix"></div>
 </div>

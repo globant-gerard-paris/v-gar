@@ -1,113 +1,136 @@
-<div class="container-fluid row car-profile" >
-<div class="car-profile-container">
-    <!--HEADER-->
-    <section class="header col-xs-12 hidden-xs">
-        <div class="car-profile-header">
+<style>
 
-            <div class="car-profile-header-inner">
+    .car-profile-section {
+        overflow: hidden;  
+        margin-bottom: -50px;        
+    }
 
-                <div class="header-left pull-left">
-                    <div class="car-profile-picture pull-left"></div>
+    .section-up {
+        margin-bottom: 80px;
+    }
+
+    .section-down {
+        -moz-transform: skewY(4deg);
+        -ms-transform: skewY(4deg);
+        -webkit-transform: skewY(4deg);
+        transform: skewY(4deg);  
+        -webkit-box-shadow: 0 0 1px #2b9ace;
+        -moz-box-shadow: 0 0 1px #2b9ace;
+        box-shadow: 0 0 1px #2b9ace;
+        overflow: hidden;
+    }
+
+    .section-down-fix {
+        width: 40px; 
+        height: 100px; 
+        position: absolute; 
+        right: 0;
+        bottom: 0;
+    }
+
+    .section-down-inner {
+        -moz-transform: skewX(-4deg);
+        -ms-transform: skewX(-4deg);
+        -webkit-transform: skewX(-4deg);
+        transform: skewX(-4deg);
+    }
+
+    .section-box {
+        -moz-transform: skew(4deg,-4deg);
+        -ms-transform: skew(4deg,-4deg);
+        -webkit-transform: skew(4deg,-4deg);
+        transform: skew(4deg,-4deg);        
+    }
+
+    .section-blue {
+        background-color:  #2b9ace;
+    }
+
+    .section-dark {
+        background-color:  #555e6c;
+    }
+
+    .section-down .col-sm-4, .section-down .col-sm-8 {
+        padding: 0;
+    }
+
+    .last-service {
+        color:  #ffffff;
+    }
+
+    .last-service .section-title {
+        font-size: 30px;
+        font-weight: 400;
+    }
+
+    .last-service  .btn-history {
+        color:  #91dcff;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 45px;
+        left: -50px;
+        cursor: pointer;
+        margin-left: 20px;
+    }
+
+</style>
+
+<!--POPUP RECORD-->
+<div ng-include="'scripts/car-profile/views/record.html'"></div>
+
+<div class="btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
+
+<div class="row car-profile-section">
+    <section class="row section-up hidden-xs">
+        <div class="col-lg-4 col-md-6">
+            <div class="media car-profile-info">
+                <div class="car-profile-picture pull-left"></div>
+                <div class="media-body">
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
-
-                <div class="header-center pull-left">
-                    <service-alert model="model.data.vehicleStatus"></service-alert>
-                </div>
-
-                <div class="header-right pull-left">
-                    <recalls-and-services model="model"></recalls-and-services>
-                </div>
-
-                <!--POPUP RECORD-->
-                <div ng-include="'scripts/car-profile/views/record.html'"></div>
-
-                <div class="btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
             </div>
-
+        </div>
+        <div class="col-lg-3 col-md-6 col-lg-push-5">
+            <recalls-and-services model="model"></recalls-and-services>
+        </div>
+        <div class="col-lg-5 col-md-12 col-lg-pull-3">
+            <service-alert model="model.data.vehicleStatus"></service-alert>
         </div>
     </section>
 
-    <div class="clearfix"></div>
+    <div class="row section-down section-dark">
+        <div class="col-sm-4 section-down-inner">
+            <div class="section-box">
+                <section class="service-center">
 
-    <section class="visible-xs mobile-version col-xs-12">
-        <div class="second-header">
-            <section class="row">
-                <div class="col-xs-6 recall wrapper-parent" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
-                    <div class="wrapper-center">
-                        <div class="img second-header-text">{{model.data.recallsInformation.totalRecalls}} Recall</div>
-                    </div>
-                </div>
-                <div class="col-xs-6 services wrapper-parent divisor"
-                     ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
-                    <div class="wrapper-center">
-                        <div class="img second-header-text">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Services</div>
-                    </div>
-                </div>
-            </section>
-        </div>
+                    <store-small model="model.data.serviceCenter"></store-small>
+                    <!--just for desktop-->
+                    <car-tell-us-more model="model.data"></car-tell-us-more>
 
-        <div class="btn-add-mobile" ng-click="openNewRecordForm()"></div>
-        <car-card car="model.data.vehicle" change-miles="true"></car-card>
-        <service-alert model="model.data.vehicleStatus"></service-alert>
-    </section>
-    <!-- /HEADER-->
-
-
-    <!--SERVICE CENTER-->
-    <section class="service-center col-xs-12 col-sm-5">
-        <div class="car-profile">
-
-            <store-small model="model.data.serviceCenter"></store-small>
-
-            <!--just for desktop-->
-            <car-tell-us-more model="model.data"></car-tell-us-more>
-
-        </div>
-    </section>
-
-    <section class="visible-xs mobile-version col-xs-12">
-        <recalls-and-services model="model"></recalls-and-services>
-    </section>
-
-    <section class="last-service-history col-xs-12 col-sm-7" ng-controller="CarProfileLastServicesCtrl">
-
-        <!--just for mobile-->
-        <div class="row visible-xs">
-            <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
-            </svg>
-        </div>
-
-        <div class="car-profile-last-services">
-            <div class="car-profile-last-services-inner">
-                <section class="row" ng-show="model.services">
-                    <div class="last-service-top col-xs-12">
-                        <div class="section-title">Your last service history</div>
-                        <div class="btn-history" ng-click="seeAllHistory()">See all history</div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="col-xs-12 last-service-body">
-                        <service-history services="model.services"></service-history>
-                    </div>
-                    <div class="clearfix"></div>
-                </section>
-
-                <!--just for mobile-->
-                <car-tell-us-more model="model.data" type="'xs'"></car-tell-us-more>
-
-                <section class="row section-article" ng-show="model.article">
-                    <div class="section-title col-xs-12">Auto articles</div>                    
-                    <div class="col-xs-12">
-                        <car-article model="model.article"></car-article>
-                    </div>
                 </section>
             </div>
         </div>
-
-    </section>
-    <div class="clearfix background-service-center"></div>
-
-    <footer-vg></footer-vg>
-</div>
+        <div class="col-sm-8 section-down-inner section-blue">
+            <div class="section-box">
+                <div class="services-and-articles">
+                    <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
+                        <div class="section-title">
+                            Your last service history
+                            <span class="btn-history" ng-click="seeAllHistory()">See all history</span>
+                        </div>
+                        <div class="last-service-body">
+                            <service-history services="model.services"></service-history>
+                        </div>
+                    </section>
+                    <section class="section-article" ng-show="model.article">
+                        <div class="section-title">Auto articles</div>
+                        <div class="section-article-body">
+                            <car-article model="model.article"></car-article>
+                        </div>
+                    </section>                
+                </div>
+            </div>        
+        </div>
+        <div class="section-down section-down-fix section-blue"></div>
+    </div>
 </div>

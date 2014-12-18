@@ -1,12 +1,9 @@
-.car-profile{
-//    height: 100%;
-//    margin-top: -25px;
-//    background-color: #555d6a;
+.service-center{
 
+    margin-top: 5px;
+    
     .map-bg{
-        background-image: url($locationMapBg);
-        background-repeat: no-repeat;
-        padding-top: 65px;
+        background: url($locationMapBg) no-repeat;            
         margin-left: 0;
         width: 100%;
     }
@@ -51,8 +48,7 @@
     }
     .store-map-brand{
         margin-top: 20px;
-//        margin-bottom: 20px;
-
+        
         div{
             background-image: url($locationMarker);
             background-repeat: no-repeat;
@@ -93,7 +89,7 @@
     }
 
     .tell-us-more{
-        background-color: #555e6c;
+        
         width: 100%;
         margin-left: 0;
 
@@ -119,7 +115,7 @@
 
         button {
             border: 2px solid #ffffff;
-            background-color:#555e6c;
+            
             color: #ffffff;
             font-size: 1.1rem;
             font-weight: bold;

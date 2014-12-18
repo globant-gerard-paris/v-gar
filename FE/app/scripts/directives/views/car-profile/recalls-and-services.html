@@ -1,12 +1,12 @@
-<div class="reorder-xs recalls-and-services">
-	<div class="down-xs" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
+<div class="recalls-and-services">
+    <div ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
         <div class="recall-info">
             <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
             <div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
             <a href="#" ng-click="redirectToRecalls()">See more details</a>
         </div>
-	</div>
-	<div class="up-xs" ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
+    </div>
+    <div ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
         <div class="service-info">
             <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Recommended Sears Services</div>
             <div class="service-list">
@@ -14,9 +14,9 @@
                     <button type="button" class="close">
                         <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                     </button>
-                    <a ng-href="{{srv.link}}" target="_blank">{{srv.description | capitalize}}</a>
+                    <a ng-href="{{srv.link}}" target="_blank">{{srv.description| capitalize}}</a>
                 </div>              
             </div>            
         </div>
-	</div>
+    </div>
 </div>
