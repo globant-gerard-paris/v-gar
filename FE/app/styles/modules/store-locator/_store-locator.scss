@@ -39,7 +39,7 @@
     background-image: url($locationBIG);
     background-size: 32px;
     width: 38px;
-    height: 38px;
+    height: 72px;
     margin-left: 6px;
     margin-top: 4px;
     background-repeat: no-repeat;
@@ -106,8 +106,9 @@
 }
 
 @include bp(xs) {
-  .dashboard-service-center {
-    padding: 0;
+  .dashboard-service-center, .store-container, div[ng-view] {
+    padding-left: 0;
+    padding-right: 0;
   }
   .store-box{
     margin-left: 10px;
@@ -174,6 +175,7 @@
   .store-card-slick-container {
     margin: 15px;
     background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
+    background-size: cover;
     .store-address {
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -199,6 +201,14 @@
 
 }
 
+@include bp(xs) {
+    .stores-list-box {
+      .store-card-slick-container{
+        margin: 0 auto;
+      }
+    }
+}
+
 .store-list-item {
   text-align: center;
   border: solid $storeItemBorderColor 1px;
@@ -209,7 +219,8 @@
   padding: 20px 0 0 0;
   margin: 0 auto;
   @include bp(xs) {
-    width: 100%;
+    width: 80%;
+    margin: 15px 0 0 10%;
   }
 
   .store-list-info {
@@ -241,7 +252,7 @@
     font-size: 1.2rem;
     margin-top: 5px;
     float: right;
-    margin-right: 10px;
+    margin-right: 32px;
     margin-bottom: 10px;
   }
 
