@@ -42,7 +42,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         else{
             RedirectSrv.redirectTo($scope.nextURL);
         }
-    }
+    };
 
     var init = function (){
         var token = SessionDataSrv.getCurrentToken();

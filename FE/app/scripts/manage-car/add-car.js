@@ -137,6 +137,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     //END SECOND STEP
 
 
+    //not used in fase 1, ready for adapt and modificate for fase 2
     $scope.addCar = function () {
         loadingOn();
 
@@ -178,21 +179,21 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         console.log('back');
 
         switch ($scope.model.state){
-            case states.add:
-                if($scope.model.notFounded){
-                    $scope.model.notFounded = false;
-                    $scope.model.state = states.add;
-                } else {
-                    if($scope.landing){
-                        stBlurredDialog.open('scripts/presentation-flow/views/linked-car.html');
-                    } else { //dashboard
-                        stBlurredDialog.close();
-                    }
-                }
-                break;
-            case states.found:
+        case states.add:
+            if($scope.model.notFounded){
+                $scope.model.notFounded = false;
                 $scope.model.state = states.add;
-                break;
+            } else {
+                if($scope.landing){
+                    stBlurredDialog.open('scripts/presentation-flow/views/linked-car.html');
+                } else { //dashboard
+                    stBlurredDialog.close();
+                }
+            }
+            break;
+        case states.found:
+            $scope.model.state = states.add;
+            break;
         }
     };
 
