@@ -184,9 +184,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
                     $scope.model.state = states.add;
                 } else {
                     if($scope.landing){
-                        //TODO
-                        console.log('TODO implement return to cars');
-
+                        stBlurredDialog.open('scripts/presentation-flow/views/linked-car.html');
                     } else { //dashboard
                         stBlurredDialog.close();
                     }
@@ -210,7 +208,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
             'name': null
         };
 
-        ManageCarSrv.addCar(vehicle, function (response) {
+        ManageCarSrv.addCar(vehicle, function (/*response*/) {
             $scope.model.state = states.added;
             cb();
         }, errorInApi);
