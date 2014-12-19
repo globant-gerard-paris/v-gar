@@ -165,7 +165,6 @@
   .store-found-subtitle {
     font-weight: bold;
     color: $highlighterTitleColor;
-    margin-left: 15px;
   }
 
   .stores-list-content {
@@ -330,6 +329,12 @@
 .no-padding {
   padding: 0;
 }
+
+.header-title .col-xs-12{
+  padding-right:0;
+  padding-left:0;
+}
+
 
 // != phone:
 @media (min-width: $screen-sm-min) {
