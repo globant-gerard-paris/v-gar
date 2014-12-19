@@ -45,6 +45,10 @@
     background-repeat: no-repeat;
   }
 
+  .store-text-data{
+    margin-left: 45px;
+  }
+
   @include bp(sm) {
     small {
       margin-top: 5px;
@@ -62,7 +66,6 @@
       display: block !important;
       color: rgb(103,109,125);
       font-weight: 550;
-      margin-left: 5px;
     }
   }
 }
@@ -71,11 +74,7 @@
   .store-box {
     font-size: 2.5rem;
     .store-icon-big {
-
-      height: 120px;
     }
-
-
   }
 }
 
@@ -166,14 +165,13 @@
   .store-found-subtitle {
     font-weight: bold;
     color: $highlighterTitleColor;
-    margin-left: 15px;
   }
 
   .stores-list-content {
     width: 100%;
   }
   .store-card-slick-container {
-    margin: 15px;
+    margin: 15px 0 15px 0;
     background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
     background-size: cover;
     .store-address {
@@ -185,7 +183,8 @@
   }
 
   .store-slick-carousel {
-    margin: 0 auto;
+    margin: 0;
+    margin-bottom: 30px;
   }
   @include bp(md) {
     .store-slick-carousel {
@@ -331,6 +330,12 @@
 .no-padding {
   padding: 0;
 }
+
+.header-title .col-xs-12{
+  padding-right:0;
+  padding-left:0;
+}
+
 
 // != phone:
 @media (min-width: $screen-sm-min) {
