@@ -16,6 +16,8 @@ var _mainModules = [
             , 'Navigation'
             , 'PresentationFlow'
             , 'CarProfile'
+            , 'ManageCar'
+            , 'StoreLocator'
             // yo:ngMainModules
 ];
 
@@ -54,21 +56,13 @@ angular.module('virtualGarage', _mainModules)
             });
 
             routes.push({
-                name: '/add-car',
-                params: {
-                    templateUrl: 'scripts/presentation-flow/views/add-car.html',
-                    controller: 'AddCarCtrl'
-                }
-            });
-
-            routes.push({
                 name: '/dashboard',
                 params: {
                     templateUrl: 'scripts/presentation-flow/views/dashboard.html',
                     controller: 'DashboardCtrl'
                 }
             });
-            
+
             routes.push({
                 name: '/car-profile',
                 params: {
@@ -80,7 +74,7 @@ angular.module('virtualGarage', _mainModules)
             routes.push({
                 name: '/store-locator',
                 params: {
-                    templateUrl: 'scripts/store-locator/store-locator.html',
+                    templateUrl: 'scripts/store-locator/views/store-locator.html',
                     controller: 'StoreLocatorCtrl'
                 }
             });
@@ -101,7 +95,7 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
-            // yo:ngRoutes
+// yo:ngRoutes
 
             routes.forEach(function (route) {
                 $routeProvider.when(route.name, route.params);

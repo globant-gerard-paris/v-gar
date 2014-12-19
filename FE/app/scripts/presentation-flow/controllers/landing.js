@@ -29,12 +29,20 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         },
         {
             class: 'carousel_img_LP_4'
-        },
-        {
-            class: 'carousel_img_LP_5'
         }
 
     ];
+
+    var goToNextUrl = function(){
+        if($scope.nextURL === '/linked-car'){
+            openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
+        } else if($scope.nextURL === '/add-car'){
+            openFullScreenModal('scripts/manage-car/add-car.html');
+        }
+        else{
+            RedirectSrv.redirectTo($scope.nextURL);
+        }
+    };
 
     var init = function (){
         var token = SessionDataSrv.getCurrentToken();
@@ -55,7 +63,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
             Platform.Authentication.openSignupDialog(null,null,'signIn');
             $scope.needSYWLogin = true;
         }else{
-            RedirectSrv.redirectTo($scope.nextURL);
+            goToNextUrl();
         }
     };
 
@@ -67,12 +75,13 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
     var successGetUserInfo = function (response) {
         if(response){
             if(response.haveManualCars || response.haveLinkedCars ){
-                RedirectSrv.redirectTo('/dashboard');
+                $scope.nextURL = '/dashboard';
             } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
+                $scope.nextURL = '/linked-car';
             } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
-                RedirectSrv.redirectTo('/add-car');
+                $scope.nextURL = '/add-car';
             }
+            goToNextUrl();
         }
     };
     var failGetUserInfo = function (response) {

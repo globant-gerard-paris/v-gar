@@ -19,6 +19,10 @@
     {
       "name": "Presentation flow",
       "value": "presentation-flow"
+    },
+    {
+      "name": "Store locator",
+      "value": "store-locator"
     }
   ],
   "controller": [
@@ -69,6 +73,10 @@
     {
       "name": "Recalls",
       "value": "recalls"
+    },
+    {
+      "name": "Store finder",
+      "value": "store-locator"
     }
   ],
   "filter": [],
@@ -92,6 +100,10 @@
     {
       "name": "Footer vg",
       "value": "footer-vg"
+    },
+    {
+      "name": "Feedback tag",
+      "value": "feedback-tag"
     }
   ],
   "service": [
@@ -108,8 +120,8 @@
       "value": "presentation-flow-service"
     },
     {
-      "name": "Store finder",
-      "value": "store-finder"
+      "name": "Store locator",
+      "value": "store-locator"
     },
     {
       "name": "Http service",
@@ -197,6 +209,10 @@
     {
       "name": "Recalls",
       "value": "recalls"
+    },
+    {
+      "name": "Store locator",
+      "value": "store-locator"
     }
   ],
   "sass": []

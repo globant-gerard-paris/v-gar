@@ -4,8 +4,6 @@ import static org.apache.commons.lang3.Validate.isTrue;
 import static org.apache.commons.lang3.Validate.notNull;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -20,18 +18,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.annotations.VisibleForTesting;
 import com.searshc.mygarage.dtos.StoreInfoAndFamilyVehiclesDTO;
 import com.searshc.mygarage.dtos.VehicleConfirmationDTO;
 import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.dtos.manualvehicle.AddOrUpdateManualFamilyVehicleDTO;
-import com.searshc.mygarage.entities.ConfirmedVehicle;
 import com.searshc.mygarage.entities.FamilyVehicle;
-import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.entities.trends.VehicleTrend;
 import com.searshc.mygarage.exceptions.NCDBApiException;
@@ -234,4 +230,26 @@ public class VehicleController {
     	List<VehicleGenericDescriptionDTO> response = this.ncdbService.getVehicleByLicensePlate(licensePlate);
     	return new ResponseEntity<List<VehicleGenericDescriptionDTO>>(response, null, HttpStatus.OK);
     }
+    
+    @RequestMapping("/manualvehicle/year/years")
+    @ResponseBody
+	public ResponseEntity<List<String>> getDistinctYears(){
+    	List<String> response = this.addNewManualFamilyVehicleOrchestrator.getDistinctYears();
+    	return new ResponseEntity<List<String>>(response, HttpStatus.OK);
+	}
+
+    @RequestMapping("/manualvehicle/year/{year}/make/makes")
+    @ResponseBody
+	public ResponseEntity<List<String>> getDistinctMakesByYear(@PathVariable("year") final int year){
+    	List<String> response = this.addNewManualFamilyVehicleOrchestrator.getDistinctMakesByYear(year);
+    	return new ResponseEntity<List<String>>(response, HttpStatus.OK);
+	}
+
+    @RequestMapping("/manualvehicle/year/{year}/make/{make}/model/models")
+    @ResponseBody
+	public ResponseEntity<List<String>> getDistinctModelsByYearMake(@PathVariable("year") final int year, @PathVariable("make") final String make){
+    	List<String> response = this.addNewManualFamilyVehicleOrchestrator.getDistinctModelsByYearMake(year, make);
+    	return new ResponseEntity<List<String>>(response, HttpStatus.OK);
+	}
+
 }

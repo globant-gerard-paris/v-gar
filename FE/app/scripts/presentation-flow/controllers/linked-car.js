@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
+angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv, stBlurredDialog) {
 
     $scope.toggleCarSelect = function(car){
         if(!car){
@@ -12,6 +12,7 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
     $scope.areMineAction = function () {
         LinkedCarSrv.confirmCars($scope.model.vehicles, function () {
             RedirectSrv.redirectTo('/dashboard');
+            $scope.$emit('linked-cars-updated');
         }, function (response) {
             console.log('ERROR: ' + response);
             alert('Error, please try again.');
@@ -41,5 +42,10 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
         });
         $scope.totalConfirmed = count;
     }, true);
+
+
+    $scope.redirectToAddCar = function (from) {
+        stBlurredDialog.open('scripts/manage-car/add-car.html',{from:from});
+    };
 
 });
