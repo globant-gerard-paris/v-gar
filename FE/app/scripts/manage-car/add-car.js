@@ -37,7 +37,7 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     function init(){
         refreshYears();
 
-        $scope.landing = (stBlurredDialog.getDialogData().from === 'landing');
+        $scope.landing = (stBlurredDialog.getDialogData() && stBlurredDialog.getDialogData().from === 'landing');
     }
 
     function loadingOn(){
@@ -104,7 +104,6 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         }, errorInApi);
     }
     $scope.modelSelected = function() {
-        //console.log('model selected!');
         $scope.model.mileageEnabled = true;
     };
     //END FIRST STEP
