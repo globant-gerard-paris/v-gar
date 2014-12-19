@@ -45,6 +45,10 @@
     background-repeat: no-repeat;
   }
 
+  .store-text-data{
+    margin-left: 45px;
+  }
+
   @include bp(sm) {
     small {
       margin-top: 5px;
@@ -62,7 +66,6 @@
       display: block !important;
       color: rgb(103,109,125);
       font-weight: 550;
-      margin-left: 5px;
     }
   }
 }
@@ -71,11 +74,7 @@
   .store-box {
     font-size: 2.5rem;
     .store-icon-big {
-
-      height: 120px;
     }
-
-
   }
 }
 
