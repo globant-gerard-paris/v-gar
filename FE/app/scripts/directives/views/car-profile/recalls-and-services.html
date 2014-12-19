@@ -19,8 +19,8 @@
                     <a ng-href="{{srv.link}}" target="_blank">{{srv.description| capitalize}}</a>
                 </div>
                 <div class="see-more" ng-show="model.data.recommendedService.serviceRecordItems.length - 2 > 0">
-                    <a href="#">See 
-                        <ng-pluralize count="model.data.recommendedService.serviceRecordItems.length - 2" when="{'one': '1 more service','other': '{} more services'}"></ng-pluralize>                        
+                    <a href="#">See
+                        <ng-pluralize count="model.data.recommendedService.serviceRecordItems.length - 2" when="{'one': '1 more service','other': '{} more services'}"></ng-pluralize>
                     </a>
                 </div>
             </div>

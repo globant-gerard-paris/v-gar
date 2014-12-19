@@ -50,13 +50,13 @@
 .car-profile-info {
     font-family: Roboto;
     padding-left: 20px;
-    max-width: 434px;  
+    max-width: 434px;
     margin: 0 auto;
     .car-profile-picture{
-        background: url(../resources/images/car-profile/ImageProfile.jpg) center center no-repeat;        
+        background: url(../resources/images/car-profile/ImageProfile.jpg) center center no-repeat;
         display: inline-block;
         height: 141px;
-        width: 141px;  
+        width: 141px;
         position: relative;
 
         .car-card-tag{
@@ -64,7 +64,7 @@
             @include border-radius(3px);
             position: absolute;
             left: 20px;
-            bottom: 10px;            
+            bottom: 10px;
             font-weight: 900;
             line-height: 1.0em;
             background-color: #2b9ace;
@@ -77,7 +77,7 @@
     }
     .car-card{
         display: block;
-        padding: 20px 0 0 20px;        
+        padding: 20px 0 0 20px;
         font-weight: 900;
         overflow: hidden;
 
@@ -123,7 +123,7 @@
 
         .car-card-mileage-change{
             background: url(../resources/images/car-profile/edit.png) no-repeat left;
-            padding-left: 15px;				
+            padding-left: 15px;
             color: #2b9ace;
             font-size: 0.8em;
             font-weight: 700;
@@ -149,25 +149,25 @@
     }
 }
 
-.service-alert{    
-    font-family: Roboto;   
+.service-alert{
+    font-family: Roboto;
     margin-top: 0;
-    @include bp(lg) {    
+    @include bp(lg) {
 
     }
-    @include bp(sm) {    
-        margin-top: 20px;    
+    @include bp(sm) {
+        margin-top: 20px;
     }
     .car-profile-alerts-icons {
         background: url("../resources/images/car-profile/car-alerts-bg.png") center center no-repeat;
         background-size: contain;
         text-align: center;
         width: 471px;
-        margin: 0 auto;       
+        margin: 0 auto;
     }
     .item {
         width: 33.3333%;
-        float: left;        
+        float: left;
     }
     .icon {
         height: 131px;
@@ -179,13 +179,13 @@
         background: url("../resources/images/car-profile/tirerotation-bg.png") center center no-repeat;
     }
     .icon.service-alert-oil {
-        background: url("../resources/images/car-profile/oilchange-bg.png")  center center no-repeat;        
+        background: url("../resources/images/car-profile/oilchange-bg.png")  center center no-repeat;
     }
     .icon.service-alert-brakes {
-        background: url("../resources/images/car-profile/brakes-bg.png")  center center no-repeat;        
+        background: url("../resources/images/car-profile/brakes-bg.png")  center center no-repeat;
     }
     .car-profile-alerts-text {
-        text-align: center;         
+        text-align: center;
         width: 471px;
         margin: 10px auto 0;
         .title {
@@ -241,13 +241,13 @@
             font-size: 1.2em;
             font-weight: 900;
             line-height: 1em;
-        }			
+        }
         .service-list{
             margin-top: 15px;
         }
-        .service-list .well{				
+        .service-list .well{
             font-size: 1.0em;
-            font-weight: 400;				
+            font-weight: 400;
             margin: 3px 0 0;
             border: none;
             border-radius: 0;
@@ -256,7 +256,7 @@
         }
         .service-list .well a{
             color: #555e6c;
-        }			
+        }
         .prev-service{
             margin-top: 5px;
             margin-bottom: 10px;
@@ -330,7 +330,7 @@
 
         .car-card-mileage-change{
             background: url(../resources/images/car-profile/edit.png) no-repeat left;
-            padding-left: 15px;				
+            padding-left: 15px;
             color: #2b9ace;
             font-size: 0.8em;
             font-weight: 700;
@@ -415,11 +415,11 @@
                     .item{
                         color: #2b9ace;
                         font-weight: 400;
-                        text-align: left;						
+                        text-align: left;
                     }
-                    .well{				
+                    .well{
                         font-size: 0.95em;
-                        font-weight: 400;						
+                        font-weight: 400;
                         margin: 3px 0 0;
                         text-align: left;
                         border: none;
@@ -427,7 +427,7 @@
                         box-shadow: none;
                         -webkit-box-shadow: none;
                         a {
-                            color: #555e6c;	
+                            color: #555e6c;
                         }
                     }
                 }

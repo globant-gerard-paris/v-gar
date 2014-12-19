@@ -7,7 +7,7 @@
     }
 
     .map-bg{
-        background: url($locationMapBg) no-repeat;            
+        background: url($locationMapBg) no-repeat;
         margin-left: 0;
         width: 100%;
     }
@@ -44,14 +44,14 @@
         a {
             cursor: pointer;
             background: url(../resources/images/car-profile/edit.png) no-repeat left;
-            padding-left: 15px;     
+            padding-left: 15px;
             @include bp(xs) {
                 color: #ffffff;
             }
         }
     }
-    .store-map-brand{        
-        background: url($locationMarker) no-repeat;        
+    .store-map-brand{
+        background: url($locationMarker) no-repeat;
         height: 95px;
         width: 127px;
         margin: 20px auto;
@@ -87,7 +87,7 @@
         }
     }
 
-    .tell-us-more{        
+    .tell-us-more{
 
         text-align: center;
 
@@ -98,13 +98,13 @@
         }
 
         p{
-            color: #ffffff;            
-            text-align: center;            
+            color: #ffffff;
+            text-align: center;
             font-weight: 200;
             font-size: 1.6rem;
             letter-spacing: 1px;
             padding: 20px;
-        }        
+        }
 
         .btn-tell-us-more {
             border: 2px solid #ffffff;
