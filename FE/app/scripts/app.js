@@ -16,7 +16,8 @@ var _mainModules = [
             , 'Navigation'
             , 'PresentationFlow'
             , 'CarProfile'
-            // yo:ngMainModules
+            , 'StoreLocator'
+    // yo:ngMainModules
 ];
 
 angular.module('virtualGarage', _mainModules)
@@ -80,7 +81,7 @@ angular.module('virtualGarage', _mainModules)
             routes.push({
                 name: '/store-locator',
                 params: {
-                    templateUrl: 'scripts/store-locator/store-locator.html',
+                    templateUrl: 'scripts/store-locator/views/store-locator.html',
                     controller: 'StoreLocatorCtrl'
                 }
             });
@@ -101,7 +102,7 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
-            // yo:ngRoutes
+// yo:ngRoutes
 
             routes.forEach(function (route) {
                 $routeProvider.when(route.name, route.params);

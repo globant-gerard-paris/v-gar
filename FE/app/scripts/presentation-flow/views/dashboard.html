@@ -15,7 +15,7 @@ redirectToAddCar()
             <div class="mini-logo visible-xs-block"></div>
             <div class="dashboard-car-actions-top">
                 <div class="dashboard-add-car" ng-class="addCar ? 'close-add-car':''" ng-click="toggleAddCar()">
-                    {{addCar ? 'CLOSE' : 'ADD CAR'}}
+                    {{addCar ? 'CLOSE' : 'ADD VEHICLE'}}
                 </div>
             </div>
             <div ng-hide="addCar" class="dashboard-content-common">
@@ -25,7 +25,7 @@ redirectToAddCar()
 
                 <div class="dashboard-car-actions-bottom">
                     <a href="#" class="dashboard-manage-cars-edit"></a>
-                    <a href="#" ng-click="manageCars()" class="dashboard-manage-cars-manage">Manage your cars</a>
+                    <a href="#" ng-click="manageCars()" class="dashboard-manage-cars-manage">Manage your vehicles</a>
                 </div>
                 <div class="visible-xs-block header-text-dashboard" ng-show="model.cars">
                     <span class="header-text-dashboard-name"><span class="header-text-dashboard-name-word">{{model.user.name}}</span>, You have {{model.cars.length}} for Sears AutoCareOne</span>
@@ -90,7 +90,7 @@ redirectToAddCar()
                     <form name="storeLocatorSearch" novalidate>
                         <div class="header-title">
                             <div class="col-xs-12">
-                                <h1>Find a store</h1>
+                                <h1>Find a service center</h1>
                             </div>
                         </div>
                         <div class="col-xs-12 store-find-desc">Enter your ZIP code or address to find a Sears Auto center near you.</div>
@@ -100,7 +100,7 @@ redirectToAddCar()
                                        placeholder="Enter zip code" ng-disabled="model.searching">
                                     <span class="input-group-btn">
                                         <button class="btn find-store-btn" ng-disabled="storeLocatorSearch.$invalid || model.searching" type="button"
-                                                ng-click="redirectToFSC(model.address)">FIND MY STORE</button>
+                                                ng-click="redirectToFSC(model.address)">FIND MY SERVICE CENTER</button>
                                     </span>
                                 <!--TODO improve it!-->
                                 <span ng-show="model.searching">(loading...)</span>
