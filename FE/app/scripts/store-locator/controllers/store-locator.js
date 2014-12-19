@@ -38,6 +38,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
     };
 
     var getStoreNearbySuccess = function (response) {
+        $scope.searchStarted = true;
         $scope.model.searching = false;
         $scope.model.stores = response.data[0] || [];
         fixLatitudeLongitudeStores($scope.model.stores);
