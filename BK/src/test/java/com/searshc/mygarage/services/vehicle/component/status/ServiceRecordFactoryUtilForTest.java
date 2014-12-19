@@ -11,15 +11,6 @@ import com.searshc.mygarage.util.ServiceRecordType;
 
 public class ServiceRecordFactoryUtilForTest {
 
-	/*private final String BRAKES_LOCAL_SERVICE_CODE = "02801300000";
-	private final String BRAKES_NCDB_SERVICE_CODE = "44";
-	
-	private final String TIRES_LOCAL_SERVICE_CODE = "02801315000"; //Suggested New Tires
-	private final String TIRES_NCDB_SERVICE_CODE = "41"; //Tire Service
-	
-	private final String OIL_LOCAL_SERVICE_CODE = "02806672000"; //Adjust Low Oil Level
-	private final String OIL_NCDB_SERVICE_CODE = "49"; //Oil Change Service*/
-	
 	private String brakesLocalServiceCode;
 	private String brakesNCDBServiceCode;
 	
