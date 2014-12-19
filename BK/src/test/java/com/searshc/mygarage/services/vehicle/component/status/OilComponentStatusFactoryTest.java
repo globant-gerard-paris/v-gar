@@ -16,7 +16,7 @@ public class OilComponentStatusFactoryTest {
 
 	private OilComponentStatusFactory oilComponentStatusFactory;
 	
-	private static final String COMPONENT_NAME = "OIL";
+	private static final String COMPONENT_NAME = "Oil Change";
 	
 	private ServiceRecord localServiceLessThan2Months;
 	private ServiceRecord localServiceLessThan3Months;
@@ -60,8 +60,8 @@ public class OilComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.oilComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -79,8 +79,8 @@ public class OilComponentStatusFactoryTest {
 	public void localServiceSReturnSuggestAnnualInspectionStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.oilComponentStatusFactory.createComponentStatus(null);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.LOW.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.LOW.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR NCDB SERVICE RECORDS */
@@ -106,8 +106,8 @@ public class OilComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.oilComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -125,8 +125,8 @@ public class OilComponentStatusFactoryTest {
 	public void ncdbServiceSReturnSuggestTireRotationStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.oilComponentStatusFactory.createComponentStatus(null);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.LOW.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.LOW.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR LOCAL AND NCDB SERVICE RECORDS */
@@ -151,8 +151,8 @@ public class OilComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.oilComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(OilStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(OilStatus.MEDIUM.getDescription()));
 	}
 
 }

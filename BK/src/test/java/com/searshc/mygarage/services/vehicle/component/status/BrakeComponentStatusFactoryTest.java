@@ -10,9 +10,12 @@ import org.junit.Test;
 
 import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.record.ServiceRecord;
+import com.searshc.mygarage.services.vehicle.component.status.BrakeComponentStatusFactory.BrakeStatus;
 
 public class BrakeComponentStatusFactoryTest {
 
+	private static final String COMPONENT_NAME = "Brakes Inspection";
+	
 	private BrakeComponentStatusFactory brakeComponentStatusFactory;
 	
 	private ServiceRecord localServiceLessThan10Months;
@@ -44,9 +47,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.localServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("OK"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("OK"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -56,9 +59,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.localServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("ANNUAL_INSPECTION_APPROACHING_DUE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Annual inspection approaching due"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -67,17 +70,17 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.localServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("SUGGEST_ANNUAL_INSPECTION"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Suggest annual inspection"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.LOW.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.LOW.getDescription()));
 	}
 	
 	@Test
 	public void localServiceSReturnSuggestAnnualInspectionStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(null);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("SUGGEST_ANNUAL_INSPECTION"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Suggest annual inspection"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR NCDB SERVICE RECORDS */
@@ -90,9 +93,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.ncdbServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("OK"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("OK"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -102,9 +105,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.ncdbServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("ANNUAL_INSPECTION_APPROACHING_DUE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Annual inspection approaching due"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -113,17 +116,17 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.ncdbServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("SUGGEST_ANNUAL_INSPECTION"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Suggest annual inspection"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.LOW.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.LOW.getDescription()));
 	}
 	
 	@Test
 	public void ncdbServiceSReturnSuggestAnnualInspectionStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(null);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("SUGGEST_ANNUAL_INSPECTION"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Suggest annual inspection"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR LOCAL AND NCDB SERVICE RECORDS */
@@ -135,9 +138,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.localServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("OK"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("OK"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -147,9 +150,9 @@ public class BrakeComponentStatusFactoryTest {
 		records.add(this.localServiceMoreThan11Months);
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.brakeComponentStatusFactory.createComponentStatus(records);
-		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase("BRAKE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase("ANNUAL_INSPECTION_APPROACHING_DUE"));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase("Annual inspection approaching due"));
+		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(BrakeStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(BrakeStatus.MEDIUM.getDescription()));
 	}
 
 }

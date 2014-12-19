@@ -26,7 +26,7 @@ public class TireComponentStatusFactory extends AbstractComponentStatusFactory {
 	@Override
 	public Set<String> getLocalServiceCategories() {
 		Set<String> localServiceCategories = new HashSet<String>();
-		localServiceCategories.add("2801315000"); //Suggested New Tires
+		localServiceCategories.add("02801315000"); //Suggested New Tires
 		return localServiceCategories;
 	}
 

@@ -16,7 +16,7 @@ public class TireComponentStatusFactoryTest {
 
 	private TireComponentStatusFactory tireComponentStatusFactory;
 	
-	private static final String COMPONENT_NAME = "TIRE";
+	private static final String COMPONENT_NAME = "Tire Rotation";
 	
 	private ServiceRecord localServiceLessThan4Months;
 	private ServiceRecord localServiceLessThan5Months;
@@ -48,8 +48,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.OK.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.OK.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -60,8 +60,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -71,16 +71,16 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.LOW.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.LOW.getDescription()));
 	}
 	
 	@Test
 	public void localServiceSReturnSuggestAnnualInspectionStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(null);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR NCDB SERVICE RECORDS */
@@ -94,8 +94,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.OK.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.OK.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -106,8 +106,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MEDIUM.getDescription()));
 	}
 	
 	@Test
@@ -117,16 +117,16 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.LOW.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.LOW.getDescription()));
 	}
 	
 	@Test
 	public void ncdbServiceSReturnSuggestTireRotationStatusForNullList() {
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(null);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.SUGGEST_TIRE_ROTATION.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.EMPTY.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.EMPTY.getDescription()));
 	}
 	
 	/* START OF TEST FOR LOCAL AND NCDB SERVICE RECORDS */
@@ -139,8 +139,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.OK.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.OK.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.FULL.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.FULL.getDescription()));
 	}
 	
 	@Test
@@ -151,8 +151,8 @@ public class TireComponentStatusFactoryTest {
 		
 		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
-		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.name()));
-		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MAINTENANCE_APPROACHING_DUE.getDescription()));
+		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.MEDIUM.name()));
+		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.MEDIUM.getDescription()));
 	}
 
 }
