@@ -13,7 +13,7 @@ angular.module('Directives').directive('slick', function ($timeout) {
                     return;
                 }
 
-
+                el.hide();
                 el.unslick();
                 var stickList = el.find('.slick-list');
                 if(stickList){
@@ -21,6 +21,7 @@ angular.module('Directives').directive('slick', function ($timeout) {
                 }
 
                 $timeout( function(){
+                    el.show();
                     // (re|)init
                     el.slick({
                         dots: false,
@@ -43,6 +44,7 @@ angular.module('Directives').directive('slick', function ($timeout) {
                             }
                         ]
                     });
+
                 });
 
             });
