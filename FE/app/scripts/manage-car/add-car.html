@@ -1,21 +1,21 @@
 <div class="linked-car-base-container linked-car-container">
     <div class="linked-car-base linked-car add-car-base" ng-controller="CarAddCtrl">
 
-        <div class="loading" ng-show="model.loading">ver donde iria</div>
+        <div class="loading" ng-show="model.loading"></div>
         <div ng-if="(model.state!==states.added)" class="visible-xs backSection">
             <div class="btn-back" ng-click="goBack()">Back</div>
         </div>
 
 
         <section ng-if="(model.state===states.add)">
-            <h2 class="title" ng-hide="model.notFounded">Add a car</h2>
+            <h2 class="title" ng-hide="model.notFounded">Add a Car</h2>
             <h2 class="title" ng-show="model.notFounded">No car found for plate {{model.license}}</h2>
-            <h4 class="desc">Select your car below</h4>
+            <h4 class="desc">Enter your car below</h4>
             <fieldset ng-disabled="!model.available">
                 <div class="add-car-box">
                     <div class="row">
-                        <div class="form-group col-xs-6 add-car-right-align">
-                            <select class="form-control"
+                        <div class="form-group col-xs-6">
+                            <select class="form-control pull-right"
                                     ng-required="required"
                                     ng-model="model.yearSelected"
                                     ng-options="item for item in model.years"
@@ -23,8 +23,8 @@
                                 <option style="display:none" value="">Year</option>
                             </select>
                         </div>
-                        <div class="form-group col-xs-6 add-car-left-align">
-                            <select class="form-control"
+                        <div class="form-group col-xs-6">
+                            <select class="form-control pull-left"
                                     ng-required="required"
                                     ng-model="model.makeSelected"
                                     ng-options="item for item in model.makes"
@@ -33,8 +33,8 @@
                                 <option style="display:none" value="">Make</option>
                             </select>
                         </div>
-                        <div class="form-group col-xs-6 add-car-right-align">
-                            <select class="form-control"
+                        <div class="form-group col-xs-6">
+                            <select class="form-control pull-right"
                                     ng-required="required"
                                     ng-model="model.modelSelected"
                                     ng-options="item for item in model.models"
@@ -44,8 +44,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-xs-6 add-car-left-align">
-                            <input type="number" class="form-control" placeholder="Mileage"
+                        <div class="form-group col-xs-6">
+                            <input type="number" class="form-control pull-left"
+                                   placeholder="Mileage"
                                    ng-required="required"
                                    min="1"
                                    maxlength="7"
@@ -114,7 +115,7 @@
 
 
         <div ng-if="(model.state!==states.added)" class="hidden-xs">
-            <div class="btn-back" ng-click="goBack()">Back</div>
+            <div class="btn-back-down" ng-click="goBack()">Back</div>
         </div>
     </div>
 </div>
