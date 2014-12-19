@@ -1,17 +1,24 @@
-
-<div class="row page-title">
-    <div class="col-md-10 col-md-offset-1 title-car-records">Your vehicle records</div>
-</div>
-
-<div class="row page-buttons">
+<div ng-class="selectedTab === 'services' ? 'page-buttons-selected' : 'page-buttons-unselected'" class="row page-header-recalls hidden-xs">
 	<a href="/services">
 	    <div
 	    	ng-class="selectedTab === 'services' ? 'selected' : 'un-selected'"
-	    	class="col-xs-6 col-md-5 col-md-offset-1 no-border-right">Services</div>
+	    	class="col-xs-6 col-md-5  col-md-offset-1 no-border-right"><span class="no-rotate">Services</span></div>
     </a>
     <a href="/recalls">
     	<div 
     		ng-class="selectedTab === 'recalls' ? 'selected' : 'un-selected'"
-    		class="col-xs-6 col-md-5">Recalls</div>
+    		class="col-xs-6 col-md-5"><span class="no-rotate">Recalls</span></div>
+    </a>
+</div>
+<div ng-class="selectedTab === 'services' ? 'page-buttons-selected-left' : 'page-buttons-selected-right'" class="row page-header-recalls visible-xs">
+	<a href="/services">
+	    <div
+	    	ng-class="selectedTab === 'services' ? 'heade-select-left' : 'heade-select-right'"
+	    	class="col-xs-6 col-md-5  col-md-offset-1 no-border-right"><span class="no-rotate">Services</span></div>
+    </a>
+    <a href="/recalls">
+    	<div
+    		ng-class="selectedTab === 'recalls' ? 'heade-select-right' : 'heade-select-left'"
+    		class="col-xs-6 col-md-5"><span class="no-rotate">Recalls</span></div>
     </a>
 </div>
