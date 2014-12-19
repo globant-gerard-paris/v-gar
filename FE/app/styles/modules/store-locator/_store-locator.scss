@@ -171,7 +171,7 @@
     width: 100%;
   }
   .store-card-slick-container {
-    margin: 15px;
+    margin: 15px 0 15px 0;
     background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
     background-size: cover;
     .store-address {
@@ -183,7 +183,7 @@
   }
 
   .store-slick-carousel {
-    margin: 0 auto;
+    margin: 0;
   }
   @include bp(md) {
     .store-slick-carousel {
