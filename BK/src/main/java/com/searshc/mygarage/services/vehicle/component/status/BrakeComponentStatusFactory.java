@@ -50,7 +50,7 @@ public class BrakeComponentStatusFactory extends AbstractComponentStatusFactory 
 		DateTime serviceRecordDate = new DateTime(serviceRecord.getDate());
 		
 		if(serviceRecordDate.isAfter(okStartDate)) {
-			return BrakeStatus.OK.name();
+			return BrakeStatus.FULL.name();
 		} else {
 			if(serviceRecordDate.isAfter(dueApproachingStartDate)) {
 				return BrakeStatus.MEDIUM.name();
@@ -67,7 +67,7 @@ public class BrakeComponentStatusFactory extends AbstractComponentStatusFactory 
 	
 
 	public enum BrakeStatus {
-		OK("OK"),
+		FULL("OK"),
 		MEDIUM("Annual inspection approaching due"),
 		LOW("Suggest annual inspection"),
 		EMPTY("");
