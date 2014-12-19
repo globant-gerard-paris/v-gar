@@ -71,7 +71,7 @@ public class NHTSAApiImpl implements NHTSAApi {
      * Source: http://www.nhtsa.gov/webapi/Default.aspx?Recalls/API/83
      */
     public String deleteInvalidCharactersForNHTSA(final String value) {
-    	Validate.isTrue(StringUtils.isEmpty(value), "The value cannot be null or empty");
+    	Validate.isTrue(!StringUtils.isEmpty(value), "The value cannot be null or empty");
     	return value.replace('&', '_');
     }
 
