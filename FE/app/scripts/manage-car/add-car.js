@@ -41,12 +41,10 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
     }
 
     function loadingOn(){
-        //console.log('loadingOn');
         $scope.model.loading = true;
         $scope.model.available = false;
     }
     function loadingOff(){
-        //console.log('loadingOff');
         $scope.model.loading = false;
         $scope.model.available = true;
     }
@@ -71,7 +69,6 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         }, errorInApi);
     }
     $scope.yearSelected = function() {
-        //console.log('year selected!');
         loadingOn();
         refreshMakes();
     };
@@ -90,7 +87,6 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
         }, errorInApi);
     }
     $scope.makeSelected = function() {
-        //console.log('make selected!');
         loadingOn();
         refreshModels();
     };

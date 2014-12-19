@@ -55,14 +55,6 @@ angular.module('virtualGarage', _mainModules)
                 }
             });
 
-            //routes.push({
-            //    name: '/add-car',
-            //    params: {
-            //        templateUrl: 'scripts/presentation-flow/views/add-car.html',
-            //        controller: 'AddCarCtrl'
-            //    }
-            //});
-
             routes.push({
                 name: '/dashboard',
                 params: {
