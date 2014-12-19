@@ -25,8 +25,7 @@
         transform: skewY(4deg);  
         -webkit-box-shadow: 0 0 1px #2b9ace;
         -moz-box-shadow: 0 0 1px #2b9ace;
-        box-shadow: 0 0 1px #2b9ace;
-        overflow: hidden;
+        box-shadow: 0 0 1px #2b9ace;        
     }
 
     .section-down-inner {
@@ -34,7 +33,7 @@
         -ms-transform: skewX(-4deg);
         -webkit-transform: skewX(-4deg);
         transform: skewX(-4deg);
-         padding: 0;
+        padding: 0;
     }
 
     .section-box {
@@ -60,17 +59,29 @@
         font-size: 30px;
         font-weight: 400;
     }    
-    
+
     .store-small {
         margin-top: 60px;
     }
 
+    .car-profile-section .btn-add, .car-profile-section .btn-add:active, .car-profile-section .btn-add:focus {
+        font-size: 0.9em;
+        font-weight: bold;
+        cursor: pointer;               
+        background: url(../resources/images/dashboard/add-car.png) center top no-repeat;                 
+        color: white;
+        line-height: 70px;
+        margin-top: -15px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;        
+        box-shadow: none;        
+    }
+    
+    .car-profile-section  .btn-box {
+          text-align: center;  
+    }
+
 </style>
-
-<!--POPUP RECORD-->
-<div ng-include="'scripts/car-profile/views/record.html'"></div>
-
-<div class="btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
 
 <div class="row car-profile-section">
     <section class="row section-up hidden-xs">
@@ -89,6 +100,9 @@
             <service-alert model="model.data.vehicleStatus"></service-alert>
         </div>
     </section>
+    <!--POPUP RECORD-->
+
+
 
     <div class="row section-down section-dark">
         <div class="col-sm-4 section-down-inner">
@@ -103,7 +117,12 @@
             </div>
         </div>
         <div class="col-sm-8 section-down-inner section-blue">
+
             <div class="section-box">
+                <div ng-include="'scripts/car-profile/views/record.html'"></div>
+                <div class="btn-box">
+                    <div class="btn btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
+                </div>                
                 <div class="services-and-articles">
                     <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">                       
                         <div class="section-title">
