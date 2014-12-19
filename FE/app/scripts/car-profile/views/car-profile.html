@@ -13,25 +13,21 @@
         <div class="col-lg-3 col-md-6 col-lg-push-5" ng-show="model.recallsOrRecommended">
             <recalls-and-services model="model"></recalls-and-services>
         </div>
-        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col-md-6'">
+        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col - md - 6'">
             <service-alert model="model.data.vehicleStatus"></service-alert>
         </div>
     </div>
-
     <div class="row section-down section-dark">
         <div class="col-sm-4 section-down-inner">
             <div class="section-box">
                 <section class="service-center">
-
                     <store-small model="model.data.serviceCenter"></store-small>
                     <!--just for desktop-->
                     <car-tell-us-more model="model.data"></car-tell-us-more>
-
                 </section>
             </div>
         </div>
         <div class="col-sm-8 section-down-inner section-blue">
-
             <div class="section-box">
                 <!--POPUP RECORD-->
                 <div ng-include="'scripts/car-profile/views/record.html'"></div>
@@ -39,6 +35,7 @@
                     <div class="btn btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>
                 </div>
                 <div class="services-and-articles">
+                    <feedback-tag vertical-height="150"></feedback-tag>
                     <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
                         <div class="section-title">
                             <span class="title">Your last service history</span>
