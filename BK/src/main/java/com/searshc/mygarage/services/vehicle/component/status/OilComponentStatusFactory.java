@@ -1,11 +1,11 @@
 package com.searshc.mygarage.services.vehicle.component.status;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.searshc.mygarage.entities.record.ServiceRecord;
@@ -13,6 +13,12 @@ import com.searshc.mygarage.entities.record.ServiceRecord;
 @Component
 public class OilComponentStatusFactory extends AbstractComponentStatusFactory {
 
+	
+	@Value("#{'${carprofile.infographics.vehicle.component.oil.local.service.codes}'.split(',')}")
+	private Set<String> localServiceCategories;
+	@Value("#{'${carprofile.infographics.vehicle.component.oil.ncdb.service.codes}'.split(',')}")
+	private Set<String> remoteServiceCategories;
+	
 	private static final String COMPONENT_NAME = "Oil Change";
 	
 	private static final int OK_PERIOD_MONTHS_QUANTITY = 2;
@@ -25,15 +31,11 @@ public class OilComponentStatusFactory extends AbstractComponentStatusFactory {
 	
 	@Override
 	public Set<String> getLocalServiceCategories() {
-		Set<String> localServiceCategories = new HashSet<String>();
-		localServiceCategories.add("02806672000"); //Adjust Low Oil Level
 		return localServiceCategories;
 	}
 
 	@Override
 	public Set<String> getRemoteServiceCategories() {
-		Set<String> remoteServiceCategories = new HashSet<String>();
-		remoteServiceCategories.add("49"); //Oil Change Service
 		return remoteServiceCategories;
 	}
 	

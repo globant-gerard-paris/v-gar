@@ -12,10 +12,8 @@ import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.services.vehicle.component.status.OilComponentStatusFactory.OilStatus;
 
-public class OilComponentStatusFactoryTest {
+public class OilComponentStatusFactoryTest extends ComponentStatusFactoryConfigurer{
 
-	private OilComponentStatusFactory oilComponentStatusFactory;
-	
 	private static final String COMPONENT_NAME = "Oil Change";
 	
 	private ServiceRecord localServiceLessThan2Months;
@@ -28,14 +26,13 @@ public class OilComponentStatusFactoryTest {
 	
 	@Before
 	public void setUp(){
-		this.oilComponentStatusFactory = new OilComponentStatusFactory();
-		this.localServiceLessThan2Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 1); //One months ago
-		this.localServiceLessThan3Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 2); //Two months and 5 days ago
-		this.localServiceMoreThan3Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 6); //Six months ago
+		this.localServiceLessThan2Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 1); //One months ago
+		this.localServiceLessThan3Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 2); //Two months and 5 days ago
+		this.localServiceMoreThan3Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(true, 6); //Six months ago
 		
-		this.ncdbServiceLessThan2Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 1); //One months ago
-		this.ncdbServiceLessThan3Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 2); //Two months and 5 days ago
-		this.ncdbServiceMoreThan3Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 6); //Six months ago 
+		this.ncdbServiceLessThan2Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 1); //One months ago
+		this.ncdbServiceLessThan3Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 2); //Two months and 5 days ago
+		this.ncdbServiceMoreThan3Months = serviceRecordFactoryUtilForTest.generateServiceRecordForOil(false, 6); //Six months ago 
 	}
 	
 	/* START OF TEST FOR LOCAL SERVICE RECORDS */

@@ -12,11 +12,9 @@ import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.services.vehicle.component.status.BrakeComponentStatusFactory.BrakeStatus;
 
-public class BrakeComponentStatusFactoryTest {
+public class BrakeComponentStatusFactoryTest extends ComponentStatusFactoryConfigurer {
 
 	private static final String COMPONENT_NAME = "Brakes Inspection";
-	
-	private BrakeComponentStatusFactory brakeComponentStatusFactory;
 	
 	private ServiceRecord localServiceLessThan10Months;
 	private ServiceRecord localServiceLessThan11Months;
@@ -28,14 +26,13 @@ public class BrakeComponentStatusFactoryTest {
 	
 	@Before
 	public void setUp(){
-		this.brakeComponentStatusFactory = new BrakeComponentStatusFactory();
-		this.localServiceLessThan10Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 5); //Five months ago
-		this.localServiceLessThan11Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 10); //ten months and 5 days ago
-		this.localServiceMoreThan11Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 14); //Fourteen months ago
+		this.localServiceLessThan10Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 5); //Five months ago
+		this.localServiceLessThan11Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 10); //ten months and 5 days ago
+		this.localServiceMoreThan11Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(true, 14); //Fourteen months ago
 		
-		this.ncdbServiceLessThan10Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 5); //Five months ago
-		this.ncdbServiceLessThan11Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 10); //ten months and 5 days ago
-		this.ncdbServiceMoreThan11Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 14); //Fourteen months ago 
+		this.ncdbServiceLessThan10Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 5); //Five months ago
+		this.ncdbServiceLessThan11Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 10); //ten months and 5 days ago
+		this.ncdbServiceMoreThan11Months = serviceRecordFactoryUtilForTest.generateServiceRecordForBrakes(false, 14); //Fourteen months ago 
 	}
 	
 	/* START OF TEST FOR LOCAL SERVICE RECORDS */

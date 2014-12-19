@@ -11,17 +11,49 @@ import com.searshc.mygarage.util.ServiceRecordType;
 
 public class ServiceRecordFactoryUtilForTest {
 
-	private static final String BRAKES_LOCAL_SERVICE_CODE = "02801300000";
-	private static final String BRAKES_NCDB_SERVICE_CODE = "44";
+	/*private final String BRAKES_LOCAL_SERVICE_CODE = "02801300000";
+	private final String BRAKES_NCDB_SERVICE_CODE = "44";
 	
-	private static final String TIRES_LOCAL_SERVICE_CODE = "02801315000"; //Suggested New Tires
-	private static final String TIRES_NCDB_SERVICE_CODE = "41"; //Tire Service
+	private final String TIRES_LOCAL_SERVICE_CODE = "02801315000"; //Suggested New Tires
+	private final String TIRES_NCDB_SERVICE_CODE = "41"; //Tire Service
 	
-	private static final String OIL_LOCAL_SERVICE_CODE = "02806672000"; //Adjust Low Oil Level
-	private static final String OIL_NCDB_SERVICE_CODE = "49"; //Oil Change Service
+	private final String OIL_LOCAL_SERVICE_CODE = "02806672000"; //Adjust Low Oil Level
+	private final String OIL_NCDB_SERVICE_CODE = "49"; //Oil Change Service*/
+	
+	private String brakesLocalServiceCode;
+	private String brakesNCDBServiceCode;
+	
+	private String tiresLocalServiceCode; //Suggested New Tires
+	private String tiresNCDBServiceCode; //Tire Service
+	
+	private String oilLocalServiceCode; //Adjust Low Oil Level
+	private String oilNCDBServiceCode; //Oil Change Service
 	
 	
-	private static ServiceRecord generateServiceRecord(boolean isLocalRecord, String serviceRecordItemCode, int monthsAgo) {
+	
+	
+	/**
+	 * @param brakesLocalServiceCode
+	 * @param brakesNCDBServiceCode
+	 * @param tiresLocalServiceCode
+	 * @param tiresNCDBServiceCode
+	 * @param oilLocalServiceCode
+	 * @param oilNCDBServiceCode
+	 */
+	public ServiceRecordFactoryUtilForTest(String brakesLocalServiceCode,
+			String brakesNCDBServiceCode, String tiresLocalServiceCode,
+			String tiresNCDBServiceCode, String oilLocalServiceCode,
+			String oilNCDBServiceCode) {
+		super();
+		this.brakesLocalServiceCode = brakesLocalServiceCode;
+		this.brakesNCDBServiceCode = brakesNCDBServiceCode;
+		this.tiresLocalServiceCode = tiresLocalServiceCode;
+		this.tiresNCDBServiceCode = tiresNCDBServiceCode;
+		this.oilLocalServiceCode = oilLocalServiceCode;
+		this.oilNCDBServiceCode = oilNCDBServiceCode;
+	}
+
+	private ServiceRecord generateServiceRecord(boolean isLocalRecord, String serviceRecordItemCode, int monthsAgo) {
 		ServiceRecordItem serviceRecordItem = new RealServiceRecordItem();
 		serviceRecordItem.setCode(serviceRecordItemCode);
 
@@ -41,17 +73,17 @@ public class ServiceRecordFactoryUtilForTest {
 		return serviceRecord;
 	}
 	
-	public static ServiceRecord generateServiceRecordForBrakes(boolean isLocalRecord, int monthsAgo) {
-		String serviceItemCode = isLocalRecord ? BRAKES_LOCAL_SERVICE_CODE : BRAKES_NCDB_SERVICE_CODE;
+	public ServiceRecord generateServiceRecordForBrakes(boolean isLocalRecord, int monthsAgo) {
+		String serviceItemCode = isLocalRecord ? brakesLocalServiceCode : brakesNCDBServiceCode;
 		return generateServiceRecord(isLocalRecord, serviceItemCode, monthsAgo);
 	}
 	
-	public static ServiceRecord generateServiceRecordForTires(boolean isLocalRecord, int monthsAgo) {
-		String serviceItemCode = isLocalRecord ? TIRES_LOCAL_SERVICE_CODE : TIRES_NCDB_SERVICE_CODE;
+	public ServiceRecord generateServiceRecordForTires(boolean isLocalRecord, int monthsAgo) {
+		String serviceItemCode = isLocalRecord ? tiresLocalServiceCode : tiresNCDBServiceCode;
 		return generateServiceRecord(isLocalRecord, serviceItemCode, monthsAgo);
 	}
-	public static ServiceRecord generateServiceRecordForOil(boolean isLocalRecord, int monthsAgo) {
-		String serviceItemCode = isLocalRecord ? OIL_LOCAL_SERVICE_CODE : OIL_NCDB_SERVICE_CODE;
+	public ServiceRecord generateServiceRecordForOil(boolean isLocalRecord, int monthsAgo) {
+		String serviceItemCode = isLocalRecord ? oilLocalServiceCode : oilNCDBServiceCode;
 		return generateServiceRecord(isLocalRecord, serviceItemCode, monthsAgo);
 	}
 }

@@ -12,9 +12,7 @@ import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.services.vehicle.component.status.TireComponentStatusFactory.TireStatus;
 
-public class TireComponentStatusFactoryTest {
-
-	private TireComponentStatusFactory tireComponentStatusFactory;
+public class TireComponentStatusFactoryTest extends ComponentStatusFactoryConfigurer {
 	
 	private static final String COMPONENT_NAME = "Tire Rotation";
 	
@@ -28,14 +26,14 @@ public class TireComponentStatusFactoryTest {
 	
 	@Before
 	public void setUp(){
-		this.tireComponentStatusFactory = new TireComponentStatusFactory();
-		this.localServiceLessThan4Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 2); //Two months ago
-		this.localServiceLessThan5Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 4); //Four months and 5 days ago
-		this.localServiceMoreThan5Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 8); //Eight months ago
+
+		this.localServiceLessThan4Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 2); //Two months ago
+		this.localServiceLessThan5Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 4); //Four months and 5 days ago
+		this.localServiceMoreThan5Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(true, 8); //Eight months ago
 		
-		this.ncdbServiceLessThan4Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 2); //Two months ago
-		this.ncdbServiceLessThan5Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 4); //Four months and 5 days ago
-		this.ncdbServiceMoreThan5Months = ServiceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 8); //Eight months ago 
+		this.ncdbServiceLessThan4Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 2); //Two months ago
+		this.ncdbServiceLessThan5Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 4); //Four months and 5 days ago
+		this.ncdbServiceMoreThan5Months = super.serviceRecordFactoryUtilForTest.generateServiceRecordForTires(false, 8); //Eight months ago 
 	}
 	
 	/* START OF TEST FOR LOCAL SERVICE RECORDS */
@@ -46,7 +44,7 @@ public class TireComponentStatusFactoryTest {
 		records.add(this.localServiceLessThan5Months);
 		records.add(this.localServiceMoreThan5Months);
 		
-		VehicleComponentStatusDTO vehicleComponentStatusDTO = this.tireComponentStatusFactory.createComponentStatus(records);
+		VehicleComponentStatusDTO vehicleComponentStatusDTO = super.tireComponentStatusFactory.createComponentStatus(records);
 		assertTrue(vehicleComponentStatusDTO.getComponentName().equalsIgnoreCase(COMPONENT_NAME));
 		assertTrue(vehicleComponentStatusDTO.getStatusName().equalsIgnoreCase(TireStatus.FULL.name()));
 		assertTrue(vehicleComponentStatusDTO.getStatusDescription().equalsIgnoreCase(TireStatus.FULL.getDescription()));

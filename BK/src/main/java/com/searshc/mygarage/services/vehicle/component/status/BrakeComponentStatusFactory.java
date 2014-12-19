@@ -1,11 +1,11 @@
 package com.searshc.mygarage.services.vehicle.component.status;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.searshc.mygarage.entities.record.ServiceRecord;
@@ -13,6 +13,11 @@ import com.searshc.mygarage.entities.record.ServiceRecord;
 @Component
 public class BrakeComponentStatusFactory extends AbstractComponentStatusFactory {
 
+	@Value("#{'${carprofile.infographics.vehicle.component.brake.local.service.codes}'.split(',')}")
+	private Set<String> localServiceCategories;
+	@Value("#{'${carprofile.infographics.vehicle.component.brake.ncdb.service.codes}'.split(',')}")
+	private Set<String> remoteServiceCategories;
+	
 	private static final String COMPONENT_NAME = "Brakes Inspection";
 	
 	private static final int OK_PERIOD_MONTHS_QUANTITY = 10;
@@ -25,16 +30,11 @@ public class BrakeComponentStatusFactory extends AbstractComponentStatusFactory 
 	
 	@Override
 	public Set<String> getLocalServiceCategories() {
-		Set<String> localServiceCategories = new HashSet<String>();
-		localServiceCategories.add("02801300000"); //Complete Brake Evaluation
 		return localServiceCategories;
 	}
 
 	@Override
 	public Set<String> getRemoteServiceCategories() {
-		Set<String> remoteServiceCategories = new HashSet<String>();	
-		remoteServiceCategories.add("44"); //Brake Service
-		remoteServiceCategories.add("60"); //Brake Eval
 		return remoteServiceCategories;
 	}
 	

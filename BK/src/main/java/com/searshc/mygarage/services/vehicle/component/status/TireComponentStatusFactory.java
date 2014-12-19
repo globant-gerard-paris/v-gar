@@ -1,11 +1,11 @@
 package com.searshc.mygarage.services.vehicle.component.status;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.searshc.mygarage.entities.record.ServiceRecord;
@@ -14,6 +14,11 @@ import com.searshc.mygarage.entities.record.ServiceRecord;
 public class TireComponentStatusFactory extends AbstractComponentStatusFactory {
 
 	private static final String COMPONENT_NAME = "Tire Rotation";
+	
+	@Value("#{'${carprofile.infographics.vehicle.component.tire.local.service.codes}'.split(',')}")
+	private Set<String> localServiceCategories;
+	@Value("#{'${carprofile.infographics.vehicle.component.tire.ncdb.service.codes}'.split(',')}")
+	private Set<String> remoteServiceCategories;
 	
 	private static final int OK_PERIOD_MONTHS_QUANTITY = 4;
 	private static final int APPROACHING_DUE_MONTHS_QUANTITY = 5;
@@ -25,17 +30,11 @@ public class TireComponentStatusFactory extends AbstractComponentStatusFactory {
 	
 	@Override
 	public Set<String> getLocalServiceCategories() {
-		Set<String> localServiceCategories = new HashSet<String>();
-		localServiceCategories.add("02801315000"); //Suggested New Tires
 		return localServiceCategories;
 	}
 
 	@Override
 	public Set<String> getRemoteServiceCategories() {
-		Set<String> remoteServiceCategories = new HashSet<String>();
-		remoteServiceCategories.add("1"); //Purchase Tire
-		remoteServiceCategories.add("41"); //Tire Service
-		remoteServiceCategories.add("47"); //Tire Rotation Service
 		return remoteServiceCategories;
 	}
 	
