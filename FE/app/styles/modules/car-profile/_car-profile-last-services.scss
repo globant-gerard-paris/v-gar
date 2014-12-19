@@ -5,7 +5,7 @@
 
     color: #ffffff;    
     margin-left: 60px;
-    padding-bottom: 100px;
+    padding: 60px 100px 100px 0;
 
     .section-title {
         font-size: 30px;
@@ -16,14 +16,20 @@
 
         margin-top: 20px;
 
-        .btn-history {
-            color:  #91dcff;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 45px;
-            left: -50px;
-            cursor: pointer;
-            margin-left: 20px;       
+        .section-title {
+            
+            .title {
+                margin-right: 10px;
+            }
+
+            .btn-history {
+                color:  #91dcff;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 45px;           
+                cursor: pointer;  
+                display: inline-block;
+            }
         }
 
         .last-service-body {
@@ -31,15 +37,16 @@
             margin-top: 10px;
 
             .service-history {
+
                 margin: 30px auto;
-                .service-history-img {
-                    margin-right: 30px;
-                    background: url(../resources/images/car-profile/mecanic.jpg) center center no-repeat;            
-                    padding: 20px;
-                    border: 1px solid #105cb6;
-                    width: 253px;
-                    height: 119px;
-                    position: relative;
+
+                .service-history-img {                    
+
+                    background: url(../resources/images/car-profile/mecanic.jpg) center center no-repeat; 
+                    background-size: cover;
+                    border: 1px solid #105cb6;                    
+                    height: 120px;
+                    padding-left: 20px;
 
                     .service-history-icon {
                         position: absolute;

@@ -1,41 +1,43 @@
-<div class="row map-bg hidden-xs">
-    <section>
+<div class="store-small">
+    <div class="map-bg hidden-xs">
         <h1>Your service center</h1>
-    </section>
-    <section class="store-info">
-        <div class="store-icon-big pull-left col-xs-3"></div>
-        <div class="store-data pull-left col-xs-9">
-            <div class="store-address">{{model.address}} {{model.city}}</div>
-            <div>{{model.state}}, {{model.zipCode}}</div>
-            <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
-            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
-        </div>
-        <div class="store-map-brand col-xs-12"><div>&nbsp;</div></div>
-    </section>
-</div>
-
-<div class="row visible-xs">
-
-    <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
-    </svg>
-    <section class="service-center-mobile-background">
-        <div class="btn-appointment">
-            <div>&nbsp;</div>
-        </div>
-        <div class="store-info">
-            <div class="store-map-brand pull-left"><div>&nbsp;</div></div>
-            <div class="store-data pull-left">
-                <div class="store-address">{{model.address}} {{model.city}}</div>
-                <div>{{model.state}}, {{model.zipCode}}</div>
-                <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+        <div class="media">
+            <div class="store-icon-big pull-left"></div>
+            <div class="media-body">
+                <div class="store-data">
+                    <div class="store-address">{{model.address}} {{model.city}}</div>
+                    <div>{{model.state}}, {{model.zipCode}}</div>
+                    <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+                </div>
             </div>
-            <div class="clearfix"></div>
-            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
         </div>
-    </section>
-    <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0 0, 10 0, 0 10" fill="#2b9ace"/>
-    </svg>
-</div>
+        <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>        
+        
+        <div class="store-map-brand"></div>
+    </div>
 
+    <div class="row visible-xs">
+
+        <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
+        </svg>
+        <section class="service-center-mobile-background">
+            <div class="btn-appointment">
+                <div>&nbsp;</div>
+            </div>
+            <div class="store-info">
+                <div class="store-map-brand pull-left"><div>&nbsp;</div></div>
+                <div class="store-data pull-left">
+                    <div class="store-address">{{model.address}} {{model.city}}</div>
+                    <div>{{model.state}}, {{model.zipCode}}</div>
+                    <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
+            </div>
+        </section>
+        <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 10 0, 0 10" fill="#2b9ace"/>
+        </svg>
+    </div>
+</div>

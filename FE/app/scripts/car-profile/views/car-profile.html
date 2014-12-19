@@ -2,7 +2,16 @@
 
     .car-profile-section {
         overflow: hidden;  
-        margin-bottom: -50px;        
+        margin-bottom: -50px;    
+        position: relative;
+    }
+
+    .section-down-fix {
+        width: 40px; 
+        height: 400px; 
+        position: absolute; 
+        right: 0;
+        bottom: 0;        
     }
 
     .section-up {
@@ -20,19 +29,12 @@
         overflow: hidden;
     }
 
-    .section-down-fix {
-        width: 40px; 
-        height: 100px; 
-        position: absolute; 
-        right: 0;
-        bottom: 0;
-    }
-
     .section-down-inner {
         -moz-transform: skewX(-4deg);
         -ms-transform: skewX(-4deg);
         -webkit-transform: skewX(-4deg);
         transform: skewX(-4deg);
+         padding: 0;
     }
 
     .section-box {
@@ -50,10 +52,6 @@
         background-color:  #555e6c;
     }
 
-    .section-down .col-sm-4, .section-down .col-sm-8 {
-        padding: 0;
-    }
-
     .last-service {
         color:  #ffffff;
     }
@@ -61,16 +59,10 @@
     .last-service .section-title {
         font-size: 30px;
         font-weight: 400;
-    }
-
-    .last-service  .btn-history {
-        color:  #91dcff;
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 45px;
-        left: -50px;
-        cursor: pointer;
-        margin-left: 20px;
+    }    
+    
+    .store-small {
+        margin-top: 60px;
     }
 
 </style>
@@ -113,9 +105,9 @@
         <div class="col-sm-8 section-down-inner section-blue">
             <div class="section-box">
                 <div class="services-and-articles">
-                    <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
+                    <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">                       
                         <div class="section-title">
-                            Your last service history
+                            <span class="title">Your last service history</span>
                             <span class="btn-history" ng-click="seeAllHistory()">See all history</span>
                         </div>
                         <div class="last-service-body">
@@ -129,8 +121,8 @@
                         </div>
                     </section>                
                 </div>
-            </div>        
-        </div>
-        <div class="section-down section-down-fix section-blue"></div>
+            </div>
+        </div>        
     </div>
+    <div class="section-down section-down-fix section-blue"></div>
 </div>

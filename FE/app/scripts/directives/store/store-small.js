@@ -5,6 +5,7 @@ angular.module('Directives').directive('storeSmall', function (RedirectSrv) {
     'use strict';
 
     return {
+        replace: true,
         restrict: 'E',
         scope: {
             model: '='
