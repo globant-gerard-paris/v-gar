@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import com.searshc.mygarage.apis.nhtsa.NHTSAUtils;
 import com.searshc.mygarage.apis.nhtsa.response.NHTSARecalls;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +32,9 @@ public class VehicleRecallsServiceImpl implements VehicleRecallsService {
 
     @Override
     public List<VehicleRecalls> getRecalls(int year, String make, String model) {
-        NHTSARecalls nhtsaRecalls = null;
+        Validate.isTrue(!StringUtils.isEmpty(make), "The Make cannot be null or empty");
+        Validate.isTrue(!StringUtils.isEmpty(model), "The Model cannot be null or empty");
+    	NHTSARecalls nhtsaRecalls = null;
         try {
             nhtsaRecalls = this.nhtsaApi.getRecalls(year, make, model);
         } catch (NHTSARecallsException ex) {
