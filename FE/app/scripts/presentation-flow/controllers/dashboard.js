@@ -36,6 +36,10 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
         $scope.addCar = !$scope.addCar;
     };
 
+    $scope.openAddCar = function () {
+        stBlurredDialog.open('scripts/manage-car/add-car.html',{from:null});
+    };
+
     $scope.getToCarProfile = function (familyVehicle) {
         SessionDataSrv.saveCurrentFamilyVehicle(familyVehicle);
         $scope.$emit('RELOAD_SELECTED_VEHICLE',familyVehicle);

@@ -14,14 +14,14 @@ redirectToAddCar()
         <div class="col-xs-12">
             <div class="mini-logo visible-xs-block"></div>
             <div class="dashboard-car-actions-top">
-                <div class="dashboard-add-car" ng-class="addCar ? 'close-add-car':''" ng-click="toggleAddCar()">
+                <div class="dashboard-add-car" ng-class="addCar ? 'close-add-car':''" ng-click="openAddCar()">
                     {{addCar ? 'CLOSE' : 'ADD VEHICLE'}}
                 </div>
             </div>
             <div ng-hide="addCar" class="dashboard-content-common">
                 <div class="dashboard-content-common-top">
                     <div class="dashboard-manage-cars">Click card for details</div>
-                </div>    
+                </div>
 
                 <div class="dashboard-car-actions-bottom">
                     <a href="#" class="dashboard-manage-cars-edit"></a>

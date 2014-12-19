@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv) {
+angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope, RedirectSrv, LinkedCarSrv, stBlurredDialog) {
 
     $scope.toggleCarSelect = function(car){
         if(!car){
@@ -42,5 +42,10 @@ angular.module('PresentationFlow').controller('LinkedCarCtrl', function ($scope,
         });
         $scope.totalConfirmed = count;
     }, true);
+
+
+    $scope.redirectToAddCar = function (from) {
+        stBlurredDialog.open('scripts/manage-car/add-car.html',{from:from});
+    };
 
 });
