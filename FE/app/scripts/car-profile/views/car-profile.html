@@ -1,108 +1,22 @@
-<style>
-
-    .car-profile-section {
-        overflow: hidden;  
-        margin-bottom: -50px;    
-        position: relative;
-    }
-
-    .section-down-fix {
-        width: 40px; 
-        height: 400px; 
-        position: absolute; 
-        right: 0;
-        bottom: 0;        
-    }
-
-    .section-up {
-        margin-bottom: 80px;
-    }
-
-    .section-down {
-        -moz-transform: skewY(4deg);
-        -ms-transform: skewY(4deg);
-        -webkit-transform: skewY(4deg);
-        transform: skewY(4deg);  
-        -webkit-box-shadow: 0 0 1px #2b9ace;
-        -moz-box-shadow: 0 0 1px #2b9ace;
-        box-shadow: 0 0 1px #2b9ace;        
-    }
-
-    .section-down-inner {
-        -moz-transform: skewX(-4deg);
-        -ms-transform: skewX(-4deg);
-        -webkit-transform: skewX(-4deg);
-        transform: skewX(-4deg);
-        padding: 0;
-    }
-
-    .section-box {
-        -moz-transform: skew(4deg,-4deg);
-        -ms-transform: skew(4deg,-4deg);
-        -webkit-transform: skew(4deg,-4deg);
-        transform: skew(4deg,-4deg);        
-    }
-
-    .section-blue {
-        background-color:  #2b9ace;
-    }
-
-    .section-dark {
-        background-color:  #555e6c;
-    }
-
-    .last-service {
-        color:  #ffffff;
-    }
-
-    .last-service .section-title {
-        font-size: 30px;
-        font-weight: 400;
-    }    
-
-    .store-small {
-        margin-top: 60px;
-    }
-
-    .car-profile-section .btn-add, .car-profile-section .btn-add:active, .car-profile-section .btn-add:focus {
-        font-size: 0.9em;
-        font-weight: bold;
-        cursor: pointer;               
-        background: url(../resources/images/dashboard/add-car.png) center top no-repeat;                 
-        color: white;
-        line-height: 70px;
-        margin-top: -15px;
-        -moz-box-shadow: none;
-        -webkit-box-shadow: none;        
-        box-shadow: none;        
-    }
-    
-    .car-profile-section  .btn-box {
-          text-align: center;  
-    }
-
-</style>
-
-<div class="row car-profile-section">
-    <section class="row section-up hidden-xs">
-        <div class="col-lg-4 col-md-6">
+<div class="row car-profile-section ">
+    <div class="row section-up hidden-xs">
+        <div class="col-md-6" ng-class="model.recallsOrRecommended ? 'col-lg-4' : ''">
             <div class="media car-profile-info">
-                <div class="car-profile-picture pull-left"></div>
+                <div class="car-profile-picture pull-left">
+                    <div class="car-card-tag">{{model.data.vehicle.name}}</div>
+                </div>
                 <div class="media-body">
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-lg-push-5">
+        <div class="col-lg-3 col-md-6 col-lg-push-5" ng-show="model.recallsOrRecommended">
             <recalls-and-services model="model"></recalls-and-services>
         </div>
-        <div class="col-lg-5 col-md-12 col-lg-pull-3">
+        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col-md-6'">
             <service-alert model="model.data.vehicleStatus"></service-alert>
         </div>
-    </section>
-    <!--POPUP RECORD-->
-
-
+    </div>
 
     <div class="row section-down section-dark">
         <div class="col-sm-4 section-down-inner">
@@ -119,6 +33,7 @@
         <div class="col-sm-8 section-down-inner section-blue">
 
             <div class="section-box">
+                <!--POPUP RECORD-->
                 <div ng-include="'scripts/car-profile/views/record.html'"></div>
                 <div class="btn-box">
                     <div class="btn btn-add" ng-click="openNewRecordForm()">ADD RECENT SERVICE HISTORY</div>

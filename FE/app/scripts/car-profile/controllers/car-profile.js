@@ -2,10 +2,18 @@
 
 angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
 
-    $scope.model = {};
+    $scope.model = {
+        recallsOrRecommended: true
+    };
 
     var carsResultSuccess = function (response) {
         $scope.model.data = response.data;
+        $scope.model.recallsOrRecommended =
+                (response.data.recallsInformation &&
+                        response.data.recallsInformation.totalRecalls > 0) ||
+                (response.data.recommendedService &&
+                        response.data.recommendedService.serviceRecordItems &&
+                        response.data.recommendedService.serviceRecordItems.length > 0);
         $scope.$broadcast('car-profile-data-ready');
     };
 

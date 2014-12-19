@@ -49,11 +49,31 @@
 
 .car-profile-info {
     font-family: Roboto;
+    padding-left: 20px;
+    max-width: 434px;  
+    margin: 0 auto;
     .car-profile-picture{
         background: url(../resources/images/car-profile/ImageProfile.jpg) center center no-repeat;        
         display: inline-block;
         height: 141px;
-        width: 141px;        
+        width: 141px;  
+        position: relative;
+
+        .car-card-tag{
+            @include simple-transform(1, -6deg, 0, 50%);
+            @include border-radius(3px);
+            position: absolute;
+            left: 20px;
+            bottom: 10px;            
+            font-weight: 900;
+            line-height: 1.0em;
+            background-color: #2b9ace;
+            color: white;
+            padding: 6px 10px;
+            width: 121px;
+            text-align: center
+        }
+
     }
     .car-card{
         display: block;
@@ -133,7 +153,7 @@
     font-family: Roboto;   
     margin-top: 0;
     @include bp(lg) {    
-        
+
     }
     @include bp(sm) {    
         margin-top: 20px;    
@@ -183,8 +203,15 @@
     }
 }
 
+
+
 .recalls-and-services {
     color:  #555e6c;
+
+    .see-more {
+        margin-top: 5px;
+    }
+
     .recall-info{
         padding-left:50px;
         background-image: url(../resources/images/car-profile/recall.png);
