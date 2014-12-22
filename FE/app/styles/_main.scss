@@ -4,6 +4,12 @@ body {
     color: #444;
 }
 
+@include bp(xs) {
+    body{
+        overflow-x:hidden; 
+    }
+}
+
  body, html, .container-fluid{
     height:100%;
  }

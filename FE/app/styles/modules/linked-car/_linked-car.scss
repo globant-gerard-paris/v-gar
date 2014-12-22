@@ -63,7 +63,7 @@
 		cursor: pointer;
 	}
 
-	&>.title, &>.desc{
+	.title, .desc{
 		color: #555e6c;
 		width: 60%;
 		margin: 0 auto;
@@ -71,7 +71,7 @@
 		text-align: center;
 	}
 
-	&>.title{
+	.title{
 		margin-top: 48px;
 		font-size: 2.2em;
 	}
@@ -95,7 +95,7 @@
 	}
 
 
-	
+
 
 	.selected{
 		.car-card{
@@ -117,7 +117,7 @@
 				right: -1px;
 				top: 0;
 			}
-			
+
 			.car-last-service{
 				color:  #555e6c;
 			}
@@ -205,7 +205,7 @@
 			.car-card-slick-container:nth-child(2) .car-card {
 				margin: 64px auto 64px 20px;
 			}
-		}		
+		}
 	}
 
 }
@@ -240,7 +240,7 @@
 		}
 	}
 	.btn-confirm{
-		
+
 	}
 }
 

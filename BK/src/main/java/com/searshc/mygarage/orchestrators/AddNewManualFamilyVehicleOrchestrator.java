@@ -1,5 +1,10 @@
 package com.searshc.mygarage.orchestrators;
 
+import java.util.List;
+
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
 import com.searshc.mygarage.dtos.manualvehicle.AddOrUpdateManualFamilyVehicleDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
@@ -21,4 +26,8 @@ public interface AddNewManualFamilyVehicleOrchestrator{
 	FamilyVehicle addNewManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO);
 	
 	void updateManualFamilyVehicle(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO);
+	
+	List<String> getDistinctYears();
+	List<String> getDistinctMakesByYear(final int year);
+	List<String> getDistinctModelsByYearMake(final int year, final String make);
 }
