@@ -1,55 +1,50 @@
 package com.searshc.mygarage.dtos.carprofile;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
+
 /**
  *
  * @author rammel.maestre
  */
 public class VehicleStatusDTO {
 
-    private String tireRotation;
-    private String oilChange;
-    private String brakesInspection;
+	private List<VehicleComponentStatusDTO> vehicleComponentStatus;
+	
+	public VehicleStatusDTO() {
+	}
 
-    /**
-     * @return the tireRotation
-     */
-    public String getTireRotation() {
-        return tireRotation;
-    }
+	/**
+	 * @param vehicleComponentStatus
+	 */
+	public VehicleStatusDTO(
+			List<VehicleComponentStatusDTO> vehicleComponentStatus) {
+		super();
+		this.vehicleComponentStatus = vehicleComponentStatus;
+	}
 
-    /**
-     * @param tireRotation the tireRotation to set
-     */
-    public void setTireRotation(String tireRotation) {
-        this.tireRotation = tireRotation;
-    }
+	/**
+	 * @return the vehicleComponentStatus
+	 */
+	public List<VehicleComponentStatusDTO> getVehicleComponentStatus() {
+		return vehicleComponentStatus;
+	}
 
-    /**
-     * @return the oilChange
-     */
-    public String getOilChange() {
-        return oilChange;
-    }
-
-    /**
-     * @param oilChange the oilChange to set
-     */
-    public void setOilChange(String oilChange) {
-        this.oilChange = oilChange;
-    }
-
-    /**
-     * @return the brakesInspection
-     */
-    public String getBrakesInspection() {
-        return brakesInspection;
-    }
-
-    /**
-     * @param brakesInspection the brakesInspection to set
-     */
-    public void setBrakesInspection(String brakesInspection) {
-        this.brakesInspection = brakesInspection;
-    }
+	/**
+	 * @param vehicleComponentStatus the vehicleComponentStatus to set
+	 */
+	public void setVehicleComponentStatus(
+			List<VehicleComponentStatusDTO> vehicleComponentStatus) {
+		this.vehicleComponentStatus = vehicleComponentStatus;
+	}
+	
+	public void addVehicleComponentStatus(VehicleComponentStatusDTO vehicleComponentStatusDTO) {
+		if(this.vehicleComponentStatus == null) {
+			this.vehicleComponentStatus = new LinkedList<VehicleComponentStatusDTO>();
+		}
+		this.vehicleComponentStatus.add(vehicleComponentStatusDTO);
+	}
 
 }

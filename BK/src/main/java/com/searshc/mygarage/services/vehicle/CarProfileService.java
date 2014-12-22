@@ -1,10 +1,20 @@
 package com.searshc.mygarage.services.vehicle;
 
+import java.util.Date;
+import java.util.List;
+
+import org.dozer.DozerBeanMapper;
+import org.dozer.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
 import com.searshc.mygarage.dtos.carprofile.CarProfileDTO;
 import com.searshc.mygarage.dtos.carprofile.LastRecallDTO;
 import com.searshc.mygarage.dtos.carprofile.RecallsInformationDTO;
 import com.searshc.mygarage.dtos.carprofile.VehicleDTO;
 import com.searshc.mygarage.dtos.carprofile.VehicleStatusDTO;
+import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
@@ -16,13 +26,9 @@ import com.searshc.mygarage.repositories.FamilyVehicleRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
-import java.util.Date;
-import java.util.List;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
+import com.searshc.mygarage.services.vehicle.component.status.BrakeComponentStatusFactory;
+import com.searshc.mygarage.services.vehicle.component.status.OilComponentStatusFactory;
+import com.searshc.mygarage.services.vehicle.component.status.TireComponentStatusFactory;
 
 /**
  *
@@ -39,15 +45,24 @@ public class CarProfileService {
     private RecordService recordService;
     private UserRepository userRepository;
     private VehicleRecallsService vehicleRecallsService;
+    private BrakeComponentStatusFactory brakeComponentStatusFactory;
+    private TireComponentStatusFactory tireComponentStatusFactory;
+    private OilComponentStatusFactory oilComponentStatusFactory;
 
     @Autowired
     public CarProfileService(FamilyVehicleRepository familyVehicleRepository,
             RecordService recordService, UserRepository userRepository,
-            VehicleRecallsService vehicleRecallsService) {
+            VehicleRecallsService vehicleRecallsService,
+            BrakeComponentStatusFactory brakeComponentStatusFactory,
+            TireComponentStatusFactory tireComponentStatusFactory,
+            OilComponentStatusFactory oilComponentStatusFactory) {
         this.familyVehicleRepository = familyVehicleRepository;
         this.recordService = recordService;
         this.userRepository = userRepository;
         this.vehicleRecallsService = vehicleRecallsService;
+        this.brakeComponentStatusFactory = brakeComponentStatusFactory;
+        this.tireComponentStatusFactory =  tireComponentStatusFactory;
+        this.oilComponentStatusFactory = oilComponentStatusFactory;
     }
 
     public CarProfileDTO getCarProfile(Long userId, Long familyVehicleId) {
@@ -55,12 +70,14 @@ public class CarProfileService {
         FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
         if (familyVehicle != null) {
             carProfileDTO = new CarProfileDTO(this.createVehicleDTO(familyVehicle));
-            carProfileDTO.setVehicleStatus(this.createVehicleStatusDTO(familyVehicle));
+            
             carProfileDTO.setServiceCenter(this.getServiceCenter(userId));
             carProfileDTO.setRecallsInformation(this.createRecallsInformationDTO(familyVehicle));
-            carProfileDTO.setLastServiceHistory(this.getLastServiceRecord(familyVehicle));
             carProfileDTO.setRecommendedService(this.createRecommendedService(familyVehicle));
             this.refreshMileage(familyVehicleId, carProfileDTO);
+            List<ServiceRecord> mixedRecordsOrderedByDate = this.recordService.getServiceRecords(familyVehicle.getId());
+            carProfileDTO.setLastServiceHistory(this.getLastServiceRecord(mixedRecordsOrderedByDate));
+            carProfileDTO.setVehicleStatus(this.createVehicleStatusDTO(mixedRecordsOrderedByDate));
         }
         return carProfileDTO;
     }
@@ -81,11 +98,16 @@ public class CarProfileService {
         return vehicle;
     }
 
-    private VehicleStatusDTO createVehicleStatusDTO(FamilyVehicle familyVehicle) {
-        VehicleStatusDTO vehicleStatus = new VehicleStatusDTO();
-        vehicleStatus.setBrakesInspection("Annual inspection approaching due");
-        vehicleStatus.setTireRotation("Maintenance approaching due");
-        vehicleStatus.setOilChange("OK");
+    private VehicleStatusDTO createVehicleStatusDTO(List<ServiceRecord> mixedRecordsOrderedByDate) {
+    	VehicleComponentStatusDTO tires = this.tireComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+    	VehicleComponentStatusDTO oil = this.oilComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+    	VehicleComponentStatusDTO brakes = this.brakeComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+    	
+    	VehicleStatusDTO vehicleStatus = new VehicleStatusDTO();
+    	//ATENTION: the order must be Tires, Oil, brakes
+    	vehicleStatus.addVehicleComponentStatus(tires);
+    	vehicleStatus.addVehicleComponentStatus(oil);
+    	vehicleStatus.addVehicleComponentStatus(brakes);
         return vehicleStatus;
     }
 
@@ -113,9 +135,8 @@ public class CarProfileService {
         return result;
     }
 
-    private List<ServiceRecord> getLastServiceRecord(FamilyVehicle familyVehicle) {
-        List<ServiceRecord> result = this.recordService.getServiceRecords(familyVehicle.getId());
-        return result.subList(0, Math.min(result.size(), this.MAX_SERVICE_SERVICE_RESULT));
+    private List<ServiceRecord> getLastServiceRecord( List<ServiceRecord> records) {
+        return records.subList(0, Math.min(records.size(), this.MAX_SERVICE_SERVICE_RESULT));
     }
 
     private RecommendedService createRecommendedService(FamilyVehicle familyVehicle) {
