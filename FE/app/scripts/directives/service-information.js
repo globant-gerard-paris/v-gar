@@ -34,7 +34,7 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
             };
 
             scope.showInvoicePage = function (){
-                RedirectSrv.redirectTo('/dashboard'); //TODO: is shoulbe remplace wiht 'invoice-page' URl.
+                scope.$emit('SHOW_INVOICE_MODAL', scope.service);
             };
 
             var openConfirmationDialog = function () {
@@ -70,11 +70,8 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
     };
 }).controller('ModalConfirmationDeleteServiceCtrl', function ($scope, $modalInstance) {
 
-    $scope.ok = function () {
+    $scope.close = function () {
         $modalInstance.close();
     };
 
-    $scope.cancel = function () {
-        $modalInstance.dismiss();
-    };
 });

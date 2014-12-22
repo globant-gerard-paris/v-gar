@@ -73,3 +73,66 @@
         </div>
     </form>
 </script>
+
+
+<!-- Modal invoice  -->
+
+<script type="text/ng-template" id="modalInvoice.html">
+        <div class="modal-window">
+            <div class="modal-header">
+                <div>
+                    <button type="button" class="btn-close-top-right btn-lg" ng-click="close()">
+                    </button>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6"><h1 class="text-left">Give us feedback!</h1></div>
+                    <div class="col-xs-6"><h3 class="text-left">
+                            <span>May 4, 2014</span>
+                            <br>
+                            <small>y de esto tambien</small>
+                    </h3></div>
+                </div>
+            </div>
+            <div>
+                <div class="modal-body form-horizontal">
+                    <table class="table">
+                        <caption>Optional table caption.</caption>
+                        <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>@fat</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>@twitter</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <img alt="Invoice icon" ng-click="showInvoicePage()" class="icon-envoice" src="resources/images/invoice/key-circle-white.png"/>
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</script>

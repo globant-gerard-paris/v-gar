@@ -23,6 +23,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Invoice",
+      "value": "invoice"
     }
   ],
   "controller": [
@@ -77,6 +81,10 @@
     {
       "name": "Store finder",
       "value": "store-locator"
+    },
+    {
+      "name": "Invoice",
+      "value": "invoice"
     }
   ],
   "filter": [],
@@ -213,6 +221,10 @@
     {
       "name": "Store locator",
       "value": "store-locator"
+    },
+    {
+      "name": "Invoice",
+      "value": "invoice"
     }
   ],
   "sass": []
