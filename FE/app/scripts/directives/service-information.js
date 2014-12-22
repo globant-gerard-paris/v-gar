@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('serviceInformation', function () {
+angular.module('Directives').directive('serviceInformation', function ($modal, RecordSrv, RedirectSrv) {
     return {
         restrict: 'E',
         templateUrl: 'scripts/directives/views/service-information.html',
@@ -29,6 +29,52 @@ angular.module('Directives').directive('serviceInformation', function () {
             scope.serviceDesc = serviceDescArr.join(', ');
             scope.serviceMileage = scope.service.mileage;
 
+            scope.removeRecord = function () {
+                openConfirmationDialog();
+            };
+
+            scope.showInvoicePage = function (){
+                RedirectSrv.redirectTo('/dashboard'); //TODO: is shoulbe remplace wiht 'invoice-page' URl.
+            };
+
+            var openConfirmationDialog = function () {
+
+                var modalNewRecord = $modal.open({
+                    templateUrl: 'modalConfirmationDeleteRecord.html',
+                    controller: 'ModalConfirmationDeleteServiceCtrl',
+                    size: 'md',
+                    resolve: {
+                        context: function () {
+                        }
+                    }
+                });
+
+                modalNewRecord.result.then(function (model) {
+                    console.log(model);
+                    RecordSrv.deleteRecord(scope.service.id).then(removeRecordSuccess, removeRecordFail);
+                }, function () {
+                    //do nothing
+                });
+
+            };
+
+            var removeRecordSuccess = function (response) {
+                scope.$emit('REMOVED_RECORD', response);
+            };
+
+            var removeRecordFail = function (response) {
+                console.log('ERROR ' + response);
+            };
+
         }
+    };
+}).controller('ModalConfirmationDeleteServiceCtrl', function ($scope, $modalInstance) {
+
+    $scope.ok = function () {
+        $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss();
     };
 });

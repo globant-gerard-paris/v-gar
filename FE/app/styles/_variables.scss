@@ -1,9 +1,14 @@
+
 $headerColor: #1fafc8;
 $commonColor: #555e6c;
 $linkColor: #32b5ca;
 $linkColorAlt: #91c7ca;
 $highlighterTitleColor: #000000;
 $screen-sm-min: 768px;
+
+// Recalls / Services
+$header-color-unselected: #555E6D;
+$header-color-selected: #419FD2;
 
 //car-profile
 $headerService: '../resources/images/car-profile/services.png';
@@ -32,12 +37,15 @@ $locationMapBg: '../resources/images/car-profile/map-bg.jpg';
 $tellUsMoreIcon: '../resources/images/car-profile/tellUsMoreIcon.png';
 $tellUsMoreCar: '../resources/images/car-profile/car-heart.jpg';
 
+//recalls
+$wrench : "../resources/images/recalls/wrench.png";
+$wrench-with-men : "../resources/images/recalls/men-with-wrench.png";
+$assistance : "../resources/images/recalls/assistance.png";
+$pen-recalls : "../resources/images/recalls/pen.png";
+
 // manage car
 $manageCarLoader: '../resources/images/loader.gif';
 $manageAddCarConfirmed: '../resources/images/manage-car/vapprove.png';
-
-// url images.
-$wrench : "../resources/images/wrench.png";
 
 // social icons
 $twitterDesktop: '../resources/images/dashboard/shareicon_twitter.png';

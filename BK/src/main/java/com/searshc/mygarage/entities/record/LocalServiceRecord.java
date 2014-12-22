@@ -7,16 +7,18 @@ public class LocalServiceRecord extends ServiceRecord {
 
     private Long id;
     private String source;
+    private String comment;
 
     public LocalServiceRecord() {
         this.type = ServiceRecordType.LOCAL_SERVICE;
     }
 
-    public LocalServiceRecord(Long id, String source, int mileage, Date date,
-            ServiceRecordItem serviceRecordItem) {
+    public LocalServiceRecord(final Long id,final String source,final int mileage,final Date date,
+            final ServiceRecordItem serviceRecordItem, final String comment) {
         super(mileage, date, ServiceRecordType.LOCAL_SERVICE, serviceRecordItem);
         this.id = id;
         this.source = source;
+        this.comment = comment;
     }
 
     /**
@@ -46,5 +48,20 @@ public class LocalServiceRecord extends ServiceRecord {
     public void setSource(String source) {
         this.source = source;
     }
+    
+    /**
+     * @return the comment.
+     */
+	public String getComment() {
+		return comment;
+	}
+
+	/**
+	 * 
+	 * @param comment to set.
+	 */
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 
 }
