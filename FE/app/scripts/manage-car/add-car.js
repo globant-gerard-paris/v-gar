@@ -141,7 +141,6 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
             $scope.model.makeSelected &&
             $scope.model.yearSelected) {
             //the user fill al data, so this has priority over that license plate
-            //console.log('user fills all data');
             setCar(loadingOff);
         } else {
             console.log('looking for license plate');
@@ -206,6 +205,11 @@ angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, Redire
 
         ManageCarSrv.addCar(vehicle, function (/*response*/) {
             $scope.model.state = states.added;
+
+            if (!$scope.landing) {
+                $scope.$emit('linked-cars-updated');
+            }
+
             cb();
         }, errorInApi);
 
