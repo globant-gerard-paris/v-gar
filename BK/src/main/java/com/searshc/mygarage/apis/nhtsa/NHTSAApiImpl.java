@@ -16,8 +16,8 @@ import com.searshc.mygarage.exceptions.NHTSARecallsException;
 /*import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Proxy.Type;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
-*/
+import org.springframework.http.client.SimpleClientHttpRequestFactory;*/
+
 @Component
 public class NHTSAApiImpl implements NHTSAApi {
 

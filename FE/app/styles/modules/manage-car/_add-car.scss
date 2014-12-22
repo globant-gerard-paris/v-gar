@@ -3,17 +3,19 @@
 
 
 .add-car-base{
-    .add-car-right-align{
-        select, input {
-            float: right;
-            width: 180px;
-        }
+    select, input {
+        width: 160px;
+        border-radius: 0;
+        font-size: 2.3rem;
+        height: 46px;
     }
-    .add-car-left-align {
-        select, input{
-            float: left;
-            width: 180px;
-        }
+
+    .title{
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+    .desc{
+        margin-bottom: 25px;
     }
 
     .license-plate{
@@ -28,6 +30,7 @@
     .btn-confirm{
         border: 0;
         text-transform: uppercase;
+        margin-top: 40px;
         &:disabled{
             background-color: #cccccc;
         }
@@ -37,8 +40,10 @@
         background-image: url($manageCarLoader);
         height: 24px;
         width: 24px;
-        background-color: #000000;
         margin: 0 auto;
+        float: right;
+        right: 46px;
+        position: relative;
     }
 
     .backSection {
@@ -47,7 +52,7 @@
         margin-left: 60px;
     }
 
-    .btn-back{
+    .btn-back, .btn-back-down{
         color: #3ea3d1;
         font-size: 1.3em;
         font-weight: 700;
@@ -55,9 +60,13 @@
         cursor: pointer;
     }
 
+    .btn-back-down{
+        line-height: 56px;
+    }
+
     .confirmed-box{
         text-align: center;
-        margin: 0 auto;
+        margin: 125px auto 0 auto;
         .btn-confirm{
             margin-top: 20px;
         }

@@ -1,17 +1,18 @@
-
-<div class="row page-title">
-    <div class="col-md-10 col-md-offset-1 title-car-records">Your vehicle records</div>
-</div>
-
-<div class="row page-buttons">
+<div ng-class="selectedTab === 'services' ? 'page-buttons-selected' : 'page-buttons-unselected'" class="row page-header-recalls">
 	<a href="/services">
+        <div
+                ng-class="selectedTab === 'services' ? 'header-select-service' : 'header-unselect-recall'"
+                class="col-xs-6 col-md-5  col-md-offset-1 no-border-right visible-xs"><span class="no-rotate">Services</span></div>
 	    <div
 	    	ng-class="selectedTab === 'services' ? 'selected' : 'un-selected'"
-	    	class="col-xs-6 col-md-5 col-md-offset-1 no-border-right">Services</div>
+	    	class="col-xs-6 col-md-5  col-md-offset-1 no-border-right  hidden-xs"><span class="no-rotate">Services</span></div>
     </a>
     <a href="/recalls">
+        <div
+                ng-class="selectedTab === 'recalls' ? 'header-select-recall' : 'header-unselect-service'"
+                class="col-xs-6 col-md-5 visible-xs"><span class="no-rotate">Recalls</span></div>
     	<div 
     		ng-class="selectedTab === 'recalls' ? 'selected' : 'un-selected'"
-    		class="col-xs-6 col-md-5">Recalls</div>
+    		class="col-xs-6 col-md-5  hidden-xs"><span class="no-rotate">Recalls</span></div>
     </a>
 </div>

@@ -57,7 +57,7 @@ public class RecordService extends GenericService<Record, Long, RecordRepository
             sri.setDescription(record.getSuggestedService().getDescription());
         }
         return new LocalServiceRecord(record.getId(), record.getSource(),
-                record.getMileage(), record.getDate(), sri);
+                record.getMileage(), record.getDate(), sri, record.getComment());
     }
 
     public List<ServiceRecord> getServiceRecords(final Long familyVehicleId) throws NCDBApiException {

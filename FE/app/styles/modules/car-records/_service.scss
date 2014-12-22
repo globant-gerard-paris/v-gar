@@ -34,17 +34,23 @@
 		}
 		padding-bottom:24px;
 	}
-
+    %service-type {
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 40px;
+      width: 40px;
+      background-size: contain;
+      float: left;
+      margin-top: -10px;
+    }
 	.service-type-manual{
-		background-image: url($wrench);
-      	background-repeat: no-repeat;
-      	background-position: center center;
-      	height: 40px;
-      	width: 40px;
-      	background-size: contain;
-      	float:left;
-      	margin-top:-10px;
-	}
+        @extend %service-type;
+        background-image: url($wrench-with-men);
+  	}
+	.service-type-remote{
+        @extend %service-type;
+        background-image: url($wrench);
+  	}
 	.sis-date {
 		text-align: left;
 	}
@@ -52,6 +58,58 @@
 		color: #555;
 		text-decoration: underline;
 	}
+
+    .sis-icon-manual{
+      height: 25px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+
+      .icon-assistance{
+        margin-right: 15px;
+      }
+      .icon-trash{
+        margin-left: 10px;
+        font-size: 17px;
+      }
+
+      a.tooltips {
+        position: relative;
+        display: inline;
+      }
+      a.tooltips span {
+        position: absolute;
+        min-width:200px;
+        padding: 20px;
+        color: #535D6D;
+        background: #FFFFFF;
+        text-align: left;
+        visibility: hidden;
+        border-radius: 0;
+        box-shadow: 0 0 10px #C5C5C5;
+      }
+      a.tooltips span:after {
+        content: '';
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        margin-left: -35px;
+        width: 0; height: 0;
+        border-bottom: 8px solid #FFFFFF;
+        border-right: 8px solid transparent;
+        border-left: 8px solid transparent;
+      }
+      a:hover.tooltips span {
+        visibility: visible;
+        opacity: 1;
+        top: 30px;
+        left: 50%;
+        margin-left: -76px;
+        z-index: 999;
+      }
+
+
+    }
 
  }
 
@@ -78,18 +136,70 @@
 			font-size: 0.9em;
 		}
 	}
-	.service-type-manual{
-		background-image: url($wrench);
-		background-repeat: no-repeat;
-		background-position: center center;
-		height: 40px;
-		width: 40px;
-		background-size: contain;
-		position: relative;
-		left: 20px;
-		top: 5px;
-	}
+
+    %service-type-small{
+      background-repeat: no-repeat;
+      background-position: center center;
+      height: 40px;
+      background-size: contain;
+      position: relative;
+      left: 20px;
+      top: 5px;
+    }
+
+    .service-type-manual{
+        @extend %service-type-small;
+        background-image: url($wrench-with-men);
+    }
+    .service-type-remote{
+        @extend %service-type-small;
+        background-image: url($wrench);
+    }
+
 	.sis-date-small{
-		width: 90%;
 	}
 }
+
+.add-service-header {
+  color: #555e6c;
+  font-weight: bold;
+  margin-top: 21px;
+  font-size: 12px;
+  text-decoration: none;
+  .text-add-service-header {
+    margin-right: 10px;
+  }
+
+}
+@media (max-width: 768px) {
+  .add-service-header{
+    right: 0;
+    position: relative;
+    top: -10px;
+    float: right;
+    .text-add-service-header {
+      margin-right: 10px;
+    }
+  }
+
+  .sis-icon-manual{
+    text-align: right !important;
+  }
+
+  a.tooltips span {
+    min-width:100px !important;
+    padding: 10px;
+    font-size: 15px;
+  }
+
+  a:hover.tooltips span {
+    margin-left: -100px !important;
+  }
+
+  a.tooltips span:after {
+    left: 85% !important;
+    margin-left: -10px !important;
+  }
+
+}
+
