@@ -84,7 +84,8 @@
   }
   %common-header{
     height: 44px;
-    width: 250px;
+    width: 280px;
+    padding-right: 50px;
   }
   .selected {
     @extend %common-header;
@@ -100,14 +101,12 @@
 
 .page-buttons-selected{
   @extend %page-buttons-header;
-  margin-top: 20px;
 }
 
 .page-buttons-unselected{
   @extend %page-buttons-header;
-  margin-top: 20px;
   position: relative !important;
-  max-width: 600px;
+  max-width: 768px;
 }
 
 @media (min-width: 1101px) {
@@ -128,7 +127,7 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 900px) {
+@media (min-width: 768px) and (max-width: 1100px) {
     .page-buttons-selected {
       padding-left: 15%;
     }
@@ -140,26 +139,35 @@
 @media (max-width: 767px) {
   .page-buttons-selected {
     margin-left: -25px;
-  }
-  .page-buttons-selected-left {
-    .header-select-left {
-      background: url("../resources/images/recalls/separator-header-select-left") no-repeat;
-      background-color: $header-color-selected ;
-    }
-
-    .header-select-right{
-      background-color: $header-color-unselected;
+    div{
+      padding: 16px;
     }
   }
-  .page-buttons-selected-right {
-    .header-select-left {
-      background-color: $header-color-unselected;
-    }
 
-    .header-select-right{
-      background: url("../resources/images/recalls/separator-header-select-right") no-repeat;
-      background-color: $header-color-unselected;
+  .page-buttons-unselected {
+    div{
+      padding: 16px;
     }
+  }
+
+  .header-select-service {
+    background: url("../resources/images/recalls/separator-header-select-left.png") no-repeat;
+    background-color: $header-color-selected;
+    background-position-x: 100%;
+    height: 60px;
+  }
+
+  .header-unselect-recall {
+    background-color: $header-color-unselected;
+  }
+
+  .header-select-recall {
+    background: url("../resources/images/recalls/separator-header-select-right.png") no-repeat;
+    background-color: $header-color-selected;
+    height: 60px;
+  }
+  .header-unselect-service {
+    background-color: $header-color-unselected;
   }
 }
 
