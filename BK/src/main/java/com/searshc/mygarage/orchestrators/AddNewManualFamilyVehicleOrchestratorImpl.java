@@ -115,9 +115,9 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
     	return this.vehicleService.getDistinctModelsByYearMake(year, make);
     }
 
-
     @Override
     public void updateFamilyVehicleName(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
+    	Validate.notNull(addOrUpdateManualFamilyVehicleDTO, "The addOrUpdateManualFamilyVehicleDTO with the familyVehicleId can not be null");
         Long familyVehicleId = addOrUpdateManualFamilyVehicleDTO.getFamilyVehicleId();
         String name = addOrUpdateManualFamilyVehicleDTO.getName();
         Validate.notNull(userId, "The UserId cannot be null");
@@ -125,9 +125,9 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
         if (name == null){
         	Log.debug("Setting name to null");
         }
+
 		User user = this.userService.findByUserId(userId);
         FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
-
         validateConfirmedVehicle(user,familyVehicle);
 
         familyVehicle.setName(name);
