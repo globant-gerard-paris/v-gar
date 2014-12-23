@@ -10,9 +10,6 @@ public class VehicleDTO {
     private int year;
     private String make;
     private String model;
-    private String engine;
-    private String type;
-    private String color;
 
     private int mileage;
 
@@ -73,34 +70,6 @@ public class VehicleDTO {
     }
 
     /**
-     * @return the engine
-     */
-    public String getEngine() {
-        return engine;
-    }
-
-    /**
-     * @param engine the engine to set
-     */
-    public void setEngine(String engine) {
-        this.engine = engine;
-    }
-
-    /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    /**
      * @return the mileage
      */
     public int getMileage() {
@@ -112,20 +81,6 @@ public class VehicleDTO {
      */
     public void setMileage(int mileage) {
         this.mileage = mileage;
-    }
-
-    /**
-     * @return the color
-     */
-    public String getColor() {
-        return color;
-    }
-
-    /**
-     * @param color the color to set
-     */
-    public void setColor(String color) {
-        this.color = color;
     }
 
 }

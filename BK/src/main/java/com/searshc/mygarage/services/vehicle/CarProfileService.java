@@ -29,6 +29,7 @@ import com.searshc.mygarage.services.record.RecordService;
 import com.searshc.mygarage.services.vehicle.component.status.BrakeComponentStatusFactory;
 import com.searshc.mygarage.services.vehicle.component.status.OilComponentStatusFactory;
 import com.searshc.mygarage.services.vehicle.component.status.TireComponentStatusFactory;
+import java.util.ArrayList;
 
 /**
  *
@@ -61,7 +62,7 @@ public class CarProfileService {
         this.userRepository = userRepository;
         this.vehicleRecallsService = vehicleRecallsService;
         this.brakeComponentStatusFactory = brakeComponentStatusFactory;
-        this.tireComponentStatusFactory =  tireComponentStatusFactory;
+        this.tireComponentStatusFactory = tireComponentStatusFactory;
         this.oilComponentStatusFactory = oilComponentStatusFactory;
     }
 
@@ -70,13 +71,12 @@ public class CarProfileService {
         FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
         if (familyVehicle != null) {
             carProfileDTO = new CarProfileDTO(this.createVehicleDTO(familyVehicle));
-            
             carProfileDTO.setServiceCenter(this.getServiceCenter(userId));
             carProfileDTO.setRecallsInformation(this.createRecallsInformationDTO(familyVehicle));
             carProfileDTO.setRecommendedService(this.createRecommendedService(familyVehicle));
-            this.refreshMileage(familyVehicleId, carProfileDTO);
             List<ServiceRecord> mixedRecordsOrderedByDate = this.recordService.getServiceRecords(familyVehicle.getId());
             carProfileDTO.setLastServiceHistory(this.getLastServiceRecord(mixedRecordsOrderedByDate));
+            this.refreshMileage(familyVehicleId, carProfileDTO);
             carProfileDTO.setVehicleStatus(this.createVehicleStatusDTO(mixedRecordsOrderedByDate));
         }
         return carProfileDTO;
@@ -98,16 +98,16 @@ public class CarProfileService {
         return vehicle;
     }
 
-    private VehicleStatusDTO createVehicleStatusDTO(List<ServiceRecord> mixedRecordsOrderedByDate) {
-    	VehicleComponentStatusDTO tires = this.tireComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	VehicleComponentStatusDTO oil = this.oilComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	VehicleComponentStatusDTO brakes = this.brakeComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	
-    	VehicleStatusDTO vehicleStatus = new VehicleStatusDTO();
-    	//ATENTION: the order must be Tires, Oil, brakes
-    	vehicleStatus.addVehicleComponentStatus(tires);
-    	vehicleStatus.addVehicleComponentStatus(oil);
-    	vehicleStatus.addVehicleComponentStatus(brakes);
+    private List<VehicleComponentStatusDTO> createVehicleStatusDTO(List<ServiceRecord> mixedRecordsOrderedByDate) {
+        VehicleComponentStatusDTO tires = this.tireComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+        VehicleComponentStatusDTO oil = this.oilComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+        VehicleComponentStatusDTO brakes = this.brakeComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+
+        List<VehicleComponentStatusDTO> vehicleStatus = new ArrayList<VehicleComponentStatusDTO>();
+        //ATENTION: the order must be Tires, Oil, Brakes. This is the position in design
+        vehicleStatus.add(tires);
+        vehicleStatus.add(oil);
+        vehicleStatus.add(brakes);
         return vehicleStatus;
     }
 
@@ -135,7 +135,7 @@ public class CarProfileService {
         return result;
     }
 
-    private List<ServiceRecord> getLastServiceRecord( List<ServiceRecord> records) {
+    private List<ServiceRecord> getLastServiceRecord(List<ServiceRecord> records) {
         return records.subList(0, Math.min(records.size(), this.MAX_SERVICE_SERVICE_RESULT));
     }
 

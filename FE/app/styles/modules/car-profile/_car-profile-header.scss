@@ -159,46 +159,51 @@
         margin-top: 20px;
     }
     .car-profile-alerts-icons {
-        background: url("../resources/images/car-profile/car-alerts-bg.png") center center no-repeat;
+        background: url("../resources/images/car-profile/car-alerts-bg.png") top center no-repeat;
         background-size: contain;
         text-align: center;
         width: 471px;
         margin: 0 auto;
-    }
-    .item {
-        width: 33.3333%;
-        float: left;
-    }
-    .icon {
-        height: 131px;
-        width: 131px;
-        line-height: 131px;
-        display: inline-block;
-    }
-    .icon.service-alert-tire {
-        background: url("../resources/images/car-profile/tirerotation-bg.png") center center no-repeat;
-    }
-    .icon.service-alert-oil {
-        background: url("../resources/images/car-profile/oilchange-bg.png")  center center no-repeat;
-    }
-    .icon.service-alert-brakes {
-        background: url("../resources/images/car-profile/brakes-bg.png")  center center no-repeat;
-    }
-    .car-profile-alerts-text {
-        text-align: center;
-        width: 471px;
-        margin: 10px auto 0;
-        .title {
-            color: #555e6c;
-            font-size: 1.2em;
-            font-weight: 900;
-        }
-        .data {
-            color: #b0b4ba;
-            display: block;
-            font-size: 1em;
-            font-weight: 500;
-            line-height: 1em;
+
+        .item {
+            width: 33.3333%;
+            float: left;
+
+            .icon {
+                height: 131px;
+                width: 131px;
+                line-height: 131px;
+                display: inline-block;
+            }
+
+            $components:tires oil brakes;
+            $statusList:empty low medium full;
+
+            @each $component in $components {
+                @each $status in $statusList {
+                    .icon.service-alert-#{$component}-#{$status} {
+                        background: url("../resources/images/car-profile/#{$component}/#{$component}_#{$status}.png") center center no-repeat;
+                    }
+                }
+            }
+
+            .car-profile-alerts-text {
+                text-align: center;        
+                margin: 20px auto 0;
+                .title {
+                    color: #555e6c;
+                    font-size: 1.2em;
+                    font-weight: 900;
+                }
+                .data {
+                    color: #b0b4ba;
+                    display: block;
+                    font-size: 1em;
+                    font-weight: 500;
+                    line-height: 1em;
+                    margin-top: 5px;
+                }
+            }
         }
     }
 }
