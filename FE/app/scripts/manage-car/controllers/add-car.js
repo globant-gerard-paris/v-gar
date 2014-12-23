@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('ManageCar',[]).controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog, LinkedCarSrv, ManageCarSrv) {
+angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectSrv, stBlurredDialog, LinkedCarSrv, ManageCarSrv) {
 
     var states = {
         add:0,
