@@ -169,7 +169,7 @@ public class VehicleController {
 		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
 	}
 
-	@RequestMapping(value = "/vehicles/name/user/{userId}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/vehicles/name/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<Object> updateFamilyVehicleName(@PathVariable("userId") final long userId,
 			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {

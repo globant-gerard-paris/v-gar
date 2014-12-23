@@ -122,7 +122,9 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
         String name = addOrUpdateManualFamilyVehicleDTO.getName();
         Validate.notNull(userId, "The UserId cannot be null");
         Validate.notNull(familyVehicleId, "The FamilyVehicleId cannot be null");
-        Validate.notNull(name, "The Name cannot be null");
+        if (name == null){
+        	Log.debug("Setting name to null");
+        }
 		User user = this.userService.findByUserId(userId);
         FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
 
