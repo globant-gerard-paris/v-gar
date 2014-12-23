@@ -34,11 +34,4 @@ public class NCDBVinNumberSearchControllerMock {
 		return new ResponseEntity<String>(response, null, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/monitor", method = RequestMethod.GET, produces = MediaType.TEXT_HTML_VALUE)
-	@ResponseBody
-	public ResponseEntity<String> getMonitorString(@RequestBody final String request) {
-		log.info("Request with data: " + request);
-		String response = "I am Alive";
-		return new ResponseEntity<String>(response, null, HttpStatus.OK);
-	}
 }
