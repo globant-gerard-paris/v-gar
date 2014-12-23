@@ -1,0 +1,67 @@
+<script type="text/javascript">
+$(document).ready(function () {
+	$('[data-toggle="popover"]').popover({ delay: { "show": 100, "hide": 150 }, trigger: 'hover' });
+});
+</script>
+<style type="text/css">
+.popover { max-width: 400px; font-size:small; }
+.input-sm, .form-horizontal .form-group-sm .form-control { height:25px; }
+.modal-content { width: initial; }
+</style>
+<div class="modal-header">
+	<h3>Tell us more...</h3>
+</div>
+<div class="modal-body">
+	<form name="questionBankForm" id="questionBankForm" role="form" class="form-inline">
+		<div ng-show="hasQuestion()">
+			<div class="row">
+				<div class="col-sm-6">
+					<h4>{{questionData.questionText}}</h4>
+				</div>
+				<div class="col-sm-6">
+					<div ng-show="questionData.answerTemplate=='SingleSelect'">
+						<div style="font-size:large;" ng-repeat="answerChoice in questionData.choices">
+							<div class="radio">
+								<label>
+									<input type="radio" ng-model="$parent.selectedAnswers[0]" name="answerChoice" value="{{answerChoice.answerChoiceID}}" /> {{answerChoice.answerTxt}}
+								</label>
+							</div>
+							<br />
+						</div>
+					</div>
+					<div ng-show="questionData.answerTemplate=='MultiChoice'">
+						<div style="font-size:large;" ng-repeat="answerChoice in questionData.choices">
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="answerChoice" value="{{answerChoice.answerChoiceID}}" ng-checked="selectedAnswers.indexOf(answerChoice.answerChoiceID) > -1" ng-click="toggleMultiChoiceAnswer(answerChoice.answerChoiceID)" /> {{answerChoice.answerTxt}}
+								</label>
+							</div>
+							<br />
+						</div>
+					</div>
+					<div ng-show="questionData != null && questionData.answerTemplate=='FreeText'">
+						<textarea name="answerChoice" cols="56" style="width:100%;" rows="4" ng-model="freeTextAnswer" ng-required="true" ng-minlength="1" ng-maxlength="200" class="form-control"></textarea>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="requiresFollowup()">
+				<br />
+				<div><strong>{{questionData.followupQuestion}}</strong></div>
+				<textarea class="form-control input-sm" style="width:100%;" rows="3" ng-maxlength="200" ng-model="freeTextAnswer" id="freeTextAnswer"></textarea>
+			</div>
+		</div>
+		<div ng-show="!isLoadingData() && !hasQuestion()">
+			<h3>Currently we do not have any questions. Thank you!</h3>
+		</div>
+		<div ng-show="isLoadingData()">
+			<h3>Please wait, we are fetching your data.</h3> 
+		</div>
+	</form>
+</div>
+<div class="modal-footer clearfix">
+	<button type="button" class="btn pull-left" ng-click="cancel()">Finish</button>
+	<div class="pull-left" style="width:15px;">&nbsp;</div>
+	<a href="#" class="pull-left" style="line-height:35px;" data-toggle="popover" data-placement="bottom" data-content="In order to provide a better experience to you and all our other members, we'd like to know a little more about you. This allows us to better provide for your needs, and make your experience smoother and more enjoyable. None of these fields are mandatory. If you don't want to share this information, you don't have to.">Why do we ask?</a>
+	<button type="button" class="btn btn-primary pull-right" ng-click="ok();" ng-show="hasQuestion()" ng-disabled="isSubmitDisabled()">Next</button>
+</div>

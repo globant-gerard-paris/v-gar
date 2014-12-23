@@ -489,6 +489,12 @@ module.exports = function (grunt) {
                 'Attribute “ng-required” not allowed on XHTML element “input” at this point.',
                 'Attribute “maxlength” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-maxlength” not allowed on XHTML element “input” at this point.'
+				'Attribute “ng-model” not allowed on XHTML element “textarea” at this point.',
+				'Attribute “ng-required” not allowed on XHTML element “textarea” at this point.',
+				'Attribute “ng-minlength” not allowed on XHTML element “textarea” at this point.',
+				'Attribute “ng-maxlength” not allowed on XHTML element “textarea” at this point.',
+				'Attribute “ng-maxlength” not allowed on XHTML element “textarea” at this point.',
+				'Attribute “ng-model” not allowed on XHTML element “textarea” at this point.'
             ]
         }
     });
