@@ -37,7 +37,7 @@ angular.module('PresentationFlow').controller('DashboardCtrl', function ($timeou
     };
 
     $scope.openAddCar = function () {
-        stBlurredDialog.open('scripts/manage-car/add-car.html');
+        stBlurredDialog.open('scripts/manage-car/views/add-car.html');
     };
 
     $scope.getToCarProfile = function (familyVehicle) {

@@ -37,7 +37,7 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
         if($scope.nextURL === '/linked-car'){
             openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
         } else if($scope.nextURL === '/add-car'){
-            openFullScreenModal('scripts/manage-car/add-car.html');
+            openFullScreenModal('scripts/manage-car/views/add-car.html');
         }
         else{
             RedirectSrv.redirectTo($scope.nextURL);
