@@ -65,6 +65,7 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
      * Each time that reload the URL validate bradecrumb.
      */
     $scope.$on('$routeChangeSuccess', function () {
+        window.scrollTo(0,0);
         $scope.model.currentPath = $location.path();
         if ($scope.isServicesOrRecallsPage()) {
             $scope.model.backButtonMobileLink = '/car-profile';

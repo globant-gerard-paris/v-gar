@@ -24,7 +24,6 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         $scope.model.groupedServices = _.groupBy($scope.model.services, function (srv) {
             var date = new Date(srv.date);
             var year = date.getFullYear();
-            srv.type = 'REMOTE_SERVICE'; // THIS LINE MUST BE ELIMINATED, ONLY FOR TEST PROPOUSE
             $scope.model.years.push(year);
             return year;
         });
@@ -92,7 +91,7 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         });
 
         modalNewRecord.result.then(function (model) {
-            RedirectSrv.redirectToPrev();
+            console.log(model);
         }, function () {
             // 'Modal dismissed at: ' + new Date()
         });
@@ -142,9 +141,14 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
-}).controller('ModalInvoiceCtrl', function ($scope, $modalInstance) {
+}).controller('ModalInvoiceCtrl', function ($scope, $modalInstance, context) {
+
+    $scope.model = {
+        context : context
+    };
 
     $scope.close = function () {
-        $modalInstance.close();
+        $modalInstance.close($scope.model.context);
     };
+
 });
