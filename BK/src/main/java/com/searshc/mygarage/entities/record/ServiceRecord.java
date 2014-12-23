@@ -28,7 +28,10 @@ public abstract class ServiceRecord {
     }
 
     public void addServiceRecordItem(ServiceRecordItem item) {
-        this.serviceRecordItems.add(item);
+        if(this.serviceRecordItems == null) {
+        	this.serviceRecordItems = new ArrayList<ServiceRecordItem>();
+        }
+    	this.serviceRecordItems.add(item);
     }
 
     /**
