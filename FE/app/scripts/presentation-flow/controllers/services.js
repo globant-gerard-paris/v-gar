@@ -75,6 +75,34 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
         };
     };
 
+    $scope.openInvoiceModal = function (service) {
+
+        var modalNewRecord = $modal.open({
+            templateUrl: 'modalInvoice.html',
+            controller: 'ModalInvoiceCtrl',
+            windowClass: 'vg-record-modal',
+            backdropClass: 'vg-record-backdrop',
+            size: 'md',
+            resolve: {
+                context: function () {
+                    return service;
+                }
+            }
+        });
+
+        modalNewRecord.result.then(function (model) {
+            console.log(model);
+        }, function () {
+            // 'Modal dismissed at: ' + new Date()
+        });
+
+    };
+
+    $scope.$on('SHOW_INVOICE_MODAL', function (event, dataResponse) {
+        $scope.openInvoiceModal(dataResponse);
+    });
+
+
     /**
      * Initialize controller.
      */
@@ -113,4 +141,14 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
     $scope.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
+}).controller('ModalInvoiceCtrl', function ($scope, $modalInstance, context) {
+
+    $scope.model = {
+        context : context
+    };
+
+    $scope.close = function () {
+        $modalInstance.close($scope.model.context);
+    };
+
 });

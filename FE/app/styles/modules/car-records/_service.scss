@@ -1,169 +1,170 @@
-.service-box{
-    margin: 0 auto;
-    max-width: 1200px;
-	.separator{
-		height: 34px;
-	}
-	.service-date{
-		text-align: center;
-		margin: 16px 0 0 0;
-		border-top: 1px solid #ddd;
-		@extend %font-Roboto;
-		span{
-			color: #aaa;
-			background-color: white;
-			position: relative;
-			top: -0.7em;
-			padding: 0 20px;
-			font-size: 1.4em;
-		}
-	}
-	.service-header{
-		color: #555;
-		@extend %font-Roboto;
-		font-weight: bold;
-		font-size: 1.1em;
-		padding-bottom:24px;
-	}
-	.services-info{
-		font-size: 0.9em;
-		@extend %font-Roboto;
-		color: #888;
-		.service-data{
-			padding-top:10px;
-		}
-		padding-bottom:24px;
-	}
-    %service-type {
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 40px;
-      width: 40px;
-      background-size: contain;
-      float: left;
-      margin-top: -10px;
-    }
-	.service-type-manual{
-        @extend %service-type;
-        background-image: url($wrench-with-men);
-  	}
-	.service-type-remote{
-        @extend %service-type;
-        background-image: url($wrench);
-  	}
-	.sis-date {
-		text-align: left;
-	}
-	.service-highlight{
-		color: #555;
-		text-decoration: underline;
-	}
-
-    .sis-icon-manual{
-      height: 25px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-
-      .icon-assistance{
-        margin-right: 15px;
-      }
-      .icon-trash{
-        margin-left: 10px;
-        font-size: 17px;
-      }
-
-      a.tooltips {
-        position: relative;
-        display: inline;
-      }
-      a.tooltips span {
-        position: absolute;
-        min-width:200px;
-        padding: 20px;
-        color: #535D6D;
-        background: #FFFFFF;
-        text-align: left;
-        visibility: hidden;
-        border-radius: 0;
-        box-shadow: 0 0 10px #C5C5C5;
-      }
-      a.tooltips span:after {
-        content: '';
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        margin-left: -35px;
-        width: 0; height: 0;
-        border-bottom: 8px solid #FFFFFF;
-        border-right: 8px solid transparent;
-        border-left: 8px solid transparent;
-      }
-      a:hover.tooltips span {
-        visibility: visible;
-        opacity: 1;
-        top: 30px;
-        left: 50%;
-        margin-left: -76px;
-        z-index: 999;
-      }
-
-
-    }
-
- }
-
-.services-info-small{
-	@extend %font-Roboto;
-	.row.sis-header{
-		text-align: center;
-		background-color: #fff;
-		font-size: 1.4em;
-		color: #a0a1a3;
-	}
-	.row{
-		border-bottom: 1px solid white;
-		padding:14px 5px 14px 5px;
-		background-color: #f8f8f8;
-		.sis-data{
-			font-weight: bold;
-			color: #585d6b;
-			margin-left: 100px;
-		}
-		.sis-title{
-			color: #b0b1b2;
-			min-width: 6em;
-			font-size: 0.9em;
-		}
-	}
-
-    %service-type-small{
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 40px;
-      background-size: contain;
+.service-box {
+  margin: 0 auto;
+  max-width: 1200px;
+  .separator {
+    height: 34px;
+  }
+  .service-date {
+    text-align: center;
+    margin: 16px 0 0 0;
+    border-top: 1px solid #ddd;
+    @extend %font-Roboto;
+    span {
+      color: #aaa;
+      background-color: white;
       position: relative;
-      left: 20px;
-      top: 5px;
+      top: -0.7em;
+      padding: 0 20px;
+      font-size: 1.4em;
+    }
+  }
+  .service-header {
+    color: #555;
+    @extend %font-Roboto;
+    font-weight: bold;
+    font-size: 1.1em;
+    padding-bottom: 24px;
+  }
+  .services-info {
+    font-size: 0.9em;
+    @extend %font-Roboto;
+    color: #888;
+    .service-data {
+      padding-top: 10px;
+    }
+    padding-bottom: 24px;
+  }
+  %service-type {
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 40px;
+    width: 40px;
+    background-size: contain;
+    float: left;
+    margin-top: -10px;
+  }
+  .service-type-manual {
+    @extend %service-type;
+    background-image: url($wrench-with-men);
+  }
+  .service-type-remote {
+    @extend %service-type;
+    background-image: url($wrench);
+  }
+  .sis-date {
+    text-align: left;
+  }
+  .service-highlight {
+    color: #555;
+    text-decoration: underline;
+  }
+
+  .sis-icon-manual {
+    height: 25px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+    .icon-assistance {
+      margin-right: 15px;
+    }
+    .icon-trash {
+      margin-left: 10px;
+      font-size: 17px;
     }
 
-    .service-type-manual{
-        @extend %service-type-small;
-        background-image: url($wrench-with-men);
+    a.tooltips {
+      position: relative;
+      display: inline;
     }
-    .service-type-remote{
-        @extend %service-type-small;
-        background-image: url($wrench);
+    a.tooltips span {
+      position: absolute;
+      min-width: 200px;
+      padding: 20px;
+      color: #535D6D;
+      background: #FFFFFF;
+      text-align: left;
+      visibility: hidden;
+      border-radius: 0;
+      box-shadow: 0 0 10px #C5C5C5;
+    }
+    a.tooltips span:after {
+      content: '';
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -35px;
+      width: 0;
+      height: 0;
+      border-bottom: 8px solid #FFFFFF;
+      border-right: 8px solid transparent;
+      border-left: 8px solid transparent;
+    }
+    a:hover.tooltips span {
+      visibility: visible;
+      opacity: 1;
+      top: 30px;
+      left: 50%;
+      margin-left: -76px;
+      z-index: 999;
     }
 
-	.sis-date-small{
-	}
+  }
+
+}
+
+.services-info-small {
+  @extend %font-Roboto;
+  .row.sis-header {
+    text-align: center;
+    background-color: #fff;
+    font-size: 1.4em;
+    color: #a0a1a3;
+  }
+  .row {
+    border-bottom: 1px solid white;
+    padding: 14px 5px 14px 5px;
+    background-color: #f8f8f8;
+    .sis-data {
+      font-weight: bold;
+      color: #585d6b;
+      margin-left: 100px;
+    }
+    .sis-title {
+      color: #b0b1b2;
+      min-width: 6em;
+      font-size: 0.9em;
+    }
+  }
+
+  %service-type-small {
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 40px;
+    background-size: contain;
+    position: relative;
+    left: 20px;
+    top: 5px;
+  }
+
+  .service-type-manual {
+    @extend %service-type-small;
+    background-image: url($wrench-with-men);
+  }
+  .service-type-remote {
+    @extend %service-type-small;
+    background-image: url($wrench);
+  }
+
+  .sis-date-small {
+  }
 }
 
 .add-service-header {
   color: #555e6c;
   font-weight: bold;
-  margin-top: 21px;
+  position: relative;
+  top: 15px;
   font-size: 12px;
   text-decoration: none;
   .text-add-service-header {
@@ -171,23 +172,26 @@
   }
 
 }
+
 @media (max-width: 768px) {
-  .add-service-header{
-    right: 0;
+  .add-service-header {
+    right: 10px;
     position: relative;
-    top: -10px;
+    top: 10px;
+    height: 30px;
     float: right;
+    margin-bottom: 12px;
     .text-add-service-header {
       margin-right: 10px;
     }
   }
 
-  .sis-icon-manual{
+  .sis-icon-manual {
     text-align: right !important;
   }
 
   a.tooltips span {
-    min-width:100px !important;
+    min-width: 100px !important;
     padding: 10px;
     font-size: 15px;
   }
@@ -203,3 +207,135 @@
 
 }
 
+.modal-invoice-windows {
+  width: 75%;
+  margin-top: -40px;
+  margin: auto;
+  background-color: white;
+  border: 1px solid #aaa;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 700px;
+
+  .text-blue{
+    color: #41A0D1;
+    font-weight: 500;
+  }
+  .limit-description{
+    width: 265px;
+  }
+
+  th {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  tr.space-under > td
+  {
+    padding-bottom: 30px;
+  }
+
+  .modal-footer {
+    height: 35px;
+    .text-buttom{
+      color: #A6AAB0;
+      font-size: 11px;
+      padding-left: 10px;
+    }
+  }
+
+  .invoice-modal {
+    margin: 35px;
+    margin-top: 80px;
+    font-family: Roboto;
+    color: #555e6c;
+
+    .row{
+      margin-bottom: 60px;
+    }
+
+    .invoice-title {
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 30px;
+      text-align: left;
+      width: 189px;
+      height: 23px;
+    }
+
+    .invoice-sub-title-date {
+      font-size: 18px;
+      font-weight: 500;
+      text-align: left;
+      width: 97px;
+      height: 17px;
+
+    }
+    .invoice-sub-title-description {
+      font-size: 14px;
+      font-weight: 400;
+      text-align: left;
+      width: 208px;
+      height: 31px;
+    }
+
+  }
+}
+
+.footer-image{
+  background-color: #FBFBFB;
+  margin-bottom: -8px;
+  margin-left: -25px;
+  margin-right: -25px;
+  height: 110px;
+  position: relative;
+  bottom: 0;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #E7E7E7;
+
+  h4{
+    margin-top: -15px;
+  }
+}
+
+.icon-envoice{
+  position: relative;
+  top: -25px;
+  right: 25px;
+}
+.icon-envoice-key{
+  position: relative;
+  top: -25px;
+  right: 25px;
+  padding-left: 50px;
+}
+
+@media (max-width: 768px) {
+  .modal-invoice-windows {
+    width: 100%;
+    margin-top: 20px;
+    padding-left: 5px;
+    padding-right: 15px;
+
+    .invoice-modal {
+      margin: 10px;
+      margin-top: 30px;
+      font-family: Roboto;
+      color: #555e6c;
+    }
+
+    .footer-image{
+      margin-bottom: -8px;
+      margin-left: -20px;
+      margin-right: -30px;
+      height: 110px;
+      position: relative;
+      bottom: 0;
+    }
+  }
+  .logo-vertical{
+    position: relative;
+    right: -25px;
+  }
+}

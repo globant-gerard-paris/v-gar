@@ -1,60 +1,65 @@
 <div class="services-info row hidden-xs">
-        <div class="col-sm-2"><div ng-class="('LOCAL_SERVICE' === service.type) ? 'service-type-manual' : 'service-type-remote'"></div>{{serviceDate | date:'MM/dd/yyyy'}}</div>
-        <div class="col-sm-1">{{serviceMileage | number}}</div>
-        <div class="col-sm-4 service-highlight">{{serviceCenterStr}}</div>
-        <div ng-class="'LOCAL_SERVICE' === service.type ? 'col-sm-3' : 'col-sm-4'">{{serviceDesc}}</div>
-        <div ng-if="'REMOTE_SERVICE' === service.type" class="sis-icon-manual col-sm-1">
-            <img alt="Invoice icon" ng-click="showInvoicePage()" class="icon-envoice" src="resources/images/recalls/envoice.png"/>
-        </div>
-        <div ng-if="'LOCAL_SERVICE' === service.type" class="sis-icon-manual col-sm-2">
-            <a class="tooltips" href="#">
-                <img  alt="Assistance icon" src="resources/images/recalls/assistance.png"/>
+    <div class="col-sm-2">
+        <div ng-class="('LOCAL_SERVICE' === service.type) ? 'service-type-manual' : 'service-type-remote'"></div>
+        {{serviceDate | date:'MM/dd/yyyy'}}
+    </div>
+    <div class="col-sm-1">{{serviceMileage | number}}</div>
+    <div class="col-sm-4 service-highlight">{{serviceCenterStr}}</div>
+    <div ng-class="'LOCAL_SERVICE' === service.type ? 'col-sm-3' : 'col-sm-4'">{{serviceDesc}}</div>
+    <div ng-if="'REMOTE_SERVICE' === service.type" class="sis-icon-manual col-sm-1">
+        <img alt="Invoice icon" ng-click="showInvoicePage()" class="icon-envoice"
+             src="resources/images/recalls/envoice.png"/>
+    </div>
+    <div ng-if="'LOCAL_SERVICE' === service.type" class="sis-icon-manual col-sm-2">
+        <a class="tooltips" href="#">
+            <img alt="Assistance icon" src="resources/images/recalls/assistance.png"/>
                   <span class="icon-assistance">
                       {{service.comment}}
                   </span>
-            </a>
-            <span ng-click="removeRecord()" class="icon-trash glyphicon glyphicon-trash"></span>
-        </div>
+        </a>
+        <span ng-click="removeRecord()" class="icon-trash glyphicon glyphicon-trash"></span>
+    </div>
 </div>
 
 <div class="services-info-small visible-xs">
-		<div class="row sis-header">
-			<div class="col-xs-2" ng-class="('LOCAL_SERVICE' === service.type) ? 'service-type-manual' : 'service-type-remote'"></div>
-            <div class="sis-date-small col-xs-10">
-                <div ng-if="'LOCAL_SERVICE' === service.type" class="sis-icon-manual">
-                    <a class="tooltips" href="#">
-                        <img alt="Assistance icon" src="resources/images/recalls/assistance.png"/>
+    <div class="row sis-header">
+        <div class="col-xs-2"
+             ng-class="('LOCAL_SERVICE' === service.type) ? 'service-type-manual' : 'service-type-remote'"></div>
+        <div class="sis-date-small col-xs-10">
+            <div ng-if="'LOCAL_SERVICE' === service.type" class="sis-icon-manual">
+                <a class="tooltips" href="#">
+                    <img alt="Assistance icon" src="resources/images/recalls/assistance.png"/>
                           <span class="icon-assistance">
                               {{service.comment}}
                           </span>
-                    </a>
-                    <span ng-click="removeRecord()" class="icon-trash glyphicon glyphicon-trash"></span>
-                </div>
+                </a>
+                <span ng-click="removeRecord()" class="icon-trash glyphicon glyphicon-trash"></span>
             </div>
         </div>
-        <div class="row">
+    </div>
+    <div class="row">
         <div class="sis-title col-xs-3">MILEAGE</div>
-        	<div class="sis-data">{{serviceMileage | number}}</div>
+        <div class="sis-data">{{serviceMileage | number}}</div>
+    </div>
+    <div class="row">
+        <div class="sis-title col-xs-3">
+            SERVICE<br>
+            CENTER
         </div>
-        <div class="row">
-       		<div class="sis-title col-xs-3">
-                                            SERVICE<br>
-                                            CENTER
-            </div>
-        	<div class="sis-data service-highlight">{{serviceCenterStr}}</div>
-        </div>
-        <div class="row">
-        	<div class="sis-title col-xs-3">SERVICE</div>
-        	<div class="sis-data">{{serviceDesc}}</div>
-        </div>
-        <div class="row">
-        	<div class="sis-title col-xs-3">SERVICE DATE</div>
-        	<div class="sis-data">{{service.date | date:'MM/dd/yy'}}</div>
-        </div>
-        <div class="row">
-        	<div class="sis-title col-xs-3">DETAILS</div>
-        	<div class="sis-data">None</div>
-        </div>
+        <div class="sis-data service-highlight">{{serviceCenterStr}}</div>
+    </div>
+    <div class="row">
+        <div class="sis-title col-xs-3">SERVICE</div>
+        <div class="sis-data">{{serviceDesc}}</div>
+    </div>
+    <div class="row">
+        <div class="sis-title col-xs-3">SERVICE DATE</div>
+        <div class="sis-data">{{service.date | date:'MM/dd/yy'}}</div>
+    </div>
+    <div class="row">
+        <div class="sis-title col-xs-3">DETAILS</div>
+        <div class="sis-data">None</div>
+    </div>
 </div>
 
 <!-- Modal confirmation  -->
@@ -64,12 +69,86 @@
     </div>
     <form name="recordForm" novalidate ng-submit="addRecord()">
         <div class="modal-body form-horizontal">
-            Are you sure you want to delete the record? Once you remove it the record will disappear from the vehicle profile.
+            Are you sure you want to delete the record? Once you remove it the record will disappear from the vehicle
+            profile.
             <h4 class="text-center"></h4>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="ok()">Accept</button>
+            <button type="submit" class="btn btn-primary" ng-disabled="recordForm.$invalid" ng-click="ok()">Accept
+            </button>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         </div>
     </form>
+</script>
+
+
+<!-- Modal invoice  -->
+
+<script type="text/ng-template" id="modalInvoice.html">
+    <div class="modal-invoice-windows">
+        <div class="modal-header">
+            <div>
+                <button type="button" class="btn-close-top-right btn-lg" ng-click="close()">
+                </button>
+            </div>
+            <div class="invoice-modal">
+                <div class="row">
+                    <div class="col-xs-6"><span class="text-left invoice-title">Service Details</span></div>
+                    <div class="col-xs-6">
+                        <span class="text-left">
+                            <span class="invoice-sub-title-date">May 4, 2014</span>
+                            <br>
+                            <span class="invoice-sub-title-description">
+                                Woodfield Mall, 2 Woodfield Mall,<br>
+                                Shaumburg, IL 60173
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div>
+                    <div class="modal-body form-horizontal">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th class="text-left">Description</th>
+                                <th class="text-right">Quantity</th>
+                                <th class="text-right">Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="space-under" ng-repeat="order in model.context.order.orderItems">
+                                <td class="limit-description"><span>{{order.itemDescription}}</span></td>
+                                <td class="text-right text-blue"><span>{{order.itemQuantity}}</span></td>
+                                <td class="text-right text-blue"><span>${{order.sellingPriceAmount}}</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+
+                        <div class="row">
+                            <div class="text-left col-xs-6">
+                                <span class="text-buttom">
+                                    THIS IS NOT A RECEIPT
+                                </span>
+                            </div>
+                            <div class="logo-vertical text-right col-xs-6">
+                                <img src="resources/images/invoice/logo-vertical.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-image text-center row">
+                <div col="col-xs-12">
+                    <img alt="Invoice icon" class="icon-envoice-key"
+                         src="resources/images/invoice/key-circle-white.png"/>
+                    <h4>
+                        Recommended Services<br>
+                        <small>Tire Rotation, Oil Change, Alignment</small>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
 </script>
