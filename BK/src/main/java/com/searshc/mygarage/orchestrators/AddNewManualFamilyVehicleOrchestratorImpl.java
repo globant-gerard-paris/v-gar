@@ -71,15 +71,9 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
         String name = addOrUpdateManualFamilyVehicleDTO.getName();
 
         Validate.notNull(familyVehicleId, "The FamilyVehicleId cannot be null");
-        User user = this.userService.findByUserId(userId);
+		User user = this.userService.findByUserId(userId);
         FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
-
-        if (!this.confirmedVehicleService.isAConfirmedVehicleByTheUser(user, familyVehicle)) {
-            String msg = new StringBuilder("The FamilyVehicle with id: ")
-                    .append(familyVehicleId).append(" is not confirmed by user with id: ").append(userId).toString();
-            Log.error(msg);
-            throw new FamilyVehicleNotConfirmedByUserException(msg);
-        }
+        validateConfirmedVehicle(user,familyVehicle);
 
         Vehicle vehicleDetails = familyVehicle.getVehicle();
         if (!vehicleDetails.getModel().equalsIgnoreCase(model)
@@ -120,5 +114,34 @@ public class AddNewManualFamilyVehicleOrchestratorImpl extends BaseOrchestrator 
     public List<String> getDistinctModelsByYearMake(final int year, final String make){
     	return this.vehicleService.getDistinctModelsByYearMake(year, make);
     }
+
+    @Override
+    public void updateFamilyVehicleName(final long userId, final AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
+    	Validate.notNull(addOrUpdateManualFamilyVehicleDTO, "The addOrUpdateManualFamilyVehicleDTO with the familyVehicleId can not be null");
+        Long familyVehicleId = addOrUpdateManualFamilyVehicleDTO.getFamilyVehicleId();
+        String name = addOrUpdateManualFamilyVehicleDTO.getName();
+        Validate.notNull(userId, "The UserId cannot be null");
+        Validate.notNull(familyVehicleId, "The FamilyVehicleId cannot be null");
+        if (name == null){
+        	Log.debug("Setting name to null");
+        }
+
+		User user = this.userService.findByUserId(userId);
+        FamilyVehicle familyVehicle = this.familyVehicleService.getItem(familyVehicleId);
+        validateConfirmedVehicle(user,familyVehicle);
+
+        familyVehicle.setName(name);
+        this.familyVehicleService.saveAndFlush(familyVehicle);
+    }
+
+	private void validateConfirmedVehicle(final User user,
+			FamilyVehicle familyVehicle) throws FamilyVehicleNotConfirmedByUserException{
+        if (!this.confirmedVehicleService.isAConfirmedVehicleByTheUser(user, familyVehicle)) {
+            String msg = new StringBuilder("The FamilyVehicle with id: ")
+                    .append(familyVehicle.getId()).append(" is not confirmed by user with id: ").append(user.getId()).toString();
+            Log.error(msg);
+            throw new FamilyVehicleNotConfirmedByUserException(msg);
+        }
+	}
 
 }

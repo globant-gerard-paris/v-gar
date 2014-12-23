@@ -73,6 +73,7 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     public FamilyVehicle getItem(final Long id) {
     	FamilyVehicle familyVehicle = this.repository.findOne(id);
     	if(familyVehicle == null) {
+    		log.error("FamilyVehicle not found with id: " + id);
     		throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
     	}
     	return familyVehicle;

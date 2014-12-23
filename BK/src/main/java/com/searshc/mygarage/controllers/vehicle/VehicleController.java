@@ -168,7 +168,16 @@ public class VehicleController {
 		this.addNewManualFamilyVehicleOrchestrator.updateManualFamilyVehicle(userId, addOrUpdateManualFamilyVehicleDTO);
 		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
 	}
-	
+
+	@RequestMapping(value = "/vehicles/name/user/{userId}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public ResponseEntity<Object> updateFamilyVehicleName(@PathVariable("userId") final long userId,
+			@RequestBody AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO) {
+
+		this.addNewManualFamilyVehicleOrchestrator.updateFamilyVehicleName(userId, addOrUpdateManualFamilyVehicleDTO);
+		return new ResponseEntity<Object>(HttpStatus.ACCEPTED);
+	}
+
 
 	@RequestMapping(value = "/{vehicleId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<FamilyVehicle> getAdditionalVehicleDetails(
