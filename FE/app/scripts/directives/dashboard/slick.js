@@ -9,19 +9,22 @@ angular.module('Directives').directive('slick', function ($timeout) {
         link: function(scope, el) {
 
             scope.$watch('data', function(val){
-                if(!angular.isArray(val) || val.length === 0){
+                if(!angular.isArray(val) || val.length === 0 || scope.hidden){
                     return;
                 }
 
+                scope.hidden = true;
                 el.hide();
                 el.unslick();
                 var stickList = el.find('.slick-list');
                 if(stickList){
                     stickList.remove();
                 }
+                
 
                 $timeout( function(){
                     el.show();
+                    scope.hidden = false;
                     // (re|)init
                     el.slick({
                         dots: false,
@@ -45,7 +48,7 @@ angular.module('Directives').directive('slick', function ($timeout) {
                         ]
                     });
 
-                });
+                },500);
 
             });
         }
