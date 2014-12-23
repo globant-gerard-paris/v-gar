@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('serviceInformation', function ($modal, RecordSrv, RedirectSrv) {
+angular.module('Directives').directive('serviceInformation', function ($modal, RecordSrv) {
     return {
         restrict: 'E',
         templateUrl: 'scripts/directives/views/service-information.html',
