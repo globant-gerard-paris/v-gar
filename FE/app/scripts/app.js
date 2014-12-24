@@ -18,6 +18,7 @@ var _mainModules = [
     , 'CarProfile'
     , 'ManageCar'
     , 'StoreLocator'
+    , 'angulike'
     // yo:ngMainModules
 ];
 
@@ -95,11 +96,15 @@ angular.module('virtualGarage', _mainModules)
             }
         });
 
-// yo:ngRoutes
-
+        // yo:ngRoutes
         routes.forEach(function (route) {
             $routeProvider.when(route.name, route.params);
         });
-
         $locationProvider.html5Mode(true);
-    });
+
+    }).run([
+        '$rootScope', function ($rootScope) {
+            //TODO In the future will need think in other better elegant way, because 'config.social.facebookAppID' is undefined.
+            $rootScope.facebookAppId = '674196112699408';
+        }
+    ]);
