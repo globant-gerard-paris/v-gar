@@ -1,0 +1,19 @@
+<script type="text/ng-template" id="modalRecommendedList.html">    
+    <div class="modal-window">
+        <div class="modal-header">
+            <div class="modal-close">
+                <button type="button" class="btn btn-lg" ng-click="close()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <h1 class="text-center">{{recommendedService.serviceRecordItems.length}} Suggested Services</h1>
+        </div>        
+        <div class="modal-body">
+            <recommended-services recommended-list="recommendedService.serviceRecordItems"></recommended-services>            
+        </div>
+        <div class="modal-footer">
+                <button class="btn btn-warning"  ng-click="close()">Close</button>                
+         </div>        
+    </div>
+</script>
+

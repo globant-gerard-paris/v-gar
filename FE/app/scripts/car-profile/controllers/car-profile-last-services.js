@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, $http, SessionDataSrv, TrendsSrv, ApiHttpSrv, RedirectSrv) {
+angular.module('PresentationFlow').controller('CarProfileLastServicesCtrl', function ($scope, SessionDataSrv, TrendsSrv, RedirectSrv) {
 
     var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
 

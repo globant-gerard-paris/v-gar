@@ -208,15 +208,41 @@
     }
 }
 
+.recommended-services {
+    .service-list{
+        margin-top: 15px;
+        .well{
+            font-size: 1.0em;
+            font-weight: 400;
+            margin: 3px 0 0;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            -webkit-box-shadow: none;
 
+            a {
+                color: #555e6c;
+                &.marked:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .prev-service{
+            margin-top: 5px;
+            margin-bottom: 10px;
+            color: #b0b4ba;
+            font-size: 0.8em;
+            font-weight: 400;
+        }
+    }
+}
 
 .recalls-and-services {
     color:  #555e6c;
-
     .see-more {
         margin-top: 5px;
     }
-
     .recall-info{
         padding-left:50px;
         background-image: url(../resources/images/car-profile/recall.png);
@@ -237,6 +263,7 @@
             overflow: hidden;
         }
     }
+
     .service-info{
         margin-top: 30px;
         padding-left:50px;
@@ -246,28 +273,6 @@
             font-size: 1.2em;
             font-weight: 900;
             line-height: 1em;
-        }
-        .service-list{
-            margin-top: 15px;
-        }
-        .service-list .well{
-            font-size: 1.0em;
-            font-weight: 400;
-            margin: 3px 0 0;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            -webkit-box-shadow: none;
-        }
-        .service-list .well a{
-            color: #555e6c;
-        }
-        .prev-service{
-            margin-top: 5px;
-            margin-bottom: 10px;
-            color: #b0b4ba;
-            font-size: 0.8em;
-            font-weight: 400;
         }
     }
 }
