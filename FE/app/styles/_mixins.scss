@@ -13,10 +13,15 @@
     @else if $min == sm {
       @media (min-width: 768px) { @content; }       // Tablet Devices
     }
-
+    
     @else if $min == md {
       @media (min-width: 992px) { @content; }       // Desktops
+    }    
+    
+    @else if $min == lg {
+      @media (min-width: 1200px) { @content; }       // Desktops
     }
+    
   }
   @else if $type == number {
     // Allow for custom parameters for min and max size

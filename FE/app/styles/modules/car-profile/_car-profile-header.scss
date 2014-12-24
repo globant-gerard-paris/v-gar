@@ -43,13 +43,10 @@
         /*float: left;*/
     }
 
-
-
 }
 
 .car-profile-info {
-    font-family: Roboto;
-    padding-left: 20px;
+    font-family: Roboto;    
     max-width: 434px;
     margin: 0 auto;
     .car-profile-picture{
@@ -150,13 +147,12 @@
 }
 
 .service-alert{
-    font-family: Roboto;
-    margin-top: 0;
-    @include bp(lg) {
-
-    }
-    @include bp(sm) {
+    font-family: Roboto;    
+    @include bp(md) {
         margin-top: 20px;
+    }
+    @include bp(lg) {
+        margin-top: 0;
     }
     .car-profile-alerts-icons {
         background: url("../resources/images/car-profile/car-alerts-bg.png") top center no-repeat;
