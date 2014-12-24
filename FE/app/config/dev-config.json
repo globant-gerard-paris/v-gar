@@ -4,6 +4,11 @@
             "hosts": {
                 "BACKEND": "http://hfdvsywvgapp01.vm.itg.corp.us.shldcorp.com:8080"
             }
+        },
+        "social": {
+            "twitterkUrlShare": "http://sandbox.shopyourway.com/app/17910/l",
+            "facebookUrlShare": "http://sandbox.shopyourway.com/app/17910/l",
+            "facebookAppID" : "674196112699408"
         }
     }
 }

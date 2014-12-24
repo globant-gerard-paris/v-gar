@@ -490,7 +490,9 @@ module.exports = function (grunt) {
                 'Attribute “maxlength” not allowed on XHTML element “input” at this point.',
                 'Attribute “ng-maxlength” not allowed on XHTML element “input” at this point.',
                 'XHTML element “loader” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'XHTML element “loader” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “loader” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “fb-share” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “tweet” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });
