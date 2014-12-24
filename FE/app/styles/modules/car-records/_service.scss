@@ -42,6 +42,10 @@
     background-size: contain;
     float: left;
     margin-top: -10px;
+    margin-right: 10px;
+    position: relative;
+    left: 20px;
+    bottom: 0;
   }
   .service-type-manual {
     @extend %service-type;
@@ -52,7 +56,8 @@
     background-image: url($wrench);
   }
   .sis-date {
-    text-align: left;
+    text-align: center;
+    padding-left: 30px;
   }
   .service-highlight {
     color: #555;
@@ -143,13 +148,14 @@
     height: 40px;
     background-size: contain;
     position: relative;
-    left: 20px;
+    left: 15px;
     top: 5px;
   }
 
   .service-type-manual {
     @extend %service-type-small;
     background-image: url($wrench-with-men);
+    position: relative;
   }
   .service-type-remote {
     @extend %service-type-small;
@@ -301,7 +307,6 @@
 
 .icon-envoice{
   position: relative;
-  top: -25px;
   right: 25px;
 }
 .icon-envoice-key{
