@@ -30,4 +30,6 @@ public interface AddNewManualFamilyVehicleOrchestrator{
 	List<String> getDistinctYears();
 	List<String> getDistinctMakesByYear(final int year);
 	List<String> getDistinctModelsByYearMake(final int year, final String make);
+
+	void updateFamilyVehicleName(long userId, AddOrUpdateManualFamilyVehicleDTO addOrUpdateManualFamilyVehicleDTO);
 }

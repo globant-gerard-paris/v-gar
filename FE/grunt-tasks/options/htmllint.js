@@ -473,7 +473,22 @@ module.exports = function (grunt) {
                 'Attribute “st-blurred-dialog-region” not allowed on XHTML element “div” at this point.',
                 'Attribute “ng-switch-when” not allowed on XHTML element “ul” at this point.',
                 'XHTML element “footer-vg” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'XHTML element “st-blurred-dialog-overlay” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “st-blurred-dialog-overlay” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “ng-hide” not allowed on XHTML element “h2” at this point.',
+                'Attribute “ng-show” not allowed on XHTML element “h2” at this point.',
+                'Attribute “ng-disabled” not allowed on XHTML element “fieldset” at this point.',
+                'Attribute “ng-required” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-model” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-options” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-change” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-required” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-model” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-options” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-change” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-disabled” not allowed on XHTML element “select” at this point.',
+                'Attribute “ng-required” not allowed on XHTML element “input” at this point.',
+                'Attribute “maxlength” not allowed on XHTML element “input” at this point.',
+                'Attribute “ng-maxlength” not allowed on XHTML element “input” at this point.'
             ]
         }
     });

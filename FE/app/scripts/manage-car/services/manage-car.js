@@ -4,7 +4,7 @@
 
 'use strict';
 
-angular.module('PresentationFlow').service('ManageCarSrv', function ($timeout, $http, ApiHttpSrv, config, SessionDataSrv) {
+angular.module('ManageCar').service('ManageCarSrv', function ($timeout, $http, ApiHttpSrv, config, SessionDataSrv) {
 
     var mock = false;
 
