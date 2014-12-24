@@ -1,9 +1,14 @@
-<div class="row car-profile-section ">
-    <div class="row section-up hidden-xs">
+<div class="row car-profile-section hidden-xs">
+    <div class="row section-up">
         <div class="col-md-6" ng-class="model.recallsOrRecommended ? 'col-lg-4' : ''">
             <div class="media car-profile-info">
-                <div class="car-profile-picture pull-left">
-                    <div class="car-card-tag">{{model.data.vehicle.name}}</div>
+                <div class="car-profile-picture pull-left">                    
+                    <div class="car-card-tag">
+                        <div class="edit-car-name" ng-click="openEditName()">{{model.data.vehicle.name}}</div>
+                    </div>
+                    <div class="modal-edit-car-name" ng-show="editMode" >
+                        <input ng-model="model.data.vehicle" type="text" />
+                    </div>
                 </div>
                 <div class="media-body">
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
@@ -14,10 +19,10 @@
             <div ng-include="'scripts/car-profile/views/modal-recommended-list.html'"></div>
             <recalls-and-services model="model"></recalls-and-services>
         </div>
-        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col-md-6'">
+        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col - md - 6'">
             <service-alert vehicle-status="model.data.vehicleStatus"></service-alert>
         </div>
-    </div>
+    </div>    
     <div class="row section-down section-dark">
         <div class="col-sm-4 section-down-inner">
             <div class="section-box">
@@ -57,4 +62,19 @@
         </div>
     </div>
     <div class="section-down section-down-fix section-blue"></div>
+</div>
+<div class="row car-profile-mobile visible-xs">
+    <div class="row">
+        <div class="col-xs-6" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
+            <div class="wrapper-center">
+                <div class="img second-header-text">{{model.data.recallsInformation.totalRecalls}} Recall</div>
+            </div>
+        </div>
+        <div class="col-xs-6 services wrapper-parent divisor"
+             ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
+            <div class="wrapper-center">
+                <div class="img second-header-text">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Services</div>
+            </div>
+        </div>
+    </div>
 </div>

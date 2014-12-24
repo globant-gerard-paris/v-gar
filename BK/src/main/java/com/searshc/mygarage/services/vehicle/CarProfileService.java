@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class CarProfileService {
 
     private final Integer MAX_SERVICE_SERVICE_RESULT = 2;
-    private final String DEFAULT_VEHICLE_NAME = "My Car";
+    private final String DEFAULT_VEHICLE_NAME = "Name your car";
 
     private final Mapper mapper = new DozerBeanMapper();
     private FamilyVehicleRepository familyVehicleRepository;

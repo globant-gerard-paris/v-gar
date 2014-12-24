@@ -3,7 +3,8 @@
 angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
 
     $scope.model = {
-        recallsOrRecommended: true
+        recallsOrRecommended: true,
+        editMode: false
     };
 
     var carsResultSuccess = function (response) {

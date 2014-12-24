@@ -1,50 +1,5 @@
 @import "compass/css3/transform";
 
-.car-profile-header{
-    height: 280px;
-    background-color: white;
-    font-family: Roboto;
-    min-width: 1460px;
-    position: relative;
-
-    //skew header
-    top: 38px;
-    z-index: 16;
-    @include rotate(3.6deg);
-    .car-profile-header-inner{
-        @include rotate(-3.6deg);
-        height: 100%;
-    }
-    //skew end
-
-    .btn-add {
-        font-size: 0.9em;
-        font-weight: bold;
-        cursor: pointer;
-        text-align: center;
-        padding-top: 30px;
-        background-image: url(../resources/images/dashboard/add-car.png);
-        background-repeat: no-repeat;
-        background-position: center top;
-        position: absolute;
-        left: 60vw;
-        bottom: -3vw;
-        color: white;
-    }
-
-    .header-left{
-        position: relative;
-        width: 500px;
-        /*float: left;*/
-    }
-
-    .header-center{
-        width: 500px;
-        /*float: left;*/
-    }
-
-}
-
 .car-profile-info {
     font-family: Roboto;    
     max-width: 434px;
@@ -59,16 +14,20 @@
         .car-card-tag{
             @include simple-transform(1, -6deg, 0, 50%);
             @include border-radius(3px);
-            position: absolute;
-            left: 20px;
-            bottom: 10px;
-            font-weight: 900;
-            line-height: 1.0em;
+            position: absolute;            
+            bottom: 5px;
             background-color: #2b9ace;
-            color: white;
-            padding: 6px 10px;
-            width: 121px;
-            text-align: center
+            width: 100%;
+            padding: 5px;
+            .edit-car-name {
+                background: url(../resources/images/car-profile/edit-icon.png) right center no-repeat;
+                padding: 0 20px 0 5px;
+                color: white;
+                font-weight: 900;
+                line-height: 1.0em;
+                text-align: center;
+                cursor: pointer;
+            }
         }
 
     }
@@ -126,22 +85,6 @@
             font-weight: 700;
             margin-left:5px;
             cursor: pointer;
-        }
-
-        .car-card-tag{
-            @include simple-transform(1, -6deg, 0, 50%);
-            @include border-radius(3px);
-            position: absolute;
-            left: 32px;
-            top: 107px;
-            margin: 0 auto;
-            font-size: 0.95em;
-            line-height: 1.0em;
-            background-color: #2b9ace;
-            color: white;
-            padding: 6px 10px 6px 10px;
-            width: 121px;
-            text-align: center
         }
     }
 }
@@ -273,191 +216,108 @@
     }
 }
 
-.car-profile{
-    font-family: Roboto;
-    .car-profile-picture{
-        background-image: url(../resources/images/car-profile/ImageProfile.jpg);
-        background-position: center center;
-        background-repeat: no-repeat;
-        /*display: inline-block;*/
-        /*float: left;*/
-        height: 141px;
-        width: 141px;
-        margin-left: 18px;
+.car-profile-mobile {
+    font-family: Roboto;  
+
+
+    position: relative;
+    .btn-add-mobile{
+        position: absolute;
+        background-image: url(../resources/images/car-profile/mobile-edit.png);
+        width: 47px;
+        height: 47px;
+        right: 30px;
+        top: 100px;
     }
-
-    .car-card{
-        display: block;
-        padding-left: 20px;
-        margin-right: 10px;
-        margin-top: 20px;
-        font-weight: 900;
-        overflow: hidden;
-
-        .car-card-year{
-            color: #555e6c;
-            font-size: 2.0em;
-            line-height: 0.8em;
-        }
-
-        .car-card-brand{
-            color: #555e6c;
-            font-size: 4.0em;
-            line-height: 0.8em;
-        }
-
-        .car-card-model{
-            color: #b0b4ba;
-            font-size: 2.8em;
-            line-height: 0.9em;
-        }
-
-        .car-card-mileage-title{
-            display: none;
-        }
-
-        .car-card-mileage-data{
-            color: #555e6c;
-            font-size: 1.3em;
-            padding-left: 82px;
-            padding-top: 4px;
-            min-height: 20px;
-            margin-top: 6px;
-            background-image: url(../resources/images/car-profile/carIconMillage.png);
-            background-repeat: no-repeat;
-
-            input{
-                width:120px;
-                border:1px solid grey;
-                /*display: inline;*/
-                display: inline-block;
-            }
-        }
-
-        .car-card-mileage-change{
-            background: url(../resources/images/car-profile/edit.png) no-repeat left;
-            padding-left: 15px;
-            color: #2b9ace;
-            font-size: 0.8em;
-            font-weight: 700;
-            margin-left:5px;
-            cursor: pointer;
-        }
-
-        .car-card-tag{
-            @include simple-transform(1, -6deg, 0, 50%);
-            @include border-radius(3px);
-            position: absolute;
-            left: 32px;
-            top: 107px;
-            margin: 0 auto;
-            font-size: 0.95em;
-            line-height: 1.0em;
-            background-color: #2b9ace;
-            color: white;
-            padding: 6px 10px 6px 10px;
-            width: 121px;
-            text-align: center
-        }
-    }
-
-    .mobile-version{
+    .service-alert{
+        margin: 18px 0 36px 0;
         position: relative;
-        .btn-add-mobile{
+        left: 50%;
+        @include transform(translateX(-50%) scale(0.7));
+    }
+    .car-card-slick-container{
+        text-align: center;
+    }
+    .car-card{
+        .car-card-tag{
             position: absolute;
-            background-image: url(../resources/images/car-profile/mobile-edit.png);
-            width: 47px;
-            height: 47px;
-            right: 30px;
-            top: 100px;
+            left: 15px;
+            right: 0;
+            top:186px;
+
+
         }
-        .service-alert{
-            margin: 18px 0 36px 0;
-            position: relative;
-            left: 50%;
-            @include transform(translateX(-50%) scale(0.7));
-        }
-        .car-card-slick-container{
-            text-align: center;
-        }
-        .car-card{
-            .car-card-tag{
-                position: absolute;
-                left: 15px;
-                right: 0;
-                top:186px;
-            }
-            .car-card-mileage{
-                margin-top: 38px;
-                .car-card-mileage-data{
-                    margin: 0 auto;
-                    width: 310px;
-                }
-            }
-        }
-        .recalls-and-services{
-            color: #555e6c;
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: 400;
-            width: 78%;
-            margin: 0 auto;
-            .count{
-                font-size: 2.0em;
-                font-weight: 900;
-                margin: 14px 2px 14px 2px;
-                line-height: 1em;
-            }
-            .service-info, .recall-info{
-                background-position: top center;
-                background-repeat: no-repeat;
-                padding-top:50px;
-                margin-top: 40px;
-                margin-bottom: 40px;
-            }
-            .service-info{
-                background-image: url(../resources/images/car-profile/servicehistory-mobile.png);
-                .service-list{
-                    .item{
-                        color: #2b9ace;
-                        font-weight: 400;
-                        text-align: left;
-                    }
-                    .well{
-                        font-size: 0.95em;
-                        font-weight: 400;
-                        margin: 3px 0 0;
-                        text-align: left;
-                        border: none;
-                        border-radius: 0;
-                        box-shadow: none;
-                        -webkit-box-shadow: none;
-                        a {
-                            color: #555e6c;
-                        }
-                    }
-                }
-                .prev-service{
-                    display: block;
-                    color:  #b0b4ba;
-                    margin-top:24px;
-                }
-            }
-            .recall-info{
-                margin-top: 0;
-                background-image: url(../resources/images/car-profile/recall-mobile.png);
-                .summary{
-                    line-height: 1.4em;
-                    height: 4.2em;
-                    overflow: hidden;
-                }
-                a{
-                    margin-top: 12px;
-                    display: block;
-                }
+        .car-card-mileage{
+            margin-top: 38px;
+            .car-card-mileage-data{
+                margin: 0 auto;
+                width: 310px;
             }
         }
     }
+    .recalls-and-services{
+        color: #555e6c;
+        text-align: center;
+        font-size: 1.2em;
+        font-weight: 400;
+        width: 78%;
+        margin: 0 auto;
+        .count{
+            font-size: 2.0em;
+            font-weight: 900;
+            margin: 14px 2px 14px 2px;
+            line-height: 1em;
+        }
+        .service-info, .recall-info{
+            background-position: top center;
+            background-repeat: no-repeat;
+            padding-top:50px;
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .service-info{
+            background-image: url(../resources/images/car-profile/servicehistory-mobile.png);
+            .service-list{
+                .item{
+                    color: #2b9ace;
+                    font-weight: 400;
+                    text-align: left;
+                }
+                .well{
+                    font-size: 0.95em;
+                    font-weight: 400;
+                    margin: 3px 0 0;
+                    text-align: left;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    -webkit-box-shadow: none;
+                    a {
+                        color: #555e6c;
+                    }
+                }
+            }
+            .prev-service{
+                display: block;
+                color:  #b0b4ba;
+                margin-top:24px;
+            }
+        }
+        .recall-info{
+            margin-top: 0;
+            background-image: url(../resources/images/car-profile/recall-mobile.png);
+            .summary{
+                line-height: 1.4em;
+                height: 4.2em;
+                overflow: hidden;
+            }
+            a{
+                margin-top: 12px;
+                display: block;
+            }
+        }
+    }
+
 }
 
 @include bp(xs) {
