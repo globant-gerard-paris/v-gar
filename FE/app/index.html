@@ -21,8 +21,6 @@
     <body ng-controller="MainCtrl">
         <div id="fb-root"></div>
         <script src="//maps.googleapis.com/maps/api/js?v=3.exp"></script>
-        <!--<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>-->
-        <!--<script src="static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>-->
 
         <div class="hidden-xs" ng-if="!isLandingPage() && !isMobile()" ng-include="'scripts/navigation/views/navigation.html'"></div>
         <div class="visible-xs" ng-if="!isLandingPage() && !isDashboardPage()" ng-include="'scripts/navigation/views/navigation-mobile-header.html'"></div>
