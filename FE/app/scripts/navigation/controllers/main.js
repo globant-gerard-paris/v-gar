@@ -8,14 +8,29 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         currentPath: $location.path(),
         currentCar: '',
         backButtonMobileLink: '/dashboard',
-        appoinmentUrl: config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore()
+        appoinmentUrl: config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore(),
+        facebookModel: {
+            fbIconImage: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_facebook.png',
+            fbIconImageHeight: '32',
+            fbIconImageWidth: '32',
+            fbUrlShare: config.social.facebookUrlShare,
+            fbImagePresentation: 'http://itsallfreeonline.com/wp-content/uploads/2012/10/Sears-Shop-Your-Way.png',
+            fbTitlePresentation: 'Local Shop Your Way',
+            fbSubTitlePresentation: 'Shop your way local!!!! don\'t lose it!!'
+        },
+        twitterModel: {
+            tweet: 'Shopping better with Shop Your Way!',
+            tweetUrl: config.social.twitterkUrlShare,
+            tweetIcon: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_twitter.png'
+        }
     };
+
     var updateAppoinment = function () {
         $scope.model.appoinmentUrl = config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore();
     };
     var reloadVehicleInformation = function () {
         $scope.model.currentCar = SessionDataSrv.getCurrentFamilyVehicle();
-        if(SessionDataSrv.getCurrentFamilyVehicles()){
+        if (SessionDataSrv.getCurrentFamilyVehicles()) {
             $scope.model.countLinkedCars = SessionDataSrv.getCurrentFamilyVehicles().length;
         }
     };
@@ -123,7 +138,7 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
     $scope.addRecord = function () {
         if ($scope.recordForm.$valid) {
             $modalInstance.close($scope.model);
-        }else{
+        } else {
             $scope.recordForm.submitted = true;
         }
     };
