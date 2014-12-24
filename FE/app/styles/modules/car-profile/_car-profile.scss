@@ -10,6 +10,8 @@
 
     .section-dark {
         background-color:  #555e6c;
+        position: relative;
+        bottom: -60px;
     }
 
     .section-down-fix {
@@ -28,7 +30,6 @@
     }
 
     .section-down {
-
         -moz-transform: skewY(4deg);
         -ms-transform: skewY(4deg);
         -webkit-transform: skewY(4deg);
