@@ -1,5 +1,5 @@
 .fullscreen {
-    #loaderDiv{
+    .loaderDiv{
         position: fixed;
         top: 0;
         right: 0;
@@ -33,7 +33,7 @@
 
 //copiated from http://cssload.net/
 
-#fountainG{
+.fountainGRoot{
     position:relative;
     width:240px;
     height:29px}
@@ -173,7 +173,7 @@
     }
 
 }
-
+/* doesn't recognize by csslint
 @-ms-keyframes bounce_fountainG{
     0%{
         -ms-transform:scale(1);
@@ -185,7 +185,7 @@
         background-color:#FFFFFF;
     }
 
-}
+}*/
 
 @-o-keyframes bounce_fountainG{
     0%{

@@ -488,7 +488,9 @@ module.exports = function (grunt) {
                 'Attribute “ng-disabled” not allowed on XHTML element “select” at this point.',
                 'Attribute “ng-required” not allowed on XHTML element “input” at this point.',
                 'Attribute “maxlength” not allowed on XHTML element “input” at this point.',
-                'Attribute “ng-maxlength” not allowed on XHTML element “input” at this point.'
+                'Attribute “ng-maxlength” not allowed on XHTML element “input” at this point.',
+                'XHTML element “loader” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “loader” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)'
             ]
         }
     });
