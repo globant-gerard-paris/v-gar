@@ -23,7 +23,11 @@ var _mainModules = [
 
 angular.module('virtualGarage', _mainModules)
 
-    .config(function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider, $httpProvider) {
+
+        //for loader spinner
+        $httpProvider.interceptors.push('httpInterceptor');
+
         //redirect any invalid hash to /home
         $routeProvider.otherwise({
             redirectTo: '/landing'
