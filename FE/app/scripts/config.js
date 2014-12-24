@@ -11,6 +11,11 @@
     },
     "extUrl": {
         "appoinment": "http://www.searsauto.com/stores/"
+    },
+    "social": {
+        "twitterkUrlShare": "http://sandbox.shopyourway.com/app/17510/l",
+        "facebookUrlShare": "http://sandbox.shopyourway.com/app/17510/l",
+        "facebookAppID": "674196112699408"
     }
 })
 

@@ -25,11 +25,23 @@
   top: -10px;
   background-position: center center;
   &.btn-facebook {
-    background-image: url($facebookDesktop);
+    img{
+      position: relative;
+      top: -9px;
+      height: 27px;
+      width: 28px;
+      right: 1px;
+    }
   }
 
   &.btn-twitter {
-    background-image: url($twitterDesktop);
+    img{
+      position: relative;
+      top: -9px;
+      height: 27px;
+      width: 28px;
+      right: 0;
+    }
   }
 
   &.btn-mail {
@@ -166,14 +178,30 @@
     margin-left: 4px;
 
     &.btn-facebook {
-      background-image: url($facebookMobile);
+      img {
+        position: relative;
+        height: 58px;
+        width: 60px;
+        top: 0;
+        left: 0;
+      }
     }
 
     &.btn-twitter {
-      background-image: url($twitterMobile);
+      img {
+        position: relative;
+        height: 58px;
+        width: 60px;
+        top: 0;
+        left: 0;
+      }
     }
 
     &.btn-mail {
+      position: relative;
+      height: 58px;
+      width: 60px;
+      top: 15px !important;
       background-image: url($mailMobile);
     }
   }
