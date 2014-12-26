@@ -71,7 +71,7 @@
                         var watchAdded = false;
 
                         function renderTweetButton() {
-                            if (!!scope.model && !!scope.model.tweet && !watchAdded) {
+                            if (!scope.tweet && !watchAdded) {
                                 // wait for data if it hasn't loaded yet
                                 watchAdded = true;
                                 var unbindWatch = scope.$watch('model.tweet', function (newValue, oldValue) {
@@ -84,9 +84,11 @@
                                 });
                                 return;
                             } else {
-                                if(scope.model && scope.model.tweetUrl){
+                                try{
                                     element.html('<a target="_blank" href="https://twitter.com/intent/tweet?url=' + scope.model.tweetUrl + '&amp;text=' + scope.model.tweet + '"><img src="' + scope.model.tweetIcon + '"></a>');
                                     $window.twttr.widgets.load(element.parent()[0]);
+                                }catch(error){
+                                    //is empty this catch, for re-draw problem, please not remove it.
                                 }
                             }
                         }
