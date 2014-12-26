@@ -36,6 +36,11 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
         refreshYears();
 
         $scope.landing = (stBlurredDialog.getDialogData() && stBlurredDialog.getDialogData().from === 'landing');
+
+
+        //TODO horrible hotfix, patch for X to close, on dashobard
+        var el = document.getElementsByClassName('st-blurred-region-close')[0];
+        el.classList.add('remove-position-of-x');
     }
 
     function loadingOn(){
@@ -166,8 +171,6 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
     };
 
     $scope.goBack = function () {
-        console.log('back');
-
         switch ($scope.model.state){
         case states.add:
             if($scope.model.notFounded){

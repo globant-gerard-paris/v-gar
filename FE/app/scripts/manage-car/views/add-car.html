@@ -9,9 +9,9 @@
 
 
         <section ng-if="(model.state===states.add)">
-            <h2 class="title" ng-hide="model.notFounded">Add a Car</h2>
+            <h2 class="title" ng-hide="model.notFounded">Add a vehicle</h2>
             <h2 class="title" ng-show="model.notFounded">No car found for plate {{model.license}}</h2>
-            <h4 class="desc">Enter your car below</h4>
+            <h4 class="desc">Enter your vehicle below</h4>
             <fieldset ng-disabled="!model.available">
                 <div class="add-car-box">
                     <div class="row">
@@ -47,7 +47,7 @@
 
                         <div class="form-group col-xs-6">
                             <input type="number" class="form-control pull-left"
-                                   placeholder="Mileage"
+                                   placeholder="Last mileage"
                                    ng-required="required"
                                    min="1"
                                    maxlength="7"
@@ -72,7 +72,7 @@
                         <button type="button" class="btn-confirm"
                                 ng-disabled="!((model.mileage>0 && model.mileage!=='') || (!model.notFounded && model.license.length > 0))"
                                 ng-click="addCar()">
-                            ADD
+                            SAVE
                         </button>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
         <section ng-if="(model.state===states.added)">
             <div class="confirmed-box">
                 <div class="confirmed"></div>
-                <h2 class="title" ng-hide="model.notFounded">Great! We have added your car</h2>
+                <h2 class="title" ng-hide="model.notFounded">Great! We have added your vehicle</h2>
                 <button type="button" class="btn-confirm" ng-click="close()">Close</button>
             </div>
         </section>
