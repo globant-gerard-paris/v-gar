@@ -10,7 +10,8 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         backButtonMobileLink: '/dashboard',
         appoinmentUrl: config.extUrl.appoinment + SessionDataSrv.getCurrentFavoriteStore(),
         facebookModel: {
-            fbIconImage: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_facebook.png',
+            //fbIconImage: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_facebook.png',
+            fbIconImage: '../resources/images/dashboard/shareicon_facebook.png',
             fbIconImageHeight: '32',
             fbIconImageWidth: '32',
             fbUrlShare: config.social.facebookUrlShare,
@@ -21,7 +22,8 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
         twitterModel: {
             tweet: 'Shopping better with Shop Your Way!',
             tweetUrl: config.social.twitterkUrlShare,
-            tweetIcon: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_twitter.png'
+            tweetIcon: '../resources/images/dashboard/shareicon_twitter.png'
+            //tweetIcon: config.api.hosts.BACKEND + '/resources/images/dashboard/shareicon_twitter.png'
         }
     };
 
