@@ -3,437 +3,437 @@
 @import "slick";
 
 %font-Roboto {
-  font-family: "Roboto";
+    font-family: "Roboto";
 }
 
 
 
 .dashboard{
-	.slick-prev{
+    .slick-prev{
         left: -8% !important;
-		&.slick-disabled{
-			background-image: none;
-		}
-		background-image: url(../resources/images/dashboard/ArrowLeft.png);
-		background-size: cover;
-	}
+        &.slick-disabled{
+            background-image: none;
+        }
+        background-image: url(../resources/images/dashboard/ArrowLeft.png);
+        background-size: cover;
+    }
 
-	.slick-next{
+    .slick-next{
         left: 104%;
-		&.slick-disabled{
-			background-image: none;
-		}
-		background-image: url(../resources/images/dashboard/ArrowRight.png);
-		background-size: cover;
-	}
+        &.slick-disabled{
+            background-image: none;
+        }
+        background-image: url(../resources/images/dashboard/ArrowRight.png);
+        background-size: cover;
+    }
 
-	.btn-social{
-	    display: inline-block;
-	    width: 26px;
-	    height: 26px;
-	    margin-left: -3px;
-	    position: relative;
-	    top: -10px;
-	    background-position: center center;
-	   	&.btn-facebook{
-	        background-image: url($facebookDesktop);
-	    }
+    .btn-social{
+        display: inline-block;
+        width: 26px;
+        height: 26px;
+        margin-left: -3px;
+        position: relative;
+        top: -10px;
+        background-position: center center;
+        &.btn-facebook{
+            background-image: url($facebookDesktop);
+        }
 
-	    &.btn-twitter{
-	        background-image: url($twitterDesktop);
-	    }
+        &.btn-twitter{
+            background-image: url($twitterDesktop);
+        }
 
-	    &.btn-mail{
-	        background-image: url($mailDesktop);
-	    }
-	}
-
-
-	@extend %font-Roboto;
-	.dashboard-car-holder{
-		position: relative;
-		height:412px;
-		width: 100%;
-		background-image: url(../resources/images/dashboard/Dashboard_background.jpg);
-		background-position: center center;
-		background-size: cover;
-	}
-
-	.car-card{
-		margin: 64px auto;
-		position: relative;
-		background-image: url(../resources/images/dashboard/NoCarThumbnail.png);
-		background-position: center center;
-		background-repeat: no-repeat;
-		font-weight: bold;
-		padding:20px;
-		/* border:1px solid #bbb; */
-		@include border-radius(12px);
-		background-color: white;
-		width: 204px;
-		height: 264px;
-		text-align: center;
-		.car-edit-btn{
-			position: absolute;
-			right: 8px;
-			top: 8px;
-			background-image: url(../resources/images/dashboard/edit.png);
-			height: 23px;
-			width: 23px;
-			cursor: pointer;
-		}
-
-		.car-card-year{
-			color:#555e6c;
-			font-size: 1.2em;
-		}
-		.car-card-brand{
-			color: #555e6c;
-			font-size: 2.2em;
-			margin-top: -0.5em;
-			width: 164px;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-		.car-card-model{
-			color:#b0b4ba;
-			font-size: 1.3em;
-			margin-top: -0.2em;
-			line-height: 0.8em;
-		}
-		.car-card-mileage{
-			position: absolute;
-			bottom: 35px;
-			margin: 0 auto;
-			left: 0;
-			right: 0;
-			.car-card-mileage-title{
-				color:#818790;
-				font-weight: normal;
-
-			}
-			.car-card-mileage-data{
-				color:#555e6c;
-				font-size: 1.2em;
-				margin-top: -0.2em;
-			}
-		}
-		.car-card-tag{
-			@include simple-transform(1, -6deg, 0, 50%);
-			position: absolute;
-			bottom:4px;
-			left:0;
-			right: 0;
-			margin: 0 auto;
-			font-size: 0.95em;
-			line-height: 1.5em;
-			@include border-radius(3px);
-			background-color: #2b9acf;
-			color:white;
-			padding: 2px 10px 2px 10px;
-			width: 116px;
-		}
-	}
+        &.btn-mail{
+            background-image: url($mailDesktop);
+        }
+    }
 
 
+    @extend %font-Roboto;
+    .dashboard-car-holder{
+        position: relative;
+        height:412px;
+        width: 100%;
+        background-image: url(../resources/images/dashboard/Dashboard_background.jpg);
+        background-position: center center;
+        background-size: cover;
+    }
 
-	.car-card-slick-container{
-		// padding so car tag is visible
-		padding-bottom: 20px;
-		background-image: url(../resources/images/dashboard/car_card_shaddow.png);
-		background-position: center center;
-		background-size: 274px;
-		background-repeat: no-repeat;
-	}
+    .car-card{
+        margin: 64px auto;
+        position: relative;
+        background-image: url(../resources/images/dashboard/NoCarThumbnail.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        font-weight: bold;
+        padding:20px;
+        /* border:1px solid #bbb; */
+        @include border-radius(12px);
+        background-color: white;
+        width: 204px;
+        height: 264px;
+        text-align: center;
+        .car-edit-btn{
+            position: absolute;
+            right: 8px;
+            top: 8px;
+            background-image: url(../resources/images/dashboard/edit.png);
+            height: 23px;
+            width: 23px;
+            cursor: pointer;
+        }
 
-	.car-slick-carousel{
-		margin: 0 auto;
+        .car-card-year{
+            color:#555e6c;
+            font-size: 1.2em;
+        }
+        .car-card-brand{
+            color: #555e6c;
+            font-size: 2.2em;
+            margin-top: -0.5em;
+            width: 164px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .car-card-model{
+            color:#b0b4ba;
+            font-size: 1.3em;
+            margin-top: -0.2em;
+            line-height: 0.8em;
+        }
+        .car-card-mileage{
+            position: absolute;
+            bottom: 35px;
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            .car-card-mileage-title{
+                color:#818790;
+                font-weight: normal;
 
-		&.only-two {
-//          @media (min-width: 348px) {
-//            .car-card-slick-container:nth-child(1) .car-card {
-//              margin: 64px 10px 62px auto;
-//            }
-//            .car-card-slick-container:nth-child(2) .car-card {
-//              margin: 64px auto 64px 10px;
-//            }
-//          }
-		}		
-	}
+            }
+            .car-card-mileage-data{
+                color:#555e6c;
+                font-size: 1.2em;
+                margin-top: -0.2em;
+            }
+        }
+        .car-card-tag{
+            @include simple-transform(1, -6deg, 0, 50%);
+            position: absolute;
+            bottom:4px;
+            left:0;
+            right: 0;
+            margin: 0 auto;
+            font-size: 0.95em;
+            line-height: 1.5em;
+            @include border-radius(3px);
+            background-color: #2b9acf;
+            color:white;
+            padding: 2px 10px 2px 10px;
+            width: 116px;
+        }
+    }
 
-	.dashboard-car-actions-bottom, .dashboard-car-actions-top, .dashboard-content-common-top{
-		@extend %font-Roboto;
-		text-align: center;
-		font-size: 0.9em;
-		position: absolute;
-		left: 0;
-		right: 0;
-		z-index: 99;
-	}
 
-	.dashboard-content-common-top {
-		font-weight: 100;
-		top: 42px;
-		color: white;
-		font-size: 0.95em;
-	}
 
-	.dashboard-content-common-middle {
-		position: absolute;
-		top: 147px;
-		right: 0;
+    .car-card-slick-container{
+        // padding so car tag is visible
+        padding-bottom: 20px;
+        background-image: url(../resources/images/dashboard/car_card_shaddow.png);
+        background-position: center center;
+        background-size: 274px;
+        background-repeat: no-repeat;
+    }
 
-		.dashboard-manage-feedback {
-			cursor: pointer;
-			display: inline-block;
-			height: 117px;
-			width: 42px;
-			background-image: url(../resources/images/dashboard/FeedBack.png);
-			background-repeat: no-repeat;
-			background-position: left center;
-		}
-	}	
+    .car-slick-carousel{
+        margin: 0 auto;
 
-	.dashboard-car-actions-bottom{
-		bottom: 32px;
-		.dashboard-manage-cars-edit{
-			cursor: pointer;
-			display: inline-block;
-			height: 15px;
-			width: 15px;
-			background-image: url(../resources/images/dashboard/edit-icon.png);
-			background-repeat: no-repeat;
-			background-position: left center;
-		}
-		.dashboard-manage-cars-manage{
-			cursor: pointer;
-			display: inline-block;
-			color:white;
-			border-bottom: 1px solid white;
-		}
-	}
+        &.only-two {
+            //          @media (min-width: 348px) {
+            //            .car-card-slick-container:nth-child(1) .car-card {
+            //              margin: 64px 10px 62px auto;
+            //            }
+            //            .car-card-slick-container:nth-child(2) .car-card {
+            //              margin: 64px auto 64px 10px;
+            //            }
+            //          }
+        }		
+    }
 
-	.dashboard-car-actions-top{
-		top: -17px;
-		.dashboard-add-car{
-			&.close-add-car{
-				background-image: url(../resources/images/dashboard/close-add-car.png);
-			}
-			font-size: 0.9em;
-			font-weight: bold;
-			cursor: pointer;
-			display: inline-block;
-			padding-top: 30px;
-			background-image: url(../resources/images/dashboard/add-car.png);
-			background-repeat: no-repeat;
-			background-position: center top;
-			color: #555e6c;
-		}
-	}
+    .dashboard-car-actions-bottom, .dashboard-car-actions-top, .dashboard-content-common-top{
+        @extend %font-Roboto;
+        text-align: center;
+        font-size: 0.9em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
 
-	@include bp(md){
-		.car-slick-carousel{
-			width: 680px !important;
-		}
-	}
+    .dashboard-content-common-top {
+        font-weight: 100;
+        top: 42px;
+        color: white;
+        font-size: 0.95em;
+    }
 
-	@include bp(sm){
-		.car-slick-carousel{
-			width: 512px;
-		}
-	}
+    .dashboard-content-common-middle {
+        position: absolute;
+        top: 147px;
+        right: 0;
 
-	@include bp(xs){
+        .dashboard-manage-feedback {
+            cursor: pointer;
+            display: inline-block;
+            height: 117px;
+            width: 42px;
+            background-image: url(../resources/images/dashboard/FeedBack.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+    }	
+
+    .dashboard-car-actions-bottom{
+        bottom: 32px;
+        .dashboard-manage-cars-edit{
+            cursor: pointer;
+            display: inline-block;
+            height: 15px;
+            width: 15px;
+            background-image: url(../resources/images/dashboard/edit-icon.png);
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+        .dashboard-manage-cars-manage{
+            cursor: pointer;
+            display: inline-block;
+            color:white;
+            border-bottom: 1px solid white;
+        }
+    }
+
+    .dashboard-car-actions-top{
+        top: -17px;
+        .dashboard-add-car{
+            &.close-add-car{
+                background-image: url(../resources/images/dashboard/close-add-car.png);
+            }
+            font-size: 0.9em;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-block;
+            padding-top: 30px;
+            background-image: url(../resources/images/dashboard/add-car.png);
+            background-repeat: no-repeat;
+            background-position: center top;
+            color: #555e6c;
+        }
+    }
+
+    @include bp(md){
+        .car-slick-carousel{
+            width: 680px !important;
+        }
+    }
+
+    @include bp(sm){
+        .car-slick-carousel{
+            width: 512px;
+        }
+    }
+
+    @include bp(xs){
 
         .slick-prev {
-          top: 48%;
-          left: -12% !important;
+            top: 48%;
+            left: -12% !important;
         }
         .slick-next {
-          top: 48%;
+            top: 48%;
         }
 
-		.car-slick-carousel{
-			width: 240px;
-		}
-		.dashboard-car-holder{
-			background-image: url(../resources/images/dashboard/BackgroundMobile.jpg);
-		}
-		.dashboard-car-actions-top{
-			top: 10px;
-			text-align: right;
-			.dashboard-add-car{
-				margin-right: 19px
-			}
-		}
-		.dashboard-car-actions-bottom{
-			bottom: 48px;
-		}
+        .car-slick-carousel{
+            width: 240px;
+        }
+        .dashboard-car-holder{
+            background-image: url(../resources/images/dashboard/BackgroundMobile.jpg);
+        }
+        .dashboard-car-actions-top{
+            top: 10px;
+            text-align: right;
+            .dashboard-add-car{
+                margin-right: 19px
+            }
+        }
+        .dashboard-car-actions-bottom{
+            bottom: 48px;
+        }
 
-		.car-card{
-			margin: 64px auto 74px auto;
-			width: 180px;
-			height: 235px;
-			.car-card-mileage {
-				margin-top: 82px;
-			}
-			.car-card-brand{
-				width: 138px;
-				color:#555e6c;
-				font-size: 1.8em;
-				margin-top: -0.5em;
-			}
-			.car-card-model{
-				color:#555e6c;
-				font-size: 1.1em;
-				margin-top: -0.4em;
-				line-height: 0.8em;
-			}
-		}
+        .car-card{
+            margin: 64px auto 74px auto;
+            width: 180px;
+            height: 235px;
+            .car-card-mileage {
+                margin-top: 82px;
+            }
+            .car-card-brand{
+                width: 138px;
+                color:#555e6c;
+                font-size: 1.8em;
+                margin-top: -0.5em;
+            }
+            .car-card-model{
+                color:#555e6c;
+                font-size: 1.1em;
+                margin-top: -0.4em;
+                line-height: 0.8em;
+            }
+        }
 
 
 
-		.header-text-dashboard{
-          position: relative;
-          top: 75px;
-          font-size: 0.9em;
-          text-align: center;
-          color: #5D5858;
-          height: 60px;
-       		.header-text-name{
-	        	color:#555;
-	    	}
-		}
+        .header-text-dashboard{
+            position: relative;
+            top: 75px;
+            font-size: 0.9em;
+            text-align: center;
+            color: #5D5858;
+            height: 60px;
+            .header-text-name{
+                color:#555;
+            }
+        }
 
         @media (max-width: 348px) {
-          .header-text-dashboard {
-            position: relative;
-            top: 62px;
-          }
-          .slick-next{
-            left: 100%;
-          }
-          .slick-prev {
-            left: -8%;
-          }
+            .header-text-dashboard {
+                position: relative;
+                top: 62px;
+            }
+            .slick-next{
+                left: 100%;
+            }
+            .slick-prev {
+                left: -8%;
+            }
 
         }
 
 
-      .header-text-dashboard-name-word {
-        color: rgb(68, 66, 66);
-        font-weight: bold;
-      }
+        .header-text-dashboard-name-word {
+            color: rgb(68, 66, 66);
+            font-weight: bold;
+        }
 
-		.dashboard-content-common-top {
-			top: 98px;
-		}
+        .dashboard-content-common-top {
+            top: 98px;
+        }
 
-		.mini-logo{
-			background-image: url(../resources/images/header/newLogo_innerPages.png);
-			position: absolute;
-			top: 10px;
-			left: 0;
-			right: 0;
-			background-position: center center;
-			height: 40px;
-			background-repeat: no-repeat;
-		}
+        .mini-logo{
+            background-image: url(../resources/images/header/newLogo_innerPages.png);
+            position: absolute;
+            top: 10px;
+            left: 0;
+            right: 0;
+            background-position: center center;
+            height: 40px;
+            background-repeat: no-repeat;
+        }
 
-		.btn-social{
-			width: 60px;
-			height: 58px;
-			margin-left: 4px;
+        .btn-social{
+            width: 60px;
+            height: 58px;
+            margin-left: 4px;
 
-		   	&.btn-facebook{
-		        background-image: url($facebookMobile);
-		    }
+            &.btn-facebook{
+                background-image: url($facebookMobile);
+            }
 
-		    &.btn-twitter{
-		        background-image: url($twitterMobile);
-		    }
+            &.btn-twitter{
+                background-image: url($twitterMobile);
+            }
 
-		    &.btn-mail{
-		        background-image: url($mailMobile);
-		    }
-		}		
-	}
-
-
-	.dashboard-page-header{
-		height: 90px;
-		.home-page-title, .home-page-title:hover {
-	        text-decoration: none;
-	        color: #444;
-	        font-weight: bold;
-	        font-size: 20px;
-	    }
-
-	    .user-info {
-	        line-height: 30px;
-	    }
-
-	    .home-header-page-logo{
-	        background-image: url(../resources/images/dashboard/header-logo.png);
-	        height: 90px;
-	        background-position: left center;
-	        background-repeat: no-repeat;
-	        width: 100%;
-	        margin-left: 20px;
-	    }
-
-	    .page-header{
-	        height: 90px;
-	        border:0;
-	        margin:0;
-	    }
+            &.btn-mail{
+                background-image: url($mailMobile);
+            }
+        }		
+    }
 
 
-	    .right-zone{
-	        position: relative;
-	        margin-top:24px;
+    .dashboard-page-header{
+        height: 90px;
+        .home-page-title, .home-page-title:hover {
+            text-decoration: none;
+            color: #444;
+            font-weight: bold;
+            font-size: 20px;
+        }
 
-	    	.header-buttons{
-	    		min-width:312px;
+        .user-info {
+            line-height: 30px;
+        }
+
+        .home-header-page-logo{
+            background-image: url(../resources/images/dashboard/header-logo.png);
+            height: 90px;
+            background-position: left center;
+            background-repeat: no-repeat;
+            width: 100%;
+            margin-left: 20px;
+        }
+
+        .page-header{
+            height: 90px;
+            border:0;
+            margin:0;
+        }
+
+
+        .right-zone{
+            position: relative;
+            margin-top:24px;
+
+            .header-buttons{
+                min-width:312px;
 
                 .btn-appointment{
                     @extend %btn-appointment;
                     margin-left: 19px;
                 }
-	    	}
+            }
 
-	    	.syw-id{
-		        	position: absolute;
-		        	right: 18px;
-		        	top: -20px;
-		        	font-size: 0.7em;
-		        	font-weight: bold;
-		        	color: #bbb;
-		    }
-	    }
+            .syw-id{
+                position: absolute;
+                right: 18px;
+                top: -20px;
+                font-size: 0.7em;
+                font-weight: bold;
+                color: #bbb;
+            }
+        }
 
-	    .header-text-dashboard{
-	    	text-align: center;
-	        font-size:1.2em;
-	        font-weight: 100;
-	        margin-top: 1.9em;
-	        color:#888 !important;
-	       	.header-text-dashboard-name{
-	        	color:#555;
-	    	}
-	    }
+        .header-text-dashboard{
+            text-align: center;
+            font-size:1.2em;
+            font-weight: 100;
+            margin-top: 1.9em;
+            color:#888 !important;
+            .header-text-dashboard-name{
+                color:#555;
+            }
+        }
 
-	}
+    }
 
-	.add-car-dropdown-container{
-		margin-top: 100px;
-	}
+    .add-car-dropdown-container{
+        margin-top: 100px;
+    }
 
-	.dashboard-extra-holder{
-//		margin-top: 50px;
-		position: relative;
-		margin-bottom: 60px;
+    .dashboard-extra-holder{
+        //		margin-top: 50px;
+        position: relative;
+        margin-bottom: 60px;
 
         .fixed960{
 
@@ -444,37 +444,38 @@
         }
 
         .header-title {
-        	margin-top: 12px;
-			padding-left: 4px;
+            margin-top: 12px;
+            padding-left: 4px;
 
-			h1 {
-				font-size: 2.9rem;
-				font-weight: 200;
+            h1 {
+                font-size: 2.9rem;
+                font-weight: 200;
                 float: left;
-				small {
-					color: inherit;
-					font-size: 0.5em;
-				}
-			}
+                small {
+                    color: inherit;
+                    font-size: 0.5em;
+                    cursor: pointer;
+                }
+            }
         }
 
         @include bp(xs){
-          .header-title {
-            padding-left: 4px;
-            text-align: center;
-            margin: 0 auto;
+            .header-title {
+                padding-left: 4px;
+                text-align: center;
+                margin: 0 auto;
 
-            h1 {
-              font-size: 2.9rem;
-              font-weight: 200;
-              width: 100%;
-              small {
-                display: block;
-                color: inherit;
-                font-size: 0.5em;
-              }
+                h1 {
+                    font-size: 2.9rem;
+                    font-weight: 200;
+                    width: 100%;
+                    small {
+                        display: block;
+                        color: inherit;
+                        font-size: 0.5em;
+                    }
+                }
             }
-          }
         }
 
         .btn-appointment{
@@ -483,35 +484,35 @@
             @extend %btn-appointment;
         }
 
-		.dashboard-extra-feedback{
-			position: fixed;
-			right: 0;
-			top:600px;
-			background-image: url(../resources/images/dashboard/feedback_vert.png);
-			width: 29px;
-			height: 93px;
-			z-index:99;
-		}
+        .dashboard-extra-feedback{
+            position: fixed;
+            right: 0;
+            top:600px;
+            background-image: url(../resources/images/dashboard/feedback_vert.png);
+            width: 29px;
+            height: 93px;
+            z-index:99;
+        }
 
-		.dashboard-service-center{
-			height: 211px;
-			@include bp(xs){
-				height: 100%;
-			}
+        .dashboard-service-center{
+            height: 211px;
+            @include bp(xs){
+                height: 100%;
+            }
 
             .border{
                 @include bp(sm) {
                     border: 1px solid #cccccc;
                 }
             }
-		}
+        }
 
-		.dashboard-coupons{
-			background-repeat: no-repeat;
-			background-image: url(../resources/images/dashboard/coupons.png);
-			background-position: top center;
-			height: 211px;
-			min-width: 318px;
+        .dashboard-coupons{
+            background-repeat: no-repeat;
+            background-image: url(../resources/images/dashboard/coupons.png);
+            background-position: top center;
+            height: 211px;
+            min-width: 318px;
             @include bp(sm) {
                 margin-top: 84px;
                 background-position: top right;
@@ -520,8 +521,8 @@
                 margin-top: 22px;
             }
 
-		}
-	}
+        }
+    }
 
 }
 
