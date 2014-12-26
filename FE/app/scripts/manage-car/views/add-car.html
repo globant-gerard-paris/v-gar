@@ -1,7 +1,8 @@
 <div class="linked-car-base-container linked-car-container">
     <div class="linked-car-base linked-car add-car-base" ng-controller="CarAddCtrl">
 
-        <div class="loading" ng-show="model.loading"></div>
+        <loader fullscreen="false"></loader>
+
         <div ng-if="(model.state!==states.added)" class="visible-xs backSection">
             <div class="btn-back" ng-click="goBack()">Back</div>
         </div>
