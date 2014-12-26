@@ -2,27 +2,39 @@
     <div class="row section-up">
         <div class="col-md-6" ng-class="model.recallsOrRecommended ? 'col-lg-4' : ''">
             <div class="media car-profile-info">
-                <div class="car-profile-picture pull-left">                    
-                    <div class="car-card-tag">
+                <div class="car-profile-picture pull-left">
+                    <div class="car-card-tag" ng-show="model.carName">
                         <div class="edit-car-name" ng-click="openEditName()">{{model.data.vehicle.name}}</div>
                     </div>
-                    <div class="modal-edit-car-name" ng-show="editMode" >
-                        <input ng-model="model.data.vehicle" type="text" />
+                    <div class="name-your-car" ng-show="!model.carName" ng-click="openEditName()">
+                        Name your car
                     </div>
                 </div>
                 <div class="media-body">
                     <car-card car="model.data.vehicle" change-miles="true"></car-card>
                 </div>
+                <div class="modal-edit-car-name" ng-show="model.carNameEditMode" >
+                    <input class="edit-name" ng-model="model.carName" type="text" placeholder="Name your car" />
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <span class="btn-delete" ng-click="deleteName()">Delete</span>
+                        </div>
+                        <div class="pull-right">
+                            <span class="btn-action btn-close" ng-click="closeEditName()"></span>
+                            <span class="btn-action btn-add" ng-click="updateName()"></span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-lg-push-5" ng-show="model.recallsOrRecommended">            
+        <div class="col-lg-3 col-md-6 col-lg-push-5" ng-show="model.recallsOrRecommended">
             <div ng-include="'scripts/car-profile/views/modal-recommended-list.html'"></div>
             <recalls-and-services model="model"></recalls-and-services>
         </div>
-        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col - md - 6'">
+        <div ng-class="model.recallsOrRecommended ? 'col-lg-5 col-md-12 col-lg-pull-3' : 'col-md-6'">
             <service-alert vehicle-status="model.data.vehicleStatus"></service-alert>
         </div>
-    </div>    
+    </div>
     <div class="row section-down section-dark">
         <div class="col-sm-4 section-down-inner">
             <div class="section-box">

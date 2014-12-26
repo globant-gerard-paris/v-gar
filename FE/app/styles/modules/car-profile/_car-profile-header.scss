@@ -1,7 +1,8 @@
 @import "compass/css3/transform";
+@import "compass/css3/box-shadow";
 
 .car-profile-info {
-    font-family: Roboto;    
+    font-family: Roboto;
     max-width: 434px;
     margin: 0 auto;
     .car-profile-picture{
@@ -14,23 +15,78 @@
         .car-card-tag{
             @include simple-transform(1, -6deg, 0, 50%);
             @include border-radius(3px);
-            position: absolute;            
+            position: absolute;
             bottom: 5px;
             background-color: #2b9ace;
             width: 100%;
             padding: 5px;
             .edit-car-name {
                 background: url(../resources/images/car-profile/edit-icon.png) right center no-repeat;
-                padding: 0 20px 0 5px;
+                padding: 0 20px 0 0;
                 color: white;
                 font-weight: 900;
-                line-height: 1.0em;
+                line-height: 1.2em;
                 text-align: center;
                 cursor: pointer;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
         }
 
+        .name-your-car {
+            background-color: white;
+            text-align: center;
+            font-weight: bold;
+            color: #2b9ace;
+            cursor: pointer;
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
+            padding: 8px 0;
+            font-size: 16px;
+        }
     }
+
+    .modal-edit-car-name {
+        @include box-shadow(rgba(0,0,0,0.4) 0 0 20px);
+        background-color: white;
+        padding: 10px;
+        position: absolute;
+        bottom: 0;
+        max-width: 200px;
+        .edit-name {
+            border: none;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+        .btn-action {
+            height: 20px;
+            width: 20px;
+            line-height: 20px;
+            display: inline-block;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        .btn-action.btn-close {
+            background: url(../resources/images/car-profile/x_button.png);
+            background-size: cover;
+        }
+        .btn-action.btn-add {
+            background: url(../resources/images/car-profile/v_button.png);
+            background-size: cover;
+        }
+        
+        .btn-delete {            
+            font-weight: bold;
+            color: #2b9ace;
+            cursor: pointer;
+        }
+    }
+
     .car-card{
         display: block;
         padding: 20px 0 0 20px;
@@ -90,7 +146,7 @@
 }
 
 .service-alert{
-    font-family: Roboto;    
+    font-family: Roboto;
     @include bp(md) {
         margin-top: 20px;
     }
@@ -127,7 +183,7 @@
             }
 
             .car-profile-alerts-text {
-                text-align: center;        
+                text-align: center;
                 margin: 20px auto 0;
                 .title {
                     color: #555e6c;
@@ -217,7 +273,7 @@
 }
 
 .car-profile-mobile {
-    font-family: Roboto;  
+    font-family: Roboto;
 
 
     position: relative;

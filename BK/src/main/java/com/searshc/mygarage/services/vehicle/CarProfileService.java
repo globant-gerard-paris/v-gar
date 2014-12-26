@@ -13,16 +13,17 @@ import com.searshc.mygarage.dtos.carprofile.CarProfileDTO;
 import com.searshc.mygarage.dtos.carprofile.LastRecallDTO;
 import com.searshc.mygarage.dtos.carprofile.RecallsInformationDTO;
 import com.searshc.mygarage.dtos.carprofile.VehicleDTO;
-import com.searshc.mygarage.dtos.carprofile.VehicleStatusDTO;
 import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.entities.record.RecommendedService;
+import com.searshc.mygarage.entities.record.RecommendedServiceBlocked;
 import com.searshc.mygarage.entities.record.ServiceCenter;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
+import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
@@ -39,7 +40,6 @@ import java.util.ArrayList;
 public class CarProfileService {
 
     private final Integer MAX_SERVICE_SERVICE_RESULT = 2;
-    private final String DEFAULT_VEHICLE_NAME = "Name your car";
 
     private final Mapper mapper = new DozerBeanMapper();
     private FamilyVehicleRepository familyVehicleRepository;
@@ -49,6 +49,7 @@ public class CarProfileService {
     private BrakeComponentStatusFactory brakeComponentStatusFactory;
     private TireComponentStatusFactory tireComponentStatusFactory;
     private OilComponentStatusFactory oilComponentStatusFactory;
+    private RecommendedServiceBlockedRepository recommendedServiceBlockedRepository;
 
     @Autowired
     public CarProfileService(FamilyVehicleRepository familyVehicleRepository,
@@ -56,7 +57,8 @@ public class CarProfileService {
             VehicleRecallsService vehicleRecallsService,
             BrakeComponentStatusFactory brakeComponentStatusFactory,
             TireComponentStatusFactory tireComponentStatusFactory,
-            OilComponentStatusFactory oilComponentStatusFactory) {
+            OilComponentStatusFactory oilComponentStatusFactory,
+            RecommendedServiceBlockedRepository recommendedServiceBlockedRepository) {
         this.familyVehicleRepository = familyVehicleRepository;
         this.recordService = recordService;
         this.userRepository = userRepository;
@@ -64,6 +66,7 @@ public class CarProfileService {
         this.brakeComponentStatusFactory = brakeComponentStatusFactory;
         this.tireComponentStatusFactory = tireComponentStatusFactory;
         this.oilComponentStatusFactory = oilComponentStatusFactory;
+        this.recommendedServiceBlockedRepository = recommendedServiceBlockedRepository;
     }
 
     public CarProfileDTO getCarProfile(Long userId, Long familyVehicleId) {
@@ -92,9 +95,6 @@ public class CarProfileService {
     private VehicleDTO createVehicleDTO(FamilyVehicle familyVehicle) {
         VehicleDTO vehicle = this.mapper.map(familyVehicle.getVehicle(), VehicleDTO.class);
         this.mapper.map(familyVehicle, vehicle);
-        if (StringUtils.isEmpty(vehicle.getName())) {
-            vehicle.setName(DEFAULT_VEHICLE_NAME);
-        }
         return vehicle;
     }
 
@@ -150,6 +150,16 @@ public class CarProfileService {
             familyVehicle.setMileage(mileage);
             familyVehicle.setLastMileageUpdate(new Date());
             this.familyVehicleRepository.saveAndFlush(familyVehicle);
+        }
+    }
+
+    public void blockSuggestedService(Long familyVehicleId, String orderNumber, String sku) {
+        FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
+        if (familyVehicle != null && familyVehicle.getFamilyId() != null && familyVehicle.getTangibleId() != null) {
+            RecommendedServiceBlocked recommendedServiceBlocked
+                    = new RecommendedServiceBlocked(orderNumber, familyVehicle.getFamilyId(),
+                            familyVehicle.getTangibleId(), sku);
+            this.recommendedServiceBlockedRepository.saveAndFlush(recommendedServiceBlocked);
         }
     }
 

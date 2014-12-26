@@ -27,6 +27,17 @@ public class RecommendedServiceBlocked extends AbstractEntity {
     @Column(nullable = false)
     private String sku;
 
+    public RecommendedServiceBlocked() {
+
+    }
+
+    public RecommendedServiceBlocked(String orderNumber, Long familyIdNumber, Long tangibleIdNumber, String sku) {
+        this.orderNumber = orderNumber;
+        this.familyIdNumber = familyIdNumber;
+        this.tangibleIdNumber = tangibleIdNumber;
+        this.sku = sku;
+    }
+
     /**
      * @return the orderNumber
      */

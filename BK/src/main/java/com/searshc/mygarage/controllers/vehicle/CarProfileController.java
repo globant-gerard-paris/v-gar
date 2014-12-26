@@ -1,5 +1,6 @@
 package com.searshc.mygarage.controllers.vehicle;
 
+import com.searshc.mygarage.dtos.carprofile.BlockSuggestedServiceDTO;
 import com.searshc.mygarage.dtos.carprofile.CarProfileDTO;
 import com.searshc.mygarage.services.vehicle.CarProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,18 @@ public class CarProfileController {
             @PathVariable("familyVehicleId") Long familyVehicleId,
             @RequestBody Integer mileage) {
         this.carProfileService.updateMileage(familyVehicleId, mileage);
+        return new ResponseEntity<Object>(null, null, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/familyvehicle/{familyVehicleId}/suggested",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Object> blockSuggestedService(
+            @PathVariable("familyVehicleId") Long familyVehicleId,
+            @RequestBody BlockSuggestedServiceDTO block) {
+        this.carProfileService.blockSuggestedService(familyVehicleId, block.getOrderNumber(), block.getCode());
         return new ResponseEntity<Object>(null, null, HttpStatus.OK);
     }
 

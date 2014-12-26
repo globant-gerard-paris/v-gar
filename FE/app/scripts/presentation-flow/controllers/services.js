@@ -40,8 +40,9 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
     };
 
     var init = function () {
+        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
         RecordSrv.getRecordService().then(successGetServices);
-        ServicesSrv.getServices($scope.model.familyVehicle.id, servicesResultSuccess, servicesResultFailed);
+        ServicesSrv.getServices(familyVehicle.id, servicesResultSuccess, servicesResultFailed);
     };
 
     $scope.openNewRecordForm = function () {
@@ -144,7 +145,7 @@ angular.module('PresentationFlow').controller('ServicesCtrl', function ($scope, 
 }).controller('ModalInvoiceCtrl', function ($scope, $modalInstance, context) {
 
     $scope.model = {
-        context : context
+        context: context
     };
 
     $scope.close = function () {

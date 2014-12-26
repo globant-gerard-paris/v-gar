@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('recallsAndServices', function (RedirectSrv, $modal) {
+angular.module('Directives').directive('recallsAndServices', function (RedirectSrv, $modal, CarProfileSrv, $rootScope) {
     return {
         replace: true,
         restrict: 'E',
@@ -27,17 +27,34 @@ angular.module('Directives').directive('recallsAndServices', function (RedirectS
                     }
                 });
             };
+
+            var successBlock = function () {
+                $rootScope.$broadcast('BLOCK_SUGGESTED_SERVICE');
+            };
+
+            scope.blockSuggested = function (suggested) {
+                CarProfileSrv.blockSuggestedService(scope.model.data.recommendedService, suggested).then(successBlock);
+            };
         }
     };
-}).directive('recommendedServices', function () {
+}).directive('recommendedServices', function (CarProfileSrv, $rootScope) {
     return {
         replace: true,
         restrict: 'E',
         templateUrl: 'scripts/directives/views/car-profile/recommended-services.html',
         scope: {
-            recommendedList: '='
+            recommended: '='
         },
-        link: function () {
+        link: function (scope) {
+
+            var successBlock = function () {
+                $rootScope.$broadcast('BLOCK_SUGGESTED_SERVICE');
+            };
+
+            scope.blockSuggestedService = function (suggested) {
+                CarProfileSrv.blockSuggestedService(scope.recommended, suggested).then(successBlock);
+            };
+
         }
     };
 }).controller('ModalRecommendedCtrl', function ($scope, $modalInstance, context) {
