@@ -23,5 +23,6 @@
     "vendor-prefix": false,
     "font-sizes": false,
     "floats": false,
-    "star-property-hack":false
+    "star-property-hack":false,
+    "ids": false
 }
