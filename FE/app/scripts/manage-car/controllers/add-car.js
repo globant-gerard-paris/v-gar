@@ -12,13 +12,11 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
     };
 
     $scope.states = states;
-    $scope.landing = false;
 
     $scope.model = {
         state: states.add,
         notFounded: false,
         available: false,
-        loading: true,
 
         //data
         years: [],
@@ -41,11 +39,9 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
     }
 
     function loadingOn(){
-        $scope.model.loading = true;
         $scope.model.available = false;
     }
     function loadingOff(){
-        $scope.model.loading = false;
         $scope.model.available = true;
     }
 

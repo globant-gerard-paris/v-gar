@@ -6,13 +6,13 @@ body {
 
 @include bp(xs) {
     body{
-        overflow-x:hidden; 
+        overflow-x:hidden;
     }
 }
 
- body, html, .container-fluid{
+body, html, .container-fluid{
     height:100%;
- }
+}
 
 a{
     color:$linkColor;
@@ -23,7 +23,7 @@ a{
 }
 
 .page-header{
-  margin: 10px 0 20px;
+    margin: 10px 0 20px;
 }
 h1, h2, h3 {
     font-weight: 100;
