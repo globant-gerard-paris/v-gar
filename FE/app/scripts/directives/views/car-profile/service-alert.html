@@ -1,17 +1,13 @@
 <div class="service-alert">
-	<div class="service-alert-tire">
-		<div class="alert-icon alert-icon-tire"></div>
-		<span class="title">Tire Rotation</span>
-		<span class="data">{{model.tireRotation}}</span>
-	</div><!--
- --><div class="service-alert-oil">
-		<div class="alert-icon alert-icon-oil"></div>
-		<span class="title">Oil Change</span>
-		<span class="data">{{model.oilChange}}</span>
-	</div><!--
- --><div class="service-alert-brakes">
-		<div class="alert-icon alert-icon-brakes"></div>
-		<span class="title">Brakes Inspection</span>
-		<span class="data">{{model.brakesInspection}}</span>
-	</div>
+    <div class="car-profile-alerts-icons">
+        <div class="clearfix">
+            <div class="item" ng-repeat="status in vehicleStatus" >
+                <span class="icon service-alert-{{status.component + '-' + status.statusName| lowercase}}"></span>
+                <div class="car-profile-alerts-text">
+                    <span class="title">{{status.componentName}}</span>
+                    <span class="data">{{status.statusDescription}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 package com.searshc.mygarage.dtos.carprofile;
 
+import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.record.RecommendedService;
 import com.searshc.mygarage.entities.record.ServiceCenter;
 import com.searshc.mygarage.entities.record.ServiceRecord;
@@ -12,7 +13,7 @@ import java.util.List;
 public class CarProfileDTO {
 
     private VehicleDTO vehicle;
-    private VehicleStatusDTO vehicleStatus;
+    private List<VehicleComponentStatusDTO> vehicleStatus;
     private ServiceCenter serviceCenter;
     private RecallsInformationDTO recallsInformation;
     private RecommendedService recommendedService;
@@ -42,14 +43,14 @@ public class CarProfileDTO {
     /**
      * @return the vehicleStatus
      */
-    public VehicleStatusDTO getVehicleStatus() {
+    public List<VehicleComponentStatusDTO> getVehicleStatus() {
         return vehicleStatus;
     }
 
     /**
      * @param vehicleStatus the vehicleStatus to set
      */
-    public void setVehicleStatus(VehicleStatusDTO vehicleStatus) {
+    public void setVehicleStatus(List<VehicleComponentStatusDTO> vehicleStatus) {
         this.vehicleStatus = vehicleStatus;
     }
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Directives').directive('serviceInformation', function ($modal, RecordSrv) {
+angular.module('Directives').directive('serviceInformation', function ($modal, RecordSrv, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'scripts/directives/views/service-information.html',
@@ -49,8 +49,7 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
                     }
                 });
 
-                modalNewRecord.result.then(function (model) {
-                    console.log(model);
+                modalNewRecord.result.then(function () {
                     RecordSrv.deleteRecord(scope.service.id).then(removeRecordSuccess, removeRecordFail);
                 }, function () {
                     //do nothing
@@ -59,7 +58,7 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
             };
 
             var removeRecordSuccess = function (response) {
-                scope.$emit('REMOVED_RECORD', response);
+                $rootScope.$broadcast('REMOVED_RECORD', response);
             };
 
             var removeRecordFail = function (response) {
@@ -70,8 +69,12 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
     };
 }).controller('ModalConfirmationDeleteServiceCtrl', function ($scope, $modalInstance) {
 
-    $scope.close = function () {
+    $scope.ok = function () {
         $modalInstance.close();
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss();
     };
 
 });

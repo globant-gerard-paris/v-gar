@@ -3,13 +3,18 @@
  */
 'use strict';
 
-angular.module('Directives').directive('serviceHistory', function () {
+angular.module('Directives').directive('serviceHistory', function (RedirectSrv) {
     return {
         replace: true,
         restrict: 'E',
         templateUrl: 'scripts/directives/views/car-profile/service-history.html',
         scope: {
             services: '='
+        },
+        controller: function ($scope) {
+            $scope.seeAllHistory = function () {
+                RedirectSrv.redirectTo('/services');
+            };
         },
         link: function (scope) {
             scope.$watch('services', function () {

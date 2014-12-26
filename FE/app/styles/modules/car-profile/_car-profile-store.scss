@@ -1,12 +1,13 @@
-.car-profile{
-//    height: 100%;
-//    margin-top: -25px;
-//    background-color: #555d6a;
+.service-center{
+
+    padding: 10px;
+
+    .store-small {
+        margin-top: 60px;
+    }
 
     .map-bg{
-        background-image: url($locationMapBg);
-        background-repeat: no-repeat;
-        padding-top: 65px;
+        background: url($locationMapBg) no-repeat;
         margin-left: 0;
         width: 100%;
     }
@@ -43,23 +44,17 @@
         a {
             cursor: pointer;
             background: url(../resources/images/car-profile/edit.png) no-repeat left;
-            padding-left: 15px;     
+            padding-left: 15px;
             @include bp(xs) {
                 color: #ffffff;
             }
         }
     }
     .store-map-brand{
-        margin-top: 20px;
-//        margin-bottom: 20px;
-
-        div{
-            background-image: url($locationMarker);
-            background-repeat: no-repeat;
-            height: 95px;
-            width: 127px;
-            margin: 0 auto;
-        }
+        background: url($locationMarker) no-repeat;
+        height: 95px;
+        width: 127px;
+        margin: 20px auto;
     }
 
     .link-tel{
@@ -93,33 +88,27 @@
     }
 
     .tell-us-more{
-        background-color: #555e6c;
-        width: 100%;
-        margin-left: 0;
+
+        text-align: center;
 
         hr{
             margin-bottom: 40px;
             margin-top: 40px;
             width: 70%;
         }
+
         p{
             color: #ffffff;
-            width: 100%;
             text-align: center;
-            margin: 20px auto 20px auto;
             font-weight: 200;
             font-size: 1.6rem;
             letter-spacing: 1px;
+            padding: 20px;
         }
 
-        .btn-lorem{
-            width: 100%;
-            text-align: center;
-        }
-
-        button {
+        .btn-tell-us-more {
             border: 2px solid #ffffff;
-            background-color:#555e6c;
+            background: none;
             color: #ffffff;
             font-size: 1.1rem;
             font-weight: bold;

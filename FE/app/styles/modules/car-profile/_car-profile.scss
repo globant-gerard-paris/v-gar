@@ -1,15 +1,90 @@
+.car-profile-section {
+
+    overflow: hidden;
+    margin-bottom: -50px;
+    position: relative;
+
+    .section-blue {
+        background-color:  #2b9ace;
+    }
+
+    .section-dark {
+        background-color:  #555e6c;
+        position: relative;
+        bottom: -60px;
+    }
+
+    .section-down-fix {
+        width: 40px;
+        height: 400px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    .section-up {
+        padding: 0 40px;
+        > div {
+            padding: 0;
+        }
+    }
+
+    .section-down {
+        -moz-transform: skewY(4deg);
+        -ms-transform: skewY(4deg);
+        -webkit-transform: skewY(4deg);
+        transform: skewY(4deg);
+        -webkit-box-shadow: 0 0 1px #2b9ace;
+        -moz-box-shadow: 0 0 1px #2b9ace;
+        box-shadow: 0 0 1px #2b9ace;
+
+        .section-down-inner {
+            -moz-transform: skewX(-4deg);
+            -ms-transform: skewX(-4deg);
+            -webkit-transform: skewX(-4deg);
+            transform: skewX(-4deg);
+            padding: 0;
+
+            .section-box {
+                -moz-transform: skew(4deg,-4deg);
+                -ms-transform: skew(4deg,-4deg);
+                -webkit-transform: skew(4deg,-4deg);
+                transform: skew(4deg,-4deg);
+            }
+        }
+    }
+
+    .btn-box {
+        text-align: center;
+    }
+
+    .btn-add, .btn-add:active, .btn-add:focus {
+        font-size: 0.9em;
+        font-weight: bold;
+        cursor: pointer;
+        background: url(../resources/images/dashboard/add-car.png) center top no-repeat;
+        color: white;
+        line-height: 70px;
+        margin-top: -15px;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+}
+
+
 .car-profile{
 
   .car-profile-container{
         overflow: hidden;
         margin-bottom:-50px;
     }
-	.header{
-		height: 272px;
-	}
-	padding: 0;
-	//overflow-x: hidden;
-	height: 100%;
+    .header{
+        height: 272px;
+    }
+    padding: 0;
+    //overflow-x: hidden;
+    height: 100%;
 
     .second-header{
 
@@ -71,16 +146,16 @@
     }
 
 
-	section{
-		padding:0;
-	}
-// use includes below, unless LAYOUT styling
-	.last-service-history{
-		position: relative;
-		background-color:#2b9ace;
-		z-index:10;
-		margin-top: 40px;
-	}
+    section{
+        padding:0;
+    }
+    // use includes below, unless LAYOUT styling
+    .last-service-history{
+        position: relative;
+        background-color:#2b9ace;
+        z-index:10;
+        margin-top: 40px;
+    }
 
     .service-center{
         background-color: #555e6c;
@@ -90,13 +165,11 @@
             background-color: #ffffff;
             padding-right: 0;
         }
-//        height: 1000px;
+        //        height: 1000px;
     }
 
-	margin-bottom: -80px;//needed??
-
     @include bp(xs) {
-	    margin-bottom: 0;
+        margin-bottom: 0;
     }
 }
 

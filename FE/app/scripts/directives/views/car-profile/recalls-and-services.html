@@ -1,22 +1,31 @@
-<div class="reorder-xs recalls-and-services">
-	<div class="down-xs" ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
+<div class="recalls-and-services">
+    <div ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
         <div class="recall-info">
             <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
             <div class="summary">{{model.data.recallsInformation.lastRecall.summary}}</div>
-            <a href="#" ng-click="redirectToRecalls()">See more details</a>
+            <div class="see-more">
+                <a href="#" ng-click="redirectToRecalls()">See more details</a>
+            </div>
         </div>
-	</div>
-	<div class="up-xs" ng-if="model.data.recommendedService &&  model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length>0">
+    </div>
+    <div ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
         <div class="service-info">
-            <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Services</div>
-            <div class="service-list">
-                <div class="well well-sm" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
-                    <button type="button" class="close">
-                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                    </button>
-                    <a ng-href="{{srv.link}}" target="_blank">{{srv.description | capitalize}}</a>
-                </div>              
-            </div>            
+            <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Services</div>            
+            <div class="recommended-services">
+                <div class="service-list">
+                    <div class="well well-sm" ng-repeat="srv in model.data.recommendedService.serviceRecordItems | limitTo: 2">
+                        <button type="button" class="close" ng-click="blockSuggested(srv)">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <a ng-href="{{srv.link}}" target="_blank" ng-class="srv.link != null ? 'marked':''">{{srv.description| capitalize}}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="see-more" ng-show="model.data.recommendedService.serviceRecordItems.length - 2 > 0">
+                <a href="#" ng-click="openRecommendedList()">See
+                    <ng-pluralize count="model.data.recommendedService.serviceRecordItems.length - 2" when="{'one': '1 more service','other': '{} more services'}"></ng-pluralize>
+                </a>
+            </div>
         </div>
-	</div>
+    </div>
 </div>

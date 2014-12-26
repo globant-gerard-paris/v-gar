@@ -13,22 +13,24 @@ import com.searshc.mygarage.dtos.carprofile.CarProfileDTO;
 import com.searshc.mygarage.dtos.carprofile.LastRecallDTO;
 import com.searshc.mygarage.dtos.carprofile.RecallsInformationDTO;
 import com.searshc.mygarage.dtos.carprofile.VehicleDTO;
-import com.searshc.mygarage.dtos.carprofile.VehicleStatusDTO;
 import com.searshc.mygarage.dtos.carprofile.component.VehicleComponentStatusDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
 import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.entities.recalls.VehicleRecalls;
 import com.searshc.mygarage.entities.record.RecommendedService;
+import com.searshc.mygarage.entities.record.RecommendedServiceBlocked;
 import com.searshc.mygarage.entities.record.ServiceCenter;
 import com.searshc.mygarage.entities.record.ServiceRecord;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
+import com.searshc.mygarage.repositories.RecommendedServiceBlockedRepository;
 import com.searshc.mygarage.repositories.UserRepository;
 import com.searshc.mygarage.services.nhtsa.VehicleRecallsService;
 import com.searshc.mygarage.services.record.RecordService;
 import com.searshc.mygarage.services.vehicle.component.status.BrakeComponentStatusFactory;
 import com.searshc.mygarage.services.vehicle.component.status.OilComponentStatusFactory;
 import com.searshc.mygarage.services.vehicle.component.status.TireComponentStatusFactory;
+import java.util.ArrayList;
 
 /**
  *
@@ -38,7 +40,6 @@ import com.searshc.mygarage.services.vehicle.component.status.TireComponentStatu
 public class CarProfileService {
 
     private final Integer MAX_SERVICE_SERVICE_RESULT = 2;
-    private final String DEFAULT_VEHICLE_NAME = "My Car";
 
     private final Mapper mapper = new DozerBeanMapper();
     private FamilyVehicleRepository familyVehicleRepository;
@@ -48,6 +49,7 @@ public class CarProfileService {
     private BrakeComponentStatusFactory brakeComponentStatusFactory;
     private TireComponentStatusFactory tireComponentStatusFactory;
     private OilComponentStatusFactory oilComponentStatusFactory;
+    private RecommendedServiceBlockedRepository recommendedServiceBlockedRepository;
 
     @Autowired
     public CarProfileService(FamilyVehicleRepository familyVehicleRepository,
@@ -55,14 +57,16 @@ public class CarProfileService {
             VehicleRecallsService vehicleRecallsService,
             BrakeComponentStatusFactory brakeComponentStatusFactory,
             TireComponentStatusFactory tireComponentStatusFactory,
-            OilComponentStatusFactory oilComponentStatusFactory) {
+            OilComponentStatusFactory oilComponentStatusFactory,
+            RecommendedServiceBlockedRepository recommendedServiceBlockedRepository) {
         this.familyVehicleRepository = familyVehicleRepository;
         this.recordService = recordService;
         this.userRepository = userRepository;
         this.vehicleRecallsService = vehicleRecallsService;
         this.brakeComponentStatusFactory = brakeComponentStatusFactory;
-        this.tireComponentStatusFactory =  tireComponentStatusFactory;
+        this.tireComponentStatusFactory = tireComponentStatusFactory;
         this.oilComponentStatusFactory = oilComponentStatusFactory;
+        this.recommendedServiceBlockedRepository = recommendedServiceBlockedRepository;
     }
 
     public CarProfileDTO getCarProfile(Long userId, Long familyVehicleId) {
@@ -70,13 +74,12 @@ public class CarProfileService {
         FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
         if (familyVehicle != null) {
             carProfileDTO = new CarProfileDTO(this.createVehicleDTO(familyVehicle));
-            
             carProfileDTO.setServiceCenter(this.getServiceCenter(userId));
             carProfileDTO.setRecallsInformation(this.createRecallsInformationDTO(familyVehicle));
             carProfileDTO.setRecommendedService(this.createRecommendedService(familyVehicle));
-            this.refreshMileage(familyVehicleId, carProfileDTO);
             List<ServiceRecord> mixedRecordsOrderedByDate = this.recordService.getServiceRecords(familyVehicle.getId());
             carProfileDTO.setLastServiceHistory(this.getLastServiceRecord(mixedRecordsOrderedByDate));
+            this.refreshMileage(familyVehicleId, carProfileDTO);
             carProfileDTO.setVehicleStatus(this.createVehicleStatusDTO(mixedRecordsOrderedByDate));
         }
         return carProfileDTO;
@@ -92,22 +95,19 @@ public class CarProfileService {
     private VehicleDTO createVehicleDTO(FamilyVehicle familyVehicle) {
         VehicleDTO vehicle = this.mapper.map(familyVehicle.getVehicle(), VehicleDTO.class);
         this.mapper.map(familyVehicle, vehicle);
-        if (StringUtils.isEmpty(vehicle.getName())) {
-            vehicle.setName(DEFAULT_VEHICLE_NAME);
-        }
         return vehicle;
     }
 
-    private VehicleStatusDTO createVehicleStatusDTO(List<ServiceRecord> mixedRecordsOrderedByDate) {
-    	VehicleComponentStatusDTO tires = this.tireComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	VehicleComponentStatusDTO oil = this.oilComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	VehicleComponentStatusDTO brakes = this.brakeComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
-    	
-    	VehicleStatusDTO vehicleStatus = new VehicleStatusDTO();
-    	//ATENTION: the order must be Tires, Oil, brakes
-    	vehicleStatus.addVehicleComponentStatus(tires);
-    	vehicleStatus.addVehicleComponentStatus(oil);
-    	vehicleStatus.addVehicleComponentStatus(brakes);
+    private List<VehicleComponentStatusDTO> createVehicleStatusDTO(List<ServiceRecord> mixedRecordsOrderedByDate) {
+        VehicleComponentStatusDTO tires = this.tireComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+        VehicleComponentStatusDTO oil = this.oilComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+        VehicleComponentStatusDTO brakes = this.brakeComponentStatusFactory.createComponentStatus(mixedRecordsOrderedByDate);
+
+        List<VehicleComponentStatusDTO> vehicleStatus = new ArrayList<VehicleComponentStatusDTO>();
+        //ATENTION: the order must be Tires, Oil, Brakes. This is the position in design
+        vehicleStatus.add(tires);
+        vehicleStatus.add(oil);
+        vehicleStatus.add(brakes);
         return vehicleStatus;
     }
 
@@ -135,7 +135,7 @@ public class CarProfileService {
         return result;
     }
 
-    private List<ServiceRecord> getLastServiceRecord( List<ServiceRecord> records) {
+    private List<ServiceRecord> getLastServiceRecord(List<ServiceRecord> records) {
         return records.subList(0, Math.min(records.size(), this.MAX_SERVICE_SERVICE_RESULT));
     }
 
@@ -150,6 +150,16 @@ public class CarProfileService {
             familyVehicle.setMileage(mileage);
             familyVehicle.setLastMileageUpdate(new Date());
             this.familyVehicleRepository.saveAndFlush(familyVehicle);
+        }
+    }
+
+    public void blockSuggestedService(Long familyVehicleId, String orderNumber, String sku) {
+        FamilyVehicle familyVehicle = this.familyVehicleRepository.findOne(familyVehicleId);
+        if (familyVehicle != null && familyVehicle.getFamilyId() != null && familyVehicle.getTangibleId() != null) {
+            RecommendedServiceBlocked recommendedServiceBlocked
+                    = new RecommendedServiceBlocked(orderNumber, familyVehicle.getFamilyId(),
+                            familyVehicle.getTangibleId(), sku);
+            this.recommendedServiceBlockedRepository.saveAndFlush(recommendedServiceBlocked);
         }
     }
 

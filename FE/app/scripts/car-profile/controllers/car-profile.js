@@ -1,11 +1,22 @@
 'use strict';
 
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, config, SessionDataSrv, ApiHttpSrv, RecordSrv) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, CarProfileSrv, RecordSrv) {
 
-    $scope.model = {};
+    $scope.model = {
+        recallsOrRecommended: true,
+        carNameEditMode: true,
+        carName: null
+    };
 
     var carsResultSuccess = function (response) {
         $scope.model.data = response.data;
+        $scope.model.carName = $scope.model.data.vehicle.name;
+        $scope.model.recallsOrRecommended =
+                (response.data.recallsInformation &&
+                        response.data.recallsInformation.totalRecalls > 0) ||
+                (response.data.recommendedService &&
+                        response.data.recommendedService.serviceRecordItems &&
+                        response.data.recommendedService.serviceRecordItems.length > 0);
         $scope.$broadcast('car-profile-data-ready');
     };
 
@@ -18,6 +29,29 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
     var successGetServices = function (response) {
         $scope.model.servicesPopup = response.data;
     };
+
+    $scope.openEditName = function () {
+        $scope.model.carNameEditMode = true;
+    };
+
+    $scope.closeEditName = function () {
+        $scope.model.carName = $scope.model.data.vehicle.name;
+        $scope.model.carNameEditMode = false;
+    };
+
+    $scope.deleteName = function () {
+        $scope.model.carName = null;
+        $scope.updateName();
+    };
+
+    $scope.updateName = function () {
+        $scope.model.data.vehicle.name = $scope.model.carName;
+        CarProfileSrv.updateCarName($scope.model.data.vehicle.name).then($scope.closeEditName);
+    };
+
+    $scope.$on('BLOCK_SUGGESTED_SERVICE', function () {
+        $scope.loadProfileData();
+    });
 
     $scope.openNewRecordForm = function () {
 
@@ -51,12 +85,8 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
     };
 
     $scope.loadProfileData = function () {
-        var userId = SessionDataSrv.getCurrentUser();
-        var familyVehicle = SessionDataSrv.getCurrentFamilyVehicle();
-        var familyVehicleId = familyVehicle.id;
         RecordSrv.getRecordService().then(successGetServices);
-        ApiHttpSrv.createHttp('GET', config.api.hosts.BACKEND + '/car-profile/user/' +
-                userId + '/familyvehicle/' + familyVehicleId).then(carsResultSuccess);
+        CarProfileSrv.getCarProfile().then(carsResultSuccess);
     };
 
     //load initial data

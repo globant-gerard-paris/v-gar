@@ -5,6 +5,7 @@ angular.module('Directives').directive('carTellUsMore', function () {
     'use strict';
 
     return {
+        replace: true,
         restrict: 'E',
         scope: {
             model: '=',

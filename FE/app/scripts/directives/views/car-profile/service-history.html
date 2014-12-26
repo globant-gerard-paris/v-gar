@@ -1,16 +1,19 @@
-<div class="service-history" ng-repeat="service in model.services">
-    <div class="pull-left">
-        <div class="service-history-img">
-            <div class="service-history-icon pull-left"
-                 ng-class="service.serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'">
-             </div>
+<div class="service-history" ng-repeat="service in model.services" ng-click="seeAllHistory()">
+    <div class="row">
+        <div class="col-sm-4 col-md-5">
+            <div class="service-history-img">
+                <div class="service-history-icon pull-left"
+                     ng-class="service.serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8 col-md-7">
+            <div class="service-history-data">
+                <div class="sh-data">Sears Auto Center {{service.serviceCenterStr}}</div>
+                <div class="section-desc hidden-xs">{{service.serviceDesc}}</div>
+                <div class="sh-data-mileage pull-left">{{service.serviceMileage| number}} Miles</div>
+                <div class="sh-date-small pull-left">{{service.serviceDate| date:'mediumDate'}}</div>
+            </div>
         </div>
     </div>
-    <div class="service-history-data">
-        <div class="sh-data">Sears Auto Center {{service.serviceCenterStr}}</div>
-        <div class="section-desc hidden-xs">{{service.serviceDesc}}</div>
-        <div class="sh-data-mileage pull-left">{{service.serviceMileage | number}} Miles</div>
-        <div class="sh-date-small pull-left">{{service.serviceDate | date:'mediumDate'}}</div>
-    </div>
-    <div class="clearfix"></div>
 </div>
