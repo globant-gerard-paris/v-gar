@@ -118,6 +118,11 @@ public class NcdbServiceImpl implements NcdbService {
         return orders.isEmpty() ? null : orders.get(0);
     }
 
+    private Order getLastOrder(List<Order> orders)
+            throws NCDBApiException {
+        return orders.isEmpty() ? null : orders.get(0);
+    }
+
     private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter) {
         OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehicleHistory(familyId, tangibleId);
         List<Order> orders = null;
@@ -147,9 +152,11 @@ public class NcdbServiceImpl implements NcdbService {
     @Override
     public List<ServiceRecord> getServiceRecords(Long familyId, Long tangibleId) {
         RecordFilter ncdbRecordFilter = new RecordFilter();
-        this.processTransactions(familyId, tangibleId, ncdbRecordFilter);
+        List<Order> orders = this.processTransactions(familyId, tangibleId, ncdbRecordFilter);
         List<ServiceRecord> serviceRecords
                 = new ArrayList<ServiceRecord>(ncdbRecordFilter.serviceRecordsMap.values());
+        Order lastOrder = this.getLastOrder(orders);
+        lastOrder.setRecommendedService(this.createRecommendedServices(lastOrder, false));
         Collections.sort(serviceRecords, new Comparator<ServiceRecord>() {
             @Override
             public int compare(ServiceRecord o1, ServiceRecord o2) {
@@ -159,12 +166,10 @@ public class NcdbServiceImpl implements NcdbService {
         return serviceRecords;
     }
 
-    @Override
-    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId) {
+    private RecommendedService createRecommendedServices(Order lastOrder, boolean includeOrder) {
         RecommendedService recommendedService = null;
-        Order lastOrder = this.getLastOrder(familyId, tangibleId);
         if (lastOrder != null) {
-            recommendedService = new RecommendedService(lastOrder, lastOrder.getServiceCenter());
+            recommendedService = new RecommendedService(includeOrder ? lastOrder : new Order(), lastOrder.getServiceCenter());
             for (OrderItem item : lastOrder.getOrderItems()) {
                 ServiceRecordItem sri = this.createRecommendedServiceRecordItem(item);
                 if (sri != null && this.checkIsNotLocalServiceRecord(lastOrder.getTransactionDateTime(), sri.getCode())
@@ -181,6 +186,12 @@ public class NcdbServiceImpl implements NcdbService {
         return recommendedService != null
                 && !recommendedService.getServiceRecordItems().isEmpty()
                         ? recommendedService : null;
+    }
+
+    @Override
+    public RecommendedService getRecommendedServices(Long familyId, Long tangibleId) {
+        Order lastOrder = this.getLastOrder(familyId, tangibleId);
+        return this.createRecommendedServices(lastOrder, true);
     }
 
     private boolean checkIsNotLocalServiceRecord(Date date, String sku) {

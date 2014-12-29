@@ -139,13 +139,13 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-image text-center row">
+            <div class="footer-image text-center row" ng-show="model.context.suggestedDesc">
                 <div col="col-xs-12">
                     <img alt="Invoice icon" class="icon-envoice-key"
                          src="resources/images/invoice/key-circle-white.png"/>
                     <h4>
                         Recommended Services<br>
-                        <small>Tire Rotation, Oil Change, Alignment</small>
+                        <small>{{model.context.suggestedDesc}}</small>
                     </h4>
                 </div>
             </div>
