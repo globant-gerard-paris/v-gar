@@ -96,11 +96,11 @@
                     <div class="col-xs-6"><span class="text-left invoice-title">Service Details</span></div>
                     <div class="col-xs-6">
                         <span class="text-left">
-                            <span class="invoice-sub-title-date">May 4, 2014</span>
+                            <span class="invoice-sub-title-date">{{model.context.date | date:'MMM d, yyyy '}}</span>
                             <br>
                             <span class="invoice-sub-title-description">
-                                Woodfield Mall, 2 Woodfield Mall,<br>
-                                Shaumburg, IL 60173
+                                {{model.context.order.serviceCenter.address}}, {{model.context.order.serviceCenter.city}}<br>
+                                {{model.context.order.serviceCenter.state}} {{model.context.order.serviceCenter.zipCode}}
                             </span>
                         </span>
                     </div>
