@@ -152,6 +152,7 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
             dto.setModel(familyVehicle.getVehicle().getModel());
             dto.setYear(familyVehicle.getVehicle().getYear());
             dto.setEngine(familyVehicle.getVehicle().getEngine());
+            dto.setMileage(familyVehicle.getMileage());
             dto.setConfirmed(status == Status.NCDB ? false : true);
             dto.setStatus(status);
             result.add(dto);
