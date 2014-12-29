@@ -338,4 +338,9 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
     }
 
+    public List<FamilyVehicle> getLocalNonConfirmedFamilyVehicles(
+			Long familyId) {
+        return repository.getLocalNonConfirmedFamilyVehicles(familyId);
+	}
+
 }
