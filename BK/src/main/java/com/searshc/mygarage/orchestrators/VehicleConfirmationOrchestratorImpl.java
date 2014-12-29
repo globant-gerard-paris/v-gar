@@ -38,9 +38,10 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 		List<FamilyVehicle> localVehiclesConfirmed = this.familyVehicleService.getConfirmedFamilyVehiclesByUserId(userId);
 		log.debug(localVehiclesConfirmed.size() + " vehicles return as confirmed, including manual and linked");
 		if(user.getFamilyId() != null) {
+			List<FamilyVehicle> nonConfirmedLocalVehicles = this.familyVehicleService.getLocalNonConfirmedFamilyVehicles(user.getFamilyId());
 			//mix manual with ncdb vehicles 
 			List<FamilyVehicle> ncdbVehicles = this.ncdbService.listVehicles(user.getFamilyId());
-			Map<String, List<FamilyVehicle>> classifiedVehicles = this.mixVehicles(localVehiclesConfirmed, ncdbVehicles);
+			Map<String, List<FamilyVehicle>> classifiedVehicles = this.mixVehicles(localVehiclesConfirmed, ncdbVehicles, nonConfirmedLocalVehicles);
 			
 			//Convert to DTO and add to result
 			result.addAll(this.convert(classifiedVehicles.get(MANUAL_VEHICLES), Status.MANUAL));
@@ -86,12 +87,13 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 	 * <ol><strong>Not Linked Vehicles:</strong> those which are not confirmed</ol>
 	 * @param confirmedLocalVehicles the {@link FamilyVehicles} that are confirmed by {@link ConfirmedVehicle}
 	 * @param ncdbVehicles the {@link FamilyVehicle} retrieved from NCDB
+	 * @param nonConfirmedLocalVehicles {@link FamilyVehicle} saved in local but not confirmed (Manually added and unckecked in the past)
 	 * @return a Map with three entries with the following keys:
 	 * <ol>{@link VehicleConfirmationOrchestratorImpl#MANUAL_VEHICLES}</ol>
 	 * <ol>{@link VehicleConfirmationOrchestratorImpl#LINKED_VEHICLES}</ol>
 	 * <ol>{@link VehicleConfirmationOrchestratorImpl#NOT_LINKED_VEHICLES}</ol>
 	 */
-	public Map<String, List<FamilyVehicle>> mixVehicles(final List<FamilyVehicle> confirmedLocalVehicles, final List<FamilyVehicle> ncdbVehicles){
+	public Map<String, List<FamilyVehicle>> mixVehicles(final List<FamilyVehicle> confirmedLocalVehicles, final List<FamilyVehicle> ncdbVehicles, List<FamilyVehicle> nonConfirmedLocalVehicles){
 		Map<String, List<FamilyVehicle>> result = new HashMap<String, List<FamilyVehicle>>();
 		List<FamilyVehicle> manualVehicles = new ArrayList<FamilyVehicle>();
 		List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>();
@@ -126,6 +128,8 @@ public class VehicleConfirmationOrchestratorImpl extends BaseOrchestrator implem
 			}
 			
 		}
+		
+		notLinkedVehicles.addAll(nonConfirmedLocalVehicles);
 		
 		//The manual vehicles are those confirmedVehicles that are not linked
 		manualVehicles.addAll(confirmedLocalVehicles);

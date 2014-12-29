@@ -20,4 +20,7 @@ public interface FamilyVehicleRepository extends GenericRepository<FamilyVehicle
 
     @Query("SELECT uv FROM FamilyVehicle uv where uv.tangibleId = :tangibleId")
     FamilyVehicle getFamilyVehicleByTangibleId(@Param("tangibleId") final Long tangibleId);
+
+    @Query("SELECT fv FROM FamilyVehicle fv WHERE fv.familyId = :familyId AND fv.tangibleId IS NULL AND fv NOT IN (SELECT cv.familyVehicle FROM ConfirmedVehicle cv WHERE cv.familyVehicle.familyId=:familyId)")
+    List<FamilyVehicle> getLocalNonConfirmedFamilyVehicles(@Param("familyId") Long familyId);
 }
