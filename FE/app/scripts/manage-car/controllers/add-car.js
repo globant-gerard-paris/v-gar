@@ -11,6 +11,8 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
         added:2
     };
 
+    var flagChanged = false;
+
     $scope.states = states;
 
     $scope.model = {
@@ -56,7 +58,12 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
     }
 
     $scope.close = function () {
-        RedirectSrv.redirectTo('/dashboard');
+        if(flagChanged){
+            flagChanged=false;
+            $scope.$emit('linked-cars-updated');
+        } else {
+            RedirectSrv.redirectTo('/dashboard');
+        }
         stBlurredDialog.close();
     };
 
@@ -206,7 +213,7 @@ angular.module('ManageCar').controller('CarAddCtrl', function ($scope, RedirectS
             $scope.model.state = states.added;
 
             if (!$scope.landing) {
-                $scope.$emit('linked-cars-updated');
+                flagChanged=true;
             }
 
             cb();

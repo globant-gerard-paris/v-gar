@@ -18,7 +18,8 @@ public class VehicleConfirmationDTO implements Serializable {
     private Long vehicleId;
     private Long familyId;
     private Long tangibleId;
-    @Mapping("vehicle.make")
+    private int mileage;
+	@Mapping("vehicle.make")
     private String make;
     @Mapping("vehicle.model")
     private String model;
@@ -197,6 +198,13 @@ public class VehicleConfirmationDTO implements Serializable {
 		this.status = status;
 	}
 
+    public int getMileage() {
+		return mileage;
+	}
+
+	public void setMileage(int mileage) {
+		this.mileage = mileage;
+	}
 
 	public enum Status {NCDB, LINKED, MANUAL};
 

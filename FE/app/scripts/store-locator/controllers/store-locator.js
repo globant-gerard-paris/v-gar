@@ -90,7 +90,9 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
      * @param currentSearchLon
      */
     var overrideDistance = function (currentSearchLat, currentSearchLon) {
-        for (var i = 0; i < $scope.model.stores.length; i++) {
+        var storeLen = $scope.model.stores? $scope.model.stores.length : 0;
+
+        for (var i = 0; i < storeLen; i++) {
             var store = $scope.model.stores[i];
             store.distance = Geocoder.calculateDistance(currentSearchLat, currentSearchLon, store.latitude, store.longitude);
         }
@@ -142,7 +144,7 @@ angular.module('PresentationFlow').controller('StoreLocatorCtrl', function ($sco
     };
 
     var removeFavoriteStoreFromOtherStoreList = function (favoriteId) {
-        var currentStores = $scope.model.stores;
+        var currentStores = $scope.model.stores || 0;
         var newStoresList = [];
         for (var i = 0; i < currentStores.length; i++) {
             var store = currentStores[i];
