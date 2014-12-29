@@ -286,7 +286,7 @@
     
     .section-trapezium-up {        
         @include skew(0,4deg);
-        padding: 40px 0px;
+        padding: 40px 0;
         //@include box-shadow(#2b9ace 0 0 1px);
     }
     
