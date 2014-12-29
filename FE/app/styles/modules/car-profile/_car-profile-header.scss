@@ -79,7 +79,7 @@
             background: url(../resources/images/car-profile/v_button.png);
             background-size: cover;
         }
-        
+
         .btn-delete {            
             font-weight: bold;
             color: #2b9ace;
@@ -157,7 +157,7 @@
         background: url("../resources/images/car-profile/car-alerts-bg.png") top center no-repeat;
         background-size: contain;
         text-align: center;
-        width: 471px;
+        max-width: 471px;
         margin: 0 auto;
 
         .item {
@@ -274,9 +274,36 @@
 
 .car-profile-mobile {
     font-family: Roboto;
-
-
     position: relative;
+
+    .section-blue {
+        background-color:  #2b9ace;
+    }
+    
+    .section-white {
+        background-color:  white;
+    }
+    
+    .section-trapezium-up {        
+        @include skew(0,4deg);
+        padding: 40px 0px;
+        //@include box-shadow(#2b9ace 0 0 1px);
+    }
+    
+    .section-trapezium-down {
+        @include skew(0,-8deg);
+        padding-top: 60px;
+    }
+    
+    .section-trapezium-inner {
+        @include skew(0,8deg);        
+    }
+    
+    .section-trapezium-box {
+        @include skew(0,-4deg); 
+        padding: 0 40px;
+    }
+
     .btn-add-mobile{
         position: absolute;
         background-image: url(../resources/images/car-profile/mobile-edit.png);
@@ -286,10 +313,7 @@
         top: 100px;
     }
     .service-alert{
-        margin: 18px 0 36px 0;
-        position: relative;
-        left: 50%;
-        @include transform(translateX(-50%) scale(0.7));
+        @include transform(scale(0.8));
     }
     .car-card-slick-container{
         text-align: center;
@@ -300,14 +324,12 @@
             left: 15px;
             right: 0;
             top:186px;
-
-
         }
         .car-card-mileage{
             margin-top: 38px;
-            .car-card-mileage-data{
-                margin: 0 auto;
-                width: 310px;
+            text-align: center;
+            .car-card-mileage-data{                
+                margin-left: 0;
             }
         }
     }
