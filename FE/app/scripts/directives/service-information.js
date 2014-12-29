@@ -27,13 +27,26 @@ angular.module('Directives').directive('serviceInformation', function ($modal, R
             });
 
             scope.serviceDesc = serviceDescArr.join(', ');
+
+            if (scope.service.order && scope.service.order.recommendedService) {
+
+                var suggestedDescArr = [];
+
+                _.each(scope.service.order.recommendedService.serviceRecordItems, function (record) {
+                    suggestedDescArr.push(record.description);
+                });
+
+                scope.service.suggestedDesc = suggestedDescArr.join(', ');
+                
+            }
+
             scope.serviceMileage = scope.service.mileage;
 
             scope.removeRecord = function () {
                 openConfirmationDialog();
             };
 
-            scope.showInvoicePage = function (){
+            scope.showInvoicePage = function () {
                 scope.$emit('SHOW_INVOICE_MODAL', scope.service);
             };
 
