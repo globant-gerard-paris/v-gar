@@ -85,12 +85,7 @@
             @extend %btn-appointment;
             margin: 0 auto;
         }
-    }
-
-    .service-center-mobile-background{
-        background-color: #2b9ace;
-        height:240px;
-    }
+    } 
 
     .store-car-heart{
         height: 145px;
@@ -105,15 +100,68 @@
     }
 }
 
+.service-center-mobile{
+    background: url(../resources/images/car-profile/map-bg-mobile.png) center center no-repeat;
+    background-size: cover;   
+    padding: 65px 40px 60px;
+    color: white;    
+    font-weight: 400;
+
+    .store-info {
+        background: url($locationMarker) top left no-repeat;
+        padding-left: 145px;
+        margin: 50px 0 20px;
+        min-height: 100px;
+        a {
+            color: white;    
+        }
+    }  
+
+    .store-change-service {
+        text-align: center;
+        a {
+            color: white;
+            cursor: pointer;
+            background: url(../resources/images/car-profile/edit-mobile.png) no-repeat left;
+            padding-left: 15px;
+        } 
+    }
+
+    .btn-box {
+        text-align: center;
+    }
+
+    .btn-appointment{       
+        display: inline-block;
+        text-align: center;       
+        background: white;
+        border: 1px solid #22347d;
+        padding: 15px 20px;        
+        @include border-radius(4px);        
+        .inner-box {
+            background: url(../resources/images/car-profile/calendar.png) no-repeat left;
+            padding-left: 35px;            
+            .inner-text {
+                background: url(../resources/images/car-profile/arrow.png) no-repeat right;
+                text-transform: uppercase;
+                color: #22347d;
+                font-weight: 700;
+                font-size: 13px;
+                padding-right: 25px;
+            }
+        }
+    }
+}
+
 .tell-us-more{
 
     text-align: center;
     font-family: Roboto;
 
     @include bp(xs) {
-        
+
         padding: 30px 0 40px;
-        
+
         h1 {
             color: #2b9ace;
             font-weight: 700;
@@ -130,7 +178,7 @@
         color: #ffffff;
         text-align: center;
         font-weight: 200;
-        font-size: 1.6rem;        
+        font-size: 1.6rem;
         padding: 20px;
         @include bp(xs) {
             color: #555e6c;
@@ -154,10 +202,10 @@
         @include bp(xs) {
             color: #2b9ace;
             font-size: 13px;
-            font-weight: 700;   
+            font-weight: 700;
             border-color: #2b9ace;
         }
 
-    }    
+    }
 
 }

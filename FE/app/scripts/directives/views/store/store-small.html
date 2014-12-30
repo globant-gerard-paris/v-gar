@@ -12,32 +12,24 @@
             </div>
         </div>
         <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>        
-        
+
         <div class="store-map-brand"></div>
     </div>
 
-    <div class="row visible-xs">
-
-        <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
-        </svg>
-        <section class="service-center-mobile-background">
-            <div class="btn-appointment">
-                <div>&nbsp;</div>
+    <div class="row visible-xs">      
+        <section class="service-center-mobile">
+            <div class="btn-box">
+                <div class="btn-appointment">
+                    <div class="inner-box">
+                        <div class="inner-text">Schedule Appointment</div>
+                    </div>
+                </div>            
             </div>
-            <div class="store-info">
-                <div class="store-map-brand pull-left"><div>&nbsp;</div></div>
-                <div class="store-data pull-left">
-                    <div class="store-address">{{model.address}} {{model.city}}</div>
-                    <div>{{model.state}}, {{model.zipCode}}</div>
-                    <div ng-if="model.phone">Call: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
+            <div class="store-info">                
+                <div class="store-address">{{model.address}} {{model.city}} {{model.state}}, {{model.zipCode}}</div>                
+                <div ng-if="model.phone">Phone: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
             </div>
-        </section>
-        <svg class="triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="0 0, 10 0, 0 10" fill="#2b9ace"/>
-        </svg>
+            <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
+        </section>      
     </div>
 </div>
