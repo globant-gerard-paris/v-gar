@@ -147,6 +147,13 @@
 
 .service-alert{
     font-family: Roboto;
+    text-align: center;
+    
+    .title-header {
+        color: #b0b4ba;
+        margin-bottom: 10px;
+    }
+    
     @include bp(md) {
         margin-top: 20px;
     }
