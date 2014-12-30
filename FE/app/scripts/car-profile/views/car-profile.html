@@ -92,13 +92,25 @@
         </div>
     </div>
     <div class="clearfix">
-        <div class="car-profile-info">
+        <div class="car-profile-info">            
             <car-card car="model.data.vehicle" change-miles="true"></car-card>
             <div class="car-card-tag" ng-show="model.carName">
                 <div class="edit-car-name" ng-click="openEditName()">{{model.data.vehicle.name}}</div>
             </div>
             <div class="name-your-car" ng-show="!model.carName" ng-click="openEditName()">
                 Name your car
+            </div>
+            <div class="modal-edit-car-name" ng-show="model.carNameEditMode" >
+                <input class="edit-name" ng-model="model.carName" type="text" placeholder="Name your car" />
+                <div class="clearfix">
+                    <div class="pull-left">
+                        <span class="btn-delete" ng-click="deleteName()">Delete</span>
+                    </div>
+                    <div class="pull-right">
+                        <span class="btn-action btn-close" ng-click="closeEditName()"></span>
+                        <span class="btn-action btn-add" ng-click="updateName()"></span>
+                    </div>
+                </div>
             </div>
         </div>        
     </div>
@@ -130,7 +142,7 @@
             <div ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
                 <div class="recall-box">
                     <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
-                    <div class="summary">{{model.data.recallsInformation.lastRecall.summary | limitTo: 150}}</div>
+                    <div class="summary">{{model.data.recallsInformation.lastRecall.summary| limitTo: 150}}</div>
                     <a class="see-more" href="#" ng-click="redirectToRecalls()">See more details</a>
                 </div>
             </div>

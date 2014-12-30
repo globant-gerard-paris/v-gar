@@ -5,6 +5,8 @@
     font-family: Roboto;
     max-width: 434px;
     margin: 0 auto;
+    position: relative;
+    padding: 0 0 10px 10px;
     .car-profile-picture{
         background: url(../resources/images/car-profile/ImageProfile.jpg) center center no-repeat;
         display: inline-block;
@@ -45,6 +47,7 @@
             width: 100%;
             padding: 8px 0;
             font-size: 16px;
+            max-width: 200px;           
         }
     }
 
@@ -53,8 +56,12 @@
         background-color: white;
         padding: 10px;
         position: absolute;
-        bottom: 0;
+        bottom: 1px;
+        left: 1px;
         max-width: 200px;
+        @include bp(xs) {
+            left: 30%;
+        }
         .edit-name {
             border: none;
             width: 100%;
@@ -148,12 +155,12 @@
 .service-alert{
     font-family: Roboto;
     text-align: center;
-    
+
     .title-header {
         color: #b0b4ba;
         margin-bottom: 10px;
     }
-    
+
     @include bp(md) {
         margin-top: 20px;
     }
@@ -282,7 +289,7 @@
 .car-profile-mobile {
     font-family: Roboto;
     position: relative;
-    
+
     .section-blue {
         background-color:  #2b9ace;
     }
@@ -366,6 +373,19 @@
                 margin-left: 0;
             }
         }
+    }
+
+    .name-your-car {
+        background-color: white;
+        text-align: center;
+        font-weight: bold;
+        color: #2b9ace;
+        cursor: pointer;
+        position: absolute;
+        top: 120px;
+        width: 100%;
+        padding: 8px 0;
+        font-size: 16px;        
     }
 
     .section-recommended-recalls {
