@@ -325,14 +325,41 @@
     .car-card-slick-container{
         text-align: center;
     }
+    .car-card-tag{
+        @include simple-transform(1, -6deg, 0, 50%);
+        @include border-radius(3px);
+        position: absolute;
+        top: 107px;
+        background-color: #2b9ace;
+        width: 140px;
+        padding: 5px;
+        margin: 0 auto;
+        left: 16px;
+        right: 0;
+        .edit-car-name {
+            background: url(../resources/images/car-profile/edit-icon.png) right center no-repeat;
+            padding: 0 20px 0 0;
+            color: white;
+            font-weight: 900;
+            line-height: 1.2em;
+            text-align: center;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    }
     .car-card{
-        .car-card-tag{
-            position: absolute;
-            left: 15px;
-            right: 0;
-            top:186px;
+        margin-bottom: 20px;
+        .car-card-brand{
+            text-overflow: ellipsis;
+            width: 90%;
+            overflow: hidden;
+            margin: 0 auto;
         }
         .car-card-mileage{
+            display: inline-block;
+            margin-left: -20px;
             margin-top: 38px;
             text-align: center;
             .car-card-mileage-data{
