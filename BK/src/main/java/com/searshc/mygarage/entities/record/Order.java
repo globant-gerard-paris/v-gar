@@ -18,9 +18,7 @@ public class Order {
     private Double orderTotalAmount;
 
     private List<OrderItem> orderItems = new ArrayList<OrderItem>();
-
     private ServiceCenter serviceCenter;
-    
     private RecommendedService recommendedService;
 
     public RecommendedService getRecommendedService() {

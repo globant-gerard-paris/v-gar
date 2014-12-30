@@ -120,7 +120,7 @@ public class NcdbServiceImpl implements NcdbService {
 
     private Order getLastOrder(List<Order> orders)
             throws NCDBApiException {
-       return orders.isEmpty() ? null : orders.get(0);
+        return orders.isEmpty() ? null : orders.get(0);
     }
 
     private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter) {
@@ -166,7 +166,7 @@ public class NcdbServiceImpl implements NcdbService {
         return serviceRecords;
     }
 
-    private RecommendedService createRecommendedServices(Order lastOrder, boolean includeOrder){
+    private RecommendedService createRecommendedServices(Order lastOrder, boolean includeOrder) {
         RecommendedService recommendedService = null;
         if (lastOrder != null) {
             recommendedService = new RecommendedService(includeOrder ? lastOrder : new Order(), lastOrder.getServiceCenter());

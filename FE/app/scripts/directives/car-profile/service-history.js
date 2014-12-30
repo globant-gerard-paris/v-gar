@@ -44,7 +44,7 @@ angular.module('Directives').directive('serviceHistory', function (RedirectSrv) 
                     if (serviceCenter) {
                         serviceCenterStr += serviceCenter.address + ' ' + serviceCenter.city +
                                 ', ' + serviceCenter.zipCode;
-                        serviceToReturn.serviceCenterStr = serviceCenterStr;
+                        serviceToReturn.serviceCenterStr = 'Sears Auto Center ' + serviceCenterStr;
                     } else {
                         serviceToReturn.serviceCenterStr = service.source;
                     }
