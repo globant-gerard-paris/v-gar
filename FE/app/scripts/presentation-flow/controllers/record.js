@@ -56,7 +56,7 @@ angular.module('PresentationFlow').controller('' +
     $scope.model = context;
     $scope.model.recordForm = {
         mileage: null,
-        date: null,
+        date: new Date(),
         source: null,
         comment: null,
         service: null
