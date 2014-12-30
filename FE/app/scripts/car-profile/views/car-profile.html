@@ -106,14 +106,13 @@
         <service-alert vehicle-status="model.data.vehicleStatus"></service-alert>
     </div>
     <div class="section-blue">
-        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>        
-
+        <br><br><br>
     </div>
-    <div class="section-white">
+    <div class="section-white section-recommended-recalls">
         <div class="clearfix">
             <div ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
-                <div class="service-info">
-                    <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Services</div>            
+                <div class="recommended-box">                    
+                    <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Sears Services</div>            
                     <div class="recommended-services">
                         <div class="service-list">
                             <div class="well well-sm" ng-repeat="srv in model.data.recommendedService.serviceRecordItems">
@@ -129,12 +128,10 @@
         </div>
         <div class="clearfix">
             <div ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
-                <div class="recall-info">
+                <div class="recall-box">
                     <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
-                    <div class="summary">{{model.data.recallsInformation.lastRecall.summary| limitTo: 150}}</div>
-                    <div class="see-more">
-                        <a href="#" ng-click="redirectToRecalls()">See more details</a>
-                    </div>
+                    <div class="summary">{{model.data.recallsInformation.lastRecall.summary | limitTo: 150}}</div>
+                    <a class="see-more" href="#" ng-click="redirectToRecalls()">See more details</a>
                 </div>
             </div>
         </div>
@@ -142,18 +139,16 @@
     <div class="section-blue">
         <div class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
             <div class="section-title">
-                <span class="title">Your last service history</span>
-                <span class="btn-history" ng-click="seeAllHistory()">See all history</span>
+                <div class="title">Your recent service</div>
+                <div class="btn-history" ng-click="seeAllHistory()">See all history</div>
             </div>
             <div class="last-service-body">
                 <service-history services="model.services"></service-history>
             </div>
         </div>
     </div>
-    <div class="section-white">
-        <br><br><br><br>
-        tell uss more
-        <br><br><br><br>
+    <div class="section-white">        
+        <car-tell-us-more model="model.data"></car-tell-us-more>        
     </div>
     <div class="section-blue">
         <section class="section-article" ng-show="model.article">
@@ -163,4 +158,5 @@
             </div>
         </section>
     </div>
+    <footer-vg></footer-vg>
 </div>

@@ -87,78 +87,6 @@
         }
     }
 
-    .tell-us-more{
-
-        text-align: center;
-
-        hr{
-            margin-bottom: 40px;
-            margin-top: 40px;
-            width: 70%;
-        }
-
-        p{
-            color: #ffffff;
-            text-align: center;
-            font-weight: 200;
-            font-size: 1.6rem;
-            letter-spacing: 1px;
-            padding: 20px;
-        }
-
-        .btn-tell-us-more {
-            border: 2px solid #ffffff;
-            background: none;
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            padding: 6px 16px 6px 16px;
-            margin-top: 10px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        &.visible-xs{
-            background-color: #ffffff;
-            border-left: 1px solid darkgrey;
-            border-right: 1px solid darkgrey;
-            width: 100%;
-            height: 200px;
-            text-align: center;
-
-            .content{
-                padding-top: 40px;
-                width: 230px;
-                margin: 0 auto;
-            }
-
-            .title{
-                color: #1c9bc4;
-                font-size: 2.7rem;
-                font-weight: 700;
-                line-height: 1.333;
-            }
-            .text{
-                color: #555e6c;
-                font-size: 2.1rem;
-                font-weight: 400;
-            }
-            .car-heart{
-                position: absolute;
-                right: 26px;
-                width: 120px;
-                margin-top: 102px;
-                height: 98px;
-                background-image: url($tellUsMoreCar);
-                background-repeat: no-repeat;
-
-            }
-        }
-
-    }
-
-
     .service-center-mobile-background{
         background-color: #2b9ace;
         height:240px;
@@ -175,4 +103,61 @@
             background-repeat: no-repeat;
         }
     }
+}
+
+.tell-us-more{
+
+    text-align: center;
+    font-family: Roboto;
+
+    @include bp(xs) {
+        
+        padding: 30px 0 40px;
+        
+        h1 {
+            color: #2b9ace;
+            font-weight: 700;
+        }
+    }
+
+    hr{
+        margin-bottom: 40px;
+        margin-top: 40px;
+        width: 70%;
+    }
+
+    p{
+        color: #ffffff;
+        text-align: center;
+        font-weight: 200;
+        font-size: 1.6rem;        
+        padding: 20px;
+        @include bp(xs) {
+            color: #555e6c;
+            font-size: 18px;
+            font-weight: 400;
+            padding: 0 40px;
+        }
+    }
+
+    .btn-tell-us-more {
+        border: 2px solid #ffffff;
+        background: none;
+        color: #ffffff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        padding: 6px 16px 6px 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        @include bp(xs) {
+            color: #2b9ace;
+            font-size: 13px;
+            font-weight: 700;   
+            border-color: #2b9ace;
+        }
+
+    }    
+
 }

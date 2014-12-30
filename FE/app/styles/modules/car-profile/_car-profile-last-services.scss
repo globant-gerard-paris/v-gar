@@ -10,11 +10,8 @@
         font-size: 30px;
         font-weight: 400;
 
-        .title {
-            margin-right: 10px;
-        }
-
         .btn-history {
+            margin-left: 10px;
             color:  #91dcff;
             font-weight: 500;
             font-size: 18px;
@@ -91,7 +88,7 @@
 
     .feedback-content-common-middle{
         margin-right: 15px;
-    } 
+    }
 
     .section-title {
         font-size: 30px;
@@ -308,33 +305,37 @@
                         }
                     }
                 }
-                .section-article {
-                    .section-title {
-                        text-align: center;
-                        font-size: 36px;
-                        font-weight: 700;
-                    }
-                    .section-desc {
-                        text-align: center;
-                        font-size: 18px;
-                    }
-                    .car-article {
-                        width: 300px;
-                        margin: auto;
-                        .car-article-img {
-                            text-align: center;
-                        }
-                        .car-article-data {
-                            margin-bottom: 30px;
-                            .car-article-title {
-                                margin-top: 10px;
-                            }
-                            .car-article-url {
-                                font-size: 18px;
-                                font-weight: 700;
-                            }
-                        }
-                    }
+
+            }
+        }
+    }
+}
+
+.car-profile-mobile {
+    .section-article {
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+        }
+        .section-desc {
+            text-align: center;
+            font-size: 18px;
+        }
+        .car-article {
+            width: 300px;
+            margin: auto;
+            .car-article-img {
+                text-align: center;
+            }
+            .car-article-data {
+                margin-bottom: 30px;
+                .car-article-title {
+                    margin-top: 10px;
+                }
+                .car-article-url {
+                    font-size: 18px;
+                    font-weight: 700;
                 }
             }
         }

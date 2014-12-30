@@ -80,7 +80,7 @@
             background-size: cover;
         }
 
-        .btn-delete {            
+        .btn-delete {
             font-weight: bold;
             color: #2b9ace;
             cursor: pointer;
@@ -279,28 +279,28 @@
     .section-blue {
         background-color:  #2b9ace;
     }
-    
+
     .section-white {
         background-color:  white;
     }
-    
-    .section-trapezium-up {        
+
+    .section-trapezium-up {
         @include skew(0,4deg);
         padding: 40px 0;
         //@include box-shadow(#2b9ace 0 0 1px);
     }
-    
+
     .section-trapezium-down {
         @include skew(0,-8deg);
         padding-top: 60px;
     }
-    
+
     .section-trapezium-inner {
-        @include skew(0,8deg);        
+        @include skew(0,8deg);
     }
-    
+
     .section-trapezium-box {
-        @include skew(0,-4deg); 
+        @include skew(0,-4deg);
         padding: 0 40px;
     }
 
@@ -328,70 +328,53 @@
         .car-card-mileage{
             margin-top: 38px;
             text-align: center;
-            .car-card-mileage-data{                
+            .car-card-mileage-data{
                 margin-left: 0;
             }
         }
     }
-    .recalls-and-services{
-        color: #555e6c;
-        text-align: center;
-        font-size: 1.2em;
-        font-weight: 400;
-        width: 78%;
-        margin: 0 auto;
-        .count{
-            font-size: 2.0em;
-            font-weight: 900;
-            margin: 14px 2px 14px 2px;
-            line-height: 1em;
-        }
-        .service-info, .recall-info{
-            background-position: top center;
-            background-repeat: no-repeat;
-            padding-top:50px;
-            margin-top: 40px;
-            margin-bottom: 40px;
-        }
-        .service-info{
-            background-image: url(../resources/images/car-profile/servicehistory-mobile.png);
-            .service-list{
-                .item{
-                    color: #2b9ace;
-                    font-weight: 400;
-                    text-align: left;
-                }
-                .well{
-                    font-size: 0.95em;
-                    font-weight: 400;
-                    margin: 3px 0 0;
-                    text-align: left;
-                    border: none;
-                    border-radius: 0;
-                    box-shadow: none;
-                    -webkit-box-shadow: none;
-                    a {
-                        color: #555e6c;
-                    }
-                }
-            }
-            .prev-service{
-                display: block;
-                color:  #b0b4ba;
-                margin-top:24px;
+
+    .section-recommended-recalls {
+        padding: 30px;
+
+        .recommended-box {
+            background:  url(../resources/images/car-profile/recommended-mobile.png) center top no-repeat;
+            padding: 70px 0 30px;
+            .count{
+                font-size: 2em;
+                font-weight: 900;
+                line-height: 1em;
+                text-align: center;
             }
         }
-        .recall-info{
-            margin-top: 0;
-            background-image: url(../resources/images/car-profile/recall-mobile.png);
-            .summary{
-                line-height: 1.4em;
-                height: 4.2em;
-                overflow: hidden;
+
+        .recall-box {
+            background:  url(../resources/images/car-profile/recall-mobile.png) center top no-repeat;
+            padding-top: 60px;
+            text-align: center;
+            .count{
+                font-size: 2em;
+                font-weight: 900;
+                line-height: 1em;
             }
-            a{
-                margin-top: 12px;
-                display: block;
+            .summary {
+                padding: 20px 20px 5px;
+            }
+            .see-more {
+                color:  #2b9ace;
+            }
+        }
+    }
+
+    .last-service {
+        padding: 20px 30px;
+        .section-title {
+            text-align: center;           
+            .btn-history {
+                background:  url(../resources/images/car-profile/show-history.png) center left no-repeat;
+                padding-left: 30px;
+                color: white;
+                line-height: 1em;
             }
         }
     }
