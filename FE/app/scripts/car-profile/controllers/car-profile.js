@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, CarProfileSrv, RecordSrv) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, CarProfileSrv, RecordSrv, RedirectSrv, $rootScope) {
 
     $scope.model = {
         recallsOrRecommended: true,
@@ -87,6 +87,19 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
     $scope.loadProfileData = function () {
         RecordSrv.getRecordService().then(successGetServices);
         CarProfileSrv.getCarProfile().then(carsResultSuccess);
+    };
+
+    $scope.redirectToRecalls = function () {
+        RedirectSrv.redirectTo('/recalls');
+    };
+
+
+    var successBlock = function () {
+        $rootScope.$broadcast('BLOCK_SUGGESTED_SERVICE');
+    };
+
+    $scope.blockSuggested = function (suggested) {
+        CarProfileSrv.blockSuggestedService($scope.model.data.recommendedService, suggested).then(successBlock);
     };
 
     //load initial data

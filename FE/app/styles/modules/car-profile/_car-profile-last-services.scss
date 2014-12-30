@@ -313,20 +313,28 @@
 
 .car-profile-mobile {
     .section-article {
+        
+        padding: 40px 60px;
+        color: white;
+        
         .section-title {
             text-align: center;
             font-size: 36px;
             font-weight: 700;
+            margin-bottom: 20px;
         }
+        
         .section-desc {
             text-align: center;
             font-size: 18px;
         }
-        .car-article {
-            width: 300px;
-            margin: auto;
+        .car-article {       
+        
             .car-article-img {
                 text-align: center;
+                img {
+                    width: 100%;
+                }
             }
             .car-article-data {
                 margin-bottom: 30px;
