@@ -13,10 +13,10 @@ import com.searshc.mygarage.apis.nhtsa.response.NHTSARecalls;
 import com.searshc.mygarage.exceptions.NHTSARecallsException;
 
 //USE THIS CONFIG IF YOU ARE IN SEARS VPN
-import java.net.InetSocketAddress;
+/*import java.net.InetSocketAddress;
 import java.net.Proxy;
 import java.net.Proxy.Type;
-import org.springframework.http.client.SimpleClientHttpRequestFactory;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;*/
 
 @Component
 public class NHTSAApiImpl implements NHTSAApi {
@@ -30,13 +30,11 @@ public class NHTSAApiImpl implements NHTSAApi {
 
     public NHTSAApiImpl() {
         //USE THIS CONFIG IF YOU ARE IN SEARS VPN
-		SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-
+		/*SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
          Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
          requestFactory.setProxy(proxy);
-
-         this.restTemplate = new RestTemplate(requestFactory);
-        //this.restTemplate = new RestTemplate();
+         this.restTemplate = new RestTemplate(requestFactory);*/
+        this.restTemplate = new RestTemplate();
     }
 
     public NHTSARecalls getRecalls(final int modelYear, final String make, final String model) throws NHTSARecallsException {
