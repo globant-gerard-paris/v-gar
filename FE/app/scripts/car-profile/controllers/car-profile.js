@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, CarProfileSrv, RecordSrv, RedirectSrv, $rootScope) {
+angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $modal, CarProfileSrv, RecordSrv, RedirectSrv, $rootScope, $location, $anchorScroll) {
 
     $scope.model = {
         recallsOrRecommended: true,
@@ -11,12 +11,13 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
     var carsResultSuccess = function (response) {
         $scope.model.data = response.data;
         $scope.model.carName = $scope.model.data.vehicle.name;
+        $scope.model.hasRecalls = response.data.recallsInformation &&
+                response.data.recallsInformation.totalRecalls > 0;
+        $scope.model.hasRecommended = response.data.recommendedService &&
+                response.data.recommendedService.serviceRecordItems &&
+                response.data.recommendedService.serviceRecordItems.length > 0;
         $scope.model.recallsOrRecommended =
-                (response.data.recallsInformation &&
-                        response.data.recallsInformation.totalRecalls > 0) ||
-                (response.data.recommendedService &&
-                        response.data.recommendedService.serviceRecordItems &&
-                        response.data.recommendedService.serviceRecordItems.length > 0);
+                $scope.model.hasRecalls || $scope.model.hasRecommended;
         $scope.$broadcast('car-profile-data-ready');
     };
 
@@ -100,6 +101,11 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
 
     $scope.blockSuggested = function (suggested) {
         CarProfileSrv.blockSuggestedService($scope.model.data.recommendedService, suggested).then(successBlock);
+    };
+
+    $scope.goToRecommended = function (id) {
+        $location.hash(id);
+        $anchorScroll();
     };
 
     //load initial data
