@@ -313,23 +313,23 @@
 
 .car-profile-mobile {
     .section-article {
-        
+
         padding: 40px 60px;
         color: white;
-        
+
         .section-title {
             text-align: center;
             font-size: 36px;
             font-weight: 700;
             margin-bottom: 20px;
         }
-        
+
         .section-desc {
             text-align: center;
             font-size: 18px;
         }
         .car-article {       
-        
+
             .car-article-img {
                 text-align: center;
                 img {
@@ -344,6 +344,10 @@
                 .car-article-url {
                     font-size: 18px;
                     font-weight: 700;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    color: #32b5ca;
                 }
             }
         }
