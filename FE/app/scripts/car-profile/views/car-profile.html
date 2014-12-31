@@ -122,7 +122,7 @@
         <store-small model="model.data.serviceCenter"></store-small>
     </div>
     <!--triangle-->
-    <svg class="visible-xs triangle triangle-bottom" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg ng-if="model.recallsOrRecommended || !model.services" class="visible-xs triangle triangle-bottom" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 10, 10 0, 0 0" fill="#2b9ace"/>
     </svg>
     <div class="section-white section-recommended-recalls" ng-if="model.recallsOrRecommended">
@@ -154,11 +154,11 @@
         </div>
     </div>
     <!--triangle-->
-    <svg class="visible-xs triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg ng-if="model.services && model.recallsOrRecommended" class="visible-xs triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
     </svg>
-    <div class="section-blue">
-        <div class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
+    <div class="section-blue" ng-if="model.services">
+        <div class="last-service" ng-controller="CarProfileLastServicesCtrl">
             <div class="section-title">
                 <div class="title">Your recent service</div>
                 <div class="btn-history" ng-click="seeAllHistory()">See all history</div>
