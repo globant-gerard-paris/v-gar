@@ -54,6 +54,9 @@ angular.module('Navigation').controller('MainCtrl', function ($scope, $location,
     $scope.isMobile = function () {
         return SessionDataSrv.isMobileDevice();
     };
+    $scope.isRootPage = function () {
+        return $location.path() === '/';
+    };
     $scope.isLandingPage = function () {
         return $location.path() === '/landing';
     };
