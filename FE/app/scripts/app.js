@@ -43,7 +43,13 @@ angular.module('virtualGarage', _mainModules)
                 controller: 'ErrorCtrl'
             }
         });
-
+        routes.push({
+            name:'/',
+            params: {
+                templateUrl: 'scripts/presentation-flow/views/landing.html',
+                controller: 'LandingCtrl'
+            }
+        });
         routes.push({
             name: '/error',
             params: {
