@@ -31,10 +31,8 @@ public class NHTSAApiImpl implements NHTSAApi {
     public NHTSAApiImpl() {
         //USE THIS CONFIG IF YOU ARE IN SEARS VPN
 		/*SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
-
          Proxy proxy= new Proxy(Type.HTTP, new InetSocketAddress("166.76.3.199", 8080));
          requestFactory.setProxy(proxy);
-
          this.restTemplate = new RestTemplate(requestFactory);*/
         this.restTemplate = new RestTemplate();
     }

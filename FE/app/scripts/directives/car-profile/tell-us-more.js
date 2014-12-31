@@ -8,12 +8,11 @@ angular.module('Directives').directive('carTellUsMore', function () {
         replace: true,
         restrict: 'E',
         scope: {
-            model: '=',
-            type: '='
+            model: '='
         },
         templateUrl: 'scripts/directives/views/car-profile/tell-us-more.html',
-        link: function (scope /*, element , attributes*/) {
-            scope.mobile = (scope.type === 'xs');// ? 'visible-xs': 'hidden-xs';
+        link: function () {
+
         }
     };
 });

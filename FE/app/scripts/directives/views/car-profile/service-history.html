@@ -1,13 +1,13 @@
 <div class="service-history" ng-repeat="service in model.services" ng-click="seeAllHistory()">
     <div class="row">
-        <div class="col-sm-4 col-md-5">
+        <div class="col-xs-4 col-sm-4 col-md-5">
             <div class="service-history-img">
                 <div class="service-history-icon pull-left"
                      ng-class="service.serviceType == 'REMOTE_SERVICE' ? 'service-history-icon-non-private' : 'service-history-icon-private'">
                 </div>
             </div>
         </div>
-        <div class="col-sm-8 col-md-7">
+        <div class="col-xs-8 col-sm-8 col-md-7">
             <div class="service-history-data">
                 <div class="sh-data">{{service.serviceCenterStr}}</div>
                 <div class="section-desc hidden-xs">{{service.serviceDesc}}</div>

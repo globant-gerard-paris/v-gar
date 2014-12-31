@@ -492,7 +492,11 @@ module.exports = function (grunt) {
                 'XHTML element “loader” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “loader” not allowed as child of XHTML element “body” in this context. (Suppressing further errors from this subtree.)',
                 'XHTML element “fb-share” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
-                'XHTML element “tweet” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)'
+                'XHTML element “tweet” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “car-tell-us-more” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “car-article” not allowed as child of XHTML element “section” in this context. (Suppressing further errors from this subtree.)',
+                'XHTML element “store-small” not allowed as child of XHTML element “div” in this context. (Suppressing further errors from this subtree.)',
+                'Attribute “ng-if” not allowed on SVG element “svg” at this point.'
             ]
         }
     });
