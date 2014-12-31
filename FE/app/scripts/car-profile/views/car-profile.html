@@ -115,12 +115,16 @@
         <service-alert vehicle-status="model.data.vehicleStatus"></service-alert>
     </div>
     <!--triangle-->
-    <svg class="visible-xs triangle" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg class="visible-xs triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
     </svg>
     <div class="clearfix">
         <store-small model="model.data.serviceCenter"></store-small>
     </div>
+    <!--triangle-->
+    <svg class="visible-xs triangle triangle-bottom" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 10, 10 0, 0 0" fill="#2b9ace"/>
+    </svg>
     <div class="section-white section-recommended-recalls" ng-if="model.recallsOrRecommended">
         <div class="clearfix">
             <div ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
@@ -149,6 +153,10 @@
             </div>
         </div>
     </div>
+    <!--triangle-->
+    <svg class="visible-xs triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
+    </svg>
     <div class="section-blue">
         <div class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
             <div class="section-title">
