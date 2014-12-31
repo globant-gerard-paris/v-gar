@@ -156,7 +156,9 @@ public class NcdbServiceImpl implements NcdbService {
         List<ServiceRecord> serviceRecords
                 = new ArrayList<ServiceRecord>(ncdbRecordFilter.serviceRecordsMap.values());
         Order lastOrder = this.getLastOrder(orders);
-        lastOrder.setRecommendedService(this.createRecommendedServices(lastOrder, false));
+        if (lastOrder != null) {
+            lastOrder.setRecommendedService(this.createRecommendedServices(lastOrder, false));
+        }
         Collections.sort(serviceRecords, new Comparator<ServiceRecord>() {
             @Override
             public int compare(ServiceRecord o1, ServiceRecord o2) {
