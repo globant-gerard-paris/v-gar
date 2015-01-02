@@ -394,7 +394,8 @@
         width: 47px;
         height: 47px;
         right: 30px;
-        top: 100px;
+        top: 20px;
+        cursor: pointer;
     }
     .service-alert{
         @include transform(scale(0.8));
@@ -445,8 +446,7 @@
         }
     }
 
-    .name-your-car {
-        background-color: white;
+    .name-your-car {        
         text-align: center;
         font-weight: bold;
         color: #2b9ace;
