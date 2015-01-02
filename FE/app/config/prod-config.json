@@ -2,8 +2,13 @@
     "config": {
         "api": {
             "hosts": {
-                "BACKEND": "NOT_DEFINED"
+                "BACKEND": "http://saco.syw.net/"
             }
+        },
+        "social": {
+            "twitterkUrlShare": "http://www.shopyourway.com/app/13050/l",
+            "facebookUrlShare": "http://www.shopyourway.com/app/13050/l",
+            "facebookAppID" : "674196112699408"
         }
     }
 }
