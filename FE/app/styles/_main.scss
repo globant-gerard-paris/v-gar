@@ -28,3 +28,19 @@ a{
 h1, h2, h3 {
     font-weight: 100;
 }
+
+
+//PATCH to fix the problem on mobile devices with 320 width
+@media (max-width: 380px) {
+    html.ng-scope {
+        width: 90%;
+        margin-left: 11px;
+    }
+    .dashboard .dashboard-car-actions-top .dashboard-add-car{
+        margin-right: 10px;
+    }
+    .grid-car-card{
+        width: 318px;
+    }
+}
+
