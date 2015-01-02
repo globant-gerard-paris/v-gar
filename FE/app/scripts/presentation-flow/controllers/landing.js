@@ -12,7 +12,7 @@ angular.module('PresentationFlow').directive('disableAnimation', function ($anim
     };
 });
 
-angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,SessionDataSrv, RedirectSrv, $modal, LandingSrv, stBlurredDialog) {
+angular.module('PresentationFlow').controller('LandingCtrl', function ($scope, SessionDataSrv, RedirectSrv, $modal, LandingSrv, stBlurredDialog) {
 
     $scope.nextURL = '/landing'; //default
 
@@ -33,23 +33,24 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
 
     ];
 
-    var goToNextUrl = function(){
-        if($scope.nextURL === '/linked-car'){
+    var goToNextUrl = function () {
+        if ($scope.nextURL === '/linked-car') {
             openFullScreenModal('scripts/presentation-flow/views/linked-car.html');
-        } else if($scope.nextURL === '/add-car'){
+        } else if ($scope.nextURL === '/add-car') {
+            $scope.nextURL = '/landing';
             openFullScreenModal('scripts/manage-car/views/add-car.html');
         }
-        else{
+        else {
             RedirectSrv.redirectTo($scope.nextURL);
         }
     };
 
-    var init = function (){
+    var init = function () {
         var token = SessionDataSrv.getCurrentToken();
-        if(token){
+        if (token) {
             $scope.needSYWLogin = false;
             LandingSrv.getHomeSessionInfo(token).then(successGetUserInfo, failGetUserInfo);
-        }else {
+        } else {
             $scope.needSYWLogin = true;
         }
     };
@@ -59,33 +60,33 @@ angular.module('PresentationFlow').controller('LandingCtrl', function ($scope,Se
     $scope.typeModal = '';
 
     $scope.startNow = function () {
-        if($scope.needSYWLogin){
-            Platform.Authentication.openSignupDialog(null,null,'signIn');
+        if ($scope.needSYWLogin) {
+            Platform.Authentication.openSignupDialog(null, null, 'signIn');
             $scope.needSYWLogin = true;
-        }else{
+        } else {
             goToNextUrl();
         }
     };
 
 
-    var openFullScreenModal = function(template){
+    var openFullScreenModal = function (template) {
         stBlurredDialog.open(template);
     };
 
     var successGetUserInfo = function (response) {
-        if(response){
-            if(response.haveManualCars || response.haveLinkedCars ){
+        if (response) {
+            if (response.haveManualCars || response.haveLinkedCars) {
                 $scope.nextURL = '/dashboard';
-            } else if(response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
+            } else if (response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 $scope.nextURL = '/linked-car';
-            } else if(!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
+            } else if (!response.haveNCDBCars && !response.haveManualCars && !response.haveLinkedCars) {
                 $scope.nextURL = '/add-car';
             }
             goToNextUrl();
         }
     };
     var failGetUserInfo = function (response) {
-        console.log('ERROR: '+response);
+        console.log('ERROR: ' + response);
     };
 
     /**
