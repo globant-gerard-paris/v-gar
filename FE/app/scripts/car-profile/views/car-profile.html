@@ -55,7 +55,7 @@
                 </div>
                 <div class="services-and-articles">
                     <feedback-tag vertical-height="150"></feedback-tag>
-                    <section class="last-service" ng-show="model.services" ng-controller="CarProfileLastServicesCtrl">
+                    <section class="last-service" ng-show="model.hasServices" ng-controller="CarProfileLastServicesCtrl">
                         <div class="section-title">
                             <span class="title">Your last service history</span>
                             <span class="btn-history" ng-click="seeAllHistory()">See all history</span>
@@ -78,18 +78,19 @@
 </div>
 
 <div class="row car-profile-mobile visible-xs hidden-sm">
-    <div class="clearfix nav-bar" ng-if="model.recallsOrRecommended">
+    <div class="clearfix nav-bar" ng-show="model.recallsOrRecommended">
         <ul class="header">
-            <li ng-class="model.hasRecommended ? 'item50' : 'item100'" ng-if="model.hasRecalls">
+            <li ng-class="model.hasRecommended ? 'item50' : 'item100'" ng-show="model.hasRecalls">
                 <div class="recall-header" ng-click="redirectToRecalls()">{{model.data.recallsInformation.totalRecalls}} Recall</div>
             </li>
-            <li ng-class="model.hasRecalls ? 'item50' : 'item100'" ng-if="model.hasRecommended">
+            <li ng-class="model.hasRecalls ? 'item50' : 'item100'" ng-show="model.hasRecommended">
                 <div class="suggested-header" ng-click="goToRecommended('recommended-box')">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Services</div>
             </li>
         </ul>
     </div>
     <div class="clearfix">
         <div class="car-profile-info">
+            <div class="btn-add-mobile" ng-click="openNewRecordForm()"></div>
             <car-card car="model.data.vehicle" change-miles="true"></car-card>
             <div class="car-card-tag" ng-show="model.carName">
                 <div class="edit-car-name" ng-click="openEditName()">{{model.data.vehicle.name}}</div>
@@ -122,12 +123,12 @@
         <store-small model="model.data.serviceCenter"></store-small>
     </div>
     <!--triangle-->
-    <svg ng-if="model.recallsOrRecommended || !model.services" class="visible-xs triangle triangle-bottom" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg ng-class="(model.recallsOrRecommended || !model.hasServices) ? 'visible-xs' : 'hidden-xs'" class="triangle triangle-bottom" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 10, 10 0, 0 0" fill="#2b9ace"/>
     </svg>
-    <div class="section-white section-recommended-recalls" ng-if="model.recallsOrRecommended">
+    <div class="section-white section-recommended-recalls" ng-show="model.recallsOrRecommended">
         <div class="clearfix">
-            <div ng-if="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
+            <div ng-show="model.data.recommendedService && model.data.recommendedService.serviceRecordItems && model.data.recommendedService.serviceRecordItems.length > 0">
                 <div class="recommended-box" id="recommended-box">
                     <div class="count">{{model.data.recommendedService.serviceRecordItems.length}} Suggested Sears Services</div>
                     <div class="recommended-services">
@@ -144,7 +145,7 @@
             </div>
         </div>
         <div class="clearfix">
-            <div ng-if="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
+            <div ng-show="model.data.recallsInformation && model.data.recallsInformation.totalRecalls > 0">
                 <div class="recall-box">
                     <div class="count">{{model.data.recallsInformation.totalRecalls}} Recalls</div>
                     <div class="summary">{{model.data.recallsInformation.lastRecall.summary| limitTo: 150}}</div>
@@ -154,10 +155,10 @@
         </div>
     </div>
     <!--triangle-->
-    <svg ng-if="model.services && model.recallsOrRecommended" class="visible-xs triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <svg ng-class="(model.hasServices && model.recallsOrRecommended) ? 'visible-xs' : 'hidden-xs'" class="triangle triangle-top" viewBox="0 0 10 10" version="1.1" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
         <polygon points="0 0, 0 10, 10 10" fill="#2b9ace"/>
     </svg>
-    <div class="section-blue" ng-if="model.services">
+    <div class="section-blue" ng-if="model.hasServices">
         <div class="last-service" ng-controller="CarProfileLastServicesCtrl">
             <div class="section-title">
                 <div class="title">Your recent service</div>

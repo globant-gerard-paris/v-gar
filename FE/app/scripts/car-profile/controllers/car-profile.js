@@ -18,6 +18,8 @@ angular.module('CarProfile').controller('CarProfileCtrl', function ($scope, $mod
                 response.data.recommendedService.serviceRecordItems.length > 0;
         $scope.model.recallsOrRecommended =
                 $scope.model.hasRecalls || $scope.model.hasRecommended;
+        $scope.model.hasServices = response.data.lastServiceHistory &&
+                response.data.lastServiceHistory.length > 0;
         $scope.$broadcast('car-profile-data-ready');
     };
 
