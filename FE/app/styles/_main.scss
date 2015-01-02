@@ -36,11 +36,29 @@ h1, h2, h3 {
         width: 90%;
         margin-left: 11px;
     }
-    .dashboard .dashboard-car-actions-top .dashboard-add-car{
-        margin-right: 10px;
+
+    .dashboard {
+        .dashboard-add-car{
+            margin-right: 10px !important;
+        }
     }
     .grid-car-card{
-        width: 318px;
+        width: 318px !important;
+    }
+
+    .add-car-base {
+        &.ng-scope{
+            width: 320px;
+            margin-left: 47px;
+        }
+
+        select, input{
+            width: 140px !important;
+        }
+
+        .backSection{
+            margin-left: 20px !important;
+        }
     }
 }
 
