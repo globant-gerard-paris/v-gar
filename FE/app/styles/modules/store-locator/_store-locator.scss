@@ -173,6 +173,7 @@
   }
   .store-card-slick-container {
     margin: 15px 0 15px 0;
+    display: inline-block;
     background: url("../resources/images/store-locator/store-bck-map.png") no-repeat;
     background-size: cover;
     .store-address {
@@ -217,7 +218,7 @@
   background-color: $storeItemBkg;
   font-size: 1.75rem;
   padding: 20px 0 0 0;
-  margin: 0 auto;
+  
   @include bp(xs) {
     width: 80%;
     margin: 15px 0 0 10%;
