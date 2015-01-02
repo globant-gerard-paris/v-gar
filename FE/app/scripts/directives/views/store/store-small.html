@@ -1,7 +1,7 @@
 <div class="store-small">
     <div class="map-bg hidden-xs">
         <h1>Your service center</h1>
-        <div class="media">
+        <div class="media" ng-show="model">
             <div class="store-icon-big pull-left"></div>
             <div class="media-body">
                 <div class="store-data">
@@ -25,9 +25,11 @@
                     </div>
                 </a>            
             </div>
-            <div class="store-info">                
-                <div class="store-address">{{model.address}} {{model.city}} {{model.state}}, {{model.zipCode}}</div>                
-                <div ng-if="model.phone">Phone: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+            <div class="store-info" ng-class="model ? '': 'center'">
+                <div ng-show="model">
+                    <div class="store-address">{{model.address}} {{model.city}} {{model.state}}, {{model.zipCode}}</div>                
+                    <div ng-if="model.phone">Phone: <a href="tel:{{model.phone}}" class="link-tel">{{model.phone}}</a></div>
+                </div>
             </div>
             <div class="store-change-service"><a ng-click="redirectToFindServiceCenter()">Change your service center</a></div>
         </section>      

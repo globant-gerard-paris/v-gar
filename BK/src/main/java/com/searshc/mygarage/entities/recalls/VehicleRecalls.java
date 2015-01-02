@@ -63,9 +63,9 @@ public class VehicleRecalls {
         this.timezone = Validate.notNull(timezone, "The TimeZone cannot be null");
         this.component = Validate.notNull(component, "The Component cannot be null");
         this.summary = Validate.notNull(summary, "The Summary cannot be null");
-        this.consequence = Validate.notNull(consequence, "The Consequence cannot be null");
-        this.remedy = Validate.notNull(remedy, "The Remedy cannot be null");
-        this.notes = Validate.notNull(notes, "The Notes cannot be null");
+        this.consequence = consequence;
+        this.remedy = remedy;
+        this.notes = notes;
         Validate.isTrue(modelYear >= 0, "The Model Year cannot be lower than 0");
         this.modelYear = modelYear;
         this.make = Validate.notNull(make, "The Make cannot be null");
@@ -150,7 +150,7 @@ public class VehicleRecalls {
      */
     public void setConsequence(String consequence) {
 
-        this.consequence = Validate.notNull(consequence, "The Consequence cannot be null");
+        this.consequence = consequence;
     }
 
     /**
@@ -166,7 +166,7 @@ public class VehicleRecalls {
      */
     public void setRemedy(String remedy) {
 
-        this.remedy = Validate.notNull(remedy, "The Remedy cannot be null");
+        this.remedy = remedy;
     }
 
     /**
@@ -182,7 +182,7 @@ public class VehicleRecalls {
      */
     public void setNotes(String notes) {
 
-        this.notes = Validate.notNull(notes, "The Notes cannot be null");
+        this.notes = notes;
     }
 
     /**
