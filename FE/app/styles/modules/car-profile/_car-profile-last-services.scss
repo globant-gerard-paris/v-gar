@@ -345,7 +345,7 @@
                     font-weight: 700;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    white-space: nowrap;
+                    word-break: break-all;
                     color: #32b5ca;
                 }
             }
