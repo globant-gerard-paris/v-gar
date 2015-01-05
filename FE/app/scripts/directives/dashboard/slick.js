@@ -32,7 +32,6 @@ angular.module('Directives').directive('slick', function ($timeout) {
                         autoplay: false,
                         slidesToShow: val.length < 3 ? val.length : 3,
                         slidesToScroll: 1,
-                        respondTo: 'min',
                         responsive: [
                             {
                                 breakpoint: 768,
