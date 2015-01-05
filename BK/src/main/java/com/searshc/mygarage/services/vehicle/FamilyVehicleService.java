@@ -18,8 +18,6 @@ import org.dozer.Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import scala.collection.mutable.StringBuilder;
-
 import com.searshc.mygarage.apis.ncdb.NCDBApi;
 import com.searshc.mygarage.apis.syw.SYWApi;
 import com.searshc.mygarage.base.GenericService;
@@ -32,9 +30,7 @@ import com.searshc.mygarage.entities.User;
 import com.searshc.mygarage.entities.Vehicle;
 import com.searshc.mygarage.exceptions.FamilyVehicleNotFoundException;
 import com.searshc.mygarage.exceptions.NCDBApiException;
-import com.searshc.mygarage.exceptions.UserNotFoundException;
 import com.searshc.mygarage.repositories.FamilyVehicleRepository;
-import com.searshc.mygarage.services.ncdb.NCDBLocalService;
 import com.searshc.mygarage.services.ncdb.NcdbService;
 import com.searshc.mygarage.services.record.RecordService;
 import com.searshc.mygarage.services.user.UserService;
@@ -50,9 +46,6 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
     @Inject
     private NCDBApi ncdbApi;
-
-    @Inject
-    private NCDBLocalService ncdbLocal;
 
     @Inject
     private UserService userService;
@@ -71,12 +64,12 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
 
     @Override
     public FamilyVehicle getItem(final Long id) {
-    	FamilyVehicle familyVehicle = this.repository.findOne(id);
-    	if(familyVehicle == null) {
-    		log.error("FamilyVehicle not found with id: " + id);
-    		throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
-    	}
-    	return familyVehicle;
+        FamilyVehicle familyVehicle = this.repository.findOne(id);
+        if (familyVehicle == null) {
+            log.error("FamilyVehicle not found with id: " + id);
+            throw new FamilyVehicleNotFoundException("FamilyVehicle not found with id: " + id);
+        }
+        return familyVehicle;
     }
 
     public List<FamilyVehicle> getFamilyVehiclesByFamilyId(final Long familyId) {
@@ -153,10 +146,10 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
      */
     private Set<VehicleConfirmationDTO> createReport(final Long userId, final Long familyId) {
         Set<VehicleConfirmationDTO> result = new HashSet<VehicleConfirmationDTO>();
-        List<FamilyVehicle> ncdbVehicles = ncdbApi.getVehicles(familyId);
+        List<FamilyVehicle> ncdbVehicles = this.ncdbApi.getVehicles(familyId);
         //If you want to look for the vehicles that belong a a family use "this.getVehiclesByFamilyId(familyId);"
         List<FamilyVehicle> localVehicles = getConfirmedFamilyVehiclesByUserId(userId);
-        List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>(); 
+        List<FamilyVehicle> linkedVehicles = new ArrayList<FamilyVehicle>();
         if (!CollectionUtils.isEmpty(ncdbVehicles)) {
             linkedVehicles = getLinkedCar(localVehicles, ncdbVehicles);
             //FIXME: the difference between list should be using hashCode and equals methods
@@ -184,14 +177,14 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
         }
 
         if (!CollectionUtils.isEmpty(ncdbVehicles)) {
-        	localVehicles.removeAll(ncdbVehicles);
+            localVehicles.removeAll(ncdbVehicles);
         }
-        
+
         if (!CollectionUtils.isEmpty(linkedVehicles)) {
-        	localVehicles.removeAll(linkedVehicles);
+            localVehicles.removeAll(linkedVehicles);
         }
         /*localVehicles.removeAll(ncdbVehicles);
-        localVehicles.removeAll(linkedVehicles);*/
+         localVehicles.removeAll(linkedVehicles);*/
         return localVehicles;
     }
 
@@ -267,25 +260,25 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
             }
             if (dto.getVehicleId() != 0) {
                 //The FamilyVehicle already exists in database
-            	try {
-					familyVehicle = this.getItem(dto.getVehicleId());
-				} catch (FamilyVehicleNotFoundException e) {
-					log.error(e);
-					continue;
-				}
+                try {
+                    familyVehicle = this.getItem(dto.getVehicleId());
+                } catch (FamilyVehicleNotFoundException e) {
+                    log.error(e);
+                    continue;
+                }
             } else if (dto.getTangibleId() != null) {
                 //Find if the FamilyVehicle was confirmed by another user (with same FamilyId)
-            	familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
-            	if(familyVehicle == null) {
-            		//The FamilyVehicle have not been confirmed previously
-            		familyVehicle = mapper.map(dto, FamilyVehicle.class);
+                familyVehicle = this.getFamilyVehicleByTangibleId(dto.getTangibleId());
+                if (familyVehicle == null) {
+                    //The FamilyVehicle have not been confirmed previously
+                    familyVehicle = mapper.map(dto, FamilyVehicle.class);
                     Vehicle vehicle = this.vehicleService.getVehicleByMakeModelAndYear(dto.getMake(), dto.getModel(), dto.getYear());
                     if (vehicle == null) {
                         vehicle = this.vehicleService.save(new Vehicle(dto.getYear(), dto.getMake(), dto.getModel(), dto.getEngine(), null));
                     }
                     familyVehicle.setVehicle(vehicle);
-            	}
-            	
+                }
+
             }
 
             if (familyVehicle == null || familyVehicle.getVehicle() == null) {
@@ -339,8 +332,8 @@ public class FamilyVehicleService extends GenericService<FamilyVehicle, Long, Fa
     }
 
     public List<FamilyVehicle> getLocalNonConfirmedFamilyVehicles(
-			Long familyId) {
+            Long familyId) {
         return repository.getLocalNonConfirmedFamilyVehicles(familyId);
-	}
+    }
 
 }

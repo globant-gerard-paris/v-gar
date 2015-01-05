@@ -124,7 +124,8 @@ public class NcdbServiceImpl implements NcdbService {
     }
 
     private List<Order> processTransactions(Long familyId, Long tangibleId, RecordFilter recordFilter) {
-        OrderHistoryResponse orderHistoryResponse = this.ncdbApi.getVehicleHistory(familyId, tangibleId);
+        OrderHistoryResponse orderHistoryResponse = (familyId != null && tangibleId != null)
+                ? this.ncdbApi.getVehicleHistory(familyId, tangibleId) : null;
         List<Order> orders = null;
         if (orderHistoryResponse != null) {
             Map<String, Order> ordersMap = this.createOrdersMap(orderHistoryResponse.getOrdersHeader());
