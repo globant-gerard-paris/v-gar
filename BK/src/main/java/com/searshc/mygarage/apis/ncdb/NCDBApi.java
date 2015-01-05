@@ -6,13 +6,12 @@ import java.util.List;
 
 import com.searshc.mygarage.dtos.VehicleGenericDescriptionDTO;
 import com.searshc.mygarage.entities.FamilyVehicle;
-import com.searshc.mygarage.exceptions.NCDBApiException;
 
 public interface NCDBApi {
 
-    List<FamilyVehicle> getVehicles(Long familyId) throws NCDBApiException;
+    List<FamilyVehicle> getVehicles(Long familyId);
 
-    OrderHistoryResponse getVehicleHistory(Long familyId, Long tangibleId) throws NCDBApiException;
+    OrderHistoryResponse getVehicleHistory(Long familyId, Long tangibleId);
 
     List<VehicleGenericDescriptionDTO> getVehicleByVINNumber(final String vinNumber);
 
